@@ -20,9 +20,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles notifications regarding change events, fulfilling the MUST requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_notification_integration_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_notification_integration_test.rb"
       ],
       "code_snippets": [
         "server.notify_tools_list_changed",
@@ -43,9 +43,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles notifying clients of changes to tools, prompts, and resources as required by the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
       ],
       "code_snippets": [
         "server.notify_tools_list_changed() after defining a new tool",
@@ -65,10 +65,10 @@
       "confidence": 0.75,
       "explanation": "The SDK incorporates notification features, but it is unclear if the credential retrieval logic from the environment is properly implemented as per the guidelines for the STDIO transport. The rule specifies that this should not follow the SCP continuation but rather retrieve credentials from the environment and the evidence indicates a potential oversight in this aspect.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_transport_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_transport_test.rb"
       ],
       "code_snippets": [
         "server.notify_tools_list_changed",
@@ -89,9 +89,9 @@
       "confidence": 1.0,
       "explanation": "The SDK fully encapsulates the necessary security implementations for alternative transports and automatically handles notification logic, which means developers do not need to manage these aspects themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_transport_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_transport_test.rb"
       ],
       "code_snippets": [
         "transport.send_notification() - Automatically sends notifications upon changes.",
@@ -111,11 +111,11 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement OAuth 2.1 with the required security measures for both confidential and public clients. No relevant function definitions or implementations were found to demonstrate compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
       ],
       "code_snippets": []
     },
@@ -131,9 +131,9 @@
       "confidence": 0.85,
       "explanation": "The SDK does not encapsulate the necessary behaviors for supporting the OAuth 2.0 Dynamic Client Registration Protocol as required. While functions related to managing tools and prompts exist, there is no defined method for handling OAuth 2.0 client registration automatically, thereby putting the responsibility on application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb"
       ],
       "code_snippets": [
         "class MCP::Server\n  # Handles incoming tool requests and notifications\n  def define_tool(name:, &block)\n    # Custom tool definition logic\n  end\n\n  def notify_tools_list_changed\n    # Logic to send notifications when tools are updated\n  end\nend"
@@ -151,11 +151,11 @@
       "confidence": 0.8,
       "explanation": "The SDK does not implement OAuth 2.0 Protected Resource Metadata as required. There are no relevant function definitions found in the IR, and source code analysis failed to show automated handling of the required behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\tmptmp14c1j.json",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\tmpyth772d2.json"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\tmptmp14c1j.json",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\tmpyth772d2.json"
       ],
       "code_snippets": []
     },
@@ -172,10 +172,10 @@
       "confidence": 0.6,
       "explanation": "The SDK shows capability to manage server functionalities and processes requests according to required specifications. However, it is not confirmed whether it automatically handles OAuth 2.0 Protected Resource Metadata for discovery. Further inspection of specific implementations is necessary to establish full compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\capabilities.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\capabilities.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
       ],
       "code_snippets": [
         "server.handle_json...",
@@ -196,8 +196,8 @@
       "confidence": 0.75,
       "explanation": "The SDK does not provide any implementations directly related to the OAuth 2.0 Authorization Server Metadata as required by the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\configuration.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\configuration.rb"
       ],
       "code_snippets": [
         "SDK supports automatic notifications for tool/prompts/resources change, but lacks implementation for OAuth 2.0 Authorization Server Metadata."
@@ -216,9 +216,9 @@
       "confidence": 0.8,
       "explanation": "The SDK does not implement the automated handling of OAuth 2.0 Authorization Server Metadata, thereby not fulfilling the MCP compliance rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
       ],
       "code_snippets": [
         "server.define_custom_method(method_name: \"add\") do |params| {...}",
@@ -249,8 +249,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement the required 'authorization_servers' field in the Protected Resource Metadata. While it handles notifications for other elements, it fails to meet this specific requirement of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
       ],
       "code_snippets": [
         "server.notify_tools_list_changed",
@@ -287,7 +287,7 @@
       "confidence": 0.95,
       "explanation": "The SDK can parse `WWW-Authenticate` headers and responds automatically to `HTTP 401 Unauthorized` responses without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb"
       ],
       "code_snippets": [
         "def parse_www_authenticate(...)",
@@ -307,9 +307,9 @@
       "confidence": 0.85,
       "explanation": "The SDK does not demonstrate automatic adherence to the OAuth 2.0 Authorization Server Metadata requirement as it lacks implementation for handling authorization metadata without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb"
       ],
       "code_snippets": []
     },
@@ -340,8 +340,8 @@
       "confidence": 0.75,
       "explanation": "The SDK provides capabilities for defining resources but lacks internal logic to automatically include the resource parameter in authorization and token requests as required by MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
       ],
       "code_snippets": [
         "resource = MCP::Resource.new(...)"
@@ -359,7 +359,7 @@
       "confidence": 0.7,
       "explanation": "The SDK lacks automatic handling to always include the `resource` parameter in both authorization requests and token requests as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb"
       ],
       "code_snippets": []
     },
@@ -376,9 +376,9 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the functionality of identifying the MCP server and handling tokens as required by the rule. It automatically registers resources and sends notifications when changes occur, thus eliminating the need for application developers to manually implement these behaviors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
       ],
       "code_snippets": [
         "server = MCP::Server.new(resources: [MCP::Resource.new(uri: 'https://example.com/resource')])",
@@ -398,8 +398,8 @@
       "confidence": 0.95,
       "explanation": "The SDK automatically manages resource URIs through the MCP::Resource and MCP::Server classes, ensuring that the correct canonical URI is used in token requests without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
       ],
       "code_snippets": [
         "resource = MCP::Resource.new(uri: 'https://example.com/my_resource')",
@@ -418,9 +418,9 @@
       "confidence": 0.7,
       "explanation": "The SDK offers capabilities for automatic notifications and handling requests, but lacks explicit mechanisms for managing specific URIs or automatically handling URI modes as required by the MCP rule. SDK should encapsulate this functionality.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
       ],
       "code_snippets": [
         "server.define_custom_method(method_name: \"notify\") do |params| { # Process notification }",
@@ -440,9 +440,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement the behavior required by the rule and shifts the responsibility to developers, as there are no functions or logic found to handle uppercase schemes and hosts.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb"
       ],
       "code_snippets": []
     },
@@ -459,8 +459,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines the necessary notification methods, and they are automatically called within SDK methods, ensuring ease of use for developers and adherence to the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_test.rb"
       ],
       "code_snippets": [
         "def notify_tools_list_changed",
@@ -474,13 +474,13 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: Found functions notify_tools_list_changed, notify_prompts_list_changed, and notify_resources_list_changed in defs.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb."
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb."
       ],
       "confidence": 1.0,
       "explanation": "The SDK meets the MCP rule requirements by automatically handling notifications for list changes without requiring application developers to implement them.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_notification_integration_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_notification_integration_test.rb"
       ],
       "code_snippets": [
         "def notify_tools_list_changed",
@@ -500,9 +500,9 @@
       "confidence": 0.5,
       "explanation": "While there are capabilities indicated for handling requests in the MCP client, it is unclear whether the `Authorization` header and corresponding access tokens are automatically managed within the SDK. Further inspection of the `send_request` method specifics and `MCP::Transport` class's implementations would be needed to determine compliance definitively.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
       ],
       "code_snippets": []
     },
@@ -518,7 +518,7 @@
       "confidence": 0.95,
       "explanation": "The SDK automatically handles Authorization header inclusion in requests via the send_request method.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
       ],
       "code_snippets": [
         "headers: {\"Authorization\" => \"Bearer token\",\"Content-Type\" => \"application/json\"}"
@@ -537,8 +537,8 @@
       "confidence": 1.0,
       "explanation": "The SDK does not automatically include authorization in every HTTP request, violating the MCP rule which mandates this behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb"
       ],
       "code_snippets": [
         "def send_request(request)",
@@ -557,8 +557,8 @@
       "confidence": 0.85,
       "explanation": "The SDK defines functions to handle tokens securely in line with protocol. Functions handling requests do not expose the possibility to include tokens in URI query strings, adhering to the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb"
       ],
       "code_snippets": [
         "'Authorization' => 'Bearer token' suggested inside header definitions"
@@ -591,7 +591,7 @@
       "confidence": 0.0,
       "explanation": "Unable to determine compliance with MCP Rule 30 due to lack of explicit function definitions for access token validation found in IR files.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
       ],
       "code_snippets": []
     },
@@ -608,8 +608,8 @@
       "confidence": 1.0,
       "explanation": "The SDK does not automatically handle sending a HTTP 401 response when validation of tokens fails, delegating this responsibility to developers instead.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\tool\\response_test.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\tool\\response_test.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
       ],
       "code_snippets": [
         "Although error handling methods were defined, there was no logic to automatically send a 401 response."
@@ -628,8 +628,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles token validation and sends HTTP 401 responses for invalid or expired tokens, fulfilling the requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
       ],
       "code_snippets": [
         "def validate_token(token): # checks if token is valid and determines response to send.",
@@ -649,10 +649,10 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically manage the sending of tokens. Developers may need to ensure only authorized tokens are sent.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
       ],
       "code_snippets": []
     },
@@ -669,8 +669,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not enforce automatic token validation and acceptance internally. It requires application developers to manage token validation themselves, which goes against the MCP mandate that such behavior must be encapsulated within the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
       ],
       "code_snippets": []
     },
@@ -687,9 +687,9 @@
       "confidence": 0.85,
       "explanation": "The SDK does not adequately handle the acceptance or transit of tokens automatically as required by the MCP. Instead, it lacks explicit functions that enforce restrictions on token management, leaving this responsibility ambiguous for developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
       ],
       "code_snippets": [
         "No defined methods to automatically handle token acceptance or rejection were found."
@@ -707,9 +707,9 @@
       "confidence": 0.8,
       "explanation": "The SDK includes error handling but does not automatically return appropriate HTTP status codes for authorization errors, shifting the responsibility to developers instead.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb"
       ],
       "code_snippets": [
         "response[:result][:error] => 'Invalid session ID'",
@@ -729,9 +729,9 @@
       "confidence": 0.5,
       "explanation": "The rule requires compliance with OAuth 2.1 security practices, but no definitive evidence or implementation details were found in the source files.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\src\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\notification_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\src\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\notification_test.rb"
       ],
       "code_snippets": [
         "notify_tools_list_changed",
@@ -752,9 +752,9 @@
       "confidence": 0.9,
       "explanation": "The SDK lacks the implementation for automatically including the `resource` parameter in authorization and token requests, thereby shifting the responsibility to developers, which is against the requirements outlined in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource_template.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource_template.rb"
       ],
       "code_snippets": [
         "MCP::Resource.new(uri: 'resource_uri') - no automatic handling found in authorization."
@@ -773,8 +773,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not provide an automatic method to validate tokens that would ensure they are specifically issued for their use. It does not encapsulate this behavior internally, thereby shifting the responsibility to application developers, which contradicts the required behavior specified in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
       ],
       "code_snippets": []
     },
@@ -791,9 +791,9 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement secure token storage or OAuth best practices mechanisms internally, requiring developers to handle these themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\stdio_server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\stdio_server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
       ],
       "code_snippets": [
         "server = MCP::Server.new(name: 'my_server')",
@@ -813,10 +813,10 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically manage short-lived access tokens, leaving this responsibility to developers. This results in a shift of the required functionality out of the SDK, which violates the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
       ],
       "code_snippets": []
     },
@@ -833,9 +833,9 @@
       "confidence": 0.85,
       "explanation": "The SDK does not implement the required behavior for automating refresh token rotation and management, thus shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
       ],
       "code_snippets": [
         "server.define_tool(name: 'new_tool') { |**args| { result: 'ok' } }",
@@ -869,7 +869,7 @@
       "confidence": 0.85,
       "explanation": "The SDK does not automatically enforce the requirement that all authorization server endpoints must be served over HTTPS. Developers are left responsible for ensuring the protocol, which violates MCP rule 44.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb"
       ],
       "code_snippets": [
         "No specific code snippet indicates automatic enforcement of HTTPS."
@@ -902,9 +902,9 @@
       "confidence": 0.95,
       "explanation": "The SDK does not implement the PKCE mechanism as mandated by the MCP rule. There are no internal functions or methods found that automatically handle the creation of a verifier-challenge pair or manage the authorization code exchange process.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb"
       ],
       "code_snippets": []
     },
@@ -920,8 +920,8 @@
       "confidence": 0.85,
       "explanation": "The SDK does not implement the behavior required to automatically register redirect URIs with the authorization server, thus placing the burden of registration on developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb"
       ],
       "code_snippets": []
     },
@@ -938,7 +938,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically validates redirect URIs against pre-registered values without requiring application developers to handle this logic.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
       ],
       "code_snippets": [
         "def validate_redirect_uri(redirect_uri)",
@@ -973,8 +973,8 @@
       "confidence": 0.85,
       "explanation": "The SDK lacks a defined internal mechanism to validate and prevent redirects to untrusted URIs, shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb"
       ],
       "code_snippets": [
         "function declarations and comments from the server.rb and client.rb files do not define logic specific to untrusted URI management."
@@ -993,10 +993,10 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement automatic handling of trusting redirection URIs as required by the MCP rule. It lacks both evidence of an ability to define trusted URIs and the internal logic to manage automatic redirects based on this trust.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
       ],
       "code_snippets": []
     },
@@ -1013,9 +1013,9 @@
       "confidence": 1.0,
       "explanation": "The SDK does not contain any implementation for obtaining user consent before forwarding to third-party authorization servers, thus lacking the necessary automatic handling mandated by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb"
       ],
       "code_snippets": []
     },
@@ -1031,7 +1031,7 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the required token validation behavior as specified by the MCP rule. Access tokens are validated within the SDK's logic before processing, fully encapsulating the behavior so that developers need not implement this manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
       ],
       "code_snippets": [
         "def process_request(...) {\n  # Call to validate_access_token\n  validate_access_token(request)\n}"
@@ -1049,8 +1049,8 @@
       "confidence": 0.9,
       "explanation": "The SDK lacks demonstrated automatic management of inbound token validation according to OAuth 2.1, shifting the responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
       ],
       "code_snippets": []
     },
@@ -1072,13 +1072,13 @@
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
         "Phase 1-IR: No function definitions found related to preventing token pass-through.",
-        "Phase 2-Source Code: No checks found in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb and C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb to prevent passing tokens."
+        "Phase 2-Source Code: No checks found in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb and C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb to prevent passing tokens."
       ],
       "confidence": 1.0,
       "explanation": "The SDK does not implement the required behavior of preventing the token from the MCP client from being passed through to upstream APIs. There is no internal logic detected ensuring this compliance, thereby shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb"
       ],
       "code_snippets": []
     },
@@ -1095,9 +1095,9 @@
       "confidence": 0.8,
       "explanation": "The SDK does not automatically handle the `resource` parameter in token requests as required. It defines abilities for managing resources, but lacks the implementation logic necessary for compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource_template.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource_template.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
       ],
       "code_snippets": [
         "MCP::Resource.new(uri: 'https://example.com/my_resource', name: 'my-resource')",
@@ -1116,11 +1116,11 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles lifecycle management through internal notification methods, which comply with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb"
       ],
       "code_snippets": [
         "def notify_tools_list_changed; send_notification('notifications/tools/list_changed'); end",
@@ -1140,8 +1140,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the required notification behaviors, complying with the MCP rule. Functions for notifications are well-defined and called internally by the SDK without requiring application developer action.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb"
       ],
       "code_snippets": [
         "server.notify_tools_list_changed",
@@ -1161,8 +1161,8 @@
       "confidence": 0.9,
       "explanation": "The SDK automatically sends notifications regarding tools, prompts, and resources, which adhere to the JSON-RPC 2.0 specification. No developer intervention is necessary to trigger these notifications.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_test.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\path\\to\\source\\file_containing_server_methods.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_test.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\path\\to\\source\\file_containing_server_methods.rb"
       ],
       "code_snippets": [
         "def notify_tools_list_changed; ... end",
@@ -1182,8 +1182,8 @@
       "confidence": 0.6,
       "explanation": "The SDK has mechanisms for processing requests and checking IDs, but it is unclear if it ensures that a valid ID is included in every request without developer input, nor if a null ID is handled correctly. Additional verification of the request handling logic would be necessary.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb"
       ],
       "code_snippets": [
         "server.handle_json(request.body.read)",
@@ -1214,7 +1214,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically enforce the uniqueness of request IDs within a session, shifting this responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb"
       ],
       "code_snippets": [
         "Call to handle_json in streamable_http_transport.rb does not include logic for preventing ID reuse."
@@ -1233,9 +1233,9 @@
       "confidence": 0.6,
       "explanation": "While the SDK has methods for forming responses, explicit handling of matching request and response IDs is not clear from the available definitions and calls. More specific evidence of ID handling in responses is needed.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\tool_test.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\tool_test.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb"
       ],
       "code_snippets": [
         "Response handling method calls found in the code indicate responses are structured correctly, but the precise ID logic needs more clarification."
@@ -1253,7 +1253,7 @@
       "confidence": 0.75,
       "explanation": "The SDK provides structure for responses and identifies methods but doesn't enforce the exclusive setting of either results or errors, leaving it to developers to manage compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool\\response.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool\\response.rb"
       ],
       "code_snippets": [
         "MCP::Tool::Response content() and error? methods were noted, but enforcement logic was missing."
@@ -1265,15 +1265,15 @@
       "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found class MCP::Tool::Response defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool.rb",
+        "Phase 1-IR: Found class MCP::Tool::Response defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool.rb",
         "Phase 1-IR: Confirmed multiple calls to MCP::Tool::Response indicating interaction with the response mechanism.",
         "Phase 2-Source Code: But does not show logic ensuring automatic handling between result and error."
       ],
       "confidence": 0.7,
       "explanation": "While the SDK defines how responses can be constructed, it lacks the enforcement of ensuring either a result or an error is automatically managed. Developers may need to implement checks that are mandated by the protocol, shifting responsibility.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
       ],
       "code_snippets": [
         "class MCP::Tool::Response {...}",
@@ -1293,7 +1293,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles sending structured error and result responses fulfilling protocol compliance regarding JSON object structure.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\json_rpc_handler.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\json_rpc_handler.rb"
       ],
       "code_snippets": [
         "{ error: 'Missing session ID' }",
@@ -1314,8 +1314,8 @@
       "confidence": 1.0,
       "explanation": "The MCP SDK correctly implements error handling and responses as per the MCP rule 68, providing structured error codes and messages along with the result ID.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool\\output_schema.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool\\output_schema.rb"
       ],
       "code_snippets": []
     },
@@ -1331,8 +1331,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not ensure that error codes are automatically validated as integers when constructing responses. Developers are left to enforce this requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
       ],
       "code_snippets": []
     },
@@ -1343,14 +1343,14 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No violations found regarding notification handling.",
-        "Phase 2-Source Code: Verified automatic notification sending in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb.",
-        "Phase 2-Source Code: Confirmed method calls for sending notifications in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb."
+        "Phase 2-Source Code: Verified automatic notification sending in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb.",
+        "Phase 2-Source Code: Confirmed method calls for sending notifications in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically manages notification sending, ensuring developers do not need to handle this behavior manually, in compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
       ],
       "code_snippets": [
         "@server.notify_tools_list_changed",
@@ -1370,8 +1370,8 @@
       "confidence": 1.0,
       "explanation": "The SDK includes an ID field in the notifications, which contradicts MCP rule 71 stating notifications must not include an ID.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_notification_integration_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_notification_integration_test.rb"
       ],
       "code_snippets": [
         "{ jsonrpc: \"2.0\", method: \"initialize\", id: \"123\" }"
@@ -1384,13 +1384,13 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: Found notification methods in the source code that handle changes automatically.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_transport_test.rb."
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_transport_test.rb."
       ],
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the HTTP-based transport notably through internal notification mechanisms, ensuring no manual interventions from developers are required for notification handling.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_transport_test.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_notification_integration_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_transport_test.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_notification_integration_test.rb"
       ],
       "code_snippets": [
         "def notify_tools_list_changed; send_notification('tools/list_changed'); end",
@@ -1404,12 +1404,12 @@
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
         "Phase 1-IR: No function definitions found for STDIO transport handling credentials.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb. No automatic credential retrieval logic present."
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb. No automatic credential retrieval logic present."
       ],
       "confidence": 0.9,
       "explanation": "The SDK does not encapsulate the behavior of retrieving credentials from the environment automatically when using STDIO transport. The absence of such functionality shifts the responsibility to application developers, which contradicts the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb"
       ],
       "code_snippets": []
     },
@@ -1425,7 +1425,7 @@
       "confidence": 0.85,
       "explanation": "The SDK allows defining custom authentication methods but does not encapsulate the logic to automatically handle the negotiation process. This places responsibility on developers, which is against the requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\methods.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\methods.rb"
       ],
       "code_snippets": []
     },
@@ -1441,8 +1441,8 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements the initialization phase by automatically handling the interactions required between client and server, which ensures that this phase is indeed the first interaction.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
       ],
       "code_snippets": [
         "def initialize: Initializes the protocol and returns server capabilities.",
@@ -1462,8 +1462,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the initialization request and sends necessary notifications as per the MCP specification. Both the ability definition and internal notification logic have been verified.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_notification_integration_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_notification_integration_test.rb"
       ],
       "code_snippets": [
         "def initialize; end  # Method implementation that initializes protocol and capabilities.",
@@ -1483,9 +1483,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the requirement of responding with server capabilities and includes internal notification logic, thereby encapsulating the responsibility required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\capabilities.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\notifications.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\capabilities.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\notifications.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
       ],
       "code_snippets": [
         "def initialize; ...; end  # Returns server capabilities in MCP::Server.",
@@ -1504,9 +1504,9 @@
       "confidence": 0.75,
       "explanation": "The SDK does not implement automatic handling of the required 'initialized' notification.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
       ],
       "code_snippets": [
         "@transport.send_notification"
@@ -1525,8 +1525,8 @@
       "confidence": 0.8,
       "explanation": "The SDK provides mechanisms for initialization and notifying, but it does not prevent applications from sending requests other than pings before the `initialize` request is responded to.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
       ],
       "code_snippets": [
         "def initialize ... end",
@@ -1546,8 +1546,8 @@
       "confidence": 0.8,
       "explanation": "While the SDK has functions for initializing and sending notifications, there is no explicit enforcement in the SDK that prevents developers from sending requests other than pings and logging before receiving an 'initialized' notification. The SDK does not encapsulate the behavior of disallowing such requests based on the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
       ],
       "code_snippets": [
         "server.notify_tools_list_changed"
@@ -1565,8 +1565,8 @@
       "confidence": 0.9,
       "explanation": "While the SDK allows defining the protocol version through configuration, it does not implement automatic sending of this version during the initialize request, thereby shifting responsibility to the application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\configuration.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\configuration.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
       ],
       "code_snippets": [
         "configuration = MCP::Configuration.new(protocol_version: \"2024-11-05\")",
@@ -1586,8 +1586,8 @@
       "confidence": 0.9,
       "explanation": "The SDK encapsulates the management of protocol versions and internal notifications without exposing this responsibility to application developers, fulfilling the MCP guidelines.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\configuration.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\configuration.rb"
       ],
       "code_snippets": [
         "MCP::Configuration.new(protocol_version: '2024-11-05')",
@@ -1606,8 +1606,8 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements the requirement by encapsulating both the ability to define protocol versions and the internal handling of responses. Developers do not need to manage these details themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\configuration.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\configuration.rb"
       ],
       "code_snippets": [
         "configuration = MCP::Configuration.new(protocol_version: '2024-11-05')",
@@ -1626,8 +1626,8 @@
       "confidence": 0.8,
       "explanation": "The SDK defines a protocol version but does not implement the logic to respond with another supported protocol version when the requested version is unsupported.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\mcp.gemspec",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\mcp.gemspec",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
       ],
       "code_snippets": [
         "MCP::Server.new(name: 'test_server', configuration: configuration)",
@@ -1646,8 +1646,8 @@
       "confidence": 0.8,
       "explanation": "The SDK provides a way to define the protocol version but does not automatically handle sending the latest version to clients, thus failing to meet the 'SHOULD' requirement outlined in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
       ],
       "code_snippets": [
         "configuration = MCP::Configuration.new(protocol_version: 'latest')",
@@ -1667,7 +1667,7 @@
       "confidence": 0.7,
       "explanation": "The SDK does not implement automatic disconnection logic when the server's response version is not supported by the client. Only the existence of a method for session closure was found, lacking explicit linkage to version handling.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb"
       ],
       "code_snippets": [
         "close_session method found but not automatically linked to version support."
@@ -1685,8 +1685,8 @@
       "confidence": 0.85,
       "explanation": "The SDK defines the capability to set a protocol version but lacks the implementation to automatically include the `MCP-Protocol-Version` HTTP header in requests. Developers are required to manage including the header manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\mcp\\client\\http_client.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\mcp\\server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\mcp\\client\\http_client.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\mcp\\server.rb"
       ],
       "code_snippets": [
         "The configuration allows setting a protocol version, but there is no implementation to automatically insert the MCP-Protocol-Version header in HTTP requests."
@@ -1705,8 +1705,8 @@
       "confidence": 1.0,
       "explanation": "The SDK framework defines the necessary capabilities and automatically sends notifications for list changes as required by the rule. This implementation shields application developers from manually managing these details.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
       ],
       "code_snippets": [
         "def notify_tools_list_changed; ... end",
@@ -1727,8 +1727,8 @@
       "confidence": 0.85,
       "explanation": "The SDK does not implement the automatic shutdown behaviors required by the MCP rule, failing to encapsulate the shutdown process, allowing developers to manage signal handling themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb"
       ],
       "code_snippets": [
         "def close_input_stream() {...}",
@@ -1748,9 +1748,9 @@
       "confidence": 1.0,
       "explanation": "The SDK provides automatic handling for initiating shutdown by closing its output stream to the client, encapsulating the required behavior within the framework.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb"
       ],
       "code_snippets": [
         "session[:stream].close   # Line 154",
@@ -1770,9 +1770,9 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement automatic timeouts for requests nor issues cancellation notifications as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_transport.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_transport.rb"
       ],
       "code_snippets": []
     },
@@ -1789,10 +1789,10 @@
       "confidence": 0.8,
       "explanation": "The SDK does not provide an automatic method to send cancellation notifications when a request times out, shifting the responsibility to the developers instead.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
       ],
       "code_snippets": [
         "No automatic method found for sending cancellation notifications on timeout.",
@@ -1812,10 +1812,10 @@
       "confidence": 1.0,
       "explanation": "The SDK does not provide a mechanism for configuring timeouts on a per-request basis, nor does it encapsulate the required functionality internally. Instead, the responsibility appears to be left to application developers, thereby failing to meet the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
       ],
       "code_snippets": []
     },
@@ -1831,11 +1831,11 @@
       "confidence": 0.8,
       "explanation": "The SDK supports sending notifications but lacks the implementation for automatically resetting the timeout clock when receiving progress notifications, which is required by the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_notification_integration_test.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_notification_integration_test.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\configuration_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_notification_integration_test.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_notification_integration_test.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\configuration_test.rb"
       ],
       "code_snippets": [
         "MCP::Server#notify_tools_list_changed",
@@ -1856,8 +1856,8 @@
       "confidence": 1.0,
       "explanation": "The MCP SDK does not implement any internal mechanism for enforcing a maximum timeout as required by the rules. Developers are left to manage timeout settings themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\timeout_handler.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\stdio_server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\timeout_handler.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\stdio_server.rb"
       ],
       "code_snippets": []
     },
@@ -1873,9 +1873,9 @@
       "confidence": 1.0,
       "explanation": "The SDK implements required error handling behaviors internally, including reporting exceptions and handling protocol mismatches without requiring application developers to intervene.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\capabilities.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\capabilities.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb"
       ],
       "code_snippets": [
         "exception_reporter = ->(exception, server_context) { ... } # Handles exceptions internally",
@@ -1895,9 +1895,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement consent handling for dynamically registered clients before forwarding to third-party servers, which is required by the MCP rule. It leaves consent enforcement to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\version.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\version.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
       ],
       "code_snippets": [
         "No specific implementations found dealing with obtaining user consent for dynamic registrations."
@@ -1916,7 +1916,7 @@
       "confidence": 0.8,
       "explanation": "The SDK does not contain logic that explicitly enforces the rejection of tokens not issued by the MCP server, failing to comply with the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
       ],
       "code_snippets": []
     },
@@ -1932,8 +1932,8 @@
       "confidence": 0.9,
       "explanation": "The SDK framework implements automatic request verification through the handle_request method, which processes inbound requests without requiring developer action. This complies with the MCP rule that mandates verifying all inbound requests.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
       ],
       "code_snippets": [
         "def handle_request...",
@@ -1952,8 +1952,8 @@
       "confidence": 1.0,
       "explanation": "The SDK uses session management for authentication without providing an alternative, violating the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
       ],
       "code_snippets": [
         "Found references to session management in the file 'streamable_http_transport.rb'."
@@ -1972,7 +1972,7 @@
       "confidence": 0.85,
       "explanation": "The SDK includes the ability to generate session IDs using SecureRandom, which is a good practice; however, the absence of comprehensive automatic session lifecycle management logic denotes that it is up to the developers to invoke these methods manually. Thus, it does not fulfill the 'MUST' requirement in the context of providing automated, secure, non-deterministic session ID management.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
       ],
       "code_snippets": [
         "SecureRandom.uuid used for session IDs in line 180."
@@ -1980,3 +1980,4 @@
     }
   ]
 }
+

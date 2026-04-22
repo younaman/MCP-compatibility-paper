@@ -105,7 +105,7 @@ Format: Each line contains complete information for one file
 **2.1 Precise Search for Source Files**
 - Use complete path search
 - Format: `"FILE_PATH: complete_path"`
-- For example: `"FILE_PATH: C:\\Users\\95250\\...\\server.{self._get_language_extension()}"`
+- For example: `"FILE_PATH: C:\\Users\\<ANON_ID>\\...\\server.{self._get_language_extension()}"`
 
 **Find Source Code:**
 ```
@@ -191,6 +191,7 @@ def test_all_languages():
 
 if __name__ == "__main__":
     test_all_languages()
+
 
 
 

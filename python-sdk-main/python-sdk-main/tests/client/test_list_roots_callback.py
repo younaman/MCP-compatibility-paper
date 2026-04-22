@@ -20,11 +20,11 @@ async def test_list_roots_callback():
     callback_return = ListRootsResult(
         roots=[
             Root(
-                uri=FileUrl("file://users/fake/test"),
+                uri=FileUrl("file:/<LOCAL_PATH>/test"),
                 name="Test Root 1",
             ),
             Root(
-                uri=FileUrl("file://users/fake/test/2"),
+                uri=FileUrl("file:/<LOCAL_PATH>/test/2"),
                 name="Test Root 2",
             ),
         ]
@@ -56,4 +56,5 @@ async def test_list_roots_callback():
         assert result.isError is True
         assert isinstance(result.content[0], TextContent)
         assert result.content[0].text == "Error executing tool test_list_roots: List roots not supported"
+
 

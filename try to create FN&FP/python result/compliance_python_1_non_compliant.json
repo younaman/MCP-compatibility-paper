@@ -21,8 +21,8 @@
       "confidence": 0.9,
       "explanation": "The SDK lacks automatic handling for authorization as expected per the MCP rule. While there are components for authentication, they do not encapsulate the required behaviors, leaving implementation responsibilities to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\token.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\token.py"
       ],
       "code_snippets": [
         "class BearerAuthBackend: ... <Token validation handling>",
@@ -53,8 +53,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not consistently and automatically handle the inclusion of the `resource` parameter in authorization requests. Developers might need to intervene to include this parameter, which violates the compliance requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\authorize.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\token.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\authorize.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\token.py"
       ],
       "code_snippets": [
         "resource: str | None = Field(None, description=\"RFC 8707 resource indicator - the MCP server this token will be used with\")",
@@ -69,12 +69,12 @@
       "evidence": [
         "Phase 1-IR: Found function resource_url_from_server_url in auth_utils.py at line 5.",
         "Phase 1-IR: Found function check_resource_allowed that calls resource_url_from_server_url.",
-        "Phase 2-Source Code: Verified the implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\auth_utils.py"
+        "Phase 2-Source Code: Verified the implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\auth_utils.py"
       ],
       "confidence": 0.95,
       "explanation": "The SDK does not implement the behavior of accepting uppercase scheme and host components, delegating this responsibility to the application developer.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\auth_utils.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\auth_utils.py"
       ],
       "code_snippets": [
         "def resource_url_from_server_url(url: str | HttpUrl | AnyUrl) -> str:\n    parsed = urlsplit(url_str)\n    canonical = urlunsplit(parsed._replace(scheme=parsed.scheme.lower(), netloc=parsed.netloc.lower(), fragment=\"\"))"
@@ -94,8 +94,8 @@
       "confidence": 0.85,
       "explanation": "The SDK is not compliant with the MCP rule because it does not encapsulate automatic notification sending logic for URI handling as requested. While there are definitions for notifications, they are not invoked automatically, placing responsibility on the developer.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
       ],
       "code_snippets": [
         "def add_tool(self, fn: Callable[..., Any], name: str | None = None, ...)",
@@ -114,9 +114,9 @@
       "confidence": 0.85, 
       "explanation": "The SDK does not implement the necessary token validation as required by the MCP rule. The 'verify_token' function is defined but not implemented, leaving the responsibility to the application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\oauth_server.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\oauth_server.py"
       ],
       "code_snippets": [
         "class SimpleTokenVerifier:\n    async def verify_token(self, token: str) -> AccessToken | None:\n        pass  # This is where you would implement actual token validation ",
@@ -136,9 +136,9 @@
       "confidence": 0.85,
       "explanation": "The SDK lacks internal mechanisms to ensure that tokens sent to the MCP server are exclusively those issued by the MCP server's authorization server. No compliance-checking functions are evident.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\register.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\register.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py"
       ],
       "code_snippets": [
         "async def verify_token(self, token: str) -> AccessToken | None: pass",
@@ -158,8 +158,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement the behavior required for token validation automatically. The method 'verify_token' is defined but lacks an actual implementation, placing the responsibility on developers to ensure proper token handling.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py"
       ],
       "code_snippets": [
         "async def verify_token(self, token: str) -> AccessToken | None:\n        pass  # This is where you would implement actual token validation",
@@ -178,9 +178,9 @@
       "confidence": 0.85,
       "explanation": "The SDK does not sufficiently encapsulate the behavior to prevent acceptance or transiting of any unauthorized tokens, thus shifting responsibilities to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\__init__.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\server.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\__init__.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\server.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py"
       ],
       "code_snippets": [
         "class SimpleTokenVerifier(TokenVerifier):  # Only provides a method signature without implementation.",
@@ -200,9 +200,9 @@
       "confidence": 0.85,
       "explanation": "The SDK shows an ability to validate tokens but does not implement automatic validation logic when they are presented. Developers must manually invoke validation, which violates the purpose of encapsulating functionality within the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\token.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\token.py"
       ],
       "code_snippets": [
         "class SimpleTokenVerifier(TokenVerifier):\n    async def verify_token(self, token: str) -> AccessToken | None:\n        pass  # Actual token validation",
@@ -221,9 +221,9 @@
       "confidence": 0.9,
       "explanation": "The SDK defines a method for validation of redirect URIs but lacks the automatic prevention and notification mechanisms required to handle untrusted redirections as specified in the guidelines.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\auth.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\authorize.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\routes.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\auth.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\authorize.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\routes.py"
       ],
       "code_snippets": [
         "def validate_redirect_uri(self, redirect_uri: AnyUrl | None) -> AnyUrl: ...",
@@ -243,7 +243,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not encapsulate the required behavior of automatically obtaining user consent for each dynamically registered client; it requires application developers to implement this logic themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\authorize.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\authorize.py"
       ],
       "code_snippets": [
         "No specific code snippets for user consent handling found."
@@ -262,10 +262,10 @@
       "confidence": 0.85,
       "explanation": "The SDK provides the capability to verify tokens but lacks the internal logic required for proper token validation. This means it does not automatically validate access tokens, transferring this responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\token.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\token.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py"
       ],
       "code_snippets": [
         "async def verify_token(self, token: str) -> AccessToken | None: pass  # No implementation",
@@ -284,9 +284,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically handle the passing through of tokens, leaving the responsibility open to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\register.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\token.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\register.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\token.py"
       ],
       "code_snippets": [
         "async def _handle_token_response(self, response: httpx.Response) -> None: ...",
@@ -307,9 +307,9 @@
       "confidence": 0.85,
       "explanation": "The SDK defines a request_id in the RequestContext class but does not implement logic to ensure that a request ID is not reused within the same session internally. Developers are likely required to enforce this themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\context.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\validate.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\context.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\validate.py"
       ],
       "code_snippets": [
         "class RequestContext:",
@@ -330,8 +330,8 @@
       "confidence": 0.75,
       "explanation": "While the SDK defines capability fields, there is no evidence of automated handling for sending responses related to server capabilities. Developers would need to implement this functionality themselves, which violates the rule's requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-auth\\mcp_simple_auth\\auth_server.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-auth\\mcp_simple_auth\\auth_server.py"
       ],
       "code_snippets": [
         "class ServerCapabilities: ...",
@@ -350,8 +350,8 @@
       "confidence": 0.9,
       "explanation": "The SDK defines the capability to send a protocol version in the initialize request, but it does not implement the logic to send this version automatically. Developers seem to be responsible for ensuring the protocol version is correctly included in the request.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\version.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\version.py"
       ],
       "code_snippets": [
         "class InitializeRequestParams(RequestParams):\n    protocolVersion: str | int"
@@ -370,8 +370,8 @@
       "confidence": 0.8,
       "explanation": "The SDK defines the ability to specify a protocol version but does not automatically handle the sending and validation as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
       ],
       "code_snippets": [
         "class InitializeRequestParams(RequestParams):\n    protocolVersion: str | int",
@@ -390,8 +390,8 @@
       "confidence": 0.7,
       "explanation": "The SDK implements validation of protocol versions and error handling for unsupported versions, but it is unclear if it automatically responds with the same protocol version when supported as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
       ],
       "code_snippets": [
         "_validate_protocol_version method checks if the protocol version from the request headers is supported and returns errors if not.",
@@ -410,9 +410,9 @@
       "confidence": 0.85,
       "explanation": "The SDK did not automatically handle the compliance behavior required by the MCP rule, shifting the responsibility of managing protocol versions to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\lowlevel\\server.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\lowlevel\\server.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py"
       ],
       "code_snippets": [
         "async def _validate_protocol_version(self, request: Request, send: Send) -> bool: ..."
@@ -431,8 +431,8 @@
       "confidence": 0.85,
       "explanation": "The SDK framework does not automatically disconnect the client when the version in the server's response is unsupported. While it provides a method for disconnection, it is not linked with protocol validation responses, which means application developers are left to manage the disconnection themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py"
       ],
       "code_snippets": [
         "async def disconnect_from_server(self, session: mcp.ClientSession) -> None: ...",
@@ -451,8 +451,8 @@
       "confidence": 0.5,
       "explanation": "While the ability to declare capabilities like listChanged is present, it is uncertain if there is an internal mechanism that automatically sends notifications to the clients regarding these capabilities.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\server.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\server.py"
       ],
       "code_snippets": [
         "listChanged: bool | None = None  # Indicating if the server supports notifications for changes.",
@@ -471,7 +471,7 @@
       "confidence": 1.0,
       "explanation": "The SDK does not automatically handle server shutdown by closing its output stream and exiting. The handling must be implemented by developers, which does not meet the rule requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py"
       ],
       "code_snippets": [
         "async def stdio_server(stdin: anyio.AsyncFile[str] | None = None, stdout: anyio.AsyncFile[str] | None = None)",
@@ -491,8 +491,8 @@
       "confidence": 0.8,
       "explanation": "The SDK provides mechanisms for setting timeouts for HTTP requests but lacks an internal handling mechanism to send cancellation notifications automatically. This shifts the responsibility to the developers, which does not conform to the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\_httpx_utils.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\_httpx_utils.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
       ],
       "code_snippets": [
         "def create_mcp_http_client( ...): if timeout is None: kwargs[\"timeout\"] = httpx.Timeout(30.0)",
@@ -511,9 +511,9 @@
       "confidence": 0.8,
       "explanation": "While the SDK includes mechanisms for handling timeouts and request cancellations, it does not automatically send a cancellation notification as required by the MCP rule. This requirement is not encapsulated within SDK methods, thus shifting responsibility to the developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\message.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\message.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
       ],
       "code_snippets": [
         "async def cancel(self) -> None: # Send an error response to indicate cancellation"
@@ -525,14 +525,14 @@
       "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 2-Source Code: Verified automatic timeout setup in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\_httpx_utils.py.",
+        "Phase 2-Source Code: Verified automatic timeout setup in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\_httpx_utils.py.",
         "Phase 2-Source Code: Verified timeout handling in client streamable_http.py with customizable options."
       ],
       "confidence": 0.8,
       "explanation": "While the SDK does enforce a default timeout of 30 seconds and allows developers to set timeouts, this doesn't fulfill the protocol requirement that states a maximum timeout should always be enforced without relying on application developers for implementation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\_httpx_utils.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\_httpx_utils.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
       ],
       "code_snippets": [
         "Default timeout of 30 seconds set in create_mcp_http_client",
@@ -551,9 +551,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not encapsulate user consent handling, which remains the developer's responsibility.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\register.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\authorize.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\client_auth.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\register.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\authorize.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\client_auth.py"
       ],
       "code_snippets": []
     },
@@ -570,3 +570,4 @@
     }
   ]
 }
+

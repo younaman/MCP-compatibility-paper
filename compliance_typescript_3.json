@@ -13,14 +13,14 @@
       "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
       "compliance_status": "UNCLEAR",
       "evidence": [
-        "Phase 1-IR: Found function elicitInput in defs_typescript.jsonl, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts:343",
+        "Phase 1-IR: Found function elicitInput in defs_typescript.jsonl, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts:343",
         "Phase 1-IR: Confirmed elicitInput is called to process user input requests",
         "Phase 2-Source Code: SDK implements elicitInput but does not definitively prevent sensitive information requests"
       ],
       "confidence": 0.7,
       "explanation": "The SDK's elicitInput method demonstrates the ability to request input interactively, but compliance with the rule against requesting sensitive information via elicitation is not sufficiently assured. The internal implementation does not explicitly prevent sensitive data requests.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
       ],
       "code_snippets": [
         "async elicitInput(params: ElicitRequest[\"params\"], options?: RequestOptions): Promise<ElicitResult>",
@@ -53,13 +53,13 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically validates elicitation response content against the requested schema using internal logic.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\completable.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\client.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\types.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\completable.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\client.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\types.ts"
       ],
       "code_snippets": [
         "async elicitInput(params: ElicitRequest['params'], options?: RequestOptions) {...}"
@@ -78,10 +78,10 @@
       "confidence": 1.0,
       "explanation": "The SDK does not automatically encapsulate the behavior required by MCP rule 204, shifting the responsibility to application developers. No relevant functions or calls were found that implement server indication.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts"
       ],
       "code_snippets": []
     },
@@ -116,10 +116,10 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles rate limiting for various endpoints by encapsulating the rate limiting logic within the handler methods.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
       ],
       "code_snippets": [
         "router.use(rateLimit({ windowMs: 60 * 60 * 1000, max: 20, ... })) // register.ts",
@@ -141,7 +141,7 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the behavior for presenting elicitation requests and validates user responses internally, without requiring application developers to implement these behaviors themselves.",
       "files_analyzed": [
-        "FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmpv7ju_cwc.ts"
+        "FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmpv7ju_cwc.ts"
       ],
       "code_snippets": [
         "async elicitInput(params: ElicitRequest[\"params\"], options?: RequestOptions): Promise<ElicitResult> { ... }"
@@ -160,8 +160,8 @@
       "confidence": 0.7,
       "explanation": "The SDK shows capability for declaring roots and defines notifications for changes. However, it is unclear whether these notifications are sent automatically by the SDK upon state changes as this specific implementation logic hasn't been confirmed.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\__mocks__\\pkce-challenge.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\__mocks__\\pkce-challenge.ts"
       ],
       "code_snippets": [
         "export const RootsListChangedNotificationSchema = NotificationSchema.extend({ method: z.literal('notifications/roots/list_changed') });"
@@ -194,14 +194,14 @@
       "rule_text": "A root definition includes:\n\n- `uri`: Unique identifier for the root. This **MUST** be a `file://` URI in the current\n  specification.\n- `name`: Optional human-readable name for display purposes.",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function definitions in 'C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\resource.ts'.",
+        "Phase 1-IR: Found function definitions in 'C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\resource.ts'.",
         "Phase 2-Source Code: Found no internal logic in the SDK that automatically verifies or enforces `file://` URI at registration."
       ],
       "confidence": 0.9,
       "explanation": "The SDK has defined fields that require a `file://` URI, but there is no automatic enforcement of this requirement through functional logic. This places the compliance burden on developers, which violates the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\resource.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\resource.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
       ],
       "code_snippets": [
         "export const ResourceSchema = BaseMetadataSchema.extend({ uri: z.string().startsWith('file://') });",
@@ -221,8 +221,8 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements automatic handling of standard JSON-RPC errors, allowing developers to rely on the SDK for this functionality.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
       ],
       "code_snippets": [
         "const JSONRPCErrorSchema = z.object({ ... })",
@@ -241,9 +241,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically handle the required behaviors for exposing roots, URI validation, access control, or monitoring. Developers are expected to implement these functions manually without any automation from the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
         "More files with manual exploration yield similar results..."
       ],
       "code_snippets": [
@@ -287,12 +287,12 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement the automatic behaviors required by the MCP rule as it lacks clear user interfaces for root management and does not validate or monitor root accessibility changes automatically.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.js",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.js",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.js",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.js",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
       ],
       "code_snippets": []
     },
@@ -309,9 +309,9 @@
       "confidence": 1.0,
       "explanation": "The SDK defines necessary capabilities and automatically handles notifications for root management changes, fulfilling the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\clients.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.js"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\clients.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.js"
       ],
       "code_snippets": [
         "export const RootsListChangedNotificationSchema = NotificationSchema.extend({ method: z.literal('notifications/roots/list_changed') });",
@@ -330,9 +330,9 @@
       "confidence": 0.8,
       "explanation": "The SDK does not automatically handle the ability to deny sampling requests as mandated by the rule. Instead, it relies on application developers to implement the user approval process, thereby shifting the responsibility away from the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\mcpServerOutputSchema.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\mcpServerOutputSchema.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
       ],
       "code_snippets": [
         "client should inform the user before beginning sampling, to allow them to inspect the request (human in the loop) and decide whether to approve it."
@@ -351,9 +351,9 @@
       "confidence": 0.8,
       "explanation": "The SDK lacks implementation for the behaviors required by the rule, such as automatic UI handling for reviewing sampling requests, editing prompts, and presenting generated responses.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts"
       ],
       "code_snippets": [
         "await server.connect(transport);",
@@ -374,8 +374,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does define the 'sampling' capability, but it lacks the necessary automatic handling for this capability during initialization. The implementation relies on client developers to call necessary functionalities, which does not meet the compliance standard that mandates the SDK to encapsulate these behaviors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\toolWithSampleServer.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\completable.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\toolWithSampleServer.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\completable.ts"
       ],
       "code_snippets": [
         "// Tool that uses LLM sampling to summarize any text\nmcpServer.registerTool(\n  \"summarize\",\n  { ... },\n  async ({ text }) => { ... }\n);\n",
@@ -409,8 +409,8 @@
       "confidence": 0.75,
       "explanation": "The SDK defines error classes and has some logic for handling errors in client authentication. However, it does not fully encapsulate automatic error handling and reporting without developer involvement. There is still a strong reliance on developers to handle components of the error process.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts"
       ],
       "code_snippets": [
         "throw new InvalidRequestError(String(result.error));",
@@ -429,10 +429,10 @@
       "confidence": 1.0,
       "explanation": "The SDK does not provide an implementation for user approval controls, shifting the responsibility to developers, which is non-compliant with the MCP guideline.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts"
       ],
       "code_snippets": []
     },
@@ -459,10 +459,10 @@
       "confidence": 0.8,
       "explanation": "The SDK defines capabilities for model preferences but lacks internal logic to automatically handle these preferences, thereby shifting the responsibility to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts"
       ],
       "code_snippets": [
         "export const ModelPreferencesSchema = z.object({...});",
@@ -483,10 +483,10 @@
       "confidence": 1.0,
       "explanation": "The SDK has successfully encapsulated the rate limiting behavior as specified by the MCP rule. Each handler thoroughly implements internal rate limiting logic which does not require application developers to implement it themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
       ],
       "code_snippets": [
         "router.use(rateLimit({ windowMs: 60 * 60 * 1000, max: 20, ... }))",
@@ -501,14 +501,14 @@
       "rule_text": "1. Clients **SHOULD** implement user approval controls\n2. Both parties **SHOULD** validate message content\n3. Clients **SHOULD** respect model preference hints\n4. Clients **SHOULD** implement rate limiting\n5. Both parties **MUST** handle sensitive data appropriately",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Identified function 'registerClient' in defs_typescript.jsonl located at 'C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts' at line 14.",
+        "Phase 1-IR: Identified function 'registerClient' in defs_typescript.jsonl located at 'C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts' at line 14.",
         "Phase 1-IR: Identified function 'clientRegistrationHandler' in the same file at line 3.",
         "Phase 2-Source Code: The implementation of 'registerClient' was reviewed, which involves sensitive data handling but lacks internal processing logic that meets the compliance requirements."
       ],
       "confidence": 0.8,
       "explanation": "The SDK does not encapsulate the required handling of sensitive data internally, shifting the responsibility to application developers. It fails to automatically manage sensitive data such as client secrets in compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts"
       ],
       "code_snippets": [
         "// POST request for client registration with sensitive data handling\nrouter.post(\"/\", async (req, res) => {\n    // Logic to handle client registration\n    // processes sensitive data such as client_secret\n});"
@@ -526,7 +526,7 @@
       "confidence": 0.85,
       "explanation": "The SDK defines functions related to authorization but lacks automatic handling logic, shifting the responsibility to developers instead of encapsulating behaviors as required.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\providers\\proxyProvider.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\providers\\proxyProvider.ts"
       ],
       "code_snippets": [
         "function authorize(client: OAuthClientInformationFull, params: AuthorizationParams, res: Response) {...}"
@@ -567,9 +567,9 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the required 'listChanged' capability and automatically handles sending notifications through internal methods without requiring developers to manually call them. Thus, it adheres to the MCP rule expectations.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\mcp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\mcp.ts"
       ],
       "code_snippets": [
         "this.server.registerCapabilities({ prompts: { listChanged: true } });",
@@ -609,10 +609,10 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the registration of resources, including validation of URIs and MIME types as well as ensuring content can be either text or blob data. All required behaviors are encapsulated within the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmp92u2v50o.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\base-types.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\resource-schema.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmp92u2v50o.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\base-types.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\resource-schema.ts"
       ],
       "code_snippets": [
         "server.registerResource('greeting', new ResourceTemplate('greeting://{name}', { list: undefined }), {...})",
@@ -632,8 +632,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements and automatically manages JSON-RPC error responses, as required by the MCP rule, without placing the responsibility on developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts"
       ],
       "code_snippets": [
         "res.status(400).json({ jsonrpc: '2.0', error: { code: -32602, message: 'Invalid params' }, id: null });",
@@ -653,9 +653,9 @@
       "confidence": 1.0,
       "explanation": "The SDK implements argument validation automatically within the prompt registration and processing logic. The presence of schema definitions and the validation checks before utilizing arguments confirm that developers are not required to manage these validations manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\prompts.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\schemas.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\handlers.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\prompts.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\schemas.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\handlers.ts"
       ],
       "code_snippets": [
         "if (!parseResult.success) { throw new McpError(ErrorCode.InvalidParams, `Invalid arguments for prompt ${request.params.name}: ${parseResult.error.message}`); }",
@@ -675,8 +675,8 @@
       "confidence": 0.85,
       "explanation": "The SDK has defined request and result types related to pagination, yet lacks automatic pagination handling logic required for clients. Customers still need to implement pagination management, indicating non-compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
       ],
       "code_snippets": [
         "// Example pagination request schema defined, but automated logic for managing paginated results is absent."
@@ -695,8 +695,8 @@
       "confidence": 1.0,
       "explanation": "The SDK framework implements capability negotiation and automatically handles notifications, complying with the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "class Server { ... registerCapabilities(capabilities: ServerCapabilities) { ... } ... }",
@@ -716,11 +716,11 @@
       "confidence": 1.0,
       "explanation": "The SDK properly implements validation of prompt inputs and outputs by encapsulating these behaviors within its request handling logic. Developers do not need to manually validate inputs, which aligns with the requirement set in MCP Rule 235.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\completable.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\clients.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\completable.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\clients.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\README.md"
       ],
       "code_snippets": [
         "// SDK manages prompt requests and their validation automatically.",
@@ -740,8 +740,8 @@
       "confidence": 1.0,
       "explanation": "The SDK properly declares the resources capability and handles the registration and notification of resources automatically, complying with the MCP rule requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\tmp92u2v50o.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\tmpq1fua8tu.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\tmp92u2v50o.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\tmpq1fua8tu.ts"
       ],
       "code_snippets": [
         "registerResource(...) - responsible for registering resources and notifying changes【11:0†tmp92u2v50o.ts】",
@@ -762,7 +762,7 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements the notification sending behavior for the 'listChanged' capability, encapsulating this in methods that are automatically invoked without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
       ],
       "code_snippets": [
         "async sendToolListChanged() { return this.notification({ method: 'notifications/tools/list_changed' }); }"
@@ -780,8 +780,8 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the behavior required by the rule, automatically handling notifications and defining the resource loading mechanism without placing that responsibility on developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\sse.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\sse.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts"
       ],
       "code_snippets": [
         "this.server.registerCapabilities({ resources: { listChanged: true }});",
@@ -794,16 +794,16 @@
       "rule_text": "For other use cases, servers **SHOULD** prefer to use another URI scheme, or define a\ncustom one, even if the server will itself be downloading resource contents over the\ninternet.",
       "compliance_status": "UNCLEAR",
       "evidence": [
-        "Phase 1-IR: Found function `registerResource` in defs_typescript.jsonl, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts:47",
-        "Phase 2-Source Code: Verified implementation of automatic resource management and notification within the SDK using the `sendResourceListChanged` logic in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts.",
-        "Source Code: The framework does expose options for defining resources and their URI schemas in the C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts."
+        "Phase 1-IR: Found function `registerResource` in defs_typescript.jsonl, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts:47",
+        "Phase 2-Source Code: Verified implementation of automatic resource management and notification within the SDK using the `sendResourceListChanged` logic in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts.",
+        "Source Code: The framework does expose options for defining resources and their URI schemas in the C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts."
       ],
       "confidence": 0.7,
       "explanation": "The SDK automates resource registration and notifies for changes, adhering to some aspects of the MCP rule. However, it is not clearly defined whether it fully encapsulates a protocol for preferring alternative URI schemes universally as the rule suggests, which makes compliance status ambiguous.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
       ],
       "code_snippets": [
         "server.registerResource('greeting', new ResourceTemplate('greeting://{name}', { list: undefined }), { title: 'Greeting Resource', description: 'Dynamic greeting generator' })",
@@ -823,11 +823,11 @@
       "confidence": 0.8,
       "explanation": "The SDK does not implement the automatic handling of XDG MIME types for file:// resources as required by the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\jsonResponseStreamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\jsonResponseStreamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\toolWithSampleServer.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\jsonResponseStreamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\jsonResponseStreamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\toolWithSampleServer.ts"
       ],
       "code_snippets": [
         "uri: z.string().startsWith('file://')",
@@ -848,11 +848,11 @@
       "confidence": 0.9,
       "explanation": "The SDK does not provide a comprehensive implementation to ensure that custom URI schemes adhere fully to RFC3986 while managing the responsibility away from application developers. While there are some validation methods, they do not encapsulate the complete handling as required.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\uriTemplate.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\jsonResponseStreamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\uriTemplate.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\jsonResponseStreamableHttp.ts"
       ],
       "code_snippets": [
         "export function resourceUrlFromServerUrl(url: URL | string): URL {...}",
@@ -867,13 +867,13 @@
       "evidence": [
         "Phase 1-IR: Found function checkJSONRPCError in defs_typescript.jsonl, defined in src/server/jsonResponseStreamableHttp.ts:582",
         "Phase 1-IR: Confirmed call to handle errors in calls_typescript.jsonl indicating active error management.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\jsonResponseStreamableHttp.ts detailing automatic error response handling."
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\jsonResponseStreamableHttp.ts detailing automatic error response handling."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles JSON-RPC errors by sending properly formatted error responses according to the protocol specifications, thus alleviating the burden on developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\jsonResponseStreamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\jsonResponseStreamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts"
       ],
       "code_snippets": [
         "if (!response.ok) { throw new Error(`Error POSTing to endpoint (HTTP ${response.status}): ${text}`); }"
@@ -886,12 +886,12 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: Found functions that validate resource URIs in defs_typescript.jsonl (resourceUrlFromServerUrl, checkResourceAllowed).",
-        "Phase 2-Source Code: Verified implementation of URI validation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts"
+        "Phase 2-Source Code: Verified implementation of URI validation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts"
       ],
       "confidence": 1.0,
       "explanation": "The SDK defines and restricts the resource URL handling and has built-in mechanisms to validate URIs without leaving the responsibility to developers. Both functions are invoked in the SDK's flow.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts"
       ],
       "code_snippets": [
         "export function resourceUrlFromServerUrl(url: URL | string): URL { ... }",
@@ -911,8 +911,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements access control mechanisms through internal functions that validate authentication and authorization without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts"
       ],
       "code_snippets": [
         "function requireBearerAuth({ verifier, requiredScopes = [], resourceMetadataUrl }: BearerAuthMiddlewareOptions)",
@@ -933,7 +933,7 @@
       "confidence": 1.0,
       "explanation": "The SDK defines structured schemas for binary data that require base64 encoding. Internal logic is implemented to validate this encoding, ensuring compliance with the MCP rule that binary data must be properly encoded.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\resourceSchemas.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\resourceSchemas.ts"
       ],
       "code_snippets": [
         "export const ImageContentSchema = z.object({ type: z.literal(\"image\"), data: Base64Schema, mimeType: z.string() }).passthrough();",
@@ -952,7 +952,7 @@
       "confidence": 0.85,
       "explanation": "While the SDK provides a function to check resource permissions, the responsibility lies with developers to call this function explicitly before performing actions on resources, which does not align with the intent of the rule requiring automatic handling by the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts"
       ],
       "code_snippets": [
         "export function checkResourceAllowed({ requestedResource, configuredResource }) { ... }"
@@ -964,14 +964,14 @@
       "rule_text": "For trust & safety and security, there **SHOULD** always\nbe a human in the loop with the ability to deny tool invocations.",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found revocation function in defs_typescript.jsonl at C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts.",
+        "Phase 1-IR: Found revocation function in defs_typescript.jsonl at C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts.",
         "Phase 1-IR: No clear call relationship indicating automatic handling of deny action.",
         "Phase 2-Source Code: Found revokeToken method but no evidence of automatic handling."
       ],
       "confidence": 0.7,
       "explanation": "The SDK provides a revokeToken method indicating capabilities for denying tool invocation. However, it does not show an automatic handling mechanism to ensure a human intervenes without developer action, which fails to encapsulate the required behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
       ],
       "code_snippets": [
         "await provider.revokeToken!(client, parseResult.data);"
@@ -990,11 +990,11 @@
       "confidence": 0.8,
       "explanation": "The SDK effectively manages notifications and user interactions. However, it lacks dedicated function definitions for visual indicators and direct UI handling related to exposed tools, which are critical parts of the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\client\\simpleStreamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\client\\simpleOAuthClient.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\demoInMemoryOAuthProvider.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\demoInMemoryOAuthProvider.test.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\sqlite-explorer.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\client\\simpleStreamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\client\\simpleOAuthClient.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\demoInMemoryOAuthProvider.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\demoInMemoryOAuthProvider.test.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\sqlite-explorer.ts"
       ],
       "code_snippets": [
         "server.tool(\"book-restaurant\", ...);",
@@ -1013,9 +1013,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages tools capability declarations and emits notifications of tool list changes. This internal logic is encapsulated within SDK methods, relieving application developers from manually handling these behaviors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\client\\simpleOAuthClient.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\client\\parallelToolCallsClient.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\client\\simpleOAuthClient.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\client\\parallelToolCallsClient.ts"
       ],
       "code_snippets": [
         "this.server.setRequestHandler(\n  ListToolsRequestSchema,\n  (): ListToolsResult => ({\n    tools: Object.entries(this._registeredTools).filter(\n      ([, tool]) => tool.enabled,\n    ).map(\n      ([name, tool]): Tool => ({\n        name,\n        title: tool.title,\n        description: tool.description,\n        inputSchema: tool.inputSchema\n      }))\n    ),\n  }),\n);"
@@ -1034,7 +1034,7 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the required behavior, automatically sending notifications when the tool list changes.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
       ],
       "code_snippets": [
         "this.server.registerCapabilities({ tools: { listChanged: true } })",
@@ -1054,9 +1054,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically handle the behavior required by the MCP rule regarding untrusted tool annotations. The responsibility to validate the source of annotations from trusted servers appears to be placed on developers rather than being handled by the SDK itself.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.test.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\metadataUtils.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.test.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\metadataUtils.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts"
       ],
       "code_snippets": [
         "export function checkToolAnnotations(...) {}",
@@ -1076,8 +1076,8 @@
       "confidence": 1.0,
       "explanation": "The SDK provides an internal mechanism to handle resource registration and notifications, meaning no developer action is required for compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
       ],
       "code_snippets": [
         "server.registerResource(name: string, uriOrTemplate: string | ResourceTemplate, readCallback: ReadResourceCallback): RegisteredResourceTemplate;",
@@ -1096,9 +1096,9 @@
       "confidence": 1.0,
       "explanation": "The SDK framework automatically manages resource notifications and encapsulates required behaviors, allowing developers not to handle these details directly.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp_notifications.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp_notifications.ts"
       ],
       "code_snippets": [
         "this.server.registerCapabilities({ resources: { listChanged: true } })",
@@ -1118,7 +1118,7 @@
       "confidence": 0.8,
       "explanation": "The SDK defines the ability to register the resources capability with a change indicator, but it does not demonstrate automatic handling of notifications when resource changes occur. Developers are left to call notification methods manually, which does not align with the MCP rule that the SDK should encapsulate this logic.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
       ],
       "code_snippets": [
         "this.server.registerCapabilities({ resources: { listChanged: true } });",
@@ -1138,8 +1138,8 @@
       "confidence": 0.9,
       "explanation": "The SDK ensures the sending of structured result compliance via method definitions and automatic validations, encapsulating behavior expected by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcpServer.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcpServer.ts"
       ],
       "code_snippets": [
         "this.server.registerCapabilities({ tools: { listChanged: true } });",
@@ -1158,8 +1158,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines an output schema for structured results and validates them internally, fulfilling the requirements of the rule for automatic handling.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\toolWithSampleServer.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\toolWithSampleServer.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\toolWithSampleServer.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\toolWithSampleServer.ts"
       ],
       "code_snippets": [
         "Output schema definition: // File: tmpc0zrkqrq.ts - 'outputSchema: z.optional(z.object({...}))'",
@@ -1173,16 +1173,16 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No specific function found for 'validate inputs', 'access controls', or 'sanitize outputs' but comprehensive validation and control logic identified in source code.",
-        "Phase 2-Source Code: Administered input validation using zod schemas under path C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts.",
-        "Phase 2-Source Code: Implemented rate limiting in multiple handlers to prevent abuse under path C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts.",
-        "Phase 2-Source Code: Sanitized tool outputs accordingly in implementation under path C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts."
+        "Phase 2-Source Code: Administered input validation using zod schemas under path C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts.",
+        "Phase 2-Source Code: Implemented rate limiting in multiple handlers to prevent abuse under path C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts.",
+        "Phase 2-Source Code: Sanitized tool outputs accordingly in implementation under path C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts."
       ],
       "confidence": 1.0,
       "explanation": "The SDK successfully implements automatic handling of all required behaviors outlined in the MCP rule, encapsulating the necessary logic to protect against unauthorized access, validate inputs, enforce rate limiting, and sanitize outputs.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
       ],
       "code_snippets": [
         "const ClientAuthorizationParamsSchema = z.object({ client_id: z.string(), ... });",
@@ -1205,8 +1205,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically addresses all behaviors required by the rule, thus relieving developers of the burden of implementation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
       ],
       "code_snippets": [
         "server.tool(\"book-restaurant\", ...); // handles user confirmation via elicitInput",
@@ -1229,7 +1229,7 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements the completions capability by registering it and defining an internal logic to handle completion requests, adhering to the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\handlers\\completions.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\handlers\\completions.ts"
       ],
       "code_snippets": [
         "this.server.registerCapabilities({ completions: {} });",
@@ -1249,9 +1249,9 @@
       "confidence": 0.95,
       "explanation": "The SDK implements automatic handling of JSON-RPC errors for common failure cases, so developers are not required to implement error responses themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmpua9l4m5s.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmpc0zrkqrq.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmpua9l4m5s.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmpc0zrkqrq.ts"
       ],
       "code_snippets": [
         "res.writeHead(400).end(JSON.stringify({ jsonrpc: '2.0', error: { code: -32600, message: 'Invalid Request: Server already initialized', id: null }}));",
@@ -1271,9 +1271,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not encapsulate required behaviors as specified in the MCP rule. Though rate limiting is defined, there is no automated handling for sorting suggestions, implementing fuzzy matching, or validating inputs.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\completable.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\completable.ts"
       ],
       "code_snippets": [
         "Function: tokenHandler - handles rate limiting based on request parameters.",
@@ -1294,8 +1294,8 @@
       "confidence": 0.7,
       "explanation": "The SDK demonstrates some automatic handling (e.g., debouncing), but does not provide explicit mechanisms for caching completion results or clear strategies for handling missing or partial results in an evident way.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
       ],
       "code_snippets": [
         "server.registerTool(...); // Caching or completion requests that might be debounced"
@@ -1315,10 +1315,10 @@
       "confidence": 0.7,
       "explanation": "The SDK has implemented rate limiting but lacks sufficient internal mechanisms for validating all inputs, managing access to sensitive data, and preventing information disclosure, which are crucial for compliance with the MCP requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
       ],
       "code_snippets": [
         "router.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 50 })); // from revocationHandler",
@@ -1337,7 +1337,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically defines the logging capability and has internal methods for handling logging messages, ensuring developers are not responsible for manual notification handling.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
       ],
       "code_snippets": [
         "protected assertNotificationCapability(method: (ServerNotification | NotificationT)['method']): void { /* checks for logging capability */ }",
@@ -1357,7 +1357,7 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the required logging behavior, allowing clients to set the logging level and automatically sends messages without additional developer input.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\logging.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\logging.ts"
       ],
       "code_snippets": [
         "async sendLoggingMessage(params: LoggingMessageNotification[\"params\"], sessionId?: string) { ... }"
@@ -1376,9 +1376,9 @@
       "confidence": 1.0,
       "explanation": "The SDK framework automates the handling and return of standard JSON-RPC errors, ensuring developers do not need to manage these details manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\jsonRpcServer.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\jsonRpcServer.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "res.writeHead(400).end(JSON.stringify({ jsonrpc: '2.0', error: { code: -32000, message: 'Bad Request: Unsupported protocol version'} , id: null }))",
@@ -1413,11 +1413,11 @@
       "confidence": 1.0,
       "explanation": "The SDK implements automatic logging capabilities, including management of severity levels and logging persistence without requiring developers to implement these features themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\stdio.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\stdio.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
       ],
       "code_snippets": [
         "logger functionality integrated with 'withLogging', dynamically controlling logging level.",
@@ -1433,12 +1433,12 @@
       "evidence": [
         "Phase 1-IR: Found sendLoggingMessage in defs_typescript.jsonl, defined in mcp.ts",
         "Phase 1-IR: Confirmed log message notification behavior through internal method call.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
       ],
       "confidence": 1.0,
       "explanation": "The SDK implements logging behavior as stipulated. It automatically handles the sending of logging messages through an internal mechanism without requiring application developers to manage log messages.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
       ],
       "code_snippets": [
         "async sendLoggingMessage(params: LoggingMessageNotification[\"params\"], sessionId?: string) {...}"
@@ -1450,7 +1450,7 @@
       "rule_text": "2. Implementations **SHOULD**:\n   - Rate limit messages\n   - Validate all data fields\n   - Control log access\n   - Monitor for sensitive content",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found rate limiting in 'tokenHandler' defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "Phase 1-IR: Found rate limiting in 'tokenHandler' defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
         "Phase 1-IR: Validated data fields using Zod schemas in 'tokenHandler' for request validation.",
         "Phase 2-Source Code: Insufficient evidence found for log access control methods.",
         "Phase 2-Source Code: No automatic monitoring for sensitive content found."
@@ -1458,8 +1458,8 @@
       "confidence": 0.75,
       "explanation": "The SDK correctly implements rate limiting and data validation internally, but fails to address automatic log access control and sensitive content monitoring as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
       ],
       "code_snippets": [
         "router.use(rateLimit({ ... })); // Implicit log rate limiting in token handler",
@@ -1479,8 +1479,8 @@
       "confidence": 0.5,
       "explanation": "While the SDK includes structures for pagination and cursors, there is no evidence of automatic handling of page size according to server directives, which is necessary for compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts"
       ],
       "code_snippets": [
         "type Cursor = Infer<typeof CursorSchema>; // Represents an opaque cursor.",
@@ -1500,9 +1500,9 @@
       "confidence": 0.85,
       "explanation": "The SDK fails to automatically manage cursor states and lacks internal logic for graceful handling of invalid cursors, shifting the burden to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\completable.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\completable.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
       ],
       "code_snippets": [
         "// Code snippets related to session handling omitted for brevity."
@@ -1520,9 +1520,9 @@
       "confidence": 0.9,
       "explanation": "The SDK lacks internal logic to automatically handle missing `nextCursor` as the end of results, thus failing to encapsulate required behaviors for the developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "StreamableHTTPServerTransport and its handling methods were explored but showed no automatic pagination handling or logic for `nextCursor`."
@@ -1541,8 +1541,8 @@
       "confidence": 0.85,
       "explanation": "The SDK defines cursor as an opaque token (CursorSchema) but lacks internal methods to manage cursors automatically, thus shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
       ],
       "code_snippets": [
         "export const CursorSchema = z.string();",
@@ -1561,9 +1561,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically throws an InvalidParams error with code -32602 when invalid parameters are detected, fulfilling the compliance requirement of handling invalid cursors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
       ],
       "code_snippets": [
         "throw new McpError(ErrorCode.InvalidParams, `Invalid structured content for tool ${request.params.name}: ${parseResult.error.message}`);"
@@ -1571,3 +1571,4 @@
     }
   ]
 }
+

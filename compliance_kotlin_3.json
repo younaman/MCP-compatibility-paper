@@ -13,15 +13,15 @@
       "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function CreateElicitationRequest in defs, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt.",
+        "Phase 1-IR: Found function CreateElicitationRequest in defs, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt.",
         "Phase 1-IR: Confirmed call to createElicitation in method calls.",
         "Phase 2-Source Code: Verified internal implementation in ServerSession and CreateElicitationRequest."
       ],
       "confidence": 0.95,
       "explanation": "The SDK automatically handles the creation and management of elicitation requests, ensuring compliance with the MCP rule that states servers MUST NOT request sensitive information through elicitation without encapsulating the process within the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SseTransportTest.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SseTransportTest.kt"
       ],
       "code_snippets": [
         "public data class CreateElicitationRequest(...)",
@@ -35,13 +35,13 @@
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
         "Phase 1-IR: No relevant functions found in defs.jsonl.",
-        "Phase 2-Source Code: 'setElicitationHandler' defined in file located at C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
+        "Phase 2-Source Code: 'setElicitationHandler' defined in file located at C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
         "Phase 2-Source Code: 'CreateElicitationResult' shows actions (accept, decline, cancel) indicating user feedback, but lacks direct call logic for notifying users."
       ],
       "confidence": 0.8,
       "explanation": "The SDK does define the ability to handle user approval through the 'setElicitationHandler' function, but it lacks the automatic handling or notification to users to confirm their approval for elicitation requests.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
       ],
       "code_snippets": [
         "setElicitationHandler(handler: (CreateElicitationRequest) -> CreateElicitationResult)",
@@ -60,9 +60,9 @@
       "confidence": 0.9,
       "explanation": "The SDK provides a structure for the elicitation request but lacks the implementation of automatic validation against the defined schema. Developers are responsible for this validation, which violates the 'SHOULD' requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\CreateElicitationRequest.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\CreateElicitationResult.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\CreateElicitationRequest.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\CreateElicitationResult.kt"
       ],
       "code_snippets": [
         "public data class CreateElicitationRequest(...)",
@@ -77,13 +77,13 @@
       "evidence": [
         "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
         "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
       ],
       "confidence": 1.0,
       "explanation": "The SDK does not automatically handle the requirement for clients to provide a clear indication of which server is requesting information, nor does it encapsulate this behavior within its methods. This responsibility seems to be left to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpKtorServerExtensions.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpKtorServerExtensions.kt"
       ],
       "code_snippets": [
         "server.addTool(...) // No server identification logic in the function definition.",
@@ -103,8 +103,8 @@
       "confidence": 0.8,
       "explanation": "The SDK allows defining rejection actions via the CreateElicitationResult but does not include an internal mechanism to automatically send decline responses, placing the responsibility on the developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\CreateElicitationResult.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\CreateElicitationResult.kt"
       ],
       "code_snippets": [
         "public data class CreateElicitationResult public val action: Action...",
@@ -123,9 +123,9 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement rate limiting as required by the MCP rule, shifting the responsibility of implementing this to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
       ],
       "code_snippets": []
     },
@@ -141,8 +141,8 @@
       "confidence": 0.9,
       "explanation": "The SDK only provides the capability definition through the data classes relevant for creating elicitation requests but does not encapsulate the responsible logic to manage these interactions automatically as outlined in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\tmpp5cpwkps.txt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\tmpo65yb4j7.txt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\tmpp5cpwkps.txt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\tmpo65yb4j7.txt"
       ],
       "code_snippets": [
         "@Serializable public data class CreateElicitationRequest",
@@ -162,8 +162,8 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the roots capability and automatically handles notifications when changes occur, fulfilling the MCP rule's requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\tmpaq82xxz6.txt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\tmpwuuuuizm.json"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\tmpaq82xxz6.txt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\tmpwuuuuizm.json"
       ],
       "code_snippets": [
         "public fun sendRootsListChanged() { notification(RootsListChangedNotification()) }",
@@ -184,8 +184,8 @@
       "confidence": 1.0,
       "explanation": "The SDK framework implements the required behaviors for handling notifications for roots changes, encapsulating both the ability definition and the internal logic to automatically send notifications without requiring intervention from application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
       ],
       "code_snippets": [
         "ServerOptions(capabilities = ServerCapabilities(prompts = ServerCapabilities.Prompts(listChanged = true), resources = ServerCapabilities.Resources(subscribe = true, listChanged = true), tools = ServerCapabilities.Tools(listChanged = true)))",
@@ -205,7 +205,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically validates the 'uri' parameter for roots to ensure it starts with 'file://', fulfilling the rule's requirement. Additionally, it provides internal management for notifying when the list of roots changes.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.util.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.util.kt"
       ],
       "code_snippets": [
         "public data class Root(val uri: String) { init { require(uri.startsWith(\"file://\")) { \"'uri' param must start with 'file://'\" } } }",
@@ -269,8 +269,8 @@
       "confidence": 0.8,
       "explanation": "The SDK demonstrates a framework for root management but does not automatically handle cases where roots become unavailable or validate paths against provided roots as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\kotlin-mcp-client\\src\\main\\kotlin\\io\\modelcontextprotocol\\sample\\client\\main.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\kotlin-mcp-client\\src\\main\\kotlin\\io\\modelcontextprotocol\\sample\\client\\MCPClient.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\kotlin-mcp-client\\src\\main\\kotlin\\io\\modelcontextprotocol\\sample\\client\\main.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\kotlin-mcp-client\\src\\main\\kotlin\\io\\modelcontextprotocol\\sample\\client\\MCPClient.kt"
       ],
       "code_snippets": [
         "if(capabilities.roots == null) { throw IllegalStateException('Roots are not available.') }",
@@ -294,15 +294,15 @@
       "rule_text": "2. Servers **SHOULD**:\n   - Check for roots capability before usage\n   - Handle root list changes gracefully\n   - Respect root boundaries in operations\n   - Cache root information appropriately",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function addRoot in defs, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
-        "Phase 1-IR: Found function addRoots in defs, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
+        "Phase 1-IR: Found function addRoot in defs, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
+        "Phase 1-IR: Found function addRoots in defs, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
         "Phase 1-IR: Found function sendRootsListChanged in defs, indicates notification logic.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
       ],
       "confidence": 1.0,
       "explanation": "The SDK encapsulates behavior required by the MCP rule, including ability checks, internal notification handling, and automating root management.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
       ],
       "code_snippets": [
         "public fun addRoots(rootsToAdd: List<Root>) { if (capabilities.roots == null) throw IllegalStateException(\"Client does not support roots capability.\"); roots.update { current -> current.putAll(rootsToAdd.associateBy { it.uri }) } }"
@@ -320,8 +320,8 @@
       "confidence": 1.0,
       "explanation": "The SDK framework provides mechanisms for notifying users and allows human approval before sampling requests are processed, which aligns with the rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\CreateMessageRequest.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SamplingMessage.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\CreateMessageRequest.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SamplingMessage.kt"
       ],
       "code_snippets": [
         "Client should inform the user before beginning sampling to allow them to inspect the request (human in the loop)."
@@ -340,7 +340,7 @@
       "confidence": 0.85,
       "explanation": "The SDK provides some defined capabilities regarding prompts and sampling notifications but does not fully implement automatic handling for user reviews of sampling requests or responses, instead shifting responsibilities to developers in some areas.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\ReadBufferTest.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\ReadBufferTest.kt"
       ],
       "code_snippets": [
         "public suspend fun sendPromptListChanged() { logger.debug { \"Sending prompt list changed notification\" } notification(PromptListChangedNotification()) }"
@@ -386,8 +386,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does define hints and preferences for model selection, but fails to implement automatic mapping of these hints to equivalent models, requiring clients to manage this process themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\api\\kotlin-sdk-server.api",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\api\\kotlin-sdk-server.api",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt"
       ],
       "code_snippets": [
         "public data class ModelHint(val name: String?)",
@@ -400,14 +400,14 @@
       "rule_text": "Clients **SHOULD** return errors for common failure cases:",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt where methods check for errors and invoke _onError.",
-        "Phase 2-Source Code: Found MCP error handling logic and definitions in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt where methods check for errors and invoke _onError.",
+        "Phase 2-Source Code: Found MCP error handling logic and definitions in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
       ],
       "confidence": 0.9,
       "explanation": "The SDK encapsulates error handling within its implementations, thus complying with the requirement that clients should return errors for common failure cases. Automatic error handling is provided via internal methods and callbacks, removing burden from application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
       ],
       "code_snippets": [
         "response.status.isSuccess() and _onError(e)",
@@ -426,7 +426,7 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement user approval controls as required by the MCP rule. There are neither ability definitions nor any internal logic found that automates user approval.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
       ],
       "code_snippets": []
     },
@@ -453,8 +453,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines modelPreferences but does not have the internal logic to automatically respect these preferences. Developers would have to manually handle this, which does not comply with the rule that states the SDK should encapsulate such behaviors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\ClientOptions.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\ClientOptions.kt"
       ],
       "code_snippets": [
         "public data class CreateMessageRequest(...) { public val modelPreferences: ModelPreferences? }"
@@ -487,8 +487,8 @@
       "confidence": 0.85,
       "explanation": "The SDK does not encapsulate handling of sensitive data; it lacks any automatic internal management necessary for compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
       ],
       "code_snippets": [
         "internal suspend fun Routing.mcpPostEndpoint(sseTransportManager: SseTransportManager) { /* ... */ }",
@@ -521,8 +521,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines the prompts capability and has internal logic to automatically manage notifications related to prompts, adhering fully to the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt"
       ],
       "code_snippets": [
         "public val capabilities: ClientCapabilities = options.capabilities【14:0†source】.",
@@ -581,7 +581,7 @@
       "confidence": 0.9,
       "explanation": "The SDK implements automatic handling for adding resources through the `addResource` method, ensuring valid resource URIs and appropriate MIME types internally. The implementation encapsulates the required behaviors specified by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
       ],
       "code_snippets": [
         "public fun addResource(\n        uri: String,\n        name: String,\n        description: String,\n        mimeType: String = \"text/html\",\n        readHandler: suspend (ReadResourceRequest) -> ReadResourceResult,\n    )"
@@ -599,8 +599,8 @@
       "confidence": 0.95,
       "explanation": "The SDK encapsulates error handling for JSON-RPC errors, automatically sending back standardized error responses when appropriate. The required behavior is implemented internally without burdening developers with this responsibility.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\AbstractTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\AbstractTransport.kt"
       ],
       "code_snippets": [
         "error = JSONRPCError(code = ErrorCode.Defined.MethodNotFound, message = 'Server does not support ${request.method}')",
@@ -638,9 +638,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages pagination through the PaginatedRequest and PaginatedResult implementations, which handle cursor operations internally.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\ListPromptsRequest.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\ListPromptsResult.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\ListPromptsRequest.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\ListPromptsResult.kt"
       ],
       "code_snippets": [
         "public abstract interface class io/modelcontextprotocol.kotlin.sdk.PaginatedRequest {...}",
@@ -680,9 +680,9 @@
       "confidence": 0.8,
       "explanation": "The SDK does not encapsulate proper validation logic for prompt inputs and outputs in a manner that inherently protects against injection attacks. There are definitions for validation functions, but they are not clearly utilized or invoked as part of the SDK's processing flow.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types\\Prompt.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\Request.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\response\\Response.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types\\Prompt.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\Request.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\response\\Response.kt"
       ],
       "code_snippets": [
         "No specific code snippets found for validation logic"
@@ -700,8 +700,8 @@
       "confidence": 0.8,
       "explanation": "The SDK defines methods like addResource for managing resources but fails to implement internal logic to autonomously handle the resources capability as required by the MCP rule. Developers are still required to manage updates, which contradicts the purpose of an SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\ServerCapabilities.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\ServerCapabilities.kt"
       ],
       "code_snippets": [
         "public fun addResource(uri: String, name: String, description: String, mimeType: String = 'text/html', readHandler: suspend (ReadResourceRequest) -> ReadResourceResult)",
@@ -720,7 +720,7 @@
       "confidence": 0.5,
       "explanation": "The analysis did not yield sufficient evidence indicating that the SDK sends notifications automatically upon resource or tool list changes, despite defining the capability 'listChanged'. It is unclear whether the implementation genuinely triggers notifications without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\kotlin-mcp-server\\src\\commonMain\\kotlin\\server.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\kotlin-mcp-server\\src\\commonMain\\kotlin\\server.kt"
       ],
       "code_snippets": [
         "server.addTool(...)",
@@ -740,8 +740,8 @@
       "confidence": 0.9,
       "explanation": "The SDK implements automatic notification sending when resources are added or changed. It encapsulates behavior required by the MCP rule, thus relieving developers from implementing this detail themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
       ],
       "code_snippets": [
         "private suspend fun onNotification(notification: JSONRPCNotification)",
@@ -754,14 +754,14 @@
       "rule_text": "For other use cases, servers **SHOULD** prefer to use another URI scheme, or define a\ncustom one, even if the server will itself be downloading resource contents over the\ninternet.",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function `addResource` defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt:400",
+        "Phase 1-IR: Found function `addResource` defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt:400",
         "Phase 1-IR: Found function `sendResourceListChanged`, confirming internal notification",
         "Phase 1-IR: `addResource` is called multiple times with notifications sent internally."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles resource registration and notification sending. The functions `addResource` and `sendResourceListChanged` comply with the MCP rule, encapsulating necessary behavior without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
       ],
       "code_snippets": [
         "public fun addResource(uri: String, name: String, description: String, mimeType: String = \"text/html\", readHandler: suspend (ReadResourceRequest) -> ReadResourceResult)",
@@ -780,7 +780,7 @@
       "confidence": 0.8,
       "explanation": "The SDK provides the ability to add resources with a customizable MIME type, but does not have internal logic to automatically identify 'file://' resources with specific MIME types, notably 'inode/directory' as suggested by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\AudioContentSerializationTest.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\AudioContentSerializationTest.kt"
       ],
       "code_snippets": [
         "addResource(uri = \"https://search.com/\", name = \"Web Search\", description = \"Web search engine\", mimeType = \"text/html\")"
@@ -798,7 +798,7 @@
       "confidence": 0.7,
       "explanation": "While the SDK encapsulates behavior to send notifications when roots change, it is unclear whether the URI registration adheres to RFC3986 without further specific URI validation checks.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
       ],
       "code_snippets": [
         "public fun addRoot(uri: String, name: String) { ... }",
@@ -818,8 +818,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically sends JSON-RPC errors by encapsulating the behavior in its internal methods without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpKtorServerExtensions.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Transport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpKtorServerExtensions.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Transport.kt"
       ],
       "code_snippets": [
         "JSONRPCResponse(id = request.id, error = JSONRPCError(code = ErrorCode.Defined.MethodNotFound, message = \"Server does not support ${request.method}\"))",
@@ -838,7 +838,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not validate resource URIs as required by the MCP rule. The ability to register resources is provided, but no internal handling of URI validation is evident in the implementation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
       ],
       "code_snippets": [
         "public fun addResource(\n        uri: String,\n        name: String,\n        description: String,\n        mimeType: String = \"text/html\",\n        readHandler: suspend (ReadResourceRequest) -> ReadResourceResult,\n    )"
@@ -857,9 +857,9 @@
       "confidence": 0.8,
       "explanation": "The SDK provides definitions for capabilities but does not show automated handling of access controls for sensitive resources as required by the MCP rule. Developers may be left to implement these behaviors themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\api\\kotlin-sdk-server.api",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\package.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\Server.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\api\\kotlin-sdk-server.api",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\package.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\Server.kt"
       ],
       "code_snippets": [
         "public final class io/modelcontextprotocol/kotlin/sdk/server/KtorServerKt {}",
@@ -878,9 +878,9 @@
       "confidence": 1.0,
       "explanation": "The MCP rule pertaining to the proper encoding of binary data is complied with as the SDK adequately encapsulates this behavior through the automated `McpJson` methods, shown by test evidence.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\McpJson.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\RequestSerializerTest.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\AudioContentSerializationTest.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\McpJson.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\RequestSerializerTest.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\AudioContentSerializationTest.kt"
       ],
       "code_snippets": [
         "McpJson.encodeToString(data)",
@@ -900,8 +900,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically check resource permissions before operations, instead transferring the responsibility to the developers. This violates the requirement that the SDK should encapsulate these behaviors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\api\\kotlin-sdk-server.api",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\api\\kotlin-sdk-server.api",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
       ],
       "code_snippets": [
         "// Sample for adding resource",
@@ -957,7 +957,7 @@
       "confidence": 1.0,
       "explanation": "The SDK provides definitions for adding and removing tools but lacks the internal logic to automatically send notifications when the tool list changes, thus shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\src\\main\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\src\\main\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
       ],
       "code_snippets": [
         "public fun addTool(name: String, description: String, inputSchema: Tool.Input = Tool.Input(), title: String? = null, outputSchema: Tool.Output? = null, toolAnnotations: ToolAnnotations? = null, handler: suspend (CallToolRequest) -> CallToolResult)",
@@ -977,11 +977,11 @@
       "confidence": 1.0,
       "explanation": "The SDK defines the required capability that should trigger notifications and implements internal functions that automatically handle notification when the tool list changes.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\ServerCapabilities.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SseClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\ServerCapabilities.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SseClientTransport.kt"
       ],
       "code_snippets": [
         "public suspend fun sendToolListChanged() { ... }",
@@ -1000,7 +1000,7 @@
       "confidence": 0.9,
       "explanation": "The SDK defines ToolAnnotations but lacks automatic handling logic for trustworthiness checks, requiring developers to manage these behaviors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\core\\api\\kotlin-sdk-core.api"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\core\\api\\kotlin-sdk-core.api"
       ],
       "code_snippets": [
         "class Tool {\n    val annotations: ToolAnnotations?\n}",
@@ -1020,8 +1020,8 @@
       "confidence": 0.9,
       "explanation": "The SDK provides capabilities for handling resources but lacks automatic notification logic for resource changes. Developers must manage notification behavior manually, which does not align with the expectations set by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\ServerCapabilities.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\ServerCapabilities.kt"
       ],
       "code_snippets": [
         "public fun addResource(...) { if (options.capabilities.resources == null) {...}",
@@ -1063,8 +1063,8 @@
       "confidence": 0.85,
       "explanation": "The SDK defines resource management capabilities but lacks internal notification handling logic when resources change, transferring that responsibility to the developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
       ],
       "code_snippets": [
         "server.addResource(uri = 'file:///example.txt', name = 'Example Resource', ...) // No internal notification handling after adding."
@@ -1078,12 +1078,12 @@
       "evidence": [
         "Phase 1-IR: Found function listChanged defined in capabilities class.",
         "Phase 1-IR: Confirmed that server.addResource automatically triggers notifications.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\kotlin-mcp-server\\src\\commonMain\\kotlin\\server.kt"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\kotlin-mcp-server\\src\\commonMain\\kotlin\\server.kt"
       ],
       "confidence": 1.0,
       "explanation": "The SDK implements the necessary capabilities and internal handling required by the rule, ensuring developers do not need to manage these behaviors directly.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\kotlin-mcp-server\\src\\commonMain\\kotlin\\server.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\kotlin-mcp-server\\src\\commonMain\\kotlin\\server.kt"
       ],
       "code_snippets": [
         "val server = Server(... resources = ServerCapabilities.Resources(listChanged = true))",
@@ -1102,8 +1102,8 @@
       "confidence": 0.9,
       "explanation": "While there are functions defined for validation within the SDK, there is no evidence of the SDK automatically managing the validation of structured results against the schema. This indicates a failure to encapsulate required behaviors, placing the responsibility on the application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\TypesTest.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\ToolSerializationTest.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\TypesTest.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\ToolSerializationTest.kt"
       ],
       "code_snippets": [
         "function `should validate ResourceTemplateReference` found in TypesTest.kt",
@@ -1123,10 +1123,10 @@
       "confidence": 0.8,
       "explanation": "The SDK lacks explicit internal implementation for certain must-have behaviors required by the MCP rule, such as comprehensive rate limiting and notification on tool input validation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\package.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\Module.md",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\TypesTest.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\TypesUtil.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\package.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\Module.md",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\TypesTest.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\TypesUtil.kt"
       ],
       "code_snippets": [
         "def method to handle authorization for incoming requests",
@@ -1147,10 +1147,10 @@
       "confidence": 0.7,
       "explanation": "The SDK does not automatically implement user confirmation for sensitive operations nor does it provide a mechanism to show tool inputs to users before server calls, shifting these responsibilities to developers. However, it does include timeout and logging implementations.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\TypesUtilTest.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\TypesTest.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\MCPClient.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\TypesUtilTest.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\TypesTest.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\MCPClient.kt"
       ],
       "code_snippets": [
         "public var timeout: Duration = DEFAULT_REQUEST_TIMEOUT,",
@@ -1194,8 +1194,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles JSON-RPC error responses as required by the rule, ensuring that developers do not need to implement this logic themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\JSONRPCResponse.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\JSONRPCResponse.kt"
       ],
       "code_snippets": [
         "public enum class Defined(override val code: Int) : ErrorCode { MethodNotFound(-32601), InvalidParams(-32602), InternalError(-32603); }",
@@ -1215,9 +1215,9 @@
       "confidence": 0.9,
       "explanation": "The SDK lacks internal handling for key functionalities mandated by the rule, including ordering suggestions, fuzzy matching, rate limiting, and input validation. Developers would need to implement these behaviors themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-test\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\ClientTest.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\ReadBuffer.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-test\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\ClientTest.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\ReadBuffer.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
       ],
       "code_snippets": []
     },
@@ -1234,8 +1234,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not implement debouncing for rapid completion requests or caching of completion results. It does have some error handling for missing responses, but it does not conform to the requirement of gracefully handling missing or partial results.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
       ],
       "code_snippets": [
         "// Error handling in the response processing: _onError invoked for invalid responses",
@@ -1256,9 +1256,9 @@
       "confidence": 0.7,
       "explanation": "The SDK partially implements input validation but lacks crucial automatic handling for rate limiting, access control, and preventing information disclosure.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
       ],
       "code_snippets": [
         "server.addTool(name = 'get_forecast', inputSchema = Tool.Input(...))"
@@ -1277,9 +1277,9 @@
       "confidence": 1.0,
       "explanation": "The SDK defines the 'logging' capability and contains internal logic to automatically send logging notifications without requiring application developers to implement it themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\LoggingMessageNotification.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\method.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\LoggingMessageNotification.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\method.kt"
       ],
       "code_snippets": [
         "public suspend fun sendLoggingMessage(notification: LoggingMessageNotification) { logger.trace { \"Sending logging message: ${notification.params.data}\" } notification(notification); }"
@@ -1297,7 +1297,7 @@
       "confidence": 0.5,
       "explanation": "The SDK has the ability to set logging levels through client requests but lacks clear evidence that it automatically sends notifications for those changes, thereby shifting potential responsibility to the application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\LoggingMessageNotification.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\LoggingMessageNotification.kt"
       ],
       "code_snippets": [
         "@Serializable\npublic data class LoggingMessageNotification(override val params: Params) : ServerNotification { ... }",
@@ -1316,8 +1316,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles sending standard JSON-RPC errors for common failure cases according to the rules stipulated.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\McpJson.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\McpJson.kt"
       ],
       "code_snippets": [
         "JSONRPCError(error.code, error.message)",
@@ -1358,8 +1358,8 @@
       "confidence": 0.85,
       "explanation": "The SDK implements basic logging mechanisms but fails to encapsulate functionalities such as log message presentation in UI, filtering, visual severity display, or automatic persistence. Developers would need to implement these behaviors themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\ReadBuffer.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StdioClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\ReadBuffer.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StdioClientTransport.kt"
       ],
       "code_snippets": [
         "logger.error(e) { 'Failed to deserialize message from line: $line\\nAttempting to recover.' }",
@@ -1379,7 +1379,7 @@
       "confidence": 0.85,
       "explanation": "The SDK logs messages using a logging framework without any apparent internal mechanisms to sanitize sensitive information automatically. Developers could inadvertently log credentials or personal information, which directly violates the MCP rule regarding logging.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\ServerSession.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\ServerSession.kt"
       ],
       "code_snippets": [
         "logger.debug { \"Client sending message via POST to $url: ${McpJson.encodeToString(message)}\" }"
@@ -1398,9 +1398,9 @@
       "confidence": 0.9,
       "explanation": "The SDK lacks essential automated implementations for rate limiting, data validation, log access control, and monitoring sensitive content as outlined in the MCP rule. It does not encapsulate these behaviors within its functions, instead requiring developers to implement them themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
       ],
       "code_snippets": []
     },
@@ -1416,9 +1416,9 @@
       "confidence": 0.8,
       "explanation": "The SDK lacks automatic handling of page size determination and allows clients to assume fixed page sizes, violating the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
       ],
       "code_snippets": [
         "internal class SseTransportManager(transports: Map<String, SseServerTransport> = emptyMap())...",
@@ -1437,10 +1437,10 @@
       "confidence": 1.0,
       "explanation": "The SDK does not provide the required behaviors of managing stable cursors and handling invalid cursors within its implementation, thereby failing to encapsulate these functionalities.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpKtorServerExtensions.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpKtorServerExtensions.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt"
       ],
       "code_snippets": []
     },
@@ -1479,8 +1479,8 @@
       "confidence": 1.0,
       "explanation": "The SDK does not encapsulate cursor management behaviors as required by the rule. No functions were found that treat cursors as opaque tokens without exposing detailed handling to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
       ],
       "code_snippets": []
     },
@@ -1496,9 +1496,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages invalid cursor scenarios by generating an appropriate JSON-RPC error response (code -32602) without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\JSONRPCError.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\JSONRPCResponse.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\JSONRPCError.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\JSONRPCResponse.kt"
       ],
       "code_snippets": [
         "JSONRPCResponse creation with JSONRPCError for invalid parameters.",
@@ -1507,3 +1507,4 @@
     }
   ]
 }
+

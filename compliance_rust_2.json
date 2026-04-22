@@ -19,7 +19,7 @@
       "confidence": 0.5,
       "explanation": "The SDK defines a function to create session IDs, but without clear evidence that it uses secure random number generators. The behavior cannot be judged as compliant until the implementation of session_id() is confirmed.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs"
       ],
       "code_snippets": [
         "async fn create_session(&self) -> Result<(SessionId, Self::Transport), Self::Error> { let id = session_id(); ... }"
@@ -37,7 +37,7 @@
       "confidence": 0.85,
       "explanation": "The SDK provides automatic handling of session IDs bound to user-specific data through comprehensive session management functions without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs"
       ],
       "code_snippets": [
         "fn create_session(&self) -> Result<(SessionId, Self::Transport), Self::Error>",
@@ -57,8 +57,8 @@
       "confidence": 0.85,
       "explanation": "The SDK implements functions to send JSON-RPC messages, but there's no evidence that these messages are handled internally with guaranteed UTF-8 encoding, thus shifting the responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
       ],
       "code_snippets": [
         "async fn post_message(&self, uri: std::sync::Arc<str>, message: crate::model::ClientJsonRpcMessage, ...)",
@@ -71,14 +71,14 @@
       "rule_text": "Clients **SHOULD** support stdio whenever possible.",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function 'stdio()' defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\io.rs.",
+        "Phase 1-IR: Found function 'stdio()' defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\io.rs.",
         "Phase 2-Source Code: Verified 'spawn()' method in 'TokioChildProcess' utilizes stdio effectively."
       ],
       "confidence": 1.0,
       "explanation": "The SDK has implemented a function for stdio support and automatically utilizes it in its internal handling of child process interactions, thereby fulfilling the MCP requirement that clients should support stdio.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\io.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\child_process.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\io.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\child_process.rs"
       ],
       "code_snippets": [
         "pub fn stdio() -> (tokio::io::Stdin, tokio::io::Stdout) {...}",
@@ -97,8 +97,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements automatic handling of message delimiters and ensures no embedded newlines are present in messages sent or received, as verified by the decoding logic in JsonRpcMessageCodec.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\io.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\io.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common.rs"
       ],
       "code_snippets": [
         "let newline_offset = buf[self.next_index..read_to].iter().position(|b| *b == b'\\n');",
@@ -117,8 +117,8 @@
       "confidence": 0.85,
       "explanation": "The SDK contains function calls for logging errors but does not automatically encapsulate the logging behavior required by the MCP rule, failing to deliver an autonomous solution for developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\async_rw.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\async_rw.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs"
       ],
       "code_snippets": [
         "tracing::error!(%e, \"Error reading from stream: {}\", e);",
@@ -131,14 +131,14 @@
       "rule_text": "In the **stdio** transport:\n\n- The client launches the MCP server as a subprocess.\n- The server reads JSON-RPC messages from its standard input (`stdin`) and sends messages\n  to its standard output (`stdout`).\n- Messages are individual JSON-RPC requests, notifications, or responses.\n- Messages are delimited by newlines, and **MUST NOT** contain embedded newlines.\n- The server **MAY** write UTF-8 strings to its standard error (`stderr`) for logging\n  purposes. Clients **MAY** capture, forward, or ignore this logging.\n- The server **MUST NOT** write anything to its `stdout` that is not a valid MCP message.\n- The client **MUST NOT** write anything to the server's `stdin` that is not a valid MCP\n  message.",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function SetLevelRequest in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server.rs:3",
-        "Phase 1-IR: Found LoggingMessageNotification being utilized in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server.rs:9",
+        "Phase 1-IR: Found function SetLevelRequest in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server.rs:3",
+        "Phase 1-IR: Found LoggingMessageNotification being utilized in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server.rs:9",
         "Phase 1-IR: Enumerated LoggingLevel exists and is called in set level function for log handling."
       ],
       "confidence": 1.0,
       "explanation": "The SDK has implemented the logging handling as specified in the MCP rule. It provides the necessary structures for setting logging levels and sends notifications for logging messages automatically.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server.rs"
       ],
       "code_snippets": [
         "Logging levels defined in enum LoggingLevel in the file at line 1",
@@ -157,8 +157,8 @@
       "confidence": 0.85,
       "explanation": "The SDK does not automatically handle outputs to stdout, requiring developers to manage which messages written to stdout are valid MCP messages, violating the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\async_rw.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\async_rw.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs"
       ],
       "code_snippets": [
         "fn handle_server_message(&mut self, message: ServerJsonRpcMessage) -> Result<(), SessionError>",
@@ -178,9 +178,9 @@
       "confidence": 0.85,
       "explanation": "The SDK does not enforce the rule that the client MUST NOT write anything to the server's stdin that is not a valid MCP message, as it lacks mechanisms to automatically validate and restrict non-MCP messages.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\child_process.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sink_stream.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\child_process.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sink_stream.rs"
       ],
       "code_snippets": [
         "fn send(&mut self, item: TxJsonRpcMessage<RoleClient>);",
@@ -199,7 +199,7 @@
       "confidence": 0.95,
       "explanation": "The SDK successfully implements a single HTTP endpoint that supports both POST and GET methods through the StreamableHttpService class, with automatic handling of requests without exposing this responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\streamable_http_service.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\streamable_http_service.rs"
       ],
       "code_snippets": [
         "pub async fn handle<B>(&self, request: Request<B>) -> Response<BoxBody<Bytes, Infallible>> {...}",
@@ -219,9 +219,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically handle the validation of the `Origin` header as required by MCP rule 112.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\sse_client.rs"
       ],
       "code_snippets": []
     },
@@ -238,7 +238,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not mandate the binding of the server to localhost (127.0.0.1). Instead, it allows for potentially unsafe configurations that could enable binding to all network interfaces (0.0.0.0).",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server.rs"
       ],
       "code_snippets": [
         "// StreamableHttpServerConfig struct defined without specific localhost enforcement."
@@ -257,7 +257,7 @@
       "confidence": 1.0,
       "explanation": "The SDK implements automatic authentication processes, enabling connections without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
       ],
       "code_snippets": [
         "async fn get_access_token(&self) -> Result<String, AuthError> {...}",
@@ -272,14 +272,14 @@
       "evidence": [
         "Phase 1-IR: Found function 'post_message' in streamable_http_client.rs at line 44.",
         "Phase 1-IR: Found function 'post_message' in sse_client.rs at line 23.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
       ],
       "confidence": 1.0,
       "explanation": "The SDK implements automatic handling of HTTP POST requests for JSON-RPC messages, encapsulating this functionality within its methods and relieving developers from manual management.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
       ],
       "code_snippets": [
         "self.http_client.post_message(uri, message, session_id, auth_token).await"
@@ -297,7 +297,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles HTTP POST requests to send JSON-RPC messages to the MCP endpoint as required. It encapsulates all necessary logic, ensuring developers do not have to implement these details themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs"
       ],
       "code_snippets": [
         "async fn post_message(...)",
@@ -316,8 +316,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically includes an 'Accept' header with both 'application/json' and 'text/event-stream' content types in the HTTP requests made through its client interface, fulfilling the MCP rule requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\sse_client.rs"
       ],
       "code_snippets": [
         "request_builder.header(ACCEPT, EVENT_STREAM_MIME_TYPE);",
@@ -336,9 +336,9 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the necessary protocols for handling JSON-RPC requests and notifications internally. It does not require developers to manage these details, fulfilling the requirements outlined in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\tower.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\tower.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "impl<S, R: ServiceRole> Service<R> for TowerHandler<S, R> { async fn handle_request(...) { /* logic to handle request */ } }",
@@ -357,7 +357,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the HTTP response with a status code of 202 Accepted when the input is accepted, ensuring compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs"
       ],
       "code_snippets": [
         "return Ok(Response::builder().status(http::StatusCode::ACCEPTED).body(Full::new(Bytes::from(\"\")))"
@@ -375,8 +375,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the HTTP error responses as required by the MCP rule, encapsulating the necessary behaviors and ensuring developers do not need to manually implement error handling for HTTP errors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\wrapper.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\wrapper.rs"
       ],
       "code_snippets": [
         "let response = Response::builder().status(http::StatusCode::UNAUTHORIZED)",
@@ -395,9 +395,9 @@
       "confidence": 1.0,
       "explanation": "The SDK defines an error data structure and automatically handles error responses within its request handling logic, complying with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\error.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\error.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "impl ErrorData { ... } // Definition of error handling in error.rs",
@@ -416,8 +416,8 @@
       "confidence": 0.9,
       "explanation": "The SDK correctly implements the necessary functionality to manage JSON-RPC requests and responses, handling the Content-Type requirements, and supporting SSE streams internally.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
       ],
       "code_snippets": [
         "// Inside server_side_http.rs\nif !request.headers().get(http::header::ACCEPT).and_then(|header| header.to_str().ok()).is_some_and(|header| header.contains(EVENT_STREAM_MIME_TYPE)) {\n    return Ok(Response::builder().status(http::StatusCode::NOT_ACCEPTABLE).body(Full::new(Bytes::from(\"Not Acceptable: Client must accept text/event-stream\")).boxed()).expect(\"valid response\"));\n}\n",
@@ -437,9 +437,9 @@
       "confidence": 1.0,
       "explanation": "The SDK implements and encapsulates the behaviors mandated by the MCP rule, allowing developers to work without handling protocol details directly.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "async fn post_message(&self, uri: Uri, message: ClientJsonRpcMessage, auth_token: Option<String>) {...}",
@@ -454,12 +454,12 @@
       "evidence": [
         "Phase 1-IR: Found function post_message in sse_client.rs for handling JSON-RPC messages.",
         "Phase 1-IR: Found function get_stream in sse_client.rs for retrieving stream and handling responses.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the sending of JSON-RPC responses through the post_message and get_stream functions, encapsulating all defined behaviors as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
       ],
       "code_snippets": [
         "fn post_message(&self, uri: Uri, message: crate::model::ClientJsonRpcMessage, auth_token: Option<String>) -> Result<(), SseTransportError<Self::Error>> { ... }",
@@ -478,8 +478,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the required behaviors, which automatically handles the sending of notifications as per the MCP rules without shifting the responsibility onto application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "self.on_cancelled(notification.params, context).await // Automatically manages CancelledNotification",
@@ -499,8 +499,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles notifications and responses as required by the MCP rule, without shifting the responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "async fn handle_notification(...) { ... }",
@@ -520,10 +520,10 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages the SSE stream, ensuring it is not closed before sending the JSON-RPC response, adhering to the specified MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\never.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\never.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_client.rs"
       ],
       "code_snippets": [
         "if close_on_response && is_response { tracing::debug!(\"got response, closing sse stream\"); break; }"
@@ -541,7 +541,7 @@
       "confidence": 0.9,
       "explanation": "The SDK implements automatic closing of the SSE stream after a JSON-RPC response is sent, encapsulated in the `execute_sse_stream` function.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs"
       ],
       "code_snippets": [
         "if close_on_response && is_response { tracing::debug!(\"got response, closing sse stream\"); break; }"
@@ -559,7 +559,7 @@
       "confidence": 0.85,
       "explanation": "The SDK recognizes cancellation notifications and exposes handling functions. However, it does not encapsulate necessary notification behaviors within its framework, leaving developers responsible for implementation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "fn on_cancelled(&self, params: CancelledNotificationParam, context: NotificationContext<RoleClient>) { std::future::ready(()); }"
@@ -578,9 +578,9 @@
       "confidence": 0.7,
       "explanation": "The SDK does not automatically handle that disconnection should not be interpreted as a cancellation of the request.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs"
       ],
       "code_snippets": [
         "cancel(self.peer.send_notification(notification.into()).await?;)",
@@ -600,8 +600,8 @@
       "confidence": 1.0,
       "explanation": "The SDK internally manages cancellation notifications, allowing developers to use them without manual implementation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\tower.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\tower.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\client.rs"
       ],
       "code_snippets": [
         "fn cancel(self, reason: Option<String>) -> Result<(), ServiceError> { ... }",
@@ -615,13 +615,13 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: Found function SseStreamReconnect in defs, indicating reconnection capability.",
-        "Phase 2-Source Code: Verified implementation details in file C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs, showcasing automatic retry logic."
+        "Phase 2-Source Code: Verified implementation details in file C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs, showcasing automatic retry logic."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles stream resumability through SseAutoReconnectStream and associated reconnect logic, encapsulating the necessary behaviors as required by the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs"
       ],
       "code_snippets": [
         "fn retry_connection(&mut self, last_event_id: Option<&str>) -> Self::Future {...}",
@@ -641,8 +641,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles HTTP GET requests to the MCP endpoint, checks for the Accept header, and manages SSE stream responses without requiring application developers to implement this logic themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\sse_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\sse_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
       ],
       "code_snippets": [
         "if !request.headers().get(http::header::ACCEPT).and_then(|header| header.to_str().ok()).is_some_and(|header| header.contains(EVENT_STREAM_MIME_TYPE)) { ... }",
@@ -661,9 +661,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically checks for the presence of the 'Accept' header with the required content type 'text/event-stream', ensuring compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\http_header.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\http_header.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs"
       ],
       "code_snippets": [
         "async fn handle_get<B>(&self, request: Request<B>) -> Result<BoxResponse, BoxResponse> { ... } // checks Accept header for EVENT_STREAM_MIME_TYPE",
@@ -683,8 +683,8 @@
       "confidence": 1.0,
       "explanation": "The SDK has implemented the required automatic handling of HTTP GET requests for SSE streaming, including correct handling of MIME types and return codes.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_client.rs"
       ],
       "code_snippets": [
         "async fn handle_get<B>(&self, request: Request<B>) -> Result<BoxResponse, BoxResponse> {...}",
@@ -704,8 +704,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles sending JSON-RPC notifications and messages as required by the MCP rule, encapsulating necessary logic within its implementations.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "async fn handle_notification(...)",
@@ -724,8 +724,8 @@
       "confidence": 0.8,
       "explanation": "The SDK defines methods for sending notifications but does not seem to encapsulate automatic handling as required. Developers may have to call these notification methods explicitly, failing to meet the 'SHOULD' requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs"
       ],
       "code_snippets": [
         "pub async fn send_notification(&self, notification: R::Not) -> Result<(), ServiceError>"
@@ -743,8 +743,8 @@
       "confidence": 0.85,
       "explanation": "The SDK does not automatically handle sending JSON-RPC responses on the SSE stream without requiring developers to do so.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
       ],
       "code_snippets": [
         "pub struct JsonRpcResponse { ... }",
@@ -764,9 +764,9 @@
       "confidence": 0.5,
       "explanation": "The implementation allows for closing SSE streams but does not explicitly show automatic handling of this closure without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs"
       ],
       "code_snippets": [
         "SseServerTransport.poll_close() implementation found.",
@@ -785,8 +785,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the closure of the SSE stream through the `close` method in `SseClientTransport` and additionally manages session termination via `LocalSessionHandle`, ensuring that developers aren't responsible for implementation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\sse_client.rs"
       ],
       "code_snippets": [
         "async fn close(&mut self) -> Result<(), Self::Error> { self.stream.take(); Ok(()) }",
@@ -805,7 +805,7 @@
       "confidence": 1.0,
       "explanation": "The SDK supports multiple SSE streams through its SseClient trait, with both post_message and get_stream functioning automatically without developer intervention. Automatic reconnect logic further enhances compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
       ],
       "code_snippets": [
         "async fn get_stream(&self, uri: Uri, last_event_id: Option<String>, auth_token: Option<String>) {...}",
@@ -818,13 +818,13 @@
       "rule_text": "1. The client **MAY** remain connected to multiple SSE streams simultaneously.\n2. The server **MUST** send each of its JSON-RPC messages on only one of the connected\n   streams; that is, it **MUST NOT** broadcast the same message across multiple streams.\n   - The risk of message loss **MAY** be mitigated by making the stream\n     [resumable](#resumability-and-redelivery).",
       "compliance_status": "UNCLEAR",
       "evidence": [
-        "Phase 1-IR: Found post_message function defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs",
+        "Phase 1-IR: Found post_message function defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs",
         "Phase 2-Source Code: Function post_message allows sending JSON-RPC messages but lacks clear enforcement against broadcasting."
       ],
       "confidence": 0.5,
       "explanation": "There is a function to send messages, but no explicit logic to enforce sending messages across only one stream, leading to concerns regarding compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
       ],
       "code_snippets": [
         "async fn post_message(&self, uri: Uri, message: crate::model::ClientJsonRpcMessage, ...) { ... }"
@@ -842,8 +842,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implementations do not allow broadcasting messages across multiple streams and encapsulate the message handling logic within the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\sse_client.rs"
       ],
       "code_snippets": [
         "pub async fn post_message(&self, uri: Uri, message: crate::model::ClientJsonRpcMessage, auth_token: Option<String>) -> Result<(), SseTransportError<Self::Error>> { /* sending logic */ }",
@@ -863,8 +863,8 @@
       "confidence": 0.8,
       "explanation": "The SDK provides some mechanisms for stream reconnections but fails to encapsulate the required resumable stream behavior and automatic handling of message loss without requiring developer involvement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs"
       ],
       "code_snippets": [
         "impl<R: SseStreamReconnect> SseAutoReconnectStream<R> { ... }",
@@ -883,8 +883,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages the `id` field attachment to SSE events, ensuring compliance without requiring additional developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs"
       ],
       "code_snippets": [
         "sse.id = message.event_id;"
@@ -903,8 +903,8 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements automatic session ID management and resuming logic for SSE events as required by the MCP rule. Developers are not required to implement these specifications manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
       ],
       "code_snippets": [
         "fn create_stream(&self, id: &SessionId, message: ClientJsonRpcMessage) -> Result<impl Stream<Item = ServerSseMessage> + Send + 'static, Self::Error> { ... }",
@@ -923,8 +923,8 @@
       "confidence": 1.0,
       "explanation": "The SDK has implemented the behavior required by the MCP rule, automatically handling the resuming behavior through the `resume` method and including the `Last-Event-ID` when issuing GET requests.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session.rs"
       ],
       "code_snippets": [
         "async fn resume(&self, id: &SessionId, last_event_id: String) { /* Implementation details */ }",
@@ -944,8 +944,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles reconnections and message replay using the Last-Event-ID parameter, thus adhering to the MCP rules requiring server behavior for message delivery.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs"
       ],
       "code_snippets": [
         "fn retry_connection(&mut self, last_event_id: Option<&str>) -> Self::Future",
@@ -965,8 +965,8 @@
       "confidence": 0.8,
       "explanation": "The SDK defines the ability to manage streams and sessions but lacks clear enforcement that prevents replaying messages across different streams.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\sse_client.rs"
       ],
       "code_snippets": [
         "pub async fn get_stream(..., last_event_id: Option<String>, ...) {...}",
@@ -986,9 +986,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages session IDs, assigning them during initialization and embedding them in response headers, fulfilling MCP Rule 150 requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\http_header.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\http_header.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs"
       ],
       "code_snippets": [
         "HEADER_SESSION_ID definition from common http_header.",
@@ -1008,13 +1008,13 @@
       "confidence": 0.7,
       "explanation": "The SDK implements session handling functions but does not guarantee that session IDs are globally unique and cryptographically secure as required by the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\http_header.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\never.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\local.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\http_header.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\never.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\local.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs"
       ],
       "code_snippets": []
     },
@@ -1030,7 +1030,7 @@
       "confidence": 0.85,
       "explanation": "The SDK does not enforce that session IDs consist solely of visible ASCII characters (ranging from 0x21 to 0x7E), which is mandatory as per the MCP guideline.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
       ],
       "code_snippets": []
     },
@@ -1047,9 +1047,9 @@
       "confidence": 0.5,
       "explanation": "Found necessary header and session management methods, but unsure about automatic handling without developer action.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\http_header.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\http_header.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session.rs"
       ],
       "code_snippets": [
         "HTTP header definition for Mcp-Session-Id",
@@ -1070,7 +1070,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages session validation and responses, returning HTTP 400 Bad Request for requests without an Mcp-Session-Id according to the rules outlined.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs"
       ],
       "code_snippets": [
         "if let Some(session_id) = session_id { /* check exists */ } else { return Ok(Response::builder().status(http::StatusCode::BAD_REQUEST) /* return 400 */ }"
@@ -1100,7 +1100,7 @@
       "confidence": 0.75,
       "explanation": "The SDK has provided functionality for session management, including closing sessions, but does not automatically respond with HTTP 404 Not Found for requests made with terminated session IDs. Instead, it focuses on managing unauthorized access.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs"
       ],
       "code_snippets": [
         "async fn handle_get<B>(&self, request: Request<B>) -> Result<BoxResponse, BoxResponse> { ... }",
@@ -1120,8 +1120,8 @@
       "confidence": 1.0,
       "explanation": "The SDK framework automatically manages session initialization and handles session ID requirements, fulfilling the MCP rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\never.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\never.rs"
       ],
       "code_snippets": [
         "async fn initialize_session(&self, id: &SessionId, message: ClientJsonRpcMessage) -> Result<ServerJsonRpcMessage, Self::Error> {...}",
@@ -1141,9 +1141,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages session termination via the delete_session function, conforming to the MCP rule's requirements without requiring application developers to implement it themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
       ],
       "code_snippets": [
         "async fn delete_session(&self, uri: Arc<str>, session: Arc<str>, auth_token: Option<String>) {...}",
@@ -1158,12 +1158,12 @@
       "evidence": [
         "Phase 1-IR: Found function delete_session in defs.",
         "Phase 1-IR: Confirmed delete_session's behavior on HTTP 405 in calls.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs"
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs"
       ],
       "confidence": 1.0,
       "explanation": "The SDK correctly handles the session deletion internally and encapsulates the logic for responding to HTTP 405 Method Not Allowed, adhering to the MCP rule specifications.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs"
       ],
       "code_snippets": [
         "// Check for HTTP 405 in delete_session function",
@@ -1185,9 +1185,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically set the MCP-Protocol-Version HTTP header in requests as required by the rule. It does not encapsulate this behavior, leaving developers responsible for it.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\http_header.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\Cargo.toml",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\http_header.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\Cargo.toml",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_client.rs"
       ],
       "code_snippets": [
         "pub const HEADER_SESSION_ID: &str = 'Mcp-Session-Id'; // Found in http_header.rs, but no MCP-Protocol-Version management",
@@ -1206,8 +1206,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines the ability to manage protocol versions and handles notifications automatically, complying with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\meta.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\meta.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "pub struct InitializeRequestParam { pub protocol_version: ProtocolVersion, ... }",
@@ -1227,9 +1227,9 @@
       "confidence": 0.85,
       "explanation": "The SDK defines the protocol version and captures the client capabilities during initialization but lacks internal logic to assume the default protocol version (2025-06-18) when the MCP-Protocol-Version header is not received. The responsibility for checking and setting the protocol version defaults is not automated within the SDK, thus shifting the responsibility to the SDK users.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\protocol.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\CHANGELOG.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\protocol.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\CHANGELOG.md"
       ],
       "code_snippets": [
         "pub struct InitializeRequestParam { pub protocol_version: ProtocolVersion, /* other fields */ }",
@@ -1249,9 +1249,9 @@
       "confidence": 0.95,
       "explanation": "The SDK correctly defines the ability to handle invalid protocol versions through an encapsulated mechanism that provides an automatic response of `400 Bad Request`, fulfilling the requirements of the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\error.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\ws.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\error.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\ws.rs"
       ],
       "code_snippets": [
         "fn invalid_request(message: impl Into<Cow<'static, str>>, data: Option<Value>)",
@@ -1270,8 +1270,8 @@
       "confidence": 1.0,
       "explanation": "The SDK framework implements the required behaviors for the MCP rule, handling transport mechanisms internally without requiring application developers to manage them directly.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs"
       ],
       "code_snippets": [
         "async fn post_message(&self, uri: Uri, message: ClientJsonRpcMessage, auth_token: Option<String>)",
@@ -1285,14 +1285,14 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No specific function definitions related to transports found in IR files.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\async_rw.rs.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\async_rw.rs.",
         "Phase 2-Source Code: Notifications are handled automatically within the SDK, as evident in the handle_notification method."
       ],
       "confidence": 1.0,
       "explanation": "The SDK properly implements the JSON-RPC message format and lifecycle requirements per MCP rule 165, ensuring automatic handling of notifications.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\async_rw.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\async_rw.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "struct JsonRpcNotification<N = Notification> {...}",
@@ -1312,8 +1312,8 @@
       "confidence": 0.75,
       "explanation": "The SDK does not automatically handle or encapsulate connection establishment and message exchanges as required by the MCP rule. There were no clear method definitions or well-documented calls that indicated such behavior is implemented within the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs"
       ],
       "code_snippets": [
         "fn establish_request_wise_channel(&mut self) -> Result<StreamableHttpMessageReceiver, SessionError>",
@@ -1333,8 +1333,8 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates cancellation notifications and correctly prevents cancellation of the initialize request, adhering to the specified MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\never.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\never.rs"
       ],
       "code_snippets": [
         "fn catch_cancellation_notification(&mut self, notification: &JsonRpcNotification<ClientNotification>) { ... }",
@@ -1354,8 +1354,8 @@
       "confidence": 1.0,
       "explanation": "The SDK prevents clients from cancelling the initialize request, conforming to the protocol requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport.rs"
       ],
       "code_snippets": [
         "pub async fn cancel(self, reason: Option<String>) -> Result<(), ServiceError> { ... } // Notice the Cancellation notification structure"
@@ -1374,8 +1374,8 @@
       "confidence": 0.68,
       "explanation": "The SDK stops processing and frees resources for cancelled requests. However, it is unclear whether it also automatically prevents sending responses for cancelled requests.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\server.rs"
       ],
       "code_snippets": [
         "fn catch_cancellation_notification(&mut self, notification: &JsonRpcNotification<ClientNotification>) {...}",
@@ -1395,9 +1395,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically implements behaviors for handling cancellation notifications as required by the MCP protocol, encapsulating logic that would otherwise be left to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs"
       ],
       "code_snippets": [
         "async fn handle_notification(&self, notification: <RoleServer as ServiceRole>::PeerNot, context: NotificationContext<RoleServer>) { ... }",
@@ -1417,9 +1417,9 @@
       "confidence": 0.9,
       "explanation": "The SDK provides the ability to handle cancellation notifications but does not have the logic that automatically ignores responses to such notifications as required by the MCP rule. Developers would still have to manually ensure that responses after notifications are not processed, which does not meet the compliance expectations for an SDK framework.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\README.md"
       ],
       "code_snippets": [
         "fn catch_cancellation_notification(&mut self, notification: &JsonRpcNotification<ClientNotification>) { ... }",
@@ -1438,8 +1438,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles race conditions by sending notifications for cancelled requests and progress updates without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "catch_cancellation_notification: Handles cancellation and unregisters resources.",
@@ -1459,9 +1459,9 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the necessary logging behavior for cancellation reasons, ensuring that developers are not responsible for this functionality.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\error.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\worker.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\error.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\worker.rs"
       ],
       "code_snippets": [
         "fn cancel(self, reason: Option<String>) -> Result<(), ServiceError> { ... }",
@@ -1481,7 +1481,7 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements automated handling for cancellation requests and notifications. It fully encapsulates the required behaviors within the SDK, relieving developers from handling such protocol details.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs"
       ],
       "code_snippets": [
         "async fn notify_cancelled(&self, params: CancelledNotificationParam)",
@@ -1501,8 +1501,8 @@
       "confidence": 0.9,
       "explanation": "The SDK successfully implements the rules defined for handling cancellation notifications, automatically processing them internally without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "fn catch_cancellation_notification(&mut self, notification: &JsonRpcNotification<ClientNotification>) {...}",
@@ -1515,13 +1515,13 @@
       "rule_text": "1. The receiver **MUST** respond promptly with an empty response:",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function handle_request in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "Phase 1-IR: Found function handle_request in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
         "Phase 2-Source Code: Verified implementation of ping handling returning an empty response using ServerResult::empty."
       ],
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the required behavior by responding to ping requests with an empty response automatically, fulfilling the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "match request { ClientRequest::PingRequest(_) => self.ping(context).await.map(ServerResult::empty), }"
@@ -1551,9 +1551,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles ping functionality within its transport layer, setting a default keep-alive interval and ensuring connection health checks are processed without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server.rs"
       ],
       "code_snippets": [
         "const DEFAULT_AUTO_PING_INTERVAL: Duration = Duration::from_secs(15);",
@@ -1567,12 +1567,12 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: Found function definitions using 'sse_ping_interval' in App struct.",
-        "Phase 2-Source Code: Verified internal implementation in file: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs that handles pinging based on a configurable interval."
+        "Phase 2-Source Code: Verified internal implementation in file: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs that handles pinging based on a configurable interval."
       ],
       "confidence": 1.0,
       "explanation": "The SDK allows developers to configure the ping interval through the App struct, and the internal logic uses this interval to send pings, thus encapsulating the required behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs"
       ],
       "code_snippets": [
         "pub fn new(post_path: String, sse_ping_interval: Duration) { ... } // in App struct"
@@ -1590,9 +1590,9 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the behavior of sending pings automatically with a configurable timeout setting. The necessary behaviors are encapsulated within the SDK, relieving the application developer from handling these mechanics.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\tower.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\tower.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
       ],
       "code_snippets": [
         "// StreamableHttpServerConfig with a configurable timeout\npub struct StreamableHttpServerConfig {\n    pub sse_keep_alive: Option<Duration>,\n}\n\n// Confirmed automatic ping logic in the Service trait\nasync fn handle_request(&self, request: <RoleClient as ServiceRole>::PeerReq) {...}"
@@ -1610,9 +1610,9 @@
       "confidence": 0.85,
       "explanation": "The SDK lacks an internal automated ping mechanism; configuring ping frequencies alone does not fulfill the MCP requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs"
       ],
       "code_snippets": [
         "struct SseClientConfig { pub sse_keep_alive: Option<Duration> }",
@@ -1626,13 +1626,13 @@
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
         "Phase 1-IR: No relevant timeout or connection failure handling found in defs or calls.",
-        "Phase 2-Source Code: Verified in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs that timeouts are logged, but not treated as connection failures."
+        "Phase 2-Source Code: Verified in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs that timeouts are logged, but not treated as connection failures."
       ],
       "confidence": 0.9,
       "explanation": "While the SDK handles timeouts and sends notifications for canceled requests, it does not fulfill the rule's requirement of treating timeouts as connection failures automatically. Developers would still need to handle the implications of timeouts as failures themselves, which contradicts the intent behind the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs"
       ],
       "code_snippets": [
         "RequestHandle: timeout handling and notification mechanism.",
@@ -1652,9 +1652,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement automatic connection resets based on multiple failed pings, shifting the responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
       ],
       "code_snippets": [
         "async fn handle_request(...) {...}",
@@ -1674,8 +1674,8 @@
       "confidence": 0.9,
       "explanation": "The SDK framework does not implement a logging mechanism for ping failures as required by the MCP rule. While error conditions are defined, there are no explicit logging implementations located.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
       ],
       "code_snippets": [
         "Error handling in ServiceError class that may handle errors but lacks logging for ping failures."
@@ -1694,8 +1694,8 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements progress tokens as either strings or integers and automatically handles progress notifications without requiring developers to manage them manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\meta.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\meta.rs"
       ],
       "code_snippets": [
         "#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Hash, Eq)]",
@@ -1716,7 +1716,7 @@
       "confidence": 0.95,
       "explanation": "The SDK automatically manages progress token subscriptions and notifications without requiring developers to implement this functionality. The ProgressDispatcher tightly controls the lifecycle of progress tokens, ensuring their uniqueness and notifications are handled seamlessly.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs"
       ],
       "code_snippets": [
         "pub fn handle_notification(&self, notification: ProgressNotificationParam) { ... }",
@@ -1735,8 +1735,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements both the ability definitions for progress notifications and automatically handles sending these notifications internally without requiring application developers to do so.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "async fn handle_notification(&self, notification: <RoleClient as ServiceRole>::PeerNot, context: NotificationContext<RoleClient>) {...}",
@@ -1755,9 +1755,9 @@
       "confidence": 0.5,
       "explanation": "While the SDK has structures to handle progress notifications, it lacks explicit checks to ensure the 'progress' value increases consistently with each notification.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs"
       ],
       "code_snippets": [
         "notifications handling in 'handle_notification'",
@@ -1777,9 +1777,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles progress and notifications internally, fulfilling the MAY requirement for floating point values and the MUST behavior of increasing `progress` values without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "pub struct ProgressDispatcher {...}",
@@ -1798,8 +1798,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles progress notifications and includes a relevant message field, thus complying with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs"
       ],
       "code_snippets": [
         "pub struct ProgressNotificationParam { pub message: Option<String>, ... }",
@@ -1819,8 +1819,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not fully encapsulate the necessary behaviors required by the MCP rule as it allows developer intervention for handling notification subscriptions.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "pub async fn handle_notification(&self, notification: ProgressNotificationParam) { /* sends the notification */ }"
@@ -1839,7 +1839,7 @@
       "confidence": 1.0,
       "explanation": "The SDK framework automatically handles progress notifications as defined in the MCP rule. It encapsulates notification handling in its methods, ensuring developers do not need to manage this themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs"
       ],
       "code_snippets": [
         "async fn handle_notification(&self, notification: ProgressNotificationParam) { ... }"
@@ -1857,8 +1857,8 @@
       "confidence": 1.0,
       "explanation": "The SDK provides an encapsulated mechanism for tracking and notifying about progress tokens, fully compliant with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "pub async fn handle_notification(&self, notification: ProgressNotificationParam) {...}",
@@ -1878,7 +1878,7 @@
       "confidence": 0.95,
       "explanation": "The SDK encapsulates the functionalities for tracking active progress tokens and sending notifications internally, fulfilling the 'SHOULD' requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs"
       ],
       "code_snippets": [
         "pub async fn handle_notification(&self, notification: ProgressNotificationParam) {...}"
@@ -1897,8 +1897,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically sends progress notifications after completion as required, encapsulated in `handle_notification` and processed via `on_progress`.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "handle_notification implementation: Sending notifications via dispatcher logic.",
@@ -1918,8 +1918,8 @@
       "confidence": 0.9,
       "explanation": "The SDK automatically handles notifications related to lifecycle changes, encapsulating the necessary behavior and preventing developer oversight.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "self.on_roots_list_changed(context).await",
@@ -1938,8 +1938,8 @@
       "confidence": 0.8,
       "explanation": "The SDK provides the capability to handle notifications but lacks automatic implementation for sending notifications on lifecycle changes, thus shifting the responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs"
       ],
       "code_snippets": [
         "pub struct ProgressDispatcher {...}",
@@ -1959,9 +1959,9 @@
       "confidence": 0.95,
       "explanation": "The SDK provides functionality that facilitates elicitation-based requests allowing for interactive input collection, which can include sensitive information. There are no safeguards ensuring that sensitive data cannot be solicited, thereby violating the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\tower.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\tower.rs"
       ],
       "code_snippets": [
         "pub async fn elicit<T>(&self, message: impl Into<String>) -> Result<Option<T>, ElicitationError>",
@@ -1980,8 +1980,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements automatic elicitation and notification handling for user input, encapsulating the required behaviors as outlined by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "fn create_elicitation(&self, request: CreateElicitationRequestParam, context: RequestContext<RoleClient>) {...}",
@@ -2001,8 +2001,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the elicitation capability declaration during initialization through the supports_elicitation method and manages elicitation requests seamlessly, complying fully with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\server.rs"
       ],
       "code_snippets": [
         "pub struct ElicitationCapability { ... }",
@@ -2012,3 +2012,4 @@
     }
   ]
 }
+

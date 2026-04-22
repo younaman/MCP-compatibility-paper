@@ -19,9 +19,9 @@
       "confidence": 0.6,
       "explanation": "The review of SDK's IR and source code did not show direct implementation or safeguards against servers requesting sensitive information through elicitation. Hence, the SDK likely relies on developers not to incorporate such behaviors, which contrasts the SDK's role to encapsulate and restrict without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift"
       ],
       "code_snippets": []
     },
@@ -37,9 +37,9 @@
       "confidence": 0.7,
       "explanation": "The IR files and source code did not explicitly show implementations for user approval controls within the SDK, suggesting that this client-side responsibility may have been left to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
       ],
       "code_snippets": [
         "client.withSamplingHandler { parameters in ... }",
@@ -59,9 +59,9 @@
       "confidence": 0.7,
       "explanation": "No specific automatic schema validation mechanism for elicitation content was identified in the SDK, which should encapsulate this behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
       ],
       "code_snippets": [
         "Prompts allow servers to provide structured messages and instructions for interacting with language models.",
@@ -80,9 +80,9 @@
       "confidence": 0.5,
       "explanation": "The current SDK appears to handle connections between clients and servers and offers several transport protocols. However, none explicitly document providing a clear indication of the server's identity beyond typical connection establishment protocols.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
       ],
       "code_snippets": [
         "public actor Client {...}",
@@ -103,9 +103,9 @@
       "confidence": 0.5,
       "explanation": "The review of IR files and source code did not provide a clear indication that the SDK automatically handles allowing users to reject elicitation requests.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": [
         "public actor Client {...}",
@@ -124,10 +124,10 @@
       "confidence": 0.9,
       "explanation": "The SDK does not visibly implement rate limiting as a built-in feature according to the rule. No automatic behavior related to rate limiting was detected in the source code, indicating the implementation may be left to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": []
     },
@@ -143,8 +143,8 @@
       "confidence": 0.7,
       "explanation": "The SDK provides mechanisms for sending and processing requests but lacks explicit features ensuring that elicitation requests inherently clarify requested information and reasons, as required by the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": [
         "// Documentation snippets from the given files that illustrate handling but not the specific automatic clarification logic.",
@@ -163,8 +163,8 @@
       "confidence": 0.7,
       "explanation": "The SDK defines client capabilities, including roots, but the initialization process does not explicitly demonstrate automated handling of the roots capability. Developers may need to handle the inclusion, which does not meet the rule's compliance requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": [
         "public struct Capabilities: Hashable, Codable, Sendable { public var roots: Capabilities.Roots? }"
@@ -204,7 +204,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically enforce the `file://` URI scheme in its Resource struct or verify it during initialization, which shifts responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
       ],
       "code_snippets": [
         "public struct Resource: Hashable, Codable, Sendable {\n    public var uri: String\n    // No explicit validation for `file://` scheme\n}"
@@ -244,10 +244,10 @@
       "confidence": 0.9,
       "explanation": "The SDK lacks implementation for controlling root exposure permissions, validating root URIs, implementing access controls, and monitoring root accessibility.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\InMemoryTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\InMemoryTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
       ],
       "code_snippets": [
         "// Example code structures found did not relate to required compliance checks"
@@ -265,9 +265,9 @@
       "confidence": 0.7,
       "explanation": "The SDK lacks specific mechanisms to handle cases where roots become unavailable, respect root boundaries during operations, and validate all paths against provided roots. While some error management structures exist, there are no automated procedures or validations that meet these requirements within the SDK itself, which is essential for compliance without relying on application developers to implement these features.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
       ],
       "code_snippets": [
         "Error handling routines in Error.swift for generic errors, no specific root management",
@@ -286,7 +286,7 @@
       "confidence": 0.7,
       "explanation": "The SDK does not appear to fully implement behaviors required for compliance with MCP rule 214, specifically lacking automatic mechanisms for prompting consent, managing UI, validating, or monitoring root changes.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": [
         "public struct Capabilities { public var roots: Capabilities.Roots? }"
@@ -298,13 +298,13 @@
       "rule_text": "2. Servers **SHOULD**:\n   - Check for roots capability before usage\n   - Handle root list changes gracefully\n   - Respect root boundaries in operations\n   - Cache root information appropriately",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 2-Source Code: Found root capability related structures in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift【4:4†source】"
+        "Phase 2-Source Code: Found root capability related structures in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift【4:4†source】"
       ],
       "confidence": 0.9,
       "explanation": "The SDK lacks autonomous functionality for checking root capabilities, handling root changes, respecting root boundaries, and caching root information as mandated by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Versioning.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Versioning.swift"
       ],
       "code_snippets": [
         "public struct Capabilities.Roots { public var listChanged: Bool? }"
@@ -322,8 +322,8 @@
       "confidence": 0.9,
       "explanation": "The SDK provides the infrastructure for a human-in-the-loop process through 'withSamplingHandler' but relies on user-supplied handlers rather than implementing automatic denial capabilities. It does not encapsulate the human denial process but outsources it to application developers, not fulfilling the 'should encapsulate behavior' criterion.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": [
         "public func withSamplingHandler(_ handler: @escaping @Sendable (CreateSamplingMessage.Parameters) async throws -> CreateSamplingMessage.Result) -> Self",
@@ -343,9 +343,9 @@
       "confidence": 0.85,
       "explanation": "The SDK does not automatically implement UI functionalities for reviewing requests, editing prompts, or reviewing responses. These tasks seem to be left for application developers, which contradicts the SDK's responsibility to encapsulate these features.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Prompts.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Prompts.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
       ],
       "code_snippets": [
         "// Prompt structures in Prompts.swift",
@@ -361,13 +361,13 @@
       "evidence": [
         "Phase 1-IR: Found function definitions and capability declarations in `Client` and `Server`",
         "Phase 1-IR: Confirmed server initialization checks sampling capabilities",
-        "Phase 2-Source Code: Verified implementation of initialization hook in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+        "Phase 2-Source Code: Verified implementation of initialization hook in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
       ],
       "confidence": 0.8,
       "explanation": "The SDK framework defines and ensures the declaration of the `sampling` capability during initialization, which complies with the MCP rule. Although the full bidirectional handling is anticipated and partly implemented, it shows a majority of compliant characteristics required by the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": [
         "Capabilities: struct Sampling",
@@ -386,11 +386,11 @@
       "confidence": 0.5,
       "explanation": "The search across the source files did not reveal explicit handling of mapping hints to equivalent models from different providers. The relevant functions might be embedded within more extensive processes, or handled implicitly, which was not directly exposed in our search results.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\README.md"
       ],
       "code_snippets": [
         "Hints appear to be defined within 'ModelPreferences' in Sampling struct without specific mapping logic exposed.",
@@ -409,9 +409,9 @@
       "confidence": 0.9,
       "explanation": "The SDK framework automatically handles error processing and encapsulates failure scenarios adequately, conforming to the MCP rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Batch.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Request.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Batch.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Request.swift"
       ],
       "code_snippets": [
         "public enum MCPError: Swift.Error {...}",
@@ -431,7 +431,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not appear to implement or encapsulate user approval controls automatically as required. Manual intervention seems necessary from the developer side, which does not align with the SDK's responsibilities to embed protocol compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift"
       ],
       "code_snippets": [
         "// SDK provides user interaction methods, but relies on developer to invoke them manually"
@@ -449,11 +449,11 @@
       "confidence": 0.9,
       "explanation": "The SDK does not provide encapsulated or automatic message content validation as required by the MCP rule. Developers are likely expected to implement this themselves, which goes against the rule's intent for SDK responsibility.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Prompts.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Prompts.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
       ],
       "code_snippets": [
         "// Extract session ID if present",
@@ -472,8 +472,8 @@
       "confidence": 0.7,
       "explanation": "The SDK defines the `ModelPreferences` structure containing model hints. However, I found no evidence that these hints are automatically used by the SDK to control model selection or behavior without developer intervention. The SDK requires developers to inspect and potentially use these hints manually, which shifts the responsibility away from the SDK, contrary to the expectation for a 'SHOULD' requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": [
         "Defined `ModelPreferences` structure",
@@ -492,8 +492,8 @@
       "confidence": 0.9,
       "explanation": "There is no implementation of rate limiting found in any SDK client or transport related files, which would mean application developers have to handle rate limiting themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": []
     },
@@ -509,11 +509,11 @@
       "confidence": 0.7,
       "explanation": "The SDK framework does not explicitly encapsulate sensitive data handling measures such as encryption or automated security policies, instead relying on protocol communication methodologies.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Extensions\\Data+Extensions.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Extensions\\Data+Extensions.swift"
       ],
       "code_snippets": [
         "// Connection and message handling representative of SDK infrastructure",
@@ -532,9 +532,9 @@
       "confidence": 0.7,
       "explanation": "The SDK does not encapsulate robust consent and authorization flows or explicitly follow several security best practices as required by MCP Rule 226. The evidence from analyzed files reveals a lack of internal handling for these requirements directly.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
       ],
       "code_snippets": [
         "// Check response status\n guard httpResponse.statusCode == 200 else { throw MCPError.internalError(\"HTTP error: \\(httpResponse.statusCode)\") }"
@@ -548,14 +548,14 @@
       "evidence": [
         "Phase 1-IR: Found function _initialize in defs, defined in Client.swift: line 45",
         "Phase 1-IR: Confirmed validateServerCapability call in Client.swift",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
       ],
       "confidence": 0.9,
       "explanation": "The SDK framework incorporates automatic negotiation of the `prompts` capability during the initialization process, ensuring compliance with the MCP mandatory rule. While the public `initialize` function is deprecated, the internal `_initialize` function handles the necessary capability exchanges effectively.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": [
         "capabilities: Server.Capabilities",
@@ -596,8 +596,8 @@
       "confidence": 0.9,
       "explanation": "The SDK automatically encodes image data in base64 and assigns MIME types within its functions, eliminating the responsibility from developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Extensions\\Data+Extensions.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Message.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Extensions\\Data+Extensions.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Message.swift"
       ],
       "code_snippets": [
         "public func dataURLEncoded(mimeType: String? = nil) -> String {...}",
@@ -616,7 +616,7 @@
       "confidence": 0.9,
       "explanation": "The Resource struct requires a URI and MIME type during instantiation, and allows for either text content or base64-encoded binary data, thus enforcing compliance with the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
       ],
       "code_snippets": [
         "public struct Resource: Hashable, Codable, Sendable { ... var uri: String ... var mimeType: String? ... struct Content ... static func text ... static func binary"
@@ -634,8 +634,8 @@
       "confidence": 0.95,
       "explanation": "The SDK automatically handles and encapsulates the standard JSON-RPC errors detailed in the rule, without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift"
       ],
       "code_snippets": [
         "public enum MCPError: Swift.Error",
@@ -655,9 +655,9 @@
       "confidence": 0.8,
       "explanation": "The SDK defines structures for prompts and arguments, but lacks evidence of internal automatic validation logic for prompt arguments. It requires developers to use these structures but does not encapsulate validation itself, which shifts the responsibility away from the SDK as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Prompts.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Prompts.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
       ],
       "code_snippets": [
         "struct Argument: Represents the prompt arguments with metadata (name, description, required)",
@@ -671,12 +671,12 @@
       "compliance_status": "UNCLEAR",
       "evidence": [
         "Phase 1-IR: No explicit 'pagination' functions or calls found in IR files",
-        "Phase 2-Source Code: Found methods such as listPrompts with cursors in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "Phase 2-Source Code: Found methods such as listPrompts with cursors in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "confidence": 0.5,
       "explanation": "While the listPrompts method suggests a potential for cursor-based pagination, the absence of clear, automated, fully encapsulated pagination logic within the SDK for large prompt lists renders the compliance to be unclear.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": [
         "public func listPrompts(cursor: String? = nil) async throws -> (prompts: [Prompt], nextCursor: String?)"
@@ -694,8 +694,8 @@
       "confidence": 0.95,
       "explanation": "The SDK includes both capability definitions and the logic required to ensure that capability negotiation is respected according to the MCP rule. Strict mode enforces capability checking before a request in a manner that matches the rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
       ],
       "code_snippets": [
         "private func validateServerCapability<T>(_ keyPath: KeyPath<Server.Capabilities, T?>, _ name: String) throws { if configuration.strict { ... } }"
@@ -714,9 +714,9 @@
       "confidence": 0.6,
       "explanation": "The SDK has defined some error handling functionality, particularly with respect to JSON-RPC protocol capabilities and server error reporting. However, there is no explicit and comprehensive evidence of input/output validation mechanisms specifically designed to prevent injection attacks as required by rule 235.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Messages.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Messages.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift"
       ],
       "code_snippets": [
         "func processHTTPResponse(_ response: HTTPURLResponse, contentType: String) { // Included error checks }",
@@ -736,7 +736,7 @@
       "confidence": 0.9,
       "explanation": "The SDK automatically includes and initializes the `resources` capability during server setup. It provides encapsulated methods such as `listResources` and `subscribeToResource`, indicating it adheres to the MCP rule regarding capability declaration.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
       ],
       "code_snippets": [
         "public struct Resources: Hashable, Codable, Sendable { ... }",
@@ -757,9 +757,9 @@
       "confidence": 0.95,
       "explanation": "Despite having the defined framework for dispatching changes through notifications, requiring explicit invocation attributes this as a non-compliant setup regarding automatic handling.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift"
       ],
       "code_snippets": []
     },
@@ -775,8 +775,8 @@
       "confidence": 0.7,
       "explanation": "The SDK does not explicitly implement logic that ensures clients can automatically fetch and load resources directly from the web, which would align with the rule. The framework still requires developers to integrate this functionality, aligning more with application-level handling rather than SDK encapsulation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
       ],
       "code_snippets": [
         "// The URI in the Resource struct indicates web-fetchable addresses but lacks autonomous client handling",
@@ -796,11 +796,11 @@
       "confidence": 0.85,
       "explanation": "The SDK does not appear to implement and encapsulate the behavior of preferring another or a custom URI scheme. As per the inspection standards, the responsibility falls on application developers rather than being automatically handled by the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Prompts.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Prompts.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
       ],
       "code_snippets": [
         "Public struct Resource { var uri: String }",
@@ -816,12 +816,12 @@
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
         "Phase 1-IR: Found Resource structure with mimeType definition in Resources.swift",
-        "Phase 2-Source Code: Resource structure supports mimeType setting but lacks automatic assignment logic for file:// resources. Verified in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+        "Phase 2-Source Code: Resource structure supports mimeType setting but lacks automatic assignment logic for file:// resources. Verified in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
       ],
       "confidence": 0.8,
       "explanation": "The SDK provides the ability to assign custom MIME types to resources, including 'inode/directory', but lacks automatic handling or recognition of file:// resources to assign specific XDG MIME types. This shifts the responsibility to developers to manually specify these types.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
       ],
       "code_snippets": [
         "public struct Resource: Hashable, Codable, Sendable { ... public var mimeType: String? ... }"
@@ -839,7 +839,7 @@
       "confidence": 0.9,
       "explanation": "The MCP rule requiring custom URI schemes to adhere to RFC3986 is not met by the SDK. There is no evidence of internal handling or enforcement within the SDK for this requirement, leaving it to application developers to ensure compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
       ],
       "code_snippets": [
         "public struct Resource { public var uri: String } // No RFC3986 validation logic"
@@ -853,12 +853,12 @@
       "evidence": [
         "Phase 1-IR: Found JSON-RPC error code definitions including -32603 and serverError in defs",
         "Phase 2-Source Code: Verified automatic usage of JSON-RPC error types across main transport and communication operations",
-        "File: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
+        "File: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
       ],
       "confidence": 1.0,
       "explanation": "The SDK provides built-in definitions for standard JSON-RPC error codes such as '-32002' and '-32603', and incorporates these into its communication logic without necessitating manual handling by developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
       ],
       "code_snippets": [
         "// Standard JSON-RPC 2.0 errors (-32700 to -32603)\ncase parseError(String?) // -32700\n...",
@@ -877,9 +877,9 @@
       "confidence": 0.85,
       "explanation": "The SDK fails to provide evidence of internal URI validation mechanisms for server resources. It lacks explicit URI validation logic as required by MCP rule 243.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Extensions\\Data+Extensions.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Extensions\\Data+Extensions.swift"
       ],
       "code_snippets": [
         "Resources.swift: Describes resource with URI but lacks validation logic.",
@@ -899,8 +899,8 @@
       "confidence": 0.85,
       "explanation": "The SDK does not implement automatic access control mechanisms for sensitive resources. Definitions for resources exist but lack enforced access control internally, placing the responsibility on developers instead.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
       ],
       "code_snippets": [
         "// Resources struct defining URI but lacking access control",
@@ -920,7 +920,7 @@
       "confidence": 0.9,
       "explanation": "The SDK framework automatically encodes binary data using Base64, as required by the rule. This behavior is encapsulated within the SDK's implementation, ensuring developers are relieved from handling binary encoding manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
         "tmprp4jvam_.json"
       ],
       "code_snippets": [
@@ -939,8 +939,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement automatic resource permission checks, thus shifting the responsibility to developers, violating the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
       ],
       "code_snippets": [
         "// Resource structure and operations lack permission checks"
@@ -959,10 +959,10 @@
       "confidence": 0.7,
       "explanation": "The SDK provides a framework for human-in-the-loop processing of requests, allowing user reviews and modifications before processing. However, it does not encapsulate specific internal methods to deny tool invocations beyond this framework, leaving some responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
       ],
       "code_snippets": []
     },
@@ -979,8 +979,8 @@
       "confidence": 0.8,
       "explanation": "The SDK defines structures for tool display and configurations but lacks automatic UI indication management or HITL confirmations. These are provided as hints and annotations for application use but not handled directly by SDK logic.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\README.md"
       ],
       "code_snippets": [
         "// Annotations in Tools structure",
@@ -1000,8 +1000,8 @@
       "confidence": 0.7,
       "explanation": "The server setup includes tools capability with listChanged, implying notifications. However, automatic SDK handling of notifications wasn't definitively proven by callable or definitive snippets explicitly showing encapsulated behavior such as direct calls.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\README.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\README.md"
       ],
       "code_snippets": [
         "let server = Server(name: 'MyModelServer', version: '1.0.0', capabilities: .init(tools: .init(listChanged: true)))"
@@ -1021,8 +1021,8 @@
       "confidence": 0.75,
       "explanation": "The SDK has the 'listChanged' capability defined and a notification for tool list changes. However, there is insufficient evidence from the source code review that the SDK automatically sends notifications when the tool list changes, fulfilling the rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
       ],
       "code_snippets": [
         "public struct ToolListChangedNotification: Notification { ... }",
@@ -1042,8 +1042,8 @@
       "confidence": 0.85,
       "explanation": "The SDK framework contains documentation suggesting caution against untrusted tool annotations but does not encapsulate or enforce these checks programmatically.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": [
         "File Tools.swift: Client caution note on untrusted servers",
@@ -1073,8 +1073,8 @@
       "confidence": 0.8,
       "explanation": "While the SDK defines resource capabilities, there is no identifiable evidence of automatic embedding of resource context. Manual developer intervention may be required to manage these resources, which violates the rule that SDK should handle it internally.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
       ],
       "code_snippets": [
         "public struct Resource: Hashable, Codable, Sendable { ... }",
@@ -1093,8 +1093,8 @@
       "confidence": 0.8,
       "explanation": "While there are capability definitions for resources within the server SDK, the automatic embedding and handling of resources are not implemented. Developers still need to register and manage resources manually, contrary to the expectation that the SDK would encapsulate this behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
       ],
       "code_snippets": [
         "public struct Resource: Hashable, Codable, Sendable {...}",
@@ -1113,8 +1113,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not contain automatic implementations for ensuring structured results conform to schemas. Such mechanisms are necessary for compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift"
       ],
       "code_snippets": [
         "struct Configuration: Server strictly relying on initialization details but lacking schema conformance handling logic",
@@ -1133,9 +1133,9 @@
       "confidence": 0.8,
       "explanation": "The SDK appears to lack a direct and explicit method to automatically validate structured results against schemas as per the rule. The current structure places responsibility on developers to ensure compliance, though internal capability validation is present.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
       ],
       "code_snippets": [
         "private func validateServerCapability<T>(_ keyPath: KeyPath<Server.Capabilities, T?>, _ name: String) { ... }",
@@ -1154,9 +1154,9 @@
       "confidence": 0.75,
       "explanation": "The SDK lacks clear automatic implementations for enforcing input validation, rate limiting, and output sanitation as per the rule requirements. The necessary automated handling within SDK responsible systems or transport services wasn't prominent.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": [
         "// private func processHTTPResponse(_ response: HTTPURLResponse, contentType: String) throws",
@@ -1175,9 +1175,9 @@
       "confidence": 0.7,
       "explanation": "The SDK implements user confirmation and input display for sensitive operations. However, evidence for timeouts and detailed tool usage logging is insufficient.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
       ],
       "code_snippets": [
         "client.withSamplingHandler to allow user-approved interactions",
@@ -1196,7 +1196,7 @@
       "confidence": 0.5,
       "explanation": "The SDK seems to have the capability framework to support feature like 'completions' through a generalizable 'capabilities'. However, concrete evidence of automatic handling logic to ensure it is declared and processed by default was not found.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\"
       ],
       "code_snippets": [
         "// Enable sampling capability in server capabilities: .init(sampling: .init(), ... ),"
@@ -1208,13 +1208,13 @@
       "rule_text": "Servers **SHOULD** return standard JSON-RPC errors for common failure cases:\n\n- Method not found: `-32601` (Capability not supported)\n- Invalid prompt name: `-32602` (Invalid params)\n- Missing required arguments: `-32602` (Invalid params)\n- Internal errors: `-32603` (Internal error)",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found MCPError in defs, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
+        "Phase 1-IR: Found MCPError in defs, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
       ],
       "confidence": 0.95,
       "explanation": "The SDK framework encapsulates the necessary logic for handling JSON-RPC errors according to the JSON-RPC specification. It defines error codes and uses them within methods that process requests automatically, ensuring that developers using the SDK do not need to implement this behavior themselves, aligning with SDK best practices.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
       ],
       "code_snippets": [
         "public enum MCPError: Swift.Error {\n      case methodNotFound(String?)  // -32601\n      case invalidParams(String?)  // -32602\n      case internalError(String?)  // -32603\n  }"
@@ -1232,8 +1232,8 @@
       "confidence": 0.7,
       "explanation": "The SDK does not encapsulate functionalities such as rate limiting, fuzzy matching, input validation, and sorting results by relevance internally. Developers might still need to manually implement these features, shifting the responsibility from the SDK to the developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
       ],
       "code_snippets": []
     },
@@ -1249,8 +1249,8 @@
       "confidence": 0.8,
       "explanation": "The SDK framework lacks explicit implementations for the debounce, cache, and handling of missing/partial results as required by MCP Rule 262. These behaviors were not found as encapsulated in the SDK, possibly needing manual implementation by developers, which breaches the MCP contract.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
       ],
       "code_snippets": []
     },
@@ -1269,11 +1269,11 @@
       "confidence": 0.75,
       "explanation": "The SDK lacks explicit implementations encapsulating input validation, rate limiting, access control to sensitive suggestions, and completion-based information disclosure prevention as standalone features. While there are general patterns for error handling and some capability checks, these do not directly satisfy the specific requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Utilities\\Ping.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Utilities\\Ping.swift"
       ],
       "code_snippets": [
         "Validate server capabilities【7:15†source】",
@@ -1294,9 +1294,9 @@
       "confidence": 0.8,
       "explanation": "The SDK defines a logging capability, but lacks clear implementation of internal logic to automatically emit log message notifications, potentially requiring developers to manage these manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": [
         "public struct Logging: Hashable, Codable, Sendable { public init() {} }",
@@ -1311,15 +1311,15 @@
       "evidence": [
         "Phase 2-Source Code: Logging usage found in files, but no setLevel method.",
         "Phase 2-Source Code: Client and server components show logger integration.",
-        "FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
-        "FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "confidence": 0.8,
       "explanation": "The SDK includes logging functionality, but no dedicated `logging/setLevel` method was found to dynamically configure log levels at runtime. The SDK encapsulates logging but does not explicitly provide a means for clients to adjust log levels beyond initialization.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": [
         "Public actor Client {...; private var logger: Logger? {...; await connection?.logger}",
@@ -1338,7 +1338,7 @@
       "confidence": 0.95,
       "explanation": "The SDK framework has embedded JSON-RPC error definitions and handlers within its architecture, ensuring automatic handling. This aligns with the rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
         "file-C6UfFiysGeSktEPc21Ngrg",
         "file-PeSBNXAC8DutDxAvyQ1zSW",
         "file-RSyKAkaoemzifGYFXCzmF7"
@@ -1361,8 +1361,8 @@
       "confidence": 0.6,
       "explanation": "Direct IR data for the functionalities wasn't available. Upon reviewing source files, there were no specific implementations for these logging requirements encapsulated by the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
       ],
       "code_snippets": [
         "// Logger instance initialized for transport-related events",
@@ -1382,10 +1382,10 @@
       "confidence": 0.7,
       "explanation": "The SDK, while capable of logging via swift-log, does not appear to explicitly support UI display, filtering/search, or severity visualization for log messages, as required to fulfill the rule fully.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": [
         "Logger instance for transport-related events",
@@ -1404,9 +1404,9 @@
       "confidence": 0.7,
       "explanation": "Based on the current IR and source code review, there is insufficient evidence that the SDK safeguards against logging credentials, personal info, or sensitive internal system details. The existing logging frameworks within the SDK (e.g., StdioTransport, NetworkTransport) do not explicitly handle sanitization or restrictions as outlined by the given rule, indicating a non-compliance risk.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
       ],
       "code_snippets": [
         "logger.info([...]), logger.debug([...]), Error and message processing in MCPError"
@@ -1446,8 +1446,8 @@
       "confidence": 0.5,
       "explanation": "The source code segments reviewed did not provide sufficient evidence to establish compliance or non-compliance with MCP rule 271 regarding page size being server-determined and clients not assuming a fixed page size. The SDK code reviewed primarily entailed transport and connectivity logic but did not delve into aspects directly affecting page sizing strategies.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": [
         "// Process response with byte stream ...",
@@ -1466,8 +1466,8 @@
       "confidence": 0.7,
       "explanation": "Based on available IR and partial source code analysis, the SDK does not explicitly define or internally handle cursor stability or invalid cursor scenarios, crucial for protocol compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
       ],
       "code_snippets": [
         "public struct Capabilities {... public struct Resources {... public struct Tools {..."
@@ -1485,9 +1485,9 @@
       "confidence": 0.7,
       "explanation": "The SDK framework does not encapsulate the behaviors required by the rule, such as automatically handling missing `nextCursor` as an end-of-results marker or supporting both paginated and non-paginated flows without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift"
       ],
       "code_snippets": [
         "public func listPrompts(cursor: String? = nil) async throws -> (prompts: [Prompt], nextCursor: String?)"
@@ -1505,7 +1505,7 @@
       "confidence": 0.5,
       "explanation": "The current IR and source code checks did not uncover explicit handling or misuse of cursors. More detailed implementation details of cursor handling functions or a focused code review is required to confirm full compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
       ],
       "code_snippets": [
         "public func listPrompts(cursor: String? = nil) async throws -> (prompts: [Prompt], nextCursor: String?) { }"
@@ -1523,8 +1523,8 @@
       "confidence": 0.95,
       "explanation": "The SDK automatically handles invalid parameters by encapsulating the logic for raising MCPError with code -32602 in its internal request handling methods.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Messages.swift"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Messages.swift"
       ],
       "code_snippets": [
         "public enum MCPError: ... case invalidParams(String?) // -32602",
@@ -1533,3 +1533,4 @@
     }
   ]
 }
+

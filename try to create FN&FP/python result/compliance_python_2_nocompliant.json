@@ -19,11 +19,11 @@
       "confidence": 0.85,
       "explanation": "The SDK has functions to manage session IDs but lacks automatic binding to user-specific information. SDK behavior does not encapsulate the required functionality as per the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\auth_context.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\client_auth.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\__init__.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\auth_context.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\client_auth.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\__init__.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py"
       ],
       "code_snippets": [
         "async def terminate_session(self, client: httpx.AsyncClient)",
@@ -54,9 +54,9 @@
       "confidence": 0.85,
       "explanation": "The SDK does not enforce the required behavior of ensuring no embedded newlines in messages. The message handling functions lack explicit logic to check for this compliance and leave the responsibility on application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tmphrljqdfk.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tmpq5e8erah.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tmphrljqdfk.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tmpq5e8erah.py"
       ],
       "code_snippets": [
         "async def create_message(self, messages: list[types.SamplingMessage], ...)",
@@ -77,8 +77,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically handle the behavior required by the rule (i.e., capturing and forwarding logging). Developers are required to explicitly call logging functions like send_log_message, indicating the SDK is shifting the responsibility to them.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-streamablehttp\\mcp_simple_streamablehttp\\server.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-streamablehttp\\mcp_simple_streamablehttp\\server.py"
       ],
       "code_snippets": [
         "async def send_log_message(self, level: types.LoggingLevel, data: Any, logger: str | None = None, related_request_id: types.RequestId | None = None) -> None: # Sends a log message notification.",
@@ -119,7 +119,7 @@
       "confidence": 1.0,
       "explanation": "The SDK does not allow multiple simultaneous SSE connections as required by rule 141.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
       ],
       "code_snippets": [
         "if GET_STREAM_KEY in self._request_streams:"
@@ -148,8 +148,8 @@
       "confidence": 1.0,
       "explanation": "The SDK does not have internal logic to prevent broadcasting the same message across multiple streams. Therefore, it does not meet the requirements set forth by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
       ],
       "code_snippets": []
     },
@@ -165,9 +165,9 @@
       "confidence": 0.5,
       "explanation": "It's unclear if the server automatically handles replay logic based on the Last-Event-ID as it exposes methods but lacks definitive automatic call patterns in response handling.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-streamablehttp\\mcp_simple_streamablehttp\\server.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-streamablehttp\\mcp_simple_streamablehttp\\server.py"
       ],
       "code_snippets": [
         "if last_event_id := request.headers.get(LAST_EVENT_ID_HEADER):\n    self._replay_events(last_event_id)"
@@ -251,7 +251,7 @@
       "confidence": 0.8,
       "explanation": "The SDK does implement automatic behaviors indicating cancellations; however, it does not provide explicit functions or mechanisms for logging cancellation reasons, shifting that responsibility potentially back to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\memory.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\memory.py"
       ],
       "code_snippets": [
         "async def cancel(self) -> None: # Handles cancellation logic"
@@ -270,7 +270,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not encapsulate the behaviors required by the MCP rule regarding automatic pings for connection health. No automatic handling or periodic sending of pings was found.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py"
       ],
       "code_snippets": []
     },
@@ -287,7 +287,7 @@
       "confidence": 1.0,
       "explanation": "The SDK defines a function to send ping requests but lacks any mechanism for configuring the frequency of these pings, which is required for compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py"
       ],
       "code_snippets": [
         "async def send_ping(self) -> types.EmptyResult:\n    return await self.send_request(\n        types.ClientRequest(types.PingRequest()),\n        types.EmptyResult,\n    )"
@@ -318,8 +318,8 @@
       "confidence": 0.5,
       "explanation": "The SDK does not provide explicit automated handling of periodic pings or timeout settings that are clearly encapsulated for the developer. It is unclear if the SDK handles ping intervals as mandated by the MCP guideline.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\sse.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\sse.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py"
       ],
       "code_snippets": [
         "send_notification method invoked without automatic conditions for ping, found in line: 15 of tmpaa2_i805.py",
@@ -361,3 +361,4 @@
     }
   ]
 }
+

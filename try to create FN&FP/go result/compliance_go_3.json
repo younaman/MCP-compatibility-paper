@@ -20,9 +20,9 @@
       "confidence": 1.0,
       "explanation": "The SDK has implemented a full process for handling elicitation, including strict validation of schemas to prevent sensitive information requests and automatic handling of requests, thus ensuring compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\requests.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\util.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\protocol.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\requests.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\util.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\protocol.go"
       ],
       "code_snippets": [
         "type ElicitRequest struct { /* message and requestedSchema definitions */ }",
@@ -43,8 +43,8 @@
       "confidence": 0.9,
       "explanation": "The SDK implements user approval controls by capturing user responses through ElicitResult, which automatically processes accept/decline actions without requiring developers to manage it themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\elicitation\\main.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\readme\\doc.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\elicitation\\main.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\readme\\doc.go"
       ],
       "code_snippets": [
         "type ElicitResult struct { Action string `json:\"action\"` }",
@@ -63,7 +63,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically validates elicitation content against the provided schema within the elicit function and has defined the validateElicitSchema function to handle schema validation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go"
       ],
       "code_snippets": [
         "func (c *Client) elicit(ctx context.Context, req *ElicitRequest) (*ElicitResult, error) { /* ... validateElicitSchema ... */ }",
@@ -83,8 +83,8 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates server identification through 'getServer' method in its HTTP handlers, ensuring that clients do not need to handle this logic themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\streamable.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\sse.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\streamable.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\sse.go"
       ],
       "code_snippets": [
         "func (h *StreamableHTTPHandler) ServeHTTP(w http.ResponseWriter, req *http.Request)",
@@ -104,7 +104,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement the required behavior for allowing users to reject elicitation requests; it lacks internal handling to manage this process, thus making it non-compliant.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
       ],
       "code_snippets": []
     },
@@ -116,12 +116,12 @@
       "evidence": [
         "Phase 1-IR: Found GlobalRateLimiterMiddleware, PerMethodRateLimiterMiddleware, and PerSessionRateLimiterMiddleware in defs_go.jsonl.",
         "Phase 1-IR: Confirmed middleware functions are invoked in the server code.",
-        "Phase 2-Source Code: Verified implementation detail enforcing rate limiting in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\rate-limiting\\main.go"
+        "Phase 2-Source Code: Verified implementation detail enforcing rate limiting in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\rate-limiting\\main.go"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically implements rate limiting as required, providing middleware that handles requests without needing developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\rate-limiting\\main.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\rate-limiting\\main.go"
       ],
       "code_snippets": [
         "middleware.AddReceivingMiddleware(GlobalRateLimiterMiddleware(timer), PerMethodRateLimiterMiddleware(limiters))",
@@ -141,8 +141,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the presentation of elicitation requests and the validation of their content, complying with the MCP requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_list_test.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_list_test.go"
       ],
       "code_snippets": [
         "type ElicitationHandler func(context.Context, *ElicitRequest) (*ElicitResult, error)",
@@ -162,7 +162,7 @@
       "confidence": 1.0,
       "explanation": "The SDK successfully implements the declaration of the 'roots' capability during initialization and has internal logic to automatically notify connected servers when changes are made to the roots.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
       ],
       "code_snippets": [
         "func (c *Client) AddRoots(roots ...*Root) { ... }",
@@ -182,7 +182,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles notifications for changes in roots using the methods AddRoots and RemoveRoots, complying with the MCP rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_example_test.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_example_test.go"
       ],
       "code_snippets": [
         "// AddRoots adds the given roots to the client, replacing any with the same URIs, and notifies any connected servers.\nfunc (c *Client) AddRoots(roots ...*Root)",
@@ -197,12 +197,12 @@
       "evidence": [
         "Phase 1-IR: Found function definitions in defs_go.jsonl; ResourceNotFoundError and readFileResource validate URIs.",
         "Phase 1-IR: Confirmed AddResource and AddResourceTemplate calls utilize these methods to comply with the MCP rule.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go, ensuring automatic processing of file URIs."
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go, ensuring automatic processing of file URIs."
       ],
       "confidence": 1.0,
       "explanation": "The SDK ensures that all resource URIs utilize the `file://` scheme by validating and handling these within the implementation. Developers are not required to handle this themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go"
       ],
       "code_snippets": [
         "func computeURIFilepath(rawURI, dirFilepath string, rootFilepaths []string) (string, error) { /* checks for file:// URI scheme */ }",
@@ -223,8 +223,8 @@
       "confidence": 0.9,
       "explanation": "While the SDK defines error methods for JSON-RPC standards, it does not implement automatic logic to handle these errors when processing requests. Developers may still need to manually implement error handling, which contradicts the compliance requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\jsonrpc\\jsonrpc.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\jsonrpc\\jsonrpc.go"
       ],
       "code_snippets": [
         "var ErrMethodNotFound = NewError(-32601, 'method not found')",
@@ -243,8 +243,8 @@
       "confidence": 0.85,
       "explanation": "The SDK does not encapsulate the behaviors required by the rule, specifically around validation of permissions, URI validation, and monitoring of accessibility; developers would need to implement these manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\client.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\server.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\client.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\server.go"
       ],
       "code_snippets": [
         "func (c *Client) RemoveRoots(uris ...string)",
@@ -264,7 +264,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles root addition/removal and validates paths against these roots, encapsulating all behaviors as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
       ],
       "code_snippets": [
         "func (c *Client) AddRoots(roots ...*Root) { /* ... */ }",
@@ -277,14 +277,14 @@
       "rule_text": "1. Clients **SHOULD**:\n\n   - Prompt users for consent before exposing roots to servers\n   - Provide clear user interfaces for root management\n   - Validate root accessibility before exposing\n   - Monitor for root changes",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function AddRoots and RemoveRoots in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go.",
+        "Phase 1-IR: Found function AddRoots and RemoveRoots in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go.",
         "Phase 1-IR: Confirmed call to changeAndNotify within RemoveRoots, which triggers notifications.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
       ],
       "confidence": 1.0,
       "explanation": "The SDK has incorporated mechanisms to automatically handle root management functionalities, including adding/removing roots and notifying connected peers without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
       ],
       "code_snippets": [
         "func (c *Client) AddRoots(roots ...*Root) { ... }",
@@ -300,12 +300,12 @@
       "evidence": [
         "Phase 1-IR: Found AddRoots and RemoveRoots functions defined in client.go.",
         "Phase 1-IR: Confirmed internal notification logic in changeAndNotify function.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
       ],
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the behavior of handling root capabilities, changes, and notifications, which complies with the MCP rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
       ],
       "code_snippets": [
         "func (c *Client) AddRoots(roots ...*Root) { /* Implementation */ }",
@@ -321,13 +321,13 @@
       "evidence": [
         "Phase 1-IR: Found CreateMessageParams in defs_go.jsonl that defines message sampling.",
         "Phase 1-IR: Found CreateMessageResult indicating that the client must allow inspection of the message.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go."
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go."
       ],
       "confidence": 1.0,
       "explanation": "The SDK includes a complete implementation for a human-in-the-loop process, allowing users to inspect and deny sampling requests. This encapsulates the required behavior, adhering to the expectations outlined in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\create_message.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\create_message.go"
       ],
       "code_snippets": [
         "type CreateMessageResult struct { ... } // Allows client inspection before sending messages."
@@ -346,7 +346,7 @@
       "confidence": 0.7,
       "explanation": "While the SDK manages prompt additions and notifications automatically, it does not directly provide mechanisms for users to intuitively review and edit prompts or responses as per the MCP requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\prompt.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\prompt.go"
       ],
       "code_snippets": [
         "func (s *Server) AddPrompt(p *Prompt, h PromptHandler) { /* ... */ }",
@@ -365,7 +365,7 @@
       "confidence": 0.75,
       "explanation": "While the SDK defines support for the `sampling` capability through the `CreateMessageHandler`, it does not automatically declare or send this capability during initialization. The implementation shifts the responsibility onto SDK users to manually declare capabilities upon client setup.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
       ],
       "code_snippets": [
         "CreateMessageHandler handles incoming requests for sampling/createMessage. Setting CreateMessageHandler to a non-nil value causes the client to advertise the sampling capability."
@@ -384,9 +384,9 @@
       "confidence": 0.85,
       "explanation": "The SDK defines hints and preferences for model selection but lacks automatic mapping of those hints to models, requiring developers to implement this behavior themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\session.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\shared.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\session.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\shared.go"
       ],
       "code_snippets": [
         "type ModelHint struct { Name string `json:\"name,omitempty\"` }",
@@ -406,8 +406,8 @@
       "confidence": 0.9,
       "explanation": "The SDK encapsulates error handling behaviors by defining relevant functionalities (like NewError) and includes internal processing logic within its methods to automatically manage errors according to the MCP guidelines.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\frame.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\frame.go"
       ],
       "code_snippets": [
         "func (c *Connection) processResult(from any, req *incomingRequest, result any, err error) error {...}",
@@ -427,7 +427,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles user approval controls through the RequireBearerToken middleware, which verifies the authorization token and responds appropriately. This ensures developers do not have to manually implement authorization logic.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
       ],
       "code_snippets": [
         "func RequireBearerToken(verifier TokenVerifier, opts *RequireBearerTokenOptions) func(http.Handler) http.Handler {...}"
@@ -446,8 +446,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements automatic validation of message content in the `elicit` method and properly handles creation in `createMessage`, adhering to the MCP rule outlined.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tmp2f57z_ri.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tmp2f57z_ri.go"
       ],
       "code_snippets": [
         "if err := resolved.Validate(res.Content); err != nil { ... }",
@@ -466,8 +466,8 @@
       "confidence": 0.85,
       "explanation": "The SDK captures model preference hints through the parameters but does not exhibit any internal logic that utilizes or enforces these preferences automatically. This shift of responsibility onto clients leads to a lack of compliance with the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\params.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\mcp.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\params.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\mcp.go"
       ],
       "code_snippets": [
         "ModelPreferences *ModelPreferences `json:\"modelPreferences,omitempty\"`"
@@ -486,7 +486,7 @@
       "confidence": 1.0,
       "explanation": "The SDK defines and implements middleware for rate limiting, ensuring encapsulation of rate limiting behavior without shifting responsibility to developers. The presence of the GlobalRateLimiterMiddleware and associated allow checks confirms proper handling.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\rate-limiting\\main.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\rate-limiting\\main.go"
       ],
       "code_snippets": [
         "GlobalRateLimiterMiddleware",
@@ -507,9 +507,9 @@
       "confidence": 0.8,
       "explanation": "The SDK does not automatically handle sensitive data as required by the MCP rule. There were definitions and functions found, but no implementation logic indicates that sensitive data is managed automatically by the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\content.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\jsonrpc2.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\util.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\content.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\jsonrpc2.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\util.go"
       ],
       "code_snippets": []
     },
@@ -525,7 +525,7 @@
       "confidence": 0.9,
       "explanation": "The SDK implements the required consent and authorization flows through the AddTool function which handles associated validations internally, thus adhering to the MCP rule's prescribed behaviors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go"
       ],
       "code_snippets": [
         "func AddTool[In, Out any](s *Server, t *Tool, h ToolHandlerFor[In, Out]) { ... } // Auto handles input validation and schema."
@@ -537,15 +537,15 @@
       "rule_text": "Servers that support prompts **MUST** declare the `prompts` capability during\n[initialization](/specification/2025-06-18/basic/lifecycle#initialization):",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found prompts capability in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go with HasPrompts flag.",
+        "Phase 1-IR: Found prompts capability in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go with HasPrompts flag.",
         "Phase 1-IR: Confirmed AddPrompt method in server_example_test.go is used for managing prompts in SDK.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server_example_test.go."
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server_example_test.go."
       ],
       "confidence": 0.9,
       "explanation": "The SDK correctly implements prompts capability and encapsulates the required behavior in the server methods, making it compliance with the MCP rule possible without further developer action.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server_example_test.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server_example_test.go"
       ],
       "code_snippets": [
         "server.AddPrompt(&mcp.Prompt{Name: 'code_review', Description: 'review code'}, codeReviewHandler)"
@@ -559,12 +559,12 @@
       "evidence": [
         "Phase 1-IR: Found capability definition in defs_go.jsonl for PromptListChangedParams.",
         "Phase 1-IR: Detected internal call structure in calls_go.jsonl for prompt addition and removal functions that handle notifications.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go."
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go."
       ],
       "confidence": 1.0,
       "explanation": "The SDK implements mechanisms to automatically send notifications upon list changes as required by the MCP rule. Both the ability definition and the internal notification logic were verified.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go"
       ],
       "code_snippets": [
         "func (s *Server) AddPrompt(p *Prompt, h PromptHandler) {\n    s.changeAndNotify(notificationPromptListChanged, &PromptListChangedParams{}, func() { s.prompts.add(&serverPrompt{p, h}); return true })\n}"
@@ -582,7 +582,7 @@
       "confidence": 1.0,
       "explanation": "The ImageContent structure encapsulates both base64-encoded image data and its MIME type, and the SDK handles the marshalling automatically without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\content.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\content.go"
       ],
       "code_snippets": [
         "type ImageContent struct { Meta Meta; Annotations *Annotations; Data []byte; MIMEType string }",
@@ -603,8 +603,8 @@
       "confidence": 1.0,
       "explanation": "The SDK fully encapsulates the behaviors mandated by the MCP rule for resource management.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\content.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\content.go"
       ],
       "code_snippets": [
         "type ResourceContents struct { URI string `json:\"uri\"`; MIMEType string `json:\"mimeType,omitempty\"`; Text string `json:\"text,omitempty\"`; Blob []byte `json:\"blob,omitempty\"`; }",
@@ -624,8 +624,8 @@
       "confidence": 0.9,
       "explanation": "The SDK provides standard JSON-RPC error definitions and encapsulates the error handling logic internally, sending errors automatically without requiring developers to handle this explicitly.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server_test.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server_test.go"
       ],
       "code_snippets": [
         "func (c *Connection) write(ctx context.Context, msg Message)",
@@ -665,8 +665,8 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates pagination handling within its ClientSession methods, specifically through the Prompts method, ensuring that developers do not need to implement pagination logic themselves. This is evidenced by the automatic call to the paginate function.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_test.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_test.go"
       ],
       "code_snippets": [
         "func (cs *ClientSession) Prompts(ctx context.Context, params *ListPromptsParams) iter.Seq2[Prompt, error] {...}"
@@ -684,8 +684,8 @@
       "confidence": 1.0,
       "explanation": "The SDK has defined structures to handle 'roots' capabilities and processes them automatically, ensuring that developers do not need to handle notification processes themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
       ],
       "code_snippets": [
         "// If non-nil, called when \"notifications/roots/list_changed\" is received.\nRootsListChangedHandler func(context.Context, *RootsListChangedRequest)",
@@ -705,8 +705,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically validates all prompt inputs through defined schemas in the AddTool function, ensuring compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go"
       ],
       "code_snippets": [
         "func AddTool[In, Out any](s *Server, t *Tool, h ToolHandlerFor[In, Out]) { ... }",
@@ -725,9 +725,9 @@
       "confidence": 0.7,
       "explanation": "The SDK provides definitions for managing resources but does not implement internal logic to automatically handle notifications when resources are added or removed which leads to shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource_templates.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource_templates.go"
       ],
       "code_snippets": [
         "func (s *Server) AddResource(r *Resource, h ResourceHandler) { /* logic here */ }",
@@ -742,13 +742,13 @@
       "evidence": [
         "Phase 1-IR: Found capability for 'listChanged' defined in the code.",
         "Phase 1-IR: The 'AddRoots' method calls 'changeAndNotify' to automate notifications.",
-        "Phase 2-Source Code: Verified implementations in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_example_test.go and FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\addRoots.go."
+        "Phase 2-Source Code: Verified implementations in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_example_test.go and FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\addRoots.go."
       ],
       "confidence": 1.0,
       "explanation": "The SDK framework is compliant as it properly implements the `listChanged` capability with built-in notification logic, ensuring that the notification is sent automatically when the list of available resources changes, without requiring developers to handle this themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_example_test.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\addRoots.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_example_test.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\addRoots.go"
       ],
       "code_snippets": [
         "func (c *Client) AddRoots(roots ...*Root) { changeAndNotify(c, notificationRootsListChanged, &RootsListChangedParams{},...) }",
@@ -768,8 +768,8 @@
       "confidence": 0.9,
       "explanation": "The SDK has defined methods for adding resources and automatically handles notifications when resources are updated. This supports compliance with MCP rule 238.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\resource_management.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\notification_handling.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\resource_management.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\notification_handling.go"
       ],
       "code_snippets": [
         "func (s *Server) AddResource(resource *Resource) {...}",
@@ -784,12 +784,12 @@
       "evidence": [
         "Phase 1-IR: Found function AddResource in defs_go.jsonl, defined in resource.go:53",
         "Phase 1-IR: Confirmed AddResource is invoked in the SDK without application-level logic.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go"
       ],
       "confidence": 1.0,
       "explanation": "The SDK provides a method to add resources with built-in URI validation and automatic notification of changes, fulfilling the requirement that the SDK must encapsulate this behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go"
       ],
       "code_snippets": [
         "func (s *Server) AddResource(r *Resource, h ResourceHandler) { ... }"
@@ -808,9 +808,9 @@
       "confidence": 0.8,
       "explanation": "The SDK framework does not automatically handle identifying non-regular files with XDG MIME types as required by the MCP rule. While there are related functions and a method designed to handle MIME types, the critical functionality to identify and manage XDG types such as 'inode/directory' is noted as todo and remains unimplemented.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource_go124.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource_pre_go124.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource_go124.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource_pre_go124.go"
       ],
       "code_snippets": [
         "// TODO(jba): figure out mime type. Omit for now: Server.readResource will fill it in.",
@@ -831,7 +831,7 @@
       "confidence": 0.8,
       "explanation": "While the SDK implements URI parsing and notifications for resource changes, it lacks thorough validation mechanisms ensuring compliance with RFC3986 for custom URIs. This might lead to developers being responsible for ensuring adherence to the URI specification.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\tmpw13m_xql.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\tmpw13m_xql.go"
       ],
       "code_snippets": [
         "func (s *Server) AddResource(r *Resource, h ResourceHandler) { ... }",
@@ -850,8 +850,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements and encapsulates JSON-RPC error handling, ensuring that standard errors are automatically processed and returned without requiring application developers to intervene.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\jsonrpc2.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\jsonrpc2.go"
       ],
       "code_snippets": [
         "var ErrInvalidParams = NewError(-32602, \"invalid params\")",
@@ -866,12 +866,12 @@
       "evidence": [
         "Phase 1-IR: Found function AddResource in defs_go.jsonl, defined in resource.go:172",
         "Phase 1-IR: Confirmed AddResource is invoked in various parts of the SDK",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically validates resource URIs in the AddResource method by panicking for invalid inputs, thereby encapsulating behavior required by the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go"
       ],
       "code_snippets": [
         "if _, err := url.Parse(r.URI); err != nil {\n    panic(err) // url.Parse includes the URI in the error\n}"
@@ -889,8 +889,8 @@
       "confidence": 0.9,
       "explanation": "The SDK implements automatic resource handling through internal state changes, ensuring developers are not responsible for implementing access controls. The presence of resource handlers enables the SDK to manage sensitive resources effectively.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\mcp_test.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\mcp_test.go"
       ],
       "code_snippets": [
         "s.changeAndNotify(notificationResourceListChanged, &ResourceListChangedParams{}, func() {...})"
@@ -909,8 +909,8 @@
       "confidence": 1.0,
       "explanation": "The SDK provides automatic handling of binary data encoding through dedicated structures and their marshaling methods, in compliance with the rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\content.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\util\\util.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\content.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\util\\util.go"
       ],
       "code_snippets": [
         "func (c *ImageContent) MarshalJSON() ([]byte, error) { ... }",
@@ -930,10 +930,10 @@
       "confidence": 0.8,
       "explanation": "The SDK does not demonstrate that it automatically checks resource permissions prior to operations, thus shifting the responsibility to developers. The necessary internal logic for permissions checks is not clearly defined in the found functions.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\resource_meta.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\oauth2.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\resource_meta.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\oauth2.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go"
       ],
       "code_snippets": [
         "No automated permission check found in resource_meta.go",
@@ -952,7 +952,7 @@
       "confidence": 0.85,
       "explanation": "The SDK does not implement automatic handling for human intervention in tool invocations and shifts the responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go"
       ],
       "code_snippets": [
         "// A ToolHandler handles a call to tools/call.\n// No pre- or post-processing of the request or result is performed."
@@ -970,8 +970,8 @@
       "confidence": 1.0,
       "explanation": "The SDK framework automatically handles tool registration and notifications, fulfilling the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\memory\\main.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\memory\\main.go"
       ],
       "code_snippets": [
         "func (s *Server) AddTool(t *Tool, h ToolHandler)",
@@ -991,8 +991,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines tools capabilities through the AddTool method and automatically handles notifications when tools are added or removed, meeting the requirements specified in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go"
       ],
       "code_snippets": [
         "func (s *Server) AddTool(t *Tool, h ToolHandler) { ... }",
@@ -1033,7 +1033,7 @@
       "confidence": 1.0,
       "explanation": "The SDK has implemented 'AddTool' which automatically manages tool annotations, handles input/output schema validation, and does not require developers to manually consider annotations as untrusted.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go"
       ],
       "code_snippets": [
         "func AddTool[In, Out any](s *Server, t *Tool, h ToolHandlerFor[In, Out]) {...}"
@@ -1051,7 +1051,7 @@
       "confidence": 1.0,
       "explanation": "The SDK provides the ability to add resources and automatically sends notifications when resources are added. The internal logic confirms compliance with the MCP rule requiring the SDK to handle behaviors without shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go"
       ],
       "code_snippets": [
         "func (s *Server) AddResource(r *Resource, h ResourceHandler) { s.changeAndNotify(notificationResourceListChanged, &ResourceListChangedParams{}, func() { s.resources.add(&serverResource{r, h}) }) }"
@@ -1069,8 +1069,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements automatic handling of resource updates by utilizing the `changeAndNotify` method in `AddResource`, `RemoveResources`, and `AddResourceTemplate` functions, which ensures applications don’t have to manage notifications themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go"
       ],
       "code_snippets": [
         "func (s *Server) AddResource(r *Resource, h ResourceHandler) { s.changeAndNotify(notificationResourceListChanged, &ResourceListChangedParams{}, ... }",
@@ -1083,13 +1083,13 @@
       "rule_text": "[Resources](/specification/2025-06-18/server/resources) **MAY** be embedded to provide additional context\nor data using a suitable [URI scheme](./resources#common-uri-schemes). Servers that use embedded resources **SHOULD** implement the `resources` capability:",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found ability to add resources through method `AddResource` in the file `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go`.",
+        "Phase 1-IR: Found ability to add resources through method `AddResource` in the file `C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go`.",
         "Phase 1-IR: Confirmed that `AddResource` uses `changeAndNotify`, indicating SDK's automatic notification handling."
       ],
       "confidence": 0.95,
       "explanation": "The SDK automatically implements the `resources` capability, handling notifications internally when resources are added or removed, without requiring application developers to intervene.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go"
       ],
       "code_snippets": [
         "func (s *Server) AddResource(r *Resource, h ResourceHandler) {\n\t s.changeAndNotify(notificationResourceListChanged, &ResourceListChangedParams{}, func() bool {\n\t\t if _, err := url.Parse(r.URI); err != nil {\n\t\t\t panic(err) // url.Parse includes the URI in the error\n\t\t }\n\t\t s.resources.add(&serverResource{r, h})\n\t\t return true\n\t })\n}"
@@ -1103,12 +1103,12 @@
       "evidence": [
         "Phase 1-IR: Found functions applySchema and validateElicitSchema in defs_go.jsonl, implementing structured results handling.",
         "Phase 1-IR: Verified calls to these functions in calls_go.jsonl, confirming internal logic flow.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go, confirming automatic schema validation."
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go, confirming automatic schema validation."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles structured results validation and adherence to schema as required by the MCP rule. It encapsulates all necessary processing, thus fulfilling the compliance requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go"
       ],
       "code_snippets": [
         "if err := validateElicitSchema(req.Params.RequestedSchema); err != nil { ... }",
@@ -1127,8 +1127,8 @@
       "confidence": 1.0,
       "explanation": "The SDK provides an 'applySchema' function that automates the validation of structured results against a specified schema. The implementation ensures that developers do not have to handle this validation manually, adhering to the MCP compliance for 'SHOULD'.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\tmp2f57z_ri.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\tmp2f57z_ri.go"
       ],
       "code_snippets": [
         "func applySchema(data json.RawMessage, resolved *jsonschema.Resolved) (json.RawMessage, error) {...}",
@@ -1147,8 +1147,8 @@
       "confidence": 0.8,
       "explanation": "The SDK framework provides mechanisms for input validation, but lacks comprehensive automatic integration for access controls, rate limiting, and output sanitization without requiring developers to implement these behaviors themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\streamable.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\streamable.go"
       ],
       "code_snippets": [
         "func AddTool[In, Out any](s *Server, t *Tool, h ToolHandlerFor[In, Out]) {...}",
@@ -1168,8 +1168,8 @@
       "confidence": 0.6,
       "explanation": "The SDK implements validation and logging functionalities but does not encapsulate user confirmation or input display behaviors as required. Compliance cannot be confirmed due to the missing aspects of automatic handling.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\basic\\main.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\basic\\main.go"
       ],
       "code_snippets": [
         "// A ToolHandlerFor handles a call to tools/call with typed arguments and results.",
@@ -1190,8 +1190,8 @@
       "confidence": 0.85,
       "explanation": "The SDK declares the `completions` capability, but there is no clear internal implementation logic that handles completions automatically. Developers are not provided with a complete implementation for handling completions, which shifts responsibility onto them.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\complete.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\complete.go"
       ],
       "code_snippets": [
         "// CompletionHandler defines what happens when completions are requested",
@@ -1211,8 +1211,8 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements automatic handling of JSON-RPC errors as required by the rule. It defines necessary error codes and encodes structured errors during request processing.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go"
       ],
       "code_snippets": [
         "ErrMethodNotFound = NewError(-32601, 'method not found')",
@@ -1226,14 +1226,14 @@
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
         "Phase 1-IR: No definitions for sorting suggestions or fuzzy matching were found.",
-        "Phase 2-Source Code: Found rate limiting implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\rate-limiting\\main.go.",
-        "Phase 2-Source Code: Found input validation utility methods in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\util\\util.go."
+        "Phase 2-Source Code: Found rate limiting implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\rate-limiting\\main.go.",
+        "Phase 2-Source Code: Found input validation utility methods in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\util\\util.go."
       ],
       "confidence": 0.75,
       "explanation": "While the SDK implements internal handling for rate limiting and input validation, it lacks implementations for returning suggestions sorted by relevance and fuzzy matching, thus not fulfilling the complete requirements outlined in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\rate-limiting\\main.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\util\\util.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\rate-limiting\\main.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\util\\util.go"
       ],
       "code_snippets": [
         "Implement rate limiting logic in middleware handling.",
@@ -1253,7 +1253,7 @@
       "confidence": 0.85,
       "explanation": "The SDK lacks the implementation for debouncing and caching as required by the rule. Although there is partial handling for resolutions, it does not meet the required grace under the MCP guideline.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go"
       ],
       "code_snippets": [
         "if (resolved != nil)  {\n    // error handling related to resolved results\n}"
@@ -1267,13 +1267,13 @@
       "evidence": [
         "Phase 1-IR: Found CompletionHandler definition in main.go with automated response handling.",
         "Phase 1-IR: Security considerations outlined in the documentation specify must-haves for completion handling.",
-        "Phase 2-Source Code: Implementation verified in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\completion\\main.go."
+        "Phase 2-Source Code: Implementation verified in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\completion\\main.go."
       ],
       "confidence": 1.0,
       "explanation": "The SDK incorporates automatic validation of all completion inputs, implements rate limiting, enforces access control for sensitive suggestions, and aims to prevent information disclosure through its CompletionHandler. All behaviors defined are handled within the SDK without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\completion\\main.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\rate-limiting\\main.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\completion\\main.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\rate-limiting\\main.go"
       ],
       "code_snippets": [
         "CompletionHandler validates inputs: ... // Validate all completion inputs.",
@@ -1293,7 +1293,7 @@
       "confidence": 1.0,
       "explanation": "The SDK defines the logging capability through the NewLoggingHandler function and implements automatic notification through the Handle method of the LoggingHandler struct.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\logging.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\logging.go"
       ],
       "code_snippets": [
         "func NewLoggingHandler(ss *ServerSession, opts *LoggingHandlerOptions) *LoggingHandler { ... }",
@@ -1313,7 +1313,7 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the functionalities required by the rule which includes the ability to set logging levels and sending updates to the clients according to those levels without requiring application developers to handle this explicitly.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tmpw13m_xql.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tmpw13m_xql.go"
       ],
       "code_snippets": [
         "func (ss *ServerSession) setLevel(_ context.Context, params *SetLoggingLevelParams) (*emptyResult, error) { ss.updateState(func(state *ServerSessionState) { state.LogLevel = params.Level }) }; return &emptyResult{}, nil"
@@ -1331,7 +1331,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles error responses for common failure cases in accordance with the MCP rule, ensuring developers are shielded from protocol specifics.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go"
       ],
       "code_snippets": [
         "if err != nil { return nil, fmt.Errorf(\"%w: validating \\\"arguments\\\": %v\", jsonrpc2.ErrInvalidParams, err) }"
@@ -1349,8 +1349,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically implements rate limiting and logging capabilities as required by the MCP rule. The implementation is encapsulated, thus relieving developers of the need to manage these behaviors manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\logging.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\rate-limiting\\main.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\logging.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\rate-limiting\\main.go"
       ],
       "code_snippets": [
         "LoggingHandler struct with MinInterval: time.Duration",
@@ -1370,7 +1370,7 @@
       "confidence": 1.0,
       "explanation": "The SDK implements logging behaviors as required. It defines the necessary logging handler and automatically processes log messages without exposing this responsibility to the application developer. The methods are structured such that they handle logging internally, including sending notifications to the session whenever a log message is generated.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\logging.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\logging.go"
       ],
       "code_snippets": [
         "func (h *LoggingHandler) Handle(ctx context.Context, r slog.Record) error { err := h.handle(ctx, r); return err }",
@@ -1390,9 +1390,9 @@
       "confidence": 0.75,
       "explanation": "The SDK does not automatically handle the sanitization of log messages to prevent sensitive information from being logged. While logging functions are available and utilized, they do not implement internal logic to prevent the logging of credentials or personal information.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\basic\\main.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\log.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\middleware\\main.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\basic\\main.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\log.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\middleware\\main.go"
       ],
       "code_snippets": [
         "log.Printf(\"Error: %v\", err)",
@@ -1415,8 +1415,8 @@
       "confidence": 0.8,
       "explanation": "The SDK meets the rate limiting and log access control requirements but does not ensure automatic data validation and lacks monitoring for sensitive content, which should be part of its implementation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\rate-limiting\\main.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\logging.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\rate-limiting\\main.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\logging.go"
       ],
       "code_snippets": [
         "GlobalRateLimiterMiddleware implementation starts at main.go line 21.",
@@ -1436,7 +1436,7 @@
       "confidence": 0.95,
       "explanation": "The SDK framework encapsulates pagination logic and ensures that page sizes and cursors are determined by the server and not assumed by clients. All necessary behaviors are implemented within the SDK without exposing responsibilities to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go"
       ],
       "code_snippets": [
         "PageSize is the maximum number of items to return in a single page for list methods.",
@@ -1455,7 +1455,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically implements cursor management and validates cursor state internally, adhering to the requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_test.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_test.go"
       ],
       "code_snippets": [
         "if(params.cursorPtr() == nil || *params.cursorPtr() == \"\") { decodeCursor(...) }"
@@ -1469,14 +1469,14 @@
       "evidence": [
         "Phase 1-IR: Found function paginate in defs_go.jsonl, defined in file.go:735",
         "Phase 1-IR: Confirmed function calls in multiple client method calls.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server_test.go"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server_test.go"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically manages pagination and handles 'nextCursor' correctly, ensuring compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server_test.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_test.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_example_test.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server_test.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_test.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_example_test.go"
       ],
       "code_snippets": [
         "paginate function checks for nextCursor: if nextCursorVal == nil || *nextCursorVal == '' return",
@@ -1489,15 +1489,15 @@
       "rule_text": "3. Clients **MUST** treat cursors as opaque tokens:\n   - Don't make assumptions about cursor format\n   - Don't attempt to parse or modify cursors\n   - Don't persist cursors across sessions",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found functions encodeCursor and decodeCursor defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\your_file.go.",
-        "Phase 1-IR: Confirmed cursor handling in test cases within C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_test.go.",
+        "Phase 1-IR: Found functions encodeCursor and decodeCursor defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\your_file.go.",
+        "Phase 1-IR: Confirmed cursor handling in test cases within C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_test.go.",
         "Phase 2-Source Code: Verified behavior of cursor functions in the source implementation without developer manual intervention."
       ],
       "confidence": 0.9,
       "explanation": "The SDK defines functions to encode and decode cursors, and the implementation ensures these are utilized without exposing internal formats to developers. Tests confirm automated handling of cursor operations.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\your_file.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_test.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\your_file.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_test.go"
       ],
       "code_snippets": [
         "function encodeCursor() {...}",
@@ -1516,8 +1516,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles invalid cursors by returning the error code -32602, fulfilling the requirement of the MCP rule. This is demonstrated in the `paginateList` function where it returns `jsonrpc2.ErrInvalidParams` for invalid cursors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\tmpw13m_xql.go"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\tmpw13m_xql.go"
       ],
       "code_snippets": [
         "if err != nil { return zero, jsonrpc2.ErrInvalidParams } // from the paginateList function"
@@ -1525,3 +1525,4 @@
     }
   ]
 }
+

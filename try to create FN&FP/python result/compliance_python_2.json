@@ -19,7 +19,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages secure, non-deterministic session IDs using uuid4() for generation, freeing developers from handling this protocol detail.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\tmphrljqdfk.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\tmphrljqdfk.py"
       ],
       "code_snippets": [
         "new_session_id = uuid4().hex",
@@ -34,12 +34,12 @@
       "evidence": [
         "Phase 1-IR: Found function mcp_session_id defined in transport.py",
         "Phase 1-IR: Confirmed calls to generate new session IDs using uuid4() in handling requests.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport.py"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport.py"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically generates session IDs using secure random number generators (via uuid4()). There is no requirement for application developers to manage or create session IDs themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport.py"
       ],
       "code_snippets": [
         "new_session_id = uuid4().hex"
@@ -57,11 +57,11 @@
       "confidence": 0.85,
       "explanation": "The SDK has functions to manage session IDs but lacks automatic binding to user-specific information. SDK behavior does not encapsulate the required functionality as per the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\auth_context.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\client_auth.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\__init__.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\auth_context.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\client_auth.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\__init__.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py"
       ],
       "code_snippets": [
         "async def terminate_session(self, client: httpx.AsyncClient)",
@@ -91,7 +91,7 @@
       "confidence": 1.0,
       "explanation": "The SDK appropriately manages stdio support through internal implementation methods, requiring no additional effort from developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py"
       ],
       "code_snippets": [
         "async def stdio_server(stdin: anyio.AsyncFile[str] | None = None, stdout: anyio.AsyncFile[str] | None = None) {...}"
@@ -110,9 +110,9 @@
       "confidence": 0.85,
       "explanation": "The SDK does not enforce the required behavior of ensuring no embedded newlines in messages. The message handling functions lack explicit logic to check for this compliance and leave the responsibility on application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tmphrljqdfk.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tmpq5e8erah.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tmphrljqdfk.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tmpq5e8erah.py"
       ],
       "code_snippets": [
         "async def create_message(self, messages: list[types.SamplingMessage], ...)",
@@ -133,8 +133,8 @@
       "confidence": 0.85,
       "explanation": "The SDK defines a logging system that automatically logs errors to stderr using UTF-8 strings. The required behavior for logging is encapsulated within the SDK, and application developers are not required to implement logging functionality manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py"
       ],
       "code_snippets": [
         "logger.error('This is an example error message.')",
@@ -154,8 +154,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically handle the behavior required by the rule (i.e., capturing and forwarding logging). Developers are required to explicitly call logging functions like send_log_message, indicating the SDK is shifting the responsibility to them.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-streamablehttp\\mcp_simple_streamablehttp\\server.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-streamablehttp\\mcp_simple_streamablehttp\\server.py"
       ],
       "code_snippets": [
         "async def send_log_message(self, level: types.LoggingLevel, data: Any, logger: str | None = None, related_request_id: types.RequestId | None = None) -> None: # Sends a log message notification.",
@@ -170,12 +170,12 @@
       "evidence": [
         "Phase 1-IR: Found function stdin_reader() in stdio.py responsible for reading and validating MCP messages.",
         "Phase 1-IR: Found function stdout_writer() that sends validated MCP messages to stdout.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py"
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py"
       ],
       "confidence": 1.0,
       "explanation": "The SDK's implementation of the message handling logic ensures that only valid MCP messages are written to stdout.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py"
       ],
       "code_snippets": [
         "async def stdin_reader() {...}",
@@ -195,7 +195,7 @@
       "confidence": 0.9,
       "explanation": "The SDK automatically validates that messages written to stdin are valid MCP messages and captures invalid ones, ensuring compliance with the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py"
       ],
       "code_snippets": [
         "async def stdin_reader(): async for line in stdin: message = types.JSONRPCMessage.model_validate_json(line)"
@@ -214,8 +214,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines a mechanism to set up a single HTTP endpoint that handles both POST and GET methods internally without requiring developer intervention, thus meeting the MCP compliance requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\__init__.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\__init__.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\__init__.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\__init__.py"
       ],
       "code_snippets": [
         "def streamable_http_app(self): return Starlette(routes=routes, middleware=middleware)",
@@ -235,7 +235,7 @@
       "confidence": 1.0,
       "explanation": "The SDK implements automatic validation of the `Origin` header on all incoming requests, complying with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py"
       ],
       "code_snippets": [
         "async def validate_request(self, request: Request, is_post: bool = False) -> Response | None: ..."
@@ -265,9 +265,9 @@
       "confidence": 1.0,
       "explanation": "The SDK framework implements proper authentication by encapsulating authentication logic within middleware, requiring valid bearer tokens for incoming requests, and managing user sessions automatically.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\require_auth.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\auth_context.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\require_auth.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\auth_context.py"
       ],
       "code_snippets": [
         "class BearerAuthBackend: \n    async def authenticate(self, conn: HTTPConnection): ...",
@@ -288,7 +288,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles sending JSON-RPC messages as new HTTP POST requests to the MCP endpoint within the _handle_post_request method of the StreamableHTTPServerTransport class.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
       ],
       "code_snippets": [
         "async with ctx.client.stream(\n    'POST',\n    self.url,\n    json=message.model_dump(by_alias=True, mode='json', exclude_none=True),\n    headers=headers,\n) as response:  # Handles sending JSON-RPC message"
@@ -307,7 +307,7 @@
       "confidence": 1.0,
       "explanation": "The SDK provides a method to handle POST requests for JSON-RPC messages, correctly validates headers, and manages request and response processes internally without shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
       ],
       "code_snippets": [
         "async def _handle_post_request(...) {\n# Handles POST requests containing JSON-RPC messages.\n}"
@@ -326,8 +326,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles requests with the required 'Accept' header, checking for both 'application/json' and 'text/event-stream' without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
       ],
       "code_snippets": [
         "self.request_headers = { 'accept': f'{JSON}, {SSE}', 'content-type': JSON, **self.headers } # StreamableHTTPTransport",
@@ -347,7 +347,7 @@
       "confidence": 1.0,
       "explanation": "The SDK framework encapsulates the handling of JSON-RPC POST requests effectively. It defines the necessary capabilities for managing requests, notifications, and responses and does so without shifting the responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
       ],
       "code_snippets": [
         "_handle_post_request method implementation checks headers and processes JSON-RPC messages accordingly."
@@ -385,7 +385,7 @@
       "confidence": 1.0,
       "explanation": "The defined SDK functions handle HTTP error responses according to the MCP rule, automatically returning correct error status codes when inputs cannot be accepted.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\sdk\\tmpz8jnoeel.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\sdk\\tmpz8jnoeel.py"
       ],
       "code_snippets": [
         "_create_error_response( ... , HTTPStatus.BAD_REQUEST, ... )",
@@ -424,7 +424,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the required behavior for JSON-RPC requests and streaming responses as defined by the MCP rule. It checks the Accept headers, manages content types, and initiates the appropriate response without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
       ],
       "code_snippets": [
         "await self._create_json_response(None, HTTPStatus.ACCEPTED)",
@@ -444,8 +444,8 @@
       "confidence": 1.0,
       "explanation": "The SDK properly handles both cases specified in the MCP rule. It encapsulates the behavior of using HTTP POST for sending JSON-RPC messages and provides automatic management for both JSON responses and SSE streams. The implementation includes the required headers and manages the response types internally without delegating these responsibilities to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
       ],
       "code_snippets": [
         "self.request_headers = { ACCEPT: f'{JSON}, {SSE}', CONTENT_TYPE: JSON, **self.headers }",
@@ -461,12 +461,12 @@
       "evidence": [
         "Phase 1-IR: Found function definitions related to JSON-RPC handling in defs_python.jsonl.",
         "Phase 1-IR: Verified function call relationships in calls_python.jsonl showing automatic handling of JSON-RPC responses.",
-        "Phase 2-Source Code: Reviewed implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py which reflects compliance with the rule."
+        "Phase 2-Source Code: Reviewed implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py which reflects compliance with the rule."
       ],
       "confidence": 0.9,
       "explanation": "The SDK implements the necessary capabilities to automatically handle SSE streams and JSON-RPC responses as required by the MCP rule. There are internal mechanisms in place that ensure compliance without relying on developers to handle protocol intricacies.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
       ],
       "code_snippets": [
         "function send_response_handler() where JSON-RPC responses are processed and sent based on incoming requests.",
@@ -486,10 +486,10 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles sending notifications and JSON-RPC requests, fulfilling the requirements of the MCP rule without shifting responsibilities to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_methods.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_methods.py"
       ],
       "code_snippets": [
         "'send_notification' method to emit notifications.",
@@ -509,10 +509,10 @@
       "confidence": 1.0,
       "explanation": "The SDK implements automatic notification sending functionality encapsulated within its design, aligning with the MCP requirements. It allows the server to send relevant notifications internally without requiring explicit calls from developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\notifications.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\notifications\\handlers.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\notifications.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\notifications\\handlers.py"
       ],
       "code_snippets": [
         "async def send_notification(self, notification: SendNotificationT, ...): ...",
@@ -531,7 +531,7 @@
       "confidence": 0.9,
       "explanation": "The SDK handles the SSE stream appropriately by ensuring it is not closed before sending the JSON-RPC response. The implementation logic automatically manages this, confirming compliance with the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpz8jnoeel.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpz8jnoeel.py"
       ],
       "code_snippets": [
         "async def _handle_post_request(self, scope: Scope, request: Request, receive: Receive, send: Send): # Maintains SSE until response is sent",
@@ -551,7 +551,7 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the required behavior by automatically closing the SSE stream after sending the JSON-RPC response, which matches the compliance requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
       ],
       "code_snippets": [
         "await sse_stream_writer.aclose()  # This line confirms the automatic closure of SSE stream after response."
@@ -569,8 +569,8 @@
       "confidence": 0.95,
       "explanation": "The SDK implements required behaviors regarding disconnection and notification handling as defined in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py"
       ],
       "code_snippets": [
         "class CancelledNotification(Notification[CancelledNotificationParams, Literal[\"notifications/cancelled\"]])",
@@ -589,9 +589,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles cancellation notifications through the RequestResponder class, ensuring disconnections are not misinterpreted as cancellations.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py"
       ],
       "code_snippets": [
         "class CancelledNotification(Notification[CancelledNotificationParams, Literal['notifications/cancelled']]): ...",
@@ -611,9 +611,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the cancellation process by defining a `CancelledNotification` class and implementing logic to automatically call the `cancel` method on the request responder when a cancellation notification is received. This meets the requirement that developers do not have to implement this behavior manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py"
       ],
       "code_snippets": [
         "class CancelledNotification(Notification[CancelledNotificationParams, Literal['notifications/cancelled']])",
@@ -633,8 +633,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the resumability feature by automatically managing event storage and replay capabilities, fulfilling the requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\event_store.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\event_store.py"
       ],
       "code_snippets": [
         "async def replay_events_after(last_event_id: EventId, send_callback: EventCallback) → StreamId | None:",
@@ -653,8 +653,8 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly encapsulates the ability to issue an HTTP GET request to initiate an SSE stream and handles the required states and notifications internally. Developers are not responsible for managing this aspect, as it is embedded within the SDK's methods.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpz8jnoeel.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpz8jnoeel.py"
       ],
       "code_snippets": [
         "def _handle_get_request(self, request: Request, send: Send) -> None: ... # Validates Accept header and manages SSE stream."
@@ -673,7 +673,7 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements the checks for the 'Accept' header and ensures that it includes 'text/event-stream'. It also handles server notifications within the SDK without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
       ],
       "code_snippets": [
         "async def _handle_get_request(self, request: Request, send: Send) -> None: ... _, has_sse = self._check_accept_headers(request) ..."
@@ -702,7 +702,7 @@
       "confidence": 1.0,
       "explanation": "The SDK successfully implements the ability to send JSON-RPC requests and notifications on the SSE stream as specified in the MCP rule. It does this through internal mechanisms that do not require developers to manually invoke notification sending.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
       ],
       "code_snippets": [
         "async def send_notification(self, notification: SendNotificationT, related_request_id: RequestId | None = None):"
@@ -721,8 +721,8 @@
       "confidence": 0.95,
       "explanation": "The SDK automatically handles the sending of notifications via the `send_notification` method when relevant server events occur, thus encapsulating the functionality as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\anotherFile.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\anotherFile.py"
       ],
       "code_snippets": [
         "async def send_notification(self, notification: SendNotificationT, related_request_id: RequestId | None = None)",
@@ -741,7 +741,7 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements the rule by ensuring that JSON-RPC responses are not sent on SSE streams unless resuming a previous request.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
       ],
       "code_snippets": [
         "async for event_message in standalone_stream_reader: # Process messages from the standalone stream",
@@ -761,7 +761,7 @@
       "confidence": 1.0,
       "explanation": "The SDK framework automatically implements the closing of the SSE stream with internal logic encapsulated within the terminate function, fulfilling the rule without requiring application developers to implement it themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpz8jnoeel.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpz8jnoeel.py"
       ],
       "code_snippets": [
         "async def terminate(self) -> None: # Terminates the current session and closes all streams."
@@ -780,8 +780,8 @@
       "confidence": 0.9,
       "explanation": "The SDK includes internal methods that automatically handle the closing of SSE streams when needed, ensuring compliance with the MCP rule that the client MAY close the SSE stream at any time.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
       ],
       "code_snippets": [
         "async def sse_writer() where streams are closed properly after use",
@@ -800,7 +800,7 @@
       "confidence": 1.0,
       "explanation": "The SDK does not allow multiple simultaneous SSE connections as required by rule 141.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
       ],
       "code_snippets": [
         "if GET_STREAM_KEY in self._request_streams:"
@@ -829,8 +829,8 @@
       "confidence": 1.0,
       "explanation": "The SDK does not have internal logic to prevent broadcasting the same message across multiple streams. Therefore, it does not meet the requirements set forth by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
       ],
       "code_snippets": []
     },
@@ -847,7 +847,7 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the required behavior for mitigating message loss by implementing the necessary functionalities for event storage and replaying, thus managing resumability automatically. Developers are not given the responsibility to implement these features themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
       ],
       "code_snippets": [
         "EventStore interface and method definitions for resumability; confirmed call chains in message handling."
@@ -866,7 +866,7 @@
       "confidence": 1.0,
       "explanation": "The SDK defines an event ID field and automatically handles the transmission of SSE events without requiring developer intervention. It has all the necessary components for compliance with the MCP rule regarding SSE event IDs.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
       ],
       "code_snippets": [
         "class EventMessage: ...",
@@ -886,8 +886,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically stores and retrieves event IDs, ensuring they are unique across streams as per the requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\event_store.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\event_store.py"
       ],
       "code_snippets": [
         "async def store_event(self, stream_id: StreamId, message: JSONRPCMessage) -> EventId",
@@ -907,7 +907,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles resuming connections by checking the Last-Event-ID header and replaying missed events without requiring manual intervention from developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
       ],
       "code_snippets": [
         "async def _handle_get_request(self, request: Request, send: Send) -> None: ... if last_event_id := request.headers.get(LAST_EVENT_ID_HEADER): await self._replay_events(last_event_id, request, send)",
@@ -926,9 +926,9 @@
       "confidence": 0.5,
       "explanation": "It's unclear if the server automatically handles replay logic based on the Last-Event-ID as it exposes methods but lacks definitive automatic call patterns in response handling.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-streamablehttp\\mcp_simple_streamablehttp\\server.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-streamablehttp\\mcp_simple_streamablehttp\\server.py"
       ],
       "code_snippets": [
         "if last_event_id := request.headers.get(LAST_EVENT_ID_HEADER):\n    self._replay_events(last_event_id)"
@@ -946,7 +946,7 @@
       "confidence": 0.9,
       "explanation": "The SDK implements the handling of message replaying correctly by ensuring that events are replayed only after a specific event ID and from the correct stream. The logic exists to separate and prevent replay of events from different streams.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
       ],
       "code_snippets": [
         "async def replay_events_after(last_event_id: EventId, send_callback: EventCallback): # Event replay handling"
@@ -965,7 +965,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically assigns session IDs during initialization and manages session state internally without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpz8jnoeel.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpz8jnoeel.py"
       ],
       "code_snippets": [
         "self.mcp_session_id = mcp_session_id, must contain only visible ASCII characters from 0x21 to 0x7E.",
@@ -1006,8 +1006,8 @@
       "confidence": 1.0,
       "explanation": "The SDK contains built-in constraints for session IDs, ensuring they only include visible ASCII characters as required by the MCP rule 152.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\client_auth.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\client_auth.py"
       ],
       "code_snippets": [
         "if mcp_session_id is not None and not SESSION_ID_PATTERN.fullmatch(mcp_session_id):",
@@ -1022,14 +1022,14 @@
       "evidence": [
         "Phase 1-IR: Found function handling session management involving 'Mcp-Session-Id' in `defs_python.jsonl`.",
         "Phase 1-IR: Confirmed function call relationships in `calls_python.jsonl` showing session management functionality.",
-        "Phase 2-Source Code: Verified implementation in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py`, confirming automatic management of 'Mcp-Session-Id'."
+        "Phase 2-Source Code: Verified implementation in `C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py`, confirming automatic management of 'Mcp-Session-Id'."
       ],
       "confidence": 1.0,
       "explanation": "The SDK includes the 'Mcp-Session-Id' header automatically in all subsequent requests after initialization. This encapsulates the required behavior mandated by the rule, fulfilling the compliance requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session_group.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session_group.py"
       ],
       "code_snippets": []
     },
@@ -1066,8 +1066,8 @@
       "confidence": 1.0,
       "explanation": "The SDK handles session termination internally and responds with HTTP 404 for requests with a terminated session ID, as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py"
       ],
       "code_snippets": [
         "async def terminate(self) -> None: # Handles session termination",
@@ -1087,7 +1087,7 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements session termination and responds with HTTP 404 Not Found for requests containing a terminated session ID, encapsulating the required behavior internally.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\streamablehttp\\tmpz8jnoeel.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\streamablehttp\\tmpz8jnoeel.py"
       ],
       "code_snippets": [
         "async def terminate(self) -> None: ...",
@@ -1118,8 +1118,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages session termination upon receiving an HTTP DELETE request with the Mcp-Session-Id. There are dedicated methods for handling delete requests and terminating sessions, which means that it fulfills the MCP protocol requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\streamablehttp\\server_transport.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\streamablehttp\\transport.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\streamablehttp\\server_transport.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\streamablehttp\\transport.py"
       ],
       "code_snippets": [
         "_handle_delete_request method that checks Mcp-Session-Id and calls terminate() to handle session termination."
@@ -1149,8 +1149,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages the 'MCP-Protocol-Version' header in outbound requests without requiring developer input. This ensures compliance with the rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\tmpfcc1ytxj.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\tmpz8jnoeel.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\tmpfcc1ytxj.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\tmpz8jnoeel.py"
       ],
       "code_snippets": [
         "def _create_oauth_metadata_request(self, url: str) -> httpx.Request:\n    return httpx.Request('GET', url, headers={MCP_PROTOCOL_VERSION: LATEST_PROTOCOL_VERSION})",
@@ -1180,9 +1180,9 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the required behavior of assuming and managing protocol versions without requiring intervention from developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\auth.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\auth.py"
       ],
       "code_snippets": [
         "LATEST_PROTOCOL_VERSION = '2025-06-18'",
@@ -1196,13 +1196,13 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: Found function _validate_protocol_version in calls confirming protocol validation logic.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py where 400 Bad Request is returned for unsupported protocol versions."
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py where 400 Bad Request is returned for unsupported protocol versions."
       ],
       "confidence": 1.0,
       "explanation": "The SDK correctly implements automatic validation for the MCP-Protocol-Version header, responding with a 400 Bad Request when an unsupported version is provided without requiring developers to manage this behavior manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
       ],
       "code_snippets": [
         "if protocol_version not in SUPPORTED_PROTOCOL_VERSIONS: response = self._create_error_response(...)"
@@ -1220,9 +1220,9 @@
       "confidence": 0.95,
       "explanation": "The SDK provides internal methods that handle the behavior required by the rule without shifting responsibility to application developers. Specifically, it has defined methods for notifying clients of changes, and the internal logic to handle notifications automatically.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
       ],
       "code_snippets": [
         "await ctx.session.send_resource_list_changed()",
@@ -1242,7 +1242,7 @@
       "confidence": 0.85,
       "explanation": "The SDK automatically handles sending notifications and responses in the JSON-RPC format, complying with the rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\jsonrpc.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\jsonrpc.py"
       ],
       "code_snippets": [
         "async def send_notification(self, notification: SendNotificationT, ...)",
@@ -1262,8 +1262,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the notification functionality in such a way that developers do not need to manually send notifications. The internal handling of notification sending and connection establishment reflects compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\mcp.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\mcp.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
       ],
       "code_snippets": [
         "async def send_notification(self, notification: SendNotificationT) {...}",
@@ -1278,13 +1278,13 @@
       "evidence": [
         "Phase 1-IR: Found class RequestResponder that handles request lifecycle including cancellation in tmpaa2_i805.py:3",
         "Phase 1-IR: Confirmed call to cancel() method which manages cancellation in the same file.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically manages cancellation notifications and ensures that requests can be canceled as per the rule requirements, thus shifting no responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py"
       ],
       "code_snippets": [
         "async def cancel(self) -> None: # Cancels the request and sends cancellation response",
@@ -1315,11 +1315,11 @@
       "confidence": 0.9,
       "explanation": "The SDK provides automatic handling for cancellation notifications specifically by managing request lifecycle and properly automating the freeing of resources and non-sending of responses when requests are cancelled.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\message.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\message.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py"
       ],
       "code_snippets": [
         "async def cancel(self) -> None: ... # Cancels the request and sends cancellation response"
@@ -1337,9 +1337,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the cancellation process for requests through the RequestResponder class, specifically with its cancel() method. It sends error notifications when requests are cancelled, which complies with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\memory.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\client_auth.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\memory.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\client_auth.py"
       ],
       "code_snippets": [
         "async def cancel(self) -> None: ... await self._session._send_response(...)",
@@ -1370,7 +1370,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles notifications regarding resource state changes without requiring manual calls from developers, thus fulfilling the MCP's requirements for handling race conditions.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
       ],
       "code_snippets": [
         "await ctx.session.send_resource_list_changed()"
@@ -1399,7 +1399,7 @@
       "confidence": 0.8,
       "explanation": "The SDK does implement automatic behaviors indicating cancellations; however, it does not provide explicit functions or mechanisms for logging cancellation reasons, shifting that responsibility potentially back to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\memory.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\memory.py"
       ],
       "code_snippets": [
         "async def cancel(self) -> None: # Handles cancellation logic"
@@ -1418,8 +1418,8 @@
       "confidence": 1.0,
       "explanation": "The SDK contains a well-defined mechanism for handling cancellation notifications automatically. The internal logic ensures that invalid notifications are processed by the SDK without requiring application developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py"
       ],
       "code_snippets": [
         "class CancelledNotification(Notification[CancelledNotificationParams, Literal['notifications/cancelled']]): ...",
@@ -1439,9 +1439,9 @@
       "confidence": 1.0,
       "explanation": "The SDK properly implements the required behavior of responding promptly with an empty response, encapsulating this behavior to ensure developers do not need to manage response logic themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpz8jnoeel.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpz8jnoeel.py"
       ],
       "code_snippets": [
         "_create_json_response method implementation.",
@@ -1461,9 +1461,9 @@
       "confidence": 0.9,
       "explanation": "The SDK encapsulates the timeout handling, connection termination, and automatic reconnection procedures required by the MCP rule. The functions responsible for these actions are appropriately defined within the SDK framework, reducing the need for application-level handling.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\os\\posix\\utilities.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\_httpx_utils.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\os\\posix\\utilities.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\_httpx_utils.py"
       ],
       "code_snippets": [
         "def send_request(self, request: SendRequestT, ...) {...}",
@@ -1484,7 +1484,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not encapsulate the behaviors required by the MCP rule regarding automatic pings for connection health. No automatic handling or periodic sending of pings was found.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py"
       ],
       "code_snippets": []
     },
@@ -1501,7 +1501,7 @@
       "confidence": 1.0,
       "explanation": "The SDK defines a function to send ping requests but lacks any mechanism for configuring the frequency of these pings, which is required for compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py"
       ],
       "code_snippets": [
         "async def send_ping(self) -> types.EmptyResult:\n    return await self.send_request(\n        types.ClientRequest(types.PingRequest()),\n        types.EmptyResult,\n    )"
@@ -1532,8 +1532,8 @@
       "confidence": 0.5,
       "explanation": "The SDK does not provide explicit automated handling of periodic pings or timeout settings that are clearly encapsulated for the developer. It is unclear if the SDK handles ping intervals as mandated by the MCP guideline.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\sse.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\sse.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py"
       ],
       "code_snippets": [
         "send_notification method invoked without automatic conditions for ping, found in line: 15 of tmpaa2_i805.py",
@@ -1547,15 +1547,15 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No relevant function definitions or call relationships found.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\exceptions.py",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\exceptions.py",
         "Phase 2-Source Code: The method 'send_request' raises McpError on timeout, treating it as a connection failure."
       ],
       "confidence": 0.95,
       "explanation": "The SDK automatically raises an McpError when a timeout occurs, indicating it treats timeouts as connection failures, complying with the MCP rule. The responsibility is encapsulated within the SDK, ensuring developers do not need to handle this logic themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\exceptions.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\exceptions.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\__init__.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\exceptions.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\exceptions.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\__init__.py"
       ],
       "code_snippets": [
         "raise McpError(ErrorData(code=httpx.codes.REQUEST_TIMEOUT, message='Timed out while waiting for response...'))"
@@ -1595,8 +1595,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the required behavior by defining progress tokens as either strings or integers and automatically managing progress notifications.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
       ],
       "code_snippets": [
         "ProgressToken = str | int",
@@ -1616,7 +1616,7 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the behavior required for managing progress tokens and automatically sends notifications, ensuring compliance with the MCP rule that states progress tokens must be unique across active requests.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
       ],
       "code_snippets": [
         "async def progress(self, amount: float, message: str | None = None): self.current += amount; await self.session.send_progress_notification(self.progress_token, self.current, total=self.total, message=message)"
@@ -1629,12 +1629,12 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: Found function send_progress_notification in defs.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py"
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles sending progress notifications as required by the MCP rule. It does not pass this responsibility onto the application developer.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py"
       ],
       "code_snippets": [
         "async def send_progress_notification(self, progress_token: str | int, progress: float, total: float | None = None, message: str | None = None): ..."
@@ -1652,7 +1652,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages progress notifications by encapsulating the behavior in the ProgressContext class. The progress value is updated internally, and notifications are sent without requiring application developers to do so.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
       ],
       "code_snippets": [
         "async def progress(self, amount: float, message: str | None = None):  # increases 'current' and sends notification"
@@ -1671,7 +1671,7 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the behavior for automatic progress reporting and notification handling. Automatic invocation of `send_progress_notification` methods within `ProgressContext` confirms compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
       ],
       "code_snippets": [
         "class Progress(BaseModel): progress: float; total: float | None",
@@ -1711,7 +1711,7 @@
       "confidence": 1.0,
       "explanation": "The SDK implements automatic handling of progress notifications by using the 'ProgressContext' class and the associated 'send_progress_notification' method. This ensures that notifications are sent based on tokens provided in the requests and progress is tracked internally.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
       ],
       "code_snippets": [
         "await self.session.send_progress_notification(self.progress_token, self.current, total=self.total, message=message)"
@@ -1723,13 +1723,13 @@
       "rule_text": "2. Receivers of progress requests **MAY**:\n   - Choose not to send any progress notifications\n   - Send notifications at whatever frequency they deem appropriate\n   - Omit the total value if unknown",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function 'send_progress_notification' in 'C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py'.",
+        "Phase 1-IR: Found function 'send_progress_notification' in 'C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py'.",
         "Phase 1-IR: Confirmed internal call to this function within the 'progress' method of 'ProgressContext', evidencing automated notification sending."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles sending progress notifications through the 'send_progress_notification' function, called internally during progress updates. This adheres to the MCP rule that receivers of progress requests may send notifications autonomously without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
       ],
       "code_snippets": [
         "async def progress(self, amount: float, message: str | None = None) -> None:\n        self.current += amount\n        await self.session.send_progress_notification(self.progress_token, self.current, total=self.total, message=message"
@@ -1778,9 +1778,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages progress notifications, ensuring compliance with the rule that notifications MUST stop after completion. The necessary methods for sending notifications are encapsulated within the SDK's classes.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\lowlevel\\server.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\lowlevel\\server.py"
       ],
       "code_snippets": [
         "async def progress(self, amount: float, message: str | None = None):",
@@ -1799,9 +1799,9 @@
       "confidence": 0.9,
       "explanation": "The SDK automatically implements the behavior required by the rule by sending notifications for changes to resources and tools without shifting responsibilities to the application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py"
       ],
       "code_snippets": []
     },
@@ -1818,7 +1818,7 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements the required notification logic internally, ensuring that the behavior specified in the MCP rule is handled automatically without shifting the responsibility to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
       ],
       "code_snippets": [
         "ctx.session.send_resource_list_changed() at line 17 of notifications.py"
@@ -1831,12 +1831,12 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: Found ElicitRequest in defs, defined in elicitation.py",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically manages the elicitation process, ensuring sensitive information is not requested inappropriately by letting the framework handle the behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
       ],
       "code_snippets": [
         "async def elicit_with_validation(session: ServerSession, message: str, schema: type[ElicitSchemaModelT], related_request_id: RequestId | None = None):"
@@ -1855,8 +1855,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements and encapsulates the ability to manage user responses and sends notifications automatically without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py"
       ],
       "code_snippets": [
         "class RequestResponder:  async def respond(self, response): ...",
@@ -1875,7 +1875,7 @@
       "confidence": 0.95,
       "explanation": "The SDK automatically manages the elicitation process without requiring developers to implement it themselves. The elicit_with_validation function defines this capability, ensuring adherence to the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
       ],
       "code_snippets": [
         "async def elicit_with_validation(session: ServerSession, message: str, schema: type[ElicitSchemaModelT])"
@@ -1883,3 +1883,4 @@
     }
   ]
 }
+

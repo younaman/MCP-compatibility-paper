@@ -21,7 +21,7 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the elicitation behavior required by the MCP rule, ensuring sensitive information is managed within the framework without burdening developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
       ],
       "code_snippets": [
         "async def elicit_with_validation(session: ServerSession, message: str, schema: type[ElicitSchemaModelT])"
@@ -40,7 +40,7 @@
       "confidence": 0.95,
       "explanation": "The SDK manages user approval controls by implementing the elicit_with_validation function that automates capturing user responses and validating them without requiring developers to handle these processes directly.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
       ],
       "code_snippets": [
         "async def elicit_with_validation(session: ServerSession, message: str, schema: type[ElicitSchemaModelT]) -> ElicitationResult[ElicitSchemaModelT]:\n    # This function manages elicitation of additional user information and validates it."
@@ -52,15 +52,15 @@
       "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function 'elicit_with_validation' defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py",
-        "Phase 1-IR: Confirmed call to 'elicit_with_validation' from session in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\server.py",
-        "Phase 2-Source Code: Validates schema types and automatically handles elicitation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
+        "Phase 1-IR: Found function 'elicit_with_validation' defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py",
+        "Phase 1-IR: Confirmed call to 'elicit_with_validation' from session in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\server.py",
+        "Phase 2-Source Code: Validates schema types and automatically handles elicitation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
       ],
       "confidence": 1.0,
       "explanation": "The SDK framework properly encapsulates the behavior required by the MCP rule. It both defines the ability to validate the schema and executes this validation automatically within the elicitation process.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\server.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\server.py"
       ],
       "code_snippets": [
         "async def elicit_with_validation(...):",
@@ -81,11 +81,11 @@
       "confidence": 0.75,
       "explanation": "The SDK does not provide a mechanism that automatically indicates which server is requesting information, leaving that to the developer's implementation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\streamable_http_host_mounting.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\fastmcp_quickstart.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\streamable_http_basic_mounting.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\streamable_http_host_mounting.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\fastmcp_quickstart.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\streamable_http_basic_mounting.py"
       ],
       "code_snippets": [
         "Server Name Access: ctx.fastmcp.name",
@@ -105,8 +105,8 @@
       "confidence": 1.0,
       "explanation": "The SDK effectively handles elicitation requests internally without requiring application developers to implement user rejection handling, fully complying with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py"
       ],
       "code_snippets": [
         "async def elicit_with_validation(...): ",
@@ -136,12 +136,12 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: Found 'elicit_with_validation' in defs_python.jsonl.",
-        "Phase 2-Source Code: Verified implementation in 'C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py'."
+        "Phase 2-Source Code: Verified implementation in 'C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py'."
       ],
       "confidence": 1.0,
       "explanation": "The SDK implements the elicitation functionality by validating the schema and managing the elicitation process automatically within the elicit_with_validation method. No manual intervention by developers is required.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
       ],
       "code_snippets": [
         "async def elicit_with_validation(session: ServerSession, message: str, schema: type[ElicitSchemaModelT], related_request_id: RequestId | None = None): ...",
@@ -161,8 +161,8 @@
       "confidence": 0.85,
       "explanation": "The SDK defines the `roots` capability but does not automatically manage or send notifications related to changes within the SDK. This responsibility appears to lie on the shoulders of the developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py"
       ],
       "code_snippets": [
         "class RootsCapability(BaseModel): listChanged: bool | None = None",
@@ -207,7 +207,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles JSON-RPC error responses within its request handling logic, ensuring compliance with the MCP rule that clients should return standard JSON-RPC errors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpnby_ecrz.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpnby_ecrz.py"
       ],
       "code_snippets": [
         "error_response = JSONRPCError(jsonrpc='2.0', id='server-error', error=ErrorData(code=error_code, message=error_message))",
@@ -265,8 +265,8 @@
       "confidence": 0.9,
       "explanation": "The SDK defines roots capability with a 'listChanged' property but lacks automatic notification sending logic when root modifications occur, shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\__init__.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\__init__.py"
       ],
       "code_snippets": [
         "class RootsCapability(BaseModel): ... listChanged: bool | None = None",
@@ -297,9 +297,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not encapsulate the required behaviors to provide a UI for reviewing sampling requests, editing prompts, and presenting generated responses. The necessary internal functionalities, like automatic handling of these interactions, were not found in the implementation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\structured_output.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\structured_output.py"
       ],
       "code_snippets": [
         "No specific code snippets found that meet compliance requirements."
@@ -317,8 +317,8 @@
       "confidence": 1.0,
       "explanation": "The SDK has implemented the required sampling capability handling internally in the `ClientSession` class. The `initialize` method ensures that the `sampling` capability is declared correctly without requiring external developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py"
       ],
       "code_snippets": [
         "async def initialize(self) -> types.InitializeResult: sampling = types.SamplingCapability() if self._sampling_callback is not _default_sampling_callback else None"
@@ -336,8 +336,8 @@
       "confidence": 0.9,
       "explanation": "The SDK provides the ability to define model selection hints, but it does not implement the required automatic handling of these hints, thereby shifting the responsibility onto developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\func_metadata.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\func_metadata.py"
       ],
       "code_snippets": [
         "class ModelPreferences(BaseModel): ... hints: list[ModelHint] | None = None"
@@ -356,9 +356,9 @@
       "confidence": 0.5,
       "explanation": "The analysis does not conclusively demonstrate whether the SDK automatically handles common error cases without requiring developer intervention. Error-handling capabilities exist but do not clearly indicate automatic behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\exceptions.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\metadata.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\register.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\exceptions.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\metadata.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\register.py"
       ],
       "code_snippets": [
         "class McpError(Exception): ...",
@@ -392,7 +392,7 @@
       "confidence": 0.8,
       "explanation": "The SDK lacks automatic handling of message content validation and does not have mechanisms to notify developers regarding validation results automatically.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py"
       ],
       "code_snippets": [
         "def _validate_content_type(self, content_type: str | None) -> bool:",
@@ -430,7 +430,7 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement the required functionality for rate limiting within its own code structure. There are no definitions or internal logic to handle rate limiting automatically, thus placing the burden on application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
       ],
       "code_snippets": []
     },
@@ -447,7 +447,7 @@
       "confidence": 0.8,
       "explanation": "The SDK provides some notification mechanisms, but lacks automatic handling of sensitive data as required by the MCP rule, shifting this responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
       ],
       "code_snippets": [
         "await ctx.session.send_resource_list_changed() from process_data() in notifications.py"
@@ -466,9 +466,9 @@
       "confidence": 0.6,
       "explanation": "The SDK includes mechanisms for handling authentication and validation of requests, but it is unclear if all outlined security principles are fully encapsulated and whether complete documentation is provided.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\routes.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\routes.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py"
       ],
       "code_snippets": [
         "def create_auth_routes(...): ...",
@@ -488,9 +488,9 @@
       "confidence": 0.85,
       "explanation": "The SDK provides a definition for 'prompts' capability but lacks an automatic declaration during initialization, meaning it doesn't handle this requirement internally, thus shifting the responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\base.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\base.py"
       ],
       "code_snippets": [
         "class PromptsCapability(BaseModel):\n    listChanged: bool | None = None\n    ...\n    model_config = ConfigDict(extra='allow')"
@@ -509,10 +509,10 @@
       "confidence": 1.0,
       "explanation": "The SDK defines the 'listChanged' capability and automatically sends notifications when the list of available prompts changes, adhering to the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\__init__.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\base.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\__init__.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\__init__.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\base.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\__init__.py"
       ],
       "code_snippets": [
         "class PromptsCapability(BaseModel): listChanged: bool | None = None",
@@ -533,7 +533,7 @@
       "confidence": 1.0,
       "explanation": "The SDK defines an ImageContent class that requires base64-encoded image data and a MIME type. It also implements an Image class that handles conversion to this format correctly.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\types.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\types.py"
       ],
       "code_snippets": [
         "class ImageContent(BaseModel): data: str  # The base64-encoded image data.",
@@ -553,9 +553,9 @@
       "confidence": 1.0,
       "explanation": "The SDK contains robust definitions and operations for managing resources, ensuring that valid URIs and MIME types are utilized. Additionally, the automatic notification functionality is present, which fulfills the requirements specified by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\types.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\types.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
       ],
       "code_snippets": [
         "class ResourceManager: ... def add_resource(self, resource: Resource) -> Resource: ...",
@@ -575,7 +575,7 @@
       "confidence": 1.0,
       "explanation": "The SDK contains the _create_error_response function, which encapsulates the behavior necessary for returning standard JSON-RPC error responses. This function is called automatically during error handling scenarios, thus fulfilling the requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpnby_ecrz.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpnby_ecrz.py"
       ],
       "code_snippets": [
         "def _create_error_response(self, error_message: str, status_code: HTTPStatus, error_code: int = INVALID_REQUEST)"
@@ -593,8 +593,8 @@
       "confidence": 0.95,
       "explanation": "The SDK implements automatic validation for prompt arguments before processing, encapsulating necessary logic effectively.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\func_metadata.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\base.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\func_metadata.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\base.py"
       ],
       "code_snippets": [
         "async def call_fn_with_arg_validation(self, ... )"
@@ -623,8 +623,8 @@
       "confidence": 1.0,
       "explanation": "The SDK has implemented the capability 'listChanged' indicating that it can notify clients about changes internally, thereby encapsulating the required behavior for compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\capabilities.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\notifications.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\capabilities.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\notifications.py"
       ],
       "code_snippets": [
         "class ResourcesCapability(BaseModel):\n    listChanged: bool | None = None\n    \"\"\"\n    Whether this server supports notifications for changes to the resource list.\n    \"\"\"",
@@ -643,7 +643,7 @@
       "confidence": 1.0,
       "explanation": "The SDK implementation validates request headers to prevent injection attacks or unauthorized access, encapsulating the behavior as required by the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py"
       ],
       "code_snippets": [
         "async def validate_request(self, request: Request, is_post: bool = False) -> Response | None:"
@@ -657,13 +657,13 @@
       "evidence": [
         "Phase 1-IR: Found resource handling methods in resource_manager.py",
         "Phase 1-IR: Confirmed calls indicating notification behavior in calls_python.jsonl.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
       ],
       "confidence": 1.0,
       "explanation": "The SDK defines the 'resources' capability and automatically handles notifications related to resource changes, fulfilling the requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
       ],
       "code_snippets": [
         "await ctx.session.send_resource_updated(AnyUrl(resource_uri))",
@@ -682,8 +682,8 @@
       "confidence": 0.8,
       "explanation": "The SDK defines the `listChanged` capability, but does not implement the internal notification sending logic required to automatically handle notifications when the resource or tool list changes.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\exceptions.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\exceptions.py"
       ],
       "code_snippets": [
         "class ToolsCapability(BaseModel): listChanged: bool | None = None"
@@ -702,7 +702,7 @@
       "confidence": 1.0,
       "explanation": "The SDK provides an implementation of notification sending, encapsulating the functionality so that developers do not have to manage it themselves, which is aligned with the MCP rule requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
       ],
       "code_snippets": [
         "async def send_resource_list_changed(self) -> None:\n    await self.send_notification(types.ServerNotification(types.ResourceListChangedNotification()))"
@@ -722,8 +722,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the behavior required by the MCP rule by encapsulating the resource management functions and automatically sending notifications of resource changes without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\auth_utils.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\auth_utils.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
       ],
       "code_snippets": [
         "def add_resource(self, resource: Resource) -> Resource: # ... self.context.session.send_resource_list_changed()"
@@ -742,7 +742,7 @@
       "confidence": 0.85,
       "explanation": "The SDK provides some capabilities to determine MIME types but lacks automatic handling for XDG MIME types specifically for non-regular files such as directories. This places the responsibility on developers, violating the intent of the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\types.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\types.py"
       ],
       "code_snippets": [
         "def _get_mime_type(self) -> str:",
@@ -785,9 +785,9 @@
       "confidence": 1.0,
       "explanation": "The SDK implements automatic JSON-RPC error handling within its methods, which encapsulates this functionality and relieves application developers from having to manage error responses directly.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\exceptions.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\responses.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\handlers.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\exceptions.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\responses.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\handlers.py"
       ],
       "code_snippets": [
         "class JSONRPCError(BaseModel): ... error: ErrorData",
@@ -808,8 +808,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements encapsulated functions for validating resource URIs, integrating them within the core resource management logic.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\auth_utils.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-auth\\mcp_simple_auth\\token_verifier.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\auth_utils.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-auth\\mcp_simple_auth\\token_verifier.py"
       ],
       "code_snippets": [
         "def resource_url_from_server_url(url: str | HttpUrl | AnyUrl) -> str: ...",
@@ -828,9 +828,9 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates access control through proper middleware that performs authentication checks automatically, relieving developers from implementing their own access control strategies.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\auth_context.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\require_auth.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\auth_context.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\require_auth.py"
       ],
       "code_snippets": [
         "async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None: ...",
@@ -850,7 +850,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically encodes binary data using base64 encoding in its methods without requiring developers to implement it themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\types.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\types.py"
       ],
       "code_snippets": [
         "data = base64.b64encode(f.read()).decode()",
@@ -870,7 +870,7 @@
       "confidence": 1.0,
       "explanation": "The SDK does not automatically check for resource permissions before operations. The ResourceManager class lacks implementation for permission checks, thereby putting the onus on application developers to ensure compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
       ],
       "code_snippets": []
     },
@@ -887,8 +887,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not implement an automatic procedure for involving a human in denying tool invocations, as required by MCP rule 247. While there are mechanisms for token revocation, they do not fulfill the rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\base.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\base.py"
       ],
       "code_snippets": [
         "class RevocationHandler: async def handle(self, request: Request) -> Response: ...",
@@ -907,10 +907,10 @@
       "confidence": 1.0,
       "explanation": "The SDK does not provide automatic UI management for clear visual indicators or confirmation prompts, forcing application developers to handle these aspects themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\metadata_utils.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\metadata_utils.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
       ],
       "code_snippets": []
     },
@@ -926,7 +926,7 @@
       "confidence": 0.75,
       "explanation": "The SDK defines the 'tools' capability but lacks internal logic to automatically send notifications when the tool list changes, shifting the responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py"
       ],
       "code_snippets": [
         "class ToolsCapability(BaseModel):\n    listChanged: bool | None = None  # Indicates server supports notifications"
@@ -944,8 +944,8 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly defines the 'listChanged' capability and automatically implements notification sending logic when the tool list changes, fulfilling the MCP requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tools.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\notifications.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tools.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\notifications.py"
       ],
       "code_snippets": [
         "class ToolsCapability(BaseModel):\n listChanged: bool | None = None\n # Indicates if notifications for tool list changes are supported",
@@ -965,8 +965,8 @@
       "confidence": 0.85,
       "explanation": "The SDK defines tool annotations but lacks implementation to treat them as untrusted unless from trusted servers. Developers are expected to manage this behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\__init__.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\__init__.py"
       ],
       "code_snippets": [
         "class ToolAnnotations(BaseModel): ... clients should never make tool use decisions based on ToolAnnotations received from untrusted servers.",
@@ -985,8 +985,8 @@
       "confidence": 0.95,
       "explanation": "The SDK implements internal notification mechanisms for resource updates, completely encapsulating this behavior within its methods, thus relieving application developers from manual notification handling.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\resources.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\resources.py"
       ],
       "code_snippets": [
         "await ctx.session.send_resource_updated(AnyUrl(resource_uri))",
@@ -1006,8 +1006,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the behaviors required by the MCP rule, automatically handling notifications for resource updates and managing capability definitions effectively.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
       ],
       "code_snippets": [
         "await ctx.session.send_resource_list_changed() // This function is used to notify clients of resource changes."
@@ -1025,7 +1025,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically implements the resources capability by providing a ResourcesCapability class with a listChanged field. Additionally, it includes logic to send notifications when the resource list changes, ensuring developers do not have to implement this themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
       ],
       "code_snippets": [
         "class ResourcesCapability(BaseModel):",
@@ -1046,8 +1046,8 @@
       "confidence": 0.5,
       "explanation": "The SDK defines structured outputs and has various functionalities that could potentially align with the requirement. However, the actual implementation for automatic notification handling does not appear to be explicitly outlined based on the available evidence.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\structured_output.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\structured_output.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py"
       ],
       "code_snippets": [
         "from pydantic import BaseModel\nclass WeatherData(BaseModel):\n    temperature: float\n    humidity: float",
@@ -1084,8 +1084,8 @@
       "confidence": 0.75,
       "explanation": "The SDK implements input validation but lacks mechanisms for rate limiting tool invocations and output sanitization as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\websocket.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\websocket.py"
       ],
       "code_snippets": [
         "async def validate_request(self, request: Request, is_post: bool = False): ...",
@@ -1105,9 +1105,9 @@
       "confidence": 0.7,
       "explanation": "The SDK has implemented timeouts and logging capabilities, but does not encapsulate prompting for user confirmation on sensitive operations or validating tool results before passing to LLM. The absence of these features results in responsibility being placed on developers rather than the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\manager.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\manager.py"
       ],
       "code_snippets": [
         "@mcp.prompt() def greet_user(name: str, style: str = 'friendly') -> str: ...",
@@ -1126,7 +1126,7 @@
       "confidence": 0.8,
       "explanation": "The SDK defines the Completions capability but does not include internal logic to automatically handle completions or send notifications. Therefore, it does not meet the MUST requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\models.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\models.py"
       ],
       "code_snippets": [
         "class CompletionsCapability(BaseModel):\n    \"\"\"Capability for completions operations.\"\"\"\n    model_config = ConfigDict(extra=\"allow\")"
@@ -1145,9 +1145,9 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements standard JSON-RPC error responses automatically within its internal methods, ensuring application developers do not need to handle error responses directly.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\json_response.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\_json_rpc.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\json_rpc.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\json_response.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\_json_rpc.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\json_rpc.py"
       ],
       "code_snippets": [
         "_create_error_response method for unified error responses: ...",
@@ -1166,8 +1166,8 @@
       "confidence": 0.85,
       "explanation": "The SDK does not encapsulate the required behaviors as specified in the MCP rule. While it provides a framework (FastMCP), it lacks the necessary internal logic to automatically handle aspects like sorting suggestions, implementing fuzzy matching, and rate limiting inputs.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\exceptions.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\routes.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\exceptions.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\routes.py"
       ],
       "code_snippets": [
         "class FastMCP: methods and configurations were noted but lacked specific implementations for automatic behaviors."
@@ -1197,8 +1197,8 @@
       "confidence": 0.8,
       "explanation": "The SDK implements automatic validation of completion inputs and manages access control through client authentication, which complies with some requirements. However, it does not implement any form of rate limiting, leading to an overall non-compliance status.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\client_auth.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\client_auth.py"
       ],
       "code_snippets": [
         "async def validate_request(self, request: Request, is_post: bool = False):\n\t# ... Validation logic here ...",
@@ -1218,8 +1218,8 @@
       "confidence": 1.0,
       "explanation": "The SDK properly declares the logging capability and automatically handles logging behaviors without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\server.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\server.py"
       ],
       "code_snippets": [
         "def get_logger(name: str) -> logging.Logger: ...",
@@ -1239,8 +1239,8 @@
       "confidence": 0.8,
       "explanation": "The SDK can send requests to set logging levels automatically, fulfilling part of the rule. However, it lacks an automatic notification mechanism to inform clients of level changes, which means the responsibility still rests with developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py"
       ],
       "code_snippets": [
         "async def set_logging_level(self, level: types.LoggingLevel) -> types.EmptyResult: ..."
@@ -1259,8 +1259,8 @@
       "confidence": 0.95,
       "explanation": "The SDK implements the expected behavior by automatically handling JSON-RPC error responses, including defining necessary error codes. Functions are provided that encapsulate this behavior to ensure developers are not burdened with implementing these details.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\json_response.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\error_handling.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\json_response.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\error_handling.py"
       ],
       "code_snippets": [
         "_create_error_response method returning JSONRPCError",
@@ -1279,8 +1279,8 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the required logging behaviors as outlined in the MCP rule, managing logging configurations and sending log messages internally without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-streamablehttp\\mcp_simple_streamablehttp\\server.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-streamablehttp\\mcp_simple_streamablehttp\\server.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py"
       ],
       "code_snippets": [
         "logger.info('Created new transport with session ID: {new_session_id}')",
@@ -1301,7 +1301,7 @@
       "confidence": 1.0,
       "explanation": "The SDK conforms to the rule by encapsulating logging functionalities, allowing developers to perform logging via the `ctx` context without manual message sending implementations.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py"
       ],
       "code_snippets": [
         "await ctx.session.send_log_message(level=level, data=data, logger=logger_name)"
@@ -1320,8 +1320,8 @@
       "confidence": 0.8,
       "explanation": "The SDK provides logging capabilities but does not auto-enforce checks against sensitive information, violating protocol compliance requirements. Developers are left to manage what is logged, which contradicts the rule's intent.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
       ],
       "code_snippets": [
         "await self.request_context.session.send_log_message(level=level, data=message, logger=logger_name, related_request_id=self.request_id)"
@@ -1339,9 +1339,9 @@
       "confidence": 0.75,
       "explanation": "The SDK does not encapsulate the required behaviors of rate limiting messages, comprehensive data validation for all fields, controlled log access, and sensitive content monitoring as prescribed by the MCP rule. Instead, it appears that many of these responsibilities may fall onto the application developers, which is contrary to the intent of the SDK framework.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\base.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\__init__.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\oauth_server.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\base.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\__init__.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\oauth_server.py"
       ],
       "code_snippets": [
         "await ctx.session.send_log_message(level, data, logger)",
@@ -1355,12 +1355,12 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: Found relevant functions for pagination in `calls_python.jsonl`.",
-        "Phase 2-Source Code: Verified implementation in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\pagination_example.py`."
+        "Phase 2-Source Code: Verified implementation in `C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\pagination_example.py`."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically manages pagination and cursor extraction as required by the MCP rule. The implementation specifies that the page size is defined by the server and does not allow clients to set it themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\pagination_example.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\pagination_example.py"
       ],
       "code_snippets": [
         "async def list_resources_paginated(request: types.ListResourcesRequest): page_size = 10  # Set by the server"
@@ -1378,8 +1378,8 @@
       "confidence": 0.9,
       "explanation": "The SDK defines capabilities indicating potential notifications for changes (like 'listChanged'), but does not implement internal logic to automatically handle notifications for cursor-related actions. This shifts responsibilities to developers, which is non-compliant with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\metadata.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\register.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\metadata.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\register.py"
       ],
       "code_snippets": [
         "'listChanged': bool | None = None,",
@@ -1394,13 +1394,13 @@
       "evidence": [
         "Phase 1-IR: Found function PaginatedResult in defs, defined in tmpbmxxwp29.py.",
         "Phase 1-IR: Confirmed pagination logic in calls, specifically list_resources_paginated in pagination_example.py.",
-        "Phase 2-Source Code: Verified implementation of automated pagination in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\pagination_example.py."
+        "Phase 2-Source Code: Verified implementation of automated pagination in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\pagination_example.py."
       ],
       "confidence": 1.0,
       "explanation": "The SDK has defined pagination capabilities and implements automatic handling of the nextCursor behavior, ensuring that developers do not need to manage this process themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\pagination_example.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\pagination_example.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py"
       ],
       "code_snippets": [
         "@server.list_resources()\nasync def list_resources_paginated(request: types.ListResourcesRequest) -> types.ListResourcesResult:\n    page_size = 10\n    cursor = request.params.cursor if request.params is not None else None\n    start = 0 if cursor is None else int(cursor)\n    end = start + page_size\n    next_cursor = str(end) if end < len(ITEMS) else None"
@@ -1418,7 +1418,7 @@
       "confidence": 0.9,
       "explanation": "The SDK provides a definition for cursors as opaque tokens but lacks any internal logic to automatically handle these tokens. The responsibility is placed on the developers, which is contrary to the requirement that SDKs must manage such behaviors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py"
       ],
       "code_snippets": [
         "Cursor = str",
@@ -1437,11 +1437,11 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles invalid cursor errors by sending appropriate JSON-RPC error responses encoded with error code -32602.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\_httpx_utils.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\websocket.py"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\_httpx_utils.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\websocket.py"
       ],
       "code_snippets": [
         "error_response = JSONRPCError(jsonrpc='2.0', id=message.message.root.id, error=ErrorData(code=INVALID_PARAMS, message='Invalid request parameters', data=''))",
@@ -1450,3 +1450,4 @@
     }
   ]
 }
+

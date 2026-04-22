@@ -20,9 +20,9 @@
       "confidence": 1.0,
       "explanation": "The SDK manages the elicitation process automatically, sending requests without requiring developer input. This encapsulation ensures compliance with the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmpa5xzpvjc.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\McpJsonMapperSupplier.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webmvc\\src\\main\\java\\io\\modelcontextprotocol\\spring\\WebFluxSseServerTransportProvider.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmpa5xzpvjc.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\McpJsonMapperSupplier.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webmvc\\src\\main\\java\\io\\modelcontextprotocol\\spring\\WebFluxSseServerTransportProvider.java"
       ],
       "code_snippets": [
         "public record ElicitRequest(String message, Map<String, Object> requestedSchema) {...} from tmpa5xzpvjc.java",
@@ -42,8 +42,8 @@
       "confidence": 0.7,
       "explanation": "The SDK defines the necessary structures and has methods that seem to process user approval internally. However, some functions' completions were not fully examined to confirm automatic handling of notifications unequivocally.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\McpJsonMapperSupplier.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\ServerParameters.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\McpJsonMapperSupplier.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\ServerParameters.java"
       ],
       "code_snippets": [
         "ElicitRequest action handling methods in class",
@@ -56,15 +56,15 @@
       "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found JsonSchemaValidator interface with validate method defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\JsonSchemaValidator.java",
-        "Phase 1-IR: Confirmed calls to validate methods in DefaultJsonSchemaValidator class showing internal handling in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json-jackson2\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\jackson\\DefaultJsonSchemaValidator.java",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json-jackson2\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\jackson\\DefaultJsonSchemaValidator.java"
+        "Phase 1-IR: Found JsonSchemaValidator interface with validate method defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\JsonSchemaValidator.java",
+        "Phase 1-IR: Confirmed calls to validate methods in DefaultJsonSchemaValidator class showing internal handling in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json-jackson2\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\jackson\\DefaultJsonSchemaValidator.java",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json-jackson2\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\jackson\\DefaultJsonSchemaValidator.java"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically implements the required behavior for validating elicitation content against the provided schema through the DefaultJsonSchemaValidator class.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json-jackson2\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\jackson\\DefaultJsonSchemaValidator.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\JsonSchemaValidator.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json-jackson2\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\jackson\\DefaultJsonSchemaValidator.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\JsonSchemaValidator.java"
       ],
       "code_snippets": [
         "public ValidationResponse validate(Map<String, Object> schema, Object structuredContent) { /* validation logic here */ }"
@@ -82,8 +82,8 @@
       "confidence": 0.7,
       "explanation": "The SDK provides definitions for server implementation details but lacks internal logic to automatically notify clients of server requests, thus shifting responsibilities back to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerFeatures.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\McpAsyncClient.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerFeatures.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\McpAsyncClient.java"
       ],
       "code_snippets": [
         "serverInfo = new McpSchema.Implementation(\"test-server\", \"1.0.0\")",
@@ -122,8 +122,8 @@
       "confidence": 0.7,
       "explanation": "The SDK does not define or enforce any specific rate limiting behavior explicitly as required. Rather, it offers a keep-alive mechanism, which does not constitute full rate limiting capabilities. There is no direct way for developers to configure or enforce rate limits automatically as per the rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebFluxStreamableServerTransportProvider.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebFluxStreamableServerTransportProvider.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java"
       ],
       "code_snippets": [
         "this.currentSubscription = Flux.interval(this.initialDelay, this.interval, this.scheduler) ..."
@@ -163,8 +163,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines the 'roots' capability and includes automatic notification sending logic during root list updates.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\ClientCapabilities.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\mcpClient.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\ClientCapabilities.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\mcpClient.java"
       ],
       "code_snippets": [
         "public class ClientCapabilities { ... public record RootCapabilities(@JsonProperty(\"listChanged\") Boolean listChanged) {} }",
@@ -184,7 +184,7 @@
       "confidence": 0.95,
       "explanation": "The SDK automatically handles notifications based on the `listChanged` state when roots change, encapsulating the required behavior within its methods.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\McpClientFeatures.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\McpClientFeatures.java"
       ],
       "code_snippets": [
         "public Mono<Void> addRoot(Root root) { ... if (this.clientCapabilities.roots().listChanged()) { return this.rootsListChangedNotification(); } ... }",
@@ -224,8 +224,8 @@
       "confidence": 0.95,
       "explanation": "The SDK correctly implements automatic error handling for JSON-RPC requests, returning standard error codes as outlined in the protocol without necessitating explicit error handling from developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpSchema.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpSchema.java"
       ],
       "code_snippets": [
         "class JSONRPCResponse { ... } return new McpSchema.JSONRPCResponse(McpSchema.JSONRPC_VERSION, request.id(), null, new JSONRPCError(...));"
@@ -324,7 +324,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not encapsulate the behavior required by the rule. It provides the ability for sampling request but shifts the responsibility for handling approvals and denials to the developers instead of implementing it internally.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\McpClientFeatures.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\McpClientFeatures.java"
       ],
       "code_snippets": [
         "The client should also inform the user before beginning sampling, to allow them to inspect the request (human in the loop)",
@@ -400,14 +400,14 @@
       "rule_text": "Clients **SHOULD** return errors for common failure cases:",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function McpError in defs_java.jsonl, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java.",
-        "Phase 2-Source Code: Verified implementation of error handling within C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java."
+        "Phase 1-IR: Found function McpError in defs_java.jsonl, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java.",
+        "Phase 2-Source Code: Verified implementation of error handling within C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically implements error handling by defining McpError for encapsulating error details and utilizes methods like sendError and responseError to manage errors without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\some_other_file.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\some_other_file.java"
       ],
       "code_snippets": [
         "McpError class definition including RESOURCE_NOT_FOUND.",
@@ -442,8 +442,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements automatic validation of message content through the JsonSchemaValidator interface, encapsulating the validation logic within the DefaultJsonSchemaValidator class.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\JsonSchemaValidator.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json-jackson2\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\jackson\\DefaultJsonSchemaValidator.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\JsonSchemaValidator.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json-jackson2\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\jackson\\DefaultJsonSchemaValidator.java"
       ],
       "code_snippets": [
         "ValidationResponse validate(Map<String, Object> schema, Object structuredContent);",
@@ -488,12 +488,12 @@
       "evidence": [
         "Phase 1-IR: No related definitions found in defs_java.jsonl.",
         "Phase 1-IR: No related calls found in calls_java.jsonl.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpAsyncServer.java, including automatic handling of sensitive requests."
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpAsyncServer.java, including automatic handling of sensitive requests."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles sensitive data through its internal request handling and validation methods, eliminating the need for developer intervention to manage sensitive data interactions.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpAsyncServer.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpAsyncServer.java"
       ],
       "code_snippets": [
         "McpSchema.ElicitRequest.builder().message(\"Please provide sensitive information\")"
@@ -552,7 +552,7 @@
       "confidence": 1.0,
       "explanation": "The SDK includes both the ability definition for 'listChanged' and an internal method 'notifyPromptsListChanged' that sends notifications automatically when the list of prompts changes.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\tmp0oxehf7c.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\tmp0oxehf7c.java"
       ],
       "code_snippets": [
         "if (this.serverCapabilities.prompts().listChanged()) { return this.notifyPromptsListChanged(); }"
@@ -625,8 +625,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not automatically validate prompt arguments before processing them, shifting the responsibility to developers. There is no evidence of an internal validation mechanism.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerFeatures.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessServerFeatures.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerFeatures.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessServerFeatures.java"
       ],
       "code_snippets": [
         "public Mono<Void> addPrompt(McpServerFeatures.AsyncPromptSpecification promptSpecification) { ... }",
@@ -641,12 +641,12 @@
       "evidence": [
         "Phase 1-IR: Found function listPrompts() in defs_java.jsonl, which supports pagination.",
         "Phase 1-IR: Confirmed call relationships in calls_java.jsonl showing how listPrompts() is called for pagination handling.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\McpClientSession.java"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\McpClientSession.java"
       ],
       "confidence": 1.0,
       "explanation": "The SDK handles pagination internally through the listPrompts() implementation, which retrieves all prompts and manages pagination automatically using a cursor system.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\McpClientSession.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\McpClientSession.java"
       ],
       "code_snippets": [
         "public Mono<ListPromptsResult> listPrompts() { return this.listPrompts(McpSchema.FIRST_PAGE).expand(result -> (result.nextCursor() != null) ? this.listPrompts(result.nextCursor()) : Mono.empty()).reduce(new ListPromptsResult(new ArrayList<>(), null), (allPromptsResult, result) -> { allPromptsResult.prompts().addAll(result.prompts()); return allPromptsResult; }); }"
@@ -665,7 +665,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles notifications for prompt changes without the need for developers to call these methods directly, satisfying the requirement of the MCP rule regarding capability negotiation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessServerFeatures.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessServerFeatures.java"
       ],
       "code_snippets": [
         "if (this.serverCapabilities.prompts().listChanged()) { return notifyPromptsListChanged(); }"
@@ -684,8 +684,8 @@
       "confidence": 1.0,
       "explanation": "The SDK appropriately encapsulates input and output validation logic within its implementation by providing a validation method that is automatically utilized in processing requests, thus ensuring compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json-jackson2\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\jackson\\DefaultJsonSchemaValidator.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\JsonSchemaValidator.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json-jackson2\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\jackson\\DefaultJsonSchemaValidator.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\JsonSchemaValidator.java"
       ],
       "code_snippets": [
         "public ValidationResponse validate(Map<String, Object> schema, Object structuredContent) {...}",
@@ -746,8 +746,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not automatically handle the behavior required by the rule, as there is no implementation found for automatic notifications regarding resource loading without explicit a developer's action.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\McpJsonInternal.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\McpSchema.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\McpJsonInternal.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\McpSchema.java"
       ],
       "code_snippets": []
     },
@@ -795,8 +795,8 @@
       "confidence": 0.75,
       "explanation": "The SDK provides URI validation capabilities through isUriTemplate and validateUri functions, but it does not automatically handle actions based on the validation result (e.g., notifying developers). This shifts responsibility to the developers, thus failing to meet the 'MUST' requirement of the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\McpUriTemplateManager.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\DefaultMcpUriTemplateManager.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\McpUriTemplateManager.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\DefaultMcpUriTemplateManager.java"
       ],
       "code_snippets": [
         "public boolean isUriTemplate(String uri) { ... }",
@@ -837,10 +837,10 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement the required automatic validation of resource URIs, shifting this responsibility to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\JsonSchemaValidator.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json-jackson2\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\jackson\\DefaultJsonSchemaValidator.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\McpUriTemplateManager.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\McpUriTemplateManagerFactory.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\JsonSchemaValidator.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json-jackson2\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\jackson\\DefaultJsonSchemaValidator.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\McpUriTemplateManager.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\McpUriTemplateManagerFactory.java"
       ],
       "code_snippets": []
     },
@@ -852,12 +852,12 @@
       "evidence": [
         "Phase 1-IR: Found function addResource in defs_java.jsonl, defined in McpServerFeatures.java",
         "Phase 1-IR: Confirmed that addResource is called with permission checks in the implementation.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerFeatures.java"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerFeatures.java"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically implements access controls for sensitive resources by defining necessary methods and handling permissions checks internally.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerFeatures.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerFeatures.java"
       ],
       "code_snippets": [
         "public void addResource(Resource resource) { checkPermissions(resource); this.resources.add(resource); }"
@@ -1091,9 +1091,9 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the behavior of validating structured results against a schema through automatic invocation of the validation logic within tool handlers, aligning with the 'SHOULD' compliance requirement of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\JsonSchemaValidator.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\jackson\\DefaultJsonSchemaValidator.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpSchema.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\JsonSchemaValidator.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\jackson\\DefaultJsonSchemaValidator.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpSchema.java"
       ],
       "code_snippets": [
         "public ValidationResponse validate(Map<String, Object> schema, Object structuredContent);",
@@ -1112,8 +1112,8 @@
       "confidence": 0.95,
       "explanation": "The SDK framework does not provide any automatic mechanisms for validating inputs, enforcing access controls, rate limiting, or sanitizing outputs, thus shifting the responsibility to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessAsyncServer.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerFeatures.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessAsyncServer.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerFeatures.java"
       ],
       "code_snippets": []
     },
@@ -1131,8 +1131,8 @@
       "confidence": 0.75,
       "explanation": "The SDK does not provide automated handling for user confirmation, input display, or logging operations as required by the MCP rule. It does implement request timeouts, which is compliant.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpClientSession.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpStreamableServerSessionFactory.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpClientSession.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpStreamableServerSessionFactory.java"
       ],
       "code_snippets": [
         "// Timeout setting in SDK\nprivate Duration requestTimeout = Duration.ofSeconds(20);\n",
@@ -1173,11 +1173,11 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the behavior required by the MCP rule for handling JSON-RPC errors, providing internal mechanisms to manage errors without requiring developers to intervene.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerTransportProvider.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpSchema.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpClientSession.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpAsyncServer.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerTransportProvider.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpSchema.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpClientSession.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpAsyncServer.java"
       ],
       "code_snippets": [
         "return new McpSchema.JSONRPCResponse(McpSchema.JSONRPC_VERSION, request.id(), null, new McpSchema.JSONRPCResponse.JSONRPCError(McpSchema.ErrorCodes.METHOD_NOT_FOUND, error.message(), error.data()));",
@@ -1221,9 +1221,9 @@
       "confidence": 0.85,
       "explanation": "The SDK does not implement the required behaviors of debouncing, caching, and handling responses internally. While it does send notifications, the required automatic management as per the MCP rule is not present.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessNotificationHandler.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessNotificationHandler.java"
       ],
       "code_snippets": [
         "public Mono<Void> handle(McpAsyncServerExchange exchange, Object params);",
@@ -1243,7 +1243,7 @@
       "confidence": 0.75,
       "explanation": "The SDK implements some validation in methods invoked but does not fully encapsulate behaviors required by the MCP rule, specifically around input validation and rate limiting. Developers may have to implement critical aspects themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerFeatures.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerFeatures.java"
       ],
       "code_snippets": [
         "assertThat(result).isNotNull();",
@@ -1283,8 +1283,8 @@
       "confidence": 0.9,
       "explanation": "The SDK provides the ability to set a minimum log level and automatically checks this level when determining which logging messages to send as notifications.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpLoggableSession.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpLoggableSession.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java"
       ],
       "code_snippets": [
         "public void setMinLoggingLevel(McpSchema.LoggingLevel minLoggingLevel)",
@@ -1384,9 +1384,9 @@
       "confidence": 0.6,
       "explanation": "While data validation and control of logging levels are implemented, the SDK lacks mechanisms for rate limiting messages and monitoring sensitive content automatically, thereby not fully complying with the rule. Further specifications or enhancements might resolve automatic handling.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json-jackson2\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\jackson\\DefaultJsonSchemaValidator.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpTransportSession.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpClient.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json-jackson2\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\jackson\\DefaultJsonSchemaValidator.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpTransportSession.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpClient.java"
       ],
       "code_snippets": [
         "ValidationResponse validate(Map<String, Object> schema, Object structuredContent);",
@@ -1427,8 +1427,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements and automates the behavior required by the MCP rule for handling notifications and cursor stability.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpSession.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\test\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpSession.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\test\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java"
       ],
       "code_snippets": [
         "sendNotification method definition and its invocations."
@@ -1442,13 +1442,13 @@
       "evidence": [
         "Phase 1-IR: Found function listResources in defs_java.jsonl, defined in McpClient.java.",
         "Phase 1-IR: Confirmed calls to listResources in calls_java.jsonl.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\McpClient.java."
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\McpClient.java."
       ],
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the required pagination behavior and manages notifications internally, adhering to the protocol without requiring developer intervention. Both required elements are implemented adequately.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\McpClient.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessNotificationHandler.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\McpClient.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessNotificationHandler.java"
       ],
       "code_snippets": [
         "public Mono<McpSchema.ListResourcesResult> listResources() {...}",
@@ -1468,9 +1468,9 @@
       "confidence": 0.95,
       "explanation": "The SDK appropriately manages cursors as opaque tokens without exposing their format or allowing modifications.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp\\PaginatedRequest.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp\\PaginatedResult.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp\\tests\\CursorHandlingTest.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp\\PaginatedRequest.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp\\PaginatedResult.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp\\tests\\CursorHandlingTest.java"
       ],
       "code_snippets": [
         "public record PaginatedResult(@JsonProperty('nextCursor') String nextCursor) {...}",
@@ -1485,13 +1485,13 @@
       "evidence": [
         "Phase 1-IR: Found function definition for 'McpError.builder' in McpError.java, allowing for error creation with specific codes.",
         "Phase 1-IR: Found function calls that handle invalid parameters, utilizing McpError for code -32602 in various locations.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java"
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles errors for invalid parameters (including cursors), returning code -32602 in accordance with the MCP rule, without requiring developers to manage error handling themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\test\\java\\io\\modelcontextprotocol\\spec\\McpErrorTest.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\test\\java\\io\\modelcontextprotocol\\spec\\McpErrorTest.java"
       ],
       "code_snippets": [
         "return Mono.error(McpError.builder(ErrorCodes.INVALID_PARAMS).message(\"Argument not found: ...\").build());",
@@ -1500,3 +1500,4 @@
     }
   ]
 }
+

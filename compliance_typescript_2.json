@@ -20,8 +20,8 @@
       "confidence": 1.0,
       "explanation": "The SDK provides an automatic session ID generation mechanism using secure random UUIDs and manages session lifecycle events without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\server.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\server.ts"
       ],
       "code_snippets": [
         "sessionIdGenerator: () => randomUUID(),",
@@ -41,7 +41,7 @@
       "confidence": 0.95,
       "explanation": "The SDK framework automatically handles the generation of secure random session IDs using randomUUID, encapsulating the necessary functionality without relying on developers to implement this behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
       ],
       "code_snippets": [
         "// Session ID management with secure random generation\nconst transport = new StreamableHTTPServerTransport({\n  sessionIdGenerator: () => randomUUID(),\n  onsessioninitialized: (sessionId) => {\n    // Logic for when a session is initialized\n  }\n});"
@@ -60,9 +60,9 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates session ID management, automatically binds session IDs to user-specific information, and includes internal logic that handles sessions without requiring manual intervention from developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\types.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\types.ts"
       ],
       "code_snippets": [
         "sessionIdGenerator: (() => string) | undefined; // Allows session ID generation",
@@ -82,9 +82,9 @@
       "confidence": 0.85,
       "explanation": "The SDK does not enforce UTF-8 encoding when sending JSON-RPC messages. While it provides definitions for JSON-RPC messages, it lacks an explicit mechanism that guarantees messages are encoded properly.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
       ],
       "code_snippets": [
         "websocket.ts, send method: this._socket.send(JSON.stringify(message));",
@@ -103,7 +103,7 @@
       "confidence": 1.0,
       "explanation": "The SDK framework implements stdio support through the StdioServerTransport class, automating the message handling required by the MCP rule, thus removing the burden from application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
       ],
       "code_snippets": [
         "class StdioServerTransport: ... start() { ... } send(message) { ... }"
@@ -122,8 +122,8 @@
       "confidence": 1.0,
       "explanation": "The SDK properly handles the prohibition of embedded newlines by implementing checks in the message reading and validation functions, which prevents any such messages from being processed.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\stdio.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\stdio.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
       ],
       "code_snippets": [
         "readMessage function checks for newline indices and returns messages correctly.",
@@ -142,7 +142,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automate UTF-8 logging to stderr, leaving this responsibility to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
       ],
       "code_snippets": [
         "get stderr(): Stream | null { ... } // Indicates the ability to handle stderr but without implementation."
@@ -160,7 +160,7 @@
       "confidence": 1.0,
       "explanation": "The SDK successfully encapsulates the ability for clients to capture logging through automatically managed behaviors without burdening developers with the responsibility of sending logging notifications.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
       ],
       "code_snippets": [
         "async sendLoggingMessage(params: LoggingMessageNotification[\"params\"], sessionId?: string) { if (this._capabilities.logging) { if (!this.isMessageIgnored(params.level, sessionId)) { return this.notification({method: \"notifications/message\", params}); } } }"
@@ -178,7 +178,7 @@
       "confidence": 0.9,
       "explanation": "The SDK automatically processes outgoing messages through the send method that requires valid JSON-RPC formatted messages, fulfilling the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
       ],
       "code_snippets": [
         "async send(message: JSONRPCMessage): Promise<void> { const json = serializeMessage(message); this._stdout.write(json); }"
@@ -196,7 +196,7 @@
       "confidence": 0.7,
       "explanation": "The SDK automatically manages sending messages to stdout, but there is a lack of validation to ensure that only valid MCP messages are written to stdin, which does not align with the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
       ],
       "code_snippets": [
         "send(message: JSONRPCMessage): Promise<void> {\n  return new Promise((resolve) => {\n    const json = serializeMessage(message);\n    if (this._stdout.write(json)) {\n      resolve();\n    } else {\n      this._stdout.once(\"drain\", resolve);\n    }\n  });\n}"
@@ -214,8 +214,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically provides a single endpoint for both POST and GET requests, managing sessions and errors internally without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
       ],
       "code_snippets": [
         "app.post('/mcp', async (req, res) => { ... });",
@@ -235,7 +235,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically validates the Origin header on incoming connections through the validateRequestHeaders function, which checks against allowed origins and provides DNS rebinding protection, ensuring compliance with the specified rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
       ],
       "code_snippets": [
         "private validateRequestHeaders(req: IncomingMessage): string | undefined {",
@@ -257,9 +257,9 @@
       "confidence": 1.0,
       "explanation": "The SDK encodes the behavior required by the rule. It can bind to localhost (127.0.0.1) and include DNS rebinding protection through its transport implementation. The automatic handling of server transport configurations encapsulates these behaviors as required by the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\cli.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\cli.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts"
       ],
       "code_snippets": [
         "const transport = new StreamableHTTPServerTransport({ enableDnsRebindingProtection: true, allowedHosts: ['127.0.0.1'] });",
@@ -280,10 +280,10 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles authentication for all connections through the use of bearer tokens and middleware, complying with the specified MCP rules.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\clientAuth.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\clientAuth.ts"
       ],
       "code_snippets": [
         "export function requireBearerAuth...",
@@ -305,9 +305,9 @@
       "confidence": 0.9,
       "explanation": "The StreamableHTTPClientTransport class encapsulates the behavior required by the MCP rule, automatically sending JSON-RPC messages as HTTP POST requests. Other transport methods do not violate the rule as they serve different purposes.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\http.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\inMemory.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\http.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\inMemory.ts"
       ],
       "code_snippets": [
         "async send(message: JSONRPCMessage): Promise<void> { ... } // in StreamableHTTPClientTransport",
@@ -341,15 +341,15 @@
       "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found handlePostRequest function in source file that checks for 'Accept' header appropriately (C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\handlePostRequest.ts:45).",
+        "Phase 1-IR: Found handlePostRequest function in source file that checks for 'Accept' header appropriately (C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\handlePostRequest.ts:45).",
         "Phase 2-Source Code: Verified implementation checks in the handlePostRequest function that validates 'Accept' header requirements.",
         "Phase 2-Source Code: Confirmed automatic header management in the send method where Accept header is included in requests."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically includes the required Accept header with the necessary content types in both request handling and when making requests.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\handlePostRequest.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\handlePostRequest.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
       ],
       "code_snippets": [
         "function handlePostRequest(req, res) {... if (!acceptHeader?.includes('application/json') || !acceptHeader.includes('text/event-stream')) {...}}",
@@ -369,7 +369,7 @@
       "confidence": 0.95,
       "explanation": "The SDK automatically processes the body of POST requests to handle JSON-RPC messages appropriately. It validates these messages and responds with the correct status codes.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\server.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\server.ts"
       ],
       "code_snippets": [
         "const messages = Array.isArray(rawMessage) ? rawMessage.map(msg => JSONRPCMessageSchema.parse(msg)) : [JSONRPCMessageSchema.parse(rawMessage)];",
@@ -388,7 +388,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the requirement to return HTTP status code 202 Accepted with no body for valid inputs in the handlePostRequest method.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmpssyxdft9.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmpssyxdft9.ts"
       ],
       "code_snippets": [
         "res.writeHead(202).end();"
@@ -406,7 +406,7 @@
       "confidence": 1.0,
       "explanation": "The SDK framework automatically handles returning HTTP error status codes as defined by the rule. It encapsulates error management within the function responsible for POST requests, ensuring that developers don’t have to implement this themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\tmpfeh56q6w.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\tmpfeh56q6w.md"
       ],
       "code_snippets": [
         "res.status(400).json({ jsonrpc: '2.0', error: { code: -32000, message: 'Bad Request: No valid session ID provided' }, id: null });"
@@ -424,8 +424,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles JSON-RPC error responses, allowing for responses without an `id` as compliant with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\transport.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\transport.ts"
       ],
       "code_snippets": [
         "res.writeHead(409).end(JSON.stringify({ jsonrpc: '2.0', error: { code: -32000, message: 'Conflict: Only one SSE stream is allowed per session' }, id: null }));",
@@ -445,8 +445,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the requirements for JSON-RPC requests and SSE streams, including appropriate header management and session handling, fulfilling the MCP protocol specifications.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
       ],
       "code_snippets": [
         "res.writeHead(200, headers).flushHeaders(); // Automatic header response management",
@@ -466,8 +466,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements required notification and request handling behaviors in compliance with MCP rules, encapsulating the functionality necessary for developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\somefile.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\otherfile.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\somefile.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\otherfile.ts"
       ],
       "code_snippets": [
         "async notification(notification: SendNotificationT, options?: NotificationOptions): Promise<void> { /* logic to send notification */ }",
@@ -486,8 +486,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles sending JSON-RPC responses for requests made in the POST body through its SSE stream implementation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\protocol.ts"
       ],
       "code_snippets": [
         "this.writeSSEEvent(standaloneSse, message, eventId); // Sending message through SSE stream",
@@ -507,8 +507,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles sending JSON-RPC notifications without requiring application developers to implement this functionality themselves. Both necessary definitions and internal logic for sending notifications are present.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts"
       ],
       "code_snippets": [
         "async sendNotification(notification: SendNotificationT, options?: NotificationOptions): Promise<void> { /* implementation */ }",
@@ -523,13 +523,13 @@
       "evidence": [
         "Phase 1-IR: Found function sendNotification in defs_typescript.jsonl.",
         "Phase 1-IR: Confirmed sendNotification is called within the context of processing requests.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\...\\transport.ts, where notifications are sent automatically."
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\...\\transport.ts, where notifications are sent automatically."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles sending notifications that relate to the originating client request, encapsulating the required behavior without burdening application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\...\\transport.ts",
-        "C:\\Users\\95250\\...\\inMemory.ts"
+        "C:\\Users\\<ANON_ID>\\...\\transport.ts",
+        "C:\\Users\\<ANON_ID>\\...\\inMemory.ts"
       ],
       "code_snippets": [
         "sendNotification(notification, { relatedRequestId: request.id })"
@@ -548,8 +548,8 @@
       "confidence": 0.9,
       "explanation": "The SDK framework properly manages the lifecycle of the SSE stream, ensuring it does not close before all JSON-RPC responses are sent.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
       ],
       "code_snippets": [
         "// The server SHOULD NOT close the SSE stream before sending all JSON-RPC responses\n// This will be handled by the send() method when responses are ready"
@@ -567,7 +567,7 @@
       "confidence": 0.9,
       "explanation": "The SDK has implemented the functionality to manage the SSE stream closing behavior appropriately as specified by the MCP rule. The internal logic handles the close operation automatically.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
       ],
       "code_snippets": [
         "async close(): Promise<void> { this._streamMapping.forEach((response) => { response.end(); }); }"
@@ -585,8 +585,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles disconnections through built-in reconnection logic and error handling, thus complying with the MCP rule which states disconnection MAY occur at any time.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
       ],
       "code_snippets": [
         "The StreamableHTTPClientTransport handles reconnections automatically with maximum retries and backoff delays.",
@@ -606,8 +606,8 @@
       "confidence": 0.85,
       "explanation": "The SDK does not automatically handle interpretation upon disconnection as prescribed in the rule; it requires developers to invoke explicit cancellation notifications, transferring responsibility away from the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts"
       ],
       "code_snippets": [
         "this.setNotificationHandler(CancelledNotificationSchema, (notification) => {...}); // Developer must invoke this upon knowing to cancel",
@@ -627,9 +627,9 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements and encapsulates the behavior to send cancellation notifications without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "this._transport.send({ jsonrpc: '2.0', method: 'notifications/cancelled', params: { requestId: messageId, reason: String(reason) } });"
@@ -641,15 +641,15 @@
       "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function replayEvents in defs_typescript.jsonl, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts.",
-        "Phase 1-IR: Confirmed relevant method _scheduleReconnection in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts."
+        "Phase 1-IR: Found function replayEvents in defs_typescript.jsonl, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts.",
+        "Phase 1-IR: Confirmed relevant method _scheduleReconnection in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the behavior required by the rule by encapsulating event replay and reconnection management. This means developers do not have to implement these behaviors themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
       ],
       "code_snippets": [
         "private async replayEvents(lastEventId: string, res: ServerResponse): Promise<void> { /* handling replay of events */ }",
@@ -670,8 +670,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the HTTP GET requests to the MCP endpoint and manages SSE streams internally, ensuring compliance with the rule's specifications without requiring additional implementation from developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\transport\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\transport\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
       ],
       "code_snippets": [
         "const acceptHeader = req.headers.accept; if (!acceptHeader?.includes('text/event-stream')) { res.writeHead(406)... }",
@@ -690,7 +690,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically checks for an Accept header with 'text/event-stream', handling the check internally without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\tmpssyxdft9.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\tmpssyxdft9.ts"
       ],
       "code_snippets": [
         "if (!acceptHeader?.includes('text/event-stream')) {",
@@ -709,7 +709,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the required HTTP response behavior for SSE streams. Specifically, it verifies the client's Accept header for 'text/event-stream'. If the header is valid, it sets the required Content-Type and responds appropriately. The logic for both setting headers and handling errors confirms compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
       ],
       "code_snippets": [
         "res.writeHead(200, headers).flushHeaders(); // Set Content-Type as text/event-stream",
@@ -729,8 +729,8 @@
       "confidence": 0.9,
       "explanation": "The SDK automatically handles the sending of JSON-RPC requests and notifications over SSE as per the MCP specification without requiring application developers to implement this behavior themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmpssyxdft9.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmpg_02oqoj.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmpssyxdft9.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmpg_02oqoj.ts"
       ],
       "code_snippets": [
         "this.writeSSEEvent(standaloneSse, message, eventId);"
@@ -749,8 +749,8 @@
       "confidence": 0.9,
       "explanation": "The SDK implements automatic handling of notifications for SSE streams, ensuring developers are not responsible for this behavior. The relevant code handles notifications properly in compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
       ],
       "code_snippets": [
         "this.writeSSEEvent(standaloneSse, message, eventId);",
@@ -769,7 +769,7 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the necessary handling to ensure that JSON-RPC responses are not sent on standalone SSE streams unless conditions are met, adhering to the MCP specification.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts"
       ],
       "code_snippets": [
         "async send(message: JSONRPCMessage, options?: { relatedRequestId?: RequestId }): Promise<void> { ... if (requestId === undefined) { throw new Error('Cannot send a response on a standalone SSE stream unless resuming a previous client request'); } }"
@@ -788,7 +788,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles SSE stream closure through encapsulated methods in the StreamableHTTPServerTransport class.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
       ],
       "code_snippets": [
         "async close(): Promise<void> { this._streamMapping.forEach((response) => { response.end(); }); }"
@@ -806,8 +806,8 @@
       "confidence": 1.0,
       "explanation": "The SDK successfully implements the ability for clients to close the SSE stream automatically, encapsulating the necessary functionality as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\streamable-http-server-transport.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\streamable-http-server-transport.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
       ],
       "code_snippets": [
         "res.on(\"close\", () => { this._streamMapping.delete(this._standaloneSseStreamId); });",
@@ -827,8 +827,8 @@
       "confidence": 0.85,
       "explanation": "The SDK does not encapsulate the behaviors necessary to manage multiple SSE streams automatically, leaving the implementation to the developers. Evidence from both IR analysis and source code does not show necessary internal logic for multiple stream management.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\sse.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\sse.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts"
       ],
       "code_snippets": [
         "class SSEServerTransport { ... }",
@@ -847,11 +847,11 @@
       "confidence": 0.9,
       "explanation": "The SDK lacks implementation to ensure that JSON-RPC messages are sent on only one stream, potentially allowing for broadcasting across multiple streams.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
       ],
       "code_snippets": [
         "src/client/websocket.ts (send method)",
@@ -870,10 +870,10 @@
       "confidence": 0.85,
       "explanation": "The SDK has methods for sending messages, but it does not enforce that the same message cannot be broadcast across multiple streams, leading to non-compliance with the MCP rule that states it MUST NOT do so.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\sse.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\sse.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
       ],
       "code_snippets": [
         "SSEClientTransport send method: async send(message: JSONRPCMessage) {...}",
@@ -893,8 +893,8 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the behavior required by MCP rule 144 by handling resumability through methods that automatically manage event replay, ensuring developers do not need to implement this behavior manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\shared\\inMemoryEventStore.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\shared\\inMemoryEventStore.ts"
       ],
       "code_snippets": [
         "private async replayEvents(lastEventId: string, res: ServerResponse)",
@@ -909,12 +909,12 @@
       "evidence": [
         "Phase 1-IR: Found function writeSSEEvent in defs_typescript.jsonl, defined in sse.ts:355",
         "Phase 1-IR: Found function replayEvents in defs_typescript.jsonl, defined in sse.ts:317",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically attaches an 'id' field to SSE events and handles event resumption without requiring application developers to implement these behaviors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts"
       ],
       "code_snippets": [
         "private writeSSEEvent(res: ServerResponse, message: JSONRPCMessage, eventId?: string): boolean { let eventData = `event: message\\n`; if (eventId) { eventData += `id: ${eventId}\\n`; } eventData += `data: ${JSON.stringify(message)}\\n\\n`; return res.write(eventData); }",
@@ -934,7 +934,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages the ID uniqueness and session management behaviors required by the MCP rule. It encapsulates the functionalities needed for resumability and ensures the relevant event IDs are generated and tracked without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
       ],
       "code_snippets": [
         "function storeEvent(streamId: StreamId, message: JSONRPCMessage) { ... }",
@@ -954,7 +954,7 @@
       "confidence": 1.0,
       "explanation": "The SDK implements and encapsulates the behavior required by the MCP rule, handling the Last-Event-ID and automatically replaying messages after reconnections without requiring application developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
       ],
       "code_snippets": [
         "_startOrAuthSse: Sends Last-Event-ID during SSE connection.",
@@ -969,13 +969,13 @@
       "evidence": [
         "Phase 1-IR: Found function replayEvents in streamableHttp.ts, defined in server:317",
         "Phase 1-IR: Confirmed main calls to replayEvents in calls_typescript.jsonl",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
       ],
       "confidence": 0.95,
       "explanation": "The SDK automatically handles the behavior required by the MCP rule, encapsulating the logic for replaying events through the Last-Event-ID and managing reconnections internally.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
       ],
       "code_snippets": [
         "private async replayEvents(lastEventId: string, res: ServerResponse): { ... }",
@@ -996,7 +996,7 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the required behavior by ensuring that messages replayed through the method `replayEvents` are confined to the same stream, adhering to the stated MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\handlers\\eventHandler.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\handlers\\eventHandler.ts"
       ],
       "code_snippets": [
         "private async replayEvents(lastEventId: string, res: ServerResponse): Promise<void> {...}"
@@ -1015,7 +1015,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles session ID assignment during initialization, manages session lifecycle compliance internally, and does not require developers to implement session management features themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
       ],
       "code_snippets": [
         "this.sessionId = this.sessionIdGenerator?.(); // Session ID generation",
@@ -1035,8 +1035,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles session management, including the generation and validation of secure, unique session IDs as specified in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
       ],
       "code_snippets": [
         "sessionIdGenerator: () => randomUUID(),  // Generates a secure session ID",
@@ -1057,7 +1057,7 @@
       "confidence": 0.8,
       "explanation": "The SDK does not encapsulate the logic to validate that session IDs contain only visible ASCII characters. This responsibility may fall to developers rather than being handled automatically by the SDK, which conflicts with the protocol's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
       ],
       "code_snippets": [
         "// Handling session management, but lacks ASCII validation logic"
@@ -1090,14 +1090,14 @@
       "rule_text": "An MCP \"session\" consists of logically related interactions between a client and a\nserver, beginning with the [initialization phase](/specification/2025-06-18/basic/lifecycle). To support\nservers which want to establish stateful sessions:\n\n1. A server using the Streamable HTTP transport **MAY** assign a session ID at\n   initialization time, by including it in an `Mcp-Session-Id` header on the HTTP\n   response containing the `InitializeResult`.\n   - The session ID **SHOULD** be globally unique and cryptographically secure (e.g., a\n     securely generated UUID, a JWT, or a cryptographic hash).\n   - The session ID **MUST** only contain visible ASCII characters (ranging from 0x21 to\n     0x7E).\n2. If an `Mcp-Session-Id` is returned by the server during initialization, clients using\n   the Streamable HTTP transport **MUST** include it in the `Mcp-Session-Id` header on\n   all of their subsequent HTTP requests.\n   - Servers that require a session ID **SHOULD** respond to requests without an\n     `Mcp-Session-Id` header (other than initialization) with HTTP 400 Bad Request.\n3. The server **MAY** terminate the session at any time, after which it **MUST** respond\n   to requests containing that session ID with HTTP 404 Not Found.\n4. When a client receives HTTP 404 in response to a request containing an\n   `Mcp-Session-Id`, it **MUST** start a new session by sending a new `InitializeRequest`\n   without a session ID attached.\n5. Clients that no longer need a particular session (e.g., because the user is leaving\n   the client application) **SHOULD** send an HTTP DELETE to the MCP endpoint with the\n   `Mcp-Session-Id` header, to explicitly terminate the session.\n   - The server **MAY** respond to this request with HTTP 405 Method Not Allowed,\n     indicating that the server does not allow clients to terminate sessions.",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function validateSession in defs_typescript.jsonl, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts.",
+        "Phase 1-IR: Found function validateSession in defs_typescript.jsonl, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts.",
         "Phase 1-IR: Confirmed that validateSession is called during request handling, ensuring responses are sent correctly for missing session IDs.",
-        "Phase 2-Source Code: Verified implementation details in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts."
+        "Phase 2-Source Code: Verified implementation details in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts."
       ],
       "confidence": 1.0,
       "explanation": "The SDK correctly handles the session ID validation and responds with HTTP 400 Bad Request when the `Mcp-Session-Id` header is missing, aligning with the MCP compliance requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
       ],
       "code_snippets": [
         "private validateSession(req: IncomingMessage, res: ServerResponse): boolean { ... res.writeHead(400).end(...) }",
@@ -1117,9 +1117,9 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates session termination and responds appropriately to invalid session requests, fully complying with the MCP rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\express.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\express.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts"
       ],
       "code_snippets": [
         "async terminateSession(): Promise<void> { ... // Allows session termination; checks response }",
@@ -1139,9 +1139,9 @@
       "confidence": 1.0,
       "explanation": "The SDK successfully implements automatic handling for session termination and HTTP 404 responses according to the MCP rule specifications.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts"
       ],
       "code_snippets": [
         "async terminateSession() {...}",
@@ -1160,8 +1160,8 @@
       "confidence": 0.8,
       "explanation": "The SDK handles session validation and responds to invalid sessions but lacks logic to automatically send a new 'InitializeRequest' upon receiving an HTTP 404 for a terminated session. This responsibility is not encapsulated within the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
       ],
       "code_snippets": [
         "this.sessionId = this.sessionIdGenerator?.();",
@@ -1176,12 +1176,12 @@
       "evidence": [
         "Phase 1-IR: Found function 'terminateSession' that handles session termination in tmp9oq0v_iu.ts at line 469.",
         "Phase 1-IR: Verified that 'terminateSession' is invoked correctly in the necessary context().",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\tmp9oq0v_iu.ts."
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\tmp9oq0v_iu.ts."
       ],
       "confidence": 1.0,
       "explanation": "The SDK provides a function 'terminateSession' that automatically sends a DELETE request to the server with the 'Mcp-Session-Id' header. This aligns with the MCP requirement that clients SHOULD issue this request to terminate a session. The implementation handles necessary responses such as HTTP 405.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\tmp9oq0v_iu.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\tmp9oq0v_iu.ts"
       ],
       "code_snippets": [
         "// Sample code for session termination logic",
@@ -1209,7 +1209,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles session termination as required by the MCP rule, correctly processing HTTP DELETE requests and responding to 405 Method Not Allowed without delegating responsibility to the developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
       ],
       "code_snippets": [
         "async terminateSession(): Promise<void> {...}\nif (response.status === 405) { /* Handle method not allowed */ }"
@@ -1228,8 +1228,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines a mechanism to validate and include the required MCP-Protocol-Version HTTP header on all relevant requests, fully automating this behavior per the specified MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\tmpssyxdft9.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\tmp9oq0v_iu.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\tmpssyxdft9.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\tmp9oq0v_iu.ts"
       ],
       "code_snippets": [
         "if (!this.validateProtocolVersion(req, res)) { return; }",
@@ -1248,7 +1248,7 @@
       "confidence": 1.0,
       "explanation": "The SDK systematically validates the protocol version from the client and ensures it aligns with the negotiated version during initialization, fulfilling the MCP rule requirement without placing the burden on developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "private validateProtocolVersion(req: IncomingMessage, res: ServerResponse): boolean {...}",
@@ -1268,7 +1268,7 @@
       "confidence": 0.7,
       "explanation": "The SDK provides the ability to validate protocol versions through defined methods but does not encapsulate the automatic assumption of protocol version `2025-06-18` when the `MCP-Protocol-Version` header is absent.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmpssyxdft9.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmpssyxdft9.ts"
       ],
       "code_snippets": [
         "private validateProtocolVersion(req: IncomingMessage, res: ServerResponse): boolean { ... }"
@@ -1282,13 +1282,13 @@
       "evidence": [
         "Phase 1-IR: No direct function definition found for handling `MCP-Protocol-Version` in defs_typescript.jsonl.",
         "Phase 1-IR: Inline validation calls found in source code.",
-        "Phase 2-Source Code: Verified response handling in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
+        "Phase 2-Source Code: Verified response handling in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
       ],
       "confidence": 1.0,
       "explanation": "The SDK handles invalid `MCP-Protocol-Version` requests by sending a `400 Bad Request` response internally without relying on developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\transport.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\transport.ts"
       ],
       "code_snippets": [
         "// Handling protocol version response",
@@ -1311,8 +1311,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines the custom transport mechanisms and handles required notifications automatically, compliant with the specifications of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
       ],
       "code_snippets": [
         "transport = new StreamableHTTPServerTransport({ sessionIdGenerator: () => randomUUID(), onsessioninitialized: (sessionId) => { transports[sessionId] = transport; } });"
@@ -1331,7 +1331,7 @@
       "confidence": 1.0,
       "explanation": "The SDK provides a 'send' method for JSON-RPC messages and automatically processes incoming messages without requiring application developers to handle these tasks manually, fulfilling the requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts"
       ],
       "code_snippets": [
         "send(message: JSONRPCMessage): Promise<void>",
@@ -1351,8 +1351,8 @@
       "confidence": 1.0,
       "explanation": "The SDK successfully implements mechanisms for connection establishment and automatic notification sending as per the MCP rule. This ensures that application developers do not have to manage these protocol behaviors themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts"
       ],
       "code_snippets": [
         "send(message: JSONRPCMessage): Promise<void> { ... }",
@@ -1372,8 +1372,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically sends cancellation notifications as required by the MCP rule. The logic is encapsulated within the SDK functions, ensuring no developer intervention is necessary.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
       ],
       "code_snippets": [
         "this._transport.send({...}); // Cancelling request triggers automatic notification"
@@ -1387,13 +1387,13 @@
       "evidence": [
         "Phase 1-IR: No contrary definitions found in defs_typescript.jsonl regarding the `initialize` request.",
         "Phase 1-IR: Confirmed that cancellation notifications are handled through specific methods in calls_typescript.jsonl.",
-        "Phase 2-Source Code: Verification in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts confirmed handling of cancellation and client initialization."
+        "Phase 2-Source Code: Verification in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts confirmed handling of cancellation and client initialization."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the `initialize` requests and prevents clients from cancelling them, adhering to the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "// Checks for already initialized sessions to avoid re-initialization.",
@@ -1413,9 +1413,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages cancellation notifications by stopping ongoing requests, freeing resources, and appropriately handling notification flows internally without shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\types.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\types.ts"
       ],
       "code_snippets": [
         "this.setNotificationHandler(CancelledNotificationSchema, (notification) => { const controller = this._requestHandlerAbortControllers.get(notification.params.requestId); controller?.abort(notification.params.reason); });",
@@ -1435,8 +1435,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines cancellation notifications and implements internal notification handling, stopping processing, and resource management as specified by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
       ],
       "code_snippets": [
         "this._transport.send({ jsonrpc: '2.0', method: 'notifications/cancelled', params: { requestId: messageId, reason: String(reason) } });",
@@ -1457,9 +1457,9 @@
       "confidence": 0.9,
       "explanation": "The SDK's handling of cancellation notifications does not include a mechanism to ignore any responses that arrive after a cancellation notification as required by the rule. It provides definition and sending logic but lacks the necessary enforcement of ignoring further responses.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.js"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.js"
       ],
       "code_snippets": [
         "// Schema for Cancelled Notifications\nexport const CancelledNotificationSchema = NotificationSchema.extend({\n    method: z.literal(\"notifications/cancelled\"),\n    params: BaseNotificationParamsSchema.extend({\n        requestId: RequestIdSchema,\n        reason: z.string().optional(),\n    }),\n});",
@@ -1478,9 +1478,9 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement an automatic handling mechanism for race conditions as required by the MCP rule. There are no definitions or internal logic found that facilitate this.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\transport\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\transport\\streamableHttp.ts"
       ],
       "code_snippets": [
         "app.post('/mcp', async (req, res) => {...}, error handlers in clientAuth.ts",
@@ -1501,8 +1501,8 @@
       "confidence": 1.0,
       "explanation": "The SDK includes an automatic mechanism to log cancellation reasons via a defined notification schema and sends these notifications without requiring external handling from developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
       ],
       "code_snippets": [
         "export const CancelledNotificationSchema = NotificationSchema.extend({ method: z.literal('notifications/cancelled'), params: BaseNotificationParamsSchema.extend({ requestId: RequestIdSchema, reason: z.string().optional(), }) });",
@@ -1521,8 +1521,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines a schema for cancellation notifications and includes logic for automatically sending these notifications when a request is cancelled. This meets the requirement of encapsulating cancellation handling within the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\types.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\types.ts"
       ],
       "code_snippets": [
         "export const CancelledNotificationSchema = NotificationSchema.extend({...})",
@@ -1541,7 +1541,7 @@
       "confidence": 0.9,
       "explanation": "The SDK has implemented both the ability to handle cancellation notifications and the internal logic for sending them, thus complying with the requirement to automatically manage invalid cancellation notifications.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "export type CancelledNotification = Infer<typeof CancelledNotificationSchema>;",
@@ -1575,8 +1575,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles connection staleness, timeout management, and reconnection without requiring developers to implement these behaviors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
       ],
       "code_snippets": [
         "_setupTimeout() implementation for automatic timeout handling.",
@@ -1595,8 +1595,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically issues pings and handles responses internally through the Protocol class, fulfilling the MCP rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
       ],
       "code_snippets": [
         "this.setRequestHandler(PingRequestSchema, (_request) => ({})); // Automatic pong by default"
@@ -1615,9 +1615,9 @@
       "confidence": 0.95,
       "explanation": "The SDK does not encapsulate the behavior required for configurable ping frequencies; it lacks automatic management of ping sending.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\sse.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\sse.ts"
       ],
       "code_snippets": []
     },
@@ -1628,13 +1628,13 @@
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
         "Phase 1-IR: Found function for managing timeouts in defs_typescript.jsonl.",
-        "Phase 2-Source Code: Verified implementation of timeouts in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts.",
+        "Phase 2-Source Code: Verified implementation of timeouts in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts.",
         "Initial assessment indicates compliance in timeout management, but lack of evidence for automatic pings."
       ],
       "confidence": 0.85,
       "explanation": "The SDK implements the timeout functionality required by the MCP rule but lacks explicit evidence of managing periodic pings to check connection health, an essential aspect of the compliance criterion.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "private _setupTimeout(messageId: number, timeout: number, ...)",
@@ -1654,7 +1654,7 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates ping management, automatically handling ping requests and ensuring appropriate intervals.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "private _requestHandlers: Map<string, (request: JSONRPCRequest, extra: RequestHandlerExtra<any, any>) => Promise<any>> = new Map();"
@@ -1673,7 +1673,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles timeouts as connection failures by raising relevant errors and calling appropriate error handlers without requiring developers to manage these situations manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "private _setupTimeout(messageId: number, timeout: number, ...)",
@@ -1693,8 +1693,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not log ping failures as required by the rule, which suggests that it does not fully encapsulate the specified behavior of treating multiple failed pings with appropriate logging and connection resets.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
       ],
       "code_snippets": [
         "this.setRequestHandler(PingRequestSchema, (_request) => ({}));",
@@ -1713,8 +1713,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not automatically log ping failures as required by the MCP rule. While there are logging mechanisms in place, they are not invoked for ping failures, shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
       ],
       "code_snippets": [
         "sendLoggingMessage(params: LoggingMessageNotification['params'], sessionId?: string) {...}",
@@ -1734,8 +1734,8 @@
       "confidence": 0.9,
       "explanation": "The SDK correctly defines the progress token as a schema that can either be a string or an integer, and it implements automatic handling of progress notifications through the associated methods within the SDK context. This ensures that developers do not need to handle the specifics manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "export const ProgressTokenSchema = z.union([z.string(), z.number().int()]);",
@@ -1755,7 +1755,7 @@
       "confidence": 1.0,
       "explanation": "The SDK provides a method to check progress tokens, but it does not automatically ensure the uniqueness of progress tokens across all active requests without requiring developers to implement this logic.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.test.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.test.ts"
       ],
       "code_snippets": [
         "function checkProgressToken(...) { ... } // checks for uniqueness but does not automatically enforce"
@@ -1773,8 +1773,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically sends progress notifications through its built-in request handling system, eliminating the need for developers to manually implement this functionality.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
       ],
       "code_snippets": [
         "export type ProgressCallback = (progress: Progress) => void; // Progress notifications structure",
@@ -1794,8 +1794,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles progress notifications via the defined ProgressNotification. The progress value is incremented with callbacks without requiring developer actions.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts"
       ],
       "code_snippets": [
         "progress: z.number() // Should increase with each notification",
@@ -1808,13 +1808,13 @@
       "rule_text": "- The `progress` value **MUST** increase with each notification, even if the total is\n  unknown.\n- The `progress` and the `total` values **MAY** be floating point.\n- The `message` field **SHOULD** provide relevant human readable progress information.",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Defined ability to handle progress notifications found in file C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts.",
+        "Phase 1-IR: Defined ability to handle progress notifications found in file C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts.",
         "Phase 2-Source Code: Internal mechanism for automatic sending of notifications encapsulated within the Protocol class, evidenced by control logic in request and notification handling methods."
       ],
       "confidence": 1.0,
       "explanation": "The SDK correctly implements automatic handling of the progress notifications, enclosing the required behaviors and preventing application developers from manually handling these details.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "this.setNotificationHandler(ProgressNotificationSchema, (notification) => { this._onprogress(notification as unknown as ProgressNotification); });"
@@ -1828,12 +1828,12 @@
       "evidence": [
         "Phase 1-IR: Found ProgressNotificationSchema in defs_typescript.jsonl.",
         "Phase 1-IR: Confirmed call to notification handler in calls_typescript.jsonl.",
-        "Phase 2-Source Code: Verified automatic handling of progress notifications in Protocol class (C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts)."
+        "Phase 2-Source Code: Verified automatic handling of progress notifications in Protocol class (C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts)."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles progress notifications via the Protocol class without developer intervention, fulfilling the rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "this.setNotificationHandler(ProgressNotificationSchema, (notification) => { this._onprogress(notification as unknown as ProgressNotification); });",
@@ -1846,14 +1846,14 @@
       "rule_text": "1. Progress notifications **MUST** only reference tokens that:\n\n   - Were provided in an active request\n   - Are associated with an in-progress operation",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function sendNotification in RequestHandlerExtra in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "Phase 1-IR: Found function sendNotification in RequestHandlerExtra in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
         "Phase 1-IR: Confirmed sendNotification is invoked in methods handling progress notifications",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "confidence": 1.0,
       "explanation": "The SDK framework implements the required behaviors for progress notifications, handling tokens associated with active requests and automatically sending notifications, complying with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "if (options?.onprogress) {\n   this._progressHandlers.set(messageId, options.onprogress);\n   jsonrpcRequest.params = {\n       ...request.params,\n       _meta: {...(request.params?._meta || {}), progressToken: messageId}\n   };\n }"
@@ -1872,7 +1872,7 @@
       "confidence": 1.0,
       "explanation": "The SDK successfully manages progress notifications internally using the _onprogress method, ensuring that developers are not expected to send notifications manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "private _onprogress(notification: ProgressNotification): void {...}",
@@ -1892,7 +1892,7 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements tracking of active progress tokens, encapsulating the behavior required by the MCP rule within the framework. It handles progress notifications and manages progress tokens without requiring application developers to implement these behaviors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "if (options?.onprogress) { this._progressHandlers.set(messageId, options.onprogress); }",
@@ -1913,10 +1913,10 @@
       "confidence": 1.0,
       "explanation": "The SDK defines rate limiting parameters and includes internal logic that automatically enforces these limits, preventing developers from needing to implement this behavior themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
       ],
       "code_snippets": [
         "router.use(rateLimit({...})) // Rate limiting logic applied",
@@ -1936,8 +1936,8 @@
       "confidence": 1.0,
       "explanation": "The SDK lacks automatic logic to stop progress notifications after completion, shifting the responsibility to the user.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts"
       ],
       "code_snippets": []
     },
@@ -1959,12 +1959,12 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No relevant definitions or calls in IR files.",
-        "Phase 2-Source Code: Found underlying implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
+        "Phase 2-Source Code: Found underlying implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the notification sending required by the rule, encapsulating the necessary logic within SDK methods.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
       ],
       "code_snippets": [
         "async sendToolListChanged() { return this.notification({ method: 'notifications/tools/list_changed' }); }",
@@ -1984,8 +1984,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the elicitation process required by the MCP rule by implementing the elicitInput method within its server logic, which prompts users for sensitive information appropriately without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\cli.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\cli.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts"
       ],
       "code_snippets": [
         "await server.server.elicitInput({ message: 'No tables available...', requestedSchema: { type: 'object', properties: { checkAlternatives: { type: 'boolean' }, flexibleDates: { type: 'string', enum: ['next_day', 'same_week', 'next_week'] }}}}); // Automatically asks for alternatives without developer intervention."
@@ -2004,8 +2004,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not encapsulate the UI functionalities as required by the MCP rule. No function definitions or internal call logic were found to verify compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\README.md",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\underlying_sdk\\source.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\README.md",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\underlying_sdk\\source.ts"
       ],
       "code_snippets": [
         "No encapsulating code for UI functionalities found."
@@ -2023,8 +2023,8 @@
       "confidence": 1.0,
       "explanation": "The SDK contains appropriate internal logic for handling the 'elicitation' capability during initialization without requiring developers to manage it manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
       ],
       "code_snippets": [
         "function elicitInput(params) { /* logic for handling elicit requests */ } // this function is called automatically during initialization."
@@ -2032,3 +2032,4 @@
     }
   ]
 }
+

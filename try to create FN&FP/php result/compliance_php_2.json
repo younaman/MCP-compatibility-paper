@@ -19,8 +19,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles secure, non-deterministic session ID creation using UUIDs through its internal methods without requiring application developers to implement this functionality themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\SessionFactory.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\SessionFactory.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php"
       ],
       "code_snippets": [
         "public function create(SessionStoreInterface $store): SessionInterface { return new Session($store, Uuid::v4()); }",
@@ -40,8 +40,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically generates secure random session IDs using the Uuid::v4() method, thereby encapsulating the necessary behavior without requiring developers to implement it themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\SessionFactory.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\SessionFactory.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php"
       ],
       "code_snippets": [
         "return new Session($store, Uuid::v4()); // Generates secure session ID",
@@ -61,9 +61,9 @@
       "confidence": 0.9,
       "explanation": "The SDK has the ability to manage sessions but does not automatically bind session IDs to user-specific information. This required behavior should be encapsulated within the SDK, but it is currently left for developers to implement themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\FileSessionStore.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\FileSessionStore.php"
       ],
       "code_snippets": [
         "class InMemorySessionStore { ... public function write(Uuid $sessionId, string $data) { ... } }",
@@ -83,8 +83,8 @@
       "confidence": 0.9,
       "explanation": "The SDK provides comprehensive handling for JSON-RPC messages through internal methods that ensure messages are properly encoded without requiring explicit UTF-8 handling from developers. The use of 'json_encode' across multiple message types suggests that UTF-8 encoding is inherently applied.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\MessageInterface.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Request.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\MessageInterface.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Request.php"
       ],
       "code_snippets": [
         "public function jsonSerialize(): array { ... return $array; }",
@@ -104,7 +104,7 @@
       "confidence": 1.0,
       "explanation": "The SDK's StdioTransport class encapsulates stdio functionalities and manages input/output automatically without requiring developer implementation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
       ],
       "code_snippets": [
         "public function listen() { ... }",
@@ -117,15 +117,15 @@
       "rule_text": "In the **stdio** transport:\n\n- The client launches the MCP server as a subprocess.\n- The server reads JSON-RPC messages from its standard input (`stdin`) and sends messages\n  to its standard output (`stdout`).\n- Messages are individual JSON-RPC requests, notifications, or responses.\n- Messages are delimited by newlines, and **MUST NOT** contain embedded newlines.\n- The server **MAY** write UTF-8 strings to its standard error (`stderr`) for logging\n  purposes. Clients **MAY** capture, forward, or ignore this logging.\n- The server **MUST NOT** write anything to its `stdout` that is not a valid MCP message.\n- The client **MUST NOT** write anything to the server's `stdin` that is not a valid MCP\n  message.",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found structures in 'C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Request.php' and 'Response.php' related to message handling.",
+        "Phase 1-IR: Found structures in 'C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Request.php' and 'Response.php' related to message handling.",
         "Phase 2-Source Code: Examined 'InMemoryTransport.php' to find the send logic that lacks checks for embedded newlines."
       ],
       "confidence": 0.8,
       "explanation": "The SDK does not automatically enforce the prohibition of embedded newlines in messages before sending them, which violates the MCP rule. While the SDK structures for messages exist, the responsibility of ensuring compliance is implicitly left to the developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Request.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Response.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Request.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Response.php"
       ],
       "code_snippets": [
         "InMemoryTransport.php - send() method",
@@ -145,8 +145,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not implement automatic logging to stderr as required by the MCP rule. While logging functions are defined and used throughout the code, they do not direct output to stderr automatically.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php"
       ],
       "code_snippets": [
         "public function send(string $data, array $context): void {\n    fwrite($this->output, $data.\\PHP_EOL);\n}"
@@ -159,18 +159,18 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No direct definitions or calls found in IR.",
-        "Phase 2-Source Code: Found LoggingLevel enum in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Enum\\LoggingLevel.php",
-        "Phase 2-Source Code: Found logging request handler in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\SetLogLevelRequest.php",
-        "Phase 2-Source Code: Found logging notification structure in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\LoggingMessageNotification.php",
-        "Phase 2-Source Code: Found multiple logger calls across handlers such as FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
+        "Phase 2-Source Code: Found LoggingLevel enum in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Enum\\LoggingLevel.php",
+        "Phase 2-Source Code: Found logging request handler in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\SetLogLevelRequest.php",
+        "Phase 2-Source Code: Found logging notification structure in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\LoggingMessageNotification.php",
+        "Phase 2-Source Code: Found multiple logger calls across handlers such as FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
       ],
       "confidence": 1.0,
       "explanation": "The SDK implements logging functionalities, encapsulating the logging behavior, enables clients to set log levels, and sends notifications of log messages automatically.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Enum\\LoggingLevel.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\SetLogLevelRequest.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\LoggingMessageNotification.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Enum\\LoggingLevel.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\SetLogLevelRequest.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\LoggingMessageNotification.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
       ],
       "code_snippets": [
         "class LoggingLevel: ...",
@@ -191,7 +191,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not enforce the rule of only sending valid MCP messages to stdout as the send method takes arbitrary data without validation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
       ],
       "code_snippets": [
         "fwrite($this->output, $data . PHP_EOL); // Sends data to stdout"
@@ -205,12 +205,12 @@
       "evidence": [
         "Phase 1-IR: Found StdioTransport in defs, defined in StdioTransport.php:21",
         "Phase 1-IR: Found receiving logic in listen() method to handle inputs, but no validation for MCP message structure.",
-        "Phase 2-Source Code: Confirmed absence of validation for message contents in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
+        "Phase 2-Source Code: Confirmed absence of validation for message contents in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
       ],
       "confidence": 0.8,
       "explanation": "The SDK does not implement a validation mechanism to ensure that only valid MCP messages are processed and sent to the server's stdin. It only ignores empty lines, which does not comply with the MCP rule requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
       ],
       "code_snippets": [
         "while (!feof($this->input)) {\n    $line = fgets($this->input);\n    if (false === $line) { break; }\n    $trimmedLine = trim($line);\n    if (!empty($trimmedLine)) { ... }\n}"
@@ -228,7 +228,7 @@
       "confidence": 1.0,
       "explanation": "The SDK provides an HTTP endpoint that handles both GET and POST requests internally, encapsulating the required behaviors as mandated by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "protected function handleGetRequest(): ResponseInterface { ... }",
@@ -247,7 +247,7 @@
       "confidence": 0.95,
       "explanation": "The SDK does not implement automatic validation of the `Origin` header for incoming connections, failing to meet the required behavior specified in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "public function handleOptionsRequest(): ResponseInterface { return $this->withCorsHeaders($this->responseFactory->createResponse(204)); }"
@@ -265,8 +265,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement the behavior of binding to localhost (127.0.0.1) automatically, leaving the developers to make that decision.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
       ],
       "code_snippets": [
         "InMemoryTransport: No binding logic found.",
@@ -297,9 +297,9 @@
       "confidence": 0.85,
       "explanation": "The SDK automatically handles and sends JSON-RPC messages as HTTP POST requests through its transport classes, fulfilling the compliance requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\TransportInterface.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\TransportInterface.php"
       ],
       "code_snippets": [
         "public function handlePostRequest() {...}",
@@ -319,7 +319,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles sending and receiving HTTP POST requests for JSON-RPC messages, including proper content type checks and response management.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "if (empty($this->outgoingMessages)) { return $this->withCorsHeaders($this->responseFactory->createResponse(202)); }",
@@ -333,12 +333,12 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No evidence found in IR for Accept header handling.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically checks for the required 'Accept' header including both 'application/json' and 'text/event-stream' in the 'handlePostRequest' method.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "if (!str_contains($acceptHeader, 'application/json') || !str_contains($acceptHeader, 'text/event-stream')) {...}"
@@ -352,13 +352,13 @@
       "evidence": [
         "Phase 1-IR: Found handlers for JSON-RPC processing in defs.",
         "Phase 1-IR: Confirmed interactions in calls involving JSON-RPC messaging.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\JsonRpcHandler.php"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\JsonRpcHandler.php"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles JSON-RPC requests and responses through its defined handlers, which encapsulate the necessary behavior without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\JsonRpcHandler.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\JsonRpcHandler.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php"
       ],
       "code_snippets": [
         "public function process(string $input, ?Uuid $sessionId) {...}",
@@ -377,7 +377,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the HTTP status code 202 as required, returning it upon successful processing of a request without additional outgoing messages.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "if (empty($this->outgoingMessages)) {\n    return $this->withCorsHeaders($this->responseFactory->createResponse(202));\n}"
@@ -428,8 +428,8 @@
       "confidence": 0.85,
       "explanation": "The SDK fails to encapsulate all required behaviors as mandated by the MCP rule. Particularly, while it supports mechanisms for HTTP POST, Accept headers, and body handling, it does not manage notification sending internally, thus shifting the burden to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\LoggingMessageNotification.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\LoggingMessageNotification.php"
       ],
       "code_snippets": []
     },
@@ -446,12 +446,12 @@
       "confidence": 1.0,
       "explanation": "The SDK has implemented the necessary capabilities to automatically send JSON-RPC responses for requests made to the SSE stream as specified in the MCP rule. The connection logic routes messages through handlers which process them and generate responses internally without requiring manual intervention from application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Response.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\GetPromptHandler.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Response.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\GetPromptHandler.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php"
       ],
       "code_snippets": [
         "Server class handling message processing and automatic response sending.",
@@ -472,9 +472,9 @@
       "confidence": 0.9,
       "explanation": "The SDK defines notification structures but lacks internal logic to automatically send notifications when required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\RootsListChangedNotification.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ResourceListChangedNotification.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\RootsListChangedNotification.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ResourceListChangedNotification.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php"
       ],
       "code_snippets": [
         "class RootsListChangedNotification {...}",
@@ -497,10 +497,10 @@
       "confidence": 0.8,
       "explanation": "The SDK does not automatically handle sending notifications related to the originating client request. Developers are left to implement this logic themselves, which contradicts the MCP rule that specifies these functionalities should be encapsulated within the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php"
       ],
       "code_snippets": []
     },
@@ -516,7 +516,7 @@
       "confidence": 1.0,
       "explanation": "The SDK does not automatically manage the SSE stream to ensure it remains open until a JSON-RPC response is sent, shifting the responsibility to developers instead.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "public function send(string $data, array $context): void {...}",
@@ -530,14 +530,14 @@
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
         "Phase 1-IR: No relevant function definitions or calls found in defs_python.jsonl or calls_python.jsonl.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php which does not close the SSE after sending a JSON-RPC response.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php which lacks the stream closure logic."
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php which does not close the SSE after sending a JSON-RPC response.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php which lacks the stream closure logic."
       ],
       "confidence": 1.0,
       "explanation": "The SDK does not encapsulate the logic for automatically closing the SSE stream after sending a JSON-RPC response, which imposes this responsibility on the developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php"
       ],
       "code_snippets": [
         "public function close(): void { /* Closing logic */ } in StdioTransport.",
@@ -557,8 +557,8 @@
       "confidence": 0.9,
       "explanation": "The SDK provides only ability definitions without the necessary internal implementation logic that ensures automatic handling of disconnections.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\TransportInterface.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\TransportInterface.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php"
       ],
       "code_snippets": [
         "public function onSessionEnd(callable $listener): void",
@@ -577,9 +577,9 @@
       "confidence": 0.85,
       "explanation": "The SDK does not automatically send a CancelledNotification in response to disconnections, which deviates from the required behavior outlined in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\TransportInterface.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\TransportInterface.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php"
       ],
       "code_snippets": [
         "class CancelledNotification extends Notification { ... }",
@@ -593,13 +593,13 @@
       "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found `CancelledNotification` definition in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php",
+        "Phase 1-IR: Found `CancelledNotification` definition in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php",
         "Phase 2-Source Code: Verified implementation, no automatic sending logic found."
       ],
       "confidence": 0.85,
       "explanation": "The SDK defines the `CancelledNotification`, but does not implement automatic sending when a disconnection occurs. Developers will need to implement this logic manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php"
       ],
       "code_snippets": [
         "class CancelledNotification extends Notification {...}"
@@ -617,7 +617,7 @@
       "confidence": 0.85,
       "explanation": "The SDK does not implement automatic handling of stream resumability after disconnections. The defined methods facilitate message handling but do not encapsulate the required behavior for automatic stream resumption.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "public function onMessage(callable $listener): void { $this->messageListener = $listener; }",
@@ -636,7 +636,7 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement the required behavior for handling HTTP GET requests to the MCP endpoint. The handleGetRequest function currently returns a 405 status, indicating it is not yet implemented, violating the rule that mandates returning a proper response or allowing for SSE streams.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "protected function handleGetRequest(): ResponseInterface { return $this->createErrorResponse(Error::forInvalidRequest('Not Yet Implemented'), 405); }"
@@ -654,7 +654,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the `Accept` header requirements as specified by the MCP rule. It checks for the presence of `text/event-stream` and enforces compliance without the application developer needing to implement this behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "if (!str_contains($acceptHeader, 'application/json') || !str_contains($acceptHeader, 'text/event-stream')) {",
@@ -673,7 +673,7 @@
       "confidence": 0.8,
       "explanation": "The SDK does not implement automatic behavior for returning 'Content-Type: text/event-stream' for GET requests nor handling SSE streams, violating the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "// handleGetRequest - returns a 405 response\nprotected function handleGetRequest(): ResponseInterface {\n    $response = $this->createErrorResponse(Error::forInvalidRequest('Not Yet Implemented'), 405);\n    return $this->withCorsHeaders($response);\n}"
@@ -691,10 +691,10 @@
       "confidence": 0.9,
       "explanation": "The SDK defines various notification classes for JSON-RPC messages but lacks automation in sending them upon relevant state changes. Developers must implement this logic themselves, indicating the SDK does not encapsulate the needed behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ToolListChangedNotification.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\LoggingMessageNotification.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ToolListChangedNotification.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\LoggingMessageNotification.php"
       ],
       "code_snippets": [
         "class CancelledNotification extends Notification {...}",
@@ -715,9 +715,9 @@
       "confidence": 0.8,
       "explanation": "The SDK provides the definitions for notification classes and has an expected handler for processing these notifications. However, there is insufficient evidence of automatic triggering and sending of these notifications when the specified conditions occur, indicating that developers might still need to manually handle this process.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\LoggingMessageNotification.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\JsonRpcHandler.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\LoggingMessageNotification.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\JsonRpcHandler.php"
       ],
       "code_snippets": [
         "class LoggingMessageNotification {...}",
@@ -737,7 +737,7 @@
       "confidence": 1.0,
       "explanation": "The SDK does not restrict sending JSON-RPC responses unless resuming a previous request as required by Rule 138.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "function handlePostRequest() { /* logic here for sending a JSON-RPC response */ }",
@@ -756,8 +756,8 @@
       "confidence": 1.0,
       "explanation": "The SDK includes automatic implementations of closing the SSE streams through defined methods in relevant transport classes.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
       ],
       "code_snippets": [
         "InMemoryTransport close method: if (\\is_callable($this->sessionDestroyListener) && null !== $this->sessionId) { \\call_user_func($this->sessionDestroyListener, $this->sessionId); }",
@@ -788,7 +788,7 @@
       "confidence": 0.7,
       "explanation": "The SDK does not provide evidence of encapsulating the logic required for clients to remain connected to multiple SSE streams simultaneously automatically. No specific implementations or function calls for managing multiple streams were found.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "public function send(string $data, array $context): void {...} // Handles sending messages but lacks multi-stream logic"
@@ -800,15 +800,15 @@
       "rule_text": "1. The client **MAY** remain connected to multiple SSE streams simultaneously.\n2. The server **MUST** send each of its JSON-RPC messages on only one of the connected\n   streams; that is, it **MUST NOT** broadcast the same message across multiple streams.\n   - The risk of message loss **MAY** be mitigated by making the stream\n     [resumable](#resumability-and-redelivery).",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found relevant function definitions in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php.",
+        "Phase 1-IR: Found relevant function definitions in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php.",
         "Phase 2-Source Code: Verified implementation details where individual transport layers manage the sending logic without allowing deviations from the mandated protocol."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles message sending for JSON-RPC messages through controlled streams as defined in the requirements, ensuring compliance with the protocol.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "public function connect(TransportInterface $transport): void {...$transport->send($response, $context);}",
@@ -821,15 +821,15 @@
       "rule_text": "1. The client **MAY** remain connected to multiple SSE streams simultaneously.\n2. The server **MUST** send each of its JSON-RPC messages on only one of the connected\n   streams; that is, it **MUST NOT** broadcast the same message across multiple streams.\n   - The risk of message loss **MAY** be mitigated by making the stream\n     [resumable](#resumability-and-redelivery).",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found send function in StreamableHttpTransport at C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "Phase 1-IR: Found send function in StreamableHttpTransport at C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
         "Phase 2-Source Code: Verified that the send function does not prevent broadcasting across multiple streams."
       ],
       "confidence": 0.8,
       "explanation": "The SDK does not implement automatic checks to prevent broadcasting the same message across multiple streams, violating the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\TransportInterface.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\TransportInterface.php"
       ],
       "code_snippets": [
         "function send(string $data, array $context) {...}",
@@ -852,10 +852,10 @@
       "confidence": 1.0,
       "explanation": "No evidence of automatic handling for message loss mitigation or streaming resumption was found in the codebase. The SDK does not implement these behaviors as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
       ],
       "code_snippets": []
     },
@@ -872,10 +872,10 @@
       "confidence": 1.0,
       "explanation": "The SDK lacks automatic handling of attaching an `id` field for SSE events. This responsibility is not encapsulated within the SDK, making it non-compliant with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Server.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Server.php"
       ],
       "code_snippets": []
     },
@@ -891,9 +891,9 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates behavior ensuring session IDs are generated and managed automatically, satisfying the MCP rule requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\FileSessionStore.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\FileSessionStore.php"
       ],
       "code_snippets": [
         "public function __construct(protected SessionStoreInterface $store, protected Uuid $id = new UuidV4())",
@@ -912,7 +912,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement the required behavior of handling HTTP GET requests for resuming connections and the Last-Event-ID header. The method handleGetRequest() does not perform any operation to facilitate this process.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "protected function handleGetRequest(): ResponseInterface { return $this->createErrorResponse(Error::forInvalidRequest('Not Yet Implemented'), 405); }"
@@ -931,8 +931,8 @@
       "confidence": 0.6,
       "explanation": "The SDK shows ability to handle Last-Event-ID via its transport methods but lacks conclusive evidence of strict automatic replay behavior without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php"
       ],
       "code_snippets": [
         "Methods in StreamableHttpTransport and InMemoryTransport access incoming headers without clear replay automatic action."
@@ -950,9 +950,9 @@
       "confidence": 0.6,
       "explanation": "While the SDK does implement methods for sending messages and managing sessions, there is no definitive mechanism ensuring that messages won't be replayed across different streams. Therefore, it does not comply with the MCP rule requiring prevention of such behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
       ],
       "code_snippets": [
         "public function send(string $data, array $context) { ... } // InMemoryTransport",
@@ -973,7 +973,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages session IDs via methods like send(), which attaches the `Mcp-Session-Id` header in responses. Initialization is handled through the appropriate functions aligning with protocol requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "Sending response with session ID in send() method: if ($this->outgoingSessionId) { response = response->withHeader('Mcp-Session-Id', $this->outgoingSessionId->toRfc4122()); }"
@@ -991,8 +991,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automates session ID management by utilizing UUIDs for session identification and encapsulates all necessary methods to manage session lifecycles.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\FileSessionStore.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\FileSessionStore.php"
       ],
       "code_snippets": [
         "public function write(Uuid $sessionId, string $data): bool { /* store session data */ }",
@@ -1012,9 +1012,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement a validation mechanism to ensure that the session IDs only contain visible ASCII characters as required by the MCP rule. It utilizes UUIDs for session IDs but doesn't enforce ASCII compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "function write(Uuid $sessionId, string $data) {...}",
@@ -1030,12 +1030,12 @@
       "evidence": [
         "Phase 1-IR: Found session handling in StreamableHttpTransport class.",
         "Phase 1-IR: Confirmed methods that manage outgoing session ID.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically manages the inclusion of the 'Mcp-Session-Id' header in the HTTP requests, ensuring compliance with the MCP requirement that this behavior must not be left to the developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "if ($this->outgoingSessionId) { $response = $response->withHeader('Mcp-Session-Id', $this->outgoingSessionId->toRfc4122()); }"
@@ -1047,14 +1047,14 @@
       "rule_text": "An MCP \"session\" consists of logically related interactions between a client and a\nserver, beginning with the [initialization phase](/specification/2025-06-18/basic/lifecycle). To support\nservers which want to establish stateful sessions:\n\n1. A server using the Streamable HTTP transport **MAY** assign a session ID at\n   initialization time, by including it in an `Mcp-Session-Id` header on the HTTP\n   response containing the `InitializeResult`.\n   - The session ID **SHOULD** be globally unique and cryptographically secure (e.g., a\n     securely generated UUID, a JWT, or a cryptographic hash).\n   - The session ID **MUST** only contain visible ASCII characters (ranging from 0x21 to\n     0x7E).\n2. If an `Mcp-Session-Id` is returned by the server during initialization, clients using\n   the Streamable HTTP transport **MUST** include it in the `Mcp-Session-Id` header on\n   all of their subsequent HTTP requests.\n   - Servers that require a session ID **SHOULD** respond to requests without an\n     `Mcp-Session-Id` header (other than initialization) with HTTP 400 Bad Request.\n3. The server **MAY** terminate the session at any time, after which it **MUST** respond\n   to requests containing that session ID with HTTP 404 Not Found.\n4. When a client receives HTTP 404 in response to a request containing an\n   `Mcp-Session-Id`, it **MUST** start a new session by sending a new `InitializeRequest`\n   without a session ID attached.\n5. Clients that no longer need a particular session (e.g., because the user is leaving\n   the client application) **SHOULD** send an HTTP DELETE to the MCP endpoint with the\n   `Mcp-Session-Id` header, to explicitly terminate the session.\n   - The server **MAY** respond to this request with HTTP 405 Method Not Allowed,\n     indicating that the server does not allow clients to terminate sessions.",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function handlePostRequest; defined in file C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "Phase 1-IR: Found function handlePostRequest; defined in file C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
         "Phase 2-Source Code: Verified that handlePostRequest checks for Mcp-Session-Id header and responds with HTTP 400 if missing.",
         "Phase 2-Source Code: Verified that handleDeleteRequest checks for Mcp-Session-Id header and responds with HTTP 400 if missing."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the requirement to respond with HTTP 400 when the Mcp-Session-Id header is absent during requests, adhering to the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "if (!$this->sessionId) { return $this->createErrorResponse(Error::forInvalidRequest('Bad Request: Mcp-Session-Id header is required for DELETE requests.'), 400); }",
@@ -1073,8 +1073,8 @@
       "confidence": 0.9,
       "explanation": "The SDK already manages session terminations and returns HTTP 404 responses for expired or invalid sessions as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php"
       ],
       "code_snippets": [
         "if (!$this->sessionStore->exists($sessionId)) { return $this->encodeResponse($error, ['status_code' => 404]); }"
@@ -1093,11 +1093,11 @@
       "confidence": 0.8,
       "explanation": "The SDK has defined session management methods but does not implement a response mechanism that sends an HTTP 404 error for requests made with terminated session IDs.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\GetPromptHandler.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\ListPromptsHandler.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\ListToolsHandler.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\GetPromptHandler.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\ListPromptsHandler.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\ListToolsHandler.php"
       ],
       "code_snippets": [
         "public function handleDeleteRequest(): ResponseInterface {...}\nif (!$this->sessionId) {...}",
@@ -1127,7 +1127,7 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements the necessary logic for handling session termination via HTTP DELETE requests, automatically managing this functionality without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "protected function handleDeleteRequest(): ResponseInterface { if (!$this->sessionId) { ... } }"
@@ -1146,7 +1146,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles session termination and responds with HTTP 405 for unsupported methods, fulfilling the rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "protected function handleDeleteRequest(): ResponseInterface { ... }",
@@ -1167,9 +1167,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically handle the inclusion of the `MCP-Protocol-Version` header in requests, thereby shifting the responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\InitializeRequest.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\MessageInterface.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\InitializeRequest.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\MessageInterface.php"
       ],
       "code_snippets": [
         "public function __construct(public readonly string $protocolVersion, ...);",
@@ -1211,9 +1211,9 @@
       "confidence": 0.95,
       "explanation": "The SDK fails to handle protocol version negotiation automatically by assuming a default protocol version when not provided by the client, thus failing to meet the requirements of the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\InitializeRequest.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\InitializeRequest.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php"
       ],
       "code_snippets": [
         "public function __construct(public readonly string $protocolVersion, ... )",
@@ -1232,8 +1232,8 @@
       "confidence": 0.9,
       "explanation": "The SDK checks for the 'MCP-Protocol-Version' but does not handle sending a '400 Bad Request' response automatically when the version is invalid. This means application developers would need to implement this behavior themselves, violating the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Response.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Request.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Response.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Request.php"
       ],
       "code_snippets": [
         "Response.php checks the 'jsonrpc' version and throws InvalidArgumentException.",
@@ -1246,16 +1246,16 @@
       "rule_text": "Clients and servers **MAY** implement additional custom transport mechanisms to suit\ntheir specific needs. The protocol is transport-agnostic and can be implemented over any\ncommunication channel that supports bidirectional message exchange.",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "confidence": 0.75,
       "explanation": "The SDK does provide transport mechanisms, but it does not automatically handle sending notifications or implementing all behaviors required by the MCP rule, thus shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "StdioTransport: public function send(string $data, array $context)",
@@ -1281,14 +1281,14 @@
       "evidence": [
         "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
         "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
-        "Phase 2-Source Code: Analyzed C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php, \\InMemoryTransport.php, and \\StreamableHttpTransport.php but found no encapsulated implementation for the required behaviors."
+        "Phase 2-Source Code: Analyzed C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php, \\InMemoryTransport.php, and \\StreamableHttpTransport.php but found no encapsulated implementation for the required behaviors."
       ],
       "confidence": 0.85,
       "explanation": "The SDK does not automatically handle the requirements for documenting connection establishment and message exchange patterns, which obligates developers to address these compliance issues on their own.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
       ],
       "code_snippets": [
         "public function onMessage(callable $listener): void { $this->messageListener = $listener; }",
@@ -1302,15 +1302,15 @@
       "rule_text": "1. Cancellation notifications **MUST** only reference requests that:\n   - Were previously issued in the same direction\n   - Are believed to still be in-progress\n2. The `initialize` request **MUST NOT** be cancelled by clients\n3. Receivers of cancellation notifications **SHOULD**:\n   - Stop processing the cancelled request\n   - Free associated resources\n   - Not send a response for the cancelled request\n4. Receivers **MAY** ignore cancellation notifications if:\n   - The referenced request is unknown\n   - Processing has already completed\n   - The request cannot be cancelled\n5. The sender of the cancellation notification **SHOULD** ignore any response to the\n   request that arrives afterward",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Identified `CancelledNotification` as the relevant class for cancellations in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php.",
+        "Phase 1-IR: Identified `CancelledNotification` as the relevant class for cancellations in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php.",
         "Phase 1-IR: Found verification method within this class that checks parameters for validity.",
         "Phase 2-Source Code: No internal dialogue within the class for sending notifications automatically upon cancellation."
       ],
       "confidence": 0.9,
       "explanation": "Although the SDK features a definition for handling cancellation notifications, it does not automatically initiate sending such notifications, thereby transferring responsibility to application developers, which constitutes non-compliance with the stated MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Notification.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Notification.php"
       ],
       "code_snippets": [
         "public function __construct(public readonly string|int $requestId, public readonly ?string $reason = null)",
@@ -1329,11 +1329,11 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement automatic handling of cancellation for the 'initialize' request, failing to encapsulate this responsibility, which is a requirement of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\TransportInterface.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\TransportInterface.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php"
       ],
       "code_snippets": [
         "public function initialize(): void {} (defined in InMemoryTransport.php)",
@@ -1355,8 +1355,8 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement automatic handling of cancellation logic.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\ResourceUnsubscribeRequest.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\ResourceUnsubscribeRequest.php"
       ],
       "code_snippets": [
         "In CancelledNotification.php, the class provides structure but lacks handling methods.",
@@ -1387,7 +1387,7 @@
       "confidence": 0.8,
       "explanation": "The SDK defines the CancelledNotification class to handle cancellation but does not implement the required behavior to ignore responses to cancellation notifications.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php"
       ],
       "code_snippets": [
         "public function __construct(public readonly string|int $requestId, public readonly ?string $reason = null) {}"
@@ -1405,9 +1405,9 @@
       "confidence": 0.8,
       "explanation": "While the SDK provides notification classes, it does not implement logic to automatically handle race conditions or send notifications internally. Developers are expected to manage this themselves, which does not meet the 'MUST' requirement of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ToolListChangedNotification.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ResourceListChangedNotification.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ToolListChangedNotification.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ResourceListChangedNotification.php"
       ],
       "code_snippets": [
         "class ProgressNotification { ... }",
@@ -1427,8 +1427,8 @@
       "confidence": 0.8,
       "explanation": "The SDK defines a structure for cancellation reasons through the CancelledNotification, but it does not include logic to automatically log these reasons, which is mandatory according to the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\LoggingMessageNotification.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\LoggingMessageNotification.php"
       ],
       "code_snippets": [
         "public function __construct(\n    public readonly string|int $requestId,\n    public readonly ?string $reason = null,\n)",
@@ -1458,7 +1458,7 @@
       "confidence": 0.9,
       "explanation": "The SDK defines the structure and validation logic for cancellation notifications but does not implement logic to automatically ignore invalid notifications as specified. Instead, it raises exceptions for invalid inputs.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php"
       ],
       "code_snippets": [
         "protected static function fromParams(?array $params): Notification {\n    if (null === $params || !isset($params['requestId'])) {\n        throw new InvalidArgumentException('Invalid or missing \"requestId\" parameter...'"
@@ -1470,13 +1470,13 @@
       "rule_text": "1. The receiver **MUST** respond promptly with an empty response:",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found handle method in PingHandler defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php at line 31.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php."
+        "Phase 1-IR: Found handle method in PingHandler defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php at line 31.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles ping requests by responding promptly with an empty response through the PingHandler class.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php"
       ],
       "code_snippets": [
         "return new Response($message->getId(), new EmptyResult());"
@@ -1495,10 +1495,10 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates timeout management and automatic session termination comprehensively, ensuring these functionalities are handled internally without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\PingRequest.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\PingRequest.php"
       ],
       "code_snippets": [
         "public function read(Uuid $sessionId): string|false { if ($currentTimestamp - $session['timestamp'] > $this->ttl) { unset($this->store[$sessionId->toRfc4122()]); return false; } }",
@@ -1518,8 +1518,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically handle the periodic sending of pings as required by the rule. While a ping request can be defined and a handler exists, the implementation does not encapsulate the behavior, thus shifting the responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\PingRequest.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\PingRequest.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php"
       ],
       "code_snippets": [
         "PingRequest class allows for ping requests but does not schedule them.",
@@ -1539,8 +1539,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not offer a mechanism to configure the frequency of pings, which is a requirement. The available classes handle ping requests but do not encapsulate the frequency behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\PingRequest.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\PingRequest.php"
       ],
       "code_snippets": [
         "final class PingHandler implements MethodHandlerInterface { ... }",
@@ -1560,8 +1560,8 @@
       "confidence": 0.9,
       "explanation": "The SDK encapsulates the logic to manage pings and timeouts automatically, which means developers do not need to implement these behaviors themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\PingRequest.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\PingRequest.php"
       ],
       "code_snippets": [
         "public function handle(PingRequest|HasMethodInterface $message, SessionInterface $session): Response { return new Response($message->getId(), new EmptyResult()); }"
@@ -1573,16 +1573,16 @@
       "rule_text": "- Implementations **SHOULD** periodically issue pings to detect connection health\n- The frequency of pings **SHOULD** be configurable\n- Timeouts **SHOULD** be appropriate for the network environment\n- Excessive pinging **SHOULD** be avoided to reduce network overhead",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found definition of PingRequest in source C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\PingRequest.php",
-        "Phase 1-IR: Confirmed internal handling of ping requests in PingHandler located in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
+        "Phase 1-IR: Found definition of PingRequest in source C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\PingRequest.php",
+        "Phase 1-IR: Confirmed internal handling of ping requests in PingHandler located in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
         "Phase 2-Source Code: No configuration methods for ping timing found."
       ],
       "confidence": 0.85,
       "explanation": "The SDK handles ping requests automatically but does not provide configurable options for ping frequency or timeout, which means it does not encapsulate the behavior as per the rule's requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\PingRequest.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Configuration.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\PingRequest.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Configuration.php"
       ],
       "code_snippets": [
         "class PingRequest { ... }",
@@ -1597,14 +1597,14 @@
       "evidence": [
         "Phase 1-IR: No functions found in `defs_python.jsonl` related to timeout handling.",
         "Phase 1-IR: No calls found in `calls_python.jsonl` addressing connection failure due to timeouts.",
-        "Phase 2-Source Code: Verified implementation in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php` does not handle timeouts as connection failures."
+        "Phase 2-Source Code: Verified implementation in `C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php` does not handle timeouts as connection failures."
       ],
       "confidence": 0.9,
       "explanation": "The SDK does not implement internal mechanisms for treating timeouts as connection failures. Required behaviors are not encapsulated, leaving implementation details to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Tool\\ToolCaller.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Tool\\ToolCaller.php"
       ],
       "code_snippets": [
         "PingHandler does not include timeout handling.",
@@ -1625,7 +1625,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically handle the required behavior of triggering a connection reset after multiple ping failures. The existing implementation of the PingHandler only processes ping requests without triggering a reset action, thus placing the onus on the application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php"
       ],
       "code_snippets": [
         "public function handle(PingRequest $message, SessionInterface $session): Response { return new Response($message->getId(), new EmptyResult()); }"
@@ -1644,9 +1644,9 @@
       "confidence": 0.85,
       "explanation": "The SDK does not automatically log ping failures, thus failing to meet the MCP rule requirements. Logs for ping failures must be handled by application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Tool\\ToolCaller.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Tool\\ToolCaller.php"
       ],
       "code_snippets": [
         "PingHandler: \\public function handle(PingRequest|HasMethodInterface $message, SessionInterface $session): Response { ... }",
@@ -1666,7 +1666,7 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the required handling of progress tokens, ensuring they are validated as either strings or integers within the ProgressNotification class.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
       ],
       "code_snippets": [
         "public function __construct(public readonly string|int $progressToken, ... )",
@@ -1685,7 +1685,7 @@
       "confidence": 0.85,
       "explanation": "The SDK does define the ability to provide a progress token, but it does not automatically ensure uniqueness across active requests, thus failing to comply with the MCP rule that mandates tokens must be unique and handled internally by the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
       ],
       "code_snippets": [
         "public function __construct(public readonly string|int $progressToken, ...);",
@@ -1704,7 +1704,7 @@
       "confidence": 0.9,
       "explanation": "The SDK has the ability to create progress notifications but does not automatically send them out within defined methods of the SDK. Hence, it does not fully encapsulate the behavior required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
       ],
       "code_snippets": [
         "class ProgressNotification also has methods but lacks sending logic within its construction."
@@ -1716,14 +1716,14 @@
       "rule_text": "- The `progress` value **MUST** increase with each notification, even if the total is\n  unknown.\n- The `progress` and the `total` values **MAY** be floating point.\n- The `message` field **SHOULD** provide relevant human readable progress information.",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found `ProgressNotification` class defined in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php`.",
+        "Phase 1-IR: Found `ProgressNotification` class defined in `C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php`.",
         "Phase 1-IR: Validations show it checks parameters but lack notification sending functionality.",
         "Phase 2-Source Code: No function found that automatically handles the behavior required by the MCP rule."
       ],
       "confidence": 0.9,
       "explanation": "The SDK defines the structure for progress notifications but does not implement the logic to automatically send notifications when progress is updated, thus shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
       ],
       "code_snippets": [
         "// Constructor for progress notification here",
@@ -1742,7 +1742,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically manage the sending of progress notifications, leaving this responsibility to developers, which fails the compliance requirement for this rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
       ],
       "code_snippets": [
         "public function __construct( public readonly string|int $progressToken, public readonly float $progress, public readonly ?float $total = null, public readonly ?string $message = null )"
@@ -1760,7 +1760,7 @@
       "confidence": 1.0,
       "explanation": "The SDK did not implement automatic handling of progress notifications despite having the ability definitions in place. There were no methods found that automatically handle the sending of notifications in response to progress updates.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
       ],
       "code_snippets": [
         "class ProgressNotification extends Notification {...} // Define message and progress."
@@ -1772,14 +1772,14 @@
       "rule_text": "1. Progress notifications **MUST** only reference tokens that:\n\n   - Were provided in an active request\n   - Are associated with an in-progress operation",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function ProgressNotification in defs, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php:32",
+        "Phase 1-IR: Found function ProgressNotification in defs, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php:32",
         "Phase 1-IR: No calls for automatic notification sending found in calls.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
       ],
       "confidence": 0.9,
       "explanation": "The SDK does not automatically send notifications related to progress updates, failing to encapsulate this behavior as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
       ],
       "code_snippets": [
         "public function __construct(\n        public readonly string|int $progressToken,\n        public readonly float $progress,\n        public readonly ?float $total = null,\n        public readonly ?string $message = null,\n    ) {}"
@@ -1813,17 +1813,17 @@
       "rule_text": "- Senders and receivers **SHOULD** track active progress tokens\n- Both parties **SHOULD** implement rate limiting to prevent flooding\n- Progress notifications **MUST** stop after completion",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found ProgressNotification defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php.",
+        "Phase 1-IR: Found ProgressNotification defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php.",
         "Phase 2-Source Code: Verified that ProgressNotification tracks progress tokens but lacks automatic notification sending logic.",
         "Phase 2-Source Code: InMemoryTransport does not implement rate limiting."
       ],
       "confidence": 0.9,
       "explanation": "The SDK defines the ability to track progress tokens but does not implement automatic notification sending or rate limiting as required.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ResourceListChangedNotification.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\LoggingMessageNotification.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ResourceListChangedNotification.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\LoggingMessageNotification.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php"
       ],
       "code_snippets": [
         "class ProgressNotification { ... }",
@@ -1843,7 +1843,7 @@
       "confidence": 0.9,
       "explanation": "The SDK defines a ProgressNotification class but does not automatically send notifications after the completion of progress. It requires developers to handle notifications manually, which contradicts the requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
       ],
       "code_snippets": [
         "public function __construct(\n    public readonly string|int $progressToken,\n    public readonly float $progress,\n    public readonly ?float $total = null,\n    public readonly ?string $message = null,\n) {}"
@@ -1861,9 +1861,9 @@
       "confidence": 0.9,
       "explanation": "The SDK defines capabilities for lifecycle operations, but it does not automatically handle notifications or changes as required by the rule. Developers are required to implement these behaviors manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\ServerCapabilities.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Event\\ResourceTemplateListChangedEvent.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\ServerCapabilities.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Event\\ResourceTemplateListChangedEvent.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php"
       ],
       "code_snippets": [
         "public readonly ?bool $toolsListChanged = false,",
@@ -1889,12 +1889,12 @@
       "evidence": [
         "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
         "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Prompt\\PromptGetter.php and others without finding any automatic elicitation prevention."
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Prompt\\PromptGetter.php and others without finding any automatic elicitation prevention."
       ],
       "confidence": 1.0,
       "explanation": "The SDK does not implement automatic handling to prevent elicitation of sensitive information, placing the burden on developers to manage this behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Prompt\\PromptGetter.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Prompt\\PromptGetter.php"
       ],
       "code_snippets": []
     },
@@ -1921,9 +1921,9 @@
       "confidence": 0.95,
       "explanation": "The SDK does not automatically handle the declaration of the 'elicitation' capability during initialization, which is a requirement of the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\ClientCapabilities.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\InitializeRequest.php",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\ClientCapabilities.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\InitializeRequest.php",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php"
       ],
       "code_snippets": [
         "$this->capabilities = new ServerCapabilities(), // InitializeHandler.php does not include declaration for elicitation."
@@ -1931,3 +1931,4 @@
     }
   ]
 }
+

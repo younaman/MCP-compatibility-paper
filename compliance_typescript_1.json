@@ -19,8 +19,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not implement automatic notification handling or manage authorization capabilities as required by the MCP rules.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
       ],
       "code_snippets": [
         "// Authorization handler defines methods but does not automatically send notifications.",
@@ -40,8 +40,8 @@
       "confidence": 1.0,
       "explanation": "The StreamableHTTPServerTransport class automatically manages HTTP transport behavior, including notifications, in accordance with the MCP rule. This means developers do not need to manage these complexities themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.js"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.js"
       ],
       "code_snippets": [
         "transport.handleRequest(req, res, req.body);"
@@ -53,15 +53,15 @@
       "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function `getDefaultEnvironment()` defined in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\stdio.ts`.",
+        "Phase 1-IR: Found function `getDefaultEnvironment()` defined in `C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\stdio.ts`.",
         "Phase 1-IR: Confirmed `StdioServerTransport` and `StdioClientTransport` handle environment variables retrieval automatically.",
         "Phase 2-Source Code: Verified automatic handling within `StdioServerTransport` and its connection establishment."
       ],
       "confidence": 1.0,
       "explanation": "The SDK handles credential retrieval from the environment automatically through the `getDefaultEnvironment()` function, which is used in the `StdioServerTransport`. This fulfills the requirement of not shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\stdio.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\stdio.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
       ],
       "code_snippets": [
         "export function getDefaultEnvironment() {...}",
@@ -76,14 +76,14 @@
       "evidence": [
         "Phase 1-IR: Found function definitions related to StreamableHTTPServerTransport and StreamableHTTPClientTransport in defs_typescript.jsonl.",
         "Phase 1-IR: Verified call relationships confirming the use of these transports.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts."
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically manages session IDs, enforces security validations, and implements necessary protocols consistent with established security best practices for alternative transports.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
       ],
       "code_snippets": [
         "DNS rebinding protection and session management implemented in StreamableHTTPServerTransport.",
@@ -98,14 +98,14 @@
       "evidence": [
         "Phase 1-IR: Found relevant function definitions in `defs_typescript.jsonl` and confirmed that the SDK interfaces support OAuth integration.",
         "Phase 1-IR: Verified call relationships indicating thorough handling of OAuth functionalities in `calls_typescript.jsonl`.",
-        "Phase 2-Source Code: Verified that the SDK handles authorization flows, token exchanges, and security measures via internal methods in `FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts`."
+        "Phase 2-Source Code: Verified that the SDK handles authorization flows, token exchanges, and security measures via internal methods in `FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts`."
       ],
       "confidence": 1.0,
       "explanation": "The SDK successfully implements OAuth 2.1 in a compliant manner, encapsulating the necessary security measures for both confidential and public clients without requiring developers to manage these processes themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts"
       ],
       "code_snippets": [
         "const challenge = await pkceChallenge(); // Generates PKCE for secure flows.",
@@ -124,8 +124,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the OAuth 2.0 Dynamic Client Registration Protocol by defining the `registerClient` function and integrating it into the client authentication flow, ensuring that registration is handled automatically.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts"
       ],
       "code_snippets": [
         "export async function registerClient(authorizationServerUrl: string | URL, {...})",
@@ -145,8 +145,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically implements the required behaviors for OAuth 2.0 Protected Resource Metadata as per the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts"
       ],
       "code_snippets": [
         "app.use(mcpAuthMetadataRouter({...})); // Handling OAuth protected resource metadata.",
@@ -166,8 +166,8 @@
       "confidence": 1.0,
       "explanation": "The SDK provides the necessary implementations for using OAuth 2.0 Protected Resource Metadata, encapsulating behaviors required for authorization server discovery.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
       ],
       "code_snippets": [
         "export const OAuthProtectedResourceMetadataSchema = z.object({ ... })",
@@ -183,14 +183,14 @@
       "evidence": [
         "Phase 1-IR: Found function mcpAuthRouter in router.ts which sets up OAuth metadata routes.",
         "Phase 1-IR: Confirmed calls to metadataHandler in router.ts linking to the correct metadata functions.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
-        "Phase 2-Source Code: Found automatic response handling in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts."
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
+        "Phase 2-Source Code: Found automatic response handling in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically provides OAuth 2.0 Authorization Server Metadata via defined routes handled internally, complying with the MCP rule without requiring developers to implement this functionality.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts"
       ],
       "code_snippets": [
         "router.use(\"/.well-known/oauth-authorization-server\", metadataHandler(options.oauthMetadata));",
@@ -211,8 +211,8 @@
       "confidence": 0.95,
       "explanation": "The SDK implements the required OAuth 2.0 Authorization Server Metadata handling. It defines the metadata schema and provides automatic handling logic through the `mcpAuthMetadataRouter` function, which serves metadata endpoints without requiring application developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
       ],
       "code_snippets": [
         "export const OAuthMetadataSchema = z.object({...}); // Metadata Schema Definition",
@@ -232,8 +232,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implementation encapsulates the required functionality for OAuth 2.0 Protected Resource Metadata, providing automatic handling of the 'authorization_servers' field and delivering the metadata without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts"
       ],
       "code_snippets": [
         "const protectedResourceMetadata: OAuthProtectedResourceMetadata = { authorization_servers: [options.oauthMetadata.issuer] };"
@@ -252,7 +252,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically initializes the 'authorization_servers' field within the Protected Resource Metadata, ensuring it includes at least one authorization server and thus complies with the specified MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
       ],
       "code_snippets": [
         "const protectedResourceMetadata: OAuthProtectedResourceMetadata = {\n  resource: options.resourceServerUrl.href,\n  authorization_servers: [options.oauthMetadata.issuer],\n  scopes_supported: options.scopesSupported,\n  resource_name: options.resourceName,\n  resource_documentation: options.serviceDocumentationUrl?.href,\n};"
@@ -271,7 +271,7 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements the requirement to automatically send the WWW-Authenticate header when a 401 Unauthorized response is returned, including the resource metadata URL if provided.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
       ],
       "code_snippets": [
         "res.set(\"WWW-Authenticate\", wwwAuthValue);",
@@ -292,8 +292,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles parsing `WWW-Authenticate` headers and responds to `HTTP 401 Unauthorized` by attempting re-authentication without shifting the responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts"
       ],
       "code_snippets": [
         "function requireBearerAuth() {...}",
@@ -313,8 +313,8 @@
       "confidence": 1.0,
       "explanation": "The SDK appropriately implements and encapsulates the required behaviors for OAuth 2.0 Authorization Server Metadata. It defines necessary metadata and includes automatic fetching mechanisms, shielding developers from needing to manually implement these functionalities.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\tmp3jlfjmk_.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\tmp3pqcycyh.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\tmp3jlfjmk_.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\tmp3pqcycyh.ts"
       ],
       "code_snippets": [
         "export const createOAuthMetadata = (options) => { /* Implementation involving OAuth metadata */ }",
@@ -334,7 +334,7 @@
       "confidence": 1.0,
       "explanation": "The SDK has implemented automatic client registration per the requirements of the MCP rule. It provides a robust encapsulated flow for clients to register without manual intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts"
       ],
       "code_snippets": [
         "router.post('/', async (req, res) => { ... // processing client registration logic ... })"
@@ -353,9 +353,9 @@
       "confidence": 1.0,
       "explanation": "The SDK framework implements Resource Indicators for OAuth 2.0 as required. The 'resource' parameter is included in both authorization and token requests, with validation methods ensuring correct handling.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\types.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\providers\\proxyProvider.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\types.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\providers\\proxyProvider.ts"
       ],
       "code_snippets": [
         "exchangeAuthorizationCode implementation includes 'resource' parameter in the request payload.",
@@ -370,12 +370,12 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: Found definitions and function calls relevant to resource management in defs_typescript.jsonl and calls_typescript.jsonl.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts."
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts."
       ],
       "confidence": 1.0,
       "explanation": "The SDK has an integrated mechanism for automatically handling the `resource` parameter in both authorization and token requests as specified in the MCP rule. The necessary definitions and implementations are present to enforce this behavior, complying with the stated requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
       ],
       "code_snippets": [
         "const AuthorizationCodeGrantSchema = z.object({ resource: z.string().url().optional() });",
@@ -394,9 +394,9 @@
       "confidence": 1.0,
       "explanation": "The SDK successfully encapsulates the behavior required by the MCP rule by automatically handling the resource parameter in both authorization and token requests, ensuring that developers need not implement this behavior themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\types.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\types.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
       ],
       "code_snippets": [
         "resource?: URL; // AuthInfo interface in auth/types.ts",
@@ -416,8 +416,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the inclusion of the canonical URI for the MCP server as required by the rule, doing so within the authorization process without requiring manual intervention from developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\types.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\types.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
       ],
       "code_snippets": [
         "resource: URL; // definition in AuthInfo",
@@ -437,9 +437,9 @@
       "confidence": 0.85,
       "explanation": "The SDK does not encapsulate the behavior required by the rule regarding specific URI provisioning for MCP clients. It requires developers to manually implement this functionality.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\types.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\types.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts"
       ],
       "code_snippets": [
         "// Example of a client transport implementation that does not automatically handle specific URIs."
@@ -453,12 +453,12 @@
       "evidence": [
         "Phase 1-IR: Found functions resourceUrlFromServerUrl and checkResourceAllowed in defs_typescript.jsonl, defined in auth-utils.ts",
         "Phase 1-IR: Confirmed that these functions perform URI-related operations, but don't show case-insensitive handling for scheme/host",
-        "Phase 2-Source Code: Reviewed implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts"
+        "Phase 2-Source Code: Reviewed implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts"
       ],
       "confidence": 0.85,
       "explanation": "While the SDK does define functions that could handle URIs, it does not demonstrate automatic handling of uppercase scheme and host components as required by the rule. The presence of 'resourceUrlFromServerUrl' and 'checkResourceAllowed' functions does not ensure that the SDK processes inputs in a case-insensitive manner inherently.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts"
       ],
       "code_snippets": [
         "export function resourceUrlFromServerUrl(url: URL | string ): URL { const resourceURL = typeof url === 'string' ? new URL(url) : new URL(url.href); resourceURL.hash = ''; return resourceURL; }",
@@ -478,9 +478,9 @@
       "confidence": 1.0,
       "explanation": "The SDK satisfies the requirement for automatic handling of notifications regarding list changes. The capability is defined and the implementation ensures notifications are sent automatically when relevant state changes occur.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\inMemory.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\inMemory.ts"
       ],
       "code_snippets": [
         "async notification(notification: SendNotificationT, options?: NotificationOptions) { ... }",
@@ -500,7 +500,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles sending the mcp-session-id as needed. The session ID is included in the headers during sending without requiring explicit developer actions, fulfilling the MCP requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
       ],
       "code_snippets": [
         "headers['mcp-session-id'] = this.sessionId;"
@@ -512,15 +512,15 @@
       "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function 'tokenHandler' in defs_typescript.jsonl, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "Phase 1-IR: Found function 'requireBearerAuth' in defs_typescript.jsonl, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
-        "Phase 2-Source Code: Verified automatic handling in 'tokenHandler' and 'requireBearerAuth' in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts and C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts."
+        "Phase 1-IR: Found function 'tokenHandler' in defs_typescript.jsonl, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "Phase 1-IR: Found function 'requireBearerAuth' in defs_typescript.jsonl, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "Phase 2-Source Code: Verified automatic handling in 'tokenHandler' and 'requireBearerAuth' in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts and C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles OAuth access token management without requiring developers to implement this functionality manually, thus conforming to the MCP requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
       ],
       "code_snippets": [
         "router.post('/', async (req, res) => { ... }); // Handling token requests.",
@@ -540,7 +540,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the Authorization request header through the requireBearerAuth middleware, adhering to the requirements set forth in OAuth 2.1 Section 5.1.1. It ensures that the Authorization header is validated and processed internally, allowing developers to focus on higher-level logic without manual checks.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts"
       ],
       "code_snippets": [
         "const authHeader = req.headers.authorization; \nif (!authHeader) { \n    throw new InvalidTokenError('Missing Authorization header'); \n} \nconst [type, token] = authHeader.split(' '); \nif (type.toLowerCase() !== 'bearer' || !token) { \n    throw new InvalidTokenError('Invalid Authorization header format'); \n}"
@@ -560,15 +560,15 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the required behavior by automatically managing authorization in all HTTP requests. Developers do not need to implement this behavior themselves, which aligns with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.test.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\allowedMethods.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\clientToken.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.test.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\allowedMethods.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\clientToken.ts"
       ],
       "code_snippets": [
         "startAuthorization function definition: ...",
@@ -583,16 +583,16 @@
       "rule_text": "2. Access tokens **MUST NOT** be included in the URI query string",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found tokenHandler definition in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts, which lacks query string prevention.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts, which accepts redirect_uri that can include tokens."
+        "Phase 1-IR: Found tokenHandler definition in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts, which lacks query string prevention.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts, which accepts redirect_uri that can include tokens."
       ],
       "confidence": 0.8,
       "explanation": "The SDK lacks automatic handling to prevent access tokens from being included in URI query strings, shifting this responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\providers\\proxyProvider.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\providers\\proxyProvider.ts"
       ],
       "code_snippets": [
         "function tokenHandler({ provider, rateLimit: rateLimitConfig }: TokenHandlerOptions) { /* logic */ } from token.ts",
@@ -607,13 +607,13 @@
       "evidence": [
         "Phase 1-IR: Found 'verifyAccessToken' function in defs_typescript.jsonl, defined in provider.ts.",
         "Phase 1-IR: Confirmed 'requireBearerAuth' middleware in calls_typescript.jsonl and its internal logic handles token validation.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts."
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts."
       ],
       "confidence": 0.9,
       "explanation": "The SDK automatically handles access token validation as required by the MCP rule. The `requireBearerAuth` middleware is implemented to check the token validity and handle necessary responses. All functionalities expected by the rule are encapsulated within the SDK, leaving no burden on developers to implement token validation manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
       ],
       "code_snippets": [
         "async (req, res, next) => {\n  const authHeader = req.headers.authorization;\n  const authInfo = await verifier.verifyAccessToken(token);\n  //...handling logic for validation and error responses\n}"
@@ -625,15 +625,15 @@
       "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function 'verifyAccessToken' in 'C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts' at line 102.",
+        "Phase 1-IR: Found function 'verifyAccessToken' in 'C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts' at line 102.",
         "Phase 1-IR: Confirmed calls to 'verifyAccessToken' throughout the SDK.",
-        "Phase 2-Source Code: Validated that 'requireBearerAuth' middleware ensures token validation is handled internally without developer intervention in 'C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts'."
+        "Phase 2-Source Code: Validated that 'requireBearerAuth' middleware ensures token validation is handled internally without developer intervention in 'C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts'."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles access token validation as per MCP rule requirements, ensuring developers do not need to manage this functionality themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
       ],
       "code_snippets": [
         "async (req, res, next) => { const authInfo = await verifier.verifyAccessToken(token); ... }",
@@ -652,7 +652,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles Bearer token validation and sends a 401 response when the token is invalid or expired, fulfilling the requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
       ],
       "code_snippets": [
         "res.status(401).json(error.toResponseObject());"
@@ -671,8 +671,8 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the necessary behavior for validating and responding to invalid or expired tokens as described in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts"
       ],
       "code_snippets": [
         "// In bearerAuth.ts\nasync (req, res, next) => {\n  // Logic to validate token\n  if (/* token is invalid or expired */) {\n    res.status(401).json({ error: 'Unauthorized' });\n  }\n}",
@@ -691,8 +691,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles token validation and ensures that clients only send authorized tokens issued by the server, fulfilling the MCP protocol requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
       ],
       "code_snippets": [
         "router.post('/', async (req, res) => { /* logic validating token */ });",
@@ -712,8 +712,8 @@
       "confidence": 1.0,
       "explanation": "The SDK properly implements the rule by encapsulating the behavior of checking token validity within its own methods. Application developers are not required to manage the complexities of token validation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
       ],
       "code_snippets": [
         "async (req, res, next) => { /* validation logic */ }",
@@ -733,8 +733,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically handle the acceptance or transit of tokens, shifting this responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
       ],
       "code_snippets": [
         "await provider.revokeToken!(client, parseResult.data);",
@@ -755,8 +755,8 @@
       "confidence": 1.0,
       "explanation": "The SDK successfully encapsulates the behavior of returning proper HTTP status codes for authorization errors through middleware functions without requiring application developers to implement these details themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
       ],
       "code_snippets": [
         "if (error instanceof InvalidTokenError) { res.status(401).json(error.toResponseObject()); }",
@@ -776,9 +776,9 @@
       "confidence": 1.0,
       "explanation": "The SDK has implemented OAuth 2.1 security best practices by encapsulating the authorization and token revocation behaviors within its methods, which means developers do not have to manually handle these processes.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
       ],
       "code_snippets": [
         "In token.ts: Method that exchanges authorization codes for tokens, encapsulating OAuth logic.",
@@ -798,8 +798,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines functions that utilize the resource parameter and includes automatic handling logic to incorporate this parameter in authorization and token requests. This fulfills the MCP requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\providers\\proxyProvider.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\providers\\proxyProvider.ts"
       ],
       "code_snippets": [
         "if (resource) { params.set('resource', resource.href); }"
@@ -813,13 +813,13 @@
       "evidence": [
         "Phase 1-IR: Found function verifyAccessToken defined in src/server/auth/provider.ts.",
         "Phase 1-IR: Confirmed function is called within the BearerAuthMiddleware which validates Bearer tokens.",
-        "Phase 2-Source Code: Verified automatic validation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts."
+        "Phase 2-Source Code: Verified automatic validation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts."
       ],
       "confidence": 1.0,
       "explanation": "The SDK encapsulates both the ability to check token validity and performs the necessary validation without requiring developers to implement these checks themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
       ],
       "code_snippets": [
         "export function requireBearerAuth({ verifier, ... }) { ... await verifier.verifyAccessToken(token); ... }",
@@ -839,8 +839,8 @@
       "confidence": 1.0,
       "explanation": "The SDK successfully implements secure token storage and encapsulates the OAuth handling as required by the rule. It automatically saves tokens without requiring additional actions from developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\token.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\token.ts"
       ],
       "code_snippets": [
         "public saveTokens(tokens: OAuthTokens): void | Promise<void> { /* logic here */ }",
@@ -860,9 +860,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles short-lived access tokens by checking their validity and managing expiration without requiring application developers to implement these behaviors themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\types.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\types.ts"
       ],
       "code_snippets": [
         "token: string, clientId: string, scopes: string[], expiresAt: number",
@@ -876,12 +876,12 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: Found 'refreshAuthorization' defined in the SDK, responsible for refreshing access tokens.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
       ],
       "confidence": 1.0,
       "explanation": "The SDK framework automatically handles the refresh token rotation as required by the rule. The 'refreshAuthorization' function manages the token refresh lifecycle without requiring additional input from developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
       ],
       "code_snippets": [
         "export async function refreshAuthorization(authorizationServerUrl: string | URL, { ... }) { ... }"
@@ -900,9 +900,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles OAuth 2.1 communication security requirements, providing secure authorization flows and managing tokens internally, thereby relieving developers from manual implementation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts"
       ],
       "code_snippets": [
         "export async function startAuthorization(...) { ... } // Handles automatic generation of Authorization URL and PKCE challenges",
@@ -922,8 +922,8 @@
       "confidence": 0.85,
       "explanation": "While there is a check ensuring that the issuer URL is HTTPS or localhost, the SDK does not fully encapsulate the required behavior automatically, thus placing the burden on developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
       ],
       "code_snippets": [
         "if (issuer.protocol !== 'https:' && issuer.hostname !== 'localhost' && issuer.hostname !== '127.0.0.1') {\n\tthrow new Error('Issuer URL must be HTTPS');\n}"
@@ -937,12 +937,12 @@
       "evidence": [
         "Phase 1-IR: Found function checkIssuerUrl in src/server/auth/router.ts that validates issuer URLs against HTTPS and localhost.",
         "Phase 1-IR: Function createOAuthMetadata calls checkIssuerUrl to validate the issuer URL.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
       ],
       "confidence": 1.0,
       "explanation": "The SDK has implemented internal logic that automatically enforces the requirement for all redirect URIs to be either localhost or HTTPS through the checkIssuerUrl function and its invocation in createOAuthMetadata. The implementation encapsulates the required behavior as specified by the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
       ],
       "code_snippets": [
         "const checkIssuerUrl = (issuer: URL): void => { if (issuer.protocol !== 'https:' && issuer.hostname !== 'localhost' && issuer.hostname !== '127.0.0.1') { throw new Error('Issuer URL must be HTTPS'); } }"
@@ -961,8 +961,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles both PKCE challenge generation and verification during the authorization flow, fulfilling the requirements outlined in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
       ],
       "code_snippets": [
         "const challenge = await pkceChallenge(); // src/client/auth.ts",
@@ -977,14 +977,14 @@
       "evidence": [
         "Phase 1-IR: Found function clientRegistrationHandler in defs_typescript.jsonl, defined in register.ts.",
         "Phase 1-IR: Confirmed calls to authorizationHandler in calls_typescript.jsonl.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically manages redirect URI registration and performs the necessary checks during the authorization process. Developers do not need to explicitly handle these aspects.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
       ],
       "code_snippets": [
         "const clientInfo = await clientsStore.registerClient!(clientInfo); // Automatically register client with redirect URIs.",
@@ -999,12 +999,12 @@
       "evidence": [
         "Phase 1-IR: No function definitions regarding redirect URI found.",
         "Phase 1-IR: No function calls regarding redirect URI found.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts: Line with redirect URI validation logic found."
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts: Line with redirect URI validation logic found."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically validates redirect URIs against pre-registered values as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
       ],
       "code_snippets": [
         "if (redirect_uri !== undefined) { if (!client.redirect_uris.includes(redirect_uri)) { throw new InvalidRequestError('Unregistered redirect_uri'); } }"
@@ -1022,7 +1022,7 @@
       "confidence": 0.9,
       "explanation": "Although the SDK allows for defining a state parameter, it lacks the necessary automatic verification and handling logic for the state in the authorization callback. As a result, it does not fulfill the requirement that it should handle mismatched states.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
       ],
       "code_snippets": [
         "export type AuthorizationParams = { state?: string; ... };",
@@ -1041,7 +1041,7 @@
       "confidence": 1.0,
       "explanation": "The SDK implements precautions against redirecting user agents to untrusted URIs by validating redirect URIs against a list of registered URIs during authorization requests. This behavior is encapsulated within the SDK, adhering to the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
       ],
       "code_snippets": [
         "if (!client.redirect_uris.includes(redirect_uri)) { throw new InvalidRequestError(\"Unregistered redirect_uri\"); }",
@@ -1062,8 +1062,8 @@
       "confidence": 0.9,
       "explanation": "The SDK defines methods for OAuth redirection but lacks logic to validate whether the redirection URI is trusted before performing the redirect, thereby imposing this responsibility on developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
       ],
       "code_snippets": [
         "export interface OAuthClientProvider { redirectToAuthorization(authorizationUrl: URL): void | Promise<void>; }",
@@ -1083,8 +1083,8 @@
       "confidence": 0.95,
       "explanation": "The SDK framework does not automatically obtain user consent for dynamically registered clients before forwarding to third-party authorization servers. The consent handling mechanism is not encapsulated, thus shifting the responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
       ],
       "code_snippets": [
         "router.post(\"/register\", async (req, res) => { ... })",
@@ -1104,8 +1104,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically validates access tokens before processing requests as per the MCP compliance rule. The validation is embedded in middleware, ensuring developers do not need to implement this themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
       ],
       "code_snippets": [
         "const authInfo = await verifier.verifyAccessToken(token); // Validates the access token in requireBearerAuth",
@@ -1125,8 +1125,8 @@
       "confidence": 1.0,
       "explanation": "The SDK provisions built-in functionality for token validation without requiring developers to implement such behavior, making it compliant with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\providers\\proxyProvider.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\providers\\proxyProvider.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
       ],
       "code_snippets": [
         "proxyProvider.ts: verifyAccessToken method calls external verification logic.",
@@ -1146,8 +1146,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements automatic token verification through the 'verifyAccessToken' method and rejects invalid tokens via the 'requireBearerAuth' middleware, complying with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\providers\\proxyProvider.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\providers\\proxyProvider.ts"
       ],
       "code_snippets": [
         "async verifyAccessToken(token: string): Promise<AuthInfo> { return this._verifyAccessToken(token); }",
@@ -1166,8 +1166,8 @@
       "confidence": 0.8,
       "explanation": "The SDK implements the required functionality to revoke tokens rather than pass them through. The found methods suggest that it handles token invalidation and management, which is consistent with the rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
       ],
       "code_snippets": [
         "async (req, res) => { await provider.revokeToken!(client, parseResult.data); } // revoke.ts"
@@ -1187,10 +1187,10 @@
       "confidence": 0.9,
       "explanation": "The SDK defines functions for handling resources and allows passing resource parameters during token requests; however, it lacks internal logic that automatically manages these parameters, placing the responsibility on developers to handle these tasks.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth.js"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth.js"
       ],
       "code_snippets": [
         "function registerResource(name: string, uriOrTemplate: string | ResourceTemplate, config: ResourceMetadata, readCallback: ReadResourceCallback) { ... }",
@@ -1211,9 +1211,9 @@
       "confidence": 1.0,
       "explanation": "The SDK's implementation supports the base protocol and lifecycle management as required by the MCP rule. It defines the necessary functions and automatically handles lifecycle notifications, fulfilling obligations under the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.test.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.js"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.test.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.js"
       ],
       "code_snippets": [
         "sendToolListChanged(): This method automatically sends notifications when tools state changes, evidencing automatic lifecycle management.",
@@ -1233,9 +1233,9 @@
       "confidence": 0.8,
       "explanation": "The SDK does provide the ability to send notifications relevant to the tools and resources list changes but does not encapsulate automatic management of those notifications. Developers must explicitly invoke methods to send notifications, thereby failing the compliance criteria for automatic notification handling.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts"
       ],
       "code_snippets": [
         "sendToolListChanged() which requires invocation by the developer to send notifications.",
@@ -1255,9 +1255,9 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the handling of JSON-RPC messages, automatically managing notifications and session states consistent with the JSON-RPC 2.0 specification, and incorporates necessary error handling.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.js",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.js"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.js",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.js"
       ],
       "code_snippets": [
         "async sendLoggingMessage(params: LoggingMessageNotification['params'], sessionId?: string) { ... }",
@@ -1278,9 +1278,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the requirement for requests to include an ID and ensures that the ID is validated and managed correctly throughout sessions.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol-transport-handling.test.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol-transport-handling.test.ts"
       ],
       "code_snippets": [
         "app.post('/mcp', async (req, res) => { /* Handle the request */ await transport.handleRequest(req, res, req.body); });",
@@ -1299,8 +1299,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the requirement that the request ID MUST NOT be null by enforcing Zod schemas during request processing. The relevant checks and validations are placed in the methods responsible for handling JSON-RPC requests, ensuring that application developers do not need to handle this themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts"
       ],
       "code_snippets": [
         "// In src/types.ts, checks for RequestId on initialization",
@@ -1322,8 +1322,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages request IDs and sessions as required by the MCP rule. It validates that no request ID has been used previously in the same session without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\server.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\server.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
       ],
       "code_snippets": [
         "sessionIdGenerator: () => randomUUID()",
@@ -1343,7 +1343,7 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements the requirement that responses must include the same ID as the request they correspond to. This is confirmed by the presence of the 'handleRequest' function which automatically handles response IDs according to the JSON-RPC specification.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmpqcs71cz7.md"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmpqcs71cz7.md"
       ],
       "code_snippets": [
         "// Handle the request\nawait transport.handleRequest(req, res, req.body);"
@@ -1361,10 +1361,10 @@
       "confidence": 0.9,
       "explanation": "The SDK does not enforce the rule that a response MUST NOT set both result and error; the implementation allows setting both in response logic without preventing conflicts.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
       ],
       "code_snippets": [
         "responseMessage['error'] = {code: -32600, message: 'Error message'}; responseMessage['result'] = 'Success message';"
@@ -1377,15 +1377,15 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No function definitions found specifically for result and error handling.",
-        "Phase 2-Source Code: Successful response mechanisms and error handling are implemented as per protocol, evidenced in lines 4-15 of 'C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts'.",
+        "Phase 2-Source Code: Successful response mechanisms and error handling are implemented as per protocol, evidenced in lines 4-15 of 'C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts'.",
         "Phase 2-Source Code: Multiple error classes define code and message structures as mandated in the protocol."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the required behavior by managing responses that include either a result or an error. The implementation provides structured error responses along with successful results, fulfilling the protocol compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts"
       ],
       "code_snippets": [
         "Error Response Example: res.writeHead(400).end(JSON.stringify({ jsonrpc: '2.0', error: { code: -32600, message: 'Invalid Request: Server already initialized', }, id: null, }));",
@@ -1404,8 +1404,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the required error handling correctly by ensuring that all errors have an associated integer code and a message. Additionally, all responses include the same ID as the request they correspond to.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\transport.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\transport.ts"
       ],
       "code_snippets": [
         "error: {\n  code: z.number().int(),\n  message: z.string(),\n}"
@@ -1424,9 +1424,9 @@
       "confidence": 0.95,
       "explanation": "The SDK automatically handles error responses, including the required error code and message structure, ensuring compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\response.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\schema.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\response.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\schema.ts"
       ],
       "code_snippets": [
         "_onresponse function that processes JSONRPCError",
@@ -1446,8 +1446,8 @@
       "confidence": 1.0,
       "explanation": "The SDK has defined error codes as integers in its error handling schema and manages error response generation automatically, ensuring full compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\tmpvvxcy9re.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\tmpjy8oef4r.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\tmpvvxcy9re.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\tmpjy8oef4r.ts"
       ],
       "code_snippets": [
         "error: z.object({ code: z.number().int(), message: z.string() }) found in JSONRPCErrorSchema.",
@@ -1466,9 +1466,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically handle the sending of notifications, which is a requirement of the MCP rule stating that the receiver MUST NOT send a response. The responsibility appears to be shifted to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
       ],
       "code_snippets": [
         "No automatic notification sending logic found within the code."
@@ -1487,7 +1487,7 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements the requirement that notifications MUST NOT include an ID. The relevant notification sending method does not include an ID field.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "async notification(notification: SendNotificationT, options?: NotificationOptions) {}"
@@ -1505,8 +1505,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles session generation and notification signaling through the StreamableHTTPServerTransport, fulfilling the MCP requirement for HTTP-based transport behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
       ],
       "code_snippets": [
         "class StreamableHTTPServerTransport { /* ... */ handleRequest(/* ... */) { /* Notification handling */ } }"
@@ -1519,18 +1519,18 @@
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
         "Phase 1-IR: No definitions found indicating automatic retrieval of credentials from the environment.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts"
       ],
       "confidence": 1.0,
       "explanation": "The SDK does not automatically handle the retrieval of credentials from the environment as required by the MCP rule. There is no evidence of implementation that meets this requirement, indicating a shift of responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts"
       ],
       "code_snippets": []
     },
@@ -1541,16 +1541,16 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No relevant definitions or calls found that directly indicate negotiation of custom authentication in the IR files.",
-        "Phase 2-Source Code: OAuthClientProvider implements token management without requiring developer intervention, found in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts.",
-        "Phase 2-Source Code: The authenticateClient middleware encapsulates authentication logic, found in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts.",
-        "Phase 2-Source Code: Token handling, including automatic refresh, is embedded in the SDK operations, found in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts."
+        "Phase 2-Source Code: OAuthClientProvider implements token management without requiring developer intervention, found in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts.",
+        "Phase 2-Source Code: The authenticateClient middleware encapsulates authentication logic, found in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts.",
+        "Phase 2-Source Code: Token handling, including automatic refresh, is embedded in the SDK operations, found in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically manages authentication and authorization processes including token management and client validation, encapsulating required behaviors and allowing for negotiation of custom strategies as per the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
       ],
       "code_snippets": [
         "tokens(): OAuthTokens | undefined | Promise<OAuthTokens | undefined>;",
@@ -1566,12 +1566,12 @@
       "evidence": [
         "Phase 1-IR: Found function 'connect' in defs_typescript.jsonl, defined in file.ts:603.",
         "Phase 1-IR: Confirmed calls to the 'connect' method handling initialization.",
-        "Phase 2-Source Code: Verified implementation details in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\simpleStreamableHttp.ts."
+        "Phase 2-Source Code: Verified implementation details in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\simpleStreamableHttp.ts."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the connection and initialization process without exposing the responsibility to application developers. The required behaviors are defined within the SDK itself.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\simpleStreamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\simpleStreamableHttp.ts"
       ],
       "code_snippets": [
         "await server.connect(transport); // Manages protocol initialization internally."
@@ -1590,7 +1590,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles initialization requests, manages session IDs, and incorporates client capabilities as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
       ],
       "code_snippets": [
         "if (isInitializationRequest) { // Handles initialization directly }",
@@ -1609,8 +1609,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the functionality required to respond with its capabilities automatically through defined methods, encapsulating this behavior as specified in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "this._capabilities = options?.capabilities ?? {}",
@@ -1629,7 +1629,7 @@
       "confidence": 0.8,
       "explanation": "The SDK does not automatically send the 'initialized' notification as required by the rule. While it has a handler for the notification, it is unclear that the sending logic is encapsulated within the SDK without involving developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
       ],
       "code_snippets": [
         "this.setNotificationHandler(InitializedNotificationSchema, () => this.oninitialized?.());"
@@ -1641,15 +1641,15 @@
       "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function initialize in defs_typescript.jsonl, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts.",
+        "Phase 1-IR: Found function initialize in defs_typescript.jsonl, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts.",
         "Phase 1-IR: Confirmed that the SDK enforces request type checks ensuring only pings are allowed before initialization is complete.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts, which manages request sending and handles initialization state restrictions."
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts, which manages request sending and handles initialization state restrictions."
       ],
       "confidence": 1.0,
       "explanation": "The SDK effectively restricts the client from sending requests other than pings prior to receiving an response to the `initialize` request, complying with the MCP requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts"
       ],
       "code_snippets": [
         "// The client can only send ping requests before initialization is acknowledged.",
@@ -1663,12 +1663,12 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No explicit function definitions found in defs_typescript.jsonl.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts."
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts."
       ],
       "confidence": 1.0,
       "explanation": "The SDK has implemented logic that ensures the server only processes 'ping' and 'logging' requests before receiving an 'initialized' notification.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
       ],
       "code_snippets": [
         "if (isInitializationRequest) { ... reject all requests if already initialized ... }"
@@ -1687,10 +1687,10 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically sends the supported protocol version during initialization and manages validation internally without requiring application developers to implement this functionality.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\sse.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\stdio.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\sse.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\stdio.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
       ],
       "code_snippets": [
         "const result = await this.request({ method: 'initialize', params: { protocolVersion: LATEST_PROTOCOL_VERSION,... }});",
@@ -1711,8 +1711,8 @@
       "confidence": 1.0,
       "explanation": "The SDK handles the protocol version management internally, automatically sending the latest supported version during the initialization. This is in accordance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
       ],
       "code_snippets": [
         "setProtocolVersion(version: string): void {}",
@@ -1732,8 +1732,8 @@
       "confidence": 0.9,
       "explanation": "The SDK automatically validates and responds with the appropriate protocol version during initialization, complying with the MCP rule stating the server MUST respond with the same protocol version if supported.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
       ],
       "code_snippets": [
         "function validateProtocolVersion(req: IncomingMessage, res: ServerResponse): boolean {...}",
@@ -1753,9 +1753,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles protocol version negotiation and responses, fulfilling the regulation requirements without placing the responsibility on developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
       ],
       "code_snippets": [
         "validateProtocolVersion method in FILE_PATH: tmpjy8oef4r.ts",
@@ -1774,8 +1774,8 @@
       "confidence": 0.85,
       "explanation": "The SDK does not fully encapsulate the logic required to manage protocol versions automatically as per the MCP rule. Developers are required to call 'setProtocolVersion'.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
       ],
       "code_snippets": [
         "const protocolVersion = SUPPORTED_PROTOCOL_VERSIONS.includes(requestedVersion) ? requestedVersion : LATEST_PROTOCOL_VERSION;"
@@ -1805,9 +1805,9 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly includes the MCP-Protocol-Version header in all required requests. It automatically manages and validates this header, ensuring compliance with the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
       ],
       "code_snippets": [
         "if (!this.validateProtocolVersion(req, res)) { return; }",
@@ -1827,9 +1827,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages protocol version validation and capability checks, thereby encapsulating the required behaviors outlined in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
       ],
       "code_snippets": [
         "setProtocolVersion(version: string) definition",
@@ -1849,7 +1849,7 @@
       "confidence": 0.85,
       "explanation": "The SDK provides the capability to close the input stream but does not implement the required behaviors of waiting for the server to exit or sending termination signals automatically. Thus, it shifts the responsibility to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
       ],
       "code_snippets": [
         "async close(): Promise<void> { ... } // Implementation largely available, but lacks complete compliance with the rule."
@@ -1868,9 +1868,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement the automatic server shutdown behavior required by the MCP rule, and there are no automatic handling mechanisms identified for closing output streams or exiting servers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\stdio.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\stdio.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
       ],
       "code_snippets": []
     },
@@ -1886,7 +1886,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically implements timeout handling and cancellation notifications as required by the rule. It encapsulates these behaviors within the framework, preventing application developers from needing to implement them manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "request() method includes timeout handling: cancel function calls the cancellation notification with the request ID.",
@@ -1905,7 +1905,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the cancellation notification upon a request timeout, which fulfills the MCP rule's requirements. The internal implementation confirms that developers are not required to manage this logic.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "this._transport?.send({ jsonrpc: '2.0', method: 'notifications/cancelled', params: { requestId: messageId, reason: String(reason), }, });"
@@ -1923,7 +1923,7 @@
       "confidence": 1.0,
       "explanation": "The SDK implements timeout configurations on a per-request basis through the RequestOptions type and manages the timing logic internally, reducing the burden on developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "type RequestOptions = { timeout?: number; ... };",
@@ -1938,12 +1938,12 @@
       "evidence": [
         "Phase 1-IR: Found function definitions in defs_typescript.jsonl for handling progress notifications and timeout resets.",
         "Phase 1-IR: Verified call relationships in calls_typescript.jsonl indicating calls to handle these functions.",
-        "Phase 2-Source Code: Verified implementation for automatic timeout reset in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "Phase 2-Source Code: Verified implementation for automatic timeout reset in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically manages the resetting of the timeout clock when receiving progress notifications, ensuring that developers are not left to handle this logic themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "private _onprogress(notification: ProgressNotification): void { ... }",
@@ -1963,7 +1963,7 @@
       "confidence": 1.0,
       "explanation": "The SDK implements and encapsulates both maximum timeout enforcement and the logic for resetting timeouts based on progress notifications internally, fulfilling the MCP compliance requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
       ],
       "code_snippets": [
         "maxTotalTimeout: number;",
@@ -1984,8 +1984,8 @@
       "confidence": 1.0,
       "explanation": "The SDK successfully encapsulates error handling for protocol version mismatches, negotiation failures, and request timeouts, providing automatic error responses and ensuring developers do not need to manage these details themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\completable.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\completable.ts"
       ],
       "code_snippets": [
         "Error Handling in Protocol Class",
@@ -2005,9 +2005,9 @@
       "confidence": 0.8,
       "explanation": "The SDK includes mechanisms for client registration and authorization management but fails to implement a requirement for obtaining user consent before these actions. Therefore, it does not fulfill the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
       ],
       "code_snippets": [
         "function clientRegistrationHandler(...)",
@@ -2026,9 +2026,9 @@
       "confidence": 0.75,
       "explanation": "The SDK verifies tokens through middleware but does not explicitly prevent the acceptance of tokens that are not issued by the MCP server itself. It does not fulfill the requirement that MCP servers MUST NOT accept any tokens not explicitly issued.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
       ],
       "code_snippets": [
         "const authInfo = await verifier.verifyAccessToken(token); // Verifying token here",
@@ -2047,8 +2047,8 @@
       "confidence": 0.85,
       "explanation": "The SDK has functions and middleware for authorization and some handling of requests; however, it does not fully encapsulate the required behavior of verifying all inbound requests explicitly in a manner that developers do not need to implement themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
       ],
       "code_snippets": [
         "app.post('/mcp', async (req, res) => {...})"
@@ -2067,7 +2067,7 @@
       "confidence": 0.95,
       "explanation": "The SDK uses sessions for authentication, contradicting the MCP rule that states servers MUST NOT use sessions for authentication. Functions for validating and managing sessions have been explicitly defined and used in the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
       ],
       "code_snippets": [
         "if (!this.validateSession(req, res)) { return; } // Validates session ID",
@@ -2076,3 +2076,4 @@
     }
   ]
 }
+

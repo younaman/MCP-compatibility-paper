@@ -36,8 +36,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically generates secure session IDs using a secure random number generator, adhering to the MCP protocol requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\McpSession.Methods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\McpSession.Methods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
       ],
       "code_snippets": [
         "internal static string MakeNewSessionId() { Span<byte> buffer = stackalloc byte[16]; RandomNumberGenerator.Fill(buffer); return WebEncoders.Base64UrlEncode(buffer); }"
@@ -55,8 +55,8 @@
       "confidence": 0.7,
       "explanation": "While the SDK contains mechanisms to associate user IDs with session IDs, it does not clearly and automatically bind them in a way that the application developers do not have to consider these details. This leads to a shift of responsibility back to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Stateless\\StatelessSessionId.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\SseHandler.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Stateless\\StatelessSessionId.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\SseHandler.cs"
       ],
       "code_snippets": [
         "UserIdClaim? UserIdClaim { get; init; }",
@@ -75,8 +75,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically ensures that JSON-RPC messages are UTF-8 encoded during transmission via the SendMessageAsync method. This implementation detail encapsulates the encoding behavior, adhering fully to the MCP requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StreamClientSessionTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\SseWriter.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StreamClientSessionTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\SseWriter.cs"
       ],
       "code_snippets": [
         "public async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default)\n{\n    var json = JsonSerializer.Serialize(message, McpJsonUtilities.JsonContext.Default.JsonRpcMessage);\n    await _serverInput.WriteLineAsync(json).ConfigureAwait(false);\n}",
@@ -96,10 +96,10 @@
       "confidence": 0.8,
       "explanation": "While the SDK provides stdio support through defined classes, there is no evidence of automatic handling for notifications related to stdio operations, thereby shifting that responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StdioServerTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StdioClientSessionTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StdioClientTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StdioServerTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StdioClientSessionTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StdioClientTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs"
       ],
       "code_snippets": [
         "public sealed class StdioServerTransport : StreamServerTransport { ... }",
@@ -119,7 +119,7 @@
       "confidence": 0.8,
       "explanation": "The SDK sends messages with newlines as required; however, it does not verify if received messages contain embedded newlines, which violates the MUST NOT requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamClientSessionTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamClientSessionTransport.cs"
       ],
       "code_snippets": [
         "public override async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default) {...}",
@@ -139,8 +139,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles logging UTF-8 strings to stderr by invoking the appropriate logging mechanism upon receiving error data, thus fulfilling the requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StdioClientTransportOptions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StreamableHttpClientSessionTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StdioClientTransportOptions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StreamableHttpClientSessionTransport.cs"
       ],
       "code_snippets": [
         "process.ErrorDataReceived += (sender, args) => { /* logging logic */ }",
@@ -160,8 +160,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements automatic handling of log message notifications, satisfying the MCP rule. The logging infrastructure is encapsulated within the SDK, and application developers do not have to implement this manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerExtensions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\ClientLoggerProvider.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerExtensions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\ClientLoggerProvider.cs"
       ],
       "code_snippets": [
         "LogInternal method utilizes SendNotificationAsync to send log messages."
@@ -180,8 +180,8 @@
       "confidence": 1.0,
       "explanation": "All found functions responsible for writing messages to stdout within the SDK ensure that only valid MCP messages are sent without any additional undesired output.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamClientSessionTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamServerTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamClientSessionTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamServerTransport.cs"
       ],
       "code_snippets": [
         "await _serverInput.WriteLineAsync(json).ConfigureAwait(false); // in SendMessageAsync method"
@@ -200,7 +200,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages the process of reading and validating incoming MCP messages on stdin, ensuring compliance with the specified MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StdioServerTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StdioServerTransport.cs"
       ],
       "code_snippets": [
         "var message = (JsonRpcMessage?)JsonSerializer.Deserialize(line.AsSpan().Trim(), ...); // Ensures only valid MCP messages are processed."
@@ -218,7 +218,7 @@
       "confidence": 0.8,
       "explanation": "The SDK defines an HTTP endpoint but lacks automated handling for both POST and GET within its own logic, necessitating developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\AspNetCoreMcpPerSessionTools\\Program.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\AspNetCoreMcpPerSessionTools\\Program.cs"
       ],
       "code_snippets": [
         "app.MapMcp(\"/{toolCategory?}\");"
@@ -237,9 +237,9 @@
       "confidence": 0.9,
       "explanation": "The SDK lacks implementation that validates the `Origin` header on all incoming connections as mandated by the MCP rule to prevent DNS rebinding attacks.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\HttpServerTransportOptions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\McpServerServiceCollectionExtensions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\SingleSessionMcpServerHostedService.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\HttpServerTransportOptions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\McpServerServiceCollectionExtensions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\SingleSessionMcpServerHostedService.cs"
       ],
       "code_snippets": []
     },
@@ -256,8 +256,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not enforce binding only to localhost when running locally but allows configuration that might lead to bindings on all network interfaces.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\AspNetCoreMcpPerSessionTools\\README.md",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\McpServerOptionsSetup.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\AspNetCoreMcpPerSessionTools\\README.md",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\McpServerOptionsSetup.cs"
       ],
       "code_snippets": [
         "The server will start on 'https://localhost:5001' (or the port shown in the console)",
@@ -276,9 +276,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages authentication by providing integrated functionality through the AddMcp method which calls internal handlers and sends authorization headers without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationExtensions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthenticatingMcpHttpClient.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationHandler.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationExtensions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthenticatingMcpHttpClient.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationHandler.cs"
       ],
       "code_snippets": [
         "McpAuthenticationExtensions.cs: public static AuthenticationBuilder AddMcp(this AuthenticationBuilder builder, Action<McpAuthenticationOptions>? configureOptions = null)",
@@ -299,7 +299,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles every JSON-RPC message as a new HTTP POST request through the interaction of HandlePostRequest and SendMessageAsync methods.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs"
       ],
       "code_snippets": [
         "public async Task<bool> HandlePostRequest(JsonRpcMessage message, Stream responseStream, CancellationToken cancellationToken = default)",
@@ -319,8 +319,8 @@
       "confidence": 1.0,
       "explanation": "The SDK framework implements automatic handling of HTTP POST requests for JSON-RPC messages, including proper header management and response processing without requiring application developers to manually implement these behaviors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpHttpClient.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpHttpClient.cs"
       ],
       "code_snippets": [
         "public async Task<bool> HandlePostRequest(JsonRpcMessage message, Stream responseStream, CancellationToken cancellationToken = default)",
@@ -339,7 +339,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically includes the required 'Accept' header with both content types in the HTTP requests.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StreamableHttpClientSessionTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StreamableHttpClientSessionTransport.cs"
       ],
       "code_snippets": [
         "using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, _options.Endpoint) { Headers = { Accept = { s_applicationJsonMediaType, s_textEventStreamMediaType } } };"
@@ -358,8 +358,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implementation enforces automatic handling of JSON-RPC messages, ensuring that all messages are processed according to the MCP requirements without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpHttpClient.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpHttpClient.cs"
       ],
       "code_snippets": [
         "public async Task<bool> HandlePostRequest(JsonRpcMessage message, Stream responseStream, CancellationToken cancellationToken = default)",
@@ -378,7 +378,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically returns HTTP status code 202 Accepted without a body in response to the handled requests as per the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs"
       ],
       "code_snippets": [
         "context.Response.StatusCode = StatusCodes.Status202Accepted;",
@@ -397,8 +397,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the behavior required by the MCP rule, returning appropriate HTTP error status codes for invalid requests.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\SseSession.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\SseSession.cs"
       ],
       "code_snippets": [
         "await WriteJsonRpcErrorAsync(context, \"Bad Request: The POST body did not contain a valid JSON-RPC message.\", StatusCodes.Status400BadRequest);",
@@ -418,8 +418,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically sends JSON-RPC error responses without requiring developers to implement this behavior themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpServerTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpServerTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs"
       ],
       "code_snippets": [
         "private static Task WriteJsonRpcErrorAsync(HttpContext context, string errorMessage, int statusCode, int errorCode = -32000) { ... }",
@@ -439,8 +439,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles JSON-RPC request and SSE stream responses as mandated by the MCP rule, encapsulating the required behaviors and not leaving them to the developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
       ],
       "code_snippets": [
         "async Task<bool> HandlePostRequest(JsonRpcMessage message, Stream responseStream, CancellationToken cancellationToken = default) {...}",
@@ -461,8 +461,8 @@
       "confidence": 1.0,
       "explanation": "The SDK successfully implements mandatory behaviors for handling HTTP POST requests, JSON-RPC messaging, and automatic response management. Thus, it complies fully with the MCP protocols outlined.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\IMcpEndpoint.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\IMcpEndpoint.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs"
       ],
       "code_snippets": [
         "public abstract Task<JsonRpcResponse> SendRequestAsync(JsonRpcRequest request);",
@@ -483,8 +483,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the required behavior of including JSON-RPC responses in the SSE stream for requests sent in the POST body, confirming compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs"
       ],
       "code_snippets": [
         "public async Task<bool> HandlePostRequest(JsonRpcMessage message, Stream responseStream, CancellationToken cancellationToken = default)",
@@ -499,13 +499,13 @@
       "evidence": [
         "Phase 1-IR: Found capability to send notifications through SendNotificationAsync in McpEndpointExtensions.cs.",
         "Phase 1-IR: Confirmed call relationships with structured functions that manage sending notifications in the context of JSON-RPC.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs."
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs."
       ],
       "confidence": 1.0,
       "explanation": "The SDK provides the capability to send JSON-RPC notifications automatically through the class methods of McpSession and related transport classes. Developers are not required to manage this directly.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
       ],
       "code_snippets": [
         "public static Task SendNotificationAsync(this IMcpEndpoint client, string method, CancellationToken cancellationToken = default)",
@@ -524,7 +524,7 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the required behavior of automatically handling message notifications related to the originating client request via the defined functions.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpServerTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpServerTransport.cs"
       ],
       "code_snippets": [
         "public async Task<bool> HandlePostRequest(JsonRpcMessage message, Stream responseStream, CancellationToken cancellationToken = default) {...}",
@@ -544,8 +544,8 @@
       "confidence": 0.9,
       "explanation": "The SDK implements the necessary functionality for handling SSE streams according to the MCP rule. The stream closure correctly follows the sending of JSON-RPC responses, adhering to the requirement that the server should not close the stream prematurely.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\SseHandler.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\SseHandler.cs"
       ],
       "code_snippets": [
         "public async Task RunAsync(CancellationToken cancellationToken = default) { ... }",
@@ -565,8 +565,8 @@
       "confidence": 0.85,
       "explanation": "The analysis did not find evidence that the SDK automatically closes the SSE stream after sending the JSON-RPC response. The responsibility appears to be placed on the application developer, contrary to the rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamServerTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\AspNetCoreMcpPerSessionTools\\Program.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamServerTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\AspNetCoreMcpPerSessionTools\\Program.cs"
       ],
       "code_snippets": [
         "async Task CloseAsync() {...}",
@@ -587,8 +587,8 @@
       "confidence": 1.0,
       "explanation": "The SDK handles disconnections internally without requiring developer intervention and automatically manages notification sending as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpClient.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpClient.cs"
       ],
       "code_snippets": [
         "public Task SendNotificationAsync(string method, CancellationToken cancellationToken = default) {...}",
@@ -607,8 +607,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not provide an automated way to handle disconnection as an MP cancellation notification, delegating this responsibility to developers. No internal mechanisms were found that manage this behavior transparently.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
       ],
       "code_snippets": [
         "public async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default){}",
@@ -628,9 +628,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the cancellation notifications without requiring manual implementation from developers. The `HandleNotification` method explicitly handles the `CancelledNotification` internally, confirming full compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\RequestMethods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\RequestMethods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs"
       ],
       "code_snippets": [
         "if (notification.Method == NotificationMethods.CancelledNotification) { /* cancel logic */ }"
@@ -644,14 +644,14 @@
       "evidence": [
         "Phase 1-IR: No function found in defs that implements stream resumability.",
         "Phase 1-IR: No call relationships in calls that demonstrate stream resumability.",
-        "Phase 2-Source Code: `StreamServerTransport` does not automatically resume streams on disconnection (C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamServerTransport.cs).",
-        "Phase 2-Source Code: `SseResponseStreamTransport` lacks mechanism for automatic stream resumption after disconnection (C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs)."
+        "Phase 2-Source Code: `StreamServerTransport` does not automatically resume streams on disconnection (C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamServerTransport.cs).",
+        "Phase 2-Source Code: `SseResponseStreamTransport` lacks mechanism for automatic stream resumption after disconnection (C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs)."
       ],
       "confidence": 0.9,
       "explanation": "The SDK does not implement automatic handling of stream resumability upon disconnection as required by the rule. Both the `StreamServerTransport` and `SseResponseStreamTransport` classes fail to incorporate this essential capability, shifting the responsibility to application developers, which violates the SDK's responsibility as outlined in the inspection standards.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamServerTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamServerTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
       ],
       "code_snippets": [
         "public class StreamServerTransport : TransportBase { /* Implementation details show no resumability logic */ }",
@@ -671,8 +671,8 @@
       "confidence": 0.95,
       "explanation": "The SDK effectively implements the behaviors specified by the MCP rule regarding HTTP GET requests and SSE streams. All required header checks and automatic notification logic are encapsulated within SDK methods, relieving the application developers from managing these details.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
       ],
       "code_snippets": [
         "public async Task HandleGetRequestAsync(HttpContext context) { ... } // checks for Accept headers and manages session",
@@ -692,8 +692,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the requirement for the Accept header to include text/event-stream, ensuring the client complies with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StreamableHttpClientSessionTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StreamableHttpClientSessionTransport.cs"
       ],
       "code_snippets": [
         "if (!typedHeaders.Accept.Any(MatchesTextEventStreamMediaType)) { await WriteJsonRpcErrorAsync(context, 'Not Acceptable: Client must accept text/event-stream', StatusCodes.Status406NotAcceptable); return; }",
@@ -708,12 +708,12 @@
       "evidence": [
         "Phase 1-IR: Found function HandleGetRequest in defs, defined in StreamableHttpServerTransport.cs",
         "Phase 1-IR: Confirmed that HandleGetRequest checks Accept headers and initializes the SSE response.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpServerTransport.cs"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpServerTransport.cs"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the required responses for SSE GET requests, returning 'Content-Type: text/event-stream' or HTTP 405 when necessary, thus adhering to the MCP compliance requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpServerTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpServerTransport.cs"
       ],
       "code_snippets": [
         "InitializeSseResponse(context); context.Response.Headers.ContentType = 'text/event-stream';"
@@ -731,8 +731,8 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly handles the sending of JSON-RPC notifications automatically, encapsulating the behaviors required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSessionHandler.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSessionHandler.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
       ],
       "code_snippets": [
         "public Task SendNotificationAsync(string method, CancellationToken cancellationToken = default)",
@@ -752,8 +752,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the sending of notifications via constructed methods and does not require developers to implement this behavior. The functions used in sending notifications are defined and managed within the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs"
       ],
       "code_snippets": [
         "public async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default) { ... }",
@@ -773,9 +773,9 @@
       "confidence": 0.8,
       "explanation": "The SDK allows the sending of JSON-RPC responses over SSE streams without enforcing the required checks against unsolicited messages.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpServerTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpServerTransport.cs"
       ],
       "code_snippets": [
         "public async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default) { ... }",
@@ -794,7 +794,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages the SSE stream's lifecycle, including its closure, as evidenced by the implementation of DisposeAsync which encapsulates the logic for stream management.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
       ],
       "code_snippets": []
     },
@@ -804,13 +804,13 @@
       "rule_text": "1. The client **MAY** issue an HTTP GET to the MCP endpoint. This can be used to open an\n   SSE stream, allowing the server to communicate to the client, without the client first\n   sending data via HTTP POST.\n2. The client **MUST** include an `Accept` header, listing `text/event-stream` as a\n   supported content type.\n3. The server **MUST** either return `Content-Type: text/event-stream` in response to\n   this HTTP GET, or else return HTTP 405 Method Not Allowed, indicating that the server\n   does not offer an SSE stream at this endpoint.\n4. If the server initiates an SSE stream:\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ on the stream.\n   - These messages **SHOULD** be unrelated to any concurrently-running JSON-RPC\n     _request_ from the client.\n   - The server **MUST NOT** send a JSON-RPC _response_ on the stream **unless**\n     [resuming](#resumability-and-redelivery) a stream associated with a previous client\n     request.\n   - The server **MAY** close the SSE stream at any time.\n   - The client **MAY** close the SSE stream at any time.",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found `CloseAsync` method in SseClientSessionTransport defined in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\SseClientSessionTransport.cs`:102",
+        "Phase 1-IR: Found `CloseAsync` method in SseClientSessionTransport defined in `C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\SseClientSessionTransport.cs`:102",
         "Phase 2-Source Code: Verified implementation in `CloseAsync` and `DisposeAsync` methods that automatically close the SSE stream."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically encapsulates the functionality to close the SSE stream via `CloseAsync` and manages it internally through `DisposeAsync`, fulfilling the requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\SseClientSessionTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\SseClientSessionTransport.cs"
       ],
       "code_snippets": [
         "public async Task CloseAsync() { /* logic to close the SSE stream */ }",
@@ -830,8 +830,8 @@
       "confidence": 0.8,
       "explanation": "The SDK implements some ability to handle sessions and messages, suggesting it can connect to multiple SSE streams. However, the responsibility of stream management is largely left to developers instead of being fully encapsulated within the SDK. This is inconsistent with the requirements of handling multiple SSE streams.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\SseHandler.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\SseHandler.cs"
       ],
       "code_snippets": [
         "public async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default)",
@@ -851,8 +851,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically implements the behavior of sending JSON-RPC messages on the designated stream, adhering to the MCP requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
       ],
       "code_snippets": [
         "private async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default) {...}",
@@ -872,8 +872,8 @@
       "confidence": 1.0,
       "explanation": "The SDK's `SendMessageAsync` implementations ensure that messages are sent only through a single stream and do not allow broadcasting across multiple streams, adhering to the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StreamableHttpClientSessionTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StreamableHttpClientSessionTransport.cs"
       ],
       "code_snippets": [
         "public async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default) { ... }",
@@ -892,8 +892,8 @@
       "confidence": 1.0,
       "explanation": "The SDK does not automatically handle resumability or mitigation of message loss as specified by the rule. Developers must implement these behaviors themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseWriter.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseWriter.cs"
       ],
       "code_snippets": [
         "public async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default) {...}",
@@ -913,9 +913,9 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the behavior required by the MCP rule, automatically handling the sending of SSE messages with an 'id' field, thereby ensuring compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\AutoDetectingClientSessionTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\SseHandler.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\AutoDetectingClientSessionTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\SseHandler.cs"
       ],
       "code_snippets": [
         "public async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default) {...}"
@@ -933,10 +933,10 @@
       "confidence": 0.9,
       "explanation": "The SDK defines an ID mechanism that is automatically managed within the context of sessions. The implementation details confirm that IDs are expected to be unique and are handled appropriately without requiring additional developer effort.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcMessageWithId.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StatefulSessionManager.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\McpSessionHandler.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcMessageWithId.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StatefulSessionManager.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\McpSessionHandler.cs"
       ],
       "code_snippets": [
         "class JsonRpcMessageWithId { public RequestId Id { get; init; } }",
@@ -957,8 +957,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not automatically handle the Last-Event-ID in GET requests, requiring developers to manage this behavior themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcRequest.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcRequest.cs"
       ],
       "code_snippets": [
         "async Task ReceiveUnsolicitedMessagesAsync() { ... } // Sending GET requests without automatic Last-Event-ID management"
@@ -977,10 +977,10 @@
       "confidence": 1.0,
       "explanation": "The SDK effectively manages resuming SSE streams by internally handling the `Last-Event-ID`, replaying messages after the last acknowledged ID, and ensuring developers do not need to implement these mechanisms themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StreamableHttpClientSessionTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseWriter.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StreamableHttpClientSessionTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseWriter.cs"
       ],
       "code_snippets": [
         "async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default) found in: StreamableHttpPostTransport.cs",
@@ -1000,7 +1000,7 @@
       "confidence": 1.0,
       "explanation": "The SDK ensures that the server does not replay messages that would have been directed to a different stream, fulfilling the MCP rule requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
       ],
       "code_snippets": [
         "public async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default) {/* Logic to avoid cross-stream message replay */}"
@@ -1014,14 +1014,14 @@
       "evidence": [
         "Phase 1-IR: Found function StartNewSessionAsync which assigns a session ID at initialization.",
         "Phase 1-IR: Confirmed function GetOrCreateSessionAsync is responsible for managing session states.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\HttpServerTransportOptions.cs."
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\HttpServerTransportOptions.cs."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the assignment and management of session IDs in accordance with the MCP rule, ensuring that developers are not burdened with session management details.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\HttpServerTransportOptions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StatefulSessionManager.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpSession.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\HttpServerTransportOptions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StatefulSessionManager.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpSession.cs"
       ],
       "code_snippets": [
         "context.Response.Headers[McpSessionIdHeaderName] = sessionId; // Assigns session ID at initialization【11:7†source】",
@@ -1042,8 +1042,8 @@
       "confidence": 0.7,
       "explanation": "While the SDK encapsulates session ID generation and management, it does not explicitly guarantee that session IDs are cryptographically secure, which is a requirement of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpSession.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StatefulSessionManager.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpSession.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StatefulSessionManager.cs"
       ],
       "code_snippets": [
         "Function MakeNewSessionId is defined to create new session IDs.",
@@ -1062,7 +1062,7 @@
       "confidence": 0.8,
       "explanation": "The SDK generates session IDs using Base64 encoding, which can produce non-visible ASCII characters, thus violating the MCP rule requiring session IDs to only contain visible ASCII characters (0x21 to 0x7E).",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpSession.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpSession.cs"
       ],
       "code_snippets": [
         "internal static string MakeNewSessionId() {\n    Span<byte> buffer = stackalloc byte[16];\n    RandomNumberGenerator.Fill(buffer);\n    return WebEncoders.Base64UrlEncode(buffer);\n}"
@@ -1080,9 +1080,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages session IDs and includes them in HTTP requests as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\HttpServerTransportOptions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StatefulSessionManager.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\HttpServerTransportOptions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StatefulSessionManager.cs"
       ],
       "code_snippets": [
         "context.Response.Headers[McpSessionIdHeaderName] = sessionId; // StreamableHttpHandler.cs",
@@ -1101,8 +1101,8 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements the rule by handling the absence of the `Mcp-Session-Id` header. It automatically returns an HTTP 400 Bad Request when it's not included in requests, encapsulating the behavior required by the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\HttpServerTransportOptions.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\HttpServerTransportOptions.cs"
       ],
       "code_snippets": [
         "await WriteJsonRpcErrorAsync(context, \"Bad Request: Mcp-Session-Id header is required\", StatusCodes.Status400BadRequest);"
@@ -1121,8 +1121,8 @@
       "confidence": 0.85,
       "explanation": "The SDK does not fully encapsulate the required behavior to automatically respond with HTTP 404 after session termination as mandated. The implementation relies on the developer to handle this, thus shifting the responsibility, which contradicts the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpSession.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\RequestServiceProvider.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpSession.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\RequestServiceProvider.cs"
       ],
       "code_snippets": [
         "HandleDeleteRequestAsync checks if session exists but lacks automatic 404 response handling.",
@@ -1135,16 +1135,16 @@
       "rule_text": "An MCP \"session\" consists of logically related interactions between a client and a\nserver, beginning with the [initialization phase](/specification/2025-06-18/basic/lifecycle). To support\nservers which want to establish stateful sessions:\n\n1. A server using the Streamable HTTP transport **MAY** assign a session ID at\n   initialization time, by including it in an `Mcp-Session-Id` header on the HTTP\n   response containing the `InitializeResult`.\n   - The session ID **SHOULD** be globally unique and cryptographically secure (e.g., a\n     securely generated UUID, a JWT, or a cryptographic hash).\n   - The session ID **MUST** only contain visible ASCII characters (ranging from 0x21 to\n     0x7E).\n2. If an `Mcp-Session-Id` is returned by the server during initialization, clients using\n   the Streamable HTTP transport **MUST** include it in the `Mcp-Session-Id` header on\n   all of their subsequent HTTP requests.\n   - Servers that require a session ID **SHOULD** respond to requests without an\n     `Mcp-Session-Id` header (other than initialization) with HTTP 400 Bad Request.\n3. The server **MAY** terminate the session at any time, after which it **MUST** respond\n   to requests containing that session ID with HTTP 404 Not Found.\n4. When a client receives HTTP 404 in response to a request containing an\n   `Mcp-Session-Id`, it **MUST** start a new session by sending a new `InitializeRequest`\n   without a session ID attached.\n5. Clients that no longer need a particular session (e.g., because the user is leaving\n   the client application) **SHOULD** send an HTTP DELETE to the MCP endpoint with the\n   `Mcp-Session-Id` header, to explicitly terminate the session.\n   - The server **MAY** respond to this request with HTTP 405 Method Not Allowed,\n     indicating that the server does not allow clients to terminate sessions.",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function DisposeSessionAsync responsible for terminating sessions in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\SingleSessionMcpServerHostedService.cs",
-        "Phase 1-IR: Confirmed HTTP DELETE request sending logic in SendDeleteRequest which handles session termination check in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\StreamableHttpSession.cs",
-        "Phase 1-IR: Handled HTTP 404 reponses upon accessing a terminated session in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\HttpServerTransportOptions.cs"
+        "Phase 1-IR: Found function DisposeSessionAsync responsible for terminating sessions in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\SingleSessionMcpServerHostedService.cs",
+        "Phase 1-IR: Confirmed HTTP DELETE request sending logic in SendDeleteRequest which handles session termination check in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\StreamableHttpSession.cs",
+        "Phase 1-IR: Handled HTTP 404 reponses upon accessing a terminated session in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\HttpServerTransportOptions.cs"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles session management, including termination and proper HTTP response codes as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\SingleSessionMcpServerHostedService.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\StreamableHttpSession.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\HttpServerTransportOptions.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\SingleSessionMcpServerHostedService.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\StreamableHttpSession.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\HttpServerTransportOptions.cs"
       ],
       "code_snippets": [
         "await DisposeSessionAsync(); // Terminating session in DisposeSessionAsync",
@@ -1165,8 +1165,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements session initiation through internal methods that automatically handle the creation of a new session when necessary, fully encapsulating the behavior required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpSession.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpSession.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs"
       ],
       "code_snippets": [
         "await StartNewSessionAsync(context); // Handles session creation internally."
@@ -1185,7 +1185,7 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the session termination behavior, sending an HTTP DELETE request with the necessary header when the session is no longer needed.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\tmpzkwh4dbw.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\tmpzkwh4dbw.cs"
       ],
       "code_snippets": [
         "await SendDeleteRequest();",
@@ -1205,8 +1205,8 @@
       "confidence": 0.9,
       "explanation": "The SDK automatically handles session termination requests by sending HTTP DELETE requests when appropriate. It encapsulates the behavior required by the MCP rule without requiring application developers to implement this logic manually, which is essential for compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StatefulSessionManager.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StatefulSessionManager.cs"
       ],
       "code_snippets": [
         "await SendDeleteRequest(); // Called automatically on DisposeAsync method【14:12†source】",
@@ -1219,15 +1219,15 @@
       "rule_text": "If using HTTP, the client **MUST** include the `MCP-Protocol-Version:\n<protocol-version>` HTTP header on all subsequent requests to the MCP\nserver, allowing the MCP server to respond based on the MCP protocol version.",
       "compliance_status": "UNCLEAR",
       "evidence": [
-        "Phase 1-IR: Found ProtocolVersion defined in McpClientOptions located at C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientOptions.cs",
+        "Phase 1-IR: Found ProtocolVersion defined in McpClientOptions located at C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientOptions.cs",
         "Phase 1-IR: SendRequestAsync exists in common request handling but lacks clarity on header handling.",
         "Phase 2-Source Code: Insufficient evidence found for automatic header management."
       ],
       "confidence": 0.4,
       "explanation": "While there's a definition for ProtocolVersion, there is no clear evidence of its automatic inclusion in outbound requests.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientOptions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientOptions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs"
       ],
       "code_snippets": [
         "public string? ProtocolVersion { get; set; }",
@@ -1247,8 +1247,8 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements automatic handling of the negotiated protocol version as per the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.cs"
       ],
       "code_snippets": [
         "public abstract string? NegotiatedProtocolVersion { get; }",
@@ -1268,9 +1268,9 @@
       "confidence": 0.9,
       "explanation": "The SDK implements the required behavior by automatically handling protocol version negotiation during the initialization process.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeRequestParams.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerOptions.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeRequestParams.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerOptions.cs"
       ],
       "code_snippets": [
         "public required string ProtocolVersion { get; init; } // In InitializeRequestParams.cs",
@@ -1289,7 +1289,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not handle the behavior required by the MCP rule regarding invalid MCP-protocol versions. While it can respond with a 400 Bad Request, there is no automatic check or management for the MCP-Protocol-Version.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs"
       ],
       "code_snippets": [
         "await WriteJsonRpcErrorAsync(context, \"Bad Request: The POST body did not contain a valid JSON-RPC message.\", StatusCodes.Status400BadRequest);"
@@ -1308,9 +1308,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles notifications and supports custom transport mechanisms without requiring additional implementations by application developers, fulfilling the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\IClientTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\IClientTransport.cs"
       ],
       "code_snippets": [
         "public static Task SendNotificationAsync(this IMcpEndpoint client, string method, CancellationToken cancellationToken = default)",
@@ -1331,9 +1331,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the JSON-RPC message format and notification lifecycle. Methods like SendRequestAsync and SendMessageAsync encapsulate the necessary sending behavior within the SDK, ensuring that developers do not have to implement this themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\IMcpEndpoint.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\IMcpEndpoint.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
       ],
       "code_snippets": [
         "public Task<JsonRpcResponse> SendRequestAsync(JsonRpcRequest request, CancellationToken cancellationToken = default);",
@@ -1352,8 +1352,8 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the required behaviors for message exchange patterns and connection establishment, providing automatic management without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ITransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ITransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
       ],
       "code_snippets": [
         "public Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default);",
@@ -1373,9 +1373,9 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the necessary behaviors for cancellation notifications, automatically handling the process as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CancelledNotificationParams.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSessionHandler.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CancelledNotificationParams.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSessionHandler.cs"
       ],
       "code_snippets": [
         "public async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default) { ... if (message is JsonRpcNotification { Method: NotificationMethods.CancelledNotification } notification ... }",
@@ -1388,15 +1388,15 @@
       "rule_text": "1. Cancellation notifications **MUST** only reference requests that:\n   - Were previously issued in the same direction\n   - Are believed to still be in-progress\n2. The `initialize` request **MUST NOT** be cancelled by clients\n3. Receivers of cancellation notifications **SHOULD**:\n   - Stop processing the cancelled request\n   - Free associated resources\n   - Not send a response for the cancelled request\n4. Receivers **MAY** ignore cancellation notifications if:\n   - The referenced request is unknown\n   - Processing has already completed\n   - The request cannot be cancelled\n5. The sender of the cancellation notification **SHOULD** ignore any response to the\n   request that arrives afterward",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function 'initialize' in defs, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
+        "Phase 1-IR: Found function 'initialize' in defs, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
         "Phase 1-IR: Confirmed calls to 'initialize' function",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs which does not handle cancellations internally."
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs which does not handle cancellations internally."
       ],
       "confidence": 0.9,
       "explanation": "The SDK does not enforce that `initialize` requests must not be cancelled by clients, placing this responsibility on developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestHandler.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestHandler.cs"
       ],
       "code_snippets": [
         "public static async Task<McpClient> CreateAsync(...)",
@@ -1427,8 +1427,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically processes cancellation notifications, halting any ongoing requests and managing related resources. The presence of structured notifications and handling logic demonstrates adherence to the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CancelledNotificationParams.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CancelledNotificationParams.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
       ],
       "code_snippets": [
         "// If the sent notification was a cancellation notification, \ncancel the pending request's await, as either the server won't be\nsending a response, or a response should be ignored."
@@ -1446,7 +1446,7 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly handles cancellation notifications and ignores any responses to those requests as specified in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestHandler.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestHandler.cs"
       ],
       "code_snippets": [
         "if (notification.Method == NotificationMethods.CancelledNotification) { /* Logic to manage cancellation */ }",
@@ -1466,9 +1466,9 @@
       "confidence": 0.85,
       "explanation": "The SDK lacks the necessary implementation for handling race conditions gracefully as required by the MCP rule. Specifically, it does not provide internal logic or automatic management of such scenarios.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\IMcpServer.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\TransportBase.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\EverythingServer\\LoggingUpdateMessageSender.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\IMcpServer.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\TransportBase.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\EverythingServer\\LoggingUpdateMessageSender.cs"
       ],
       "code_snippets": [
         "No capabilities found to handle race conditions gracefully.",
@@ -1488,9 +1488,9 @@
       "confidence": 0.8,
       "explanation": "The SDK framework has the capability to handle cancellation requests, but it does not implement logging for cancellation reasons, making it non-compliant with the rule that dictates both parties should log such reasons.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpSessionHandler.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpServerTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpSessionHandler.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpServerTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
       ],
       "code_snippets": [
         "LogSendingRequestFailed - Logs failure messages but does not capture cancellation reasons.",
@@ -1509,8 +1509,8 @@
       "confidence": 0.9,
       "explanation": "The SDK automatically handles cancellation notifications and ensures those are communicated without requiring application developers to implement this behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestHandler.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestHandler.cs"
       ],
       "code_snippets": [
         "if (message is JsonRpcNotification { Method: NotificationMethods.CancelledNotification })",
@@ -1530,7 +1530,7 @@
       "confidence": 1.0,
       "explanation": "The SDK handles cancellation notifications and ignores invalid ones per the rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
       ],
       "code_snippets": [
         "if (notification.Method == NotificationMethods.CancelledNotification) { /* ignore handling */ } // \"Invalid cancellation notifications SHOULD be ignored\""
@@ -1560,8 +1560,8 @@
       "confidence": 0.8,
       "explanation": "The SDK has timeout definitions but does not encapsulate automatic reconnection behaviors or mechanisms for considering connections stale without requiring developers to manage these aspects.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientOptions.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientOptions.cs"
       ],
       "code_snippets": [
         "public TimeSpan ConnectionTimeout { get; set; } = TimeSpan.FromSeconds(30);",
@@ -1581,7 +1581,7 @@
       "confidence": 0.9,
       "explanation": "While PingAsync is defined in the SDK, it does not implement automatic periodic pings and lacks configurability, thus placing the requirement on developers to manually invoke this functionality.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
       ],
       "code_snippets": [
         "public Task PingAsync(CancellationToken cancellationToken = default) { ... }"
@@ -1600,9 +1600,9 @@
       "confidence": 0.95,
       "explanation": "The SDK implements the ability to send pings internally and manages the configuration of ping frequency, aligning it with the requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpJsonUtilities.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpJsonUtilities.cs"
       ],
       "code_snippets": [
         "public Task PingAsync(CancellationToken cancellationToken = default) {...}",
@@ -1617,13 +1617,13 @@
       "evidence": [
         "Phase 1-IR: Found PingAsync in definitions, defined in McpClient.Methods.cs.",
         "Phase 1-IR: Confirmed PingAsync is called internally within SDK for server connectivity checks.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs."
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically implements the behavior required by the rule, encapsulating ping functionality and timeout settings within the McpClient class, ensuring that developers do not need to manage these aspects manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientOptions.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientOptions.cs"
       ],
       "code_snippets": [
         "// Sends a ping request to verify server connectivity.\npublic Task PingAsync(CancellationToken cancellationToken = default) {\n    return SendRequestAsync<RequestMethods.Ping>(parameters: null, cancellationToken: cancellationToken).AsTask();\n}"
@@ -1641,7 +1641,7 @@
       "confidence": 0.8,
       "explanation": "While the SDK has a method for sending pings automatically, it does not provide configuration options for ping frequency or timeouts, which are necessary to comply with the MCP rule that excessive pinging should be avoided.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
       ],
       "code_snippets": [
         "public Task PingAsync(CancellationToken cancellationToken = default) { /* implementation */ }"
@@ -1654,13 +1654,13 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No specific definitions found in IR files that directly address timeouts.",
-        "Phase 2-Source Code: Confirmed implementation details in FILE_PATH: 'C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientImpl.cs'",
+        "Phase 2-Source Code: Confirmed implementation details in FILE_PATH: 'C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientImpl.cs'",
         "Function 'LogClientInitializationTimeout' logs timeout occurrences, indicating it treats timeouts as connection failures."
       ],
       "confidence": 0.9,
       "explanation": "The SDK correctly implements timeout handling by logging and throwing exceptions similar to connection failures, thus encapsulating the required behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientImpl.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientImpl.cs"
       ],
       "code_snippets": [
         "throw new TimeoutException(\"Initialization timed out\", oce); // Indicates timeout is treated as a failure"
@@ -1679,9 +1679,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically handle connection resets upon multiple failed pings or log ping failures for diagnostics, shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Extensions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Extensions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs"
       ],
       "code_snippets": [
         "public Task PingAsync(CancellationToken cancellationToken = default)",
@@ -1694,15 +1694,15 @@
       "rule_text": "- Timeouts **SHOULD** be treated as connection failures\n- Multiple failed pings **MAY** trigger connection reset\n- Implementations **SHOULD** log ping failures for diagnostics",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found method PingAsync defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs.",
+        "Phase 1-IR: Found method PingAsync defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs.",
         "Phase 2-Source Code: Unable to find automatic logging of ping failures in the SDK.",
         "Phase 2-Source Code: General logging capabilities exist but are not utilized specifically for logging ping failures."
       ],
       "confidence": 0.85,
       "explanation": "The SDK provides a method to send a ping request, but it does not automatically log any failures related to ping operations, thus not meeting the compliance requirements outlined in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\ClientLogger.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\ClientLogger.cs"
       ],
       "code_snippets": [
         "Task PingAsync(CancellationToken cancellationToken = default) {...}",
@@ -1722,8 +1722,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines ProgressToken as either a string or an integer and implements NotifyProgressAsync to automatically handle notifications, thereby fulfilling the requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ProgressToken.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ProgressToken.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs"
       ],
       "code_snippets": [
         "public ProgressToken(string value)",
@@ -1744,9 +1744,9 @@
       "confidence": 1.0,
       "explanation": "The SDK successfully implements unique progress tokens and automatically handles notifications internally, as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ProgressToken.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\EverythingServer\\Tools\\LongRunningTool.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerHandlers.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ProgressToken.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\EverythingServer\\Tools\\LongRunningTool.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerHandlers.cs"
       ],
       "code_snippets": [
         "public class ProgressToken { /* ... */ }",
@@ -1767,8 +1767,8 @@
       "confidence": 1.0,
       "explanation": "The SDK provides a well-defined method 'NotifyProgressAsync' that automatically sends progress notifications, encapsulating the necessary values. This implementation prevents application developers from managing notification logic manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\TokenProgress.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\TokenProgress.cs"
       ],
       "code_snippets": [
         "public static Task NotifyProgressAsync(this IMcpEndpoint endpoint, ProgressToken progressToken, ProgressNotificationValue progress, CancellationToken cancellationToken = default) { ... }",
@@ -1788,8 +1788,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles progress notifications, ensuring that the `progress` value increases with each call to `Report`. The notification logic is fully encapsulated within the SDK, and the responsibility is not shifted to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\TokenProgress.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ProgressNotificationParams.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\TokenProgress.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ProgressNotificationParams.cs"
       ],
       "code_snippets": [
         "public void Report(ProgressNotificationValue value) { _ = session.NotifyProgressAsync(progressToken, value, CancellationToken.None); }",
@@ -1802,16 +1802,16 @@
       "rule_text": "- The `progress` value **MUST** increase with each notification, even if the total is\n  unknown.\n- The `progress` and the `total` values **MAY** be floating point.\n- The `message` field **SHOULD** provide relevant human readable progress information.",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found ProgressNotificationParams in defs, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ProgressNotificationParams.cs",
-        "Phase 1-IR: Confirmed NotifyProgressAsync method in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs",
-        "Phase 2-Source Code: Verified automatic notification handling in TokenProgress class C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\TokenProgress.cs"
+        "Phase 1-IR: Found ProgressNotificationParams in defs, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ProgressNotificationParams.cs",
+        "Phase 1-IR: Confirmed NotifyProgressAsync method in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs",
+        "Phase 2-Source Code: Verified automatic notification handling in TokenProgress class C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\TokenProgress.cs"
       ],
       "confidence": 1.0,
       "explanation": "The SDK correctly handles the 'progress' and 'total' values as floating point and manages notifications automatically via the NotifyProgressAsync method, complying with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ProgressNotificationParams.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\TokenProgress.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ProgressNotificationParams.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\TokenProgress.cs"
       ],
       "code_snippets": [
         "class ProgressNotificationParams { public required ProgressNotificationValue Progress { get; init; } }",
@@ -1831,8 +1831,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles sending progress notifications, implementing required functionalities encapsulated instead of leaving those responsibilities to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ProgressNotificationParams.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ProgressNotificationParams.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs"
       ],
       "code_snippets": [
         "public Task NotifyProgressAsync(...){ return SendNotificationAsync(...); }",
@@ -1852,8 +1852,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements and encapsulates the required behavior to send progress notifications automatically, using defined methods without exposing the manual responsibility to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\TokenProgress.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\TokenProgress.cs"
       ],
       "code_snippets": [
         "public Task NotifyProgressAsync(ProgressToken progressToken, ProgressNotificationValue progress, CancellationToken cancellationToken = default)",
@@ -1868,12 +1868,12 @@
       "evidence": [
         "Phase 1-IR: Found NotifyProgressAsync in defs, defined in McpEndpointExtensions.cs:122",
         "Phase 1-IR: Confirmed calls to SendNotificationAsync from NotifyProgressAsync",
-        "Phase 2-Source Code: Verified NotifyProgressAsync sends notifications automatically in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
+        "Phase 2-Source Code: Verified NotifyProgressAsync sends notifications automatically in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automates the handling of progress notifications and does not shift responsibility to application developers. It has the necessary ability definitions as well as internal logic to send notifications without requiring external calls.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
       ],
       "code_snippets": [
         "public Task NotifyProgressAsync(ProgressToken progressToken, ProgressNotificationValue progress, CancellationToken cancellationToken = default) {\n return SendNotificationAsync(NotificationMethods.ProgressNotification,\n new ProgressNotificationParams {\n ProgressToken = progressToken,\n Progress = progress,\n }, McpJsonUtilities.JsonContext.Default.ProgressNotificationParams,\n cancellationToken);\n}"
@@ -1885,16 +1885,16 @@
       "rule_text": "- Senders and receivers **SHOULD** track active progress tokens\n- Both parties **SHOULD** implement rate limiting to prevent flooding\n- Progress notifications **MUST** stop after completion",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function NotifyProgressAsync in defs, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs",
+        "Phase 1-IR: Found function NotifyProgressAsync in defs, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs",
         "Phase 1-IR: Confirmed NotifyProgressAsync is called by TokenProgress.Report to handle notifications",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\TokenProgress.cs"
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\TokenProgress.cs"
       ],
       "confidence": 1.0,
       "explanation": "The SDK provides the ability to track and notify progress tokens through internal methods, ensuring that developers are not required to implement these functionalities themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\TokenProgress.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ProgressNotificationParams.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\TokenProgress.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ProgressNotificationParams.cs"
       ],
       "code_snippets": [
         "public class ProgressNotificationParams { public required ProgressToken ProgressToken { get; init; } ... }",
@@ -1907,15 +1907,15 @@
       "rule_text": "- Senders and receivers **SHOULD** track active progress tokens\n- Both parties **SHOULD** implement rate limiting to prevent flooding\n- Progress notifications **MUST** stop after completion",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found NotifyProgressAsync method which is defined to handle progress notifications in file C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs.",
+        "Phase 1-IR: Found NotifyProgressAsync method which is defined to handle progress notifications in file C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs.",
         "Phase 1-IR: SendNotificationAsync method is also defined showing that the SDK handles notifications automatically.",
-        "Phase 2-Source Code: Verified implementation in file C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs."
+        "Phase 2-Source Code: Verified implementation in file C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs."
       ],
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the behavior needed for both tracking progress tokens and sending notifications. The implementation includes internal methods that automate these functionalities, fulfilling the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
       ],
       "code_snippets": [
         "public Task NotifyProgressAsync(...);  // Handles notification sending internally",
@@ -1935,9 +1935,9 @@
       "confidence": 0.9,
       "explanation": "The SDK defines the ability to report progress and send notifications, but does not encapsulate the logic to stop sending notifications after completion, thereby placing the onus on application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\TokenProgress.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\EverythingServer\\Tools\\LongRunningTool.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\UnsubscribeRequestParams.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\TokenProgress.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\EverythingServer\\Tools\\LongRunningTool.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\UnsubscribeRequestParams.cs"
       ],
       "code_snippets": [
         "public void Report(ProgressNotificationValue value) { _ = session.NotifyProgressAsync(progressToken, value, CancellationToken.None); }",
@@ -1958,7 +1958,7 @@
       "confidence": 0.8,
       "explanation": "The SDK defines the ability to track changes (listChanged) but does not automatically implement the logic to send notifications for resource changes, requiring developers to handle this logic themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\RootsCapability.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\RootsCapability.cs"
       ],
       "code_snippets": [
         "public bool? ListChanged { get; set; }",
@@ -1977,9 +1977,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically handle the restrictive behaviors mandated by changing 'SHOULD' to 'MUST' in the Lifecycle Operation. Developers are required to implement handlers as shown in the capability class definitions, which shifts the responsibility.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\SamplingCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitationCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ClientCapabilities.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\SamplingCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitationCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ClientCapabilities.cs"
       ],
       "code_snippets": []
     },
@@ -1996,8 +1996,8 @@
       "confidence": 0.9,
       "explanation": "The SDK exposes elicitation capabilities but requires application developers to set handlers that manage the logic of how requests for sensitive information are handled. This shifts the responsibility from the SDK to the developers, violating the MCP rule that servers must not use elicitation to request sensitive information.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitationCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitationCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs"
       ],
       "code_snippets": [
         "public sealed class ElicitationCapability",
@@ -2018,9 +2018,9 @@
       "confidence": 0.6,
       "explanation": "The SDK provides some handling of user information and supports cancellation notifications, but it is unclear whether it encapsulates the complete automatic handling of user responses, including UI interactions for rejection and cancellation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\AspNetCoreMcpPerSessionTools\\Tools\\UserInfoTool.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CancelledNotificationParams.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitResult.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\AspNetCoreMcpPerSessionTools\\Tools\\UserInfoTool.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CancelledNotificationParams.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitResult.cs"
       ],
       "code_snippets": [
         "public static string GetUserInfo() { /* implementation */ }",
@@ -2042,10 +2042,10 @@
       "confidence": 1.0,
       "explanation": "The SDK defines the elicitation capability within ClientCapabilities, provides an internal handler for processing elicitation requests through the McpClientHandlers, and implements the necessary logic in McpClientImpl to automatically manage elicitation requests as required.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ClientCapabilities.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitationCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientImpl.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ClientCapabilities.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitationCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientImpl.cs"
       ],
       "code_snippets": [
         "/// <summary>\n/// Gets or sets the client's elicitation capability, which indicates whether the client supports elicitation of additional information from the user on behalf of the server.\n/// </summary>\n[JsonPropertyName(\"elicitation\")]\npublic ElicitationCapability? Elicitation { get; set; }",
@@ -2054,3 +2054,4 @@
     }
   ]
 }
+

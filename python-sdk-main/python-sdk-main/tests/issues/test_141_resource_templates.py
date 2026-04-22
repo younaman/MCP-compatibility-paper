@@ -17,40 +17,40 @@ async def test_resource_template_edge_cases():
     mcp = FastMCP("Demo")
 
     # Test case 1: Template with multiple parameters
-    @mcp.resource("resource://users/{user_id}/posts/{post_id}")
+    @mcp.resource("resource:/<LOCAL_PATH>/posts/{post_id}")
     def get_user_post(user_id: str, post_id: str) -> str:
         return f"Post {post_id} by user {user_id}"
 
     # Test case 2: Template with optional parameter (should fail)
     with pytest.raises(ValueError, match="Mismatch between URI parameters"):
 
-        @mcp.resource("resource://users/{user_id}/profile")
+        @mcp.resource("resource:/<LOCAL_PATH>/profile")
         def get_user_profile(user_id: str, optional_param: str | None = None) -> str:
             return f"Profile for user {user_id}"
 
     # Test case 3: Template with mismatched parameters
     with pytest.raises(ValueError, match="Mismatch between URI parameters"):
 
-        @mcp.resource("resource://users/{user_id}/profile")
+        @mcp.resource("resource:/<LOCAL_PATH>/profile")
         def get_user_profile_mismatch(different_param: str) -> str:
             return f"Profile for user {different_param}"
 
     # Test case 4: Template with extra function parameters
     with pytest.raises(ValueError, match="Mismatch between URI parameters"):
 
-        @mcp.resource("resource://users/{user_id}/profile")
+        @mcp.resource("resource:/<LOCAL_PATH>/profile")
         def get_user_profile_extra(user_id: str, extra_param: str) -> str:
             return f"Profile for user {user_id}"
 
     # Test case 5: Template with missing function parameters
     with pytest.raises(ValueError, match="Mismatch between URI parameters"):
 
-        @mcp.resource("resource://users/{user_id}/profile/{section}")
+        @mcp.resource("resource:/<LOCAL_PATH>/profile/{section}")
         def get_user_profile_missing(user_id: str) -> str:
             return f"Profile for user {user_id}"
 
     # Verify valid template works
-    result = await mcp.read_resource("resource://users/123/posts/456")
+    result = await mcp.read_resource("resource:/<LOCAL_PATH>/posts/456")
     result_list = list(result)
     assert len(result_list) == 1
     assert result_list[0].content == "Post 456 by user 123"
@@ -58,10 +58,10 @@ async def test_resource_template_edge_cases():
 
     # Verify invalid parameters raise error
     with pytest.raises(ValueError, match="Unknown resource"):
-        await mcp.read_resource("resource://users/123/posts")  # Missing post_id
+        await mcp.read_resource("resource:/<LOCAL_PATH>/posts")  # Missing post_id
 
     with pytest.raises(ValueError, match="Unknown resource"):
-        await mcp.read_resource("resource://users/123/posts/456/extra")  # Extra path component
+        await mcp.read_resource("resource:/<LOCAL_PATH>/posts/456/extra")  # Extra path component
 
 
 @pytest.mark.anyio
@@ -70,11 +70,11 @@ async def test_resource_template_client_interaction():
     mcp = FastMCP("Demo")
 
     # Register some templated resources
-    @mcp.resource("resource://users/{user_id}/posts/{post_id}")
+    @mcp.resource("resource:/<LOCAL_PATH>/posts/{post_id}")
     def get_user_post(user_id: str, post_id: str) -> str:
         return f"Post {post_id} by user {user_id}"
 
-    @mcp.resource("resource://users/{user_id}/profile")
+    @mcp.resource("resource:/<LOCAL_PATH>/profile")
     def get_user_profile(user_id: str) -> str:
         return f"Profile for user {user_id}"
 
@@ -89,18 +89,18 @@ async def test_resource_template_client_interaction():
 
         # Verify resource templates are listed correctly
         templates = [r.uriTemplate for r in resources.resourceTemplates]
-        assert "resource://users/{user_id}/posts/{post_id}" in templates
-        assert "resource://users/{user_id}/profile" in templates
+        assert "resource:/<LOCAL_PATH>/posts/{post_id}" in templates
+        assert "resource:/<LOCAL_PATH>/profile" in templates
 
         # Read a resource with valid parameters
-        result = await session.read_resource(AnyUrl("resource://users/123/posts/456"))
+        result = await session.read_resource(AnyUrl("resource:/<LOCAL_PATH>/posts/456"))
         contents = result.contents[0]
         assert isinstance(contents, TextResourceContents)
         assert contents.text == "Post 456 by user 123"
         assert contents.mimeType == "text/plain"
 
         # Read another resource with valid parameters
-        result = await session.read_resource(AnyUrl("resource://users/789/profile"))
+        result = await session.read_resource(AnyUrl("resource:/<LOCAL_PATH>/profile"))
         contents = result.contents[0]
         assert isinstance(contents, TextResourceContents)
         assert contents.text == "Profile for user 789"
@@ -108,8 +108,9 @@ async def test_resource_template_client_interaction():
 
         # Verify invalid resource URIs raise appropriate errors
         with pytest.raises(Exception):  # Specific exception type may vary
-            await session.read_resource(AnyUrl("resource://users/123/posts"))  # Missing post_id
+            await session.read_resource(AnyUrl("resource:/<LOCAL_PATH>/posts"))  # Missing post_id
 
         with pytest.raises(Exception):  # Specific exception type may vary
-            await session.read_resource(AnyUrl("resource://users/123/invalid"))  # Invalid template
+            await session.read_resource(AnyUrl("resource:/<LOCAL_PATH>/invalid"))  # Invalid template
+
 

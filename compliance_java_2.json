@@ -19,8 +19,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically generates and manages secure, non-deterministic session IDs using UUID, fulfilling the MCP requirement without further developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebFluxStreamableServerTransportProvider.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebFluxStreamableServerTransportProvider.java"
       ],
       "code_snippets": [
         "this.id = UUID.randomUUID().toString(); // secure non-deterministic session ID generation method"
@@ -38,7 +38,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically generates session IDs using secure random number generators, complying with the MCP rule requirements. The use of UUID.randomUUID() ensures that session IDs are non-predictable and secure.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java"
       ],
       "code_snippets": [
         "UUID.randomUUID(); // Used for session ID generation"
@@ -57,7 +57,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically binds session IDs to user-specific information without requiring developers to implement this logic manually. The necessary functions and their implementations are present within the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java"
       ],
       "code_snippets": [
         "this.sessions.put(init.session().getId(), init.session());",
@@ -98,8 +98,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically implements stdio support and encapsulates the notification logic within its components, complying with the MCP rule that clients should support stdio whenever possible.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\StdioClientTransport.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\StdioServerTransportProvider.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\StdioClientTransport.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\StdioServerTransportProvider.java"
       ],
       "code_snippets": [
         "StdioClientTransport for stdio communication, manages inbound/outbound messages.",
@@ -140,8 +140,8 @@
       "confidence": 0.9,
       "explanation": "The SDK implements logging functionality to STDERR correctly, wrapping internal logging calls to log messages automatically as per the MCP rule. All relevant logging methods are called internally, thus preventing developers from needing to manually handle logging behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\StdioServerTransportProvider.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\StdioClientTransport.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\StdioServerTransportProvider.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\StdioClientTransport.java"
       ],
       "code_snippets": [
         "logger.error(\"Failed to send notification: {}\", e.getMessage());",
@@ -161,8 +161,8 @@
       "confidence": 0.9,
       "explanation": "The SDK defines `McpLoggableSession` that encapsulates logging functionality with methods to set minimum logging levels and automatically checks if notifications should be sent or ignored, complying with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpLoggableSession.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\Logger.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpLoggableSession.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\Logger.java"
       ],
       "code_snippets": [
         "public interface McpLoggableSession { ... void setMinLoggingLevel(McpSchema.LoggingLevel minLoggingLevel); ... boolean isNotificationForLevelAllowed(McpSchema.LoggingLevel loggingLevel); }",
@@ -182,7 +182,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the serialization and validation of MCP messages before sending them to stdout, ensuring compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpClientTransport.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpClientTransport.java"
       ],
       "code_snippets": [
         "jsonMapper.writeValueAsString(validMessage)",
@@ -202,7 +202,7 @@
       "confidence": 0.7,
       "explanation": "The SDK does not implement automatic validation of MCP messages before writing to stdin. This responsibility falls on the developers, which contradicts the protocol requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\StdioClientTransport.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\StdioClientTransport.java"
       ],
       "code_snippets": [
         "public class StdioClientTransport implements McpClientTransport { ... }"
@@ -244,8 +244,8 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement the necessary validation for the 'Origin' header on incoming connections as required by the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\HttpServletSseServerTransportProvider.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\HttpServletStreamableServerTransportProvider.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\HttpServletSseServerTransportProvider.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\HttpServletStreamableServerTransportProvider.java"
       ],
       "code_snippets": []
     },
@@ -261,8 +261,8 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements and manages binding to localhost as expected by encapsulating necessary behavior within server transport implementations.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebFluxSseServerTransportProvider.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webmvc\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebMvcSseServerTransportProvider.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebFluxSseServerTransportProvider.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webmvc\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebMvcSseServerTransportProvider.java"
       ],
       "code_snippets": [
         "WebClientStreamableHttpTransport.builder(\"http://localhost:\" + port)",
@@ -281,7 +281,7 @@
       "confidence": 0.8,
       "explanation": "The SDK provides session ID validation but does not encapsulate the necessary authentication implementation autonomously, shifting part of the responsibility back to the developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\HttpServletStreamableServerTransportProvider.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\HttpServletStreamableServerTransportProvider.java"
       ],
       "code_snippets": [
         "if (sessionId == null || sessionId.isBlank()) { badRequestErrors.add(\"Session ID required in mcp-session-id header\"); }"
@@ -402,8 +402,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines the HTTP error statuses and automatically handles error responses internally, ensuring compliance with the MCP requirement that the server must return an HTTP error status code if it cannot accept the input.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmp_49cryuv.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmpvse6ycir.json"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmp_49cryuv.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmpvse6ycir.json"
       ],
       "code_snippets": [
         "return Flux.<McpSchema.JSONRPCMessage>error(new McpTransportException(\"Bad Request. Status code:\" + statusCode, responseEvent));",
@@ -463,8 +463,8 @@
       "confidence": 1.0,
       "explanation": "The SDK provides internal mechanisms to automatically handle notifications and HTTP requests as required by the MCP rule. Developers do not have to manage these processes manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessNotificationHandler.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpTransportProvider.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessNotificationHandler.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpTransportProvider.java"
       ],
       "code_snippets": [
         "public Mono<Void> sendNotification(String method, Object params);",
@@ -484,8 +484,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the sending of JSON-RPC responses for requests sent in the POST body without requiring developers to implement this behavior themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessRequestHandler.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServer.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessRequestHandler.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServer.java"
       ],
       "code_snippets": [
         "McpStatelessRequestHandler.java: Processing SSE events and auto sending JSON-RPC responses.",
@@ -505,8 +505,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the sending and processing of JSON-RPC notifications. It encapsulates the required behaviors according to the MCP rules, therefore relieving developers from the need to implement this functionality themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\DefaultMcpStatelessServerHandler.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessServerHandler.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\DefaultMcpStatelessServerHandler.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessServerHandler.java"
       ],
       "code_snippets": [
         "// Handling notification logic",
@@ -546,7 +546,7 @@
       "confidence": 0.7,
       "explanation": "The SDK does not enforce that the SSE stream should remain open until the JSON-RPC response is sent, failing to comply with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportStream.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportStream.java"
       ],
       "code_snippets": [
         "public Publisher<McpSchema.JSONRPCMessage> consumeSseStream(Publisher<Tuple2<Optional<String>, Iterable<McpSchema.JSONRPCMessage>>> eventStream) { ... }"
@@ -560,12 +560,12 @@
       "evidence": [
         "Phase 1-IR: Found function definitions for handleRequest and RPC response sending.",
         "Phase 1-IR: Confirmed that no closure of SSE stream is invoked automatically after sending JSON-RPC response.",
-        "Phase 2-Source Code: Reviewed implementation in 'C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\DefaultMcpStatelessServerHandler.java'."
+        "Phase 2-Source Code: Reviewed implementation in 'C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\DefaultMcpStatelessServerHandler.java'."
       ],
       "confidence": 1.0,
       "explanation": "The SDK does not ensure that the SSE stream is closed automatically after sending the JSON-RPC response, which is a requirement of the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\DefaultMcpStatelessServerHandler.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\DefaultMcpStatelessServerHandler.java"
       ],
       "code_snippets": [
         "return requestHandler.handle(transportContext, request.params())",
@@ -585,8 +585,8 @@
       "confidence": 0.75,
       "explanation": "While the SDK manages connection handling and retries, it does not explicitly implement the automatic sending of a `CancelledNotification`, placing that responsibility on developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\WebClientStreamableHttpTransport.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportSession.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\WebClientStreamableHttpTransport.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportSession.java"
       ],
       "code_snippets": [
         "public Mono<Void> reconnect(McpTransportStream<Disposable> stream) { ... }",
@@ -625,8 +625,8 @@
       "confidence": 0.9,
       "explanation": "The SDK encapsulates the notification sending behavior required for compliance with the MCP rule. The method 'sendNotification' is found to be called internally within 'McpSession.java', which indicates that developers are not responsible for handling cancellation notifications, adhering to the rule's specification.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpSession.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpSession.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java"
       ],
       "code_snippets": [
         "this.session.sendNotification(...)"
@@ -640,12 +640,12 @@
       "evidence": [
         "Phase 1-IR: Found function McpTransportStream in defs_java.jsonl, defined in McpTransportStream.java.",
         "Phase 1-IR: Confirmed calls to consumeSseStream and automatic reconnection logic in calls_java.jsonl.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportStream.java"
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportStream.java"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the resumability of streams and provides internal logic to reconnect and track events without imposing any manual responsibilities on developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportStream.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportStream.java"
       ],
       "code_snippets": [
         "McpTransportStream<Disposable> sessionStream = new DefaultMcpTransportStream<>(this.resumableStreams, this::reconnect);",
@@ -687,8 +687,8 @@
       "confidence": 0.9,
       "explanation": "The SDK correctly implements the requirement to include an 'Accept' header for 'text/event-stream' in its automated behavior. This functionality is wrapped in the SDK methods without requiring developers to set this header manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webmvc\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebMvcSseServerTransportProvider.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webmvc\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\WebFluxSseClientTransport.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webmvc\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebMvcSseServerTransportProvider.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webmvc\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\WebFluxSseClientTransport.java"
       ],
       "code_snippets": [
         "builder.uri(uri).header(\"Accept\", \"text/event-stream\")"
@@ -766,8 +766,8 @@
       "confidence": 0.75,
       "explanation": "The SDK processes JSON-RPC messages from SSE events, potentially allowing the sending of JSON-RPC responses. There is no automation to enforce the 'MUST NOT' rule, which shifts the responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportStream.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmpvse6ycir.json"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportStream.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmpvse6ycir.json"
       ],
       "code_snippets": [
         "McpSchema.JSONRPCMessage message = McpSchema.deserializeJsonRpcMessage(this.jsonMapper, sseEvent.data());",
@@ -818,8 +818,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines functions for connecting to multiple SSE streams and includes automatic message processing logic. Thus, it encapsulates the required behavior without shifting the responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\WebFluxSseClientTransport.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\McpTransportStream.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\WebFluxSseClientTransport.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\McpTransportStream.java"
       ],
       "code_snippets": [
         "Flux.from(sessionStream.consumeSseStream(Flux.just(idWithMessages))); // WebFluxSseClientTransport.java: inside message processing",
@@ -838,8 +838,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement the requirement to send each JSON-RPC message on only one stream, allowing broadcasting to multiple clients instead.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webmvc\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebMvcSseServerTransportProvider.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebFluxSseServerTransportProvider.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webmvc\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebMvcSseServerTransportProvider.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebFluxSseServerTransportProvider.java"
       ],
       "code_snippets": [
         "public Mono<Void> notifyClients(String method, Object params) { /* logic to send notifications */ }"
@@ -883,7 +883,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages streaming and reconnections, mitigating the risk of message loss as required by the MCP rule. The implementations directly encapsulate the functionalities necessary for compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportStream.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportStream.java"
       ],
       "code_snippets": [
         "public Publisher<McpSchema.JSONRPCMessage> consumeSseStream(Publisher<Tuple2<Optional<String>, Iterable<McpSchema.JSONRPCMessage>>> eventStream) {...}"
@@ -901,7 +901,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically sends SSE events including an 'id' field when events are dispatched, per the requirements set forth in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\WebFluxSseClientTransport.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\WebFluxSseClientTransport.java"
       ],
       "code_snippets": [
         "private void sendEvent(PrintWriter writer, String eventType, String data, String id) throws IOException { if (id != null) { writer.write(\"id: \" + id + \"\\n\"); } ... }",
@@ -920,8 +920,8 @@
       "confidence": 1.0,
       "explanation": "The SDK framework defines a mechanism to generate globally unique IDs for sessions and automatically manages their sending without requiring application developers to implement these details.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpStreamableServerSessionFactory.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebFluxStreamableServerTransportProvider.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpStreamableServerSessionFactory.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebFluxStreamableServerTransportProvider.java"
       ],
       "code_snippets": [
         "UUID.randomUUID().toString(); // Generates a unique session ID",
@@ -941,9 +941,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages the resumption of broken connections by implementing HTTP GET requests with the Last-Event-ID header. Internal logic ensures the latest event ID is tracked and used without placing the burden on developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpTransportStream.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportStream.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\WebFluxSseClientTransport.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpTransportStream.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportStream.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\WebFluxSseClientTransport.java"
       ],
       "code_snippets": [
         "Optional<String> lastId(); // Returns the last event ID, if available in McpTransportStream",
@@ -964,8 +964,8 @@
       "confidence": 1.0,
       "explanation": "The SDK contains automatic handling of message replays using the Last-Event-ID header, complying with the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportStream.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpTransportStream.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportStream.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpTransportStream.java"
       ],
       "code_snippets": [
         "session.replay(lastId).contextWrite(ctx -> ctx.put(McpTransportContext.KEY, transportContext)).toIterable().forEach(message -> { sessionTransport.sendMessage(message).contextWrite(ctx -> ctx.put(McpTransportContext.KEY, transportContext)).block(); })"
@@ -984,8 +984,8 @@
       "confidence": 1.0,
       "explanation": "The SDK effectively encapsulates the logic required to prevent message replay across different streams, ensuring compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\WebFluxSseServerTransportProvider.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerSession.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\WebFluxSseServerTransportProvider.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerSession.java"
       ],
       "code_snippets": [
         "session.replay(lastId) // Call ensuring replay logic respects stream boundaries",
@@ -1027,7 +1027,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically generates session IDs using UUID.randomUUID(), ensuring they are globally unique and cryptographically secure.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerSession.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerSession.java"
       ],
       "code_snippets": [
         "String sessionId = UUID.randomUUID().toString();"
@@ -1046,9 +1046,9 @@
       "confidence": 0.9,
       "explanation": "The SDK lacks internal mechanisms to automatically validate that session IDs only contain visible ASCII characters as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerSession.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportSession.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerSession.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportSession.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java"
       ],
       "code_snippets": [
         "public void markInitialized(String sessionId) {...}",
@@ -1068,8 +1068,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the `Mcp-Session-Id` by including it in the HTTP headers for all requests, ensuring compliance with the MCP rule. The logic is implemented internally, and developers are not required to manage session IDs manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\HttpHeaders.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmpvse6ycir.json"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\HttpHeaders.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmpvse6ycir.json"
       ],
       "code_snippets": [
         "transportSession.sessionId().ifPresent(id -> httpHeaders.add(HttpHeaders.MCP_SESSION_ID, id));"
@@ -1139,8 +1139,8 @@
       "confidence": 0.8,
       "explanation": "The SDK handles session initialization and ID responses but does not automatically manage starting a new session after a 404 response. This responsibility is shifted to developers, which is against compliance requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpStreamableServerSessionFactory.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerSession.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpStreamableServerSessionFactory.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerSession.java"
       ],
       "code_snippets": [
         "McpStreamableServerSession.McpStreamableServerSessionInit init = this.sessionFactory.startSession(initializeRequest);",
@@ -1191,9 +1191,9 @@
       "confidence": 0.8,
       "explanation": "The SDK defines the 'MCP-Protocol-Version' header but does not automatically handle its inclusion in all outgoing requests. Developers may need to ensure this header is included, thus shifting responsibility away from the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\HttpHeaders.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\ProtocolVersions.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\mcp\\McpClientSession.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\HttpHeaders.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\ProtocolVersions.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\mcp\\McpClientSession.java"
       ],
       "code_snippets": []
     },
@@ -1210,7 +1210,7 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the necessary behavior for handling protocol version negotiation automatically without requiring developer intervention. The LifecycleInitializer class manages this through automated methods.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java"
       ],
       "code_snippets": [
         "public Mono<McpSchema.InitializeResult> initialize() {...}",
@@ -1229,7 +1229,7 @@
       "confidence": 1.0,
       "explanation": "The SDK successfully implements automatic handling of protocol version negotiation and sends necessary notifications internally, fulfilling the MCP rule requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java"
       ],
       "code_snippets": [
         "return mcpClientSession.sendNotification(McpSchema.METHOD_NOTIFICATION_INITIALIZED, null).thenReturn(initializeResult);"
@@ -1247,9 +1247,9 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the necessary behaviors surrounding the handling of the MCP-Protocol-Version, including automatic error handling and sending a 400 Bad Request for unsupported versions.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\HttpHeaders.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\ProtocolVersions.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\McpClient.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\HttpHeaders.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\ProtocolVersions.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\McpClient.java"
       ],
       "code_snippets": [
         "if (!this.protocolVersions.contains(initializeResult.protocolVersion())) { return Mono.error(McpError.builder(-32602).message(\"Unsupported protocol version\").data(\"Unsupported protocol version from the server: \" + initializeResult.protocolVersion()).build()); }",
@@ -1268,8 +1268,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements additional custom transport mechanisms and automatically handles notification sending within the framework.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerTransportProviderBase.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerTransportProviderBase.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java"
       ],
       "code_snippets": [
         "public Mono<Void> notifyClients(String method, Object params) {...}",
@@ -1304,12 +1304,12 @@
       "evidence": [
         "Phase 1-IR: Found connection establishment in connect() method of WebFluxSseClientTransport.java, which initiates the connection using SSE.",
         "Phase 1-IR: Found message sending logic in sendMessage() method of WebFluxSseClientTransport.java, which automatically handles message serialization and HTTP POST.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\WebFluxSseClientTransport.java"
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\WebFluxSseClientTransport.java"
       ],
       "confidence": 1.0,
       "explanation": "The SDK implements automatic connection establishment and message exchange handling, ensuring developers do not have to manage these details themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\WebFluxSseClientTransport.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\WebFluxSseClientTransport.java"
       ],
       "code_snippets": [
         "Mono<Void> connect(Function<Mono<JSONRPCMessage>, Mono<JSONRPCMessage>> handler) {...} // Handles connection setup automatically",
@@ -1329,8 +1329,8 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements the behavior for handling cancellation notifications internally.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessNotificationHandler.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\DefaultMcpStatelessServerHandler.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessNotificationHandler.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\DefaultMcpStatelessServerHandler.java"
       ],
       "code_snippets": [
         "public interface McpStatelessNotificationHandler { Mono<Void> handle(McpTransportContext transportContext, Object params); }",
@@ -1350,7 +1350,7 @@
       "confidence": 0.85,
       "explanation": "The SDK does not implement an automatic prevention against the cancellation of the 'initialize' request by clients. It explicitly requires developers to manage this behavior, which contradicts the MCP rule's requirement for SDK encapsulation of such protocols.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java"
       ],
       "code_snippets": [
         "public Mono<McpSchema.InitializeResult> initialize() { /* No cancelations handled */ }"
@@ -1369,8 +1369,8 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly implements the requirements of the MCP rule about cancellation notifications. The `closeGracefully()` method handles the resource cleanup appropriately, and the `notifyClients()` method sends notifications without needing direct developer oversight.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStatelessServerTransport.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerTransportProviderBase.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStatelessServerTransport.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerTransportProviderBase.java"
       ],
       "code_snippets": [
         "Method: `closeGracefully()` in `McpStatelessServerTransport.java` releases resources.",
@@ -1390,9 +1390,9 @@
       "confidence": 0.95,
       "explanation": "The SDK autonomously manages the initialization and cancellation notifications, adhering closely to the MCP requirements and ensuring developers are not burdened with handling these functionalities explicitly.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessNotificationHandler.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessNotificationHandler.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java"
       ],
       "code_snippets": [
         "public void initialize(InitRequest request)",
@@ -1412,8 +1412,8 @@
       "confidence": 0.75,
       "explanation": "While the SDK defines methods for handling notifications, it does not implement the required behavior to ignore any responses to cancellation notifications. The compliance rule states that a sender of cancellation notifications MUST ignore such responses, which is not ensured by the current implementation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerSession.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerSession.java"
       ],
       "code_snippets": [
         "public interface McpNotificationHandler { ... }",
@@ -1426,13 +1426,13 @@
       "rule_text": "Both parties **MUST** handle these race conditions gracefully:",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found class `HttpServletStreamableMcpSessionTransport` in defs_java.jsonl, which uses ReentrantLock for synchronization, defined in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\HttpServletStreamableMcpSessionTransport.java`",
-        "Phase 2-Source Code: Verified implementation details in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\HttpServletStreamableMcpSessionTransport.java` confirming automatic synchronization is managed internally."
+        "Phase 1-IR: Found class `HttpServletStreamableMcpSessionTransport` in defs_java.jsonl, which uses ReentrantLock for synchronization, defined in `C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\HttpServletStreamableMcpSessionTransport.java`",
+        "Phase 2-Source Code: Verified implementation details in `C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\HttpServletStreamableMcpSessionTransport.java` confirming automatic synchronization is managed internally."
       ],
       "confidence": 1.0,
       "explanation": "The SDK uses ReentrantLock to synchronize access and manage race conditions automatically, fulfilling the requirement that both parties MUST handle these race conditions gracefully.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\HttpServletStreamableMcpSessionTransport.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\HttpServletStreamableMcpSessionTransport.java"
       ],
       "code_snippets": [
         "public class HttpServletStreamableMcpSessionTransport { /* contains methods utilizing ReentrantLock */ }"
@@ -1491,9 +1491,9 @@
       "confidence": 0.8,
       "explanation": "The SDK framework does not exhibit clear handling of invalid cancellation notifications, which is a requirement in the MCP rule. While notification handlers are present, the specification to ignore such notifications is not evident.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessNotificationHandler.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpAsyncServerExchange.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessNotificationHandler.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpAsyncServerExchange.java"
       ],
       "code_snippets": [
         "Mono<Void> handle(McpTransportContext transportContext, Object params); // McpStatelessNotificationHandler",
@@ -1512,7 +1512,7 @@
       "confidence": 0.95,
       "explanation": "The SDK properly implements the behavior required by the MCP rule by automatically responding with an empty response for the ping request without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessAsyncServer.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessAsyncServer.java"
       ],
       "code_snippets": [
         "requestHandlers.put(McpSchema.METHOD_PING, (ctx, params) -> Mono.just(Map.of()));"
@@ -1546,15 +1546,15 @@
       "rule_text": "- Implementations **SHOULD** periodically issue pings to detect connection health\n- The frequency of pings **SHOULD** be configurable\n- Timeouts **SHOULD** be appropriate for the network environment\n- Excessive pinging **SHOULD** be avoided to reduce network overhead",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found KeepAliveScheduler defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java.",
-        "Phase 1-IR: Confirmed METHOD_PING is used in sending pings via session.sendRequest in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java.",
-        "Phase 2-Source Code: Verified the implementation of configurable initial delay and ping interval in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java."
+        "Phase 1-IR: Found KeepAliveScheduler defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java.",
+        "Phase 1-IR: Confirmed METHOD_PING is used in sending pings via session.sendRequest in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java.",
+        "Phase 2-Source Code: Verified the implementation of configurable initial delay and ping interval in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java."
       ],
       "confidence": 1.0,
       "explanation": "The KeepAliveScheduler implements the requirement to periodically issue pings through a configurable mechanism, encapsulating all necessary behaviors so that application developers do not have to manage it themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpSchema.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpSchema.java"
       ],
       "code_snippets": [
         "this.currentSubscription = Flux.interval(this.initialDelay, this.interval, this.scheduler).doOnNext(tick -> { ... });",
@@ -1574,7 +1574,7 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the behavior of sending pings with a configurable frequency, automatically handling the pinging process without requiring manual invocation by the developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java"
       ],
       "code_snippets": [
         "Flux.interval(this.initialDelay, this.interval, this.scheduler).doOnNext(tick -> { ... })"
@@ -1592,7 +1592,7 @@
       "confidence": 0.7,
       "explanation": "While the SDK implements automatic ping behavior, it is unclear whether the timeout configurations are appropriately adaptive to varying network conditions, as required by the rule 'Timeouts SHOULD be appropriate for the network environment'.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java"
       ],
       "code_snippets": [
         "this.currentSubscription = Flux.interval(this.initialDelay, this.interval, this.scheduler)"
@@ -1622,7 +1622,7 @@
       "confidence": 0.9,
       "explanation": "The SDK implementation encapsulates the required behaviors to treat timeouts as connection failures appropriately. It automatically handles the defined behavior without requiring developers to implement it manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpClientSession.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpClientSession.java"
       ],
       "code_snippets": [
         "this.transport.sendMessage(jsonrpcRequest, messageId).subscribe(v -> { }, sink::error);"
@@ -1641,7 +1641,7 @@
       "confidence": 0.9,
       "explanation": "The SDK manages reconnections and handles stream failures automatically as required by the MCP rule. Although specific logging of ping failures wasn't pinpointed, the overall failure handling implies compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportStream.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportStream.java"
       ],
       "code_snippets": [
         "if (resumable && !(e instanceof McpTransportSessionNotFoundException)) { Mono.from(reconnect.apply(this)).contextWrite(ctx).subscribe(); }"
@@ -1659,7 +1659,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically logs ping failures as required by the MCP rule. The log functionality is internally handled in the KeepAliveScheduler class, ensuring that developers are not responsible for implementing this behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java"
       ],
       "code_snippets": [
         "logger.warn(\"Failed to send keep-alive ping to session {}: {}\", session, e.getMessage())"
@@ -1698,7 +1698,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles progress tokens and sends notifications for progress status, ensuring they are unique across requests as required by the MCP.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\tmpvse6ycir.json"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\tmpvse6ycir.json"
       ],
       "code_snippets": [
         "return exchange.progressNotification(new McpSchema.ProgressNotification(progressToken, 0.0, 1.0, 'Processing started'))"
@@ -1716,8 +1716,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines a ProgressNotification structure with the necessary fields and automatically handles sending progress notifications, fulfilling the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\tmpnk_42k9s.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\tmpvse6ycir.json"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\tmpnk_42k9s.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\tmpvse6ycir.json"
       ],
       "code_snippets": [
         "public record ProgressNotification(String progressToken, Double progress, Double total, String message) { ... }",
@@ -1737,8 +1737,8 @@
       "confidence": 0.7,
       "explanation": "The SDK provides a method to send progress notifications but does not enforce the requirement that the progress value must increase with each notification on its own. This means it allows developers the responsibility to manage progress increases, thus falling short of the 'MUST' requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpTransportContextExtractor.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerFeatures.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpTransportContextExtractor.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerFeatures.java"
       ],
       "code_snippets": [
         "public Mono<Void> progressNotification(McpSchema.ProgressNotification progressNotification) { ... }"
@@ -1778,8 +1778,8 @@
       "confidence": 1.0,
       "explanation": "The SDK includes a ProgressNotification structure that has a message field, and it handles sending progress notifications automatically via the progressNotification method, fulfilling both the 'SHOULD' requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\McpClientFeatures.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerFeatures.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\McpClientFeatures.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerFeatures.java"
       ],
       "code_snippets": [
         "public record ProgressNotification(String progressToken, Double progress, Double total, String message) { ... }",
@@ -1817,8 +1817,8 @@
       "confidence": 1.0,
       "explanation": "The SDK provides both the structure for progress notifications and an internal method for sending them, which means developers are not required to send notifications manually. This meets the conditions outlined in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServer.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpTransportContextExtractor.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServer.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpTransportContextExtractor.java"
       ],
       "code_snippets": [
         "public void progressNotification(McpSchema.ProgressNotification progressNotification) { ... }"
@@ -1836,9 +1836,9 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the tracking of active progress tokens internally through the use of the ProgressNotification class and handles notifications automatically, thereby adhering to the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\schema\\ProgressNotification.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\McpController.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\test\\java\\io\\modelcontextprotocol\\spec\\JSONRPCRequestMcpValidationTest.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\schema\\ProgressNotification.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\McpController.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\test\\java\\io\\modelcontextprotocol\\spec\\JSONRPCRequestMcpValidationTest.java"
       ],
       "code_snippets": [
         "public void progressNotification(McpSchema.ProgressNotification progressNotification) {...}",
@@ -1858,8 +1858,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not encapsulate any functionality to implement rate limiting. It only deals with keep-alive pings and does not manage or limit the frequency of requests being processed, which contradicts the compliance requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebFluxStreamableServerTransportProvider.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebFluxStreamableServerTransportProvider.java"
       ],
       "code_snippets": [
         "// The keep-alive scheduler does not define any rate limiting logic.",
@@ -1874,12 +1874,12 @@
       "evidence": [
         "Phase 1-IR: Found function ProgressNotification in defs_java.jsonl, with ability to define progress notifications.",
         "Phase 1-IR: Confirmed notification sending logic in calls_java.jsonl, confirming progress notifications are sent.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java which includes logic for automatic notification sending."
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java which includes logic for automatic notification sending."
       ],
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the handling of progress notifications, ensuring they stop automatically after completion, adhering to the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java"
       ],
       "code_snippets": [
         "exchange.progressNotification(new McpSchema.ProgressNotification(progressToken, 1.0, total, \"Processing completed\"))"
@@ -1897,8 +1897,8 @@
       "confidence": 0.9,
       "explanation": "The SDK encapsulates the notification logic in methods, ensuring automatic handling of notifications. Developers are not required to implement this behavior themselves, aligning with the MCP rule to change 'SHOULD' to 'MUST'.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessNotificationHandler.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessNotificationHandler.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java"
       ],
       "code_snippets": [
         "public Mono<Void> notifyClients(String method, Object params) { ... }",
@@ -1917,9 +1917,9 @@
       "confidence": 0.95,
       "explanation": "The SDK has defined classes for notifications and includes internal logic to automatically send notifications when certain operations are performed, thereby complying with the MCP rule requiring that notification handling be managed by the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpSchema.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerSession.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpSchema.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerSession.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java"
       ],
       "code_snippets": [
         "public record ResourcesUpdatedNotification(@JsonProperty(\"uri\") String uri, @JsonProperty(\"_meta\") Map<String, Object> meta)",
@@ -1961,8 +1961,8 @@
       "confidence": 0.8,
       "explanation": "The SDK includes notification functionality and session management but lacks UI features for reviewing and modifying user responses, thus leaving these responsibilities to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportSession.java",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStreamableServerSession.java"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportSession.java",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStreamableServerSession.java"
       ],
       "code_snippets": [
         "McpStreamableServerSession.sendNotification",
@@ -1991,3 +1991,4 @@
     }
   ]
 }
+

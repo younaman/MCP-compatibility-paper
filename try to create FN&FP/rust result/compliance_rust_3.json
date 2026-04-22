@@ -19,8 +19,8 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the elicitation behavior and handles sensitive information requests internally, complying with the MCP rules.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs"
       ],
       "code_snippets": [
         "async fn elicit<T>(&self, message: impl Into<String>) -> Result<Option<T>, ElicitationError>",
@@ -39,8 +39,8 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement automatic user approval controls; developers must handle elicitation and responses themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "pub struct ElicitationCapability { ... }",
@@ -60,8 +60,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles schema validation through encapsulated methods, ensuring that developers do not need to implement this behavior themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\wrapper\\json.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\wrapper\\json.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs"
       ],
       "code_snippets": [
         "Automatic schema generation: let schema = crate::handler::server::tool::schema_for_type::<T>();",
@@ -81,8 +81,8 @@
       "confidence": 0.85,
       "explanation": "The SDK does not automatically manage server identity display to clients. Developers would need to provide this functionality manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "async fn handle_request(...) {...}",
@@ -101,7 +101,7 @@
       "confidence": 1.0,
       "explanation": "The SDK has implemented necessary mechanisms allowing users to reject elicitation requests, reinforcing compliance with the outlined MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs"
       ],
       "code_snippets": [
         "Err(ElicitationError::UserDeclined)",
@@ -135,8 +135,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements automatic handling of elicitation requests, thus satisfying the MCP rule that Clients SHOULD present elicitation requests clearly. The internal methods validate user responses and generate schemas, encapsulating all necessary behaviors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler.rs"
       ],
       "code_snippets": [
         "pub async fn elicit<T>(&self, message: impl Into<String>) -> Result<Option<T>, ElicitationError>",
@@ -155,7 +155,7 @@
       "confidence": 0.85,
       "explanation": "The SDK defines the 'roots' capability but does not automatically handle the declaration during initialization as required by MCP rule 208. Developers must manually invoke methods to enable this capability, indicating a lack of encapsulation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs"
       ],
       "code_snippets": [
         "pub struct ClientCapabilities { pub roots: Option<RootsCapabilities> }",
@@ -175,7 +175,7 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement the required notification logic to inform clients when roots change. Although there is an ability definition, the implementation lacks any notification sending functionality.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "async fn on_roots_list_changed(&self, context: NotificationContext<RoleServer>) -> impl Future<Output = ()> + Send + '_' { std::future::ready(()) }"
@@ -194,7 +194,7 @@
       "confidence": 0.9,
       "explanation": "The SDK correctly defines a resource with a 'file://' URI structure and sends notifications automatically when relevant actions are performed. The implementation inherently supports the rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\content.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\content.rs"
       ],
       "code_snippets": []
     },
@@ -211,8 +211,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the return of standard JSON-RPC errors for common failure cases through its internal error handling mechanisms, adhering to the specified rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\worker.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\worker.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "pub const METHOD_NOT_FOUND: Self = Self(-32601);",
@@ -246,8 +246,8 @@
       "confidence": 0.95,
       "explanation": "The SDK implements and encapsulates the behaviors required by the MCP rule. It defines abilities related to the management of roots and automatically handles notifications of changes without requiring developers to implement these behaviors themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "async fn list_roots(&self, context: RequestContext<RoleClient>) -> impl Future<Output = Result<ListRootsResult, McpError>> + Send + '_'",
@@ -266,7 +266,7 @@
       "confidence": 0.75,
       "explanation": "The SDK defines a field for monitoring root changes in RootsCapabilities but does not implement any internal logic to automatically prompt user consent or validate root accessibility before exposing.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs"
       ],
       "code_snippets": [
         "pub struct RootsCapabilities { #[serde(skip_serializing_if = \"Option::is_none\")] pub list_changed: Option<bool>, }"
@@ -285,7 +285,7 @@
       "confidence": 0.7,
       "explanation": "SDK does not automatically handle the root capabilities as required by the protocol. While it has a function to handle root list changes, it does not encapsulate the behavior, relying on the developer to call it without any internal notification or cache management.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "fn on_roots_list_changed(&self, context: NotificationContext<RoleServer>)"
@@ -304,10 +304,10 @@
       "confidence": 1.0,
       "explanation": "The SDK does not automatically provide the capability to deny sampling requests nor does it accommodate a human in the loop as specified in the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\src\\main.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\src\\main.rs"
       ],
       "code_snippets": []
     },
@@ -323,9 +323,9 @@
       "confidence": 0.5,
       "explanation": "While the SDK has defined some functions for handling prompts, it is unclear if they encapsulate required MCP behaviors without developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\router\\prompt.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\prompt.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\router\\prompt.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\prompt.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs"
       ],
       "code_snippets": [
         "Prompts defined under capabilities in the SDK.",
@@ -345,8 +345,8 @@
       "confidence": 0.9,
       "explanation": "The SDK defines the sampling capability but does not automatically handle its declaration during the initialization process, leaving it to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\initialize.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\initialize.rs"
       ],
       "code_snippets": [
         "pub struct ClientCapabilities { pub sampling: Option<JsonObject>, ... }",
@@ -367,8 +367,8 @@
       "confidence": 0.8,
       "explanation": "The SDK provides structures for model hints and preferences but does not implement automatic mapping or selection logic for those hints, leaving it to developers to manage these behaviors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\tool.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\tool.rs"
       ],
       "code_snippets": [
         "pub struct ModelHint { pub name: Option<String>, }",
@@ -388,9 +388,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automates error handling and encapsulates the necessary logic to return errors for common failure cases without requiring application developer involvement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\error.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\error.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "pub fn method_not_found<M: ConstString>() -> Self { ... } // Error handling logic from ErrorData definition",
@@ -409,9 +409,9 @@
       "confidence": 0.95,
       "explanation": "The SDK provides structured elicitation handling functionalities that encapsulate user interaction processes. The automatic request handling in the `elicit` method confirms that developers do not have to implement user approval strategies themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs"
       ],
       "code_snippets": [
         "Method: `elicit<T>(...)` which automates user approvals and handles their responses.",
@@ -446,8 +446,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles model preference hints through defined structures and integrated message handling.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\peer.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\peer.rs"
       ],
       "code_snippets": [
         "pub struct ModelPreferences { pub hints: Option<Vec<ModelHint>> }, ... // Phase 1.",
@@ -490,15 +490,15 @@
       "rule_text": "While MCP itself cannot enforce these security principles at the protocol level,\nimplementors **SHOULD**:\n\n1. Build robust consent and authorization flows into their applications\n2. Provide clear documentation of security implications\n3. Implement appropriate access controls and data protections\n4. Follow security best practices in their integrations\n5. Consider privacy implications in their feature designs",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function create_auth_session in defs, defined in file: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "Phase 1-IR: Found function create_auth_session in defs, defined in file: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
         "Phase 1-IR: Confirmed calls to authorization handling functions in calls.",
-        "Phase 2-Source Code: Verified automatic handling in function get_access_token in file: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+        "Phase 2-Source Code: Verified automatic handling in function get_access_token in file: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
       ],
       "confidence": 0.9,
       "explanation": "The SDK implements required security behaviors regarding consent and authorization automatically. Functions such as 'get_access_token' and 'handle_callback' handle user sessions without requiring additional developer action.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs"
       ],
       "code_snippets": [
         "async fn get_access_token(&self) -> Result<String, AuthError> { ... }",
@@ -518,8 +518,8 @@
       "confidence": 0.85,
       "explanation": "The SDK defines the prompts capability but does not ensure developers are not responsible for its declaration during initialization.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\prompt.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\prompt.rs"
       ],
       "code_snippets": [
         "pub struct PromptsCapability { #[serde(skip_serializing_if = \"Option::is_none\")] pub list_changed: Option<bool>, }",
@@ -538,8 +538,8 @@
       "confidence": 0.95,
       "explanation": "The SDK implements automatic notification sending upon capability changes, fulfilling the MCP requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "async fn handle_notification(&self, notification: <RoleServer as ServiceRole>::PeerNot, context: NotificationContext<RoleServer>) {...}",
@@ -559,7 +559,7 @@
       "confidence": 1.0,
       "explanation": "The SDK contains a defined function for new image creation that internally manages base64 encoding and MIME type without requiring developer intervention, hence fully compliant with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\prompt.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\prompt.rs"
       ],
       "code_snippets": [
         "let base64 = BASE64_STANDARD.encode(data);",
@@ -580,9 +580,9 @@
       "confidence": 0.9,
       "explanation": "The SDK defines necessary fields for resources but does not implement automatic handling or notification sending logic required by the MCP rule. It leaves resource processing to the developers instead of encapsulating it within the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\resource.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\content.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\prompt.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\resource.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\content.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\prompt.rs"
       ],
       "code_snippets": [
         "pub struct RawResource { pub uri: String, pub mime_type: Option<String>, }",
@@ -601,8 +601,8 @@
       "confidence": 0.9,
       "explanation": "The SDK encapsulates error handling logic for JSON-RPC, automatically returning standard errors for common failure cases without requiring developers to manually handle errors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model.rs"
       ],
       "code_snippets": [
         "ErrorData::invalid_params(message, data) invoked automatically in request handling",
@@ -621,7 +621,7 @@
       "confidence": 0.7,
       "explanation": "While the framework defines a structure for arguments, the analysis shows a lack of clear internal logic that checks argument validity when prompts are processed, leading to an unclear conclusion regarding compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\prompt.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\prompt.rs"
       ],
       "code_snippets": [
         "pub struct PromptContext<'a, S> { pub server: &'a S, pub name: String, pub arguments: Option<serde_json::Map<String, serde_json::Value>>, pub context: RequestContext<RoleServer>, }"
@@ -640,7 +640,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement automatic pagination handling. Functions defined to accept pagination parameters do not utilize them for internal logic.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "async fn list_prompts(&self, _request: Option<PaginatedRequestParam>, _context: RequestContext<RoleServer>) { let prompts = #router_expr.list_all(); Ok(ListPromptsResult { prompts, next_cursor: None, }) }"
@@ -659,8 +659,8 @@
       "confidence": 1.0,
       "explanation": "The analysis revealed that while the SDK has defined capabilities allowing for arguments related to capabilities, it lacks the necessary automatic notification logic to handle changes, thereby shifting responsibility onto developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler.rs"
       ],
       "code_snippets": []
     },
@@ -677,8 +677,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not encapsulate necessary safety measures for validating inputs and outputs related to prompts, which are critical for protecting against injection attacks. Developers must manually implement these validations.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\prompt.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\router\\prompt.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\prompt.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\router\\prompt.rs"
       ],
       "code_snippets": [
         "struct Prompt {...}",
@@ -699,8 +699,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines resource capability through 'ResourcesCapability' struct with fields to manage subscriptions and state changes. It includes internal notification handling logic, ensuring that resources automatically manage their notifications without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "struct ResourcesCapability { pub subscribe: Option<bool>, pub list_changed: Option<bool>, }",
@@ -719,8 +719,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the notification when the resource list changes, aligning with the requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "ClientNotification::RootsListChangedNotification(_notification) => { self.on_roots_list_changed(context).await }"
@@ -761,9 +761,9 @@
       "confidence": 0.85,
       "explanation": "The SDK provides the ability to handle notifications and utilize URIs, but it does not fully encapsulate all behaviors defined in the MCP rule. It requires the developer to engage in specific cases, which undermines the intent of encapsulation as per the compliant SDK requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "fn handle_notification(...)",
@@ -784,7 +784,7 @@
       "confidence": 0.8,
       "explanation": "The SDK defines the ability to specify MIME types; however, there is no automated handling or assignment of XDG MIME types, as required by the rule. Developers would need to explicitly assign these rather than the SDK managing it for them.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\resource.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\resource.rs"
       ],
       "code_snippets": [
         "pub struct RawResource { pub mime_type: Option<String>, }",
@@ -804,8 +804,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles custom URI schemes in accordance with RFC3986. Functions post_message and get_stream validate and utilize URIs without requiring application-level intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\sse_client.rs"
       ],
       "code_snippets": [
         "async fn post_message(&self, uri: Uri, message: crate::model::ClientJsonRpcMessage, ...) { ... } // Automatic handling",
@@ -819,14 +819,14 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No specific definitions found related to error handling, but thorough source checks revealed implementations.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\client.rs. The SDK automates the error response handling and uses standard JSON-RPC error codes."
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\client.rs. The SDK automates the error response handling and uses standard JSON-RPC error codes."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles standard JSON-RPC error responses, ensuring that developers do not need to manage error reporting themselves. The presence of well-defined error structures and the internal logic that processes errors confirms compliance with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\wrapper.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\wrapper.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model.rs"
       ],
       "code_snippets": [
         "struct JsonRpcError { jsonrpc: JsonRpcVersion2_0, id: RequestId, error: ErrorData }",
@@ -845,7 +845,7 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the behavior required by the MCP rule by defining URI parameters in its functions and including internal error handling for invalid URIs. This allows the SDK to manage URI validation without relying on developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
       ],
       "code_snippets": [
         "pub async fn post_message(&self, uri: Uri, ...)",
@@ -860,14 +860,14 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No definitions found in IR for access control.",
-        "Phase 2-Source Code: 'prepare_request' method automatically adds authorization header for requests (C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs)",
-        "Phase 2-Source Code: 'handle_response' method checks for unauthorized access and handles it automatically (C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs)"
+        "Phase 2-Source Code: 'prepare_request' method automatically adds authorization header for requests (C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs)",
+        "Phase 2-Source Code: 'handle_response' method checks for unauthorized access and handles it automatically (C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs)"
       ],
       "confidence": 0.95,
       "explanation": "The SDK implements automatic access control for sensitive resources by managing OAuth2 credential authorization internally, ensuring developers do not need to implement these mechanisms themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\wrapper\\json.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\wrapper\\json.rs"
       ],
       "code_snippets": [
         "pub async fn prepare_request(&self, request: reqwest::RequestBuilder) -> Result<reqwest::RequestBuilder, AuthError>",
@@ -886,7 +886,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the binary data encoding as required by the rule, ensuring that application developers do not need to implement this themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
       ],
       "code_snippets": [
         "pub fn new_image(role: PromptMessageRole, data: &[u8], mime_type: &str, ...) { let base64 = BASE64_STANDARD.encode(data);"
@@ -904,10 +904,10 @@
       "confidence": 0.85,
       "explanation": "The SDK does not implement automatic resource permission checks as required by the MCP rule. It lacks both the ability definition and the internal handling logic for permission verification.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\resource.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\examples\\servers\\src\\simple_auth_sse.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\lib.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\resource.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\examples\\servers\\src\\simple_auth_sse.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\lib.rs"
       ],
       "code_snippets": []
     },
@@ -924,9 +924,9 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement the required behavior of having a human in the loop with the ability to deny tool invocations. No evidence of necessary definitions or automatic handling logic was found.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\never.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\never.rs"
       ],
       "code_snippets": []
     },
@@ -943,8 +943,8 @@
       "confidence": 0.6,
       "explanation": "The SDK contains the necessary definitions for prompts but lacks explicit internal notification logic to automatically manage prompt-related notifications, as specified in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\prompt.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\prompt.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\prompt.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\prompt.rs"
       ],
       "code_snippets": [
         "Prompt definition available for prompt handling.",
@@ -965,8 +965,8 @@
       "confidence": 0.9,
       "explanation": "The SDK declares the tools capability but does not implement automatic notification logic for changes in the tool list as required by the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler.rs"
       ],
       "code_snippets": [
         "ServerCapabilities::builder().enable_tools().build()",
@@ -980,12 +980,12 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No relevant definitions or calls found.",
-        "Phase 2-Source Code: Found automatic handling of notifications in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "Phase 2-Source Code: Found automatic handling of notifications in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "confidence": 1.0,
       "explanation": "The SDK defines the capability to send notifications when the tool list changes and implements the necessary internal logic to handle this automatically without requiring developers to implement it themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "ServerNotification::ToolListChangedNotification(_notification_no_param) => { self.on_tool_list_changed(context).await }"
@@ -1003,8 +1003,8 @@
       "confidence": 0.8,
       "explanation": "The SDK has defined the ability for tool annotations but lacks the internal automatic notification sending logic required for compliance. Developers are expected to manage notifications manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\annotated.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\tool.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\annotated.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\tool.rs"
       ],
       "code_snippets": [
         "struct ToolAnnotations { title: Option<String>, read_only_hint: Option<bool>, destructive_hint: Option<bool>, idempotent_hint: Option<bool>, open_world_hint: Option<bool> }",
@@ -1017,13 +1017,13 @@
       "rule_text": "A tool **MAY** return links to [Resources](/specification/2025-06-18/server/resources), to provide additional context\nor data. In this case, the tool will return a URI that can be subscribed to or fetched by the client:",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function 'resource_link' defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\prompt.rs at line 104.",
+        "Phase 1-IR: Found function 'resource_link' defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\prompt.rs at line 104.",
         "Phase 2-Source Code: No internal logic found in 'resource_link' to auto-handle link management."
       ],
       "confidence": 0.85,
       "explanation": "The SDK defines the function 'resource_link' but lacks the required automatic handling logic for resource links. The responsibility for managing these links is thus placed on application developers, violating the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\prompt.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\prompt.rs"
       ],
       "code_snippets": [
         "Function definition found for 'resource_link' but lacking associated logic."
@@ -1035,17 +1035,17 @@
       "rule_text": "[Resources](/specification/2025-06-18/server/resources) **MAY** be embedded to provide additional context\nor data using a suitable [URI scheme](./resources#common-uri-schemes). Servers that use embedded resources **SHOULD** implement the `resources` capability:",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found ResourcesCapability struct definition in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs containing subscribe and list_changed fields.",
+        "Phase 1-IR: Found ResourcesCapability struct definition in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs containing subscribe and list_changed fields.",
         "Phase 1-IR: Confirmed invocation of 'subscribe' in the SDK, however, no internal methods responsible for managing notifications automatically were located in the checked files.",
         "Phase 2-Source Code: Searched through multiple handler implementations but did not find automated notification sending logic related to resource subscriptions."
       ],
       "confidence": 0.9,
       "explanation": "The SDK does define the resources capability with fields for 'subscribe' and 'list_changed', but there is no clear internal logic found that automatically sends notifications to the developers based on these fields. The responsibility for handling notifications appears to be left to the application developers rather than being encapsulated within the SDK itself.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "struct ResourcesCapability { subscribe: Option<bool>, list_changed: Option<bool> }【22:6†source】",
@@ -1065,8 +1065,8 @@
       "confidence": 1.0,
       "explanation": "The SDK defines and implements the resources capability as required. It encapsulates the needed functionality for resource management, fulfilling the 'SHOULD' requirement effectively.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "struct ResourcesCapability { \n subscribe: Option<bool>, \n list_changed: Option<bool>, \n} \n",
@@ -1079,14 +1079,14 @@
       "rule_text": "Tools may also provide an output schema for validation of structured results.\nIf an output schema is provided:\n\n- Servers **MUST** provide structured results that conform to this schema.\n- Clients **SHOULD** validate structured results against this schema.",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found CallToolResult structured content defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\tool.rs",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\wrapper\\json.rs"
+        "Phase 1-IR: Found CallToolResult structured content defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\tool.rs",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\wrapper\\json.rs"
       ],
       "confidence": 1.0,
       "explanation": "The SDK provides an ability to return structured results that conform to the required schema automatically, fulfilling the obligations outlined in the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\tool.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\wrapper\\json.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\tool.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\wrapper\\json.rs"
       ],
       "code_snippets": [
         "CallToolResult struct that includes structured_content for automatic handling of structured outputs.",
@@ -1105,8 +1105,8 @@
       "confidence": 0.85,
       "explanation": "The SDK does not automatically validate structured results against the schema as required by the MCP rule. The requirement is not encapsulated by the SDK, allowing developers to handle validations manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\tool.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\tool.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model.rs"
       ],
       "code_snippets": [
         "fn validate(&self) -> Result<(), String> { } // Ability found, but no auto handling"
@@ -1126,10 +1126,10 @@
       "confidence": 0.75,
       "explanation": "The SDK framework does not fully implement the required behaviors for rate limiting and lacks complete clarity on output sanitization, deviating from the 'MUST' requirements specified in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\tool.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\http_header.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\tool.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\http_header.rs"
       ],
       "code_snippets": [
         "fn parse_json_object(&self, body: B) {} // Input parsing method.",
@@ -1152,8 +1152,8 @@
       "confidence": 0.85,
       "explanation": "The SDK exhibits significant compliance with most of the requirements outlined in the MCP rule, including user confirmation, input handling, validation, and timeout management. However, it lacks an automatic mechanism for logging tool usage, which is a critical requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\tool.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\tool.rs"
       ],
       "code_snippets": [
         "async fn call_tool(...){ /* handling tool call logic */ }",
@@ -1172,8 +1172,8 @@
       "confidence": 1.0,
       "explanation": "The SDK adequately defines the `completions` capability and implements automatic handling for completion requests, meeting the requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs"
       ],
       "code_snippets": [
         "pub fn complete(&self, request: CompleteRequestParam, context: RequestContext<RoleServer>) -> impl Future<Output = Result<CompleteResult, McpError>> + Send + '_ {}",
@@ -1192,8 +1192,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements and encapsulates JSON-RPC error handling as required, automatically managing errors and responses within its functions.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\error.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\error.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs"
       ],
       "code_snippets": [
         "pub struct JsonRpcError { pub jsonrpc: JsonRpcVersion2_0, pub id: RequestId, pub error: ErrorData }",
@@ -1213,9 +1213,9 @@
       "confidence": 0.8,
       "explanation": "The SDK does not comply with the MCP rule as it does not automatically implement the required behaviors. While there are function definitions related to some suggestions and validations, the SDK does not encapsulate the behaviors such that developers are relieved from responsibility in a complete manner.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\examples\\servers\\src\\completion_stdio.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\examples\\servers\\src\\memory_stdio.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\router\\prompt.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\examples\\servers\\src\\completion_stdio.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\examples\\servers\\src\\memory_stdio.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\router\\prompt.rs"
       ],
       "code_snippets": [
         "pub fn with_all_values(values: Vec<String>) -> Result<Self, String>",
@@ -1236,8 +1236,8 @@
       "confidence": 0.8,
       "explanation": "The SDK lacks concrete implementations for debouncing, caching completion results, and handling missing responses. Additional elements exist but do not fully comply with the required behaviors as encapsulated within the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
       ],
       "code_snippets": [
         "CachedTx struct and send methods handling messages with a cache mechanism."
@@ -1256,8 +1256,8 @@
       "confidence": 0.75,
       "explanation": "While input validation is implemented within the SDK, there is insufficient evidence to demonstrate that rate limiting and access control are automatically handled by the SDK. Developers would still need to manage these functionalities themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\completion.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\completion.rs"
       ],
       "code_snippets": [
         "pub fn validate(&self) -> Result<(), String> { ... } // Validation check within CompletionInfo"
@@ -1275,9 +1275,9 @@
       "confidence": 0.85,
       "explanation": "The SDK's logging capability is defined but lacks the internal automation to handle logging notifications, thus requiring developers to implement logging behaviors themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\never.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\never.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\sse_server.rs"
       ],
       "code_snippets": [
         "pub struct LoggingMessageNotificationParam { /* parameters for a logging message */ }",
@@ -1296,7 +1296,7 @@
       "confidence": 1.0,
       "explanation": "The SDK defines the 'set_level' function but does not implement the behavior required to set the logging level. The function returns a method not found error, meaning it does not automatically handle the configuration of logging levels as stipulated by the protocol.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
       ],
       "code_snippets": [
         "fn set_level(&self, request: SetLevelRequestParam, context: RequestContext<RoleServer>) -> impl Future<Output = Result<(), McpError>> + Send + '_ { std::future::ready(Err(McpError::method_not_found::<SetLevelRequestMethod>())) }"
@@ -1315,9 +1315,9 @@
       "confidence": 0.9,
       "explanation": "The SDK features the definition of error structures but does not automatically handle sending error responses in accordance with the standard JSON-RPC protocol. Developers would need to implement this logic themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\error.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\content.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\error.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\content.rs"
       ],
       "code_snippets": [
         "pub const fn error(error: ErrorData, id: RequestId) -> Self {...}"
@@ -1336,7 +1336,7 @@
       "confidence": 0.85,
       "explanation": "The SDK does not implement automatic handling for logging behaviors as required by the MCP rule. Functions to rate limit messages, include context, use consistent logger names, and remove sensitive information are either missing or insufficiently defined.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
       ],
       "code_snippets": []
     },
@@ -1353,8 +1353,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles logging notifications and includes all necessary features as outlined in the MCP rule. The functionality required for presenting, filtering, and managing log messages is encapsulated within the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "fn on_logging_message(&self, params: LoggingMessageNotificationParam, context: NotificationContext<RoleClient>)",
@@ -1374,7 +1374,7 @@
       "confidence": 0.85,
       "explanation": "The SDK does not implement any logic to sanitize log messages, which leads to the possibility of logging sensitive information.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
       ],
       "code_snippets": [
         "pub struct LoggingMessageNotificationParam { pub level: LoggingLevel, pub logger: Option<String>, pub data: Value, }"
@@ -1422,7 +1422,7 @@
       "confidence": 0.8,
       "explanation": "The SDK does not define or implement the required functionality for providing stable cursors or handling invalid cursors. Although there is a notification system in place, it does not fulfill the specific requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\src\\handler\\client\\progress.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\src\\handler\\client\\progress.rs"
       ],
       "code_snippets": [
         "async fn handle_notification(&self, notification: ProgressNotificationParam) { ... }"
@@ -1441,8 +1441,8 @@
       "confidence": 0.7,
       "explanation": "The SDK implements pagination but does not clearly handle notifications automatically for state changes associated with `nextCursor`, shifting some responsibility to the developer.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\router.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\router.rs"
       ],
       "code_snippets": [
         "async fn list_prompts(&self, request: Option<PaginatedRequestParam>, context: RequestContext<RoleServer>) -> Result<ListPromptsResult, McpError>",
@@ -1462,8 +1462,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement behavior to treat cursors as opaque tokens as required by the MCP rule. There are no mechanisms that prevent assumptions about cursor format, or attempts to parse or modify them.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\ws.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\ws.rs"
       ],
       "code_snippets": []
     },
@@ -1480,10 +1480,10 @@
       "confidence": 1.0,
       "explanation": "The SDK contains a well-defined error handling framework that automatically returns error code -32602 for invalid cursor requests, encapsulating this behavior within the SDK itself.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\error.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\error.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs"
       ],
       "code_snippets": [
         "impl ErrorData { pub fn invalid_params(message: impl Into<Cow<'static, str>>, data: Option<Value>) -> Self { ... } }",
@@ -1492,3 +1492,4 @@
     }
   ]
 }
+

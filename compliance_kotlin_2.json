@@ -20,8 +20,8 @@
       "confidence": 0.95,
       "explanation": "The SDK encapsulates secure session ID handling, generating UUIDs securely, fulfilling the requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
       ],
       "code_snippets": [
         "public val sessionId: String = Uuid.random().toString()"
@@ -40,7 +40,7 @@
       "confidence": 1.0,
       "explanation": "The `SseServerTransport` class automatically generates secure session IDs using a secure method, and encapsulates the entire management process within the SDK, requiring no developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
       ],
       "code_snippets": [
         "public val sessionId: String = Uuid.random().toString()  // Line 35",
@@ -73,8 +73,8 @@
       "confidence": 0.9,
       "explanation": "The SDK successfully implements functionality for UTF-8 message encoding through the 'McpJson' class. Functions like 'encodeToString' are used to encode messages before they are sent, thus automatically handling the encoding process without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\McpJson.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\WebSocketMcpTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\McpJson.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\WebSocketMcpTransport.kt"
       ],
       "code_snippets": [
         "session.outgoing.send(Frame.Text(McpJson.encodeToString(message)))  // Automates UTF-8 encoding"
@@ -88,14 +88,14 @@
       "evidence": [
         "Phase 1-IR: StdioClientTransport defined and automates stdio behavior.",
         "Phase 1-IR: StdioServerTransport defined and automates stdio behavior.",
-        "Phase 2-Source Code: Verified implementation details in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StdioClientTransport.kt",
-        "Phase 2-Source Code: Verified implementation details in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\jvmMain\\kotlin\\main.jvm.kt"
+        "Phase 2-Source Code: Verified implementation details in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StdioClientTransport.kt",
+        "Phase 2-Source Code: Verified implementation details in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\jvmMain\\kotlin\\main.jvm.kt"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automation for stdio support is clearly defined in both client and server implementations, aligning with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StdioClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\jvmMain\\kotlin\\main.jvm.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StdioClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\jvmMain\\kotlin\\main.jvm.kt"
       ],
       "code_snippets": [
         "class StdioClientTransport { /* ... */ }",
@@ -115,7 +115,7 @@
       "confidence": 0.8,
       "explanation": "The SDK does not properly prevent embedded newlines in messages, allowing potential violations of the protocol requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\ReadBuffer.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\ReadBuffer.kt"
       ],
       "code_snippets": [
         "public fun readMessage(): JSONRPCMessage? {\n    if (buffer.exhausted()) return null\n    var lfIndex = buffer.indexOf('\\n'.code.toByte())\n    ...\n}"
@@ -146,14 +146,14 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No direct ability definition found in IR, but logging calls observed in source code.",
-        "Phase 2-Source Code: Confirmed automated logging implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt",
+        "Phase 2-Source Code: Confirmed automated logging implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt",
         "Phase 2-Source Code: Verified logging calls after message processing and during error handling."
       ],
       "confidence": 0.95,
       "explanation": "The SDK automatically captures, forwards, and utilizes logging mechanisms in response to various contexts without requiring developers to implement these features explicitly. Logging methods are called across critical execution pathways, ensuring compliance with the specified MCP rule for clients.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
       ],
       "code_snippets": [
         "logger.info(\"... processing ...\");",
@@ -173,7 +173,7 @@
       "confidence": 1.0,
       "explanation": "The SDK systematically ensures only valid MCP messages are sent to stdout, fulfilling the requirement that nothing invalid is output.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StdioServerTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StdioServerTransport.kt"
       ],
       "code_snippets": [
         "outputWriter.writeString(json)",
@@ -204,7 +204,7 @@
       "confidence": 1.0,
       "explanation": "The SDK provides a single HTTP endpoint that supports both POST and GET methods, with built-in logic for handling these requests automatically.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
       ],
       "code_snippets": [
         "post { mcpPostEndpoint(sseTransportManager) }",
@@ -224,9 +224,9 @@
       "confidence": 1.0,
       "explanation": "The SDK framework lacks any implementation for validating the 'Origin' header on the server side as well as in client transport classes, failing the MCP requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpMcpKtorClientExtensions.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpMcpKtorClientExtensions.kt"
       ],
       "code_snippets": []
     },
@@ -243,7 +243,7 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement the required behavior of only binding to localhost when running locally. Instead, it binds to all network interfaces (0.0.0.0), which poses a security risk.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\kotlin-mcp-server\\src\\commonMain\\kotlin\\server.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\kotlin-mcp-server\\src\\commonMain\\kotlin\\server.kt"
       ],
       "code_snippets": [
         "embeddedServer(CIO, host = \"0.0.0.0\", port = port) { ... }"
@@ -267,12 +267,12 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: Found functions mcpPostEndpoint and handlePostMessage that manage HTTP POST requests.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the sending and receiving of JSON-RPC messages via HTTP POST requests, fully encapsulating the required behavior as specified in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
       ],
       "code_snippets": [
         "public suspend fun handlePostMessage(call: ApplicationCall)",
@@ -292,7 +292,7 @@
       "confidence": 1.0,
       "explanation": "The SDK's implementations for sending JSON-RPC messages and handling HTTP POST requests conform to the MCP requirements. The necessary headers are managed within the SDK, ensuring that developers do not need to implement these details themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
       ],
       "code_snippets": [
         "client.post(url) { applyCommonHeaders(this) headers.append(HttpHeaders.Accept, '${ContentType.Application.Json}, ${ContentType.Text.EventStream}') contentType(ContentType.Application.Json) setBody(jsonBody) }"
@@ -310,7 +310,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically sets the 'Accept' header with both 'application/json' and 'text/event-stream' within the send method. This implementation ensures that the requirement is encapsulated within the SDK, relieving developers from handling protocol details.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
       ],
       "code_snippets": [
         "headers.append(HttpHeaders.Accept, \"${ContentType.Application.Json}, ${ContentType.Text.EventStream}\")"
@@ -328,8 +328,8 @@
       "confidence": 1.0,
       "explanation": "The SDK has defined the ability to send JSON-RPC messages and has built internal mechanisms to handle the sending of these messages according to the MCP rule. Developers are not required to manage the sending process themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\ReadBuffer.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\ReadBuffer.kt"
       ],
       "code_snippets": [
         "public suspend fun send(message: JSONRPCMessage)",
@@ -344,12 +344,12 @@
       "evidence": [
         "Phase 1-IR: Found function handlePostMessage that is responsible for processing POST requests and includes automatic response logic.",
         "Phase 1-IR: Confirmed that the SDK correctly verifies and handles input to respond with correct HTTP status codes.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically responds with HTTP status code 202 (Accepted) without any body when valid JSON-RPC notifications are received, thus encapsulating the required behavior as per the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
       ],
       "code_snippets": [
         "call.respondText(\"Accepted\", status = HttpStatusCode.Accepted)"
@@ -368,8 +368,8 @@
       "confidence": 1.0,
       "explanation": "The SDK framework automatically handles the behavior required by the MCP rule by returning appropriate HTTP error status codes when the server cannot accept inputs. This is verified through the implementation of error handling mechanisms in the method responsible for processing incoming POST requests.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
       ],
       "code_snippets": [
         "call.respondText(\"Invalid message: ${e.message}\", status = HttpStatusCode.BadRequest) from SseServerTransport.kt",
@@ -411,8 +411,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically encapsulates handling of JSON-RPC requests and responses, including provision for returning the mandatory content types required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
       ],
       "code_snippets": [
         "headers.append(HttpHeaders.Accept, '${ContentType.Application.Json}, ${ContentType.Text.EventStream}')",
@@ -433,8 +433,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles sending notifications by encapsulating the logic in the notification() method, which constructs and sends notifications without requiring application developers to implement this logic themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Notification.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Notification.kt"
       ],
       "code_snippets": [
         "public suspend fun notification(notification: Notification) { ... }",
@@ -454,7 +454,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles sending JSON-RPC responses for requests processed during SSE streaming, fulfilling the 'SHOULD' requirement of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
       ],
       "code_snippets": [
         "function send(message: JSONRPCMessage) within SseClientTransport automatically transmits JSON-RPC responses without developer intervention.",
@@ -474,8 +474,8 @@
       "confidence": 0.9,
       "explanation": "The SDK automatically handles the sending of notifications and related JSON-RPC requests, encapsulating the required functionality as outlined in the MCP rule. Internal functions are defined to manage both sending and handling incoming messages, fulfilling the compliance criteria.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
       ],
       "code_snippets": [
         "public class StreamableHttpClientTransport { /* Contains methods for sending JSON-RPC messages */ }",
@@ -494,8 +494,8 @@
       "confidence": 0.9,
       "explanation": "The SDK implements the handling of notifications related to client requests automatically, encapsulating the necessary functionality instead of leaving it to the application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SseClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SseClientTransport.kt"
       ],
       "code_snippets": [
         "public suspend fun send(message: JSONRPCMessage) {...}",
@@ -508,14 +508,14 @@
       "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function definitions in defs_python.jsonl for handling SSE and JSON-RPC responses, specifically `mcpSseEndpoint` and `JSONRPCResponse`. Defined in file C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt.",
-        "Phase 2-Source Code: Verified the implementation logic in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt which contains methods that handle the sending of JSON-RPC responses while managing the lifecycle of the SSE stream.",
+        "Phase 1-IR: Found function definitions in defs_python.jsonl for handling SSE and JSON-RPC responses, specifically `mcpSseEndpoint` and `JSONRPCResponse`. Defined in file C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt.",
+        "Phase 2-Source Code: Verified the implementation logic in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt which contains methods that handle the sending of JSON-RPC responses while managing the lifecycle of the SSE stream.",
         "Phase 2-Source Code: Verified that the SDK automatically closes the SSE stream after sending the JSON-RPC response, thus preventing developers from manually handling this requirement."
       ],
       "confidence": 1.0,
       "explanation": "The SDK contains encapsulated methods for handling SSE streams and sending JSON-RPC responses, ensuring developers are not required to implement this behavior manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
       ],
       "code_snippets": [
         "server.onClose { logger.info { 'Server connection closed for sessionId: ${transport.sessionId}' } }",
@@ -556,8 +556,8 @@
       "confidence": 0.85,
       "explanation": "The SDK provides mechanisms to send notifications and handle disconnections but does not automatically send a `CancelledNotification` on disconnection, thus shifting responsibility to the developer.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
       ],
       "code_snippets": [
         "public final class io/modelcontextprotocol/kotlin/sdk/models/CancelledNotification { ... }",
@@ -577,8 +577,8 @@
       "confidence": 0.8,
       "explanation": "The SDK defines a CancelledNotification for cancellation handling, but does not encapsulate the behavior in a manner that automatically manages disconnections or cancellations, leaving it to the developer to implement this compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpKtorServerExtensions.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpKtorServerExtensions.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
       ],
       "code_snippets": [
         "session?.close() // Closing sessions on error catch block",
@@ -598,8 +598,8 @@
       "confidence": 1.0,
       "explanation": "The SDK includes an automatic mechanism for sending `CancelledNotification`, meeting the MCP rule requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\CancelledNotification.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\TransportClient.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\CancelledNotification.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\TransportClient.kt"
       ],
       "code_snippets": [
         "public data class CancelledNotification(val method: String, val params: CancelledNotificationParams)",
@@ -618,8 +618,8 @@
       "confidence": 1.0,
       "explanation": "The SDK is designed to encapsulate message resumption and managing server connections automatically, thus complying with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpMcpKtorClientExtensions.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpMcpKtorClientExtensions.kt"
       ],
       "code_snippets": [
         "suspend fun startSseSession(resumptionToken: String?) {...}",
@@ -639,8 +639,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages HTTP GET requests to the MCP endpoint and handles the necessary headers and content types internally without requiring application developers to implement these behaviors themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
       ],
       "code_snippets": [
         "public fun Routing.mcp(block: ServerSSESession.() -> Server)",
@@ -659,8 +659,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the `Accept` header, setting it to include `text/event-stream` as required by the MCP rule. Additionally, it includes the necessary logic for managing SSE connections.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
       ],
       "code_snippets": [
         "headers.append(HttpHeaders.Accept, '${ContentType.Application.Json}, ${ContentType.Text.EventStream}')",
@@ -674,14 +674,14 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No definitive findings in the IR files, necessitating source code examination.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt.",
         "Phase 2-Source Code: Found appropriate response handling for both content type and method not allowed."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the specified behaviors for returning either `Content-Type: text/event-stream` or `HTTP 405 Method Not Allowed`, as evidenced by the appropriate methods dealing with these conditions in the source code.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
       ],
       "code_snippets": [
         "if (e.response?.status == HttpStatusCode.MethodNotAllowed) { logger.info { 'Server returned 405 for GET/SSE, stream disabled.' } return; }",
@@ -722,7 +722,7 @@
       "confidence": 0.9,
       "explanation": "The SDK implements the capability to handle SSE notifications automatically through its defined transport class, including handling incoming messages and sending notifications without requiring manual implementation from developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SseClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SseClientTransport.kt"
       ],
       "code_snippets": [
         "override suspend fun send(message: JSONRPCMessage) {...}",
@@ -743,9 +743,9 @@
       "confidence": 0.85,
       "explanation": "The SDK does not enforce that JSON-RPC responses must only be sent while resuming from previous requests, allowing developer discretion which violates the specified constraints.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-cli\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-cli\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SseClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SseServerTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-cli\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-cli\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SseClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SseServerTransport.kt"
       ],
       "code_snippets": [
         "override suspend fun send(message: JSONRPCMessage) {...} // Handling message send without enforcing MCP restrictions",
@@ -765,7 +765,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages the SSE connection, including the ability to close the stream as specified. This behavior is encapsulated in the `SseServerTransport` class, specifically through the mechanisms within the `start()` method and the `_onClose` invocation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
       ],
       "code_snippets": [
         "session.send(event = 'endpoint', data = '${endpoint.encodeURLPath()}?$SESSION_ID_PARAM=$sessionId'); _onClose.invoke();"
@@ -783,8 +783,8 @@
       "confidence": 1.0,
       "explanation": "The SDK provides functionality to close both client and server-SSE streams through encapsulated methods, thereby adhering to the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
       ],
       "code_snippets": [
         "public override suspend fun close() { /* cleanup logic */ }",
@@ -804,9 +804,9 @@
       "confidence": 1.0,
       "explanation": "The SDK provides functionality for clients to connect to multiple SSE streams automatically, managing the connections and message flows internally without exposing this responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
       ],
       "code_snippets": [
         "SseTransportManager class with methods for managing transports.",
@@ -821,12 +821,12 @@
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
         "Phase 1-IR: Found function send(message: JSONRPCMessage) in SseServerTransport.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt."
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt."
       ],
       "confidence": 0.9,
       "explanation": "The SDK provides functions to send JSON-RPC messages. However, it lacks internal mechanisms to ensure that messages are sent on only one stream, thus violating the protocol rule that mandates no broadcasting across multiple streams.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
       ],
       "code_snippets": [
         "override suspend fun send(message: JSONRPCMessage)...",
@@ -846,7 +846,7 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically implement logic to prevent the same message from being broadcast across multiple streams. There are configurations for establishing multiple services, but no internal checks exist to enforce the MCP rule against broadcasting messages.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
       ],
       "code_snippets": [
         "server.connect(transport)",
@@ -865,8 +865,8 @@
       "confidence": 1.0,
       "explanation": "The SDK successfully implements automatic handling of message loss mitigation by making the stream resumable through its internal logic in SseServerTransport and StreamableHttpClientTransport.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
       ],
       "code_snippets": [
         "SseServerTransport's start method sends connection events and maintains required state.",
@@ -879,13 +879,13 @@
       "rule_text": "To support resuming broken connections, and redelivering messages that might otherwise be\nlost:\n\n1. Servers **MAY** attach an `id` field to their SSE events, as described in the\n   [SSE standard](https://html.spec.whatwg.org/multipage/server-sent-events.html#event-stream-interpretation).\n   - If present, the ID **MUST** be globally unique across all streams within that\n     [session](#session-management)—or all streams with that specific client, if session\n     management is not in use.\n2. If the client wishes to resume after a broken connection, it **SHOULD** issue an HTTP\n   GET to the MCP endpoint, and include the\n   [`Last-Event-ID`](https://html.spec.whatwg.org/multipage/server-sent-events.html#the-last-event-id-header)\n   header to indicate the last event ID it received.\n   - The server **MAY** use this header to replay messages that would have been sent\n     after the last event ID, _on the stream that was disconnected_, and to resume the\n     stream from that point.\n   - The server **MUST NOT** replay messages that would have been delivered on a\n     different stream.",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function mcp in defs, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt:39",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
+        "Phase 1-IR: Found function mcp in defs, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt:39",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
       ],
       "confidence": 1.0,
       "explanation": "The SDK does not implement the automatic handling of an 'id' field for SSE events. The responsibility is passed to application developers instead of being encapsulated within the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
       ],
       "code_snippets": [
         "internal suspend fun ServerSSESession.mcpSseEndpoint(...) {...}"
@@ -904,8 +904,8 @@
       "confidence": 0.5,
       "explanation": "The compliance of the SDK with the MCP rule regarding globally unique IDs is unclear due to insufficient evidence found in the analyzed sources. While session management and transportation logic indicates some handling of session IDs, it is unclear how the uniqueness of these IDs is enforced across connections.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
       ],
       "code_snippets": []
     },
@@ -921,7 +921,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages the Last-Event-ID for resuming connections as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
       ],
       "code_snippets": [
         "(resumptionToken ?: lastEventId)?.let { headers.append(MCP_RESUMPTION_TOKEN_HEADER, it) }",
@@ -941,7 +941,7 @@
       "confidence": 1.0,
       "explanation": "The SDK effectively encapsulates behaviors needed for handling SSE events, such as resuming streams based on the Last-Event-ID without requiring developers to implement these behaviors manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
       ],
       "code_snippets": [
         "suspend fun startSseSession(resumptionToken: String? = null, replayMessageId: RequestId? = null, onResumptionToken: ((String) -> Unit)? = null)",
@@ -980,8 +980,8 @@
       "confidence": 0.8,
       "explanation": "The SDK handles session ID management automatically within the Streamable HTTP transport, ensuring developers don't have to manage this protocol aspect manually.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt"
       ],
       "code_snippets": [
         "response.headers[MCP_SESSION_ID_HEADER]?.let { sessionId = it }"
@@ -1000,9 +1000,9 @@
       "confidence": 0.5,
       "explanation": "While UUID generation is present for session IDs, the absence of JWT or cryptographic hash implementations leaves the compliance status ambiguous regarding the cryptographic security requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketMcpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SchemaClientTransportImpl.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketMcpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SchemaClientTransportImpl.kt"
       ],
       "code_snippets": [
         "UUID generation found in WebSocketClientTransport: UUID.randomUUID() used for session ID.",
@@ -1021,8 +1021,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not include automatic validation logic to ensure that session IDs only contain visible ASCII characters as required by rule 152.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\ServerSession.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\WebSocketMcpTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\ServerSession.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\WebSocketMcpTransport.kt"
       ],
       "code_snippets": [
         "sessionId: String = call.request.queryParameters[\"sessionId\"] ?: run { call.respond(HttpStatusCode.BadRequest, \"sessionId query parameter is not provided\"); return }",
@@ -1041,9 +1041,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the inclusion of the `Mcp-Session-Id` header in all HTTP requests after initialization, thus fulfilling the rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpTransport.kt"
       ],
       "code_snippets": [
         "response.headers[MCP_SESSION_ID_HEADER]?.let { sessionId = it }",
@@ -1073,9 +1073,9 @@
       "confidence": 0.85,
       "explanation": "The SDK defines the ability to terminate sessions but does not automatically handle the server's response with HTTP 404 when a terminated session ID is used.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SseClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SseClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt"
       ],
       "code_snippets": [
         "public suspend fun terminateSession() {...}"
@@ -1093,7 +1093,7 @@
       "confidence": 0.8,
       "explanation": "The SDK provides a method to terminate a session but does not explicitly handle the requirement to respond with HTTP 404 for subsequent requests containing a terminated session ID.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SessionHandling.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SessionHandling.kt"
       ],
       "code_snippets": [
         "public suspend fun terminateSession() {... // Detailed handling for session termination}"
@@ -1111,8 +1111,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not automatically handle starting a new MCP session after encountering a 404 status. The application developer must implement this logic themselves, violating the rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
       ],
       "code_snippets": [
         "public suspend fun terminateSession() { /* termination logic */ }",
@@ -1133,9 +1133,9 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the required functionality to automatically send an HTTP DELETE request to terminate sessions using the Mcp-Session-Id header, thereby encapsulating the behavior required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketMcpTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketMcpTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
       ],
       "code_snippets": [
         "public suspend fun terminateSession() {...}",
@@ -1155,7 +1155,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles session termination by encapsulating the logic to send DELETE requests and respond to HTTP 405 status codes without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt"
       ],
       "code_snippets": [
         "public suspend fun terminateSession() { /*...*/ }"
@@ -1173,7 +1173,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically includes the `MCP-Protocol-Version` header in requests without requiring manual input from developers, thus complying with the MCP specification.",
       "files_analyzed": [
-        "FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+        "FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
       ],
       "code_snippets": [
         "private const val MCP_PROTOCOL_VERSION_HEADER = \"mcp-protocol-version\"",
@@ -1187,14 +1187,14 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No direct evidence found in IR files for protocol handling.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
         "Phase 2-Source Code: 'connect' method automatically handles protocol version negotiation."
       ],
       "confidence": 1.0,
       "explanation": "The SDK automatically sends the negotiated protocol version during the InitializeRequest and verifies compliance with the server's response, fulfilling the requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\Client.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\Client.kt"
       ],
       "code_snippets": [
         "Client's connect method sending InitializeRequest with version: 'protocolVersion = LATEST_PROTOCOL_VERSION'"
@@ -1207,13 +1207,13 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: Found 'connect' method in Client class which handles protocol version negotiation.",
-        "Phase 2-Source Code: Verified implementation in file: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+        "Phase 2-Source Code: Verified implementation in file: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
       ],
       "confidence": 1.0,
       "explanation": "The SDK encapsulates automatic protocol version handling without requiring application developers to manage this themselves. The 'connect' method manages protocol negotiation and defaults to the necessary version, adhering to compliance standards.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt"
       ],
       "code_snippets": [
         "protocolVersion = LATEST_PROTOCOL_VERSION, capabilities = capabilities, clientInfo = clientInfo",
@@ -1232,9 +1232,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not automatically handle the behavior required by the rule. There is no internal logic to issue a '400 Bad Request' in response to an unsupported MCP-Protocol-Version, shifting this responsibility to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
       ],
       "code_snippets": [
         "WebSocketMcpServerTransport.kt: No direct handling for 400 Bad Request for invalid MCP-Protocol-Version",
@@ -1254,10 +1254,10 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles custom transport mechanisms through defined transport classes that manage connections and messaging internally, complying with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
       ],
       "code_snippets": [
         "class SseClientTransport {\nprivate val logger = KotlinLogging.logger {}\n...\nfun send(message: JSONRPCMessage) { ... }\n}\n",
@@ -1276,9 +1276,9 @@
       "confidence": 1.0,
       "explanation": "The SDK incorporates features to handle JSON-RPC message formats and lifecycle requirements, as evidenced by the defined `send` method in the transport interface and the automatic invocation of message handling logic.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
       ],
       "code_snippets": [
         "public suspend fun send(message: JSONRPCMessage) in Transport interface【24:0†source】",
@@ -1298,8 +1298,8 @@
       "confidence": 0.95,
       "explanation": "The SDK defines necessary connection handling and notification sending functionalities that automatically manage interactions per the MCP specifications.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
       ],
       "code_snippets": [
         "public fun onMessage(block: suspend (JSONRPCMessage) -> Unit)",
@@ -1319,7 +1319,7 @@
       "confidence": 0.9,
       "explanation": "The SDK automatically constructs and sends cancellation notifications through defined functions such as sendCancellationNotification, and the CancelledNotification class encapsulates the required parameters to comply with the rule regarding cancellation notifications. There is evidence of the internal handling of these notifications.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
       ],
       "code_snippets": [
         "internal suspend fun sendCancellationNotification(notification: CancelledNotification) { ... }"
@@ -1337,8 +1337,8 @@
       "confidence": 1.0,
       "explanation": "The SDK adheres to the rule that clients MUST NOT cancel the initialize request by encapsulating this behavior within the cancellation notification and ensuring there is no direct manipulation or call to cancel the initialize process.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StdioClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StdioClientTransport.kt"
       ],
       "code_snippets": [
         "/** A client MUST NOT attempt to cancel its `initialize` request. */",
@@ -1359,9 +1359,9 @@
       "confidence": 1.0,
       "explanation": "The SDK implements cancellation notification handling internally, providing both the ability definition and the logic for stopping processing and freeing associated resources.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SseClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SseClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
       ],
       "code_snippets": [
         "public data class CancelledNotification(override val params: Params) : ClientNotification, ServerNotification { ... }",
@@ -1380,8 +1380,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles cancellation notifications through the defined class 'CancelledNotification' and manages sending notifications without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\CancelledNotification.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\CancelledNotification.kt"
       ],
       "code_snippets": [
         "Class CancelledNotification: @Serializable public data class CancelledNotification(override val params: Params)...",
@@ -1424,7 +1424,7 @@
       "confidence": 0.85,
       "explanation": "The SDK provides the foundational structure for managing connections but lacks an encapsulated, automatic handling of race conditions. Developers are still expected to manage their own checks and balances.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SseTransportManager.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SseTransportManager.kt"
       ],
       "code_snippets": [
         "internal class SseTransportManager {...}",
@@ -1444,7 +1444,7 @@
       "confidence": 1.0,
       "explanation": "The SDK implements automated handling of cancellation reasons by defining them in notifications and manages them automatically through the 'CancelledNotification' logic.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\tmpleedi00e.txt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\tmpleedi00e.txt"
       ],
       "code_snippets": [
         "val reason: String? = null, // in CancelledNotification",
@@ -1457,14 +1457,14 @@
       "rule_text": "- Both parties **SHOULD** log cancellation reasons for debugging\n- Application UIs **SHOULD** indicate when cancellation is requested",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function 'CancelledNotification' in defs, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
+        "Phase 1-IR: Found function 'CancelledNotification' in defs, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
         "Phase 1-IR: Confirmed automatic sending of cancellation notifications in relevant function calls."
       ],
       "confidence": 1.0,
       "explanation": "The SDK encapsulates cancellation behavior by defining a `CancelledNotification` structure and automatically sends cancellation notifications via a transport mechanism, ensuring application developers do not need to implement this themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
       ],
       "code_snippets": [
         "data class CancelledNotification(override val params: Params) : ClientNotification, ServerNotification {...}",
@@ -1501,8 +1501,8 @@
       "confidence": 0.9,
       "explanation": "The SDK includes the `respondText` functionality, which automatically responds to JSON-RPC requests, handling empty response scenarios as part of its implementation. This meets the MCP rule requirement.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\jvmMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\jvmMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\StdioServerTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\jvmMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\jvmMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\StdioServerTransport.kt"
       ],
       "code_snippets": [
         "Found calls to `respondText` in response handling logic at line 385.",
@@ -1517,14 +1517,14 @@
       "evidence": [
         "Phase 1-IR: Found terminateSession() function responsible for connection termination.",
         "Phase 1-IR: Found reconnection logic through parameters in mcpSse() and mcpStreamableHttp() functions.",
-        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
       ],
       "confidence": 1.0,
       "explanation": "The SDK provides automatic mechanisms for managing timeouts, terminating connections, and handling reconnections, complying with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpMcpKtorClientExtensions.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpMcpKtorClientExtensions.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
       ],
       "code_snippets": [
         "public suspend fun HttpClient.mcpSse(...): Client { ... }",
@@ -1544,8 +1544,8 @@
       "confidence": 1.0,
       "explanation": "The SDK does not automatically handle periodic pings for connection health, shifting the responsibility to developers instead.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
       ],
       "code_snippets": [
         "Method 'Ping' defined in Method.Defined.Ping but lacks internal automatic implementation.",
@@ -1585,8 +1585,8 @@
       "confidence": 0.7,
       "explanation": "The SDK provides configurable timeouts and manages them automatically. However, there is no clear evidence detailing that pings for connection health are automatically issued, which impacts the overall compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt"
       ],
       "code_snippets": [
         "ProtocolOptions.timeout = DEFAULT_REQUEST_TIMEOUT; // Configurable timeout",
@@ -1599,15 +1599,15 @@
       "rule_text": "- Implementations **SHOULD** periodically issue pings to detect connection health\n- The frequency of pings **SHOULD** be configurable\n- Timeouts **SHOULD** be appropriate for the network environment\n- Excessive pinging **SHOULD** be avoided to reduce network overhead",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function `ping()` defined in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt`.",
+        "Phase 1-IR: Found function `ping()` defined in `C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt`.",
         "Phase 2-Source Code: The ping configuration parameters were established, but logic preventing excessive ping requests was not present.",
         "Checking other files did not reveal any settings or automated mechanisms addressing excessive pinging."
       ],
       "confidence": 0.9,
       "explanation": "While the SDK defines a `ping` function and allows setting timeout configurations, it lacks the necessary internal logic to manage excessive pinging automatically or notify developers. This shifts the burden of managing ping frequency onto developers, which is contrary to the requirements of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\RequestOptions.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\RequestOptions.kt"
       ],
       "code_snippets": [
         "// Definition of ping function is found here, however no restriction on excessive pinging was noted in automated handling.",
@@ -1627,8 +1627,8 @@
       "confidence": 0.75,
       "explanation": "The SDK provides handling for timeouts and logs errors appropriately. However, the explicit treatment of timeouts as connection failures is implicit and not directly stated in the evidence found.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-test\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\integration\\SseIntegrationTest.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-test\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\integration\\SseIntegrationTest.kt"
       ],
       "code_snippets": [
         "withTimeout(timeout) {...}",
@@ -1649,8 +1649,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implementation automatically handles connection errors, including timeout and failed pings, without requiring developers to intervene.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt"
       ],
       "code_snippets": [
         "public var timeout: Duration = DEFAULT_REQUEST_TIMEOUT,",
@@ -1670,8 +1670,8 @@
       "confidence": 0.7,
       "explanation": "The SDK does not implement logging for ping failures, shifting the responsibility to application developers. Although general logging is present, it does not encapsulate the required behavior of logging ping failures as specified in the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt"
       ],
       "code_snippets": [
         "No specific log calls found for ping failures."
@@ -1683,16 +1683,16 @@
       "rule_text": "- Progress tokens **MUST** be a string or integer value\n- Progress tokens can be chosen by the sender using any means, but **MUST** be unique\n  across all active requests.",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found definition of ProgressToken as RequestId (which accommodates string/integer types) in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
-        "Phase 2-Source Code: Verified automatic processing of notifications with progress tokens using ProgressCallback in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
-        "Phase 2-Source Code: Validated the functions that read progress notifications for both string and integer tokens in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\ProgressNotificationsTest.kt"
+        "Phase 1-IR: Found definition of ProgressToken as RequestId (which accommodates string/integer types) in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
+        "Phase 2-Source Code: Verified automatic processing of notifications with progress tokens using ProgressCallback in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
+        "Phase 2-Source Code: Validated the functions that read progress notifications for both string and integer tokens in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\ProgressNotificationsTest.kt"
       ],
       "confidence": 1.0,
       "explanation": "The SDK defines progress tokens as either string or integer and manages them automatically through internal mechanisms without requiring application developers to intervene.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\ProgressNotificationsTest.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\ProgressNotificationsTest.kt"
       ],
       "code_snippets": [
         "public typealias ProgressToken = RequestId",
@@ -1712,8 +1712,8 @@
       "confidence": 1.0,
       "explanation": "The SDK effectively defines progress tokens and automatically manages their uniqueness across active requests without shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\request.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\request.kt"
       ],
       "code_snippets": [
         "public typealias ProgressToken = RequestId",
@@ -1733,7 +1733,7 @@
       "confidence": 0.6,
       "explanation": "The ability to define and notify progress has been identified with the ProgressNotification structure. However, it is unclear if the SDK ensures these notifications are sent automatically without requiring developer intervention, as no explicit 'send' implementation was located.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\ProgressNotificationsTest.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\ProgressNotificationsTest.kt",
         "tmp4t0hw8yy.txt"
       ],
       "code_snippets": [
@@ -1754,8 +1754,8 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates and automates the progress notification process, ensuring that the `progress` value increases with each notification without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\ProgressNotificationsTest.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\main\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\ProgressNotification.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\ProgressNotificationsTest.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\main\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\ProgressNotification.kt"
       ],
       "code_snippets": [
         "handler.invoke(Progress(progress, total, message))",
@@ -1775,9 +1775,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically manages progress notifications and allows floating point values for both `progress` and `total`, fully complying with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\Progress.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\Progress.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt"
       ],
       "code_snippets": [
         "typealias ProgressCallback = (Progress) -> Unit",
@@ -1821,9 +1821,9 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the required behaviors for handling progress notifications, encapsulating the logic to send notifications automatically without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\ProgressNotificationsTest.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\ProgressNotificationsTest.kt"
       ],
       "code_snippets": [
         "public val onProgress: ProgressCallback? = null,",
@@ -1843,8 +1843,8 @@
       "confidence": 1.0,
       "explanation": "The SDK implements automatic handling of progress notifications through defined methods and callbacks. This allows it to seamlessly manage notifications without shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\Progress.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\Progress.kt"
       ],
       "code_snippets": [
         "private fun onProgress(notification: ProgressNotification) {...}",
@@ -1864,8 +1864,8 @@
       "confidence": 1.0,
       "explanation": "The SDK manages active progress tokens and sends notifications automatically through internal methods. Developers do not need to implement notification handling themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt"
       ],
       "code_snippets": [
         "private val _progressHandlers: AtomicRef<PersistentMap<RequestId, ProgressCallback>> = atomic(persistentMapOf())",
@@ -1884,7 +1884,7 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement required rate limiting behaviors as it lacks the necessary function definitions and implementations to prevent flooding as mandated by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
       ],
       "code_snippets": []
     },
@@ -1900,8 +1900,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles stopping progress notifications after completion according to the requirement. It includes internal mechanisms to manage handlers and clean up once a process is complete.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\ProgressNotification.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\ProgressNotification.kt"
       ],
       "code_snippets": [
         "handler.invoke(Progress(progress, total, message))",
@@ -1920,8 +1920,8 @@
       "confidence": 0.9,
       "explanation": "The SDK encapsulates the required behavior by providing definitions for necessary capabilities and contains internal logic to automatically send notifications for changes without requiring developers to implement this behavior themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
       ],
       "code_snippets": [
         "server.addTool(name = \"toolName\", ...){ notifyToolListChanged() }",
@@ -1941,7 +1941,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles notifications regarding tool addition and removal, encapsulating the required behaviors as stipulated by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\main\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\Server.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\main\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\Server.kt"
       ],
       "code_snippets": [
         "def add_tool(tool): # Sends notification automatically when a tool is added",
@@ -1961,8 +1961,8 @@
       "confidence": 0.5,
       "explanation": "The SDK contains functions to create and handle elicitation but lacks explicit safeguards against requesting sensitive information, making it unclear if it fully complies with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\ServerSession.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\ServerSession.kt"
       ],
       "code_snippets": [
         "public final fun setElicitationHandler(handler: (CreateElicitationRequest) -> CreateElicitationResult) {}",
@@ -2002,7 +2002,7 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the behavior of handling the 'elicitation' capability during initialization, and it automatically manages the contract identified by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt"
       ],
       "code_snippets": [
         "public fun setElicitationHandler(handler: (CreateElicitationRequest) -> CreateElicitationResult) { if (capabilities.elicitation == null) { logger.error { 'Failed to set elicitation handler: Client does not support elicitation' } throw IllegalStateException('Client does not support elicitation.') } ... }"
@@ -2010,3 +2010,4 @@
     }
   ]
 }
+

@@ -19,9 +19,9 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the necessary mechanisms for handling elicitation requests without requiring application developers to manage the logic themselves, thus complying with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitationCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientImpl.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitationCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientImpl.cs"
       ],
       "code_snippets": [
         "public Func<ElicitRequestParams?, CancellationToken, ValueTask<ElicitResult>>? ElicitationHandler { get; set; }",
@@ -41,9 +41,9 @@
       "confidence": 1.0,
       "explanation": "The SDK provides a handler for elicitation requests and automatically manages user approval flows through its internal methods, thereby encapsulating the required behaviors.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientImpl.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitResult.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientImpl.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitResult.cs"
       ],
       "code_snippets": [
         "public Func<ElicitRequestParams?, CancellationToken, ValueTask<ElicitResult>>? ElicitationHandler { get; set; }",
@@ -64,9 +64,9 @@
       "confidence": 1.0,
       "explanation": "The SDK handles validation by automatically configuring validation rules in the input and output schema properties, and the ElicitAsync method constructs requests that adhere to those rules without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitRequestParams.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\Tool.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitAsync.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitRequestParams.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\Tool.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitAsync.cs"
       ],
       "code_snippets": [
         "public ElicitRequestParams { Message = message, RequestedSchema = schema; }",
@@ -86,8 +86,8 @@
       "confidence": 0.9,
       "explanation": "The SDK provides a dedicated ElicitationCapability class that encapsulates the ability to manage server requests for additional information. It automatically sets the necessary handlers, thus providing the required behavior as mandated by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitationCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientImpl.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitationCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientImpl.cs"
       ],
       "code_snippets": [
         "public Func<ElicitRequestParams?, CancellationToken, ValueTask<ElicitResult>>? ElicitationHandler { get; set; }",
@@ -107,8 +107,8 @@
       "confidence": 1.0,
       "explanation": "The SDK provides an internal mechanism to allow users to reject elicitation requests through structured responses in the ElicitResult class and the ElicitAsync method, fulfilling the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitResult.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicititationCapability.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitResult.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicititationCapability.cs"
       ],
       "code_snippets": [
         "public string Action { get; set; } = \"cancel\";",
@@ -128,10 +128,10 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement rate limiting functionality autonomously; no functions or internal logic to handle rate limiting is present.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.cpp"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.cpp"
       ],
       "code_snippets": []
     },
@@ -141,17 +141,17 @@
       "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found ElicitationCapability in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitationCapability.cs",
-        "Phase 1-IR: Identified ElicitRequestParams in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitRequestParams.cs",
-        "Phase 2-Source Code: Verified automatic handling of requests in ElicitAsync method in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpJsonUtilities.cs"
+        "Phase 1-IR: Found ElicitationCapability in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitationCapability.cs",
+        "Phase 1-IR: Identified ElicitRequestParams in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitRequestParams.cs",
+        "Phase 2-Source Code: Verified automatic handling of requests in ElicitAsync method in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpJsonUtilities.cs"
       ],
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the behavior of handling elicitation requests through predefined handlers and automatically processes requests with the SendRequestAsync method.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitationCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitRequestParams.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpJsonUtilities.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitationCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ElicitRequestParams.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpJsonUtilities.cs"
       ],
       "code_snippets": [
         "public ValueTask<ElicitResult> ElicitAsync(ElicitRequestParams request, CancellationToken cancellationToken = default) {...}"
@@ -170,7 +170,7 @@
       "confidence": 1.0,
       "explanation": "The SDK correctly handles the declaration of the `roots` capability. The method `RequestRootsAsync` is defined and fully manages the request lifecycle, including checks for unsupported roots capability, which means developers do not need to implement this themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientImpl.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientImpl.cs"
       ],
       "code_snippets": [
         "public ValueTask<ListRootsResult> RequestRootsAsync(ListRootsRequestParams request, CancellationToken cancellationToken = default)",
@@ -189,8 +189,8 @@
       "confidence": 0.9,
       "explanation": "The SDK provides an ability definition for 'listChanged', but does not contain the internal notification sending logic required to automatically notify when this capability changes.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\RootsCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\EverythingServer\\Tools\\LongRunningTool.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\RootsCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\EverythingServer\\Tools\\LongRunningTool.cs"
       ],
       "code_snippets": [
         "public bool? ListChanged { get; set; }",
@@ -209,8 +209,8 @@
       "confidence": 0.8,
       "explanation": "The SDK provides a mechanism for handling URIs but does not enforce that URIs are in the `file://` format. The necessary automatic behavior as mandated by the rule is absent.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientResource.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationHandlers.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientResource.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationHandlers.cs"
       ],
       "code_snippets": [
         "public static ValueTask<ReadResourceResult> ReadResourceAsync(this IMcpClient client, Uri uri, CancellationToken cancellationToken = default)"
@@ -229,8 +229,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles and sends standard JSON-RPC errors through the WriteJsonRpcErrorAsync method without requiring manual implementation from developers. This conforms fully to the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpHttpClient.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpHttpClient.cs"
       ],
       "code_snippets": [
         "await WriteJsonRpcErrorAsync(context, \"Bad Request: The POST body did not contain a valid JSON-RPC message.\", StatusCodes.Status400BadRequest); // (StreamableHttpHandler.cs)",
@@ -250,8 +250,8 @@
       "confidence": 0.9,
       "explanation": "The SDK implements external authorization mechanisms but does not encapsulate the required behaviors of managing roots, validating URIs, and monitoring accessibility. Responsibility is left to application developers without SDK-level assurance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\RootsCapability.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\RootsCapability.cs"
       ],
       "code_snippets": [
         "app.MapMcp().RequireAuthorization();"
@@ -270,9 +270,9 @@
       "confidence": 1.0,
       "explanation": "The SDK handles root management automatically by encapsulating the notification logic within the defined methods, thus fulfilling the protocol requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\RootsCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\RootsListChangedNotificationParams.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\RootsCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\RootsListChangedNotificationParams.cs"
       ],
       "code_snippets": [
         "public bool? ListChanged { get; set; } // Indicates when roots have changed.",
@@ -292,9 +292,9 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the root management behavior required by the MCP rule. It provides a mechanism for automatic notifications regarding root changes, ensuring that application developers are not tasked with implementing this functionality themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\RootsCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\RootsCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs"
       ],
       "code_snippets": [
         "public bool? ListChanged { get; set; } // RootsCapability.cs",
@@ -313,9 +313,9 @@
       "confidence": 0.95,
       "explanation": "The SDK defines the capability for notifications about changes to the roots list but does not implement automatic notification sending logic. Developers must manually handle notifications, which is not compliant with the requirement of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\RootsCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientImpl.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\RootsCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientImpl.cs"
       ],
       "code_snippets": [
         "public bool? ListChanged { get; set; } // In RootsCapability.cs",
@@ -334,9 +334,9 @@
       "confidence": 0.9,
       "explanation": "The SDK lacks the internal logic needed to automatically deny sampling requests, failing to meet the requirement of having a human in the loop. It only defines the capability but does not ensure compliance through any automated mechanisms.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\SamplingCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerExtensions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.Methods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\SamplingCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerExtensions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.Methods.cs"
       ],
       "code_snippets": [
         "// In SamplingCapability.cs (intentionally empty)\npublic sealed class SamplingCapability {}\n",
@@ -355,8 +355,8 @@
       "confidence": 0.95,
       "explanation": "The SDK implements the required behaviors specified by the MCP rule by automating the handling of sampling requests and responses. Component interactions and UI functions are encapsulated in the SDK, ensuring developers do not need to manually handle these operations.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.Methods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientExtensions.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.Methods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientExtensions.cs"
       ],
       "code_snippets": [
         "public ValueTask<CreateMessageResult> SampleAsync(CreateMessageRequestParams request, CancellationToken cancellationToken = default)",
@@ -376,9 +376,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles sampling capabilities during initialization, defining the necessary functions and encapsulating required logic, fulfilling MCP rule 218's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerFactory.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerExtensions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.Methods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerFactory.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerExtensions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.Methods.cs"
       ],
       "code_snippets": [
         "public static IMcpServer Create(ITransport transport, McpServerOptions serverOptions) => McpServer.Create(transport, serverOptions);",
@@ -391,16 +391,16 @@
       "rule_text": "While priorities help select models based on characteristics, `hints` allow servers to\nsuggest specific models or model families:\n\n- Hints are treated as substrings that can match model names flexibly\n- Multiple hints are evaluated in order of preference\n- Clients **MAY** map hints to equivalent models from different providers\n- Hints are advisory&mdash;clients make final model selection",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found 'ModelPreferences' with 'hints' property defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ModelPreferences.cs.",
-        "Phase 2-Source Code: Verified the definition of 'ModelHint' capable of carrying hints in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ModelHint.cs.",
+        "Phase 1-IR: Found 'ModelPreferences' with 'hints' property defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ModelPreferences.cs.",
+        "Phase 2-Source Code: Verified the definition of 'ModelHint' capable of carrying hints in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ModelHint.cs.",
         "Phase 2-Source Code: No automatic handling procedure found within the codebase to process these hints into equivalent models."
       ],
       "confidence": 0.75,
       "explanation": "The SDK defines hints in 'ModelPreferences' and 'ModelHint' classes but does not include internal logic that automatically handles model selection based on these hints. Therefore, the compliance requirement is not met as it delegates this behavior to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ModelPreferences.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ModelHint.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ModelPreferences.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ModelHint.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
       ],
       "code_snippets": [
         "public sealed class ModelPreferences { public IReadOnlyList<ModelHint>? Hints { get; init; } }",
@@ -421,10 +421,10 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles error reporting through defined classes like McpException and JsonRpcError, and features like CallToolResult indicate error states without requiring developer input.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcError.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CallToolResult.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestHandler.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcError.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CallToolResult.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestHandler.cs"
       ],
       "code_snippets": [
         "class McpException { ... }",
@@ -446,7 +446,7 @@
       "confidence": 1.0,
       "explanation": "The SDK does not provide necessary user approval controls encapsulated within its methods. There are no automated mechanisms to handle user approval, thus shifting the responsibility to the developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\AuthorizationFilterSetup.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\AuthorizationFilterSetup.cs"
       ],
       "code_snippets": [
         "// Missing automatic user approval logic implementation",
@@ -466,10 +466,10 @@
       "confidence": 0.75,
       "explanation": "The SDK automates sending notifications through the SendNotificationAsync method. However, there is no clear implementation for validating message content, meaning it shifts this responsibility onto developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcErrorDetail.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamServerTransport.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\EverythingServer\\LoggingUpdateMessageSender.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcErrorDetail.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamServerTransport.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\EverythingServer\\LoggingUpdateMessageSender.cs"
       ],
       "code_snippets": [
         "public static Task SendNotificationAsync<TParameters>(this IMcpEndpoint endpoint, string method, TParameters parameters, JsonSerializerOptions? serializerOptions = null, CancellationToken cancellationToken = default)",
@@ -489,8 +489,8 @@
       "confidence": 0.8,
       "explanation": "The SDK includes definitions for model preferences but does not implement the necessary internal logic to automatically respect these hints, shifting responsibility to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ModelPreferences.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ModelHint.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ModelPreferences.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ModelHint.cs"
       ],
       "code_snippets": [
         "public sealed class ModelPreferences { public IReadOnlyList<ModelHint>? Hints { get; init; } }",
@@ -510,8 +510,8 @@
       "confidence": 1.0,
       "explanation": "The SDK does not implement automatic rate limiting functionality as required by the rule. There are no definitions or call relationships indicating an internal mechanism for rate limiting.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestLimit.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestFilter.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestLimit.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestFilter.cs"
       ],
       "code_snippets": []
     },
@@ -528,8 +528,8 @@
       "confidence": 0.7,
       "explanation": "The SDK does not contain functionalities that automatically handle sensitive data as required. Instead, it leaves this responsibility to application developers, which is against the compliance rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\IdleTrackingBackgroundService.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\IdleTrackingBackgroundService.cs"
       ],
       "code_snippets": [
         "public class McpException : Exception { ... }",
@@ -548,9 +548,9 @@
       "confidence": 0.95,
       "explanation": "The SDK encapsulates and handles the required behaviors for consent and authorization flows, providing automatic enforcement of these behaviors. Definitions found for ability and internal logic ensure that responsibilities required by the MCP rule are implemented within the SDK.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\HttpMcpServerBuilderExtensions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\AuthorizationFilterSetup.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerFilters.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\HttpMcpServerBuilderExtensions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\AuthorizationFilterSetup.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerFilters.cs"
       ],
       "code_snippets": [
         "private void ConfigureCallToolFilter(McpServerOptions options) { options.Filters.CallToolFilters.Add(next => async (context, cancellationToken) => { var authResult = await GetAuthorizationResultAsync(context.User, context.MatchedPrimitive, context.Services, context); if (!authResult.Succeeded) { throw new McpException('Access forbidden: This tool requires authorization.', McpErrorCode.InvalidRequest); } context.Items[AuthorizationFilterInvokedKey] = true; return await next(context, cancellationToken); }); }",
@@ -572,9 +572,9 @@
       "confidence": 1.0,
       "explanation": "The SDK properly implements the required prompts capability, including a defined ability ('PromptsCapability') and logic for automatically handling notifications when prompts change.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptsCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Server\\McpServerHandlers.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\McpServerOptionsSetup.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptsCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Server\\McpServerHandlers.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\McpServerOptionsSetup.cs"
       ],
       "code_snippets": [
         "public sealed class PromptsCapability { public bool? ListChanged { get; set; } }",
@@ -596,9 +596,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically implements the required notification behavior when the list of available prompts or tools changes, aligning with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptsCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ToolsCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ResourcesCapability.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptsCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ToolsCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ResourcesCapability.cs"
       ],
       "code_snippets": [
         "Phase 2-Source Code: PromptsCapability.cs - public bool? ListChanged { get; set; }",
@@ -618,7 +618,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles base64-encoded image data with valid MIME types through the function 'AnnotatedMessage', which constructs and sends 'ImageContentBlock' instances without requiring application-level implementation.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\EverythingServer\\Tools\\AnnotatedMessageTool.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\EverythingServer\\Tools\\AnnotatedMessageTool.cs"
       ],
       "code_snippets": [
         "contents.Add(new ImageContentBlock { Data = TinyImageTool.MCP_TINY_IMAGE.Split(',').Last(), MimeType = 'image/png' });"
@@ -637,8 +637,8 @@
       "confidence": 0.8,
       "explanation": "The SDK does not automatically handle the resource definitions and behaviors required by the rule; it requires developers to manage resources explicitly.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ResourceContents.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\BlobResourceContents.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ResourceContents.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\BlobResourceContents.cs"
       ],
       "code_snippets": [
         "public abstract class ResourceContents { public string Uri { get; set; } public string? MimeType { get; set; }}",
@@ -659,7 +659,7 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically returns standard JSON-RPC errors for common failure cases without requiring developers to implement this behavior themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs"
       ],
       "code_snippets": [
         "await WriteJsonRpcErrorAsync(context, 'Bad Request: Invalid session', StatusCodes.Status400BadRequest);"
@@ -671,16 +671,16 @@
       "rule_text": "1. Servers **SHOULD** validate prompt arguments before processing\n2. Clients **SHOULD** handle pagination for large prompt lists\n3. Both parties **SHOULD** respect capability negotiation",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found PromptArgument class with a required field defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptArgument.cs",
+        "Phase 1-IR: Found PromptArgument class with a required field defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptArgument.cs",
         "Phase 1-IR: No automatic validation logic found within the SDK for prompt arguments.",
         "Phase 2-Source Code: No indication that prompt arguments are validated internally within the SDK before processing."
       ],
       "confidence": 0.9,
       "explanation": "The SDK does not automatically handle the validation of prompt arguments before processing. While argument definitions exist, there is no internal validation logic in the SDK that enforces this behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptArgument.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\Prompt.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestFilter.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptArgument.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\Prompt.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestFilter.cs"
       ],
       "code_snippets": [
         "public class PromptArgument { public bool? Required { get; set; } }",
@@ -700,7 +700,7 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates pagination handling through methods that automatically process requests and return prompt lists, without requiring developers to implement this behavior themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
       ],
       "code_snippets": [
         "public async ValueTask<IList<McpClientPrompt>> ListPromptsAsync(CancellationToken cancellationToken = default) {...}"
@@ -719,8 +719,8 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the behavior of notifying clients about changes to the prompt list through the `ListChanged` property in `PromptsCapability`, and the logic to send these notifications is built into the SDK, requiring no additional developer action.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptsCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptsCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs"
       ],
       "code_snippets": [
         "[PromptsCapability.cs] // Gets or sets whether this server supports notifications for changes to the prompt list.",
@@ -740,9 +740,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement the required behavior for validating prompt inputs and outputs, shifting the responsibility away from the SDK as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptMessage.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptsCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\DelegatingMcpServerPrompt.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptMessage.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptsCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\DelegatingMcpServerPrompt.cs"
       ],
       "code_snippets": [
         "// PromptMessage encapsulates content without validation logic",
@@ -766,9 +766,9 @@
       "confidence": 1.0,
       "explanation": "The SDK properly defines the 'resources' capability and includes automatic handling for resource operations, ensuring it encapsulates the necessary behavior without shifting responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ResourcesCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ServerCapabilities.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.McpServerOptionsSetup.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ResourcesCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ServerCapabilities.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.McpServerOptionsSetup.cs"
       ],
       "code_snippets": [
         "public sealed class ResourcesCapability {...}",
@@ -788,9 +788,9 @@
       "confidence": 1.0,
       "explanation": "The SDK has implemented the 'listChanged' capability and contains internal logic for automatic notification sending when changes occur, thus fulfilling the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptsCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptsCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
       ],
       "code_snippets": [
         "public bool? ListChanged { get; set; } // PromptsCapability.cs",
@@ -809,8 +809,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the sending of notifications when resources change, encapsulating the required behavior as outlined in MCP rule 238. The necessary functions are present in the SDK that manage this without requiring developers to implement these behaviors themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpClient.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpClient.cs"
       ],
       "code_snippets": [
         "public async Task SubscribeToResourceAsync(string uri, CancellationToken cancellationToken = default) { ... }",
@@ -830,8 +830,8 @@
       "confidence": 0.95,
       "explanation": "The SDK encapsulates notification behaviors as required by the rule, automatically handling subscriptions and sending notifications that developers do not need to implement themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ResourcesCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ResourcesCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
       ],
       "code_snippets": [
         "public static Task SubscribeToResourceAsync(this IMcpClient client, string uri, CancellationToken cancellationToken = default)",
@@ -850,8 +850,8 @@
       "confidence": 0.9,
       "explanation": "The SDK defines MIME types and has related resource constructs, but lacks the automatic identification and handling of file:// resources as per the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientResource.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\Common\\ResourceLinkBlock.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientResource.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\Common\\ResourceLinkBlock.cs"
       ],
       "code_snippets": [
         "public string? MimeType => ProtocolResource.MimeType;",
@@ -882,9 +882,9 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates error handling through McpException and handles JSON-RPC errors from within SendRequestAsync, adhering to the MCP rule's requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\StreamableHttpHandler.cs"
       ],
       "code_snippets": [
         "public class McpException : Exception { ... }",
@@ -904,8 +904,8 @@
       "confidence": 0.93,
       "explanation": "The SDK automatically handles resource URI validation within its filtering mechanism, encapsulating behavior that aligns with the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestFilter.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerFilters.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestFilter.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerFilters.cs"
       ],
       "code_snippets": [
         "public delegate McpRequestHandler<TParams, TResult> McpRequestFilter<TParams, TResult>(McpRequestHandler<TParams, TResult> next);",
@@ -925,8 +925,8 @@
       "confidence": 0.9,
       "explanation": "The SDK implements access controls for sensitive resources internally without shifting responsibility to developers, fulfilling the compliance requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\HttpMcpServerBuilderExtensions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\McpServerOptionsSetup.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\HttpMcpServerBuilderExtensions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\McpServerOptionsSetup.cs"
       ],
       "code_snippets": [
         "private void ConfigureReadResourceFilter(McpServerOptions options) { // authorization logic here }",
@@ -955,12 +955,12 @@
       "evidence": [
         "Phase 1-IR: Found function definitions related to authorization checks in AuthorizationFilterSetup.",
         "Phase 1-IR: Confirmed that authorization filters were set up to check permissions before resource operations.",
-        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\AuthorizationFilterSetup.cs"
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\AuthorizationFilterSetup.cs"
       ],
       "confidence": 0.95,
       "explanation": "The SDK has definitive implementations for resource permission checks through well-defined filters that enforce authorization checks before any operation is executed. This aligns with the requirement that the SDK must encapsulate this behavior.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\AuthorizationFilterSetup.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\AuthorizationFilterSetup.cs"
       ],
       "code_snippets": [
         "options.Filters.ReadResourceFilters.Add(...); // checks authorization before executing further logic"
@@ -979,9 +979,9 @@
       "confidence": 0.9,
       "explanation": "The SDK fails to implement the required behavior for ensuring a human is in the loop with the ability to deny tool invocations. No functionalities were discovered in the source code to support this compliance.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\AspNetCoreMcpPerSessionTools\\Program.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerFilters.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Tools\\AnnotatedMessageTool.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\AspNetCoreMcpPerSessionTools\\Program.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerFilters.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Tools\\AnnotatedMessageTool.cs"
       ],
       "code_snippets": [
         "// Sample usage of tools implemented via McpServerTool but without automatic denial logic.",
@@ -994,16 +994,16 @@
       "rule_text": "Applications **SHOULD**:\n\n- Provide UI that makes clear which tools are being exposed to the AI model\n- Insert clear visual indicators when tools are invoked\n- Present confirmation prompts to the user for operations, to ensure a human is in the\n  loop",
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found function 'ListChanged' in ToolsCapability defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ToolsCapability.cs.",
+        "Phase 1-IR: Found function 'ListChanged' in ToolsCapability defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ToolsCapability.cs.",
         "Phase 2-Source Code: No internal logic for automatically sending notifications found in the context of tool list changes.",
         "Phase 2-Source Code: Notification constants defined (ToolListChangedNotification) but without accompanying invocation logic to handle changes automatically."
       ],
       "confidence": 0.9,
       "explanation": "The SDK does not implement the required behavior of automatically sending notifications on tool list changes; proper encapsulation was not found, shifting the responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ToolsCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ToolsCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
       ],
       "code_snippets": [
         "public bool? ListChanged { get; set; } // in ToolsCapability.cs",
@@ -1034,9 +1034,9 @@
       "confidence": 1.0,
       "explanation": "The SDK implements the required behavior by encapsulating the logic for handling notifications on capability changes.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ToolsCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSessionHandler.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\tmpkqooby6r.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ToolsCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSessionHandler.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\tmpkqooby6r.cs"
       ],
       "code_snippets": [
         "public bool? ListChanged { get; set; }",
@@ -1055,8 +1055,8 @@
       "confidence": 0.85,
       "explanation": "The SDK does not implement automated handling of tool annotation trust levels as specified in the MCP rule, thus failing the compliance requirement. It exposes responsibilities to application developers to manage analysis and decision-making concerning annotations from untrusted sources.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ToolAnnotations.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ContentBlock.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ToolAnnotations.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ContentBlock.cs"
       ],
       "code_snippets": []
     },
@@ -1072,8 +1072,8 @@
       "confidence": 1.0,
       "explanation": "The SDK provides the functionality to automatically return links to resources, encapsulating the required behavior as per the MCP rule. Clients can subscribe and receive updates without manual intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientResourceTemplate.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientResourceTemplate.cs"
       ],
       "code_snippets": [
         "public Task SubscribeToResourceAsync(this IMcpClient client, string uri, CancellationToken cancellationToken = default) { ... }",
@@ -1093,8 +1093,8 @@
       "confidence": 0.85,
       "explanation": "The SDK defines the ability to track changes via 'listChanged' but lacks automatic logic to send notifications when resources are added, removed, or modified. This responsibility seems to fall on the client, making it non-compliant.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ResourcesCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ResourcesCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs"
       ],
       "code_snippets": [
         "[JsonPropertyName(\"listChanged\")]\npublic bool? ListChanged { get; set; }",
@@ -1114,8 +1114,8 @@
       "confidence": 1.0,
       "explanation": "The SDK framework encapsulates the 'resources' capability by providing internal logic for managing resource updates and subscriptions. It does not shift this responsibility onto application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ResourcesCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerImpl.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ResourcesCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerImpl.cs"
       ],
       "code_snippets": [
         "public bool? ListChanged { get; set; }",
@@ -1129,14 +1129,14 @@
       "compliance_status": "NON_COMPLIANT",
       "evidence": [
         "Phase 1-IR: No direct function definitions located in defs_python.jsonl.",
-        "Phase 2-Source Code: Found potential structured results handling in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\IMcpEndpoint.cs with SendNotificationAsync.",
-        "Phase 2-Source Code: Observed ability to handle structured outputs in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs."
+        "Phase 2-Source Code: Found potential structured results handling in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\IMcpEndpoint.cs with SendNotificationAsync.",
+        "Phase 2-Source Code: Observed ability to handle structured outputs in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs."
       ],
       "confidence": 0.75,
       "explanation": "The SDK has some defined functions for sending notifications and handling structured responses, however, it lacks clear implementation that fulfills the must requirements of the MCP rule which states that servers must provide structured results conforming to a schema automatically without placing responsibility on developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\IMcpEndpoint.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\IMcpEndpoint.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs"
       ],
       "code_snippets": [
         "public interface IMcpEndpoint { Task<JsonRpcResponse> SendRequestAsync(JsonRpcRequest request, CancellationToken cancellationToken = default); }",
@@ -1156,7 +1156,7 @@
       "confidence": 0.75,
       "explanation": "The SDK defines the ability to validate structured results against the schema. However, it does not implement internal notification sending logic to alert upon validation results, thereby shifting the responsibility to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\Tool.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\Tool.cs"
       ],
       "code_snippets": [
         "if (!McpJsonUtilities.IsValidMcpToolSchema(value)) { throw new ArgumentException(); }"
@@ -1175,8 +1175,8 @@
       "confidence": 0.85,
       "explanation": "The SDK implements input validation and access control but lacks automatic handling for rate limiting and output sanitization as required by the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpJsonUtilities.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpJsonUtilities.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs"
       ],
       "code_snippets": [
         "public static bool IsValidMcpToolSchema(...) // Function for input validation",
@@ -1196,9 +1196,9 @@
       "confidence": 0.9,
       "explanation": "The SDK does not encapsulate the required behaviors for user confirmations, input displays, validation, timeouts, or logging. These responsibilities are left to the application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\AspNetCoreMcpPerSessionTools\\Program.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\AspNetCoreMcpPerSessionTools\\Tools\\UserInfoTool.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptMessage.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\AspNetCoreMcpPerSessionTools\\Program.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\AspNetCoreMcpPerSessionTools\\Tools\\UserInfoTool.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptMessage.cs"
       ],
       "code_snippets": [
         "// No automatic confirmation or validation behavior encapsulated.",
@@ -1213,16 +1213,16 @@
       "compliance_status": "COMPLIANT",
       "evidence": [
         "Phase 1-IR: No direct function definitions found in IR files about completions.",
-        "Phase 2-Source Code: Completions capability defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CompletionsCapability.cs",
-        "Phase 2-Source Code: Completions capability included in server capabilities in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ServerCapabilities.cs",
-        "Phase 2-Source Code: Completion handlers are set and managed automatically in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.cs"
+        "Phase 2-Source Code: Completions capability defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CompletionsCapability.cs",
+        "Phase 2-Source Code: Completions capability included in server capabilities in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ServerCapabilities.cs",
+        "Phase 2-Source Code: Completion handlers are set and managed automatically in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.cs"
       ],
       "confidence": 1.0,
       "explanation": "The SDK has a completions capability defined, and it automatically manages the process of handling completion requests without requiring application developers to implement the sending of notifications themselves.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CompletionsCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ServerCapabilities.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CompletionsCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ServerCapabilities.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.cs"
       ],
       "code_snippets": [
         "public sealed class CompletionsCapability { ... }",
@@ -1242,9 +1242,9 @@
       "confidence": 1.0,
       "explanation": "The SDK encapsulates the required error handling behavior for standard JSON-RPC errors, managing error codes and automatically sending error responses without requiring developer intervention.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpErrorCode.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcError.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpErrorCode.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcError.cs"
       ],
       "code_snippets": [
         "enum McpErrorCode { ... } // Definition of error codes.",
@@ -1264,8 +1264,8 @@
       "confidence": 0.75,
       "explanation": "The SDK provides some mechanisms for functionality but lacks clear internal implementations for sorting suggestions, managing rate limits, and validating all inputs autonomously, placing the burden on application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CompletionsCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\McpErrorCode.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CompletionsCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\McpErrorCode.cs"
       ],
       "code_snippets": [
         "public sealed class CompletionsCapability {...}  // Handles auto-completion suggestions",
@@ -1285,8 +1285,8 @@
       "confidence": 0.85,
       "explanation": "The SDK does not implement necessary behaviors such as debouncing rapid completion requests, caching completion results, and handling missing or partial results gracefully. These responsibilities appear to fall on developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CompleteRequestParams.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CompleteResult.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CompleteRequestParams.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CompleteResult.cs"
       ],
       "code_snippets": [
         "// Represents the parameters used with a <see cref=\"RequestMethods.CompletionComplete\"/> request...",
@@ -1306,10 +1306,10 @@
       "confidence": 0.7,
       "explanation": "The SDK does not sufficiently meet the compliance requirements for the MCP rule. While it provides some level of access control, it lacks required implementations for validating completion inputs, rate limiting, and comprehensive measures to prevent information disclosure.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\DynamicClientRegistrationResponse.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpServerServiceCollectionExtensions.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\DynamicClientRegistrationResponse.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpServerServiceCollectionExtensions.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs"
       ],
       "code_snippets": [
         "case \"clock\":\n    AddToolsForType<ClockTool>(toolCollection);",
@@ -1329,9 +1329,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the sending of log notifications through predefined methods, thus fulfilling the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\LoggingCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\LoggingCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs"
       ],
       "code_snippets": [
         "public const string LogMessageNotification = \"notifications/log/message\";",
@@ -1351,9 +1351,9 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles the logging level requests and sends notifications, complying with the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\SetLevelRequestParams.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\LoggingCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\RequestHandlers.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\SetLevelRequestParams.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\LoggingCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\RequestHandlers.cs"
       ],
       "code_snippets": [
         "await ctx.Server.SendNotificationAsync('notifications/message', new { Level = 'debug', Logger = 'test-server', Data = 'Logging level set to {_minimumLoggingLevel}' }, cancellationToken: ct);"
@@ -1365,15 +1365,15 @@
       "rule_text": "Servers **SHOULD** return standard JSON-RPC errors for common failure cases:\n\n- Invalid log level: `-32602` (Invalid params)\n- Configuration errors: `-32603` (Internal error)",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found McpErrorCode defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpErrorCode.cs:0",
+        "Phase 1-IR: Found McpErrorCode defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpErrorCode.cs:0",
         "Phase 1-IR: Found McpException handling in SendRequestAsync which throws exceptions based on JSON-RPC errors.",
-        "Phase 2-Source Code: Verified implementations in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs"
+        "Phase 2-Source Code: Verified implementations in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs"
       ],
       "confidence": 1.0,
       "explanation": "The SDK defines necessary JSON-RPC error codes and automatically handles error responses within its implementation, relieving developers from error management responsibilities.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpErrorCode.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpErrorCode.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs"
       ],
       "code_snippets": [
         "throw new McpException(\"Request failed (remote): \" + error.Error.Message, (McpErrorCode)error.Error.Code);"
@@ -1391,8 +1391,8 @@
       "confidence": 0.9,
       "explanation": "The SDK does not provide methods to automatically handle log message rate limiting, context inclusion, logger name consistency, or removal of sensitive information, shifting this responsibility to developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\LoggingMessageNotificationParams.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\LoggingMessageNotificationParams.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs"
       ],
       "code_snippets": []
     },
@@ -1402,16 +1402,16 @@
       "rule_text": "2. Clients **MAY**:\n   - Present log messages in the UI\n   - Implement log filtering/search\n   - Display severity visually\n   - Persist log messages",
       "compliance_status": "COMPLIANT",
       "evidence": [
-        "Phase 1-IR: Found LoggingMessageNotificationParams in LoggingMessageNotificationParams.cs, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\LoggingMessageNotificationParams.cs",
+        "Phase 1-IR: Found LoggingMessageNotificationParams in LoggingMessageNotificationParams.cs, defined in C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\LoggingMessageNotificationParams.cs",
         "Phase 1-IR: Found ClientLogger sending log notifications automatically in McpServer.cs",
         "Phase 1-IR: LoggingCapability allows clients to set logging levels and receive relevant logs."
       ],
       "confidence": 1.0,
       "explanation": "The SDK implements automated handling of log messages, including sending notifications to clients while allowing log level configuration.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\LoggingMessageNotificationParams.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\LoggingCapability.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\LoggingMessageNotificationParams.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\LoggingCapability.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.cs"
       ],
       "code_snippets": [
         "class ClientLogger : ILogger { void LogInternal(LogLevel level, string message) { _ = _server.SendNotificationAsync(NotificationMethods.LoggingMessageNotification, new LoggingMessageNotificationParams { ... }); } }"
@@ -1430,8 +1430,8 @@
       "confidence": 1.0,
       "explanation": "The SDK framework effectively prevents sensitive information from being logged, such as credentials or secrets, and encapsulates its logging behavior to ensure compliance with the specified rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpException.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerExtensions.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpException.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerExtensions.cs"
       ],
       "code_snippets": [
         "public class McpException : Exception {...} // Avoids sensitive information in error messages",
@@ -1451,11 +1451,11 @@
       "confidence": 0.9,
       "explanation": "The SDK does not implement the required behaviors such as rate limiting, data validation, log access control, or monitoring for sensitive content automatically. It leaves these responsibilities to developers, failing to comply with the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\LoggingMessageNotificationParams.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerPrompt.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\LoggingMessageNotificationParams.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerPrompt.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientHandlers.cs"
       ],
       "code_snippets": []
     },
@@ -1472,8 +1472,8 @@
       "confidence": 0.7,
       "explanation": "The SDK does provide mechanisms for pagination and cursor handling; however, it lacks explicit implementation to enforce that clients MUST NOT assume a fixed page size. Thus, it does not fully encapsulate this behavior as required.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PaginatedResult.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ListResourceTemplatesResult.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PaginatedResult.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ListResourceTemplatesResult.cs"
       ],
       "code_snippets": [
         "public abstract class PaginatedResult : Result { public string? NextCursor { get; set; } }"
@@ -1492,8 +1492,8 @@
       "confidence": 0.7,
       "explanation": "While the SDK defines abilities related to cursor handling and notifications, it lacks the internal automation mechanisms required to manage these behaviors without application developer involvement. This shifts some responsibility back to the developers, which contradicts the 'SHOULD' clause of the MCP rule.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerImpl.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerImpl.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs"
       ],
       "code_snippets": [
         "Found cursor handling in methods, but not automated.",
@@ -1513,8 +1513,8 @@
       "confidence": 0.95,
       "explanation": "The SDK automatically manages pagination through the NextCursor logic, encapsulating behavior that allows developers to retrieve paginated results without needing to manually handle the cursor.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PaginatedResult.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PaginatedResult.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
       ],
       "code_snippets": [
         "public string? NextCursor { get; set; }",
@@ -1533,8 +1533,8 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles cursors as opaque tokens without requiring developer intervention, fulfilling the MCP rule requirements.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\Core\\Protocol\\PaginatedResult.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\Core\\Client\\McpClient.Methods.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\Core\\Protocol\\PaginatedResult.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\Core\\Client\\McpClient.Methods.cs"
       ],
       "code_snippets": [
         "public async IAsyncEnumerable<McpClientResourceTemplate> EnumerateResourceTemplatesAsync(...) {...}",
@@ -1553,10 +1553,10 @@
       "confidence": 1.0,
       "explanation": "The SDK automatically handles invalid cursors by throwing a McpException with the corresponding error code -32602, without shifting the responsibility to application developers.",
       "files_analyzed": [
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpErrorCode.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerFilters.cs",
-        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerTool.cs"
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpErrorCode.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerFilters.cs",
+        "C:\\Users\\<ANON_ID>\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerTool.cs"
       ],
       "code_snippets": [
         "throw new McpException(\"Unknown tool: '{request.Params?.Name}'\", McpErrorCode.InvalidParams);【25:7†source】",
@@ -1565,3 +1565,4 @@
     }
   ]
 }
+

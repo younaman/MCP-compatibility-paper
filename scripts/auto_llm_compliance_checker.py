@@ -466,7 +466,7 @@ Format: Each line contains complete information for one file
 **2.1 Precise Search for Source Files**
 - Use complete path search
 - Format: `"FILE_PATH: complete_path"`
-- For example: `"FILE_PATH: C:\\Users\\95250\\...\\server.py"`
+- For example: `"FILE_PATH: C:\\Users\\<ANON_ID>\\...\\server.py"`
 
 **2.2 Verify Implementation Details**
 - Review the complete code
@@ -1023,3 +1023,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

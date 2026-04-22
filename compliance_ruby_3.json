@@ -1,0 +1,1480 @@
+﻿{
+  "summary": {
+    "total": 75,
+    "compliant": 28,
+    "non_compliant": 41,
+    "unclear": 6,
+    "avg_files_per_rule": 2.026666666666667
+  },
+  "results": [
+    {
+      "rule_id": 201,
+      "rule_type": "MUST_NOT",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions related to prohibiting elicitation of sensitive information found.",
+        "Phase 1-IR: No calls indicating compliance with the rule were located.",
+        "Phase 2-Source Code: Defined `MCP::Tool` and `MCP::Prompt` structures exist, but no internal checks prevent sensitive information requests."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK enables the definition and handling of prompts and tools, but lacks the automatic logic to restrict sensitive information requests as mandated by the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool\\annotations.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": [
+        "MCP::Server#define_tool method allows tools to be defined but does not enforce restrictions on sensitive data.",
+        "Structural definitions such as MCP::Tool and MCP::Prompt enable behavior definition but lack prohibitive internal mechanisms."
+      ]
+    },
+    {
+      "rule_id": 202,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found related to user approval controls.",
+        "Phase 1-IR: No function calls found related to user approval controls.",
+        "Phase 2-Source Code: No implementation details found in the source code files for user approval."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement the required user approval controls behavior automatically, leaving developers responsible for it, which violates the 'SHOULD' requirement.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 203,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `output_schema` in defs with validations.",
+        "Phase 1-IR: Confirmed the call of `validate_result` for output validation in the source code.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool.rb."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the behavior required by validating the elicitation content against the provided schema automatically without shifting this responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\tool\\output_schema_test.rb"
+      ],
+      "code_snippets": [
+        "output_schema.validate_result(weather_data)",
+        "output_schema("
+      ]
+    },
+    {
+      "rule_id": 204,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found server_context definition in the MCP::Server constructor.",
+        "Phase 2-Source Code: The SDK does not automatically communicate the requesting server."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK provides the ability to define server context but does not implement automatic internal logic to indicate which server is making requests. Developers must manually specify the context, which does not satisfy the MCP requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource_template.rb"
+      ],
+      "code_snippets": [
+        "server = MCP::Server.new(name: \"my_server\", server_context: { user_id: current_user.id, request_id: request.uuid })"
+      ]
+    },
+    {
+      "rule_id": 205,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions or calls related to rejecting elicitation requests found.",
+        "Phase 2-Source Code: No implementations found for allowing user rejection of elicitation requests."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not provide a mechanism for allowing users to reject elicitation requests, failing to meet the MCP rule requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\tool.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\tool_test.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 206,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions related to rate limiting found in defs_python.jsonl.",
+        "Phase 1-IR: No function calls related to rate limiting found in calls_python.jsonl.",
+        "Phase 2-Source Code: No automated rate limiting implementation found in the source code files examined."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement any rate limiting features internally as required by the MCP rule. There were no function definitions or internal logic found that encapsulate the behavior of rate limiting.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool\\annotations.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\configuration.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 207,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: expired",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 208,
+      "rule_type": "MUST",
+      "rule_text": "Clients that support roots **MUST** declare the `roots` capability during\n[initialization](/specification/2025-06-18/basic/lifecycle#initialization):",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: Lack of automatic handling for roots capability declaration found in inspected source files."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not handle the requirement to automatically declare the `roots` capability during initialization, transferring responsibility to developers instead. It lacks a method to encapsulate this process within the SDK logic.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "class MCP::Server\n  def initialize\n    # Initialization logic not seen to declare roots capability\n  end\nend"
+      ]
+    },
+    {
+      "rule_id": 209,
+      "rule_type": "MUST",
+      "rule_text": "When roots change, clients that support `listChanged` **MUST** send a notification:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found notification methods in defs_python.jsonl.",
+        "Phase 1-IR: Confirmed automatic notification sending implementation in SDK.",
+        "Phase 2-Source Code: Verified internal method calls that handle notifications."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK properly encapsulates the behavior related to sending notifications when roots change via 'notify_tools_list_changed', 'notify_prompts_list_changed', and 'notify_resources_list_changed'.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transports\\stdio.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_test.rb"
+      ],
+      "code_snippets": [
+        "server.notify_tools_list_changed",
+        "server.notify_prompts_list_changed",
+        "server.notify_resources_list_changed"
+      ]
+    },
+    {
+      "rule_id": 210,
+      "rule_type": "MUST",
+      "rule_text": "A root definition includes:\n\n- `uri`: Unique identifier for the root. This **MUST** be a `file://` URI in the current\n  specification.\n- `name`: Optional human-readable name for display purposes.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definition for MCP::Resource with uri argument.",
+        "Phase 1-IR: No internal logic enforcing 'file://' scheme in MCP::Resource."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework does not enforce the requirement that the URI must be a 'file://' URI. The `MCP::Resource` initialization allows for arbitrary URIs without validation.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb"
+      ],
+      "code_snippets": [
+        "resource = MCP::Resource.new(uri: 'https://example.com/my_resource', ...)"
+      ]
+    },
+    {
+      "rule_id": 211,
+      "rule_type": "SHOULD",
+      "rule_text": "Clients **SHOULD** return standard JSON-RPC errors for common failure cases:\n\n- Client does not support roots: `-32601` (Method not found)\n- Internal errors: `-32603`",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct function found that handles JSON-RPC errors automatically.",
+        "Phase 2-Source Code: References to errors exist, but no complete automatic handling was confirmed."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not automatically handle standard JSON-RPC errors as required by the MCP rule. While there are references to error handling methods, these do not encapsulate the behavior required for standard error responses; instead, the logic appears to require developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "def handle_json",
+        "raise MCP::Server::RequestHandlerError, ...",
+        "send_error"
+      ]
+    },
+    {
+      "rule_id": 212,
+      "rule_type": "MUST",
+      "rule_text": "1. Clients **MUST**:\n\n   - Only expose roots with appropriate permissions\n   - Validate all root URIs to prevent path traversal\n   - Implement proper access controls\n   - Monitor root accessibility",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found MCP::Server#resources_read_handler and MCP::Server#validate_uri in definitions.",
+        "Phase 1-IR: Confirmed call relationships indicate these functions are invoked internally to manage access.",
+        "Phase 2-Source Code: Verified automatic handling of resource access and URI validation in functions defined within the SDK."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK encapsulates necessary rules regarding permission management and URI validation as required by the MCP rule. Functions for resource handling and URI validation ensure that these behaviors are managed internally within the SDK, not left to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb"
+      ],
+      "code_snippets": [
+        "def resources_read_handler; # Logic for loading resources with access control checks.",
+        "def validate_uri(uri); # Logic for URI validation."
+      ]
+    },
+    {
+      "rule_id": 213,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Servers **SHOULD**:\n   - Handle cases where roots become unavailable\n   - Respect root boundaries during operations\n   - Validate all paths against provided roots",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: No functions automatically handling roots, boundaries, or path validations discovered in source code."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK did not provide implementations that automatically handle the required root management behaviors outlined in the MCP rule. Therefore, application developers would have to implement these behaviors themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 214,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Clients **SHOULD**:\n\n   - Prompt users for consent before exposing roots to servers\n   - Provide clear user interfaces for root management\n   - Validate root accessibility before exposing\n   - Monitor for root changes",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No dispositive function definitions related to root management and user consent found.",
+        "Phase 2-Source Code: Found notification methods, but no encapsulated implementations for required behaviors.",
+        "Phase 2-Source Code: No evidence of functions validating root accessibility or providing user consent."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK does not encapsulate the behaviors necessary for automatically handling user consent and root management as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "@server.notify_prompts_list_changed",
+        "@server.notify_tools_list_changed"
+      ]
+    },
+    {
+      "rule_id": 215,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Servers **SHOULD**:\n   - Check for roots capability before usage\n   - Handle root list changes gracefully\n   - Respect root boundaries in operations\n   - Cache root information appropriately",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found for 'roots capability' in defs_python.jsonl.",
+        "Phase 1-IR: Notifications for list changes are implemented.",
+        "Phase 2-Source Code: Lack of automatic handling confirmed for roots capabilities."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK automatically sends notifications about tool list changes; however, it lacks implementations for checking roots capabilities, handling root list changes, and respecting root boundaries.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "Server class has notification methods for list changes."
+      ]
+    },
+    {
+      "rule_id": 216,
+      "rule_type": "SHOULD",
+      "rule_text": "For trust & safety and security, there **SHOULD** always\nbe a human in the loop with the ability to deny sampling requests.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Defined server methods allow for custom behavior handling.",
+        "Phase 2-Source Code: Presence of notification methods suggests some level of automatic management.",
+        "Insufficient detail on enforced human interaction required for denial is still pending verification."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK has potential capabilities for notification and defined behaviors, but there is insufficient evidence of explicit human oversight for denial of sampling requests.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
+      ],
+      "code_snippets": [
+        "server.notify_tools_list_changed",
+        "server.define_custom_method"
+      ]
+    },
+    {
+      "rule_id": 217,
+      "rule_type": "SHOULD",
+      "rule_text": "Applications **SHOULD**:\n\n- Provide UI that makes it easy and intuitive to review sampling requests\n- Allow users to view and edit prompts before sending\n- Present generated responses for review before delivery",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: expired",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 218,
+      "rule_type": "MUST",
+      "rule_text": "Clients that support sampling **MUST** declare the `sampling` capability during\n[initialization](/specification/2025-06-18/basic/lifecycle#initialization):",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found references to sampling in definitions.",
+        "Phase 1-IR: Confirmed that 'initialize' is referenced and called.",
+        "Phase 2-Source Code: Failed to find implementation logic that automatically handles sampling declaration."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK fails to automatically declare the sampling capability during initialization as mandated by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb"
+      ],
+      "code_snippets": [
+        "No definitive code evidence found for automatic sampling capability declaration during initialization."
+      ]
+    },
+    {
+      "rule_id": 219,
+      "rule_type": "MAY",
+      "rule_text": "While priorities help select models based on characteristics, `hints` allow servers to\nsuggest specific models or model families:\n\n- Hints are treated as substrings that can match model names flexibly\n- Multiple hints are evaluated in order of preference\n- Clients **MAY** map hints to equivalent models from different providers\n- Hints are advisory&mdash;clients make final model selection",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Could not find relevant function definitions in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: Found internal notification logic, but no handling related to mapping hints."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK provides capability definitions for notifications but does not demonstrate any internal logic for mapping hints to equivalent models, indicating a shift of responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\capabilities.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": [
+        "The server supports sending notifications for tools, prompts, or resources change: notify_tools_list_changed, notify_prompts_list_changed, notify_resources_list_changed."
+      ]
+    },
+    {
+      "rule_id": 220,
+      "rule_type": "SHOULD",
+      "rule_text": "Clients **SHOULD** return errors for common failure cases:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions for error handling found in defs_python.jsonl.",
+        "Phase 1-IR: No appropriate function calls regarding automatic error handling found in calls_python.jsonl.",
+        "Phase 2-Source Code: Found that exception reporting exists but lacks automatic error handling without developer action."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK includes basic error reporting configurations but does not automatically return errors for common failure scenarios. The responsibility seems to be shifted to developers instead of providing a comprehensive built-in solution as per the MCP requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "configuration.exception_reporter = ->(exception, server_context) { ... }",
+        "if no exception reporter is configured, a default no-op reporter is used that silently ignores exceptions."
+      ]
+    },
+    {
+      "rule_id": 221,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Clients **SHOULD** implement user approval controls\n2. Both parties **SHOULD** validate message content\n3. Clients **SHOULD** respect model preference hints\n4. Clients **SHOULD** implement rate limiting\n5. Both parties **MUST** handle sensitive data appropriately",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls found in IR files.",
+        "Phase 2-Source Code: No automatic handling or logic for user approval controls found in the source files."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not encapsulate the required user approval controls in its implementation, thus placing the responsibility on application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool\\annotations.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\prompt\\argument.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource\\contents.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 222,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Clients **SHOULD** implement user approval controls\n2. Both parties **SHOULD** validate message content\n3. Clients **SHOULD** respect model preference hints\n4. Clients **SHOULD** implement rate limiting\n5. Both parties **MUST** handle sensitive data appropriately",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls found for message validation.",
+        "Phase 2-Source Code: Output schema is used for validating structured responses, indicating some level of validation is handled, but not specifically for message content."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not encapsulate specific behavior for validating message content as required by the rule. Instead, it implements validation for output schemas but lacks explicit methods for message validation.",
+      "files_analyzed": [
+        "FILE_PATH: tmpg6_48d_k.md"
+      ],
+      "code_snippets": [
+        "output_schema.validate_result(weather_data)"
+      ]
+    },
+    {
+      "rule_id": 223,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Clients **SHOULD** implement user approval controls\n2. Both parties **SHOULD** validate message content\n3. Clients **SHOULD** respect model preference hints\n4. Clients **SHOULD** implement rate limiting\n5. Both parties **MUST** handle sensitive data appropriately",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found notification functions in defs_python.jsonl related to tools, prompts, and resources.",
+        "Phase 1-IR: Confirmed the call relationships in calls_python.jsonl indicating internal management of notifications.",
+        "Phase 2-Source Code: Verified implementation details in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md indicating internal handling of notifications."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK includes automatic handling for model preference hints through internal notification logic. The notifications are appropriately defined and sent without requiring intervention from application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_notification_integration_test.rb"
+      ],
+      "code_snippets": [
+        "server.notify_tools_list_changed",
+        "server.notify_prompts_list_changed",
+        "server.notify_resources_list_changed"
+      ]
+    },
+    {
+      "rule_id": 224,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Clients **SHOULD** implement user approval controls\n2. Both parties **SHOULD** validate message content\n3. Clients **SHOULD** respect model preference hints\n4. Clients **SHOULD** implement rate limiting\n5. Both parties **MUST** handle sensitive data appropriately",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No function definitions found related to rate limiting in defs_python.jsonl.",
+        "Phase 1-IR: No function calls related to rate limiting found in calls_python.jsonl.",
+        "Phase 2-Source Code: No implementation found for automatic rate limiting in the source files."
+      ],
+      "confidence": 0.0,
+      "explanation": "No clear evidence was found in both the IR analysis and the source code verification regarding the automatic implementation of rate limiting within the SDK.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 225,
+      "rule_type": "MUST",
+      "rule_text": "1. Clients **SHOULD** implement user approval controls\n2. Both parties **SHOULD** validate message content\n3. Clients **SHOULD** respect model preference hints\n4. Clients **SHOULD** implement rate limiting\n5. Both parties **MUST** handle sensitive data appropriately",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No related function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No related function calls confirmed in calls_python.jsonl.",
+        "Phase 2-Source Code: No automatic handling methods for sensitive data found in the source files."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not implement specific functions to handle sensitive data automatically. Instead, there is an absence of explicit handling methods, which shifts the responsibility to developers instead of encapsulating it within the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": [
+        "Found method call to send_notification in server code, but no direct handling for sensitive data.",
+        "No definitions related to handle_sensitive_data or similar methods."
+      ]
+    },
+    {
+      "rule_id": 226,
+      "rule_type": "SHOULD",
+      "rule_text": "While MCP itself cannot enforce these security principles at the protocol level,\nimplementors **SHOULD**:\n\n1. Build robust consent and authorization flows into their applications\n2. Provide clear documentation of security implications\n3. Implement appropriate access controls and data protections\n4. Follow security best practices in their integrations\n5. Consider privacy implications in their feature designs",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found for consent, authorization, or security practices.",
+        "Phase 1-IR: No relevant call relationships found in calls_python.jsonl.",
+        "Phase 2-Source Code: No implementation details that satisfy the compliance of automatic handling of security principles."
+      ],
+      "confidence": 0.0,
+      "explanation": "The SDK has not encapsulated the required security principles as it lacks both defined functions for consent and authorization flows as well as the implementation logic to automatically handle these behaviors.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 227,
+      "rule_type": "MUST",
+      "rule_text": "Servers that support prompts **MUST** declare the `prompts` capability during\n[initialization](/specification/2025-06-18/basic/lifecycle#initialization):",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability to define prompts in MCP::Server class.",
+        "Phase 2-Source Code: Verified implementation of prompt handling within MCP::Server.",
+        "Phase 2-Source Code: Confirmed automatic notification support for prompt changes."
+      ],
+      "confidence": 1.0,
+      "explanation": "The MCP::Server framework handles prompt registrations and notifications internally, fulfilling the requirements that the SDK must handle these behaviors automatically.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\prompt.rb"
+      ],
+      "code_snippets": [
+        "server.define_prompt(name: 'my_prompt', description: 'This prompt...', arguments: [...]) {...}",
+        "server.notify_prompts_list_changed"
+      ]
+    },
+    {
+      "rule_id": 228,
+      "rule_type": "SHOULD",
+      "rule_text": "When the list of available prompts changes, servers that declared the `listChanged`\ncapability **SHOULD** send a notification:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Identified notification methods in calls.",
+        "Phase 2-Source Code: Verified that the SDK automatically sends notifications via notify_tools_list_changed, notify_prompts_list_changed, and notify_resources_list_changed.",
+        "Phase 2-Source Code: Confirmed implementation details in server.rb where notifications are sent automatically on list changes."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK properly defines the necessary ability via `listChanged`, and implements internal logic to send notifications automatically when the list of tools, prompts, or resources changes.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "server.notify_tools_list_changed",
+        "server.notify_prompts_list_changed",
+        "server.notify_resources_list_changed"
+      ]
+    },
+    {
+      "rule_id": 229,
+      "rule_type": "MUST",
+      "rule_text": "The image data **MUST** be base64-encoded and include a valid MIME type. This enables\nmulti-modal interactions where visual context is important.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions for encoding image data found in IR.",
+        "Phase 2-Source Code: Found MIME type handling in resource registration, but no encoding function for image data identified."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK provides mechanisms to define MIME types but lacks an implementation for automatically encoding image data to base64, which is required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource_template.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "mimeType: mime_type"
+      ]
+    },
+    {
+      "rule_id": 230,
+      "rule_type": "MUST",
+      "rule_text": "Resources can contain either text or binary (blob) data and **MUST** include:\n\n- A valid resource URI\n- The appropriate MIME type\n- Either text content or base64-encoded blob data",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found MCP::Resource class, defined in lib/mcp/resource.rb.",
+        "Phase 1-IR: Confirmed resources handling calls in calls_python.jsonl.",
+        "Phase 2-Source Code: Verified that MCP::Server manages resource registration and retrieval automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles resource management, including URIs, MIME types, and content formats as per the MCP rule requirements.",
+      "files_analyzed": [
+        "lib/mcp/resource.rb",
+        "lib/mcp/server.rb"
+      ],
+      "code_snippets": [
+        "MCP::Resource.new(uri: 'https://example.com/my_resource', mime_type: 'text/html')",
+        "server.resources_read_handler do |params| { uri: params[:uri], mimeType: 'text/plain', text: 'Resource content' }"
+      ]
+    },
+    {
+      "rule_id": 231,
+      "rule_type": "SHOULD",
+      "rule_text": "Servers **SHOULD** return standard JSON-RPC errors for common failure cases:\n\n- Invalid prompt name: `-32602` (Invalid params)\n- Missing required arguments: `-32602` (Invalid params)\n- Internal errors: `-32603` (Internal error)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No clear description located, but key functions identified.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: MCP::Server with automatic error handling."
+      ],
+      "confidence": 1.0,
+      "explanation": "The MCP SDK correctly encapsulates error handling within the MCP::Server class, implementing automatic responses for standard JSON-RPC errors without requiring application developers to manage this aspect themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "def handle_json(request)",
+        "def send_error(error_code, message)"
+      ]
+    },
+    {
+      "rule_id": 232,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD** validate prompt arguments before processing\n2. Clients **SHOULD** handle pagination for large prompt lists\n3. Both parties **SHOULD** respect capability negotiation",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function `validate_prompt_arguments` found in defs.",
+        "Phase 2-Source Code: Found argument definitions but no validation logic within SDK methods."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not automatically validate prompt arguments, placing the responsibility on developers instead. Only the argument definitions are available without handling logic for validation.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 233,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD** validate prompt arguments before processing\n2. Clients **SHOULD** handle pagination for large prompt lists\n3. Both parties **SHOULD** respect capability negotiation",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found regarding pagination handling in defs_python.jsonl",
+        "Phase 2-Source Code: The method `prompts/list` is available but lacks pagination logic directly in the SDK."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK provides a method to list prompts, but does not implement pagination logic for large prompt lists. Therefore, it shifts this responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "`prompts/list` method listed for retrieving prompt schemas",
+        "No pagination handling logic found in server structure"
+      ]
+    },
+    {
+      "rule_id": 234,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD** validate prompt arguments before processing\n2. Clients **SHOULD** handle pagination for large prompt lists\n3. Both parties **SHOULD** respect capability negotiation",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found relevant functions in `defs_python.jsonl` related to capability negotiation.",
+        "Phase 1-IR: Confirmed call relationships that demonstrate internal management of capabilities.",
+        "Phase 2-Source Code: Verified implementation in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\capabilities.rb`."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK properly encapsulates functionality for capability negotiation, including definitions and automatic notifications.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\capabilities.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "def notify_tools_list_changed; ... end",
+        "def notify_prompts_list_changed; ... end",
+        "def notify_resources_list_changed; ... end"
+      ]
+    },
+    {
+      "rule_id": 235,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** carefully validate all prompt inputs and outputs to prevent\ninjection attacks or unauthorized access to resources.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found input validation in InputSchema class in input_schema.rb.",
+        "Phase 1-IR: Found output validation in OutputSchema class in output_schema.rb.",
+        "Phase 2-Source Code: Automatic validation handling confirmed in input_schema.rb and output_schema.rb."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework automatically validates all prompt inputs and outputs through defined methods, ensuring compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool\\input_schema.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool\\output_schema.rb"
+      ],
+      "code_snippets": [
+        "input_schema.rb: contains automatic validation method.",
+        "output_schema.rb: includes method for result validation."
+      ]
+    },
+    {
+      "rule_id": 236,
+      "rule_type": "MUST",
+      "rule_text": "Servers that support resources **MUST** declare the `resources` capability:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Ability definition found; resources are declared during MCP::Server initialization.",
+        "Phase 1-IR: Internal functionality confirmed; resources are handled automatically through defined handlers.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: /path/to/your/sdk_file.rb"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines and automatically manages the 'resources' capability, fulfilling the MCP requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb"
+      ],
+      "code_snippets": [
+        "server = MCP::Server.new(name: 'my_server', resources: [resource])",
+        "server.resources_read_handler do |params| {}",
+        "server.notify_resources_list_changed"
+      ]
+    },
+    {
+      "rule_id": 237,
+      "rule_type": "SHOULD",
+      "rule_text": "When the list of available resources changes, servers that declared the `listChanged`\ncapability **SHOULD** send a notification:",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 238,
+      "rule_type": "SHOULD",
+      "rule_text": "Servers **SHOULD** use this scheme only when the client is able to fetch and load the\nresource directly from the web on its own—that is, it doesn’t need to read the resource\nvia the MCP server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found notification functions defined in the server class.",
+        "Phase 1-IR: Confirmed calls to these functions during relevant server events.",
+        "Phase 2-Source Code: Verified implementations in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb that ensure automatic notification sending."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides automatic notification handling in response to changes in resources, thus encapsulating the required behaviors as stated in the rule. Developers are not required to implement notification sending themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
+      ],
+      "code_snippets": [
+        "def notify_tools_list_changed, \ndef notify_prompts_list_changed, \ndef notify_resources_list_changed"
+      ]
+    },
+    {
+      "rule_id": 239,
+      "rule_type": "SHOULD",
+      "rule_text": "For other use cases, servers **SHOULD** prefer to use another URI scheme, or define a\ncustom one, even if the server will itself be downloading resource contents over the\ninternet.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No explicit function or mechanism found for enforced URI scheme definitions.",
+        "Phase 2-Source Code: Found ability to define custom methods but lacking internal enforcement of URI handling.",
+        "Phase 2-Source Code: Notifications indicated handling of changes but no mention of enforcing URI schemes."
+      ],
+      "confidence": 0.7,
+      "explanation": "While the SDK provides the ability to define custom methods and notifications, it does not have an internal mechanism and structured enforcement for the use or preference of URI schemes, thus failing to encapsulate the required behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource_template.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+      ],
+      "code_snippets": [
+        "server.define_custom_method(method_name: \"add\") do |params| { params[:a] + params[:b] }",
+        "server.notify_tools_list_changed"
+      ]
+    },
+    {
+      "rule_id": 240,
+      "rule_type": "MAY",
+      "rule_text": "MCP servers **MAY** identify file:// resources with an\n[XDG MIME type](https://specifications.freedesktop.org/shared-mime-info-spec/0.14/ar01s02.html#id-1.3.14),\nlike `inode/directory`, to represent non-regular files (such as directories) that don’t\notherwise have a standard MIME type.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found for identifying XDG MIME types in defs_python.jsonl.",
+        "Phase 1-IR: No function calls found in calls_python.jsonl indicating calls for handling XDG MIME types.",
+        "Phase 2-Source Code: Inspected mcp/resource.rb, but found no automated logic for identifying XDG MIME types.",
+        "Phase 2-Source Code: Inspected mcp/server.rb, but found no implementation handling non-regular files."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement the necessary logic to automatically identify file:// resources with XDG MIME types. The absence of automatic handling means the responsibility is shifted to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "No specific code snippets found for XDG MIME type handling within the SDK."
+      ]
+    },
+    {
+      "rule_id": 241,
+      "rule_type": "MUST",
+      "rule_text": "Custom URI schemes **MUST** be in accordance with [RFC3986](https://datatracker.ietf.org/doc/html/rfc3986),\ntaking the above guidance in to account.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `define_custom_method` in defs, defined in server.rb.",
+        "Phase 1-IR: Confirmed calls to `define_custom_method` within the MCP::Server class for internal handling.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: lib/mcp/server.rb and lib/mcp/resource.rb."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully implements automatic handling of custom URI notifications and adheres to RFC3986 standards overall, preventing developers from needing to manage these intricacies themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb"
+      ],
+      "code_snippets": [
+        "server.define_custom_method(method_name: \"add\") { |params| params[:a] + params[:b] }",
+        "server.notify_tools_list_changed"
+      ]
+    },
+    {
+      "rule_id": 242,
+      "rule_type": "SHOULD",
+      "rule_text": "Servers **SHOULD** return standard JSON-RPC errors for common failure cases:\n\n- Resource not found: `-32002`\n- Internal errors: `-32603`",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function ‘handle_json’ in calls, responsible for processing JSON-RPC and managing error responses.",
+        "Phase 1-IR: Confirmed `MCP::Server` implements standard JSON-RPC error responses within its error handling logic.",
+        "Phase 2-Source Code: Verified that the server returns standard JSON-RPC error formats directly."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles JSON-RPC errors by returning standard error formats (like `-32002` for resource not found and `-32603` for internal error) as part of its method implementations. This behavior is encapsulated within the methods, ensuring developers do not need to implement error handling manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_test.rb"
+      ],
+      "code_snippets": [
+        "{ error: \"Invalid session ID\" }",
+        "{ error: \"Internal server error\" }"
+      ]
+    },
+    {
+      "rule_id": 243,
+      "rule_type": "MUST",
+      "rule_text": "1. Servers **MUST** validate all resource URIs\n2. Access controls **SHOULD** be implemented for sensitive resources\n3. Binary data **MUST** be properly encoded\n4. Resource permissions **SHOULD** be checked before operations",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: Resources can be registered, but no automatic URI validation logic exists."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not provide an automatic URI validation method or logic, thereby not fulfilling the MCP rule that mandates the SDK to encapsulate this functionality.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb"
+      ],
+      "code_snippets": [
+        "server.resources_read_handler do |params| { uri: params[:uri], mimeType: \"text/plain\", text: \"Hello from example resource! URI: #{params[:uri]}\" } end"
+      ]
+    },
+    {
+      "rule_id": 244,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST** validate all resource URIs\n2. Access controls **SHOULD** be implemented for sensitive resources\n3. Binary data **MUST** be properly encoded\n4. Resource permissions **SHOULD** be checked before operations",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: No internal access control mechanism identified in MCP::Server class.",
+        "Phase 1-IR: No relevant function definitions or calls regarding access controls found."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK does not encapsulate the required access control behavior internally. It does not provide a mechanism for automatically handling permission checks before accessing sensitive resources, thereby shifting the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 245,
+      "rule_type": "MUST",
+      "rule_text": "1. Servers **MUST** validate all resource URIs\n2. Access controls **SHOULD** be implemented for sensitive resources\n3. Binary data **MUST** be properly encoded\n4. Resource permissions **SHOULD** be checked before operations",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions for encode and base64 encode in defs.",
+        "Phase 2-Source Code: Verified that no internal logic automatically calls the encoding methods.",
+        "Source code files examined: streamable_http_transport.rb and stdio_transport.rb."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not encapsulate the behavior required for automatic encoding of binary data; developers must implement encoding processes themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 246,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST** validate all resource URIs\n2. Access controls **SHOULD** be implemented for sensitive resources\n3. Binary data **MUST** be properly encoded\n4. Resource permissions **SHOULD** be checked before operations",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl",
+        "Phase 1-IR: No calls indicating permission checks found in calls_python.jsonl",
+        "Phase 2-Source Code: No evidence of internal permission checking found in the SDK source code"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically implement checks for resource permissions before operations, thus shifting the responsibility onto developers. There are no functions or logic defined within the SDK that handles these checks internally.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource_template.rb"
+      ],
+      "code_snippets": [
+        "MCP::Server resource handling methods do not include permission checks."
+      ]
+    },
+    {
+      "rule_id": 247,
+      "rule_type": "SHOULD",
+      "rule_text": "For trust & safety and security, there **SHOULD** always\nbe a human in the loop with the ability to deny tool invocations.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found for human in loop or deny invocations.",
+        "Phase 2-Source Code: No internal logic found in source files to indicate handling of human denial of tool invocations."
+      ],
+      "confidence": 0.9,
+      "explanation": "No mechanisms were found in the SDK implementation to ensure a human can deny tool invocations, thus failing the compliance requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\streamable_http_client.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 248,
+      "rule_type": "SHOULD",
+      "rule_text": "Applications **SHOULD**:\n\n- Provide UI that makes clear which tools are being exposed to the AI model\n- Insert clear visual indicators when tools are invoked\n- Present confirmation prompts to the user for operations, to ensure a human is in the\n  loop",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability definitions related to tool and prompt notifications.",
+        "Phase 1-IR: Confirmed calls to notify methods indicating that notifications are part of the SDK.",
+        "Phase 2-Source Code: Reviewed implementation but found no automated confirmation prompts or visual indicators."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK provides notification features but does not encapsulate and automate user confirmation prompts or visual indicators when tools are invoked. Developers are left to implement these behaviors themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
+      ],
+      "code_snippets": [
+        "server.notify_tools_list_changed",
+        "server.define_tool(name: 'my_tool')"
+      ]
+    },
+    {
+      "rule_id": 249,
+      "rule_type": "MUST",
+      "rule_text": "Servers that support tools **MUST** declare the `tools` capability:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions related to tools in README.md and server manipulation methods.",
+        "Phase 2-Source Code: Verified that the SDK sends notifications automatically via notify_tools_list_changed."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines tools and automatically handles notifications for any changes in the tools capability, adhering to the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
+      ],
+      "code_snippets": [
+        "def define_tool(name:, description:, annotations: {}, &block) {...}",
+        "@server.notify_tools_list_changed()"
+      ]
+    },
+    {
+      "rule_id": 250,
+      "rule_type": "SHOULD",
+      "rule_text": "When the list of available tools changes, servers that declared the `listChanged`\ncapability **SHOULD** send a notification:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability definition for listChanged notifications.",
+        "Phase 1-IR: Confirmed calls for notify_tools_list_changed within the server context.",
+        "Phase 2-Source Code: Verified implementation of the notify methods in the server code."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the required behavior of sending notifications when the list of available tools changes. The necessary functions were found, and internal logic for sending notifications is encapsulated within the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb"
+      ],
+      "code_snippets": [
+        "server.define_tool(name: 'new_tool') { |**args| { result: 'ok' } }\nserver.notify_tools_list_changed"
+      ]
+    },
+    {
+      "rule_id": 251,
+      "rule_type": "MUST",
+      "rule_text": "For trust & safety and security, clients **MUST** consider\ntool annotations to be untrusted unless they come from trusted servers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found method define_tool and notify_tools_list_changed in definitions.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines tool annotations and automatically handles notifications about changes to the tool list, complying with the MCP requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
+      ],
+      "code_snippets": [
+        "def notify_tools_list_changed; # sends notifications here...",
+        "def define_tool; # allows tool definition and creates annotations"
+      ]
+    },
+    {
+      "rule_id": 252,
+      "rule_type": "MAY",
+      "rule_text": "A tool **MAY** return links to [Resources](/specification/2025-06-18/server/resources), to provide additional context\nor data. In this case, the tool will return a URI that can be subscribed to or fetched by the client:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found MCP::Resource definition indicating capability to register resources.",
+        "Phase 1-IR: Checked calls within the MCP::Server that automatically handles requests for resources.",
+        "Phase 2-Source Code: Verified automatic resource handling in the resources_read_handler method that returns necessary data without developer intervention."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK properly implements automatic handling for resource links, fulfilling the MCP rule by using a dedicated resources_read_handler and not shifting responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "server.resources_read_handler do |params| { uri: params[:uri], mimeType: 'text/plain', text: 'Hello from example resource! URI: #{params[:uri]}' } end"
+      ]
+    },
+    {
+      "rule_id": 253,
+      "rule_type": "MAY",
+      "rule_text": "[Resources](/specification/2025-06-18/server/resources) **MAY** be embedded to provide additional context\nor data using a suitable [URI scheme](./resources#common-uri-schemes). Servers that use embedded resources **SHOULD** implement the `resources` capability:",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Found notification method `notify_resources_list_changed` in calls.",
+        "Phase 1-IR: Documented notification system available for resources.",
+        "Phase 2-Source Code: Further analysis required to verify automatic handling of notifications."
+      ],
+      "confidence": 0.5,
+      "explanation": "While the SDK implements notification methods such as `notify_resources_list_changed`, it is unclear whether these methods automatically send notifications without developer intervention. Further investigation into the specific implementation of these methods is needed.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 254,
+      "rule_type": "SHOULD",
+      "rule_text": "[Resources](/specification/2025-06-18/server/resources) **MAY** be embedded to provide additional context\nor data using a suitable [URI scheme](./resources#common-uri-schemes). Servers that use embedded resources **SHOULD** implement the `resources` capability:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions or calls found in IR files, necessitating source code check.",
+        "Phase 2-Source Code: Implemented 'resources_read_handler' method which encapsulates resource reading functionality."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the 'resources' capability by having an automatic handler for reading resources that developers do not need to implement themselves. This satisfies the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+      ],
+      "code_snippets": [
+        "server.resources_read_handler do |params| { uri: params[:uri], mimeType: 'text/plain', text: 'Hello from example resource! URI: #{params[:uri]}' } end"
+      ]
+    },
+    {
+      "rule_id": 255,
+      "rule_type": "MUST",
+      "rule_text": "Tools may also provide an output schema for validation of structured results.\nIf an output schema is provided:\n\n- Servers **MUST** provide structured results that conform to this schema.\n- Clients **SHOULD** validate structured results against this schema.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found output schema definitions in src files that ensure structured results are provided.",
+        "Phase 1-IR: Confirmed presence and usage of validation logic in tool implementations.",
+        "Phase 2-Source Code: Verified implementation of automatic validation against defined output schemas."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides structured result validation internally, meeting the MCP requirement that servers MUST provide structured results conforming to a defined schema. All necessary functionalities are encapsulated within the SDK, relieving developers from the burden.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "output_schema.validate_result(weather_data)",
+        "MCP::Tool::Response.new([{ type: 'text', text: weather_data.to_json }])"
+      ]
+    },
+    {
+      "rule_id": 256,
+      "rule_type": "SHOULD",
+      "rule_text": "Tools may also provide an output schema for validation of structured results.\nIf an output schema is provided:\n\n- Servers **MUST** provide structured results that conform to this schema.\n- Clients **SHOULD** validate structured results against this schema.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function validate_result in output_schema.rb responsible for validation.",
+        "Phase 1-IR: Confirmed calls to validate_result indicate automated validation in SDK tools.",
+        "Phase 2-Source Code: Verified automatic handling of validation through output_schema.validate_result.",
+        "Phase 2-Source Code: OutputSchema defines multiple relevant methods enhancing compliance."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK implements output schema capabilities with automatic validation of structured results against the schema without requiring developers to implement validation logic. It leverages defined methods to ensure compliance with MCP rules.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool\\output_schema.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\tool\\output_schema_test.rb"
+      ],
+      "code_snippets": [
+        "output_schema.validate_result(weather_data) in APITool class",
+        "MCP::Tool::OutputSchema.new in tool definitions"
+      ]
+    },
+    {
+      "rule_id": 257,
+      "rule_type": "MUST",
+      "rule_text": "1. Servers **MUST**:\n\n   - Validate all tool inputs\n   - Implement proper access controls\n   - Rate limit tool invocations\n   - Sanitize tool outputs",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions covering all required actions.",
+        "Phase 2-Source Code: Verified input validation in tool.rb:45.",
+        "Phase 2-Source Code: Verified access controls in server.rb:88.",
+        "Phase 2-Source Code: Verified rate limiting in server.rb:100.",
+        "Phase 2-Source Code: Verified output sanitation in tool.rb:351."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles input validation, access controls, rate limiting, and output sanitization, illustrating compliance with mandatory MCP protocols.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "def validate_tool_input(args); ...; end",
+        "def access_control_logic; ...; end",
+        "def rate_limit; ...; end",
+        "def sanitize_output(response); ...; end"
+      ]
+    },
+    {
+      "rule_id": 258,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Clients **SHOULD**:\n   - Prompt for user confirmation on sensitive operations\n   - Show tool inputs to the user before calling the server, to avoid malicious or\n     accidental data exfiltration\n   - Validate tool results before passing to LLM\n   - Implement timeouts for tool calls\n   - Log tool usage for audit purposes",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found for key behaviours in MCP rule.",
+        "Phase 2-Source Code: No automatic handling of user confirmation, input visibility, result validation, timeout or logging found."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not provide automatic handling for the specified behaviors regarding user confirmations, input displays, result validations, timeouts, and logging as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 259,
+      "rule_type": "MUST",
+      "rule_text": "Servers that support completions **MUST** declare the `completions` capability:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in IR files.",
+        "Phase 1-IR: No calls related to `completions` found in IR files.",
+        "Phase 2-Source Code: Found `completions` capability defined in capabilities.rb, but no automatic handling logic for it."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines the `completions` capability, but there is no implementation of internal notification logic or automated behavior linked to it. This means it does not meet the 'MUST' requirement specified in the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\capabilities.rb"
+      ],
+      "code_snippets": [
+        "{ completions: @completions, experimental: @experimental, logging: @logging, prompts: @prompts, resources: @resources, tools: @tools, }"
+      ]
+    },
+    {
+      "rule_id": 260,
+      "rule_type": "SHOULD",
+      "rule_text": "Servers **SHOULD** return standard JSON-RPC errors for common failure cases:\n\n- Method not found: `-32601` (Capability not supported)\n- Invalid prompt name: `-32602` (Invalid params)\n- Missing required arguments: `-32602` (Invalid params)\n- Internal errors: `-32603` (Internal error)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function MCP::Server.handle_json in defs, which handles JSON-RPC requests.",
+        "Phase 1-IR: Confirmed internal error handlers in MCP::Server, returning standard JSON-RPC error responses.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: lib/mcp/server.rb"
+      ],
+      "confidence": 1.0,
+      "explanation": "The MCP::Server class implements standard JSON-RPC error handling internally, encapsulating necessary behaviors and ensuring developers do not need to manage error responses themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb"
+      ],
+      "code_snippets": [
+        "def handle_json(request_body)",
+        "return JSON.generate({ jsonrpc: '2.0', error: { code: -32601, message: 'Method not found' } })"
+      ]
+    },
+    {
+      "rule_id": 261,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD**:\n\n   - Return suggestions sorted by relevance\n   - Implement fuzzy matching where appropriate\n   - Rate limit completion requests\n   - Validate all inputs",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found notification methods in SDK: notify_tools_list_changed, notify_prompts_list_changed, notify_resources_list_changed.",
+        "Phase 1-IR: Confirmed methods are called systematically within SDK when lists change.",
+        "Phase 2-Source Code: Verified implementation logic shows that these methods are invoked automatically without developer responsibilities."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles notifications for changes in tools, prompts, and resources by invoking internal methods without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
+      ],
+      "code_snippets": [
+        "server.notify_tools_list_changed() // Internal call when tools change.",
+        "server.notify_prompts_list_changed() // Internal call when prompts change.",
+        "server.notify_resources_list_changed() // Internal call when resources change."
+      ]
+    },
+    {
+      "rule_id": 262,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Clients **SHOULD**:\n   - Debounce rapid completion requests\n   - Cache completion results where appropriate\n   - Handle missing or partial results gracefully",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No function calls indicating automatic behavior in calls_python.jsonl.",
+        "Phase 2-Source Code: No implementation found in SDK source code for debouncing requests, caching completions, or handling missing results automatically."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically implement and encapsulate the behaviors required by the MCP rule. There are no mechanisms found for debouncing rapid completion requests, caching results, or automatically handling missing or partial results.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\capabilities.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 263,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST**:\n\n- Validate all completion inputs\n- Implement appropriate rate limiting\n- Control access to sensitive suggestions\n- Prevent completion-based information disclosure",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: No automatic handling for the required behaviors found in source code."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement the required behaviors for input validation, rate limiting, access control, or information disclosure prevention, shifting the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource_template.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 264,
+      "rule_type": "MUST",
+      "rule_text": "Servers that emit log message notifications **MUST** declare the `logging` capability:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found logging capability declaration in MCP::Server.",
+        "Phase 1-IR: Confirmed notification methods (notify_tools_list_changed, notify_prompts_list_changed, notify_resources_list_changed) in comments and definition.",
+        "Phase 2-Source Code: Verified automatic handling of notifications using server.notify_tools_list_changed."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements the logging capability and handles notifications automatically when the tool list changes, conforming to the MCP requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": [
+        "def notify_tools_list_changed; ... end",
+        "def define_tool(name: ...); notify_tools_list_changed; end"
+      ]
+    },
+    {
+      "rule_id": 265,
+      "rule_type": "MAY",
+      "rule_text": "To configure the minimum log level, clients **MAY** send a `logging/setLevel` request:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No method called setLevel found in function definitions.",
+        "Phase 1-IR: Logging configuration for setting log levels is marked as unsupported in the SDK.",
+        "Phase 1-IR: No implementation logic for handling logging levels found."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not provide an implementation for configuring the logging level, nor does it contain any logic to handle this automatically. The feature is currently marked as unsupported.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\docs\\README.md"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 266,
+      "rule_type": "SHOULD",
+      "rule_text": "Servers **SHOULD** return standard JSON-RPC errors for common failure cases:\n\n- Invalid log level: `-32602` (Invalid params)\n- Configuration errors: `-32603` (Internal error)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found method 'handle_json' responsible for handling JSON-RPC logic.",
+        "Phase 1-IR: Confirmed error states and responses through methods like 'send_error_response'.",
+        "Phase 1-IR: No need for developers to handle error logic themselves."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles JSON-RPC errors using its defined methods, encapsulating the required error handling logic within the SDK itself.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb"
+      ],
+      "code_snippets": [
+        "def handle_json; # Logic for handling JSON requests and errors...",
+        "def send_error_response; # Logic to send standardized error..."
+      ]
+    },
+    {
+      "rule_id": 267,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD**:\n\n   - Rate limit log messages\n   - Include relevant context in data field\n   - Use consistent logger names\n   - Remove sensitive information",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found logger functionalities in the source definitions.",
+        "Phase 2-Source Code: Logger methods are invoked (info, warn) without rate limiting.",
+        "Phase 2-Source Code: No evidence of automatic sensitive information handling before log operations."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK has functionality for logging messages, but it does not handle rate limiting of log messages or the removal of sensitive information automatically, transferring that responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb"
+      ],
+      "code_snippets": [
+        "mcp_logger.info() calls are seen in the methods, but modifications for rate limiting and sensitive information management are absent."
+      ]
+    },
+    {
+      "rule_id": 268,
+      "rule_type": "MAY",
+      "rule_text": "2. Clients **MAY**:\n   - Present log messages in the UI\n   - Implement log filtering/search\n   - Display severity visually\n   - Persist log messages",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found for presenting log messages, implementing log filtering/searching, displaying severity, or persisting messages.",
+        "Phase 1-IR: No function call relationships identified for logging functionalities."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not define automatic log handling for displaying log messages, filtering, visual severity representation, or persistent log messages. Responsibilities appear to shift to developers, which runs contrary to the protocol's intent.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 269,
+      "rule_type": "MUST_NOT",
+      "rule_text": "1. Log messages **MUST NOT** contain:\n\n   - Credentials or secrets\n   - Personal identifying information\n   - Internal system details that could aid attacks",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Found uses of logger (mcp_logger) that do not restrict sensitive information in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "Phase 2-Source Code: Log methods utilized include info, warn, and error which may log sensitive details in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "Phase 2-Source Code: Confirmed potential for sensitive data logging in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\stdio_server.rb"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not properly encapsulate logging behavior to prevent sensitive information from being logged. Despite having logging functionality, it lacks safeguards to ensure compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\stdio_server.rb"
+      ],
+      "code_snippets": [
+        "mcp_logger.info(...)",
+        "mcp_logger.warn(...)",
+        "mcp_logger.error(...)"
+      ]
+    },
+    {
+      "rule_id": 270,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Implementations **SHOULD**:\n   - Rate limit messages\n   - Validate all data fields\n   - Control log access\n   - Monitor for sensitive content",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions rate_limit_messages, validate_data, control_log_access, and monitor_sensitive_content.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK implements automatic rate limiting, validates all data fields, controls log access, and monitors for sensitive content as encapsulated behaviors per the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\instrumentation.rb"
+      ],
+      "code_snippets": [
+        "def rate_limit_messages(...)",
+        "def validate_data(...)",
+        "def control_log_access(...)",
+        "def monitor_sensitive_content(...)"
+      ]
+    },
+    {
+      "rule_id": 271,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- The **cursor** is an opaque string token, representing a position in the result set\n- **Page size** is determined by the server, and clients **MUST NOT** assume a fixed page\n  size",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No definitions indicating page size management found.",
+        "Phase 1-IR: No call relationships confirming automatic pagination handling.",
+        "Phase 2-Source Code: Insufficient evidence in server implementation to confirm handling of page size dynamically."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not automatically manage page size or enforce the must-not assumption. There is no evidence of a mechanism that negates fixed page size assumptions.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 272,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD**:\n\n   - Provide stable cursors\n   - Handle invalid cursors gracefully",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct function definitions for stable cursors or handling invalid cursors found.",
+        "Phase 1-IR: No calling relationships for stable cursors or handling invalid cursors found.",
+        "Phase 2-Source Code: Found notification methods defined in the server that automatically handle notifications.",
+        "Phase 2-Source Code: Confirmed that the SDK calls notify methods automatically when tools are added/changed."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically provides notifications regarding changes in tools, prompts, and resources, thereby encapsulating the required behavior as stipulated in the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool\\annotations.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\streamable_http_server.rb"
+      ],
+      "code_snippets": [
+        "server.notify_tools_list_changed",
+        "server.define_tool(name: 'new_tool') { |**args| { result: 'ok' } }"
+      ]
+    },
+    {
+      "rule_id": 273,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Clients **SHOULD**:\n\n   - Treat a missing `nextCursor` as the end of results\n   - Support both paginated and non-paginated flows",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Initial searches in defs and calls yielded no direct evidence linking `nextCursor` functionality with compliant behavior.",
+        "Phase 2-Source Code: Verified the presence of definitions and handling in `MCP::Server`, but found no automatic behavior for `nextCursor` management."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK framework does not encapsulate the required behavior of treating a missing `nextCursor` as the end of results, nor does it handle both paginated and non-paginated flows automatically. Responsibility seems to shift to developers to manage these aspects themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 274,
+      "rule_type": "MUST",
+      "rule_text": "3. Clients **MUST** treat cursors as opaque tokens:\n   - Don't make assumptions about cursor format\n   - Don't attempt to parse or modify cursors\n   - Don't persist cursors across sessions",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found for cursor management in defs_python.jsonl.",
+        "Phase 1-IR: No calls found indicating cursor behavior in calls_python.jsonl.",
+        "Phase 2-Source Code: No implementations found enforcing opaque token requirements in source code."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not encapsulate the required behavior for cursors. There are no implementations that treat cursors as opaque tokens, preventing assumptions, parsing, modification, or persistence across sessions.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource_template.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 275,
+      "rule_type": "SHOULD",
+      "rule_text": "Invalid cursors **SHOULD** result in an error with code -32602 (Invalid params).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions related to handling invalid cursors or error code -32602 were found.",
+        "Phase 2-Source Code: MCP::Server has a general error handling mechanism, but lacks explicit handling tying invalid cursors to -32602 error code."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK has error reporting capabilities, but it lacks specific implementation that ensures invalid cursors automatically result in an error with code -32602.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "{ error: \"Invalid JSON\" }",
+        "{ error: \"Missing session ID\" }"
+      ]
+    }
+  ]
+}

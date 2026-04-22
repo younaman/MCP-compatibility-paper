@@ -1,0 +1,2061 @@
+﻿{
+  "summary": {
+    "total": 100,
+    "compliant": 70,
+    "non_compliant": 27,
+    "unclear": 3,
+    "avg_files_per_rule": 2.12
+  },
+  "results": [
+    {
+      "rule_id": 1,
+      "rule_type": "OPTIONAL",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls found.",
+        "Phase 2-Source Code: `ConfigureCallToolFilter` implements logic to ensure authorization filters are invoked correctly.",
+        "Phase 2-Source Code: Automatic handling of authorization via `GetAuthorizationResultAsync`, which centralizes authorization checks."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles authorization-related behaviors as required by the MCP rule. It invokes authorization checks internally, ensuring developers do not need to implement this logic themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\AuthorizationFilterSetup.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthorizationServerMetadata.cs"
+      ],
+      "code_snippets": [
+        "private void ConfigureCallToolFilter(McpServerOptions options) {...}",
+        "private async ValueTask<AuthorizationResult> GetAuthorizationResultAsync(...) {...}"
+      ]
+    },
+    {
+      "rule_id": 2,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found StreamableHttpClientSessionTransport in defs",
+        "Phase 1-IR: Found relevant calls to HTTP transport in calls",
+        "Phase 2-Source Code: Verified SendMessageAsync handling within StreamableHttpClientSessionTransport"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages HTTP-based message sending and uses appropriate transport mechanisms, fully encapsulating the behavior required by the MCP specification.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StreamableHttpClientSessionTransport.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\AutoDetectingClientSessionTransport.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\HttpClientTransport.cs"
+      ],
+      "code_snippets": [
+        "public override async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default) { /* Implementation Details */ }",
+        "private async Task<HttpResponseMessage> SendHttpRequestAsync(JsonRpcMessage message, CancellationToken cancellationToken) { /* Implementation Details */ }"
+      ]
+    },
+    {
+      "rule_id": 3,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions in StdioClientTransport and StdioClientSessionTransport.",
+        "Phase 1-IR: Checked call relationships; limited data regarding credential management.",
+        "Phase 2-Source Code: Analyzed StdioClientSessionTransport.cs but did not identify automatic handling of credential retrieval."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not implement automatic credential retrieval from the environment for STDIO transport as required by the MCP rule. While ability definitions exist in the form of transport options, there is no internal mechanism that handles this responsibility, thus relying on developers instead.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StdioClientSessionTransport.cs"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 4,
+      "rule_type": "MUST",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found HttpClientTransport in defs located in the HttpClientTransport.cs file.",
+        "Phase 1-IR: Found internal logic for OAuth authorization but insufficient enforcement of security practices.",
+        "Phase 2-Source Code: Verified implementation in HttpClientTransport.cs where OAuth options are utilized, but no automatic enforcement for security best practices."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines capabilities for authorization but lacks comprehensive implementations that automatically enforce security best practices required for each transport protocol as mandated by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\HttpClientTransport.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StreamableHttpClientSessionTransport.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\SseClientSessionTransport.cs"
+      ],
+      "code_snippets": [
+        "OAuth setup in HttpClientTransport indicates capability for security but lacks detailed methodology for implementation.",
+        "Connection handling methods in StreamableHttpClientSessionTransport do not enforce explicit security checks."
+      ]
+    },
+    {
+      "rule_id": 5,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** implement OAuth 2.1 with appropriate security\n   measures for both confidential and public clients.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function AddOAuth in defs_python.jsonl, defining handling for OAuth 2.1.",
+        "Phase 1-IR: Confirmed calls to AddJwtBearer which adheres to the necessary OAuth validation.",
+        "Phase 2-Source Code: Verified implementation in ClientOAuthProvider.cs handling OAuth properties and Client settings."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK correctly implements OAuth 2.1 handling within the ClientOAuthProvider and AuthenticatingMcpHttpClient classes, which encapsulate the necessary behaviors for authorization servers according to the MCP rule. All required automatic handling mechanisms have been validated.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthenticatingMcpHttpClient.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthorizationRedirectDelegate.cs"
+      ],
+      "code_snippets": [
+        "private const string BearerScheme = 'Bearer';",
+        "await AddAuthorizationHeaderAsync(request, _currentScheme, cancellationToken);",
+        "new ClientOAuthProvider(_options.Endpoint, clientOAuthOptions, httpClient, loggerFactory)"
+      ]
+    },
+    {
+      "rule_id": 6,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Authorization servers and MCP clients **SHOULD** support the OAuth 2.0 Dynamic Client Registration\n   Protocol ([RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function PerformDynamicClientRegistrationAsync in defs.",
+        "Phase 1-IR: Confirmed PerformDynamicClientRegistrationAsync is called when _clientId is empty in source code, indicating automatic handling.",
+        "Phase 2-Source Code: Verified the implementation of PerformDynamicClientRegistrationAsync in FILE_PATH: tmpiaipctzd.cs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK contains a method for dynamic client registration that automatically handles the registration process, adhering to the requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\tmpiaipctzd.cs"
+      ],
+      "code_snippets": [
+        "await PerformDynamicClientRegistrationAsync(authServerMetadata, cancellationToken);",
+        "if (string.IsNullOrEmpty(_clientId)) { await PerformDynamicClientRegistrationAsync(authServerMetadata, cancellationToken); }"
+      ]
+    },
+    {
+      "rule_id": 7,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions for OAuth 2.0 resource metadata in ClientOAuthProvider.cs, ProtectedResourceMetadata.cs.",
+        "Phase 1-IR: Confirmed related calls in calls_python.jsonl indicating automatic handling.",
+        "Phase 2-Source Code: Verified implementation in ClientOAuthProvider.cs, McpAuthenticationOptions.cs, and McpAuthenticationHandler.cs, showing automatic behavior."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the behavior required by the MCP rule, automatically handling OAuth 2.0 Protected Resource Metadata interactions without requiring developer input.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationOptions.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationHandler.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ProtectedResourceMetadata.cs"
+      ],
+      "code_snippets": [
+        "Method HandleResourceMetadataRequestAsync in McpAuthenticationHandler.cs for serving resource metadata automatically.",
+        "Method InitiateAuthorizationCodeFlowAsync in ClientOAuthProvider.cs handling the authorization code flow."
+      ]
+    },
+    {
+      "rule_id": 8,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ProtectedResourceMetadata class in ProtectedResourceMetadata.cs.",
+        "Phase 2-Source Code: Verified automatic handling with methods in McpAuthenticationHandler and McpAuthenticationOptions where resource metadata is processed."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully encapsulates the required OAuth 2.0 Protected Resource Metadata handling, providing automatic facilities for authorization server discovery without requiring application developers to implement this functionality.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ProtectedResourceMetadata.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationHandler.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationOptions.cs"
+      ],
+      "code_snippets": [
+        "public required Uri Resource { get; set; } // ProtectedResourceMetadata field",
+        "await Results.Json(resourceMetadata, ...).ExecuteAsync(Context); // automatic handling"
+      ]
+    },
+    {
+      "rule_id": 9,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function AddMcp in McpAuthenticationExtensions.cs that defines and configures OAuth options.",
+        "Phase 2-Source Code: Verified implementation in McpAuthenticationHandler.cs that automatically manages requests for resource metadata."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK effectively implements logic to handle OAuth 2.0 Authorization Server Metadata provisioning within its framework, adhering to the MCP rule. The definition of `ResourceMetadataUri` and the supporting request-handling functionalities ensure that developers aren't left to implement this themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationExtensions.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationHandler.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationOptions.cs"
+      ],
+      "code_snippets": [
+        "public async Task<bool> HandleRequestAsync() {...}",
+        "public class McpAuthenticationOptions { public Uri ResourceMetadataUri { get; set; } }"
+      ]
+    },
+    {
+      "rule_id": 10,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions in ClientOAuthProvider for OAuth handling.",
+        "Phase 1-IR: Confirmed method calls in ClientOAuthProvider that utilize the OAuth metadata.",
+        "Phase 2-Source Code: Verified automatic metadata retrieval in method GetAuthServerMetadataAsync."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework meets the requirements by providing both the ability to define OAuth options and the necessary internal logic for handling OAuth 2.0 Authorization Server Metadata automatically.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs"
+      ],
+      "code_snippets": [
+        "public async Task<AuthorizationServerMetadata> GetAuthServerMetadataAsync(Uri authServerUri, CancellationToken cancellationToken)",
+        "public async Task RefreshTokenAsync(string refreshToken, Uri resourceUri, AuthorizationServerMetadata authServerMetadata, CancellationToken cancellationToken)"
+      ]
+    },
+    {
+      "rule_id": 11,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `authorization_servers` field in `McpAuthenticationOptions` class.",
+        "Phase 2-Source Code: Verified automatic handling of resource metadata in `McpAuthenticationHandler` class."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the required `authorization_servers` field in the `McpAuthenticationOptions` class and automatically handles resource metadata requests through the `McpAuthenticationHandler` class, complying with the specified MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationOptions.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationHandler.cs"
+      ],
+      "code_snippets": [
+        "McpAuthenticationOptions: { AuthorizationServers = { new Uri(inMemoryOAuthServerUrl) } }",
+        "McpAuthenticationHandler: HandleResourceMetadataRequestAsync() - processes requests for resource metadata."
+      ]
+    },
+    {
+      "rule_id": 12,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `authorization_servers` field in `ProtectedResourceMetadata` defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ProtectedResourceMetadata.cs.",
+        "Phase 1-IR: Calls relationships confirmed in setup for handling the `AuthorizationServers` URL.",
+        "Phase 2-Source Code: Verified implementation for `authorization_servers` in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the required behavior for the `authorization_servers` field by defining and initializing it within the server setup, negating any responsibility on the application developer's part.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ProtectedResourceMetadata.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs"
+      ],
+      "code_snippets": [
+        "AuthorizationServers = { new Uri(inMemoryOAuthServerUrl) },"
+      ]
+    },
+    {
+      "rule_id": 13,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** use the HTTP header `WWW-Authenticate` when returning a _401 Unauthorized_ to indicate the location of the resource server metadata URL\nas described in [RFC9728 Section 5.1 \"WWW-Authenticate Response\"](https://datatracker.ietf.org/doc/html/rfc9728#name-www-authenticate-response).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls identified.",
+        "Phase 2-Source Code: Confirmed implementation of WWW-Authenticate in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationHandler.cs."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically adds the WWW-Authenticate header in its 401 Unauthorized responses, demonstrating compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationHandler.cs"
+      ],
+      "code_snippets": [
+        "Response.Headers.Append(\"WWW-Authenticate\", headerValue);"
+      ]
+    },
+    {
+      "rule_id": 14,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** be able to parse `WWW-Authenticate` headers and respond appropriately to `HTTP 401 Unauthorized` responses from the MCP server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Related call functions found in calls_python.jsonl confirming handling of unauthorized responses.",
+        "Phase 2-Source Code: Verified implementation in 'AuthenticatingMcpHttpClient.cs' for automated handling of 'HTTP 401 Unauthorized' response."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements handling of 'WWW-Authenticate' headers and 'HTTP 401 Unauthorized' responses internally, meeting the required MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthenticatingMcpHttpClient.cs"
+      ],
+      "code_snippets": [
+        "Handles a 401 Unauthorized response with internal logic to retry requests with appropriate authorization."
+      ]
+    },
+    {
+      "rule_id": 15,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** follow the OAuth 2.0 Authorization Server Metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)\nspecification to obtain the information required to interact with the authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions including GetAuthServerMetadataAsync and InitiateAuthorizationCodeFlowAsync that are related to OAuth metadata.",
+        "Phase 1-IR: Found class definitions for ClientOAuthOptions, and AuthorizationServerMetadata, which provide necessary structures for handling OAuth 2.0.",
+        "Phase 2-Source Code: GetAuthServerMetadataAsync method fetches necessary metadata from the authorization server, handling the request internally.",
+        "Phase 2-Source Code: InitiateAuthorizationCodeFlowAsync automates the entire authorization flow, allowing users to seamlessly interact with the OAuth endpoints."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK provides a complete implementation for interacting with OAuth 2.0 Authorization Server Metadata. It encapsulates the logic required to fetch and manage the authorization endpoints automatically, thereby relieving the developer of this responsibility.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthorizationServerMetadata.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthOptions.cs"
+      ],
+      "code_snippets": [
+        "async Task<AuthorizationServerMetadata> GetAuthServerMetadataAsync(Uri authServerUri, CancellationToken cancellationToken) {...}",
+        "async Task<TokenContainer?> InitiateAuthorizationCodeFlowAsync(...) {...}"
+      ]
+    },
+    {
+      "rule_id": 16,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients and authorization servers **SHOULD** support the\nOAuth 2.0 Dynamic Client Registration Protocol [RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)\nto allow MCP clients to obtain OAuth client IDs without user interaction. This provides a\nstandardized way for clients to automatically register with new authorization servers, which is crucial\nfor MCP because:\n\n- Clients may not know all possible MCP servers and their authorization servers in advance.\n- Manual registration would create friction for users.\n- It enables seamless connection to new MCP servers and their authorization servers.\n- Authorization servers can implement their own registration policies.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `PerformDynamicClientRegistrationAsync` method in `ClientOAuthProvider.cs`.",
+        "Phase 1-IR: Confirmed the calls made to dynamic client registration in the code.",
+        "Phase 2-Source Code: Verified all steps of the dynamic client registration are handled automatically by the SDK."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework implements dynamic client registration fully within the `ClientOAuthProvider`, encapsulating the complexity of the OAuth 2.0 Dynamic Client Registration Protocol.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\DynamicClientRegistrationResponse.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\DynamicClientRegistrationOptions.cs"
+      ],
+      "code_snippets": [
+        "private async Task PerformDynamicClientRegistrationAsync(AuthorizationServerMetadata authServerMetadata, CancellationToken cancellationToken) { /* handles the registration logic here */ }"
+      ]
+    },
+    {
+      "rule_id": 17,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ClientOAuthProvider managing OAuth operations.",
+        "Phase 2-Source Code: Verified automatic handling in AuthenticatingMcpHttpClient with resource parameter inclusion.",
+        "Phase 2-Source Code: Check to ensure compliance with resource URI verification through VerifyResourceMatch method."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the handling of authorization requests, including the management of resource indicators as required by RFC 8707. The methods defined automatically include the resource parameter in OAuth operations.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthenticatingMcpHttpClient.cs"
+      ],
+      "code_snippets": [
+        "class ClientOAuthProvider",
+        "method AddAuthorizationHeaderAsync - handles automatic inclusion of OAuth headers",
+        "method VerifyResourceMatch - checks the resource URI for compliance"
+      ]
+    },
+    {
+      "rule_id": 18,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ClientOAuthProvider methods handling authorization with 'resource' parameter.",
+        "Phase 2-Source Code: Verified that ClientOAuthProvider automatically includes the 'resource' parameter in its methods."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK has internal methods that automatically handle the inclusion of the 'resource' parameter in both authorization requests and token requests, fulfilling the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthenticatingMcpHttpClient.cs"
+      ],
+      "code_snippets": [
+        "Method: InitiateAuthorizationCodeFlowAsync - Handles authorization using the resource parameter.",
+        "Method: FetchTokenAsync - Constructs the token request with resource included."
+      ]
+    },
+    {
+      "rule_id": 19,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No significant function definitions found in IR indicating compliance details.",
+        "Phase 1-IR: Found the ability to define MCP server URL in ClientOAuthProvider",
+        "Phase 2-Source Code: Verified implementation of resource parameter in BuildAuthorizationUrl method"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully defines the MCP server identification through its implementation in the ClientOAuthProvider, automatically handling authorization requests and resource parameters.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthOptions.cs"
+      ],
+      "code_snippets": [
+        "public ClientOAuthProvider(Uri serverUrl, ClientOAuthOptions options)",
+        "var queryParamsDictionary = new Dictionary<string, string> { ... \"resource\" = protectedResourceMetadata.Resource.ToString() }"
+      ]
+    },
+    {
+      "rule_id": 20,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions related to MCP client authorization and resource management.",
+        "Phase 2-Source Code: Verified automatic handling of the resource URI in McpClient and authorization in AuthenticatingMcpHttpClient."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages the resource parameter and authorization handling as required by the rule. All necessary functionality is encapsulated within the SDK, which ensures that developers do not need to handle these details.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\Authentication\\AuthenticatingMcpHttpClient.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\Client\\McpClientResource.cs"
+      ],
+      "code_snippets": [
+        "var result = new ResourceMetadata { Resource = new Uri(serverUrl) };",
+        "await AddAuthorizationHeaderAsync(request, _currentScheme, cancellationToken);"
+      ]
+    },
+    {
+      "rule_id": 21,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 22,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found no explicit functions dealing with URI scheme handling separately in defs.",
+        "Phase 1-IR: Checked various call relationships within the authentication handlers.",
+        "Phase 2-Source Code: Found handling implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthenticatingMcpHttpClient.cs where it compares schemes case-insensitively."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles uppercase scheme and host components by using case-insensitive string comparison methods, thus complying with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthenticatingMcpHttpClient.cs"
+      ],
+      "code_snippets": [
+        "if (!serverSchemes.Contains(_currentScheme)) { var bestSchemeMatch = serverSchemes.Intersect(credentialProvider.SupportedSchemes, StringComparer.OrdinalIgnoreCase).FirstOrDefault(); }"
+      ]
+    },
+    {
+      "rule_id": 23,
+      "rule_type": "SHOULD",
+      "rule_text": "> **Note:** While both `https://mcp.example.com/` (with trailing slash) and `https://mcp.example.com` (without trailing slash) are technically valid absolute URIs according to [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986), implementations **SHOULD** consistently use the form without the trailing slash for better interoperability unless the trailing slash is semantically significant for the specific resource.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions related to trailing slash handling were found.",
+        "Phase 2-Source Code: Found SubscribeToResourceAsync for notifications.",
+        "Phase 2-Source Code: Found SendNotificationAsync indicating notification sending logic but no elements addressing URL normalization."
+      ],
+      "confidence": 0.75,
+      "explanation": "While the SDK provides automatic notification sending capabilities, it lacks mechanisms to handle trailing slashes in URIs consistently as prescribed by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\ResourceMetadataRequestContext.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\McpJsonUtilities.cs"
+      ],
+      "code_snippets": [
+        "public static Task SubscribeToResourceAsync(this IMcpClient client, string uri, CancellationToken cancellationToken = default)",
+        "public static Task SendNotificationAsync(this IMcpEndpoint client, string method, CancellationToken cancellationToken = default)"
+      ]
+    },
+    {
+      "rule_id": 24,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** send this parameter regardless of whether authorization servers support it.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability definition in McpAuthenticationOptions to handle parameters.",
+        "Phase 1-IR: Confirmed automatic call logic in McpAuthenticationHandler methods to send parameters without developer intervention."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework correctly implements the required behavior by automatically sending necessary parameters during the authorization process without manual developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationHandler.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationOptions.cs"
+      ],
+      "code_snippets": [
+        "HandleChallengeAsync method in McpAuthenticationHandler to send WWW-Authenticate header.",
+        "ResourceMetadata property in McpAuthenticationOptions for handling various parameters."
+      ]
+    },
+    {
+      "rule_id": 25,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found method AddAuthorizationHeaderAsync in AuthenticatingMcpHttpClient.cs, responsible for adding the authorization header.",
+        "Phase 1-IR: Confirmed call to AddAuthorizationHeaderAsync within the SendAsync method when authorization header is absent.",
+        "Phase 2-Source Code: Verified implementation details in FILE_PATH: AuthenticatingMcpHttpClient.cs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages the addition of the authorization header and handles the authorization protocol according to RFC specifications, complying with OAuth 2.1 requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthenticatingMcpHttpClient.cs"
+      ],
+      "code_snippets": [
+        "await AddAuthorizationHeaderAsync(request, _currentScheme, cancellationToken);",
+        "if (request.Headers.Authorization == null) { await AddAuthorizationHeaderAsync(request, _currentScheme, cancellationToken); }"
+      ]
+    },
+    {
+      "rule_id": 26,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Found the SendAsync method in FILE_PATH: AuthenticatingMcpHttpClient.cs, which adds Authorization headers automatically.",
+        "Phase 2-Source Code: Verified implementation of AddAuthorizationHeaderAsync in FILE_PATH: AuthenticatingMcpHttpClient.cs that constructs the Authorization header."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the Authorization request header as required by MCP rule id 26, ensuring that implementation details and responsibilities are managed by the SDK rather than application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthenticatingMcpHttpClient.cs"
+      ],
+      "code_snippets": [
+        "await AddAuthorizationHeaderAsync(request, _currentScheme, cancellationToken).ConfigureAwait(false);",
+        "request.Headers.Authorization = new AuthenticationHeaderValue(scheme, token);"
+      ]
+    },
+    {
+      "rule_id": 27,
+      "rule_type": "MUST",
+      "rule_text": "Note that authorization **MUST** be included in every HTTP request from client to server,\neven if they are part of the same logical session.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function for authorization handling in AuthenticatingMcpHttpClient.cs, SendAsync method.",
+        "Phase 2-Source Code: Verified internal implementation handles adding Authorization headers and manages unauthorized responses without developer intervention."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically incorporates authorization handling into every HTTP request, ensuring compliance with the MCP requirement that authorization MUST be included. It does not shift this responsibility to the application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthenticatingMcpHttpClient.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs"
+      ],
+      "code_snippets": [
+        "public override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, JsonRpcMessage? message, CancellationToken cancellationToken) {...}",
+        "app.UseAuthentication(); app.UseAuthorization();"
+      ]
+    },
+    {
+      "rule_id": 28,
+      "rule_type": "MUST_NOT",
+      "rule_text": "2. Access tokens **MUST NOT** be included in the URI query string",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific function definitions were found to enforce access token restrictions.",
+        "Phase 2-Source Code: Found token handling logic but no prevention of inclusion in URI query strings.",
+        "Phase 2-Source Code: Implementations such as OnTokenValidated do not address query handling."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement internal mechanisms to prevent access tokens from being included in URI query strings, effectively shifting this responsibility onto application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationExtensions.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs"
+      ],
+      "code_snippets": [
+        "// Logic in McpAuthenticationExtensions.cs to configure authentication",
+        "// Token validation configuration but no prevention mechanism in Program.cs"
+      ]
+    },
+    {
+      "rule_id": 29,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found token validation logic in Program.cs.",
+        "Phase 2-Source Code: Verified implementation of audience validation and automatic error handling within SDK."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK has encapsulated the required token validation mechanism, ensuring that the necessary checks for audience and issuer are made without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs"
+      ],
+      "code_snippets": [
+        "options.TokenValidationParameters = new TokenValidationParameters { ValidateAudience = true };",
+        "options.Events = new JwtBearerEvents { OnTokenValidated = context => { ... } }"
+      ]
+    },
+    {
+      "rule_id": 30,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Found JWT bearer token validation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs with audience validation."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically validates access tokens as specified in the MCP rule. The implementation includes automatic validation of the audience and issuer within the JWT authentication setup.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs"
+      ],
+      "code_snippets": [
+        "options.TokenValidationParameters = new TokenValidationParameters\n{\n    ValidateIssuer = true,\n    ValidateAudience = true,\n    ValidateLifetime = true,\n    ValidateIssuerSigningKey = true,\n    ValidAudience = serverUrl, // Validate that the audience matches the resource metadata as suggested in RFC 8707\n    ValidIssuer = inMemoryOAuthServerUrl."
+      ]
+    },
+    {
+      "rule_id": 31,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found related to token validation and error response handling.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: AuthenticatingMcpHttpClient.cs which manages HTTP 401 responses.",
+        "Phase 2-Source Code: The SendAsync method handles token authorization automatically within the SDK."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK correctly implements automatic handling of token validation and responds according to OAuth 2.1 standards. It encapsulates the behavior required by the MCP rule and does not delegate responsibilities to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthenticatingMcpHttpClient.cs"
+      ],
+      "code_snippets": [
+        "private async Task<HttpResponseMessage> HandleUnauthorizedResponseAsync(...) { ... }",
+        "internal override async Task<HttpResponseMessage> SendAsync(...) { ... }"
+      ]
+    },
+    {
+      "rule_id": 32,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function HandleUnauthorizedResponseAsync in AuthenticatingMcpHttpClient that handles 401 responses.",
+        "Phase 1-IR: Confirmed Call Chain - SendAsync method calls HandleUnauthorizedResponseAsync when a 401 response is encountered.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: AuthenticatingMcpHttpClient.cs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK contains implementations that automatically handle invalid or expired tokens by responding with HTTP 401 without requiring application developers to implement this behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthenticatingMcpHttpClient.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StreamableHttpClientSessionTransport.cs"
+      ],
+      "code_snippets": [
+        "private async Task<HttpResponseMessage> HandleUnauthorizedResponseAsync(HttpRequestMessage originalRequest, JsonRpcMessage? originalJsonRpcMessage, HttpResponseMessage response, CancellationToken cancellationToken)",
+        "if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized) { return await HandleUnauthorizedResponseAsync(...); }"
+      ]
+    },
+    {
+      "rule_id": 33,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP clients **MUST NOT** send tokens to the MCP server other than ones issued by the MCP server's authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Token validation is implemented in Program.cs, asserting only authorized tokens from in-memory OAuth server are accepted.",
+        "Phase 2-Source Code: AuthorizationFilterSetup ensures that unauthorized tokens result in access denial."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically validates tokens against the MCP server's authorization server, preventing any tokens not issued by it from being accepted.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\AuthorizationFilterSetup.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\TokenContainer.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\DynamicClientRegistrationResponse.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Authentication\\AuthorizationServerMetadata.cs"
+      ],
+      "code_snippets": [
+        "...ValidateIssuer = true, ValidateAudience = true, ValidateLifetime = true,...",
+        "...throw new McpException(\"Access forbidden: This tool requires authorization...\");"
+      ]
+    },
+    {
+      "rule_id": 34,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** only accept tokens that are valid for use with their\nown resources.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No errors found in function definitions and calls concerning token validation in IR.",
+        "Phase 2-Source Code: Implementation of token validation parameters in Program.cs confirms compliance."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements token validation logic by ensuring only tokens valid for a specific issuer and audience are accepted, as per the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs"
+      ],
+      "code_snippets": [
+        "options.TokenValidationParameters = new TokenValidationParameters { ValidateIssuer = true, ValidateAudience = true, ValidIssuer = inMemoryOAuthServerUrl, ValidAudience = serverUrl };"
+      ]
+    },
+    {
+      "rule_id": 35,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept or transit any other tokens.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or call relationships found in IR.",
+        "Phase 2-Source Code: Server configurations accept tokens from a specific issuer, indicating non-compliant behavior."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK allows the acceptance of tokens from a specific issuer, which violates the MCP requirement that forbids accepting or transiting any other tokens.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\TokenProgress.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\DynamicClientRegistrationResponse.cs"
+      ],
+      "code_snippets": [
+        "Token acceptance mechanisms and notification logic regarding token use in TokenProgress.cs"
+      ]
+    },
+    {
+      "rule_id": 36,
+      "rule_type": "MUST",
+      "rule_text": "Servers **MUST** return appropriate HTTP status codes for authorization errors:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found methods related to handling unauthorized responses in AuthenticatingMcpHttpClient.cs",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: AuthenticatingMcpHttpClient.cs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles authorization errors by providing the response logic for HTTP status codes, as outlined in the class `AuthenticatingMcpHttpClient` and its methods.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthenticatingMcpHttpClient.cs"
+      ],
+      "code_snippets": [
+        "if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized) { return await HandleUnauthorizedResponseAsync(...); }",
+        "await credentialProvider.HandleUnauthorizedResponseAsync(...);"
+      ]
+    },
+    {
+      "rule_id": 37,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow OAuth 2.1 security best practices as laid out in [OAuth 2.1 Section 7. \"Security Considerations\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#name-security-considerations).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct definitions found in IR, but confirmed through source code.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs.",
+        "Phase 2-Source Code: JWT Bearer authentication and token validation configured in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\AuthorizationFilterSetup.cs."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically implements OAuth 2.1 security best practices by managing token acquisition, validation, and authorization internally, eliminating the need for developers to handle these processes manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\AuthorizationFilterSetup.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationOptions.cs"
+      ],
+      "code_snippets": [
+        "// In ClientOAuthProvider.cs: Handles token acquisition and management internally.",
+        "// In Program.cs: Configures JWT Bearer authentication for token validation."
+      ]
+    },
+    {
+      "rule_id": 38,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient evidence found in defs and calls; no automatic handling of resource parameter.",
+        "Phase 2-Source Code: No methods found that automatically handle the inclusion of resource parameter in requests.",
+        "SDK does not encapsulate the behavior required by the rule."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically include the 'resource' parameter in authorization and token requests. It appears that developers would need to implement this functionality manually, which does not meet the requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ReadResourceRequestParams.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpClient.cs"
+      ],
+      "code_snippets": [
+        "public required string Uri { get; init; } // ReadResourceRequestParams.cs",
+        "await AddAuthorizationHeader(...); // ClientOAuthProvider.cs"
+      ]
+    },
+    {
+      "rule_id": 39,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function AddJwtBearer in defs, defined in Program.cs.",
+        "Phase 1-IR: Confirmed AddJwtBearer configures token validation logic in calls.",
+        "Phase 2-Source Code: Verified automatic handling of token validation in Program.cs."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically validates tokens issued for its use without requiring developers to implement this behavior. The necessary validation logic is encapsulated within the SDK, ensuring compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs"
+      ],
+      "code_snippets": [
+        "options.TokenValidationParameters = new TokenValidationParameters\n    {\n        ValidateIssuer = true,\n        ValidateAudience = true,\n        ValidateLifetime = true,\n        ValidateIssuerSigningKey = true,\n        ValidAudience = serverUrl,\n        ValidIssuer = inMemoryOAuthServerUrl\n    }"
+      ]
+    },
+    {
+      "rule_id": 40,
+      "rule_type": "MUST",
+      "rule_text": "Clients and servers **MUST** implement secure token storage and follow OAuth best practices,\nas outlined in [OAuth 2.1, Section 7.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.1).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions were found directly related to secure token storage.",
+        "Phase 2-Source Code: Found token management capability in ClientOAuthProvider but lacks defined secure storage.",
+        "Phase 2-Source Code: JWT token validation exists, but secure storage provisions are absent."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does provide OAuth handling and some form of token management; however, it lacks sufficient secure token storage practices required per the MCP rule. Specifically, the implementation does not cache or protect tokens adequately, which transfers the responsibility of secure storage to developers. The SDK must ensure automatic management of secure token storage to be compliant.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\AuthorizationFilterSetup.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\DynamicClientRegistrationOptions.cs"
+      ],
+      "code_snippets": [
+        "Token storage handled in ClientOAuthProvider but lacks secure caching or protection."
+      ]
+    },
+    {
+      "rule_id": 41,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function TokenContainer managing access tokens and their expiration in file: TokenContainer.cs.",
+        "Phase 1-IR: Verified call relationships with ClientOAuthProvider, specifically involving refresh logic in RefreshTokenAsync.",
+        "Phase 2-Source Code: Verified automatic handling and lifecycle management of access tokens in ClientOAuthProvider and TokenContainer implementations."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK effectively implements token management with automatic handling of access tokens and their expiration. The `TokenContainer` stores token details, including their expiration state, while the `ClientOAuthProvider` manages the issuance and refreshing of tokens internally, aligning with the requirements set by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\TokenContainer.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs"
+      ],
+      "code_snippets": [
+        "TokenContainer.cs: ExpiresIn property for access token expiration handling.",
+        "ClientOAuthProvider.cs: RefreshTokenAsync method for refreshing tokens without developer intervention."
+      ]
+    },
+    {
+      "rule_id": 42,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function TokenContainer with refresh token property in TokenContainer.cs.",
+        "Phase 1-IR: Identified RefreshTokenAsync method handling token refreshing logic.",
+        "Phase 2-Source Code: Verified implementation inside GetCredentialAsync and RefreshTokenAsync."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the required behavior for rotating refresh tokens as specified in the MCP rule. It defines the necessary methods and properties to handle this internally without requiring application developers to manage the process.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\TokenContainer.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\ClientOAuthProvider.cs"
+      ],
+      "code_snippets": [
+        "public async Task<TokenContainer> RefreshTokenAsync(string refreshToken, Uri resourceUri, AuthorizationServerMetadata authServerMetadata, CancellationToken cancellationToken)",
+        "if (_token?.RefreshToken != null && _authServerMetadata != null) { var newToken = await RefreshTokenAsync(_token.RefreshToken, resourceUri, _authServerMetadata, cancellationToken); }"
+      ]
+    },
+    {
+      "rule_id": 43,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow [OAuth 2.1 Section 1.5 \"Communication Security\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-1.5).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found no function definitions in defs_python.jsonl that implement the required behaviors.",
+        "Phase 1-IR: Check of call relationships in calls_python.jsonl yielded no functions engaged in the detailed automatic handling of notifications or security.",
+        "Phase 2-Source Code: Found structures for notifications in IMcpEndpoint and token handling in Program.cs, but no conclusive evidence of automatic behaviors."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK does not automatically handle behaviors required by OAuth 2.1 Section 1.5 \"Communication Security\". It does not encapsulate the required notification sending logic or secure token handling to relieve developers from these responsibilities.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs"
+      ],
+      "code_snippets": [
+        "IMcpEndpoint interface handling sending notifications: {sending logic not evident}",
+        "JWT Bearer Authentication in Program.cs handling token validation."
+      ]
+    },
+    {
+      "rule_id": 44,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found UseHttpsRedirection() in context of setting up an MCP server that enforces HTTPS.",
+        "Phase 1-IR: Confirmed calls within server setup logic indicating the server operates under HTTPS.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: Program.cs which contains UseHttpsRedirection() called within app setup."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK implements automatic redirection to HTTPS for authorization endpoints without requiring developer intervention, thus complying with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\docs\\concepts\\httpcontext\\samples\\Program.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\docs\\concepts\\logging\\samples\\server\\Program.cs"
+      ],
+      "code_snippets": [
+        "app.UseHttpsRedirection(); // Enforces HTTPS for the MCP server",
+        "builder.Services.AddMcpServer(); // Setup for server including HTTPS configuration"
+      ]
+    },
+    {
+      "rule_id": 45,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found _redirectUri initialization in ClientOAuthProvider from options.",
+        "Phase 2-Source Code: Verified that there are no internal enforcement checks for redirect URI compliance."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not enforce that redirect URIs must be localhost or HTTPS. It allows developers to specify any URI without validation, thus failing to implement the required behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthOptions.cs"
+      ],
+      "code_snippets": [
+        "private readonly Uri _redirectUri; // Initialized from options",
+        "private static Task<string?> DefaultAuthorizationUrlHandler(Uri authorizationUrl, Uri redirectUri, CancellationToken cancellationToken)"
+      ]
+    },
+    {
+      "rule_id": 46,
+      "rule_type": "MUST",
+      "rule_text": "To mitigate this, MCP clients **MUST** implement PKCE according to [OAuth 2.1 Section 7.5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.5.2).\nPKCE helps prevent authorization code interception and injection attacks by requiring clients to create a secret verifier-challenge pair, ensuring that only the original requestor can exchange an authorization code for tokens.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found related function calls in calls_python.jsonl: InitiateAuthorizationCodeFlowAsync(), ExchangeCodeForTokenAsync(), GenerateCodeChallenge(), and GenerateCodeVerifier()",
+        "Phase 2-Source Code: Verified that InitiateAuthorizationCodeFlowAsync() automatically handles the entire PKCE workflow."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements PKCE as required, encapsulating the necessary behavior without requiring application developers to manage these complex details.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthOptions.cs"
+      ],
+      "code_snippets": [
+        "private async Task<TokenContainer?> InitiateAuthorizationCodeFlowAsync(ProtectedResourceMetadata protectedResourceMetadata, AuthorizationServerMetadata authServerMetadata, CancellationToken cancellationToken){ ... } // Initiates PKCE flow",
+        "private string GenerateCodeVerifier(){ ... } // Generates the code verifier",
+        "private string GenerateCodeChallenge(string codeVerifier){ ... } // Generates the code challenge from the code verifier"
+      ]
+    },
+    {
+      "rule_id": 47,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** have redirect URIs registered with the authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ClientOAuthProvider in defs, performing dynamic client registration.",
+        "Phase 1-IR: Confirmed calls to PerformDynamicClientRegistrationAsync manage redirect URI registration.",
+        "Phase 2-Source Code: Verified automatic handling of redirect URIs in ClientOAuthProvider.cs."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the registration of redirect URIs with the authorization server, fulfilling the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs"
+      ],
+      "code_snippets": [
+        "RedirectUris = [_redirectUri.ToString()] // in DynamicClientRegistrationRequest"
+      ]
+    },
+    {
+      "rule_id": 48,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** validate exact redirect URIs against pre-registered values to prevent redirection attacks.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant definitions for URI validation found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant call relationships regarding URI handling in calls_python.jsonl.",
+        "Phase 2-Source Code: Reviewed ClientOAuthProvider.cs and found no internal validation for redirect URIs.",
+        "Phase 2-Source Code: Found ClientOAuthOptions.cs defines RedirectUri, but lacks validation logic.",
+        "Phase 2-Source Code: Analyzed AuthorizationRedirectDelegate.cs, confirmed it leaves URI handling to the developer."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK provides the ability to define redirect URIs but does not contain a mechanism to automatically validate those URIs against pre-registered values, transferring this responsibility to the end developer.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthOptions.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthorizationRedirectDelegate.cs"
+      ],
+      "code_snippets": [
+        "public required Uri RedirectUri { get; set; } // No validation present",
+        "private async Task<TokenContainer> RefreshTokenAsync(...) // URI used without validation mechanism."
+      ]
+    },
+    {
+      "rule_id": 49,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** use and verify state parameters in the authorization code flow\nand discard any results that do not include or have a mismatch with the original state.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function found in definitions related to state parameters verification.",
+        "Phase 1-IR: No calls related to state management in authorization flow discovered.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestHandler.cs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not provide the required implementation to use and verify state parameters in the authorization code flow, shifting this responsibility to the developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestHandler.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthorizationServerMetadata.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationExtensions.cs"
+      ],
+      "code_snippets": [
+        "// Handling authorization code flow, but no state parameter verification found",
+        "var authCode = await _authorizationRedirectDelegate(authUrl, _redirectUri, cancellationToken);"
+      ]
+    },
+    {
+      "rule_id": 50,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** take precautions to prevent redirecting user agents to untrusted URI's, following suggestions laid out in [OAuth 2.1 Section 7.12.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.12.2)",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ClientOAuthProvider class in ClientOAuthProvider.cs.",
+        "Phase 1-IR: DefaultAuthorizationUrlHandler calls for user input instead of automatic handling of redirect URIs.",
+        "Phase 1-IR: No automated precautions against untrusted URIs."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not automatically handle redirections to untrusted URIs; it delegates that responsibility to the developer through a user prompt, which is non-compliant with the MUST requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs"
+      ],
+      "code_snippets": [
+        "private static Task<string?> DefaultAuthorizationUrlHandler(Uri authorizationUrl, Uri redirectUri, CancellationToken cancellationToken) {...}"
+      ]
+    },
+    {
+      "rule_id": 51,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** only automatically redirect the user agent if it trusts the redirection URI. If the URI is not trusted, the authorization server MAY inform the user and rely on the user to make the correct decision.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found indicating automatic redirect handling in defs_python.jsonl.",
+        "Phase 1-IR: No call relationships found indicating oversight of URI trust in calls_python.jsonl.",
+        "Phase 2-Source Code: Verified implementation in ClientOAuthProvider.cs does not enforce redirection trust policies.",
+        "Phase 2-Source Code: Verified implementation in AuthorizationRedirectDelegate.cs indicates user-driven implementation."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK fails to automatically handle trust for the redirection URI, instead delegating this responsibility to the developers through an optional delegate. This negates the automatic handling required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\AuthorizationRedirectDelegate.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthOptions.cs"
+      ],
+      "code_snippets": [
+        "ClientOAuthProvider.cs constructor initializes redirectUri but does not enforce internal checking.",
+        "AuthorizationRedirectDelegate.cs allows full consumer control, missing automatic handling.",
+        "ClientOAuthOptions exposes optional redirection delegate with no enforced behavior."
+      ]
+    },
+    {
+      "rule_id": 52,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found regarding user consent in defs_python.jsonl.",
+        "Phase 1-IR: User consent related function calls not found in calls_python.jsonl.",
+        "Phase 2-Source Code: Verified implementation details from file C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\DynamicClientRegistrationRequest.cs"
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK lacks automated handling for obtaining user consent before forwarding requests for dynamic client registration to third-party authorization servers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\DynamicClientRegistrationRequest.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\DynamicClientRegistrationResponse.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\DynamicClientRegistrationOptions.cs"
+      ],
+      "code_snippets": [
+        "async Task PerformDynamicClientRegistrationAsync(AuthorizationServerMetadata authServerMetadata, CancellationToken cancellationToken) {...}"
+      ]
+    },
+    {
+      "rule_id": 53,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** validate access tokens before processing the request, ensuring the access token is issued specifically for the MCP server, and take all necessary steps to ensure no data is returned to unauthorized parties.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function AddJwtBearer in Program.cs:13, configured for JWT bearer authentication.",
+        "Phase 1-IR: Confirmed presence of token validation logic through TokenValidationParameters.",
+        "Phase 2-Source Code: Verified the token validation mechanism handles authorization automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically validates access tokens before processing requests by using the AddJwtBearer method which implements token validation through various parameters and handlers, ensuring tokens are validated without requiring developers to implement this functionality.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs"
+      ],
+      "code_snippets": [
+        "// Adding JWT Bearer authentication:\n.AddJwtBearer(options =>\n{\n    options.TokenValidationParameters = new TokenValidationParameters\n    {\n        ValidateIssuer = true,\n        ValidateAudience = true,\n        ValidateLifetime = true,\n        ValidateIssuerSigningKey = true\n    };\n    options.Events = new JwtBearerEvents\n    {\n        OnTokenValidated = context => {...}\n    };\n})"
+      ]
+    },
+    {
+      "rule_id": 54,
+      "rule_type": "MUST",
+      "rule_text": "A MCP server **MUST** follow the guidelines in [OAuth 2.1 - Section 5.2](https://www.ietf.org/archive/id/draft-ietf-oauth-v2-1-12.html#section-5.2) to validate inbound tokens.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls were found.",
+        "Phase 2-Source Code: The implementation in Program.cs automatically validates incoming tokens with appropriate parameters.",
+        "Token validation through options.TokenValidationParameters was configured."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages token validations by encapsulating the necessary logic for authorization using JWT Bearer tokens, ensuring compliance with the rule that specifies adherence to OAuth 2.1 Section 5.2.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs"
+      ],
+      "code_snippets": [
+        "options.TokenValidationParameters = new TokenValidationParameters { ValidateIssuer = true, ValidateAudience = true, ValidateLifetime = true, ValidateIssuerSigningKey = true, ValidAudience = serverUrl, ValidIssuer = inMemoryOAuthServerUrl };"
+      ]
+    },
+    {
+      "rule_id": 55,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** only accept tokens specifically intended for themselves and **MUST** reject tokens that do not include them in the audience claim or otherwise verify that they are the intended recipient of the token. See the [Security Best Practices Token Passthrough section](/specification/2025-06-18/basic/security_best_practices#token-passthrough) for details.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found token validation functions in Program.cs.",
+        "Phase 2-Source Code: Verified automatic handling of token audience validation in Program.cs."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates token validation logic, ensuring compliance with the MCP rule. It automatically verifies that tokens have the correct audience and handles rejections internally.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs"
+      ],
+      "code_snippets": [
+        "options.TokenValidationParameters = new TokenValidationParameters\n{\n    ValidateIssuer = true,\n    ValidateAudience = true,\n    ValidAudience = serverUrl,\n};",
+        "options.Events = new JwtBearerEvents\n{\n    OnTokenValidated = context => {...},\n    OnAuthenticationFailed = context => {...},\n};"
+      ]
+    },
+    {
+      "rule_id": 56,
+      "rule_type": "MUST_NOT",
+      "rule_text": "If the MCP server makes requests to upstream APIs, it may act as an OAuth client to them. The access token used at the upstream API is a seperate token, issued by the upstream authorization server. The MCP server **MUST NOT** pass through the token it received from the MCP client.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ClientOAuthProvider class in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs.",
+        "Phase 1-IR: Confirmed call relationships in McpHttpClient class in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpHttpClient.cs.",
+        "Phase 2-Source Code: 'SendAsync' method does not enforce the automatic prevention of passing through tokens."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically handle the prohibition of passing through the token received from the MCP client to upstream APIs. While the ClientOAuthProvider manages token acquisition, it does not implement internal logic to prevent passing these tokens along, thus shifting the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\ClientOAuthProvider.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpHttpClient.cs"
+      ],
+      "code_snippets": [
+        "// SendAsync method in McpHttpClient.cs, which does not include logic to handle direct server token prohibition"
+      ]
+    },
+    {
+      "rule_id": 57,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement and use the `resource` parameter as defined in [RFC 8707 - Resource Indicators for OAuth 2.0](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. This requirement aligns with the recommendation in\n[RFC 9728 Section 7.4](https://datatracker.ietf.org/doc/html/rfc9728#section-7.4). This ensures that access tokens are bound to their intended resources and\ncannot be misused across different services.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Found resource parameter defined in ProtectedResourceMetadata.",
+        "Phase 1-IR: Resource metadata is set in AddMcp, but no automated usage found.",
+        "Phase 2-Source Code: Verified definitions and some methods related to resource handling, but lack of automated token handling logic."
+      ],
+      "confidence": 0.5,
+      "explanation": "While there is a resource property defined, the automatic handling of using the `resource` parameter in token requests is not explicitly found in the SDK. Without clear implementation of automatic behavior, compliance cannot be confirmed.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\ProtectedResourceMetadata.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationExtensions.cs"
+      ],
+      "code_snippets": [
+        "public required Uri Resource { get; set; }",
+        "options.ResourceMetadata = new() {...};"
+      ]
+    },
+    {
+      "rule_id": 58,
+      "rule_type": "MUST",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `SendNotificationAsync` method for automatic notification handling in `IMcpEndpoint`.",
+        "Phase 1-IR: Found core functionality definitions in `McpSession` which implements lifecycle management."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides an implementation that supports the required base protocol and manages lifecycle events, including automatic notification handling without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\IMcpEndpoint.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs"
+      ],
+      "code_snippets": [
+        "public Task SendNotificationAsync(string method, CancellationToken cancellationToken = default)",
+        "public abstract Task<JsonRpcResponse> SendRequestAsync(JsonRpcRequest request, CancellationToken cancellationToken = default)"
+      ]
+    },
+    {
+      "rule_id": 59,
+      "rule_type": "MAY",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 60,
+      "rule_type": "MUST",
+      "rule_text": "All messages between MCP clients and servers **MUST** follow the\n[JSON-RPC 2.0](https://www.jsonrpc.org/specification) specification. The protocol defines\nthese types of messages:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found methods related to JSON-RPC message handling in defs and calls.",
+        "Phase 2-Source Code: Verified implementations in C#: SendMessageAsync and SendRequestAsync demonstrate compliance with JSON-RPC 2.0 protocol standards."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK is designed to automatically handle JSON-RPC messaging with built-in methods for sending messages and processing requests without requiring application developers to manually implement these details.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseWriter.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\SseResponseStreamTransport.cs"
+      ],
+      "code_snippets": [
+        "public async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default) { ... }",
+        "public async Task<JsonRpcResponse> SendRequestAsync(JsonRpcRequest request, CancellationToken cancellationToken) { ... }"
+      ]
+    },
+    {
+      "rule_id": 61,
+      "rule_type": "MUST",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions for ID in JsonRpcMessageWithId and RequestId classes.",
+        "Phase 1-IR: Confirmed call relationships indicate that IDs are managed automatically in SendRequestAsync.",
+        "Phase 2-Source Code: Verified implementation logic for request ID handling preventing null IDs and ensuring uniqueness."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automates the processing of request IDs, ensuring compliance with MCP Rule 61, without putting the responsibility on developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcMessageWithId.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\RequestId.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs"
+      ],
+      "code_snippets": [
+        "public class JsonRpcMessageWithId { public RequestId Id { get; set; } }",
+        "private async Task SendRequestAsync(...) { /* logic ensure unique ID is generated here */ }"
+      ]
+    },
+    {
+      "rule_id": 62,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No initial compliance issue found in IR files.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcRequest.cs",
+        "Phase 2-Source Code: SendRequestAsync checks for null ID and assigns a new value if required."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the ID requirements specified by the MCP rule. It ensures that the ID is initialized to a non-null value if it is found to be null before proceeding with the request.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcRequest.cs"
+      ],
+      "code_snippets": [
+        "if (request.Id.Id is null) { request = request.WithId(new RequestId(Interlocked.Increment(ref _lastRequestId))); }"
+      ]
+    },
+    {
+      "rule_id": 63,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found request ID definition in JsonRpcRequest.",
+        "Phase 2-Source Code: No evidence of logic to check or prevent reuse of request IDs in RequestContext or JsonRpcRequest."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not provide automatic handling to ensure that request IDs are unique within the same session, leaving this responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcRequest.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\RequestContext.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestHandler.cs"
+      ],
+      "code_snippets": [
+        "class JsonRpcRequest { /* ... RequestId defined here ... */ }",
+        "class RequestContext<TParams> { /* ... contains request management logic ... */ }"
+      ]
+    },
+    {
+      "rule_id": 64,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found JsonRpcResponse and JsonRpcError classes defining ID handling in responses. (JsonRpcResponse: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcResponse.cs)",
+        "Phase 1-IR: Confirmed calls to SendRequestAsync that manage response handling internally without developer intervention. (McpSession: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs)"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK manages response IDs in both success and error messages internally, adhering to the MCP rule. This behavior is designed within the SDK and does not shift responsibility onto the application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcResponse.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcError.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs"
+      ],
+      "code_snippets": [
+        "class JsonRpcResponse { public string Id { get; set; } }",
+        "class JsonRpcError { public string Id { get; set; } }",
+        "public async Task<JsonRpcResponse> SendRequestAsync(JsonRpcRequest request, CancellationToken cancellationToken = default);"
+      ]
+    },
+    {
+      "rule_id": 65,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function handling related to responses and errors in multiple definitions.",
+        "Phase 2-Source Code: No internal logic was found to prevent setting both result and error in responses."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK does not implement internal logic to ensure that both `result` and `error` are not set in responses. While it defines error handling via `McpException`, there is no mechanism observed that automatically restricts developers from setting both in response scenarios.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpErrorCode.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcMessageWithId.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\RequestHandlers.cs"
+      ],
+      "code_snippets": [
+        "enum McpErrorCode { ... }",
+        "abstract class JsonRpcMessageWithId { ... }",
+        "class McpException { ... }",
+        "internal sealed class RequestHandlers { ... }"
+      ]
+    },
+    {
+      "rule_id": 66,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific function definitions found directly regarding result or error.",
+        "Phase 2-Source Code: Verified implementation in JsonRpcResponse with result and JsonRpcError with error.",
+        "Phase 2-Source Code: SDK handles sending JSON-RPC responses correctly in SendRequestAsync method."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK provides internal handling for both successful and error responses in compliance with the MCP rule. It defines `JsonRpcResponse` and `JsonRpcError`, ensuring responses contain either a `result` or an `error` as mandated.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcResponse.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcError.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs"
+      ],
+      "code_snippets": [
+        "public required JsonNode? Result { get; init; }",
+        "public required JsonRpcErrorDetail Error { get; init; }",
+        "throw new McpException(...) handled within the SDK."
+      ]
+    },
+    {
+      "rule_id": 67,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found McpException class handling error codes and messages in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs",
+        "Phase 1-IR: JsonRpcError handles structured error responses in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcError.cs",
+        "Phase 1-IR: SendRequestAsync method handles errors by throwing McpException if JsonRpcError is returned in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK encapsulates error handling logic with defined error codes and messages, fulfilling the MCP rule requirements autonomously.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcError.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs"
+      ],
+      "code_snippets": [
+        "McpException: Includes structured error handling with error codes.",
+        "JsonRpcError: Encapsulates error response structures.",
+        "SendRequestAsync: Throws McpException upon receiving JsonRpcError."
+      ]
+    },
+    {
+      "rule_id": 68,
+      "rule_type": "MAY",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Found JsonRpcError class handling error responses and confirming necessary error structures.",
+        "Phase 2-Source Code: Verified SendMessageAsync method sends messages, including automatic error handling."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates required behaviors for handling errors as per the MCP rule, including necessary structures for error codes and messages.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcError.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs"
+      ],
+      "code_snippets": [
+        "public sealed class JsonRpcError { ... }",
+        "public sealed class JsonRpcErrorDetail { ... }"
+      ]
+    },
+    {
+      "rule_id": 69,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found definitions of integer error codes in McpErrorCode class.",
+        "Phase 1-IR: Verified uses of McpException class for handling errors with integer codes.",
+        "Phase 2-Source Code: JsonRpcErrorDetail class includes an integer property for error codes.",
+        "Phase 2-Source Code: JsonRpcError class encapsulates error responses with integer error codes.",
+        "Phase 2-Source Code: SendRequestAsync method handles exceptions and automatically constructs error responses."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK effectively encapsulates error handling, ensuring that error codes are integers and automatically processes error responses according to the MCP protocol specifications.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpErrorCode.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpException.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcErrorDetail.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\JsonRpcError.cs"
+      ],
+      "code_snippets": [
+        "public enum McpErrorCode {...}",
+        "public McpException(string message, McpErrorCode errorCode) {...}",
+        "public required JsonRpcErrorDetail Error { get; init; } ..."
+      ]
+    },
+    {
+      "rule_id": 70,
+      "rule_type": "MUST_NOT",
+      "rule_text": "Notifications are sent from the client to the server or vice versa, as a one-way message.\nThe receiver **MUST NOT** send a response.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found method SendNotificationAsync in McpEndpointExtensions.cs at line 64.",
+        "Phase 1-IR: Internal logic highlighted that notifications are one-way messages without responses.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK ensures notifications are sent without responses allowed from the receiver, complying with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
+      ],
+      "code_snippets": [
+        "/// <summary>\n// Sends a parameterless notification to the connected endpoint.\n/// <param name=\"client\">The MCP client or server instance.</param>",
+        "/// <remarks>\n// This method sends a notification without any parameters. Notifications are one-way messages\n// that don't expect a response."
+      ]
+    },
+    {
+      "rule_id": 71,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Notifications **MUST NOT** include an ID.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls found for automatic notification handling.",
+        "Phase 2-Source Code: `CancelledNotificationParams` has an ID field.",
+        "Phase 2-Source Code: `NotificationMethods` provides notification method names, but does not enforce the restriction on IDs."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK allows for IDs in notifications via parameters in notifications like CancelledNotificationParams. Thus, it does not comply with the rule stating that notifications must not include an ID.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CancelledNotificationParams.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\NotificationMethods.cs"
+      ],
+      "code_snippets": [
+        "public sealed class CancelledNotificationParams : NotificationParams { [JsonPropertyName(\"requestId\")] public RequestId RequestId { get; set; } }",
+        "public static class NotificationMethods { public const string CancelledNotification = \"notifications/cancelled\"; }"
+      ]
+    },
+    {
+      "rule_id": 72,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function SendMessageAsync in StreamableHttpClientSessionTransport.",
+        "Phase 1-IR: Confirmed multiple calls to SendMessageAsync indicating usage in HTTP transport context.",
+        "Phase 2-Source Code: Verified implementation of SendMessageAsync in StreamableHttpClientSessionTransport handling HTTP messages."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework provides automatic handling of message sending through HTTP transport, adhering to the MCP rule requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StreamableHttpClientSessionTransport.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs"
+      ],
+      "code_snippets": [
+        "public async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default)",
+        "await _httpClient.SendAsync(...);"
+      ]
+    },
+    {
+      "rule_id": 73,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found class StdioServerTransport, but no method for automatic credential retrieval.",
+        "Phase 1-IR: Found class StdioClientTransport, but no method for automatic credential retrieval."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK does not implement the required behavior for automatically retrieving credentials from the environment when using STDIO transport. No internal mechanisms were found to automatically handle this process.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StdioServerTransport.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StdioClientTransport.cs"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 74,
+      "rule_type": "MAY",
+      "rule_text": "Additionally, clients and servers **MAY** negotiate their own custom authentication and\nauthorization strategies.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: Inspected McpAuthentication classes and found no automated negotiation of custom strategies."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK provides classes for defining authentication options and customizing them, but it does not include automatic negotiation of authentication strategies, meaning developers have to implement this behavior manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationExtensions.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationOptions.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationHandler.cs"
+      ],
+      "code_snippets": [
+        "McpAuthenticationOptions provides customizable authentication options but requires manual implementation.",
+        "McpAuthenticationExtensions allows authentication support setup, but lacks built-in negotiation."
+      ]
+    },
+    {
+      "rule_id": 75,
+      "rule_type": "MUST",
+      "rule_text": "The initialization phase **MUST** be the first interaction between client and server.\nDuring this phase, the client and server:\n\n- Establish protocol version compatibility\n- Exchange and negotiate capabilities\n- Share implementation details",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability definition in InitializeRequestParams representing client capabilities in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeRequestParams.cs",
+        "Phase 1-IR: Confirmed calls to ConnectAsync and InitialRequestParams in MCP client implementation.",
+        "Phase 2-Source Code: Verified ConnectAsync method implements automatic handling of initialization."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the initialization phase as the first interaction, defining capabilities, protocol version, and client info via the InitializeRequestParams used in the ConnectAsync method.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeRequestParams.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
+      ],
+      "code_snippets": [
+        "var initializeResponse = await this.SendRequestAsync(RequestMethods.Initialize, new InitializeRequestParams {...});"
+      ]
+    },
+    {
+      "rule_id": 76,
+      "rule_type": "MUST",
+      "rule_text": "The client **MUST** initiate this phase by sending an `initialize` request containing:\n\n- Protocol version supported\n- Client capabilities\n- Client implementation information",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'InitializeRequestParams' in 'InitializeRequestParams.cs' defining protocol version, capabilities, and client info.",
+        "Phase 1-IR: Confirmed call to 'SendRequestAsync' using 'InitializeRequestParams' in 'McpClient.Methods.cs'.",
+        "Phase 2-Source Code: Verified implementation in 'McpClient.Methods.cs' where 'initialize' request is sent and response handling occurs automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically sends the 'initialize' request with required parameters and handles notifications internally, conforming to the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeRequestParams.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
+      ],
+      "code_snippets": [
+        "public sealed class InitializeRequestParams : RequestParams {...}",
+        "var initializeResponse = await this.SendRequestAsync(...); // Sending initialize request and waiting for response."
+      ]
+    },
+    {
+      "rule_id": 77,
+      "rule_type": "MUST",
+      "rule_text": "The server **MUST** respond with its own capabilities and information:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ServerCapabilities in defs, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ServerCapabilities.cs:19",
+        "Phase 1-IR: Confirmed InitializeResult handles sending capabilities in response in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeResult.cs",
+        "Phase 2-Source Code: Verified automatic sending logic found in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerImpl.cs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages the response to initialization requests by encapsulating the logic for sending server capabilities, thus relieving application developers of this responsibility.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerImpl.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeResult.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeRequestParams.cs"
+      ],
+      "code_snippets": [
+        "McpServerImpl.cs: Automatically constructs ServerCapabilities during initialization.",
+        "InitializeResult.cs: Includes capabilities in the response to the client during the initialization handshake."
+      ]
+    },
+    {
+      "rule_id": 78,
+      "rule_type": "MUST",
+      "rule_text": "After successful initialization, the client **MUST** send an `initialized` notification\nto indicate it is ready to begin normal operations:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found reference to the `InitializedNotification` in the source code review",
+        "Phase 2-Source Code: Verified the implementation in `McpSession` that sends `InitializedNotification` automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the sending of the `InitializedNotification` after successful initialization. This confirms compliance with MCP rule 78.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs"
+      ],
+      "code_snippets": [
+        "await this.SendNotificationAsync(NotificationMethods.InitializedNotification, new InitializedNotificationParams(), cancellationToken: initializationCts.Token);"
+      ]
+    },
+    {
+      "rule_id": 79,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `initialize` in definitions in the file `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs`.",
+        "Phase 1-IR: Confirmed that `initialize` is called within the `HandlePostAsync` method.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: `StreamableHttpPostTransport.cs`. No enforcement of sole ping requests until the `initialize` request is confirmed."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not enforce that requests other than pings are sent before the server responds to the `initialize` request, thus violating the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\StreamableHttpPostTransport.cs"
+      ],
+      "code_snippets": [
+        "public async ValueTask<bool> HandlePostAsync(JsonRpcMessage message, CancellationToken cancellationToken) { ... }"
+      ]
+    },
+    {
+      "rule_id": 80,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function PingAsync in McpClient for sending ping requests.",
+        "Phase 1-IR: Found SendRequestAsync method capable of sending requests.",
+        "Phase 2-Source Code: Verified absence of request restrictions before initialization."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK implements ping functionality, but it does not restrict sending other requests before the initialization notification is received, violating the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.cs"
+      ],
+      "code_snippets": [
+        "public Task PingAsync(CancellationToken cancellationToken = default) {...}",
+        "internal async ValueTask<TResult> SendRequestAsync<TParameters, TResult>(...) {...}"
+      ]
+    },
+    {
+      "rule_id": 81,
+      "rule_type": "MUST",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'InitializeRequestParams' with required field 'protocolVersion' in InitializeRequestParams.cs.",
+        "Phase 1-IR: 'SendRequestAsync' is called in 'ConnectAsync' which encapsulates the logic of sending the initialize request.",
+        "Phase 2-Source Code: Verified that 'protocolVersion' is included in 'InitializeRequestParams' during the request to the server."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically sends the required protocol version in the initialization request, fulfilling the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeRequestParams.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
+      ],
+      "code_snippets": [
+        "public required string ProtocolVersion { get; init; } // In InitializeRequestParams class",
+        "var initializeResponse = await this.SendRequestAsync(RequestMethods.Initialize, new InitializeRequestParams { ProtocolVersion = requestProtocol, ... });"
+      ]
+    },
+    {
+      "rule_id": 82,
+      "rule_type": "SHOULD",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ProtocolVersion property in InitializeRequestParams to represent the desired protocol version.",
+        "Phase 1-IR: Confirmed its role in the initialization handshake process through associated calls.",
+        "Phase 2-Source Code: Verified that MCP server implementation negotiates the protocol version and handles notifications accordingly."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages the negotiation of the protocol version during the initialization handshake, complying with the requirement for handling versioning internally without burdening developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeRequestParams.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.cs"
+      ],
+      "code_snippets": [
+        "public required string ProtocolVersion { get; init; } // From InitializeRequestParams",
+        "public override string? NegotiatedProtocolVersion => _negotiatedProtocolVersion; // In McpServer"
+      ]
+    },
+    {
+      "rule_id": 83,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No related definitions or calls found for protocol version handling.",
+        "Phase 2-Source Code: Found InitializeRequestParams class which defines desired protocol version with detailed comments on negotiation.",
+        "Phase 2-Source Code: Verified SendRequestAsync in McpSession.cs handles the negotiation of protocol versions and sends error if mismatches occur."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly handles the required behavior for protocol version negotiation by automatically sending the correct version and handling mismatches internally without burdening the application developer.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeRequestParams.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.Methods.cs"
+      ],
+      "code_snippets": [
+        "string ProtocolVersion { get; init; } // from InitializeRequestParams.cs",
+        "if (protocolVersionMismatch) throw new McpException(\"Protocol version mismatch\"); // found in SendRequestAsync"
+      ]
+    },
+    {
+      "rule_id": 84,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found InitializeRequestParams with ProtocolVersion definition in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeRequestParams.cs",
+        "Phase 1-IR: Confirmed response logic in InitializeResult in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeResult.cs",
+        "Phase 2-Source Code: Verified internal version negotiation handling in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerImpl.cs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK properly defines the necessary behavior for protocol version handling and manages it internally, ensuring compliance without requiring application developers to implement these aspects themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeRequestParams.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeResult.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServerImpl.cs"
+      ],
+      "code_snippets": [
+        "public required string ProtocolVersion { get; init; } // in InitializeRequestParams.cs",
+        "var initializeResponse = await this.SendRequestAsync(...); // in McpServerImpl.cs"
+      ]
+    },
+    {
+      "rule_id": 85,
+      "rule_type": "SHOULD",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions for supported protocol versions in McpSessionHandler.cs.",
+        "Phase 1-IR: Confirmed notification sending methods in McpSession.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: McpSession.cs."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages supported protocol versions and sends notifications internally, fulfilling the rule's requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSessionHandler.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpSession.Methods.cs"
+      ],
+      "code_snippets": [
+        "internal static readonly string[] SupportedProtocolVersions = [\"2024-11-05\", \"2025-03-26\", LatestProtocolVersion];",
+        "public override Task SendNotificationAsync(string method, CancellationToken cancellationToken = default)"
+      ]
+    },
+    {
+      "rule_id": 86,
+      "rule_type": "SHOULD",
+      "rule_text": "If the client does not support the version in the server's response, it **SHOULD**\ndisconnect.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant functions for disconnect handling found in defs_python.jsonl.",
+        "Phase 2-Source Code: No automatic disconnect logic present in examined source files such as McpClientOptions.cs and InitializeResult.cs."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK provides configuration for protocol version handling but does not implement automatic disconnection if the version is unsupported based on the current code structure. The responsibility appears to rest with application developers to manage disconnects which is not compliant with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientOptions.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeRequestParams.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeResult.cs"
+      ],
+      "code_snippets": [
+        "McpClientOptions provides configuration but lacks disconnect implementation.",
+        "InitializeRequestParams specifies version but does not manage disconnection on mismatch."
+      ]
+    },
+    {
+      "rule_id": 87,
+      "rule_type": "MUST",
+      "rule_text": "<Note>\nIf using HTTP, the client **MUST** include the `MCP-Protocol-Version:\n<protocol-version>` HTTP header on all subsequent requests to the MCP\nserver.\nFor details, see [the Protocol Version Header section in Transports](/specification/2025-06-18/basic/transports#protocol-version-header).\n</Note>",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function CopyAdditionalHeaders in StreamableHttpClientSessionTransport.cs, which manages adding headers.",
+        "Phase 1-IR: Confirmed that SendMessageAsync calls CopyAdditionalHeaders, ensuring compliance with the MCP rule."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically includes the 'MCP-Protocol-Version' header in HTTP requests without requiring the application developer to implement this behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StreamableHttpClientSessionTransport.cs"
+      ],
+      "code_snippets": [
+        "private static void CopyAdditionalHeaders(HttpRequestHeaders headers, IDictionary<string, string>? additionalHeaders, string? sessionId, string? protocolVersion) {\n    if (protocolVersion is not null) {\n        headers.Add('MCP-Protocol-Version', protocolVersion);\n    }\n}"
+      ]
+    },
+    {
+      "rule_id": 88,
+      "rule_type": "MUST",
+      "rule_text": "Both parties **MUST**:\n\n- Respect the negotiated protocol version\n- Only use capabilities that were successfully negotiated",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls found.",
+        "Phase 2-Source Code: Both Protocol Version and Capability management are well implemented.",
+        "Phase 2-Source Code: Automatic notifications are sent for relevant changes in resources and tools."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages protocol version verification and capability negotiation, while also automatically sending notifications for changes, thus fulfilling the MCP rule requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\InitializeRequestParams.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\ResourcesCapability.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\PromptsCapability.cs"
+      ],
+      "code_snippets": [
+        "public required string ProtocolVersion { get; init; } // InitializeRequestParams.cs",
+        "SendNotificationAsync(NotificationMethods.ToolListChangedNotification); // McpServer.cs"
+      ]
+    },
+    {
+      "rule_id": 89,
+      "rule_type": "SHOULD",
+      "rule_text": "For the stdio [transport](/specification/2025-06-18/basic/transports), the client **SHOULD** initiate\nshutdown by:\n\n1. First, closing the input stream to the child process (the server)\n2. Waiting for the server to exit, or sending `SIGTERM` if the server does not exit\n   within a reasonable time\n3. Sending `SIGKILL` if the server does not exit within a reasonable time after `SIGTERM`",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function CleanupAsync in StdioClientSessionTransport defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StdioClientSessionTransport.cs:45",
+        "Phase 1-IR: Confirmed calls to DisposeProcess within CleanupAsync",
+        "Phase 2-Source Code: Verified that CleanupAsync and DisposeProcess manage server termination correctly, without developer intervention"
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically handles the initiating shutdown of the server process without requiring application developers to manage it. The `CleanupAsync` method and `DisposeProcess` facilitate this process.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StdioClientSessionTransport.cs"
+      ],
+      "code_snippets": [
+        "protected override async ValueTask CleanupAsync(Exception? error = null, CancellationToken cancellationToken = default) {...}",
+        "StdioClientTransport.DisposeProcess(_process, processRunning: true, _options.ShutdownTimeout, Name);"
+      ]
+    },
+    {
+      "rule_id": 90,
+      "rule_type": "MAY",
+      "rule_text": "The server **MAY** initiate shutdown by closing its output stream to the client and\nexiting.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function CleanupAsync in defs, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StdioClientSessionTransport.cs.",
+        "Phase 1-IR: Confirmed calls to DisposeProcess within CleanupAsync indicating internal handling of server shutdown.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StdioClientSessionTransport.cs."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages server shutdown through the CleanupAsync method which calls DisposeProcess, fulfilling the protocol requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\StdioClientSessionTransport.cs"
+      ],
+      "code_snippets": [
+        "protected override async ValueTask CleanupAsync(Exception? error = null, CancellationToken cancellationToken = default) { /*... code to terminate the server process ...*/ }"
+      ]
+    },
+    {
+      "rule_id": 91,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ConnectionTimeout defined in HttpClientTransportOptions located in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\HttpClientTransportOptions.cs",
+        "Phase 1-IR: Found InitializationTimeout defined in McpClientOptions located in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientOptions.cs",
+        "Phase 2-Source Code: Verified runtime timeout handling in ConnectAsync method located in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\SseClientSessionTransport.cs",
+        "Phase 2-Source Code: Verified cancellation handling in SendMessageAsync with CancellationToken located in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\SseClientSessionTransport.cs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements timeouts automatically for request connections and manages cancellation internally without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\HttpClientTransportOptions.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClientOptions.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\SseClientSessionTransport.cs"
+      ],
+      "code_snippets": [
+        "public TimeSpan ConnectionTimeout { get; set; } = TimeSpan.FromSeconds(30);",
+        "await _connectionEstablished.Task.WaitAsync(_options.ConnectionTimeout, cancellationToken).ConfigureAwait(false);",
+        "public override async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default) { ... using var sendCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, _connectionCts.Token); }"
+      ]
+    },
+    {
+      "rule_id": 92,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant functions found in IR; evidence collected from source code.",
+        "Phase 2-Source Code: Found 'CancelledNotificationParams' class for defining cancellation notifications.",
+        "Phase 2-Source Code: Verified internal handling of cancellation notifications in 'SendMessageAsync' method, which cancels pending requests."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the management of timeouts and cancellation notifications, automatically handling both behaviors without requiring application developers to implement these features manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\CancelledNotificationParams.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpRequestHandler.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Client\\McpClient.Methods.cs"
+      ],
+      "code_snippets": [
+        "public sealed class CancelledNotificationParams",
+        "public async Task SendMessageAsync(JsonRpcMessage message, CancellationToken cancellationToken = default)"
+      ]
+    },
+    {
+      "rule_id": 93,
+      "rule_type": "SHOULD",
+      "rule_text": "SDKs and other middleware **SHOULD** allow these timeouts to be configured on a\nper-request basis.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'IdleTimeout' in 'HttpServerTransportOptions.cs' indicating timeout configuration capabilities.",
+        "Phase 1-IR: Confirmed 'ConfigureSessionOptions' allows per-request timeout settings dynamically.",
+        "Phase 2-Source Code: Verified automatic session management in 'IdleTrackingBackgroundService.cs' based on defined timeouts."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides functionality to configure timeouts through 'IdleTimeout' and allows dynamic adjustments via 'ConfigureSessionOptions', fulfilling the requirement for automatic handling without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\HttpServerTransportOptions.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\IdleTrackingBackgroundService.cs"
+      ],
+      "code_snippets": [
+        "public TimeSpan IdleTimeout { get; set; } = TimeSpan.FromHours(2);",
+        "public Func<HttpContext, McpServerOptions, CancellationToken, Task>? ConfigureSessionOptions { get; set; };"
+      ]
+    },
+    {
+      "rule_id": 94,
+      "rule_type": "MAY",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function NotifyProgressAsync in McpEndpointExtensions.cs:122",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement the automatic behavior to reset the timeout clock when a progress notification is received.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
+      ],
+      "code_snippets": [
+        "return SendNotificationAsync(NotificationMethods.ProgressNotification, new ProgressNotificationParams { ProgressToken = progressToken, Progress = progress }, McpJsonUtilities.JsonContext.Default.ProgressNotificationParams, cancellationToken);"
+      ]
+    },
+    {
+      "rule_id": 95,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found timeout handling definitions like InitializationTimeout and various timeout parameters in methods.",
+        "Phase 2-Source Code: No automatic enforcement logic found; SDK relies on developers to implement timeout handling."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically enforce the maximum timeout as required by the MCP rule. While there are definitions related to timeouts, the actual implementation lacks the internal logic to enforce timeouts autonomously, thereby shifting the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpClientOptions.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\ProcessHelper.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\McpEndpointExtensions.cs"
+      ],
+      "code_snippets": [
+        "public TimeSpan InitializationTimeout { get; set; } = TimeSpan.FromSeconds(60);",
+        "public void KillTree(this Process process, TimeSpan timeout) { ... }",
+        "await server.SendNotificationAsync(\"notifications/progress\", new { Progress = i, ... });"
+      ]
+    },
+    {
+      "rule_id": 96,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** be prepared to handle these error cases:\n\n- Protocol version mismatch\n- Failure to negotiate required capabilities\n- Request [timeouts](#timeouts)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found class InitializeRequestParams, which indicates handling for protocol initialization.",
+        "Phase 2-Source Code: Verified methods HandleMessageAsync and SendMessageAsync which include automatic error handling logic."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK contains defined behaviors for handling error cases and implements automated internal logic to handle errors, complying with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Server\\McpServer.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Protocol\\TransportBase.cs"
+      ],
+      "code_snippets": [
+        "await SendMessageAsync(errorMessage, cancellationToken).ConfigureAwait(false); // Automatic error handling",
+        "if (!isUserCancellation && message is JsonRpcRequest request) { LogRequestHandlerException(EndpointName, request.Method, ex); ... }"
+      ]
+    },
+    {
+      "rule_id": 97,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions located in defs_python.jsonl",
+        "Phase 1-IR: No call relationships determined in calls_python.jsonl",
+        "Phase 2-Source Code: Dynamic client registration response lacks implementation of user consent logic."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not encapsulate the required behavior of obtaining user consent for dynamic registrations before forwarding to third-party authorization servers, which shifts the responsibility to developers instead.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\DynamicClientRegistrationResponse.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.Core\\Authentication\\DynamicClientRegistrationOptions.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\HttpServerTransportOptions.cs"
+      ],
+      "code_snippets": [
+        "DynamicClientRegistrationResponse class: lacks explicit consent handling",
+        "DynamicClientRegistrationOptions: merely provides configuration without consent logic."
+      ]
+    },
+    {
+      "rule_id": 98,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept any tokens that were not explicitly issued for the MCP server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found McpAuthenticationHandler in defs, defined in McpAuthenticationHandler.cs:14",
+        "Phase 1-IR: Confirmed token validation checks in OnTokenValidated method in Program.cs and HandleAuthenticateAsync method.",
+        "Phase 2-Source Code: Verified token validation implementation in McpAuthenticationHandler and Program.cs"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically handles token validation by implementing checks within the 'McpAuthenticationHandler' and 'JwtBearerEvents', ensuring only explicitly issued tokens are accepted.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationHandler.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\samples\\ProtectedMcpServer\\Program.cs"
+      ],
+      "code_snippets": [
+        "if (context.Result.IsValid && context.Result.Issuer == expectedIssuer) {...}",
+        "options.Events = new JwtBearerEvents { OnTokenValidated = context => {...} };"
+      ]
+    },
+    {
+      "rule_id": 99,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found verification logic in ConfigureCallToolFilter in AuthorizationFilterSetup.cs.",
+        "Phase 1-IR: Calls to GetAuthorizationResultAsync ensure request verification is handled internally."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the requirement to verify all inbound requests through the ConfigureCallToolFilter function, which performs authorization checks for each tool call automatically.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\AuthorizationFilterSetup.cs"
+      ],
+      "code_snippets": [
+        "private void ConfigureCallToolFilter(McpServerOptions options) { ... }"
+      ]
+    },
+    {
+      "rule_id": 100,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found methods related to session management such as ConfigureSessionOptions.",
+        "Phase 2-Source Code: Multiple instances in code demonstrate session handling, including GetSessionAsync and CreateSessionAsync."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK provides mechanisms to utilize and configure sessions for authentication, which directly violates the stated rule of 'MUST NOT use sessions for authentication'.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\HttpServerTransportOptions.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol\\SingleSessionMcpServerHostedService.cs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\csharp-sdk-main\\csharp-sdk-main\\src\\ModelContextProtocol.AspNetCore\\Authentication\\McpAuthenticationExtensions.cs"
+      ],
+      "code_snippets": [
+        "public Func<HttpContext, McpServerOptions, CancellationToken, Task>? ConfigureSessionOptions { get; set; }",
+        "public async ValueTask<StreamableHttpSession?> GetSessionAsync(HttpContext context, string sessionId)"
+      ]
+    }
+  ]
+}

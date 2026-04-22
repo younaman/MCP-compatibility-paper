@@ -1,0 +1,4 @@
+﻿"""
+Middleware for MCP authorization.
+"""
+

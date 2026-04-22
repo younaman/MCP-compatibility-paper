@@ -1,0 +1,1452 @@
+﻿{
+  "summary": {
+    "total": 75,
+    "compliant": 34,
+    "non_compliant": 32,
+    "unclear": 9,
+    "avg_files_per_rule": 1.72
+  },
+  "results": [
+    {
+      "rule_id": 201,
+      "rule_type": "MUST_NOT",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function elicit_with_validation in tmpg8uiiil5.py:83",
+        "Phase 1-IR: Confirmed call relationship to session.elicit in elicit_with_validation",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: tmpg8uiiil5.py",
+        "Phase 2-Source Code: Automatic handling of requests without developer intervention."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the elicitation behavior required by the MCP rule, ensuring sensitive information is managed within the framework without burdening developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
+      ],
+      "code_snippets": [
+        "async def elicit_with_validation(session: ServerSession, message: str, schema: type[ElicitSchemaModelT])"
+      ]
+    },
+    {
+      "rule_id": 202,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function elicit_with_validation for eliciting user input in src/mcp/server/elicitation.py",
+        "Phase 1-IR: Confirmed calls to session.elicit() for managing elicitation requests, which includes user interactions.",
+        "Phase 2-Source Code: Verified implementation in src/mcp/server/elicitation.py showing how user approvals are automatically handled."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK manages user approval controls by implementing the elicit_with_validation function that automates capturing user responses and validating them without requiring developers to handle these processes directly.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
+      ],
+      "code_snippets": [
+        "async def elicit_with_validation(session: ServerSession, message: str, schema: type[ElicitSchemaModelT]) -> ElicitationResult[ElicitSchemaModelT]:\n    # This function manages elicitation of additional user information and validates it."
+      ]
+    },
+    {
+      "rule_id": 203,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'elicit_with_validation' defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py",
+        "Phase 1-IR: Confirmed call to 'elicit_with_validation' from session in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\server.py",
+        "Phase 2-Source Code: Validates schema types and automatically handles elicitation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework properly encapsulates the behavior required by the MCP rule. It both defines the ability to validate the schema and executes this validation automatically within the elicitation process.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\server.py"
+      ],
+      "code_snippets": [
+        "async def elicit_with_validation(...):",
+        "_validate_elicitation_schema(schema)",
+        "result = await session.elicit(message=message, requestedSchema=json_schema, related_request_id=related_request_id)"
+      ]
+    },
+    {
+      "rule_id": 204,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found no relevant definitions in `defs_python.jsonl` regarding server identification.",
+        "Phase 1-IR: No relevant function calls found in `calls_python.jsonl` for server identity.",
+        "Phase 2-Source Code: Found `ctx.fastmcp.name` but no automatic mechanism indicating server identity in requests."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK does not provide a mechanism that automatically indicates which server is requesting information, leaving that to the developer's implementation.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\streamable_http_host_mounting.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\fastmcp_quickstart.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\streamable_http_basic_mounting.py"
+      ],
+      "code_snippets": [
+        "Server Name Access: ctx.fastmcp.name",
+        "send_resource_updated() method for notifying clients."
+      ]
+    },
+    {
+      "rule_id": 205,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found elicit_with_validation in defs, defined in elicit.py.",
+        "Phase 1-IR: Confirmed session.elicit calls within elicit_with_validation for internal user action handling.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: elicit.py with automatic action processing."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK effectively handles elicitation requests internally without requiring application developers to implement user rejection handling, fully complying with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py"
+      ],
+      "code_snippets": [
+        "async def elicit_with_validation(...): ",
+        "if result.action == 'accept': ...",
+        "elif result.action == 'decline': ...",
+        "elif result.action == 'cancel': ..."
+      ]
+    },
+    {
+      "rule_id": 206,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions related to rate limiting found in defs_python.jsonl.",
+        "Phase 1-IR: No function calls related to rate limiting in calls_python.jsonl."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement rate limiting behavior. There are no function definitions or calls related to rate limiting found in the provided IR files.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 207,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'elicit_with_validation' in defs_python.jsonl.",
+        "Phase 2-Source Code: Verified implementation in 'C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py'."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the elicitation functionality by validating the schema and managing the elicitation process automatically within the elicit_with_validation method. No manual intervention by developers is required.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
+      ],
+      "code_snippets": [
+        "async def elicit_with_validation(session: ServerSession, message: str, schema: type[ElicitSchemaModelT], related_request_id: RequestId | None = None): ...",
+        "... result = await session.elicit(message=message, requestedSchema=json_schema, related_request_id=related_request_id)..."
+      ]
+    },
+    {
+      "rule_id": 208,
+      "rule_type": "MUST",
+      "rule_text": "Clients that support roots **MUST** declare the `roots` capability during\n[initialization](/specification/2025-06-18/basic/lifecycle#initialization):",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability definition for `roots` in tmpbmxxwp29.py (class RootsCapability)",
+        "Phase 1-IR: Notification checks present in ClientSession upon initialization, however...",
+        "Phase 2-Source Code: No automatic sending of `RootsListChangedNotification` identified; it relies on implementation by developers."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK defines the `roots` capability but does not automatically manage or send notifications related to changes within the SDK. This responsibility appears to lie on the shoulders of the developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py"
+      ],
+      "code_snippets": [
+        "class RootsCapability(BaseModel): listChanged: bool | None = None",
+        "if capability.roots is not None: if client_caps.roots is None: return False"
+      ]
+    },
+    {
+      "rule_id": 209,
+      "rule_type": "MUST",
+      "rule_text": "When roots change, clients that support `listChanged` **MUST** send a notification:",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 210,
+      "rule_type": "MUST",
+      "rule_text": "A root definition includes:\n\n- `uri`: Unique identifier for the root. This **MUST** be a `file://` URI in the current\n  specification.\n- `name`: Optional human-readable name for display purposes.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 2-Source Code: No occurrences or handling of 'file://' URIs found in source code."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement the handling of 'file://' URIs as required by the MCP rule, thus not fulfilling the compliance requirement.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 211,
+      "rule_type": "SHOULD",
+      "rule_text": "Clients **SHOULD** return standard JSON-RPC errors for common failure cases:\n\n- Client does not support roots: `-32601` (Method not found)\n- Internal errors: `-32603`",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs.",
+        "Phase 2-Source Code: Implemented the creation of JSONRPC error responses in tmpnby_ecrz.py.",
+        "Phase 2-Source Code: Error handling logic automatically sends JSON-RPC error responses."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles JSON-RPC error responses within its request handling logic, ensuring compliance with the MCP rule that clients should return standard JSON-RPC errors.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpnby_ecrz.py"
+      ],
+      "code_snippets": [
+        "error_response = JSONRPCError(jsonrpc='2.0', id='server-error', error=ErrorData(code=error_code, message=error_message))",
+        "response = self._create_error_response('Not Found: Invalid or expired session ID', HTTPStatus.NOT_FOUND)"
+      ]
+    },
+    {
+      "rule_id": 212,
+      "rule_type": "MUST",
+      "rule_text": "1. Clients **MUST**:\n\n   - Only expose roots with appropriate permissions\n   - Validate all root URIs to prevent path traversal\n   - Implement proper access controls\n   - Monitor root accessibility",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 213,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Servers **SHOULD**:\n   - Handle cases where roots become unavailable\n   - Respect root boundaries during operations\n   - Validate all paths against provided roots",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No specific function definitions found for handling unavailable roots, respecting boundaries, or validating paths.",
+        "Phase 2-Source Code: No concrete evidence found in source code for automatic handling of MCP rule behavior."
+      ],
+      "confidence": 0.5,
+      "explanation": "Unable to find specific implementations in SDK source code that automatically manage unavailable roots, respect root boundaries, or validate paths against provided roots.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 214,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Clients **SHOULD**:\n\n   - Prompt users for consent before exposing roots to servers\n   - Provide clear user interfaces for root management\n   - Validate root accessibility before exposing\n   - Monitor for root changes",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found related to roots management, consent prompting, accessibility validation, or change monitoring."
+      ],
+      "confidence": 0.0,
+      "explanation": "The SDK does not define necessary functions or implement automatic behaviors that handle prompting for consent, validating root accessibility, or monitoring for root changes as required by the MCP rule.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 215,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Servers **SHOULD**:\n   - Check for roots capability before usage\n   - Handle root list changes gracefully\n   - Respect root boundaries in operations\n   - Cache root information appropriately",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'RootsCapability' containing 'listChanged'.",
+        "Phase 1-IR: Found class 'RootsListChangedNotification' for notifications.",
+        "Phase 2-Source Code: Verification of lack of internal logic for automatic notifications upon root changes."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK defines roots capability with a 'listChanged' property but lacks automatic notification sending logic when root modifications occur, shifting responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\__init__.py"
+      ],
+      "code_snippets": [
+        "class RootsCapability(BaseModel): ... listChanged: bool | None = None",
+        "class RootsListChangedNotification(Notification[...]): ..."
+      ]
+    },
+    {
+      "rule_id": 216,
+      "rule_type": "SHOULD",
+      "rule_text": "For trust & safety and security, there **SHOULD** always\nbe a human in the loop with the ability to deny sampling requests.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 217,
+      "rule_type": "SHOULD",
+      "rule_text": "Applications **SHOULD**:\n\n- Provide UI that makes it easy and intuitive to review sampling requests\n- Allow users to view and edit prompts before sending\n- Present generated responses for review before delivery",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No call relationships or encapsulated functionality found in calls_python.jsonl.",
+        "Phase 2-Source Code: No evidence of functions handling UI interactions or notifications automatically was identified."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not encapsulate the required behaviors to provide a UI for reviewing sampling requests, editing prompts, and presenting generated responses. The necessary internal functionalities, like automatic handling of these interactions, were not found in the implementation.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\structured_output.py"
+      ],
+      "code_snippets": [
+        "No specific code snippets found that meet compliance requirements."
+      ]
+    },
+    {
+      "rule_id": 218,
+      "rule_type": "MUST",
+      "rule_text": "Clients that support sampling **MUST** declare the `sampling` capability during\n[initialization](/specification/2025-06-18/basic/lifecycle#initialization):",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found the ClientSession class with the initialize method in the defs_python.jsonl.",
+        "Phase 2-Source Code: Verified implementation of the sampling capability in FILE_PATH: src/mcp/client/session.py."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK has implemented the required sampling capability handling internally in the `ClientSession` class. The `initialize` method ensures that the `sampling` capability is declared correctly without requiring external developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py"
+      ],
+      "code_snippets": [
+        "async def initialize(self) -> types.InitializeResult: sampling = types.SamplingCapability() if self._sampling_callback is not _default_sampling_callback else None"
+      ]
+    },
+    {
+      "rule_id": 219,
+      "rule_type": "MAY",
+      "rule_text": "While priorities help select models based on characteristics, `hints` allow servers to\nsuggest specific models or model families:\n\n- Hints are treated as substrings that can match model names flexibly\n- Multiple hints are evaluated in order of preference\n- Clients **MAY** map hints to equivalent models from different providers\n- Hints are advisory&mdash;clients make final model selection",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ModelPreferences class with hints attribute in src/mcp/server/models.py.",
+        "Phase 2-Source Code: No automatic handling logic found for hint mapping in checked files."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK provides the ability to define model selection hints, but it does not implement the required automatic handling of these hints, thereby shifting the responsibility onto developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\func_metadata.py"
+      ],
+      "code_snippets": [
+        "class ModelPreferences(BaseModel): ... hints: list[ModelHint] | None = None"
+      ]
+    },
+    {
+      "rule_id": 220,
+      "rule_type": "SHOULD",
+      "rule_text": "Clients **SHOULD** return errors for common failure cases:",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No compelling evidence found for automatically sending error notifications without developer intervention.",
+        "Phase 1-IR: Error handling classes like McpError and methods like _create_error_response are present, but don't confirm compliance.",
+        "Phase 2-Source Code: Reviewed files but lack specific methods indicating automatic processing without developer action."
+      ],
+      "confidence": 0.5,
+      "explanation": "The analysis does not conclusively demonstrate whether the SDK automatically handles common error cases without requiring developer intervention. Error-handling capabilities exist but do not clearly indicate automatic behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\exceptions.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\metadata.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\register.py"
+      ],
+      "code_snippets": [
+        "class McpError(Exception): ...",
+        "def _create_error_response(self, error_code, error_message): ..."
+      ]
+    },
+    {
+      "rule_id": 221,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Clients **SHOULD** implement user approval controls\n2. Both parties **SHOULD** validate message content\n3. Clients **SHOULD** respect model preference hints\n4. Clients **SHOULD** implement rate limiting\n5. Both parties **MUST** handle sensitive data appropriately",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions related to user approval controls found.",
+        "Phase 1-IR: No function calls related to user approval controls found.",
+        "Phase 2-Source Code: No implementation found that addresses user approval controls."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not automatically implement user approval controls, which is necessary to meet the expectations set by the MCP rule requiring this functionality. No relevant function definitions or calls were found.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 222,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Clients **SHOULD** implement user approval controls\n2. Both parties **SHOULD** validate message content\n3. Clients **SHOULD** respect model preference hints\n4. Clients **SHOULD** implement rate limiting\n5. Both parties **MUST** handle sensitive data appropriately",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient functions found in defs for message validation.",
+        "Phase 2-Source Code: Validating functions found, but they do not handle automatic notifications or complete message validation."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK lacks automatic handling of message content validation and does not have mechanisms to notify developers regarding validation results automatically.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py"
+      ],
+      "code_snippets": [
+        "def _validate_content_type(self, content_type: str | None) -> bool:",
+        "async def validate_request(self, request: Request, is_post: bool = False) -> Response | None:"
+      ]
+    },
+    {
+      "rule_id": 223,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Clients **SHOULD** implement user approval controls\n2. Both parties **SHOULD** validate message content\n3. Clients **SHOULD** respect model preference hints\n4. Clients **SHOULD** implement rate limiting\n5. Both parties **MUST** handle sensitive data appropriately",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ModelPreferences definition in tmpbmxxwp29.py at line 5.",
+        "Phase 2-Source Code: No automatic handling for model preferences identified."
+      ],
+      "confidence": 0.9,
+      "explanation": "While the SDK allows for the specification of model preferences, it lacks the internal logic to enforce or utilize these preferences automatically, placing the burden of compliance on developers, which does not align with MCP requirements.",
+      "files_analyzed": [
+        "tmpbmxxwp29.py"
+      ],
+      "code_snippets": [
+        "class ModelPreferences(BaseModel): ... # preferences are advisory and may be ignored."
+      ]
+    },
+    {
+      "rule_id": 224,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Clients **SHOULD** implement user approval controls\n2. Both parties **SHOULD** validate message content\n3. Clients **SHOULD** respect model preference hints\n4. Clients **SHOULD** implement rate limiting\n5. Both parties **MUST** handle sensitive data appropriately",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No related function definitions found for rate limiting.",
+        "Phase 1-IR: No function calls found related to rate limiting.",
+        "Phase 2-Source Code: No automated handling of rate limiting found in SDK source code."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement the required functionality for rate limiting within its own code structure. There are no definitions or internal logic to handle rate limiting automatically, thus placing the burden on application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 225,
+      "rule_type": "MUST",
+      "rule_text": "1. Clients **SHOULD** implement user approval controls\n2. Both parties **SHOULD** validate message content\n3. Clients **SHOULD** respect model preference hints\n4. Clients **SHOULD** implement rate limiting\n5. Both parties **MUST** handle sensitive data appropriately",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions for handling sensitive data found.",
+        "Phase 1-IR: No call relationships for handling sensitive data identified.",
+        "Phase 2-Source Code: Found notify function in notifications.py, but not for sensitive data management."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK provides some notification mechanisms, but lacks automatic handling of sensitive data as required by the MCP rule, shifting this responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
+      ],
+      "code_snippets": [
+        "await ctx.session.send_resource_list_changed() from process_data() in notifications.py"
+      ]
+    },
+    {
+      "rule_id": 226,
+      "rule_type": "SHOULD",
+      "rule_text": "While MCP itself cannot enforce these security principles at the protocol level,\nimplementors **SHOULD**:\n\n1. Build robust consent and authorization flows into their applications\n2. Provide clear documentation of security implications\n3. Implement appropriate access controls and data protections\n4. Follow security best practices in their integrations\n5. Consider privacy implications in their feature designs",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Found function create_auth_routes responsible for setting up authentication behavior.",
+        "Phase 1-IR: Found function validate_request which validates incoming requests according to security parameters.",
+        "Phase 2-Source Code: Examined RequireAuthMiddleware, which automatically validates user requests, showing some level of encapsulation."
+      ],
+      "confidence": 0.6,
+      "explanation": "The SDK includes mechanisms for handling authentication and validation of requests, but it is unclear if all outlined security principles are fully encapsulated and whether complete documentation is provided.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\routes.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py"
+      ],
+      "code_snippets": [
+        "def create_auth_routes(...): ...",
+        "async def validate_request(self, request: Request, is_post: bool = False): ..."
+      ]
+    },
+    {
+      "rule_id": 227,
+      "rule_type": "MUST",
+      "rule_text": "Servers that support prompts **MUST** declare the `prompts` capability during\n[initialization](/specification/2025-06-18/basic/lifecycle#initialization):",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'PromptsCapability' defined in tmpbmxxwp29.py at line 92.",
+        "Phase 1-IR: No evidence found to indicate automated declare logic for 'prompts' during initialization.",
+        "Phase 2-Source Code: Checked PromptManager and related classes but found no mechanism for automatic handling of prompts capability declaration."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK provides a definition for 'prompts' capability but lacks an automatic declaration during initialization, meaning it doesn't handle this requirement internally, thus shifting the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\base.py"
+      ],
+      "code_snippets": [
+        "class PromptsCapability(BaseModel):\n    listChanged: bool | None = None\n    ...\n    model_config = ConfigDict(extra='allow')"
+      ]
+    },
+    {
+      "rule_id": 228,
+      "rule_type": "SHOULD",
+      "rule_text": "When the list of available prompts changes, servers that declared the `listChanged`\ncapability **SHOULD** send a notification:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found capability 'listChanged' defined in PromptsCapability, ResourcesCapability, and ToolsCapability.",
+        "Phase 1-IR: Confirmed internal notification logic within NotificationOptions in the Server class.",
+        "Phase 2-Source Code: Verified implementation of notification sending in class methods like add_prompt and initialization of capabilities."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines the 'listChanged' capability and automatically sends notifications when the list of available prompts changes, adhering to the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\__init__.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\base.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\__init__.py"
+      ],
+      "code_snippets": [
+        "class PromptsCapability(BaseModel): listChanged: bool | None = None",
+        "class ResourcesCapability(BaseModel): listChanged: bool | None = None",
+        "class ToolsCapability(BaseModel): listChanged: bool | None = None",
+        "def add_prompt(self, prompt: Prompt) -> Prompt: ..."
+      ]
+    },
+    {
+      "rule_id": 229,
+      "rule_type": "MUST",
+      "rule_text": "The image data **MUST** be base64-encoded and include a valid MIME type. This enables\nmulti-modal interactions where visual context is important.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ImageContent class with base64 data and mimeType fields in file.",
+        "Phase 1-IR: Found Image class with to_image_content method that encodes image data and sets MIME type."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines an ImageContent class that requires base64-encoded image data and a MIME type. It also implements an Image class that handles conversion to this format correctly.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\types.py"
+      ],
+      "code_snippets": [
+        "class ImageContent(BaseModel): data: str  # The base64-encoded image data.",
+        "def to_image_content(self) -> ImageContent: ... return ImageContent(type='image', data=data, mimeType=self._mime_type)"
+      ]
+    },
+    {
+      "rule_id": 230,
+      "rule_type": "MUST",
+      "rule_text": "Resources can contain either text or binary (blob) data and **MUST** include:\n\n- A valid resource URI\n- The appropriate MIME type\n- Either text content or base64-encoded blob data",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ResourceManager functionality in resource_manager.py",
+        "Phase 2-Source Code: Verified handling of valid URI and MIME types in Resource class and subclasses.",
+        "Phase 2-Source Code: Automated progress notifications supported via ProgressContext."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK contains robust definitions and operations for managing resources, ensuring that valid URIs and MIME types are utilized. Additionally, the automatic notification functionality is present, which fulfills the requirements specified by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\types.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
+      ],
+      "code_snippets": [
+        "class ResourceManager: ... def add_resource(self, resource: Resource) -> Resource: ...",
+        "class TextResource(Resource): ... async def read(self) -> str: ...",
+        "class ProgressContext: async def progress(self, amount: float, message: str | None = None) -> None: ..."
+      ]
+    },
+    {
+      "rule_id": 231,
+      "rule_type": "SHOULD",
+      "rule_text": "Servers **SHOULD** return standard JSON-RPC errors for common failure cases:\n\n- Invalid prompt name: `-32602` (Invalid params)\n- Missing required arguments: `-32602` (Invalid params)\n- Internal errors: `-32603` (Internal error)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found _create_error_response function in tmpnby_ecrz.py",
+        "Phase 1-IR: Confirmed automatic calls to _create_error_response during error handling in multiple parts of the code"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK contains the _create_error_response function, which encapsulates the behavior necessary for returning standard JSON-RPC error responses. This function is called automatically during error handling scenarios, thus fulfilling the requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpnby_ecrz.py"
+      ],
+      "code_snippets": [
+        "def _create_error_response(self, error_message: str, status_code: HTTPStatus, error_code: int = INVALID_REQUEST)"
+      ]
+    },
+    {
+      "rule_id": 232,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD** validate prompt arguments before processing\n2. Clients **SHOULD** handle pagination for large prompt lists\n3. Both parties **SHOULD** respect capability negotiation",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found call_fn_with_arg_validation in src/mcp/server/fastmcp/utilities/func_metadata.py.",
+        "Phase 2-Source Code: Verified implementation in src/mcp/server/fastmcp/utilities/func_metadata.py where arguments are validated before being passed to functions."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK implements automatic validation for prompt arguments before processing, encapsulating necessary logic effectively.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\func_metadata.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\base.py"
+      ],
+      "code_snippets": [
+        "async def call_fn_with_arg_validation(self, ... )"
+      ]
+    },
+    {
+      "rule_id": 233,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD** validate prompt arguments before processing\n2. Clients **SHOULD** handle pagination for large prompt lists\n3. Both parties **SHOULD** respect capability negotiation",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 234,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD** validate prompt arguments before processing\n2. Clients **SHOULD** handle pagination for large prompt lists\n3. Both parties **SHOULD** respect capability negotiation",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found capability definitions with 'listChanged' in ResourcesCapability and ToolsCapability.",
+        "Phase 1-IR: Internal notification logic was confirmed by finding the function 'send_resource_list_changed' which automatically handles sending notifications."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK has implemented the capability 'listChanged' indicating that it can notify clients about changes internally, thereby encapsulating the required behavior for compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\capabilities.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\notifications.py"
+      ],
+      "code_snippets": [
+        "class ResourcesCapability(BaseModel):\n    listChanged: bool | None = None\n    \"\"\"\n    Whether this server supports notifications for changes to the resource list.\n    \"\"\"",
+        "async def send_resource_updated(self, uri: AnyUrl) -> None:\n    await self.send_notification( types.ServerNotification( types.ResourceUpdatedNotification( params=types.ResourceUpdatedNotificationParams(uri=uri), ) ) )"
+      ]
+    },
+    {
+      "rule_id": 235,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** carefully validate all prompt inputs and outputs to prevent\ninjection attacks or unauthorized access to resources.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No explicit definitions found for input/output validation.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: transport_security.py where input/output validation is performed."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implementation validates request headers to prevent injection attacks or unauthorized access, encapsulating the behavior as required by the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py"
+      ],
+      "code_snippets": [
+        "async def validate_request(self, request: Request, is_post: bool = False) -> Response | None:"
+      ]
+    },
+    {
+      "rule_id": 236,
+      "rule_type": "MUST",
+      "rule_text": "Servers that support resources **MUST** declare the `resources` capability:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found resource handling methods in resource_manager.py",
+        "Phase 1-IR: Confirmed calls indicating notification behavior in calls_python.jsonl.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines the 'resources' capability and automatically handles notifications related to resource changes, fulfilling the requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
+      ],
+      "code_snippets": [
+        "await ctx.session.send_resource_updated(AnyUrl(resource_uri))",
+        "await ctx.session.send_resource_list_changed()"
+      ]
+    },
+    {
+      "rule_id": 237,
+      "rule_type": "SHOULD",
+      "rule_text": "When the list of available resources changes, servers that declared the `listChanged`\ncapability **SHOULD** send a notification:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `listChanged` capability in `ToolsCapability`",
+        "Phase 2-Source Code: No evidence of automatic notification handling found."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines the `listChanged` capability, but does not implement the internal notification sending logic required to automatically handle notifications when the resource or tool list changes.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\exceptions.py"
+      ],
+      "code_snippets": [
+        "class ToolsCapability(BaseModel): listChanged: bool | None = None"
+      ]
+    },
+    {
+      "rule_id": 238,
+      "rule_type": "SHOULD",
+      "rule_text": "Servers **SHOULD** use this scheme only when the client is able to fetch and load the\nresource directly from the web on its own—that is, it doesn’t need to read the resource\nvia the MCP server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function send_resource_list_changed in notifications.py, defined in line 5.",
+        "Phase 1-IR: Confirmed send_resource_list_changed is called to notify clients automatically.",
+        "Phase 2-Source Code: Verified implementation in notifications.py, confirming SDK handles notifications."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides an implementation of notification sending, encapsulating the functionality so that developers do not have to manage it themselves, which is aligned with the MCP rule requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
+      ],
+      "code_snippets": [
+        "async def send_resource_list_changed(self) -> None:\n    await self.send_notification(types.ServerNotification(types.ResourceListChangedNotification()))"
+      ]
+    },
+    {
+      "rule_id": 239,
+      "rule_type": "SHOULD",
+      "rule_text": "For other use cases, servers **SHOULD** prefer to use another URI scheme, or define a\ncustom one, even if the server will itself be downloading resource contents over the\ninternet.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function resource_url_from_server_url in auth_utils.py:1",
+        "Phase 1-IR: Found function check_resource_allowed in auth_utils.py:2",
+        "Phase 1-IR: Confirmed send_resource_list_changed notification in resource manager code",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: resource_manager.py"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the behavior required by the MCP rule by encapsulating the resource management functions and automatically sending notifications of resource changes without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\auth_utils.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
+      ],
+      "code_snippets": [
+        "def add_resource(self, resource: Resource) -> Resource: # ... self.context.session.send_resource_list_changed()"
+      ]
+    },
+    {
+      "rule_id": 240,
+      "rule_type": "MAY",
+      "rule_text": "MCP servers **MAY** identify file:// resources with an\n[XDG MIME type](https://specifications.freedesktop.org/shared-mime-info-spec/0.14/ar01s02.html#id-1.3.14),\nlike `inode/directory`, to represent non-regular files (such as directories) that don’t\notherwise have a standard MIME type.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 2-Source Code: No automatic logic found in classes managing MIME types.",
+        "Phase 2-Source Code: Image and Audio classes found, but they only handle standard file types based on extensions."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK provides some capabilities to determine MIME types but lacks automatic handling for XDG MIME types specifically for non-regular files such as directories. This places the responsibility on developers, violating the intent of the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\types.py"
+      ],
+      "code_snippets": [
+        "def _get_mime_type(self) -> str:",
+        "return { \".png\": \"image/png\", \".jpg\": \"image/jpeg\"}.get(suffix, \"application/octet-stream\") # For images"
+      ]
+    },
+    {
+      "rule_id": 241,
+      "rule_type": "MUST",
+      "rule_text": "Custom URI schemes **MUST** be in accordance with [RFC3986](https://datatracker.ietf.org/doc/html/rfc3986),\ntaking the above guidance in to account.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant definitions found in defs_python.jsonl",
+        "Phase 1-IR: No relevant calls found in calls_python.jsonl",
+        "Phase 2-Source Code: Found class definitions for URIs but lacked automatic processing logic."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK lacks internal logic to manage and enforce RFC3986 compliance for URI schemes, shifting responsibility to the developers instead.",
+      "files_analyzed": [
+        "tmpieghqxz_.json",
+        "tmphyldolfh.py",
+        "tmpbmxxwp29.py"
+      ],
+      "code_snippets": [
+        "uri: Annotated[AnyUrl, UrlConstraints(host_required=False)]",
+        "params: SubscribeRequestParams(...)",
+        "class ResourceContents(BaseModel)..."
+      ]
+    },
+    {
+      "rule_id": 242,
+      "rule_type": "SHOULD",
+      "rule_text": "Servers **SHOULD** return standard JSON-RPC errors for common failure cases:\n\n- Resource not found: `-32002`\n- Internal errors: `-32603`",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found definitions for JSON-RPC error handling in tmpbmxxwp29.py.",
+        "Phase 1-IR: Confirmed necessary error handling logic in multiple methods.",
+        "Phase 2-Source Code: Verified automatic error response creation in handle_request, and sending in _send_response."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements automatic JSON-RPC error handling within its methods, which encapsulates this functionality and relieves application developers from having to manage error responses directly.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\exceptions.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\responses.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\handlers.py"
+      ],
+      "code_snippets": [
+        "class JSONRPCError(BaseModel): ... error: ErrorData",
+        "async def _send_response(self, request_id: RequestId, response: SendResultT | ErrorData) -> None ...",
+        "async def handle_request(self, scope: Scope, receive: Receive, send: Send) -> None ... response = await self._create_error_response(...)"
+      ]
+    },
+    {
+      "rule_id": 243,
+      "rule_type": "MUST",
+      "rule_text": "1. Servers **MUST** validate all resource URIs\n2. Access controls **SHOULD** be implemented for sensitive resources\n3. Binary data **MUST** be properly encoded\n4. Resource permissions **SHOULD** be checked before operations",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function resource_url_from_server_url for URL conversion.",
+        "Phase 1-IR: Found function check_resource_allowed for validating requested resources.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: src/mcp/shared/auth_utils.py"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements encapsulated functions for validating resource URIs, integrating them within the core resource management logic.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\auth_utils.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-auth\\mcp_simple_auth\\token_verifier.py"
+      ],
+      "code_snippets": [
+        "def resource_url_from_server_url(url: str | HttpUrl | AnyUrl) -> str: ...",
+        "def check_resource_allowed(requested_resource: str, configured_resource: str) -> bool: ..."
+      ]
+    },
+    {
+      "rule_id": 244,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST** validate all resource URIs\n2. Access controls **SHOULD** be implemented for sensitive resources\n3. Binary data **MUST** be properly encoded\n4. Resource permissions **SHOULD** be checked before operations",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability definition in RequireAuthMiddleware and BearerAuthBackend.",
+        "Phase 2-Source Code: Verified automatic handling of authentication and scope checks in RequireAuthMiddleware."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates access control through proper middleware that performs authentication checks automatically, relieving developers from implementing their own access control strategies.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\auth_context.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\require_auth.py"
+      ],
+      "code_snippets": [
+        "async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None: ...",
+        "if not isinstance(auth_user, AuthenticatedUser): await self._send_auth_error(send, status_code=401, ...)"
+      ]
+    },
+    {
+      "rule_id": 245,
+      "rule_type": "MUST",
+      "rule_text": "1. Servers **MUST** validate all resource URIs\n2. Access controls **SHOULD** be implemented for sensitive resources\n3. Binary data **MUST** be properly encoded\n4. Resource permissions **SHOULD** be checked before operations",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function to_image_content in defs, defined in utilities/types.py",
+        "Phase 1-IR: Confirmed calls to base64.b64encode for encoding",
+        "Phase 2-Source Code: Automatically handles encoding in to_image_content and to_audio_content methods."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically encodes binary data using base64 encoding in its methods without requiring developers to implement it themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\types.py"
+      ],
+      "code_snippets": [
+        "data = base64.b64encode(f.read()).decode()",
+        "data = base64.b64encode(self.data).decode()"
+      ]
+    },
+    {
+      "rule_id": 246,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST** validate all resource URIs\n2. Access controls **SHOULD** be implemented for sensitive resources\n3. Binary data **MUST** be properly encoded\n4. Resource permissions **SHOULD** be checked before operations",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function found in defs_python.jsonl for checking resource permissions.",
+        "Phase 1-IR: No call relationships found that implement permission checks.",
+        "Phase 2-Source Code: Reviewed ResourceManager (src/mcp/server/fastmcp/resources/resource_manager.py) and found no implementation for permission checks before resource operations."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not automatically check for resource permissions before operations. The ResourceManager class lacks implementation for permission checks, thereby putting the onus on application developers to ensure compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 247,
+      "rule_type": "SHOULD",
+      "rule_text": "For trust & safety and security, there **SHOULD** always\nbe a human in the loop with the ability to deny tool invocations.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found for 'deny tool invocations'.",
+        "Phase 2-Source Code: Found RevocationHandler which manages token revocation, but does not involve a human in invocation denial",
+        "Phase 2-Source Code: No automatic denial mechanisms found in tool management logic."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not implement an automatic procedure for involving a human in denying tool invocations, as required by MCP rule 247. While there are mechanisms for token revocation, they do not fulfill the rule's requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\base.py"
+      ],
+      "code_snippets": [
+        "class RevocationHandler: async def handle(self, request: Request) -> Response: ...",
+        "class Tool(BaseModel): async def run(self, arguments: dict[str, Any], context: Context): pass"
+      ]
+    },
+    {
+      "rule_id": 248,
+      "rule_type": "SHOULD",
+      "rule_text": "Applications **SHOULD**:\n\n- Provide UI that makes clear which tools are being exposed to the AI model\n- Insert clear visual indicators when tools are invoked\n- Present confirmation prompts to the user for operations, to ensure a human is in the\n  loop",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions for visual indicators or confirmation prompts found.",
+        "Phase 2-Source Code: No implementation of automatic handling for UI elements found."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not provide automatic UI management for clear visual indicators or confirmation prompts, forcing application developers to handle these aspects themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\metadata_utils.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 249,
+      "rule_type": "MUST",
+      "rule_text": "Servers that support tools **MUST** declare the `tools` capability:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found field 'listChanged' in ToolsCapability.",
+        "Phase 2-Source Code: Verified that methods exist for managing tools but there's no internal notification logic."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK defines the 'tools' capability but lacks internal logic to automatically send notifications when the tool list changes, shifting the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py"
+      ],
+      "code_snippets": [
+        "class ToolsCapability(BaseModel):\n    listChanged: bool | None = None  # Indicates server supports notifications"
+      ]
+    },
+    {
+      "rule_id": 250,
+      "rule_type": "SHOULD",
+      "rule_text": "When the list of available tools changes, servers that declared the `listChanged`\ncapability **SHOULD** send a notification:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability definition 'listChanged' in tools capability within tmpbmxxwp29.py",
+        "Phase 1-IR: Notification sending logic confirmed through send_notification() and specific ToolListChangedNotification class in tmpieghqxz_.json"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly defines the 'listChanged' capability and automatically implements notification sending logic when the tool list changes, fulfilling the MCP requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tools.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\notifications.py"
+      ],
+      "code_snippets": [
+        "class ToolsCapability(BaseModel):\n listChanged: bool | None = None\n # Indicates if notifications for tool list changes are supported",
+        "async def send_resources_list_changed(self):\n await self.send_notification(ToolListChangedNotification())"
+      ]
+    },
+    {
+      "rule_id": 251,
+      "rule_type": "MUST",
+      "rule_text": "For trust & safety and security, clients **MUST** consider\ntool annotations to be untrusted unless they come from trusted servers.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions were found indicating automatic handling of tool annotations.",
+        "Phase 2-Source Code: ToolAnnotations class only defines properties without checking their source trust.",
+        "Phase 2-Source Code: ToolManager class allows adding tools but does not enforce annotation trust handling."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK defines tool annotations but lacks implementation to treat them as untrusted unless from trusted servers. Developers are expected to manage this behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\__init__.py"
+      ],
+      "code_snippets": [
+        "class ToolAnnotations(BaseModel): ... clients should never make tool use decisions based on ToolAnnotations received from untrusted servers.",
+        "class Tool(BaseMetadata): ... annotations: ToolAnnotations | None = None"
+      ]
+    },
+    {
+      "rule_id": 252,
+      "rule_type": "MAY",
+      "rule_text": "A tool **MAY** return links to [Resources](/specification/2025-06-18/server/resources), to provide additional context\nor data. In this case, the tool will return a URI that can be subscribed to or fetched by the client:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found notification methods such as send_resource_updated and send_resource_list_changed.",
+        "Phase 1-IR: Confirmed these methods are called within the SDK to handle resource changes internally."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK implements internal notification mechanisms for resource updates, completely encapsulating this behavior within its methods, thus relieving application developers from manual notification handling.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\resources.py"
+      ],
+      "code_snippets": [
+        "await ctx.session.send_resource_updated(AnyUrl(resource_uri))",
+        "await ctx.session.send_resource_list_changed()"
+      ]
+    },
+    {
+      "rule_id": 253,
+      "rule_type": "MAY",
+      "rule_text": "[Resources](/specification/2025-06-18/server/resources) **MAY** be embedded to provide additional context\nor data using a suitable [URI scheme](./resources#common-uri-schemes). Servers that use embedded resources **SHOULD** implement the `resources` capability:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions related to resources and capabilities.",
+        "Phase 1-IR: Confirmed notification logic through send_resource_list_changed() in the server SDK.",
+        "Phase 2-Source Code: Verified automatic handling behavior in FILE_PATH: notifications.py where resource updates trigger automatic notifications."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the behaviors required by the MCP rule, automatically handling notifications for resource updates and managing capability definitions effectively.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
+      ],
+      "code_snippets": [
+        "await ctx.session.send_resource_list_changed() // This function is used to notify clients of resource changes."
+      ]
+    },
+    {
+      "rule_id": 254,
+      "rule_type": "SHOULD",
+      "rule_text": "[Resources](/specification/2025-06-18/server/resources) **MAY** be embedded to provide additional context\nor data using a suitable [URI scheme](./resources#common-uri-schemes). Servers that use embedded resources **SHOULD** implement the `resources` capability:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ResourcesCapability defined in resource_manager.py.",
+        "Phase 2-Source Code: Verified internal notification logic present via send_resource_list_changed() implementation."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically implements the resources capability by providing a ResourcesCapability class with a listChanged field. Additionally, it includes logic to send notifications when the resource list changes, ensuring developers do not have to implement this themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
+      ],
+      "code_snippets": [
+        "class ResourcesCapability(BaseModel):",
+        "listChanged: bool | None = None",
+        "async def get_resource(e.g., 'uri'): await ctx.session.send_resource_list_changed()"
+      ]
+    },
+    {
+      "rule_id": 255,
+      "rule_type": "MUST",
+      "rule_text": "Tools may also provide an output schema for validation of structured results.\nIf an output schema is provided:\n\n- Servers **MUST** provide structured results that conform to this schema.\n- Clients **SHOULD** validate structured results against this schema.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Found structured output definitions in relevant files.",
+        "Phase 2-Source Code: Encountered method definitions that manage tools and their outputs.",
+        "Phase 2-Source Code: Did not find explicit internal notification handling methods like send_notification()"
+      ],
+      "confidence": 0.5,
+      "explanation": "The SDK defines structured outputs and has various functionalities that could potentially align with the requirement. However, the actual implementation for automatic notification handling does not appear to be explicitly outlined based on the available evidence.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\structured_output.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py"
+      ],
+      "code_snippets": [
+        "from pydantic import BaseModel\nclass WeatherData(BaseModel):\n    temperature: float\n    humidity: float",
+        "def call_tool(...):  # Method managing tool calls and potentially returning structured data"
+      ]
+    },
+    {
+      "rule_id": 256,
+      "rule_type": "SHOULD",
+      "rule_text": "Tools may also provide an output schema for validation of structured results.\nIf an output schema is provided:\n\n- Servers **MUST** provide structured results that conform to this schema.\n- Clients **SHOULD** validate structured results against this schema.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct function definitions or calls related to validation logic found.",
+        "Phase 2-Source Code: Confirmed that structured outputs are validated against the output schema as stated in the documentation."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically validates structured outputs against the output schema defined in the MCP rules, thus ensuring compliance with the protocol.",
+      "files_analyzed": [
+        "tmprtwhgbpy.md"
+      ],
+      "code_snippets": [
+        "When an outputSchema is defined, the server automatically validates the structured output against the schema."
+      ]
+    },
+    {
+      "rule_id": 257,
+      "rule_type": "MUST",
+      "rule_text": "1. Servers **MUST**:\n\n   - Validate all tool inputs\n   - Implement proper access controls\n   - Rate limit tool invocations\n   - Sanitize tool outputs",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function validate_request which validates inputs.",
+        "Phase 2-Source Code: Found validation functions but lacking rate limiting and output sanitization."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK implements input validation but lacks mechanisms for rate limiting tool invocations and output sanitization as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\websocket.py"
+      ],
+      "code_snippets": [
+        "async def validate_request(self, request: Request, is_post: bool = False): ...",
+        "def _validate_content_type(self, content_type: str | None): ..."
+      ]
+    },
+    {
+      "rule_id": 258,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Clients **SHOULD**:\n   - Prompt for user confirmation on sensitive operations\n   - Show tool inputs to the user before calling the server, to avoid malicious or\n     accidental data exfiltration\n   - Validate tool results before passing to LLM\n   - Implement timeouts for tool calls\n   - Log tool usage for audit purposes",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found timeout implementation in create_mcp_http_client.",
+        "Phase 2-Source Code: Confirmed logging capabilities but no automatic logging of tool usage.",
+        "Phase 2-Source Code: Found the elicit_with_validation function which prompts users but isn't linked to sensitive operations."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK has implemented timeouts and logging capabilities, but does not encapsulate prompting for user confirmation on sensitive operations or validating tool results before passing to LLM. The absence of these features results in responsibility being placed on developers rather than the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\manager.py"
+      ],
+      "code_snippets": [
+        "@mcp.prompt() def greet_user(name: str, style: str = 'friendly') -> str: ...",
+        "async def elicit_with_validation(session: ServerSession, message: str,..."
+      ]
+    },
+    {
+      "rule_id": 259,
+      "rule_type": "MUST",
+      "rule_text": "Servers that support completions **MUST** declare the `completions` capability:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found CompletionsCapability in src/models.py.",
+        "Phase 2-Source Code: No internal handling logic for completions found."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines the Completions capability but does not include internal logic to automatically handle completions or send notifications. Therefore, it does not meet the MUST requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\models.py"
+      ],
+      "code_snippets": [
+        "class CompletionsCapability(BaseModel):\n    \"\"\"Capability for completions operations.\"\"\"\n    model_config = ConfigDict(extra=\"allow\")"
+      ]
+    },
+    {
+      "rule_id": 260,
+      "rule_type": "SHOULD",
+      "rule_text": "Servers **SHOULD** return standard JSON-RPC errors for common failure cases:\n\n- Method not found: `-32601` (Capability not supported)\n- Invalid prompt name: `-32602` (Invalid params)\n- Missing required arguments: `-32602` (Invalid params)\n- Internal errors: `-32603` (Internal error)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found JSONRPCError in defs, error handling defined in tmpbmxxwp29.py.",
+        "Phase 1-IR: Found _create_error_response called in various scenarios (e.g., invalid requests, internal errors).",
+        "Phase 2-Source Code: Verified the implementation of JSON-RPC error responses in src/mcp/server/auth/json_response.py."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements standard JSON-RPC error responses automatically within its internal methods, ensuring application developers do not need to handle error responses directly.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\json_response.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\_json_rpc.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\json_rpc.py"
+      ],
+      "code_snippets": [
+        "_create_error_response method for unified error responses: ...",
+        "Using JSONRPCError structure for formatted error: ..."
+      ]
+    },
+    {
+      "rule_id": 261,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD**:\n\n   - Return suggestions sorted by relevance\n   - Implement fuzzy matching where appropriate\n   - Rate limit completion requests\n   - Validate all inputs",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found related to required behaviors.",
+        "Phase 2-Source Code: Examination of FastMCP shows lack of automatic handling for required behaviors."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not encapsulate the required behaviors as specified in the MCP rule. While it provides a framework (FastMCP), it lacks the necessary internal logic to automatically handle aspects like sorting suggestions, implementing fuzzy matching, and rate limiting inputs.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\exceptions.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\routes.py"
+      ],
+      "code_snippets": [
+        "class FastMCP: methods and configurations were noted but lacked specific implementations for automatic behaviors."
+      ]
+    },
+    {
+      "rule_id": 262,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Clients **SHOULD**:\n   - Debounce rapid completion requests\n   - Cache completion results where appropriate\n   - Handle missing or partial results gracefully",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 263,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST**:\n\n- Validate all completion inputs\n- Implement appropriate rate limiting\n- Control access to sensitive suggestions\n- Prevent completion-based information disclosure",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found validate_request method in transport_security.py for validating inputs.",
+        "Phase 1-IR: Found ClientAuthenticator class in client_auth.py for access control.",
+        "Phase 2-Source Code: Verified validate_request implementation validates headers."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK implements automatic validation of completion inputs and manages access control through client authentication, which complies with some requirements. However, it does not implement any form of rate limiting, leading to an overall non-compliance status.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\client_auth.py"
+      ],
+      "code_snippets": [
+        "async def validate_request(self, request: Request, is_post: bool = False):\n\t# ... Validation logic here ...",
+        "class ClientAuthenticator:\n\tasync def authenticate(self, client_id: str, client_secret: str | None) -> OAuthClientInformationFull:\n\t# ... Authentication logic here ..."
+      ]
+    },
+    {
+      "rule_id": 264,
+      "rule_type": "MUST",
+      "rule_text": "Servers that emit log message notifications **MUST** declare the `logging` capability:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found logging declarations in logging.py.",
+        "Phase 1-IR: Confirmed utilization of logging functionalities in server.py.",
+        "Phase 2-Source Code: Verified automatic handling of logging within the SDK."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK properly declares the logging capability and automatically handles logging behaviors without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\server.py"
+      ],
+      "code_snippets": [
+        "def get_logger(name: str) -> logging.Logger: ...",
+        "logger.debug('...')"
+      ]
+    },
+    {
+      "rule_id": 265,
+      "rule_type": "MAY",
+      "rule_text": "To configure the minimum log level, clients **MAY** send a `logging/setLevel` request:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found SetLevelRequest class in logging.py to enable setting log levels.",
+        "Phase 1-IR: Confirmed sending of logging/setLevel requests via set_logging_level method.",
+        "Phase 2-Source Code: No automatic notifications found for clients when the logging level is changed."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK can send requests to set logging levels automatically, fulfilling part of the rule. However, it lacks an automatic notification mechanism to inform clients of level changes, which means the responsibility still rests with developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py"
+      ],
+      "code_snippets": [
+        "async def set_logging_level(self, level: types.LoggingLevel) -> types.EmptyResult: ..."
+      ]
+    },
+    {
+      "rule_id": 266,
+      "rule_type": "SHOULD",
+      "rule_text": "Servers **SHOULD** return standard JSON-RPC errors for common failure cases:\n\n- Invalid log level: `-32602` (Invalid params)\n- Configuration errors: `-32603` (Internal error)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function to create JSON-RPC error response in tmpnby_ecrz.py",
+        "Phase 1-IR: Confirmed standard error codes including -32602 (Invalid params) and -32603 (Internal error) defined in tmpbmxxwp29.py",
+        "Phase 2-Source Code: Verified that SDK automatically processes error handling without developer intervention."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK implements the expected behavior by automatically handling JSON-RPC error responses, including defining necessary error codes. Functions are provided that encapsulate this behavior to ensure developers are not burdened with implementing these details.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\json_response.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\error_handling.py"
+      ],
+      "code_snippets": [
+        "_create_error_response method returning JSONRPCError",
+        "Standard error codes defined: INVALID_PARAMS, INTERNAL_ERROR"
+      ]
+    },
+    {
+      "rule_id": 267,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD**:\n\n   - Rate limit log messages\n   - Include relevant context in data field\n   - Use consistent logger names\n   - Remove sensitive information",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No call definitions found, but sufficient capability found in source files.",
+        "Phase 2-Source Code: `send_log_message` method is called internally in `server.py` and logging is configured in `logging.py`."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the required logging behaviors as outlined in the MCP rule, managing logging configurations and sending log messages internally without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-streamablehttp\\mcp_simple_streamablehttp\\server.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py"
+      ],
+      "code_snippets": [
+        "logger.info('Created new transport with session ID: {new_session_id}')",
+        "logger.debug('Session already exists, handling request directly')",
+        "logging.basicConfig(level=level, format='%(message)s', handlers=handlers)"
+      ]
+    },
+    {
+      "rule_id": 268,
+      "rule_type": "MAY",
+      "rule_text": "2. Clients **MAY**:\n   - Present log messages in the UI\n   - Implement log filtering/search\n   - Display severity visually\n   - Persist log messages",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function send_log_message in defs, defined in src/mcp/server/fastmcp/prompts/manager.py",
+        "Phase 1-IR: Confirmed multiple usages of send_log_message throughout the SDK in response to different logging actions.",
+        "Phase 2-Source Code: Automatic handling of log message sending by encapsulation within ctx."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK conforms to the rule by encapsulating logging functionalities, allowing developers to perform logging via the `ctx` context without manual message sending implementations.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py"
+      ],
+      "code_snippets": [
+        "await ctx.session.send_log_message(level=level, data=data, logger=logger_name)"
+      ]
+    },
+    {
+      "rule_id": 269,
+      "rule_type": "MUST_NOT",
+      "rule_text": "1. Log messages **MUST NOT** contain:\n\n   - Credentials or secrets\n   - Personal identifying information\n   - Internal system details that could aid attacks",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs.",
+        "Phase 1-IR: Calls insufficiently located relevant functionality in calls.",
+        "Phase 2-Source Code: Verified logging methods present but lack enforcement against sensitive data."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK provides logging capabilities but does not auto-enforce checks against sensitive information, violating protocol compliance requirements. Developers are left to manage what is logged, which contradicts the rule's intent.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
+      ],
+      "code_snippets": [
+        "await self.request_context.session.send_log_message(level=level, data=message, logger=logger_name, related_request_id=self.request_id)"
+      ]
+    },
+    {
+      "rule_id": 270,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Implementations **SHOULD**:\n   - Rate limit messages\n   - Validate all data fields\n   - Control log access\n   - Monitor for sensitive content",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions related to rate limiting or validation were found in defs.",
+        "Phase 2-Source Code: Verified attempts to find implementations but no automatic handling of mandatory behaviors was identified."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK does not encapsulate the required behaviors of rate limiting messages, comprehensive data validation for all fields, controlled log access, and sensitive content monitoring as prescribed by the MCP rule. Instead, it appears that many of these responsibilities may fall onto the application developers, which is contrary to the intent of the SDK framework.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\base.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\__init__.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\oauth_server.py"
+      ],
+      "code_snippets": [
+        "await ctx.session.send_log_message(level, data, logger)",
+        "async def my_tool(x: int, ctx: Context) -> str: # Logging within tool functions"
+      ]
+    },
+    {
+      "rule_id": 271,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- The **cursor** is an opaque string token, representing a position in the result set\n- **Page size** is determined by the server, and clients **MUST NOT** assume a fixed page\n  size",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found relevant functions for pagination in `calls_python.jsonl`.",
+        "Phase 2-Source Code: Verified implementation in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\pagination_example.py`."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages pagination and cursor extraction as required by the MCP rule. The implementation specifies that the page size is defined by the server and does not allow clients to set it themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\pagination_example.py"
+      ],
+      "code_snippets": [
+        "async def list_resources_paginated(request: types.ListResourcesRequest): page_size = 10  # Set by the server"
+      ]
+    },
+    {
+      "rule_id": 272,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD**:\n\n   - Provide stable cursors\n   - Handle invalid cursors gracefully",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found capability definitions like 'listChanged' in ResourcesCapability and others.",
+        "Phase 1-IR: No notification sending logic found in the SDK implementation."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK defines capabilities indicating potential notifications for changes (like 'listChanged'), but does not implement internal logic to automatically handle notifications for cursor-related actions. This shifts responsibilities to developers, which is non-compliant with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\metadata.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\register.py"
+      ],
+      "code_snippets": [
+        "'listChanged': bool | None = None,",
+        "'listChanged': bool | None = None,"
+      ]
+    },
+    {
+      "rule_id": 273,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Clients **SHOULD**:\n\n   - Treat a missing `nextCursor` as the end of results\n   - Support both paginated and non-paginated flows",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function PaginatedResult in defs, defined in tmpbmxxwp29.py.",
+        "Phase 1-IR: Confirmed pagination logic in calls, specifically list_resources_paginated in pagination_example.py.",
+        "Phase 2-Source Code: Verified implementation of automated pagination in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\pagination_example.py."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK has defined pagination capabilities and implements automatic handling of the nextCursor behavior, ensuring that developers do not need to manage this process themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\pagination_example.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py"
+      ],
+      "code_snippets": [
+        "@server.list_resources()\nasync def list_resources_paginated(request: types.ListResourcesRequest) -> types.ListResourcesResult:\n    page_size = 10\n    cursor = request.params.cursor if request.params is not None else None\n    start = 0 if cursor is None else int(cursor)\n    end = start + page_size\n    next_cursor = str(end) if end < len(ITEMS) else None"
+      ]
+    },
+    {
+      "rule_id": 274,
+      "rule_type": "MUST",
+      "rule_text": "3. Clients **MUST** treat cursors as opaque tokens:\n   - Don't make assumptions about cursor format\n   - Don't attempt to parse or modify cursors\n   - Don't persist cursors across sessions",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `Cursor` definition as string type in `types.py`",
+        "Phase 1-IR: Defined `PaginatedRequestParams` that accepts cursor but lacks automated handling logic"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK provides a definition for cursors as opaque tokens but lacks any internal logic to automatically handle these tokens. The responsibility is placed on the developers, which is contrary to the requirement that SDKs must manage such behaviors.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py"
+      ],
+      "code_snippets": [
+        "Cursor = str",
+        "class PaginatedRequestParams(RequestParams): cursor: Cursor | None = None"
+      ]
+    },
+    {
+      "rule_id": 275,
+      "rule_type": "SHOULD",
+      "rule_text": "Invalid cursors **SHOULD** result in an error with code -32602 (Invalid params).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct definitions found in IR; sourced from code.",
+        "Phase 2-Source Code: Verified automatic JSON-RPC error handling for invalid parameters in file: tmpnby_ecrz.py"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles invalid cursor errors by sending appropriate JSON-RPC error responses encoded with error code -32602.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\_httpx_utils.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\websocket.py"
+      ],
+      "code_snippets": [
+        "error_response = JSONRPCError(jsonrpc='2.0', id=message.message.root.id, error=ErrorData(code=INVALID_PARAMS, message='Invalid request parameters', data=''))",
+        "await self._send_response(request_id, ErrorData(code=INVALID_PARAMS))"
+      ]
+    }
+  ]
+}

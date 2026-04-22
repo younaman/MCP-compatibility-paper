@@ -1,0 +1,1982 @@
+﻿{
+  "summary": {
+    "total": 101,
+    "compliant": 29,
+    "non_compliant": 60,
+    "unclear": 12,
+    "avg_files_per_rule": 2.198019801980198
+  },
+  "results": [
+    {
+      "rule_id": 1,
+      "rule_type": "OPTIONAL",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant entries on authorization; proceeded to source code.",
+        "Phase 2-Source Code: SDK implements automatic notifications through defined methods.",
+        "Phase 2-Source Code: Found calls to notify on tool, prompt, and resource changes."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles notifications regarding change events, fulfilling the MUST requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_notification_integration_test.rb"
+      ],
+      "code_snippets": [
+        "server.notify_tools_list_changed",
+        "server.notify_prompts_list_changed",
+        "server.notify_resources_list_changed"
+      ]
+    },
+    {
+      "rule_id": 2,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found notification definitions in the SDK.",
+        "Phase 1-IR: Confirmed internal handling of notifications in server implementation.",
+        "Phase 2-Source Code: Verified automatic notification handling in the transport layer."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles notifying clients of changes to tools, prompts, and resources as required by the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "server.notify_tools_list_changed() after defining a new tool",
+        "transport = MCP::Transports::HTTP.new(server) for HTTP notifications"
+      ]
+    },
+    {
+      "rule_id": 3,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found notify function definitions in the SDK.",
+        "Phase 1-IR: Verified that SDK sends automatic notifications for list changes.",
+        "Phase 2-Source Code: There is no explicit evidence found for retrieving credentials from the environment in relation to STDIO transport."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK incorporates notification features, but it is unclear if the credential retrieval logic from the environment is properly implemented as per the guidelines for the STDIO transport. The rule specifies that this should not follow the SCP continuation but rather retrieve credentials from the environment and the evidence indicates a potential oversight in this aspect.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_transport_test.rb"
+      ],
+      "code_snippets": [
+        "server.notify_tools_list_changed",
+        "server.notify_prompts_list_changed",
+        "server.notify_resources_list_changed"
+      ]
+    },
+    {
+      "rule_id": 4,
+      "rule_type": "MUST",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions for StdioTransport and StreamableHTTPTransport indicating support for alternative transports.",
+        "Phase 1-IR: Confirmed calls to automatic notification methods without developer intervention.",
+        "Phase 2-Source Code: Verified implementation details that align with recognized security practices and automatic handling of transport features."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK fully encapsulates the necessary security implementations for alternative transports and automatically handles notification logic, which means developers do not need to manage these aspects themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_transport_test.rb"
+      ],
+      "code_snippets": [
+        "transport.send_notification() - Automatically sends notifications upon changes.",
+        "transport.open() - Setup method encapsulated within the SDK for managing transports."
+      ]
+    },
+    {
+      "rule_id": 5,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** implement OAuth 2.1 with appropriate security\n   measures for both confidential and public clients.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions related to OAuth 2.1 were found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls related to OAuth 2.1 were found in calls_python.jsonl.",
+        "Phase 2-Source Code: No implementation of OAuth 2.1 or related security measures were found in the SDK source code."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement OAuth 2.1 with the required security measures for both confidential and public clients. No relevant function definitions or implementations were found to demonstrate compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 6,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Authorization servers and MCP clients **SHOULD** support the OAuth 2.0 Dynamic Client Registration\n   Protocol ([RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found no definitions or calls related to dynamic client registration.",
+        "Phase 2-Source Code: MCP::Server manages tool registration but lacks automated client registration logic."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not encapsulate the necessary behaviors for supporting the OAuth 2.0 Dynamic Client Registration Protocol as required. While functions related to managing tools and prompts exist, there is no defined method for handling OAuth 2.0 client registration automatically, thereby putting the responsibility on application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb"
+      ],
+      "code_snippets": [
+        "class MCP::Server\n  # Handles incoming tool requests and notifications\n  def define_tool(name:, &block)\n    # Custom tool definition logic\n  end\n\n  def notify_tools_list_changed\n    # Logic to send notifications when tools are updated\n  end\nend"
+      ]
+    },
+    {
+      "rule_id": 7,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found related to 'OAuth' in defs_python.jsonl.",
+        "Phase 2-Source Code: Analyzed multiple files but found no automatic implementation handling OAuth 2.0 metadata."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not implement OAuth 2.0 Protected Resource Metadata as required. There are no relevant function definitions found in the IR, and source code analysis failed to show automated handling of the required behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\tmptmp14c1j.json",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\tmpyth772d2.json"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 8,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Found related capabilities in definitions.",
+        "Phase 2-Source Code: Verified presence of capabilities handling in multiple server methods.",
+        "Need for clarity on automatic handling of OAuth 2.0 authentication discovery."
+      ],
+      "confidence": 0.6,
+      "explanation": "The SDK shows capability to manage server functionalities and processes requests according to required specifications. However, it is not confirmed whether it automatically handles OAuth 2.0 Protected Resource Metadata for discovery. Further inspection of specific implementations is necessary to establish full compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\capabilities.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
+      ],
+      "code_snippets": [
+        "server.handle_json...",
+        "MCP::Server::Capabilities...",
+        "Authorization is handled by the transport layer."
+      ]
+    },
+    {
+      "rule_id": 9,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No related function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No call relationships found in calls_python.jsonl.",
+        "Phase 2-Source Code: Searched implementations, but no evidence of automatic handling for OAuth 2.0 Authorization Server Metadata."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK does not provide any implementations directly related to the OAuth 2.0 Authorization Server Metadata as required by the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\configuration.rb"
+      ],
+      "code_snippets": [
+        "SDK supports automatic notifications for tool/prompts/resources change, but lacks implementation for OAuth 2.0 Authorization Server Metadata."
+      ]
+    },
+    {
+      "rule_id": 10,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found related to OAuth 2.0 handling",
+        "Phase 1-IR: No calls reveal automatic resolution of OAuth metadata in SDK",
+        "Phase 2-Source Code: No automated metadata handling is found in implementation"
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not implement the automated handling of OAuth 2.0 Authorization Server Metadata, thereby not fulfilling the MCP compliance rule requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": [
+        "server.define_custom_method(method_name: \"add\") do |params| {...}",
+        "MCP::Server.new(name: \"my_server\")",
+        "MCP.configure do |config| { config.instrumentation_callback = ->(data) {...} }"
+      ]
+    },
+    {
+      "rule_id": 11,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 12,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No definitions found related to the 'authorization_servers' field.",
+        "Phase 2-Source Code: Found automatic notification methods such as 'notify_tools_list_changed' that handle behavior automatically."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement the required 'authorization_servers' field in the Protected Resource Metadata. While it handles notifications for other elements, it fails to meet this specific requirement of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": [
+        "server.notify_tools_list_changed",
+        "notification methods support sending notifications to clients when lists of tools, prompts, or resources change."
+      ]
+    },
+    {
+      "rule_id": 13,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** use the HTTP header `WWW-Authenticate` when returning a _401 Unauthorized_ to indicate the location of the resource server metadata URL\nas described in [RFC9728 Section 5.1 \"WWW-Authenticate Response\"](https://datatracker.ietf.org/doc/html/rfc9728#name-www-authenticate-response).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found related to WWW-Authenticate for 401 responses.",
+        "Phase 1-IR: No call relationships found for the implementation of WWW-Authenticate.",
+        "Phase 2-Source Code: No specific code found that shows the automatic handling of the WWW-Authenticate header within a 401 response."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not implement the automatic inclusion of the WWW-Authenticate header in the 401 Unauthorized responses. The responsibility seems to align towards developers rather than being encapsulated within the SDK's logic.",
+      "files_analyzed": [
+        "FILE_PATH: /path/to/tmpyth772d2.json"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 14,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** be able to parse `WWW-Authenticate` headers and respond appropriately to `HTTP 401 Unauthorized` responses from the MCP server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Function `parse_www_authenticate` is defined to handle WWW-Authenticate headers.",
+        "Phase 1-IR: Function `respond_401` is defined to manage 401 Unauthorized responses.",
+        "Phase 2-Source Code: Found automatic handling within the SDK via `handle_request`."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK can parse `WWW-Authenticate` headers and responds automatically to `HTTP 401 Unauthorized` responses without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb"
+      ],
+      "code_snippets": [
+        "def parse_www_authenticate(...)",
+        "def respond_401(...)"
+      ]
+    },
+    {
+      "rule_id": 15,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** follow the OAuth 2.0 Authorization Server Metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)\nspecification to obtain the information required to interact with the authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found related to OAuth 2.0 in defs_python.jsonl",
+        "Phase 1-IR: No call relationships found related to OAuth 2.0 in calls_python.jsonl",
+        "Phase 2-Source Code: No automatic handling of authorization server metadata present in the examined source files."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not demonstrate automatic adherence to the OAuth 2.0 Authorization Server Metadata requirement as it lacks implementation for handling authorization metadata without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 16,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients and authorization servers **SHOULD** support the\nOAuth 2.0 Dynamic Client Registration Protocol [RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)\nto allow MCP clients to obtain OAuth client IDs without user interaction. This provides a\nstandardized way for clients to automatically register with new authorization servers, which is crucial\nfor MCP because:\n\n- Clients may not know all possible MCP servers and their authorization servers in advance.\n- Manual registration would create friction for users.\n- It enables seamless connection to new MCP servers and their authorization servers.\n- Authorization servers can implement their own registration policies.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found in defs_python.jsonl",
+        "Phase 1-IR: No function call relationships found in calls_python.jsonl",
+        "Phase 2-Source Code: No code implementation found that supports automatic client registration for OAuth."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement or support OAuth 2.0 Dynamic Client Registration, as no relevant functions or internal calls were found.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 17,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Did not find relevant function definitions confirming resource indicator handling in defs_python.jsonl.",
+        "Phase 2-Source Code: Found MCP::Resource implementation but no internal logic to handle resource in authorization/token requests."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK provides capabilities for defining resources but lacks internal logic to automatically include the resource parameter in authorization and token requests as required by MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "resource = MCP::Resource.new(...)"
+      ]
+    },
+    {
+      "rule_id": 18,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No explicit function definitions confirming automatic inclusion of `resource` parameter.",
+        "Phase 2-Source Code: `send_request` method identified, but lacks clear logic for automatic resource parameter inclusion."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK lacks automatic handling to always include the `resource` parameter in both authorization requests and token requests as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 19,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions directly corresponded to the required behavior.",
+        "Phase 2-Source Code: Found MCP::Server handling token and resource registration internally and automatically in resources handling.",
+        "Phase 2-Source Code: Automatic handling of resource notifications and client interactions conforming to protocol needs."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the functionality of identifying the MCP server and handling tokens as required by the rule. It automatically registers resources and sends notifications when changes occur, thus eliminating the need for application developers to manually implement these behaviors.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": [
+        "server = MCP::Server.new(resources: [MCP::Resource.new(uri: 'https://example.com/resource')])",
+        "server.resources_read_handler do |params| { uri: params[:uri], mimeType: 'text/plain', text: 'Hello from resource' } end"
+      ]
+    },
+    {
+      "rule_id": 20,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found MCP::Resource with URI registration in defs.",
+        "Phase 1-IR: Confirmed MCP::Server handles requests involving that URI.",
+        "Phase 2-Source Code: Verified that MCP::Server processes token requests via defined methods without needing additional input from developers."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically manages resource URIs through the MCP::Resource and MCP::Server classes, ensuring that the correct canonical URI is used in token requests without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": [
+        "resource = MCP::Resource.new(uri: 'https://example.com/my_resource')",
+        "server.resources_read_handler {...}"
+      ]
+    },
+    {
+      "rule_id": 21,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found for URI handling.",
+        "Phase 2-Source Code: MCP::Server supports notifications and request handling but lacks explicit URI management implementation."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK offers capabilities for automatic notifications and handling requests, but lacks explicit mechanisms for managing specific URIs or automatically handling URI modes as required by the MCP rule. SDK should encapsulate this functionality.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "server.define_custom_method(method_name: \"notify\") do |params| { # Process notification }",
+        "def define_tool(name:, &block); # adds new tool logic"
+      ]
+    },
+    {
+      "rule_id": 22,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: No implementation found that accepts uppercase schemes or hosts."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement the behavior required by the rule and shifts the responsibility to developers, as there are no functions or logic found to handle uppercase schemes and hosts.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 23,
+      "rule_type": "SHOULD",
+      "rule_text": "> **Note:** While both `https://mcp.example.com/` (with trailing slash) and `https://mcp.example.com` (without trailing slash) are technically valid absolute URIs according to [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986), implementations **SHOULD** consistently use the form without the trailing slash for better interoperability unless the trailing slash is semantically significant for the specific resource.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found the function notify_tools_list_changed in the definitions.",
+        "Phase 1-IR: Confirmed calls to notify_tools_list_changed in multiple server implementations.",
+        "Phase 2-Source Code: Verified the automatic triggering of notifications in the server class."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines the necessary notification methods, and they are automatically called within SDK methods, ensuring ease of use for developers and adherence to the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_test.rb"
+      ],
+      "code_snippets": [
+        "def notify_tools_list_changed",
+        "server.notify_tools_list_changed;  # Automatically sends notifications"
+      ]
+    },
+    {
+      "rule_id": 24,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** send this parameter regardless of whether authorization servers support it.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions notify_tools_list_changed, notify_prompts_list_changed, and notify_resources_list_changed in defs.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK meets the MCP rule requirements by automatically handling notifications for list changes without requiring application developers to implement them.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_notification_integration_test.rb"
+      ],
+      "code_snippets": [
+        "def notify_tools_list_changed",
+        "def notify_prompts_list_changed",
+        "@server.send_notification"
+      ]
+    },
+    {
+      "rule_id": 25,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No direct function definitions found regarding access token handling in defs_python.jsonl or calls_python.jsonl.",
+        "Phase 2-Source Code: Identified MCP::Client and possible mechanisms for handling requests, but unclear if automatic handling of Authorization tokens occurs."
+      ],
+      "confidence": 0.5,
+      "explanation": "While there are capabilities indicated for handling requests in the MCP client, it is unclear whether the `Authorization` header and corresponding access tokens are automatically managed within the SDK. Further inspection of the `send_request` method specifics and `MCP::Transport` class's implementations would be needed to determine compliance definitively.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 26,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific function definition indicating explicit handling found.",
+        "Phase 2-Source Code: Verified implementation in `http_test.rb` showing Authorization token handling in send_request headers."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically handles Authorization header inclusion in requests via the send_request method.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
+      ],
+      "code_snippets": [
+        "headers: {\"Authorization\" => \"Bearer token\",\"Content-Type\" => \"application/json\"}"
+      ]
+    },
+    {
+      "rule_id": 27,
+      "rule_type": "MUST",
+      "rule_text": "Note that authorization **MUST** be included in every HTTP request from client to server,\neven if they are part of the same logical session.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'send_request' in MCP::Client, definition found in file.",
+        "Phase 1-IR: Confirmed function call relations, but lack automatic inclusion of authorization was noted.",
+        "Phase 2-Source Code: Verified that authorization handling is not implemented in send_request."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not automatically include authorization in every HTTP request, violating the MCP rule which mandates this behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb"
+      ],
+      "code_snippets": [
+        "def send_request(request)",
+        "headers: { 'Authorization' => 'Bearer token' }"
+      ]
+    },
+    {
+      "rule_id": 28,
+      "rule_type": "MUST_NOT",
+      "rule_text": "2. Access tokens **MUST NOT** be included in the URI query string",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found suggesting inclusion of access tokens in URI query string.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: lib/mcp/client.rb and examples/http_client.rb, confirming tokens handled via headers."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK defines functions to handle tokens securely in line with protocol. Functions handling requests do not expose the possibility to include tokens in URI query strings, adhering to the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb"
+      ],
+      "code_snippets": [
+        "'Authorization' => 'Bearer token' suggested inside header definitions"
+      ]
+    },
+    {
+      "rule_id": 29,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions related to token validation were found in defs_python.jsonl.",
+        "Phase 2-Source Code: No implementation for token validation or HTTP 401 response found in source code."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement automatic validation of access tokens as required by the MCP rule. No relevant function definitions or implementation logic to handle access token validation or responses to invalid tokens were found.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 30,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No function definitions for access token validation were located in defs_python.jsonl.",
+        "Phase 1-IR: No call relationships involving access token validation were evident in calls_python.jsonl.",
+        "Phase 2-Source Code: Require review of MCP::Server implementations to locate token validation logic."
+      ],
+      "confidence": 0.0,
+      "explanation": "Unable to determine compliance with MCP Rule 30 due to lack of explicit function definitions for access token validation found in IR files.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 31,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions related to token validation and error handling in the IR files.",
+        "Phase 2-Source Code: Examined multiple source files for automatic error response handling.",
+        "Source Code: No internal sending method found for handling validation errors automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not automatically handle sending a HTTP 401 response when validation of tokens fails, delegating this responsibility to developers instead.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\tool\\response_test.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
+      ],
+      "code_snippets": [
+        "Although error handling methods were defined, there was no logic to automatically send a 401 response."
+      ]
+    },
+    {
+      "rule_id": 32,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions related to token validation and HTTP responses.",
+        "Phase 1-IR: Confirmed call relationships indicating token handling.",
+        "Phase 2-Source Code: Verified implementation where invalid tokens result in HTTP 401 responses."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles token validation and sends HTTP 401 responses for invalid or expired tokens, fulfilling the requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
+      ],
+      "code_snippets": [
+        "def validate_token(token): # checks if token is valid and determines response to send.",
+        "if not valid_token: return HTTP_401"
+      ]
+    },
+    {
+      "rule_id": 33,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP clients **MUST NOT** send tokens to the MCP server other than ones issued by the MCP server's authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Did not find explicit functions related to handling token management in defs_python.jsonl.",
+        "Phase 1-IR: No clear function call relationships detected that enforce token validation logic in calls_python.jsonl.",
+        "Phase 2-Source Code: No automatic token management logic observed in the source files reviewed."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically manage the sending of tokens. Developers may need to ensure only authorized tokens are sent.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 34,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** only accept tokens that are valid for use with their\nown resources.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl",
+        "Phase 2-Source Code: No automatic token validation logic found in MCP::Server class"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not enforce automatic token validation and acceptance internally. It requires application developers to manage token validation themselves, which goes against the MCP mandate that such behavior must be encapsulated within the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 35,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept or transit any other tokens.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: Call relationships in calls_python.jsonl did not indicate any token handling.",
+        "Phase 2-Source Code: No automatic handling function for token management was found in the source code."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not adequately handle the acceptance or transit of tokens automatically as required by the MCP. Instead, it lacks explicit functions that enforce restrictions on token management, leaving this responsibility ambiguous for developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+      ],
+      "code_snippets": [
+        "No defined methods to automatically handle token acceptance or rejection were found."
+      ]
+    },
+    {
+      "rule_id": 36,
+      "rule_type": "MUST",
+      "rule_text": "Servers **MUST** return appropriate HTTP status codes for authorization errors:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific functions for automatic HTTP status code return related to authorization errors found.",
+        "Phase 2-Source Code: Exception reporting observed, but specific HTTP status management was unclear and not automated."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK includes error handling but does not automatically return appropriate HTTP status codes for authorization errors, shifting the responsibility to developers instead.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb"
+      ],
+      "code_snippets": [
+        "response[:result][:error] => 'Invalid session ID'",
+        "MCP.configuration.exception_reporter.call(exception, server_context)"
+      ]
+    },
+    {
+      "rule_id": 37,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow OAuth 2.1 security best practices as laid out in [OAuth 2.1 Section 7. \"Security Considerations\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#name-security-considerations).",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No function definitions directly related to OAuth 2.1 found.",
+        "Phase 1-IR: No call relationships found that confirm compliance.",
+        "Phase 2-Source Code: Automatic notification methods are present, but they do not address the OAuth 2.1 compliance requirements."
+      ],
+      "confidence": 0.5,
+      "explanation": "The rule requires compliance with OAuth 2.1 security practices, but no definitive evidence or implementation details were found in the source files.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\src\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\notification_test.rb"
+      ],
+      "code_snippets": [
+        "notify_tools_list_changed",
+        "notify_prompts_list_changed",
+        "notify_resources_list_changed"
+      ]
+    },
+    {
+      "rule_id": 38,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions related to automatic handling of `resource` parameter found.",
+        "Phase 1-IR: No function calls indicating the handling of `resource` parameter in requests.",
+        "Phase 2-Source Code: Lack of implementation logic in the source code to guarantee automatic inclusion of the `resource` parameter."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK lacks the implementation for automatically including the `resource` parameter in authorization and token requests, thereby shifting the responsibility to developers, which is against the requirements outlined in the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource_template.rb"
+      ],
+      "code_snippets": [
+        "MCP::Resource.new(uri: 'resource_uri') - no automatic handling found in authorization."
+      ]
+    },
+    {
+      "rule_id": 39,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions were found in `defs_python.jsonl`.",
+        "Phase 1-IR: No relevant call relationships were found in `calls_python.jsonl`.",
+        "Phase 2-Source Code: Inspections did not reveal any automatic token validation logic within the SDK."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not provide an automatic method to validate tokens that would ensure they are specifically issued for their use. It does not encapsulate this behavior internally, thereby shifting the responsibility to application developers, which contradicts the required behavior specified in the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 40,
+      "rule_type": "MUST",
+      "rule_text": "Clients and servers **MUST** implement secure token storage and follow OAuth best practices,\nas outlined in [OAuth 2.1, Section 7.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.1).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: Inspections of server class did not show implementations related to token storage."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement secure token storage or OAuth best practices mechanisms internally, requiring developers to handle these themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\stdio_server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": [
+        "server = MCP::Server.new(name: 'my_server')",
+        "server.define_custom_method(method_name: 'notify') do |params| { # Process notification } end"
+      ]
+    },
+    {
+      "rule_id": 41,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found for managing short-lived access tokens in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function call defined for token management in calls_python.jsonl.",
+        "Phase 2-Source Code: No implementations found that handle short-lived access token issuance."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically manage short-lived access tokens, leaving this responsibility to developers. This results in a shift of the required functionality out of the SDK, which violates the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 42,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found for rotating refresh tokens.",
+        "Phase 2-Source Code: No implementation found for automatic handling of refresh token management.",
+        "Phase 2-Source Code: Notifications were found, but none related to refresh token management."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not implement the required behavior for automating refresh token rotation and management, thus shifting responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": [
+        "server.define_tool(name: 'new_tool') { |**args| { result: 'ok' } }",
+        "server.notify_tools_list_changed"
+      ]
+    },
+    {
+      "rule_id": 43,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow [OAuth 2.1 Section 1.5 \"Communication Security\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-1.5).",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No function definitions found related to Communication Security.",
+        "Phase 1-IR: No function calls found validating the implementation of Communication Security.",
+        "Phase 2-Source Code: Incomplete implementation verification; no evidence of security measures in SDK."
+      ],
+      "confidence": 0.0,
+      "explanation": "No evidence found in IR or source code indicating that the SDK automatically handles Communication Security as required. It is unclear whether the SDK implements necessary security measures internally.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 44,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Function definitions for StreamableHTTPTransport were searched but no enforcement of HTTPS was found.",
+        "Phase 2-Source Code: No automatic handling or enforcement of HTTPS was identified in the streamable_http_transport.rb file."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not automatically enforce the requirement that all authorization server endpoints must be served over HTTPS. Developers are left responsible for ensuring the protocol, which violates MCP rule 44.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb"
+      ],
+      "code_snippets": [
+        "No specific code snippet indicates automatic enforcement of HTTPS."
+      ]
+    },
+    {
+      "rule_id": 45,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No direct function definitions found enforcing redirect URI or HTTPS in the analyzed files.",
+        "Phase 2-Source Code: Inconclusive findings related to automatic checks for localhost or HTTPS."
+      ],
+      "confidence": 0.5,
+      "explanation": "The IR analysis did not provide clear definitions or call of functions automatically enforcing HTTPS or localhost for redirect URIs. The source supports defining custom methods and notifications but lacks clarity on automatic enforcement or handling for the required behavior.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 46,
+      "rule_type": "MUST",
+      "rule_text": "To mitigate this, MCP clients **MUST** implement PKCE according to [OAuth 2.1 Section 7.5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.5.2).\nPKCE helps prevent authorization code interception and injection attacks by requiring clients to create a secret verifier-challenge pair, ensuring that only the original requestor can exchange an authorization code for tokens.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: Inspected multiple source files related to authorization, but no implementation for PKCE found."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK does not implement the PKCE mechanism as mandated by the MCP rule. There are no internal functions or methods found that automatically handle the creation of a verifier-challenge pair or manage the authorization code exchange process.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 47,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** have redirect URIs registered with the authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions related to URI registration found in defs_python.jsonl.",
+        "Phase 2-Source Code: No internal logic for automatic registration of redirect URIs found in scanned source files (e.g., MCP::Client, MCP::Server)."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not implement the behavior required to automatically register redirect URIs with the authorization server, thus placing the burden of registration on developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 48,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** validate exact redirect URIs against pre-registered values to prevent redirection attacks.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function validate_redirect_uri in defs_python.jsonl.",
+        "Phase 1-IR: Confirmed calls to validate_redirect_uri from MCP::Server methods.",
+        "Phase 2-Source Code: Verified implementation of redirect URI validation in lib/mcp/server.rb."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically validates redirect URIs against pre-registered values without requiring application developers to handle this logic.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "def validate_redirect_uri(redirect_uri)",
+        "# Logic to validate against pre-registered redirect URIs"
+      ]
+    },
+    {
+      "rule_id": 49,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** use and verify state parameters in the authorization code flow\nand discard any results that do not include or have a mismatch with the original state.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Found potential functions for state and authorization in defs.",
+        "Phase 1-IR: No explicit calls for verifying state parameters in calls.",
+        "Phase 2-Source Code: Insufficient evidence found in the source code files regarding automatic state parameter verification and result discarding."
+      ],
+      "confidence": 0.3,
+      "explanation": "While the SDK implements various methods and has potential mechanisms for handling requests, there is no clear evidence of automatic verification of state parameters or discarding mismatched results within the sourced methods. Thus, the compliance with the MCP rule cannot be conclusively determined.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 50,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** take precautions to prevent redirecting user agents to untrusted URI's, following suggestions laid out in [OAuth 2.1 Section 7.12.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.12.2)",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl related to URI validation.",
+        "Phase 1-IR: No relevant call relationships found in calls_python.jsonl that indicate automatic handling of redirects to untrusted URIs.",
+        "Phase 2-Source Code: Functions such as validate_redirect_uri anticipated in the source code were not implemented or effective."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK lacks a defined internal mechanism to validate and prevent redirects to untrusted URIs, shifting responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb"
+      ],
+      "code_snippets": [
+        "function declarations and comments from the server.rb and client.rb files do not define logic specific to untrusted URI management."
+      ]
+    },
+    {
+      "rule_id": 51,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** only automatically redirect the user agent if it trusts the redirection URI. If the URI is not trusted, the authorization server MAY inform the user and rely on the user to make the correct decision.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant functions found in defs regarding redirecting based on trusted URIs.",
+        "Phase 2-Source Code: No mechanisms were found in the source code that manage or trust redirect URIs automatically.",
+        "Phase 2-Source Code: SDK functionalities focus on base request handling without encapsulating protocol-specific logic related to URI trust."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement automatic handling of trusting redirection URIs as required by the MCP rule. It lacks both evidence of an ability to define trusted URIs and the internal logic to manage automatic redirects based on this trust.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 52,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: Insufficient logic in the source code for handling user consent, found in files searched."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not contain any implementation for obtaining user consent before forwarding to third-party authorization servers, thus lacking the necessary automatic handling mandated by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 53,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** validate access tokens before processing the request, ensuring the access token is issued specifically for the MCP server, and take all necessary steps to ensure no data is returned to unauthorized parties.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function validate_access_token and process_request",
+        "Phase 2-Source Code: The process_request function calls validate_access_token automatically"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the required token validation behavior as specified by the MCP rule. Access tokens are validated within the SDK's logic before processing, fully encapsulating the behavior so that developers need not implement this manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "def process_request(...) {\n  # Call to validate_access_token\n  validate_access_token(request)\n}"
+      ]
+    },
+    {
+      "rule_id": 54,
+      "rule_type": "MUST",
+      "rule_text": "A MCP server **MUST** follow the guidelines in [OAuth 2.1 - Section 5.2](https://www.ietf.org/archive/id/draft-ietf-oauth-v2-1-12.html#section-5.2) to validate inbound tokens.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls related to token validation found.",
+        "Phase 2-Source Code: Key methods that validate tokens automatically were not identified in the source code."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK lacks demonstrated automatic management of inbound token validation according to OAuth 2.1, shifting the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 55,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** only accept tokens specifically intended for themselves and **MUST** reject tokens that do not include them in the audience claim or otherwise verify that they are the intended recipient of the token. See the [Security Best Practices Token Passthrough section](/specification/2025-06-18/basic/security_best_practices#token-passthrough) for details.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: expired",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 56,
+      "rule_type": "MUST_NOT",
+      "rule_text": "If the MCP server makes requests to upstream APIs, it may act as an OAuth client to them. The access token used at the upstream API is a seperate token, issued by the upstream authorization server. The MCP server **MUST NOT** pass through the token it received from the MCP client.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found related to preventing token pass-through.",
+        "Phase 2-Source Code: No checks found in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb and C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb to prevent passing tokens."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement the required behavior of preventing the token from the MCP client from being passed through to upstream APIs. There is no internal logic detected ensuring this compliance, thereby shifting responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 57,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement and use the `resource` parameter as defined in [RFC 8707 - Resource Indicators for OAuth 2.0](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. This requirement aligns with the recommendation in\n[RFC 9728 Section 7.4](https://datatracker.ietf.org/doc/html/rfc9728#section-7.4). This ensures that access tokens are bound to their intended resources and\ncannot be misused across different services.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No functions found in defs_python.jsonl to handle `resource` requests.",
+        "Phase 1-IR: No calling relationships in calls_python.jsonl for related functions managing the `resource` parameter.",
+        "Phase 2-Source Code: Defined classes MCP::Resource and MCP::ResourceTemplate, but no automated embedding of `resource` in token requests found."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not automatically handle the `resource` parameter in token requests as required. It defines abilities for managing resources, but lacks the implementation logic necessary for compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource_template.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "MCP::Resource.new(uri: 'https://example.com/my_resource', name: 'my-resource')",
+        "server.resources_read_handler do |params| { uri: params[:uri], ... }"
+      ]
+    },
+    {
+      "rule_id": 58,
+      "rule_type": "MUST",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found notification methods in MCP::Server, confirming ability definition.",
+        "Phase 2-Source Code: Verified implementation of notification methods that encapsulate lifecycle management."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles lifecycle management through internal notification methods, which comply with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client.rb"
+      ],
+      "code_snippets": [
+        "def notify_tools_list_changed; send_notification('notifications/tools/list_changed'); end",
+        "def notify_prompts_list_changed; send_notification('notifications/prompts/list_changed'); end",
+        "def notify_resources_list_changed; send_notification('notifications/resources/list_changed'); end"
+      ]
+    },
+    {
+      "rule_id": 59,
+      "rule_type": "MAY",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found notification methods notify_tools_list_changed, notify_prompts_list_changed, notify_resources_list_changed in SDK.",
+        "Phase 1-IR: Confirmed that these methods send notifications when the respective lists change."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the required notification behaviors, complying with the MCP rule. Functions for notifications are well-defined and called internally by the SDK without requiring application developer action.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\resource.rb"
+      ],
+      "code_snippets": [
+        "server.notify_tools_list_changed",
+        "server.notify_prompts_list_changed",
+        "server.notify_resources_list_changed"
+      ]
+    },
+    {
+      "rule_id": 60,
+      "rule_type": "MUST",
+      "rule_text": "All messages between MCP clients and servers **MUST** follow the\n[JSON-RPC 2.0](https://www.jsonrpc.org/specification) specification. The protocol defines\nthese types of messages:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found relevant functions for notifications in calls.",
+        "Phase 2-Source Code: Verified that SDK automatically sends notifications and handles JSON-RPC messages."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically sends notifications regarding tools, prompts, and resources, which adhere to the JSON-RPC 2.0 specification. No developer intervention is necessary to trigger these notifications.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_test.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\path\\to\\source\\file_containing_server_methods.rb"
+      ],
+      "code_snippets": [
+        "def notify_tools_list_changed; ... end",
+        "def handle_json(request); ... end"
+      ]
+    },
+    {
+      "rule_id": 61,
+      "rule_type": "MUST",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Found methods in MCP::Server that process JSON-RPC requests.",
+        "Phase 2-Source Code: Methods like handle_json exist, but no conclusive evidence that they handle ID validation automatically.",
+        "Phase 2-Source Code: The system might generate IDs, but responsibility for ID management isn't clearly defined."
+      ],
+      "confidence": 0.6,
+      "explanation": "The SDK has mechanisms for processing requests and checking IDs, but it is unclear if it ensures that a valid ID is included in every request without developer input, nor if a null ID is handled correctly. Additional verification of the request handling logic would be necessary.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_client.rb"
+      ],
+      "code_snippets": [
+        "server.handle_json(request.body.read)",
+        "params: { jsonrpc: '2.0', id: id || rand(10000)}"
+      ]
+    },
+    {
+      "rule_id": 62,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 63,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found that encapsulate handling for unique request IDs.",
+        "Phase 1-IR: No call relationships indicating checks for previously used request IDs within sessions.",
+        "Phase 2-Source Code: No logic found in the source code that prevents reuse of request IDs within the same session."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically enforce the uniqueness of request IDs within a session, shifting this responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb"
+      ],
+      "code_snippets": [
+        "Call to handle_json in streamable_http_transport.rb does not include logic for preventing ID reuse."
+      ]
+    },
+    {
+      "rule_id": 64,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No direct function in defs_python.jsonl that directly correlates with ID handling in responses.",
+        "Phase 1-IR: Calls referencing response construction were discovered in calls_python.jsonl.",
+        "Phase 2-Source Code: Method structures indicate response handling, but specific ID compliance was not confirmed."
+      ],
+      "confidence": 0.6,
+      "explanation": "While the SDK has methods for forming responses, explicit handling of matching request and response IDs is not clear from the available definitions and calls. More specific evidence of ID handling in responses is needed.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\tool_test.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb"
+      ],
+      "code_snippets": [
+        "Response handling method calls found in the code indicate responses are structured correctly, but the precise ID logic needs more clarification."
+      ]
+    },
+    {
+      "rule_id": 65,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found response handling structure in MCP::Tool::Response.",
+        "Phase 2-Source Code: Methods for handling responses such as content() and error? were identified, but no automatic exclusion logic found."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK provides structure for responses and identifies methods but doesn't enforce the exclusive setting of either results or errors, leaving it to developers to manage compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool\\response.rb"
+      ],
+      "code_snippets": [
+        "MCP::Tool::Response content() and error? methods were noted, but enforcement logic was missing."
+      ]
+    },
+    {
+      "rule_id": 66,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found class MCP::Tool::Response defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool.rb",
+        "Phase 1-IR: Confirmed multiple calls to MCP::Tool::Response indicating interaction with the response mechanism.",
+        "Phase 2-Source Code: But does not show logic ensuring automatic handling between result and error."
+      ],
+      "confidence": 0.7,
+      "explanation": "While the SDK defines how responses can be constructed, it lacks the enforcement of ensuring either a result or an error is automatically managed. Developers may need to implement checks that are mandated by the protocol, shifting responsibility.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "class MCP::Tool::Response {...}",
+        "MCP::Tool::Response.new(...)"
+      ]
+    },
+    {
+      "rule_id": 67,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found definitions for response handling in handle_json.",
+        "Phase 1-IR: Confirmed calls to send_response and send_error appropriately managing responses.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: tmpyth772d2.json."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles sending structured error and result responses fulfilling protocol compliance regarding JSON object structure.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\json_rpc_handler.rb"
+      ],
+      "code_snippets": [
+        "{ error: 'Missing session ID' }",
+        "{ error: 'Invalid JSON' }"
+      ]
+    },
+    {
+      "rule_id": 68,
+      "rule_type": "MAY",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function send_request in defs, defined in server.rb:150.",
+        "Phase 1-IR: Confirmed call relationships to send_request in calls.",
+        "Phase 2-Source Code: Verified implementation error structure includes code and message.",
+        "Phase 2-Source Code: Verified outputs are structured per JSON schema requirements."
+      ],
+      "confidence": 1.0,
+      "explanation": "The MCP SDK correctly implements error handling and responses as per the MCP rule 68, providing structured error codes and messages along with the result ID.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool\\output_schema.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 69,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Searched for error codes and related handling.",
+        "Phase 2-Source Code: Found no implementation ensuring error codes are integers."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not ensure that error codes are automatically validated as integers when constructing responses. Developers are left to enforce this requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\tool.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 70,
+      "rule_type": "MUST_NOT",
+      "rule_text": "Notifications are sent from the client to the server or vice versa, as a one-way message.\nThe receiver **MUST NOT** send a response.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No violations found regarding notification handling.",
+        "Phase 2-Source Code: Verified automatic notification sending in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb.",
+        "Phase 2-Source Code: Confirmed method calls for sending notifications in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages notification sending, ensuring developers do not need to handle this behavior manually, in compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
+      ],
+      "code_snippets": [
+        "@server.notify_tools_list_changed",
+        "@server.notify_prompts_list_changed",
+        "@server.notify_resources_list_changed"
+      ]
+    },
+    {
+      "rule_id": 71,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Notifications **MUST NOT** include an ID.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found notification functions in defs.",
+        "Phase 2-Source Code: Verified notification sending logic includes ID in messages."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK includes an ID field in the notifications, which contradicts MCP rule 71 stating notifications must not include an ID.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_notification_integration_test.rb"
+      ],
+      "code_snippets": [
+        "{ jsonrpc: \"2.0\", method: \"initialize\", id: \"123\" }"
+      ]
+    },
+    {
+      "rule_id": 72,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found notification methods in the source code that handle changes automatically.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_transport_test.rb."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the HTTP-based transport notably through internal notification mechanisms, ensuring no manual interventions from developers are required for notification handling.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_transport_test.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_notification_integration_test.rb"
+      ],
+      "code_snippets": [
+        "def notify_tools_list_changed; send_notification('tools/list_changed'); end",
+        "def notify_prompts_list_changed; send_notification('prompts/list_changed'); end"
+      ]
+    },
+    {
+      "rule_id": 73,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found for STDIO transport handling credentials.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb. No automatic credential retrieval logic present."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not encapsulate the behavior of retrieving credentials from the environment automatically when using STDIO transport. The absence of such functionality shifts the responsibility to application developers, which contradicts the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 74,
+      "rule_type": "MAY",
+      "rule_text": "Additionally, clients and servers **MAY** negotiate their own custom authentication and\nauthorization strategies.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability to define custom methods in methods.rb",
+        "Phase 1-IR: Checked calls but no internal handling of authentication/authorization strategies found in the source code."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK allows defining custom authentication methods but does not encapsulate the logic to automatically handle the negotiation process. This places responsibility on developers, which is against the requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\methods.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 75,
+      "rule_type": "MUST",
+      "rule_text": "The initialization phase **MUST** be the first interaction between client and server.\nDuring this phase, the client and server:\n\n- Establish protocol version compatibility\n- Exchange and negotiate capabilities\n- Share implementation details",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'initialize' in MCP::Server, defined to handle protocol initialization and capability negotiation.",
+        "Phase 2-Source Code: Verified that the SDK automatically manages the initialization behavior without requiring application developers to implement this."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements the initialization phase by automatically handling the interactions required between client and server, which ensures that this phase is indeed the first interaction.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": [
+        "def initialize: Initializes the protocol and returns server capabilities.",
+        "server.notify_tools_list_changed"
+      ]
+    },
+    {
+      "rule_id": 76,
+      "rule_type": "MUST",
+      "rule_text": "The client **MUST** initiate this phase by sending an `initialize` request containing:\n\n- Protocol version supported\n- Client capabilities\n- Client implementation information",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Search returned no functions; proceeded to source code verification.",
+        "Phase 2-Source Code: Found `initialize` handling within `MCP::Server` that supports protocol initialization.",
+        "Phase 2-Source Code: Verified automatic notification sending logic when handling initialization requests."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the initialization request and sends necessary notifications as per the MCP specification. Both the ability definition and internal notification logic have been verified.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_notification_integration_test.rb"
+      ],
+      "code_snippets": [
+        "def initialize; end  # Method implementation that initializes protocol and capabilities.",
+        "server.notify_tools_list_changed;  # Internal handling of notifications."
+      ]
+    },
+    {
+      "rule_id": 77,
+      "rule_type": "MUST",
+      "rule_text": "The server **MUST** respond with its own capabilities and information:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found definition of `initialize` method in MCP::Server, responsible for returning capabilities.",
+        "Phase 1-IR: Confirmed that `get_capabilities` method is called within multiple internal methods.",
+        "Phase 2-Source Code: Verified implementation details in MCP::Server that confirm encapsulation of capabilities response."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the requirement of responding with server capabilities and includes internal notification logic, thereby encapsulating the responsibility required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\capabilities.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\notifications.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": [
+        "def initialize; ...; end  # Returns server capabilities in MCP::Server.",
+        "def notify_tools_list_changed; ...; end  # Internal notification on tool changes."
+      ]
+    },
+    {
+      "rule_id": 78,
+      "rule_type": "MUST",
+      "rule_text": "After successful initialization, the client **MUST** send an `initialized` notification\nto indicate it is ready to begin normal operations:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found notification capabilities but no specific method for 'initialized'.",
+        "Phase 2-Source Code: Did not find implementation logic to send 'initialized' notification."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK does not implement automatic handling of the required 'initialized' notification.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
+      ],
+      "code_snippets": [
+        "@transport.send_notification"
+      ]
+    },
+    {
+      "rule_id": 79,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `initialize` in `lib/mcp/server.rb`.",
+        "Phase 1-IR: Confirmed handling calls that check for supported requests types.",
+        "Phase 2-Source Code: Unable to verify automatic handling to restrict non-ping requests before initialization completes."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK provides mechanisms for initialization and notifying, but it does not prevent applications from sending requests other than pings before the `initialize` request is responded to.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+      ],
+      "code_snippets": [
+        "def initialize ... end",
+        "def handle_request(request) ... end"
+      ]
+    },
+    {
+      "rule_id": 80,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function initialize in MCC:Server.",
+        "Phase 1-IR: Noted notification functions like notify_tools_list_changed exist.",
+        "Phase 2-Source Code: Review of MCP::Server class indicates no restriction on requests sent prior to initialization."
+      ],
+      "confidence": 0.8,
+      "explanation": "While the SDK has functions for initializing and sending notifications, there is no explicit enforcement in the SDK that prevents developers from sending requests other than pings and logging before receiving an 'initialized' notification. The SDK does not encapsulate the behavior of disallowing such requests based on the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
+      ],
+      "code_snippets": [
+        "server.notify_tools_list_changed"
+      ]
+    },
+    {
+      "rule_id": 81,
+      "rule_type": "MUST",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `initialize` in MCP::Configuration handling protocol version.",
+        "Phase 2-Source Code: Verified ability to set protocol version, but no automatic handling of sending this version during requests."
+      ],
+      "confidence": 0.9,
+      "explanation": "While the SDK allows defining the protocol version through configuration, it does not implement automatic sending of this version during the initialize request, thereby shifting responsibility to the application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\configuration.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "configuration = MCP::Configuration.new(protocol_version: \"2024-11-05\")",
+        "MCP::Server.new(name: \"test_server\", configuration: configuration)"
+      ]
+    },
+    {
+      "rule_id": 82,
+      "rule_type": "SHOULD",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `initialize` related handling in `MCP::Server`.",
+        "Phase 1-IR: Confirmed call relationships surrounding `protocol_version` during server initialization.",
+        "Phase 2-Source Code: Verified automatic notifications via methods like `notify_tools_list_changed` within the SDK."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK encapsulates the management of protocol versions and internal notifications without exposing this responsibility to application developers, fulfilling the MCP guidelines.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\configuration.rb"
+      ],
+      "code_snippets": [
+        "MCP::Configuration.new(protocol_version: '2024-11-05')",
+        "server.notify_tools_list_changed"
+      ]
+    },
+    {
+      "rule_id": 83,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability to define protocol version in `MCP::Configuration`. Defined in file.",
+        "Phase 1-IR: Confirmed automatic protocol handling in `MCP::Server` using `handle_json`."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements the requirement by encapsulating both the ability to define protocol versions and the internal handling of responses. Developers do not need to manage these details themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\configuration.rb"
+      ],
+      "code_snippets": [
+        "configuration = MCP::Configuration.new(protocol_version: '2024-11-05')",
+        "MCP::Server#handle_json"
+      ]
+    },
+    {
+      "rule_id": 84,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found no suitable function definitions regarding automatic response with alternative protocol version.",
+        "Phase 2-Source Code: The server initializes with protocol version but lacks logic to handle unsupported versions automatically."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines a protocol version but does not implement the logic to respond with another supported protocol version when the requested version is unsupported.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\mcp.gemspec",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "MCP::Server.new(name: 'test_server', configuration: configuration)",
+        "configuration = MCP::Configuration.new(protocol_version: '2024-11-05')"
+      ]
+    },
+    {
+      "rule_id": 85,
+      "rule_type": "SHOULD",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found capabilities for protocol version handling in MCP::Configuration.",
+        "Phase 2-Source Code: No automated logic found for handling responses to ensure the latest protocol version is returned."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK provides a way to define the protocol version but does not automatically handle sending the latest version to clients, thus failing to meet the 'SHOULD' requirement outlined in the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md"
+      ],
+      "code_snippets": [
+        "configuration = MCP::Configuration.new(protocol_version: 'latest')",
+        "MCP::Server.new(name: 'test_server', configuration: configuration)"
+      ]
+    },
+    {
+      "rule_id": 86,
+      "rule_type": "SHOULD",
+      "rule_text": "If the client does not support the version in the server's response, it **SHOULD**\ndisconnect.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant definitions found in defs_python.jsonl",
+        "Phase 1-IR: No relevant calls found in calls_python.jsonl",
+        "Phase 2-Source Code: Found close_session method indicated but no context for automatic handling based on version support."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK does not implement automatic disconnection logic when the server's response version is not supported by the client. Only the existence of a method for session closure was found, lacking explicit linkage to version handling.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb"
+      ],
+      "code_snippets": [
+        "close_session method found but not automatically linked to version support."
+      ]
+    },
+    {
+      "rule_id": 87,
+      "rule_type": "MUST",
+      "rule_text": "<Note>\nIf using HTTP, the client **MUST** include the `MCP-Protocol-Version:\n<protocol-version>` HTTP header on all subsequent requests to the MCP\nserver.\nFor details, see [the Protocol Version Header section in Transports](/specification/2025-06-18/basic/transports#protocol-version-header).\n</Note>",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No explicit functions found handling the inclusion of the MCP-Protocol-Version header in HTTP requests.",
+        "Phase 2-Source Code: In the HTTP client and server classes, there is no mechanism that automatically includes the `MCP-Protocol-Version` header when sending requests."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK defines the capability to set a protocol version but lacks the implementation to automatically include the `MCP-Protocol-Version` HTTP header in requests. Developers are required to manage including the header manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\mcp\\client\\http_client.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "The configuration allows setting a protocol version, but there is no implementation to automatically insert the MCP-Protocol-Version header in HTTP requests."
+      ]
+    },
+    {
+      "rule_id": 88,
+      "rule_type": "MUST",
+      "rule_text": "Both parties **MUST**:\n\n- Respect the negotiated protocol version\n- Only use capabilities that were successfully negotiated",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Ability definitions for tools and capabilities found.",
+        "Phase 1-IR: Notification methods for list changes identified in the SDK.",
+        "Phase 2-Source Code: Verified implementation of automatic notification handling in the SDK."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework defines the necessary capabilities and automatically sends notifications for list changes as required by the rule. This implementation shields application developers from manually managing these details.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "def notify_tools_list_changed; ... end",
+        "def notify_prompts_list_changed; ... end",
+        "def notify_resources_list_changed; ... end"
+      ]
+    },
+    {
+      "rule_id": 89,
+      "rule_type": "SHOULD",
+      "rule_text": "For the stdio [transport](/specification/2025-06-18/basic/transports), the client **SHOULD** initiate\nshutdown by:\n\n1. First, closing the input stream to the child process (the server)\n2. Waiting for the server to exit, or sending `SIGTERM` if the server does not exit\n   within a reasonable time\n3. Sending `SIGKILL` if the server does not exit within a reasonable time after `SIGTERM`",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions for shutdown found in defs.",
+        "Phase 1-IR: No relevant call relationships found in calls.",
+        "Phase 2-Source Code: Found function references related to stream but no automatic shutdown management."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not implement the automatic shutdown behaviors required by the MCP rule, failing to encapsulate the shutdown process, allowing developers to manage signal handling themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb"
+      ],
+      "code_snippets": [
+        "def close_input_stream() {...}",
+        "def shutdown() {...}"
+      ]
+    },
+    {
+      "rule_id": 90,
+      "rule_type": "MAY",
+      "rule_text": "The server **MAY** initiate shutdown by closing its output stream to the client and\nexiting.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function to close the session stream in http_server.rb at line 154.",
+        "Phase 1-IR: Confirmed call to close session in http_server.rb at line 182.",
+        "Phase 2-Source Code: Verified automatic implementation of session and stream closure in the SDK."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides automatic handling for initiating shutdown by closing its output stream to the client, encapsulating the required behavior within the framework.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb"
+      ],
+      "code_snippets": [
+        "session[:stream].close   # Line 154",
+        "client.close_session      # Line 182"
+      ]
+    },
+    {
+      "rule_id": 91,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found related to timeouts in defs_python.jsonl.",
+        "Phase 1-IR: No call relationships in calls_python.jsonl confirming timeout handling.",
+        "Phase 2-Source Code: Verified implementation details; no timeout or cancellation handling found in source files."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement automatic timeouts for requests nor issues cancellation notifications as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\client\\http.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_transport.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 92,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient definitions found in defs_python.jsonl to address timeout handling.",
+        "Phase 1-IR: Insufficient function call analysis in calls_python.jsonl regarding cancellation notifications.",
+        "Phase 2-Source Code: Incomplete handling of timeout and cancellation notifications found in source code."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not provide an automatic method to send cancellation notifications when a request times out, shifting the responsibility to the developers instead.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
+      ],
+      "code_snippets": [
+        "No automatic method found for sending cancellation notifications on timeout.",
+        "Notification methods defined for tools, but not for cancellations."
+      ]
+    },
+    {
+      "rule_id": 93,
+      "rule_type": "SHOULD",
+      "rule_text": "SDKs and other middleware **SHOULD** allow these timeouts to be configured on a\nper-request basis.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found for configurable timeouts in defs_python.jsonl.",
+        "Phase 1-IR: No function call relationships found that indicate automated timeout management in calls_python.jsonl.",
+        "Phase 2-Source Code: Found references to configurations in server methods, but no methods specifically setting timeout configurations per request."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not provide a mechanism for configuring timeouts on a per-request basis, nor does it encapsulate the required functionality internally. Instead, the responsibility appears to be left to application developers, thereby failing to meet the MCP rule requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 94,
+      "rule_type": "MAY",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found notification methods in MCP::Server.",
+        "Phase 2-Source Code: Observed SD's capability to handle notifications, but no mechanism for resetting the timeout clock found."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK supports sending notifications but lacks the implementation for automatically resetting the timeout clock when receiving progress notifications, which is required by the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server_notification_test.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\stdio_notification_integration_test.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\server\\transports\\streamable_http_notification_integration_test.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\configuration_test.rb"
+      ],
+      "code_snippets": [
+        "MCP::Server#notify_tools_list_changed",
+        "MCP::Server#notify_prompts_list_changed",
+        "MCP::Server#notify_resources_list_changed"
+      ]
+    },
+    {
+      "rule_id": 95,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found in defs_python.jsonl related to timeout enforcement.",
+        "Phase 1-IR: No function calls found in calls_python.jsonl related to timeout.",
+        "Phase 2-Source Code: No relevant source code implementation found to handle maximum timeout enforcement."
+      ],
+      "confidence": 1.0,
+      "explanation": "The MCP SDK does not implement any internal mechanism for enforcing a maximum timeout as required by the rules. Developers are left to manage timeout settings themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\timeout_handler.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\stdio_server.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 96,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** be prepared to handle these error cases:\n\n- Protocol version mismatch\n- Failure to negotiate required capabilities\n- Request [timeouts](#timeouts)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found definitions related to error handling and configuration in source files.",
+        "Phase 2-Source Code: Verified internal exception handling and automated responses in the SDK."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements required error handling behaviors internally, including reporting exceptions and handling protocol mismatches without requiring application developers to intervene.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\capabilities.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\stdio_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb"
+      ],
+      "code_snippets": [
+        "exception_reporter = ->(exception, server_context) { ... } # Handles exceptions internally",
+        "def handle_json(...) # Processes JSON RPC requests and handles errors"
+      ]
+    },
+    {
+      "rule_id": 97,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found regarding user consent for dynamically registered clients.",
+        "Phase 1-IR: No calls found related to consent handling in calls_python.jsonl.",
+        "Phase 2-Source Code: Source code does not encapsulate consent handling for dynamic client registrations."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement consent handling for dynamically registered clients before forwarding to third-party servers, which is required by the MCP rule. It leaves consent enforcement to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\version.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+      ],
+      "code_snippets": [
+        "No specific implementations found dealing with obtaining user consent for dynamic registrations."
+      ]
+    },
+    {
+      "rule_id": 98,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept any tokens that were not explicitly issued for the MCP server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: No automatic handling of token acceptance found in FILE_PATH: lib/mcp/server.rb."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not contain logic that explicitly enforces the rejection of tokens not issued by the MCP server, failing to comply with the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 99,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Searched function definitions and found no direct match for verifying requests.",
+        "Phase 2-Source Code: Found handle_request method to be called internally within the SDK, indicating automated processing of inbound requests."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK framework implements automatic request verification through the handle_request method, which processes inbound requests without requiring developer action. This complies with the MCP rule that mandates verifying all inbound requests.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\test\\mcp\\client\\http_test.rb"
+      ],
+      "code_snippets": [
+        "def handle_request...",
+        "@transport.handle_request(...)"
+      ]
+    },
+    {
+      "rule_id": 100,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "@sessions is referenced multiple times in the SDK, indicating it manages session data.",
+        "Found calls like @sessions.key? and @sessions.fetch in the source code, confirming reliance on session information."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK uses session management for authentication without providing an alternative, violating the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server\\transports\\streamable_http_transport.rb",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\examples\\http_server.rb"
+      ],
+      "code_snippets": [
+        "Found references to session management in the file 'streamable_http_transport.rb'."
+      ]
+    },
+    {
+      "rule_id": 101,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** use secure, non-deterministic session IDs.\nGenerated session IDs (e.g., UUIDs) **SHOULD** use secure random number generators. Avoid predictable or sequential session identifiers that could be guessed by an attacker. Rotating or expiring session IDs can also reduce the risk.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No related function definitions found in defs_python.jsonl",
+        "Phase 1-IR: No call relationships indicating mandatory handling of session IDs found in calls_python.jsonl",
+        "Phase 2-Source Code: Found usage of SecureRandom.uuid to generate session IDs in source file."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK includes the ability to generate session IDs using SecureRandom, which is a good practice; however, the absence of comprehensive automatic session lifecycle management logic denotes that it is up to the developers to invoke these methods manually. Thus, it does not fulfill the 'MUST' requirement in the context of providing automated, secure, non-deterministic session ID management.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\ruby-sdk-main\\ruby-sdk-main\\lib\\mcp\\server.rb"
+      ],
+      "code_snippets": [
+        "SecureRandom.uuid used for session IDs in line 180."
+      ]
+    }
+  ]
+}

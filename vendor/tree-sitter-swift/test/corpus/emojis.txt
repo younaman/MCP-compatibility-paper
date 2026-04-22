@@ -1,0 +1,98 @@
+﻿================================================================================
+Emojis in variable names
+================================================================================
+
+let ⭐️ = "star"
+let 🌙 = "moon"
+let ☁️☀️☁️ = "clouds and sun"
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (line_string_literal
+      (line_str_text)))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (line_string_literal
+      (line_str_text)))
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (line_string_literal
+      (line_str_text))))
+
+================================================================================
+Multi-codepoint emojis
+================================================================================
+
+func 🏃🏼‍♂️() {
+}
+
+🏃🏼‍♂️()
+
+
+func 👨‍❤️‍💋‍👨(🙋🏼‍♂️ 🙋‍♂️: Man, 🙋🏻‍♂️ 🙋‍♂️2: Man) {
+}
+
+👨‍❤️‍💋‍👨(🙋🏼‍♂️: a, 🙋🏻‍♂️: b)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (function_declaration
+    (simple_identifier)
+    (function_body))
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments)))
+  (function_declaration
+    (simple_identifier)
+    (parameter
+      (simple_identifier)
+      (simple_identifier)
+      (user_type
+        (type_identifier)))
+    (parameter
+      (simple_identifier)
+      (simple_identifier)
+      (user_type
+        (type_identifier)))
+    (function_body))
+  (call_expression
+    (simple_identifier)
+    (call_suffix
+      (value_arguments
+        (value_argument
+          (value_argument_label
+            (simple_identifier))
+          (simple_identifier))
+        (value_argument
+          (value_argument_label
+            (simple_identifier))
+          (simple_identifier))))))
+
+================================================================================
+Emojis with numbers in them
+================================================================================
+
+let number4️⃣ = nummber2️⃣ + number2️⃣
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (property_declaration
+    (value_binding_pattern)
+    (pattern
+      (simple_identifier))
+    (additive_expression
+      (simple_identifier)
+      (simple_identifier))))
+

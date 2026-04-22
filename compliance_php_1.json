@@ -1,0 +1,1902 @@
+﻿{
+  "summary": {
+    "total": 100,
+    "compliant": 15,
+    "non_compliant": 66,
+    "unclear": 19,
+    "avg_files_per_rule": 2.2
+  },
+  "results": [
+    {
+      "rule_id": 1,
+      "rule_type": "OPTIONAL",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Function definitions related to session management were found, but none focused on authorization.",
+        "Phase 1-IR: Call relationships did not indicate any automatic handling of authorization functionalities.",
+        "Phase 2-Source Code: Verified implementations in StdioTransport, InMemoryTransport, and StreamableHttpTransport reveal no automatic authorization."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK fails to automatically handle authorization as required by the MCP rule, instead leaving the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php"
+      ],
+      "code_snippets": [
+        "public function send(string $data, array $context): void { // Operates without automatic authorization handling }"
+      ]
+    },
+    {
+      "rule_id": 2,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions for send() and listen() in StreamableHttpTransport.php.",
+        "Phase 2-Source Code: Verified internal logic for handling requests in StreamableHttpTransport.php."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the required behavior for HTTP-based transports, encapsulating it such that developers do not need to manage protocol details themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+      ],
+      "code_snippets": [
+        "public function send(string $data, array $context) { /* logic implemented here */ }",
+        "public function listen() { return match ($this->request->getMethod()) { 'GET' => $this->handleGetRequest(), ... }; }"
+      ]
+    },
+    {
+      "rule_id": 3,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions but no relevant functions for environment variable retrieval.",
+        "Phase 2-Source Code: Inspected StdioTransport.php and found no calls or logic related to credential retrieval from the environment."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not implement automatic retrieval of credentials from the environment for STDIO transport, which is mandated by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 4,
+      "rule_type": "MUST",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Inspected InMemoryTransport.php, found no security practices enforced.",
+        "Phase 2-Source Code: Inspected StdioTransport.php, found basic input/output handling without security methods.",
+        "Phase 2-Source Code: Inspected StreamableHttpTransport.php, no implementation of security best practices noted."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically enforce security best practices for alternative transports, pushing this responsibility onto developers instead.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+      ],
+      "code_snippets": [
+        "Send and receive functionalities from `StdioTransport.php` without security considerations.",
+        "Basic message handling in `InMemoryTransport.php` with no security context.",
+        "Logging efforts in `StreamableHttpTransport.php` but lacking actionable security measures."
+      ]
+    },
+    {
+      "rule_id": 5,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** implement OAuth 2.1 with appropriate security\n   measures for both confidential and public clients.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_php.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_php.jsonl.",
+        "Phase 2-Source Code: Verified multiple implementations - none encapsulated automatic handling for OAuth 2.1."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not automatically implement OAuth 2.1 security measures for confidential and public clients. Although some definitions imply the existence of OAuth functionalities, there is no automatic handling defined that encapsulates the required behavior as stipulated by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\ServerCapabilities.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 6,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Authorization servers and MCP clients **SHOULD** support the OAuth 2.0 Dynamic Client Registration\n   Protocol ([RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found no relevant function definitions in defs_php.jsonl for dynamic client registration.",
+        "Phase 1-IR: No call relationships were verified in calls_php.jsonl regarding dynamic client registration.",
+        "Phase 2-Source Code: Analyzed C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\ServerCapabilities.php which doesn't imply handling of registration."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK lacks functionality to encapsulate OAuth 2.0 Dynamic Client Registration Protocol. There are no defined methods or internal logic examining that handles client registrations automatically, shifting responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\ServerCapabilities.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\ClientCapabilities.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Request\\InitializeRequest.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 7,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 8,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_php.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_php.jsonl.",
+        "Phase 2-Source Code: Analyzed DiscoveryState.php, CachedDiscoverer.php, and ResourceReader.php without finding automatic handling of OAuth 2.0 Protected Resource Metadata."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement automatic handling for OAuth 2.0 Protected Resource Metadata discovery. It lacks both ability definitions and internal logic to facilitate the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Discovery\\DiscoveryState.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Discovery\\CachedDiscoverer.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Resource\\ResourceReader.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 9,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function getAuthorizationServerMetadata in defs_php.jsonl.",
+        "Phase 1-IR: Confirmed calls to this function in calls_php.jsonl.",
+        "Phase 2-Source Code: Examined the implementation in FILE_PATH: ServerCapabilities.php but found no automated metadata sending logic.",
+        "Phase 2-Source Code: Additional investigation of related code did not reveal compliance with automatic handling of server metadata."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides the ability to retrieve OAuth 2.0 Authorization Server Metadata but lacks the internal logic for automatically sending this metadata as required by the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\ServerCapabilities.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php"
+      ],
+      "code_snippets": [
+        "// Found definition of getAuthorizationServerMetadata\npublic function getAuthorizationServerMetadata() { ... }\n// No automated logic found inside the SDK."
+      ]
+    },
+    {
+      "rule_id": 10,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions related to OAuth 2.0 Metadata found.",
+        "Phase 1-IR: No call relationships related to OAuth 2.0 found, indicating non-implementation.",
+        "Phase 2-Source Code: Verified implementation in various files but found no logic handling OAuth 2.0 Metadata."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not define functions to handle or automatically manage OAuth 2.0 Authorization Server Metadata. There is no encapsulation of the required behavior within the SDK, shifting the responsibility to developers, violating the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\ToolAnnotations.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\ServerCapabilities.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Registry\\ReferenceRegistryInterface.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Attribute\\McpResource.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 11,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 12,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found related to 'authorization_servers' in defs_php.jsonl",
+        "Phase 1-IR: No function calls or relationships found related to 'authorization_servers' in calls_php.jsonl",
+        "Phase 2-Source Code: No implementation of 'authorization_servers' found in the source files."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement the required 'authorization_servers' field in the Protected Resource Metadata document, nor does it provide the necessary automatic handling as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Attribute\\McpResource.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\ReadResourceHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Configuration.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Resource\\ResourceReader.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Attribute\\McpResourceTemplate.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 13,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** use the HTTP header `WWW-Authenticate` when returning a _401 Unauthorized_ to indicate the location of the resource server metadata URL\nas described in [RFC9728 Section 5.1 \"WWW-Authenticate Response\"](https://datatracker.ietf.org/doc/html/rfc9728#name-www-authenticate-response).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient IR data found for `WWW-Authenticate` handling.",
+        "Phase 2-Source Code: No automatic handling of `WWW-Authenticate` header in `401 Unauthorized` response found in StreamableHttpTransport.php."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not internally handle adding the `WWW-Authenticate` header for `401 Unauthorized` responses, which is required by the MCP rule. It instead leaves this implementation detail to the developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+      ],
+      "code_snippets": [
+        "public function createErrorResponse(Error $jsonRpcError, int $statusCode): ResponseInterface { /* ... */ }"
+      ]
+    },
+    {
+      "rule_id": 14,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** be able to parse `WWW-Authenticate` headers and respond appropriately to `HTTP 401 Unauthorized` responses from the MCP server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `createErrorResponse` function in tmpcqg8juag.php.",
+        "Phase 1-Source Code: `createErrorResponse` is used within various request handling methods, but lacks handling for `WWW-Authenticate` headers.",
+        "Phase 2: No logic present to parse or respond specifically to `HTTP 401 Unauthorized` requests."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK can create error responses but lacks the implementation to automatically handle `WWW-Authenticate` headers or logic to respond to `HTTP 401 Unauthorized` requests. Developers would need to implement these capabilities themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\RequestHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php"
+      ],
+      "code_snippets": [
+        "private function createErrorResponse(Error $jsonRpcError, int $statusCode): ResponseInterface {...}",
+        "protected function handlePostRequest(): ResponseInterface {...}",
+        "protected function handleGetRequest(): ResponseInterface {...}"
+      ]
+    },
+    {
+      "rule_id": 15,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** follow the OAuth 2.0 Authorization Server Metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)\nspecification to obtain the information required to interact with the authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found capability definitions in the ServerCapabilities class indicating automatic notification might be necessary.",
+        "Phase 1-IR: Confirmed multiple handlers which interact with capabilities.",
+        "Phase 2-Source Code: No internal notification sending logic found that automatically invokes notifications when capability states change."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK has defined capability structures necessary for compliance, yet it lacks the internal logic that automatically sends notifications when changes to these capabilities occur, thereby placing this responsibility on developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\ServerCapabilities.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\GetPromptHandler.php"
+      ],
+      "code_snippets": [
+        "class ServerCapabilities { public readonly ?bool $toolsListChanged = false; ...}",
+        "class CallToolHandler { ... }",
+        "class GetPromptHandler { ... }"
+      ]
+    },
+    {
+      "rule_id": 16,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients and authorization servers **SHOULD** support the\nOAuth 2.0 Dynamic Client Registration Protocol [RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)\nto allow MCP clients to obtain OAuth client IDs without user interaction. This provides a\nstandardized way for clients to automatically register with new authorization servers, which is crucial\nfor MCP because:\n\n- Clients may not know all possible MCP servers and their authorization servers in advance.\n- Manual registration would create friction for users.\n- It enables seamless connection to new MCP servers and their authorization servers.\n- Authorization servers can implement their own registration policies.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions such as registerTool in src\\Capability\\Registry.php.",
+        "Phase 1-IR: Confirmed call relationships indicating automatic invocation of registration in src\\Server\\Handler\\Request\\CallToolHandler.php.",
+        "Phase 2-Source Code: Verified implementation provides automatic processing in src\\Capability\\Registry.php."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides automatic handling for OAuth 2.0 dynamic client registration by encapsulating registration processes within its capabilities, allowing seamless client registration without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Registry.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php"
+      ],
+      "code_snippets": [
+        "public function registerTool(Tool $tool, callable|array|string $handler, bool $isManual = false) { ... }",
+        "if (!$this->hasElements()) { $this->registerTool(...); } // Automatic tool registration logic"
+      ]
+    },
+    {
+      "rule_id": 17,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 18,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 19,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functionality for resource management in McpResource.php.",
+        "Phase 2-Source Code: Verified that there is no internal logic to automatically manage MCP server identification through resource parameters in token requests.",
+        "Phase 2-Source Code: Check in ReadResourceHandler and other request handlers did not show any handling of the MCP identification."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK provides capabilities for managing MCP resources but lacks automated handling of the MCP server through the resource parameter during authorization and token requests.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Attribute\\McpResource.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\CreateSamplingMessageRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\ReadResourceHandler.php"
+      ],
+      "code_snippets": [
+        "McpResource handles MCP resources and maps URIs.",
+        "ReadResourceHandler processes requests but does not manage server identification or compliance directly."
+      ]
+    },
+    {
+      "rule_id": 20,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found relevant function definitions and call relationships in calls_php.jsonl.",
+        "Phase 2-Source Code: Verified that McpResource.php, ResourceSubscribeRequest.php, ResourceUnsubscribeRequest.php, ResourceReader.php, and ReadResourceHandler.php all enforce the automatic handling of URIs."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages the behavior required by the MCP rule related to canonical URIs. All relevant classes have constructors that ensure URIs are provided, validated, and utilized correctly without requiring developer intervention. This encapsulation aligns with the purpose of the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Attribute\\McpResource.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\ResourceSubscribeRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\ResourceUnsubscribeRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Resource\\ResourceReader.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\ReadResourceHandler.php"
+      ],
+      "code_snippets": [
+        "public function __construct(public string $uri) {} // McpResource.php",
+        "public function __construct(public readonly string $uri) {} // ResourceSubscribeRequest.php",
+        "public function __construct(public readonly string $uri) {} // ResourceUnsubscribeRequest.php"
+      ]
+    },
+    {
+      "rule_id": 21,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions in multiple files that utilize URIs.",
+        "Phase 1-IR: Confirmed calls for reading resources and validating URIs.",
+        "Phase 2-Source Code: Verified that while resources are read and handled, no automatic notification triggers are found."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK encapsulates URI handling but does not automatically send notifications for resource updates, thus shifting part of the responsibility to developers, which is contrary to the rule's intent.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Attribute\\McpResource.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Resource.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\ReadResourceRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\ResourceSubscribeRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ResourceUpdatedNotification.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Resource\\ResourceReader.php"
+      ],
+      "code_snippets": [
+        "public function read(ReadResourceRequest $request): ReadResourceResult { /*...*/ } // Handles reading of URIs",
+        "public function __construct(public readonly string $uri, ...) // URI used in ResourceUpdatedNotification"
+      ]
+    },
+    {
+      "rule_id": 22,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found capacity definitions in src\\Schema\\ServerCapabilities.php, specifically $toolsListChanged.",
+        "No methods found that automatically send notifications when an event occurs."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines the capability to handle change notifications but lacks the implementation of automatic sending logic within its methods, thus shifting responsibility to the developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\ServerCapabilities.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ResourceListChangedNotification.php"
+      ],
+      "code_snippets": [
+        "public readonly ?bool $toolsListChanged = false",
+        "class ResourceListChangedNotification extends Notification { ... }"
+      ]
+    },
+    {
+      "rule_id": 23,
+      "rule_type": "SHOULD",
+      "rule_text": "> **Note:** While both `https://mcp.example.com/` (with trailing slash) and `https://mcp.example.com` (without trailing slash) are technically valid absolute URIs according to [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986), implementations **SHOULD** consistently use the form without the trailing slash for better interoperability unless the trailing slash is semantically significant for the specific resource.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions for URI handling in defs_php.jsonl.",
+        "Phase 2-Source Code: Verified lack of implementation logic to enforce trailing slash removal in ResourceReader.",
+        "Phase 2-Source Code: Notifications defined but not confirmed to be automatic."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not implement automatic handling of trailing slashes for URIs, which is the key requirement outlined in rule 23. It allows developers to input URIs without ensuring uniformity in URI format usage.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Attribute\\McpResource.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ResourceUpdatedNotification.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Resource\\ResourceReader.php"
+      ],
+      "code_snippets": [
+        "public function __construct(public string $uri, ...){ ... } (McpResource)",
+        "public function read(ReadResourceRequest $request): ReadResourceResult {...} (ResourceReader)"
+      ]
+    },
+    {
+      "rule_id": 24,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** send this parameter regardless of whether authorization servers support it.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_php.jsonl.",
+        "Phase 1-IR: No call relationships found in calls_php.jsonl.",
+        "Phase 2-Source Code: Found ClientCapabilities class for ability definition but no automatic handling in send methods."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK defines ability structures in ClientCapabilities but lacks the internal automatic handling of sending mandatory parameters, thus shifting the responsibility to the developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\ClientCapabilities.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php"
+      ],
+      "code_snippets": [
+        "class ClientCapabilities {...}",
+        "public function send(string $data, array $context): void {...} // requires manual context"
+      ]
+    },
+    {
+      "rule_id": 25,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in `defs_php.jsonl`.",
+        "Phase 1-IR: No relevant function calls found in `calls_php.jsonl`.",
+        "Phase 2-Source Code: Found mention of the Authorization header in CORS settings, but no functionality to handle it automatically within requests."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not automatically handle the Authorization header and token management as required. It only specifies the Authorization header in CORS without implementing the required logic or methods to automatically use it during requests.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+      ],
+      "code_snippets": [
+        "'Authorization', 'Accept' in CORS settings",
+        "Functionality in `send()` and `listen()` methods but lacking automatic handling logic."
+      ]
+    },
+    {
+      "rule_id": 26,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found related to automatic handling of Authorization header.",
+        "Phase 2-Source Code: Found getHeaderLine method in StreamableHttpTransport.php, but lacking automatic handling logic."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not automatically handle the Authorization header in accordance with the MCP rule. It allows authorization headers to be included but requires developers to manage this aspect, which violates the rule that the SDK should encapsulate this behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+      ],
+      "code_snippets": [
+        "$this->request->getHeaderLine('Authorization')"
+      ]
+    },
+    {
+      "rule_id": 27,
+      "rule_type": "MUST",
+      "rule_text": "Note that authorization **MUST** be included in every HTTP request from client to server,\neven if they are part of the same logical session.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient information found in defs_php.jsonl concerning authorization functionality.",
+        "Phase 1-IR: Lack of call relationships related to automatic authorization in calls_php.jsonl.",
+        "Phase 2-Source Code: Reviewed StreamableHttpTransport.php and InMemoryTransport.php, no automatic authorization handling is evident."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not implement automatic inclusion of authorization in every HTTP request from client to server. Developers must manage authorization details themselves, which contradicts the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php"
+      ],
+      "code_snippets": [
+        "public function send(string $data, array $context): void {...}",
+        "if (isset($context['session_id'])) {...}"
+      ]
+    },
+    {
+      "rule_id": 28,
+      "rule_type": "MUST_NOT",
+      "rule_text": "2. Access tokens **MUST NOT** be included in the URI query string",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions for token management found in defs_php.jsonl.",
+        "Phase 1-IR: No calls found that indicate tokens are being managed properly in calls_php.jsonl.",
+        "Phase 2-Source Code: Key files such as ResourceUnsubscribeRequest.php and CreateSamplingMessageRequest.php handle URIs but lack secure management of tokens."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK lacks mechanisms to automatically handle the management of access tokens securely, specifically to ensure they are not included in URI query strings, which places the responsibility on developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\ResourceUnsubscribeRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\CreateSamplingMessageRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\ReadResourceRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\ResourceSubscribeRequest.php"
+      ],
+      "code_snippets": [
+        "$this->uri,",
+        "return new self($params['uri']);"
+      ]
+    },
+    {
+      "rule_id": 29,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions for token validation found in defs_php.jsonl.",
+        "Phase 1-IR: No call relationships for token validation found in calls_php.jsonl.",
+        "Phase 2-Source Code: Reviewed source files, but no automatic token validation methods found."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK did not implement the required behaviors for validating access tokens as per OAuth 2.1, as it lacks both ability definitions and internal token validation logic required for automatic handling.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 30,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found for validating access tokens or audience checks in defs_php.jsonl.",
+        "Phase 1-IR: No function call relationships related to access token validations found in calls_php.jsonl.",
+        "Phase 2-Source Code: Searched files yielded no results for implementing access token validation."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not include any function definitions or implementations that automatically validate access tokens in accordance with the stated MCP rule requirements. As such, application developers would need to perform these checks themselves, which goes against the purpose of the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Discovery\\SchemaValidator.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 31,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function validateAgainstJsonSchema in SchemaValidator.php, responsible for token validation.",
+        "Phase 1-IR: Confirmed automatic error logging and handling in SchemaValidator.",
+        "Phase 2-Source Code: Verified structured error response creation in Response.php during validation failures."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides automatic token validation and error response generation as specified in the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Discovery\\SchemaValidator.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Response.php"
+      ],
+      "code_snippets": [
+        "public function validateAgainstJsonSchema(mixed $data, array|object $schema): array {...}",
+        "public static function fromArray(array $data): self {...}"
+      ]
+    },
+    {
+      "rule_id": 32,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Identified the createErrorResponse method in StreamableHttpTransport.php, which handles generic error responses.",
+        "Phase 2-Source Code: Insufficient evidence found in GetPromptHandler.php for automatic handling of HTTP 401 responses for invalid tokens."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does include mechanisms for error handling, including response generation, but it lacks a specific implementation to validate tokens and respond with an HTTP 401 for invalid or expired tokens as strictly required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\GetPromptHandler.php"
+      ],
+      "code_snippets": [
+        "protected function createErrorResponse(Error $jsonRpcError, int $statusCode): ResponseInterface { ... }"
+      ]
+    },
+    {
+      "rule_id": 33,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP clients **MUST NOT** send tokens to the MCP server other than ones issued by the MCP server's authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No definitions found in defs_php.jsonl that pertain to token management.",
+        "Phase 1-IR: No call relationships found in calls_php.jsonl regarding token handling.",
+        "Phase 2-Source Code: Reviewed multiple SDK source files and confirmed lack of token authorization logic."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement necessary mechanisms to enforce the constraint that clients must only send tokens issued by the MCP server's authorization server.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\ReadResourceHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Resource\\ResourceReader.php"
+      ],
+      "code_snippets": [
+        "Session::save() method for session state management, which does not enforce token issuance rules.",
+        "InMemorySessionStore::write() method that lacks constraints on token validity."
+      ]
+    },
+    {
+      "rule_id": 34,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** only accept tokens that are valid for use with their\nown resources.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific function definitions found regarding token validation in defs_php.jsonl.",
+        "Phase 1-IR: No relevant function calls identified in calls_php.jsonl.",
+        "Phase 2-Source Code: Reviewed source files including ReadResourceRequest and ListResourcesHandler which do not implement automatic token validation."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK does not enforce automatic token validation to ensure tokens are only accepted if valid for their own resources. The analysis of the relevant files demonstrated that while token-related structures exist, there is no implementation logic ensuring compliance with the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\ListResourcesHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\ReadResourceRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+      ],
+      "code_snippets": [
+        "The SDK lacks any function enforcing token validity against resources."
+      ]
+    },
+    {
+      "rule_id": 35,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept or transit any other tokens.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions related to token restriction found.",
+        "Phase 2-Source Code: InMemoryTransport and StdioTransport do not implement logic to refuse other tokens."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK fails to enforce the protocol rule against accepting or transmitting any other tokens, leaving the responsibility to application developers instead.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\TransportInterface.php"
+      ],
+      "code_snippets": [
+        "public function send(string $data, array $context): void { ... } // Accepts data without validation on token type",
+        "public function send(string $data, array $context): void { ... } // Sends data directly to output in StdioTransport"
+      ]
+    },
+    {
+      "rule_id": 36,
+      "rule_type": "MUST",
+      "rule_text": "Servers **MUST** return appropriate HTTP status codes for authorization errors:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant findings from IR files.",
+        "Phase 2-Source Code: Verified HTTP handling implementation in StreamableHttpTransport.php and CallToolHandler.php."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK has built-in mechanisms to return proper HTTP status codes for authorization errors, adhering to the specified MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php"
+      ],
+      "code_snippets": [
+        "protected function createErrorResponse(Error $jsonRpcError, int $statusCode): ResponseInterface { ... } // StreamableHttpTransport.php",
+        "public function handle(CallToolRequest|HasMethodInterface $message, SessionInterface $session): Response|Error { ... } // CallToolHandler.php"
+      ]
+    },
+    {
+      "rule_id": 37,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow OAuth 2.1 security best practices as laid out in [OAuth 2.1 Section 7. \"Security Considerations\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#name-security-considerations).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant definitions or calls related to OAuth 2.1 security found.",
+        "Phase 2-Source Code: No automated handling for OAuth 2.1 practices discovered."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not implement automated handling of OAuth 2.1 security best practices. There is no internal notification logic to help developers handle OAuth security seamlessly.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
+      ],
+      "code_snippets": [
+        "No automated OAuth handling or notification logic found in 'InMemorySessionStore'.",
+        "No references to OAuth practices in 'InitializeHandler'."
+      ]
+    },
+    {
+      "rule_id": 38,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Found class EmbeddedResource which defines the resource parameter in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Content\\EmbeddedResource.php",
+        "Phase 2-Source Code: Found definition for list resources request in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\ListResourcesRequest.php but lacking direct implementation for authorization handling."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines the resource parameter but does not encapsulate automatic behavior for its inclusion in authorization and token requests, thereby shifting responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Content\\EmbeddedResource.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\ListResourcesRequest.php"
+      ],
+      "code_snippets": [
+        "class EmbeddedResource { public readonly TextResourceContents|BlobResourceContents $resource; }",
+        "public static function fromArray(array $data): self { if (!isset($data['resource'])) throw new InvalidArgumentException('Invalid resource field.'); }"
+      ]
+    },
+    {
+      "rule_id": 39,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 40,
+      "rule_type": "MUST",
+      "rule_text": "Clients and servers **MUST** implement secure token storage and follow OAuth best practices,\nas outlined in [OAuth 2.1, Section 7.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.1).",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 41,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found potential token session handling in InMemorySessionStore.php, but it only manages expiration via TTL.",
+        "Phase 1-IR: No function designed to automatically send notifications or handle the lifecycle of access tokens.",
+        "Phase 2-Source Code: Verified various handlers, but none encapsulated the logic for managing access tokens."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not implement automatic handling of short-lived access tokens nor manage their refresh rather it leaves this responsibility to the application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\GetPromptHandler.php"
+      ],
+      "code_snippets": [
+        "class InMemorySessionStore implements SessionStoreInterface { protected int $ttl = 3600; ... public function read(Uuid $sessionId) { if ($currentTimestamp - $session['timestamp'] > $this->ttl) { return false; // session expired } } }"
+      ]
+    },
+    {
+      "rule_id": 42,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No explicit function definitions found for refresh token management in defs_php.jsonl.",
+        "Phase 1-IR: No clear relationships or calls regarding refresh token rotation in calls_php.jsonl.",
+        "Phase 2-Source Code: Verified implementations in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php show no automated token rotation."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not encapsulate the required behavior of automatically rotating refresh tokens. It lacks implementations indicating that refresh token management is handled internally.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php"
+      ],
+      "code_snippets": [
+        "// Write method from Session.php handling session data.",
+        "// Read method from InMemorySessionStore.php for session lifecycle."
+      ]
+    },
+    {
+      "rule_id": 43,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow [OAuth 2.1 Section 1.5 \"Communication Security\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-1.5).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions initialize and send in InMemoryTransport.php, StreamableHttpTransport.php, and StdioTransport.php.",
+        "Phase 1-IR: No calls were found that handle OAuth 2.1 communication security methods.",
+        "Phase 2-Source Code: Verified implementation in InMemoryTransport.php, StdioTransport.php, and StreamableHttpTransport.php."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement automatic handling for communication security as required by OAuth 2.1 Section 1.5. The implementations only manage session IDs without ensuring secure transmission protocols.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+      ],
+      "code_snippets": [
+        "InMemoryTransport.php: send method lacks OAuth 2.1 security compliance handling.",
+        "StreamableHttpTransport.php: send method does not implement required secure transmission features."
+      ]
+    },
+    {
+      "rule_id": 44,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_php.jsonl specifically for HTTPS enforcement.",
+        "Phase 1-IR: No relevant calls found in calls_php.jsonl related to authorization endpoints and HTTPS.",
+        "Phase 2-Source Code: Reviewed multiple transport files which do not enforce HTTPS."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement behavior to enforce HTTPS for authorization server endpoints, which is a requirement of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\InMemoryTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
+      ],
+      "code_snippets": [
+        "No logic found that mandates serving over HTTPS."
+      ]
+    },
+    {
+      "rule_id": 45,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 46,
+      "rule_type": "MUST",
+      "rule_text": "To mitigate this, MCP clients **MUST** implement PKCE according to [OAuth 2.1 Section 7.5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.5.2).\nPKCE helps prevent authorization code interception and injection attacks by requiring clients to create a secret verifier-challenge pair, ensuring that only the original requestor can exchange an authorization code for tokens.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 47,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** have redirect URIs registered with the authorization server.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 48,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** validate exact redirect URIs against pre-registered values to prevent redirection attacks.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant functions found in defs_php.jsonl.",
+        "Phase 1-IR: No relevant call relationships found in calls_php.jsonl.",
+        "Phase 2-Source Code: Reviewed classes handling URIs in the SDK, observed lack of compliance to required automatic validation."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not implement automatic validation of redirect URIs against pre-registered values, thus shifting the responsibility to developers. Basic URI presence checks exist, but not against logged standards.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\ResourceUnsubscribeRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\ResourceSubscribeRequest.php"
+      ],
+      "code_snippets": [
+        "$this->uri; // Presence validation in constructor, lacking compliance on registered URI checks.",
+        "throw new InvalidArgumentException('Missing or invalid \"uri\" parameter'); // Basic validation check."
+      ]
+    },
+    {
+      "rule_id": 49,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** use and verify state parameters in the authorization code flow\nand discard any results that do not include or have a mismatch with the original state.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Function definitions related to 'state parameters' were not found in defs_php.jsonl.",
+        "Phase 1-IR: Call relationships related to 'state verification' were not found in calls_php.jsonl.",
+        "Phase 2-Source Code: No implementation of verification or automatic handling of state parameters was found in relevant source files."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement automatic handling for verifying state parameters nor discarding results based on mismatches in the authorization code flow.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Discovery\\DiscoveryState.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Registry\\ReferenceRegistryInterface.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Registry\\ToolReference.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 50,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** take precautions to prevent redirecting user agents to untrusted URI's, following suggestions laid out in [OAuth 2.1 Section 7.12.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.12.2)",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 51,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** only automatically redirect the user agent if it trusts the redirection URI. If the URI is not trusted, the authorization server MAY inform the user and rely on the user to make the correct decision.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 52,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 53,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** validate access tokens before processing the request, ensuring the access token is issued specifically for the MCP server, and take all necessary steps to ensure no data is returned to unauthorized parties.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found related to access token validation in defs_php.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_php.jsonl that match token validation requirements.",
+        "Phase 2-Source Code: Reviewed source files and found no internal methods handling access token validation."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not implement automatic validation of access tokens, nor does it encapsulate this functionality as required by the MCP rule, leaving this responsibility to application developers instead.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\MethodHandlerInterface.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 54,
+      "rule_type": "MUST",
+      "rule_text": "A MCP server **MUST** follow the guidelines in [OAuth 2.1 - Section 5.2](https://www.ietf.org/archive/id/draft-ietf-oauth-v2-1-12.html#section-5.2) to validate inbound tokens.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions for token validation found in defs_php.jsonl.",
+        "Phase 1-IR: No function calls related to token validation found in calls_php.jsonl.",
+        "Phase 2-Source Code: No automatic token validation mechanisms found in the source code."
+      ],
+      "confidence": 0.0,
+      "explanation": "The SDK does not have defined functions for validating inbound tokens as required by OAuth 2.1 Section 5.2. Moreover, there is no internal logic found that would automatically handle token validation, as the requirement defines.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 55,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** only accept tokens specifically intended for themselves and **MUST** reject tokens that do not include them in the audience claim or otherwise verify that they are the intended recipient of the token. See the [Security Best Practices Token Passthrough section](/specification/2025-06-18/basic/security_best_practices#token-passthrough) for details.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions related to token acceptance in defs_php.jsonl.",
+        "Phase 1-IR: Found calls to related functions in calls_php.jsonl.",
+        "Phase 2-Source Code: No automated token acceptance/rejection found in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Annotations.php."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not adequately implement automated token acceptance and rejection based on audience claims, therefore shifting responsibility to application developers. The necessary internal notification or validation mechanism expected by the rule is not present.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Annotations.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\InitializeRequest.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 56,
+      "rule_type": "MUST_NOT",
+      "rule_text": "If the MCP server makes requests to upstream APIs, it may act as an OAuth client to them. The access token used at the upstream API is a seperate token, issued by the upstream authorization server. The MCP server **MUST NOT** pass through the token it received from the MCP client.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient evidence found in defs_php.jsonl regarding token handling.",
+        "Phase 1-IR: Insufficient evidence found in calls_php.jsonl relating to token usage.",
+        "Phase 2-Source Code: No found logic in source files to prevent token passing."
+      ],
+      "confidence": 0.9,
+      "explanation": "The MCP SDK lacks the implementation to automatically prevent passing through the token it received from the MCP client, thus violating the stated compliance rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 57,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement and use the `resource` parameter as defined in [RFC 8707 - Resource Indicators for OAuth 2.0](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. This requirement aligns with the recommendation in\n[RFC 9728 Section 7.4](https://datatracker.ietf.org/doc/html/rfc9728#section-7.4). This ensures that access tokens are bound to their intended resources and\ncannot be misused across different services.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found no relevant definitions in defs_php.jsonl.",
+        "Phase 1-IR: No calls found in calls_php.jsonl.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Resource\\ResourceReader.php",
+        "Phase 2-Source Code: Verified characteristics in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Resource.php",
+        "Phase 2-Source Code: Verified handling and structure in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Content\\EmbeddedResource.php"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically implements and handles the 'resource' parameter as required by the MCP rule, ensuring developers do not need to manually specify resource handling.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Resource\\ResourceReader.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Resource.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Content\\EmbeddedResource.php"
+      ],
+      "code_snippets": [
+        "public function read(ReadResourceRequest $request): ReadResourceResult",
+        "public function __construct(public readonly string $uri, public readonly string $name, ...)",
+        "public static function fromArray(array $data): self"
+      ]
+    },
+    {
+      "rule_id": 58,
+      "rule_type": "MUST",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific function definitions or call relationships found.",
+        "Phase 2-Source Code: Verifiable lifecycle management in InitializeHandler where initialization is handled without developer intervention."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework implements handling for the base protocol and lifecycle management automatically through its initialization handler.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php"
+      ],
+      "code_snippets": [
+        "public function handle(InitializeRequest|HasMethodInterface $message, SessionInterface $session): Response {...}"
+      ]
+    },
+    {
+      "rule_id": 59,
+      "rule_type": "MAY",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `toolsListChanged` definition in ToolAnnotations class.",
+        "Phase 2-Source Code: Found notification classes indicating possible notification mechanisms, but no automatic sending method is present."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK defines the capability for notifications but lacks the internal processes to automatically send notifications when state changes occur, effectively placing this responsibility on developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\ToolAnnotations.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ToolListChangedNotification.php"
+      ],
+      "code_snippets": [
+        "public readonly ?bool $toolsListChanged = false;",
+        "class ToolListChangedNotification { public static function getMethod() { return 'notifications/tools/list_changed'; } }"
+      ]
+    },
+    {
+      "rule_id": 60,
+      "rule_type": "MUST",
+      "rule_text": "All messages between MCP clients and servers **MUST** follow the\n[JSON-RPC 2.0](https://www.jsonrpc.org/specification) specification. The protocol defines\nthese types of messages:",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 61,
+      "rule_type": "MUST",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found method `initialize` in MethodHandlerInterface.php which initializes request handling.",
+        "Phase 2-Source Code: Identified error handling in CallToolHandler.php that checks for request bodies, but no ID handling visible.",
+        "No mechanism found to ensure request IDs are unique and not reused within a session."
+      ],
+      "confidence": 0.6,
+      "explanation": "The SDK does not enforce or automatically manage the presence of a unique string or integer ID for requests as per the MCP rule. The checks do not prevent null values or ensure the uniqueness of IDs within sessions.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Notification\\InitializedHandler.php"
+      ],
+      "code_snippets": [
+        "public function initialize(): void",
+        "if (empty($body)) { // Invalid request handling }"
+      ]
+    },
+    {
+      "rule_id": 62,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Verified implementation in Request.php which ensures 'id' cannot be null with Exception handling.",
+        "Phase 2-Source Code: Verified constructors and methods in Response.php and various Handler classes that consistently invoke getId() without null violations."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework checks that ID is never null, successfully complying with the MCP rule by encapsulating the necessary behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Request.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Response.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\GetPromptHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php"
+      ],
+      "code_snippets": [
+        "if (!isset($data['id']) || !\\is_string($data['id']) && !\\is_int($data['id'])) { throw new InvalidArgumentException('Invalid or missing \"id\" for Request.'); }"
+      ]
+    },
+    {
+      "rule_id": 63,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found that request IDs must be defined in Request.php without constraints on uniqueness.",
+        "Phase 2-Source Code: Confirmed that InMemorySessionStore does not implement tracking or management of previously used request IDs."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically handle restrictions on request ID reuse within the same session, shifting the responsibility to developers, which violates the requirement specified in the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Request.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php"
+      ],
+      "code_snippets": [
+        "Request.php: 'protected string|int $id;' - Definition of ID without any session uniqueness enforcement.",
+        "InMemorySessionStore.php: 'public function write(Uuid $sessionId, string $data): bool' - Method for writing session data but lacks tracking of request IDs.",
+        "Session.php: 'public function getId(): Uuid' - Function for retrieving the session ID without ensuring ID uniqueness."
+      ]
+    },
+    {
+      "rule_id": 64,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definition in Response.php confirming structure requires ID.",
+        "Phase 1-IR: Confirmed functions using the Response class ensure ID is set.",
+        "Phase 2-Source Code: Verified implementation in Response.php that mandates ID presence in responses."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles response creation, ensuring the ID in responses matches requests, fulfilling the MCP requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Response.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Error.php"
+      ],
+      "code_snippets": [
+        "public function __construct(public readonly string|int $id, ...);"
+      ]
+    },
+    {
+      "rule_id": 65,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Searched for related function definitions but no direct handling was confirmed in defs_php.jsonl.",
+        "Phase 1-IR: Searched call relationships but confirmed no checks preventing both result and error in calls_php.jsonl.",
+        "Phase 2-Source Code: Verified structure of Response and Error classes but no prevention logic was observed during the handlers implementation."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not enforce the rule that a response MUST NOT set both result and error. Handlers can return either type of response without checks preventing dual assignment.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Response.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Error.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\GetPromptHandler.php"
+      ],
+      "code_snippets": [
+        "Response class constructor allows both result and id to be set.",
+        "The CallToolHandler allows returning either Response or Error, potentially leading to both being active."
+      ]
+    },
+    {
+      "rule_id": 66,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 67,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 68,
+      "rule_type": "MAY",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found Error class at C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Error.php, which constructs errors with an ID, code, and message.",
+        "Phase 1-IR: Verified Response class at C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Response.php ensures response includes the same request ID.",
+        "Phase 1-IR: Confirmed CallToolHandler at C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php handles errors by returning Error instances."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles both error responses and successful responses, conforming to the mandated structure of error codes and messages, and ensuring that the request ID in the response matches that in the request.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Error.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Response.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php"
+      ],
+      "code_snippets": [
+        "public function __construct(public readonly string|int $id, public readonly int $code, public readonly string $message, public readonly mixed $data = null)",
+        "return new self($data['id'], $data['code'], $data['message'], $data['data'] ?? null);",
+        "return Error::forInternalError('Error while executing tool', $message->getId());"
+      ]
+    },
+    {
+      "rule_id": 69,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `Error` class defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Error.php with integer code requirement.",
+        "Phase 1-IR: Verified that CallToolHandler and GetPromptHandler use Error class to return integer codes.",
+        "Phase 2-Source Code: Observed the logic that captures exceptions and returns integer error codes in both CallToolHandler and GetPromptHandler."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles error codes as integers in compliance with the MCP rule. Evidence from the Error class definition and its use in request handlers validates this.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\JsonRpc\\Error.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\GetPromptHandler.php"
+      ],
+      "code_snippets": [
+        "public readonly int $code, // Error code must be an integer",
+        "return Error::forInternalError('Error while executing tool', $message->getId());"
+      ]
+    },
+    {
+      "rule_id": 70,
+      "rule_type": "MUST_NOT",
+      "rule_text": "Notifications are sent from the client to the server or vice versa, as a one-way message.\nThe receiver **MUST NOT** send a response.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls found in defs_php.jsonl or calls_php.jsonl.",
+        "Phase 2-Source Code: Found notifications defined but no internal sending logic present that adheres to the compliance rule."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement automatic notification sending in compliance with the stated rule. While it defines notification structures, it does not encapsulate sending logic, thus shifting responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\LoggingMessageNotification.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ResourceListChangedNotification.php"
+      ],
+      "code_snippets": [
+        "public function handle(CallToolRequest|HasMethodInterface $message, SessionInterface $session): Response|Error { ... return new Response($message->getId(), $content); }"
+      ]
+    },
+    {
+      "rule_id": 71,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Notifications **MUST NOT** include an ID.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 72,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Found function 'send' in StreamableHttpTransport.php, responsible for sending messages logged.",
+        "Phase 2-Source Code: The send method is integrated within the listen method.",
+        "However, notification handling's fully automatic nature is not explicitly established."
+      ],
+      "confidence": 0.7,
+      "explanation": "While the SDK has a send method defined that collects messages to be sent out, it is unclear if these represent automatic notifications that do not require developer action to invoke.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php"
+      ],
+      "code_snippets": [
+        "public function send(string $data, array $context) {...}"
+      ]
+    },
+    {
+      "rule_id": 73,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found StdioTransport in defs_php.jsonl, but no automatic credential retrieval mechanism.",
+        "Phase 1-IR: Examined function calls in calls_php.jsonl, found no relevant implementation for auto-handling credentials."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK's StdioTransport does not automatically handle the retrieval of credentials from the environment, which is a requirement of the MCP rule. Developers are expected to handle this explicitly.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
+      ],
+      "code_snippets": [
+        "function initialize() { ... }",
+        "function send(string $data, array $context) { ... }"
+      ]
+    },
+    {
+      "rule_id": 74,
+      "rule_type": "MAY",
+      "rule_text": "Additionally, clients and servers **MAY** negotiate their own custom authentication and\nauthorization strategies.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_php.jsonl related to custom authentication.",
+        "Phase 1-IR: No relevant function calls found in calls_php.jsonl related to custom authorization.",
+        "Phase 2-Source Code: Inspected files did not reveal any method automatically handling authentication/authorization strategies."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not provide automatic handling of custom authentication and authorization strategies as required by the rule. There are no clear implementations that encapsulate this behavior within the SDK, thus placing responsibility on application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Attribute\\McpTool.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Attribute\\McpResource.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Discovery\\DiscoveryState.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Discovery\\CachedDiscoverer.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 75,
+      "rule_type": "MUST",
+      "rule_text": "The initialization phase **MUST** be the first interaction between client and server.\nDuring this phase, the client and server:\n\n- Establish protocol version compatibility\n- Exchange and negotiate capabilities\n- Share implementation details",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `initialize()` in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php`",
+        "Phase 1-IR: Confirmed calls to `initialize` functions in `InitializeHandler` to set up capabilities within `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php`",
+        "Phase 2-Source Code: Found empty implementation of `initialize()` in transport files indicating missing automatic handling"
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK provides initialization method definitions but does not encapsulate the automatic handling of necessary behaviors, leaving responsibilities for protocol version compatibility and interaction logic to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php"
+      ],
+      "code_snippets": [
+        "public function initialize(): void {}  // Empty method for initialization",
+        "public function handle(InitializeRequest|HasMethodInterface $message, SessionInterface $session): Response ..."
+      ]
+    },
+    {
+      "rule_id": 76,
+      "rule_type": "MUST",
+      "rule_text": "The client **MUST** initiate this phase by sending an `initialize` request containing:\n\n- Protocol version supported\n- Client capabilities\n- Client implementation information",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'initialize' defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\InitializeRequest.php:10",
+        "Phase 1-IR: Confirmed calling of 'initialize' in the same source file.",
+        "Phase 2-Source Code: Verified automatic handling of 'initialize' request in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines and automatically handles the 'initialize' request without delegating responsibility to developers, ensuring compliance with the MCP requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\InitializeRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php"
+      ],
+      "code_snippets": [
+        "public function __construct(\n    public readonly string $protocolVersion,\n    public readonly ClientCapabilities $capabilities,\n    public readonly Implementation $clientInfo,\n)",
+        "public function handle(InitializeRequest|HasMethodInterface $message, SessionInterface $session): Response {\n    // logic to handle the initialize request\n}"
+      ]
+    },
+    {
+      "rule_id": 77,
+      "rule_type": "MUST",
+      "rule_text": "The server **MUST** respond with its own capabilities and information:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found capabilities definition in 'ServerCapabilities' class.",
+        "Phase 1-IR: Found handling of initialization requests in 'InitializeHandler' class.",
+        "Phase 2-Source Code: 'InitializeHandler' automatically constructs response with server capabilities as expected."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK is compliant as it automatically handles server capabilities in the 'InitializeHandler', providing a full response structure that includes server capabilities without requiring application developers to handle these details manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\ServerCapabilities.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php"
+      ],
+      "code_snippets": [
+        "return new Response(\n    $message->getId(),\n    new InitializeResult($this->capabilities, $this->serverInfo),\n);"
+      ]
+    },
+    {
+      "rule_id": 78,
+      "rule_type": "MUST",
+      "rule_text": "After successful initialization, the client **MUST** send an `initialized` notification\nto indicate it is ready to begin normal operations:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found InitializedNotification in defs_php.jsonl, located in file src\\Schema\\Notification\\InitializedNotification.php",
+        "Phase 1-IR: No calls for automatic notification sending found in calls_php.jsonl",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: src\\Schema\\Notification\\InitializedNotification.php",
+        "Phase 2-Source Code: Verified handling in FILE_PATH: src\\Server\\Handler\\Notification\\InitializedHandler.php"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK defines the InitializedNotification but does not implement automatic sending of this notification. The handling logic in the SDK requires developers to manually send the notification after initialization, which violates the requirements of the MCP rule.",
+      "files_analyzed": [
+        "src\\Schema\\Notification\\InitializedNotification.php",
+        "src\\Server\\Handler\\Notification\\InitializedHandler.php"
+      ],
+      "code_snippets": [
+        "class InitializedNotification extends Notification {}",
+        "public function handle(InitializedNotification|HasMethodInterface $message, SessionInterface $session) { $session->set('initialized', true); return null; }"
+      ]
+    },
+    {
+      "rule_id": 79,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 80,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found InitializedHandler in src\\Server\\Handler\\Notification\\InitializedHandler.php that sets session as initialized.",
+        "Phase 1-IR: Found PingHandler in src\\Server\\Handler\\Request\\PingHandler.php to process pings, but no restriction logic.",
+        "Phase 2-Source Code: Verified implementations indicate lack of auto-enforcement for request types based on initialization state."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not enforce a restriction on the types of requests it can process before receiving the 'initialized' notification. It lacks internal logic to ensure that only pings and logging requests can be sent prior to initialization.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Notification\\InitializedHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\GetPromptHandler.php"
+      ],
+      "code_snippets": [
+        "InitializedHandler: public function handle(InitializedNotification|HasMethodInterface $message, SessionInterface $session) {...}",
+        "PingHandler: public function handle(PingRequest|HasMethodInterface $message, SessionInterface $session) {...}"
+      ]
+    },
+    {
+      "rule_id": 81,
+      "rule_type": "MUST",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability definition in InitializeRequest.php defining protocol version as a required parameter.",
+        "Phase 2-Source Code: Verified automatic handling in InitializeHandler.php."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines the required protocol version parameter in the InitializeRequest and handles the request automatically within the InitializeHandler. This meets the MCP rule requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\InitializeRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php"
+      ],
+      "code_snippets": [
+        "Phase 1: public function __construct(public readonly string $protocolVersion) in InitializeRequest.php",
+        "Phase 2: public function handle(InitializeRequest|HasMethodInterface $message, SessionInterface $session) in InitializeHandler.php"
+      ]
+    },
+    {
+      "rule_id": 82,
+      "rule_type": "SHOULD",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found protocolVersion in InitializeRequest.php:9",
+        "Phase 1-IR: Found InitializeHandler handling InitializeRequest in InitializeHandler.php.",
+        "Phase 2-Source Code: Verified no auto-notification logic for version success or error found in relevant handlers and notifications."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK defines the protocolVersion in InitializeRequest, but fails to implement automated behavior for confirming this version or sending notifications related to it in the initialization process. The expected encapsulation of this behavior is missing, leaving developers to handle protocol versioning manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\InitializeRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ResourceListChangedNotification.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\PromptListChangedNotification.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\InitializedNotification.php"
+      ],
+      "code_snippets": [
+        "initialize function: public function __construct( public readonly string $protocolVersion, ... ) {...}",
+        "throw new InvalidArgumentException('protocolVersion is required');"
+      ]
+    },
+    {
+      "rule_id": 83,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions related to initialization and responses in defs_php.jsonl.",
+        "Phase 2-Source Code: Analyzed implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php.",
+        "Found that the handler does not automatically manage protocol version responses."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK lacks the automatic implementation logic required to handle varying protocol versions as stated in MCP Rule 83. The responsibility of managing protocol responses is left to the developers, which violates the principles of encapsulation expected from the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php"
+      ],
+      "code_snippets": [
+        "public function handle(InitializeRequest|HasMethodInterface $message, SessionInterface $session): Response { ... }"
+      ]
+    },
+    {
+      "rule_id": 84,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function found in defs_php.jsonl that encapsulates protocol version negotiation.",
+        "Phase 1-IR: InitializeRequest contains a protocol version definition, but lacks negotiation logic.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\InitializeRequest.php",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement the required mechanism to automatically respond with an alternative protocol version when the requested version is not supported. There is no internal logic found that handles protocol version negotiation.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\InitializeRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php"
+      ],
+      "code_snippets": [
+        "// From InitializeRequest class for defining protocol versions",
+        "public readonly string $protocolVersion;"
+      ]
+    },
+    {
+      "rule_id": 85,
+      "rule_type": "SHOULD",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function InitializeRequest defined in InitializeRequest.php with ability to hold protocolVersion.",
+        "Phase 1-IR: Confirmed InitializeHandler processes requests but does not automatically send protocol versions as required by the rule.",
+        "Phase 2-Source Code: Reviewed InitializeHandler logic in FILE_PATH: InitializeHandler.php but found no automatic version handling."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK provides the functionality to define protocol versions but fails to encapsulate the automatic handling of sending the most suitable version back to the client based on the capabilities.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php"
+      ],
+      "code_snippets": [
+        "public function handle(InitializeRequest|HasMethodInterface $message, SessionInterface $session): Response",
+        "return new Response($message->getId(), new InitializeResult($this->capabilities, $this->serverInfo));"
+      ]
+    },
+    {
+      "rule_id": 86,
+      "rule_type": "SHOULD",
+      "rule_text": "If the client does not support the version in the server's response, it **SHOULD**\ndisconnect.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definition found in defs_php.jsonl that encapsulates disconnect logic for unsupported versions.",
+        "Phase 1-IR: No function calls found in calls_php.jsonl that invoke a disconnect on version support failure."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not provide an automatic mechanism to disconnect when the client does not support the version in the server's response, thereby failing to encapsulate the behavior required by the rule.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 87,
+      "rule_type": "MUST",
+      "rule_text": "<Note>\nIf using HTTP, the client **MUST** include the `MCP-Protocol-Version:\n<protocol-version>` HTTP header on all subsequent requests to the MCP\nserver.\nFor details, see [the Protocol Version Header section in Transports](/specification/2025-06-18/basic/transports#protocol-version-header).\n</Note>",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No related definitions or calls found in defs_php.jsonl or calls_php.jsonl.",
+        "Phase 2-Source Code: `InitializeRequest.php` only defines the header but does not implement automatic handling.",
+        "Phase 2-Source Code: No evidence of MCP-Protocol-Version being added automatically in any source files including `StreamableHttpTransport.php`."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not automatically include the MCP-Protocol-Version header in HTTP requests, which is required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\InitializeRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php"
+      ],
+      "code_snippets": [
+        "No header setting found in `StreamableHttpTransport.php`.",
+        "Missing automated inclusion in requests in `InitializeRequest.php`."
+      ]
+    },
+    {
+      "rule_id": 88,
+      "rule_type": "MUST",
+      "rule_text": "Both parties **MUST**:\n\n- Respect the negotiated protocol version\n- Only use capabilities that were successfully negotiated",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found protocol capabilities defined in ServerCapabilities.php.",
+        "Phase 1-IR: Confirmed handling of initialization in InitializeHandler.php.",
+        "Phase 2-Source Code: Verified automatic notification management in ResourceListChangedNotification.php and other notification classes."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK properly manages protocol version and capabilities, including sending notifications for changes automatically. The implementation encapsulates required behaviors, fulfilling the rule's requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\ServerCapabilities.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Result\\InitializeResult.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\RootsListChangedNotification.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ResourceListChangedNotification.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php"
+      ],
+      "code_snippets": [
+        "class ServerCapabilities { ... }",
+        "class InitializeResult { ... }",
+        "class RootsListChangedNotification { ... }",
+        "class ResourceListChangedNotification { ... }"
+      ]
+    },
+    {
+      "rule_id": 89,
+      "rule_type": "SHOULD",
+      "rule_text": "For the stdio [transport](/specification/2025-06-18/basic/transports), the client **SHOULD** initiate\nshutdown by:\n\n1. First, closing the input stream to the child process (the server)\n2. Waiting for the server to exit, or sending `SIGTERM` if the server does not exit\n   within a reasonable time\n3. Sending `SIGKILL` if the server does not exit within a reasonable time after `SIGTERM`",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No definitions found in defs_php.jsonl related to shutdown signals.",
+        "Phase 1-IR: No calls found in calls_php.jsonl that indicate handling of shutdown signals.",
+        "Phase 2-Source Code: Analyzed implementation in FILE_PATH: StdioTransport.php."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK provides mechanisms to close input and output streams but does not contain logic to send SIGTERM or SIGKILL signals to manage shutdown as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
+      ],
+      "code_snippets": [
+        "public function close(): void { /* Closes input and output */ }"
+      ]
+    },
+    {
+      "rule_id": 90,
+      "rule_type": "MAY",
+      "rule_text": "The server **MAY** initiate shutdown by closing its output stream to the client and\nexiting.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 91,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions in defs_php.jsonl but no timeout logic.",
+        "Phase 1-IR: Call relationships show lack of timeout handling across request management classes.",
+        "Phase 2-Source Code: Reviewed StreamableHttpTransport.php and StdioTransport.php; no automatic handling of timeouts."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement the required automatic timeout handling and cancellation notification logic for sent requests, thereby shifting the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StreamableHttpTransport.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Transport\\StdioTransport.php"
+      ],
+      "code_snippets": [
+        "StreamableHttpTransport::send() - No timeout logic implemented",
+        "StdioTransport::send() - No cancel notification when waiting for response"
+      ]
+    },
+    {
+      "rule_id": 92,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found class CancelledNotification in defs_php.jsonl, defined in CancelledNotification.php.",
+        "Phase 2-Source Code: Checked multiple files and found no implementation that automatically handles issuing of cancellation notifications.",
+        "Phase 2-Source Code: Lack of method or logic to handle request timeouts and automatically call CancelledNotification."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK defines a structure for cancellation notifications (CancelledNotification) but lacks the automatic logic to issue these notifications upon request timeouts, thus transferring responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\CancelledNotification.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\GetPromptHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php"
+      ],
+      "code_snippets": [
+        "class CancelledNotification {...}",
+        "// No automatic timeout handling found in CallToolHandler.php or GetPromptHandler.php..."
+      ]
+    },
+    {
+      "rule_id": 93,
+      "rule_type": "SHOULD",
+      "rule_text": "SDKs and other middleware **SHOULD** allow these timeouts to be configured on a\nper-request basis.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No timeout-related function definitions found in defs_php.jsonl.",
+        "Phase 1-IR: No timeout-related function calls confirmed in calls_php.jsonl.",
+        "Phase 2-Source Code: All files reviewed do not contain automatic timeout handling logic."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not provide any definitions or implementations that allow timeout configurations on a per-request basis, shifting the responsibility to the developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\FileSessionStore.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 94,
+      "rule_type": "MAY",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_php.jsonl.",
+        "Phase 1-IR: No related function calls found in calls_php.jsonl.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not have an internal mechanism for resetting the timeout clock when a progress notification is received. This indicates a lack of compliance with the given rule's requirement that the SDK should automatically handle such protocol details without burdening developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 95,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_php.jsonl for maximum timeout enforcement.",
+        "Phase 1-IR: No relevant function calls in calls_php.jsonl related to timeout management.",
+        "Phase 2-Source Code: Inspected multiple files and found no implementation enforcing a maximum timeout."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK fails to enforce a maximum timeout as specified in the MCP rule. No automatic behavior for timeout enforcement is implemented, leaving this responsibility to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Capability\\Registry\\ReferenceHandlerInterface.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Configuration.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\PingHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\FileSessionStore.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 96,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** be prepared to handle these error cases:\n\n- Protocol version mismatch\n- Failure to negotiate required capabilities\n- Request [timeouts](#timeouts)",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found related to automated error handling for protocol mismatches or negotiation failures.",
+        "Phase 2-Source Code: Analyzed InitializeRequest, InitializeHandler, CallToolHandler, and ReadResourceHandler; found that error handling is only partial and does not fulfill full SDK responsibilities.",
+        "Error handling logic does not encapsulate required behaviors, leaving developers responsible for handling protocol errors."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not provide automated mechanisms to handle protocol version mismatches, negotiation failures, or request timeouts, instead requiring application developers to manage these cases. This violates the 'SHOULD' requirement of the MCP rules.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\InitializeRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\InitializeHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\CallToolHandler.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Handler\\Request\\ReadResourceHandler.php"
+      ],
+      "code_snippets": [
+        "The CallToolHandler logs error messages but does not automatically handle protocol or negotiation errors.",
+        "ReadResourceHandler has error handling for not found resources but does not cover broader protocol compliance issues."
+      ]
+    },
+    {
+      "rule_id": 97,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant functions found in defs_php.jsonl that handle user consent.",
+        "Phase 1-IR: No relevant function calls found in calls_php.jsonl that process consent before API calls.",
+        "Phase 2-Source Code: Reviewed source files without finding implementations that handle user consent automatically."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not implement automatic user consent handling before forwarding requests to third-party authorization servers as required by the rule. There are no functions that explicitly encapsulate this behavior, indicating a transfer of responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 98,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept any tokens that were not explicitly issued for the MCP server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions in defs_php.jsonl regarding token management.",
+        "Phase 1-IR: No relevant call relationships in calls_php.jsonl indicating token validation or rejection.",
+        "Phase 2-Source Code: Verified source implementations; lacked proper token validation mechanisms."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not contain functions or logic that encapsulate the validation and rejection of tokens that are not explicitly issued for the MCP server. This implies that the responsibility for token validation has not been automated within the SDK, thus shifting the burden to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\CreateSamplingMessageRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Notification\\ProgressNotification.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 99,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_php.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_php.jsonl.",
+        "Phase 2-Source Code: Input validation logic found in ResourceUnsubscribeRequest but no automatic verification for all requests."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK contains input validation in specific requests but lacks a centralized mechanism to automatically verify all inbound requests as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\ResourceUnsubscribeRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\InitializeRequest.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Schema\\Request\\CompletionCompleteRequest.php"
+      ],
+      "code_snippets": [
+        "if (!isset($params['uri']) || !\\is_string($params['uri']) || empty($params['uri'])) { throw new InvalidArgumentException('Missing or invalid \"uri\" parameter for resources/unsubscribe.'); }"
+      ]
+    },
+    {
+      "rule_id": 100,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found session handling methods in InMemorySessionStore.php that handle session creation, storage, and destruction.",
+        "Phase 1-IR: Confirmed that the SDK relies on sessions for managing user authentication."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK utilizes session management for authentication through the InMemorySessionStore and Session classes, thus violating the MCP rule that states servers must not use sessions for authentication.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\InMemorySessionStore.php",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\php-sdk-main\\php-sdk-main\\src\\Server\\Session\\Session.php"
+      ],
+      "code_snippets": [
+        "function write: 'public function write(Uuid $sessionId, string $data): bool {...}' in InMemorySessionStore.php",
+        "function get: 'public function get(string $key, mixed $default = null): mixed {...}' in Session.php"
+      ]
+    }
+  ]
+}

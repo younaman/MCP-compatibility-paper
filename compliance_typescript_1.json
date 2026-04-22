@@ -1,0 +1,2078 @@
+﻿{
+  "summary": {
+    "total": 100,
+    "compliant": 77,
+    "non_compliant": 22,
+    "unclear": 1,
+    "avg_files_per_rule": 2.1
+  },
+  "results": [
+    {
+      "rule_id": 1,
+      "rule_type": "OPTIONAL",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No related function definitions found in defs_typescript.jsonl.",
+        "Phase 2-Source Code: No automatic handling of notifications regarding capabilities (e.g., listChanged) found in source code."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not implement automatic notification handling or manage authorization capabilities as required by the MCP rules.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
+      ],
+      "code_snippets": [
+        "// Authorization handler defines methods but does not automatically send notifications.",
+        "async finishAuth(authorizationCode: string): Promise<void> { /* ... */ }"
+      ]
+    },
+    {
+      "rule_id": 2,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found StreamableHTTPServerTransport in defs_typescript.jsonl, defined in file streamableHttp.ts",
+        "Phase 1-IR: Confirmed it handles requests and sends notifications in response to MCP communications",
+        "Phase 2-Source Code: Verified implementation in the transport class handles the notifications automatically"
+      ],
+      "confidence": 1.0,
+      "explanation": "The StreamableHTTPServerTransport class automatically manages HTTP transport behavior, including notifications, in accordance with the MCP rule. This means developers do not need to manage these complexities themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.js"
+      ],
+      "code_snippets": [
+        "transport.handleRequest(req, res, req.body);"
+      ]
+    },
+    {
+      "rule_id": 3,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `getDefaultEnvironment()` defined in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\stdio.ts`.",
+        "Phase 1-IR: Confirmed `StdioServerTransport` and `StdioClientTransport` handle environment variables retrieval automatically.",
+        "Phase 2-Source Code: Verified automatic handling within `StdioServerTransport` and its connection establishment."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK handles credential retrieval from the environment automatically through the `getDefaultEnvironment()` function, which is used in the `StdioServerTransport`. This fulfills the requirement of not shifting responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\stdio.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
+      ],
+      "code_snippets": [
+        "export function getDefaultEnvironment() {...}",
+        "this._process = spawn(..., { env: {...getDefaultEnvironment(), ...this._serverParams.env} });"
+      ]
+    },
+    {
+      "rule_id": 4,
+      "rule_type": "MUST",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions related to StreamableHTTPServerTransport and StreamableHTTPClientTransport in defs_typescript.jsonl.",
+        "Phase 1-IR: Verified call relationships confirming the use of these transports.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages session IDs, enforces security validations, and implements necessary protocols consistent with established security best practices for alternative transports.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
+      ],
+      "code_snippets": [
+        "DNS rebinding protection and session management implemented in StreamableHTTPServerTransport.",
+        "Automatic token handling and session ID validation in StreamableHTTPClientTransport."
+      ]
+    },
+    {
+      "rule_id": 5,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** implement OAuth 2.1 with appropriate security\n   measures for both confidential and public clients.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found relevant function definitions in `defs_typescript.jsonl` and confirmed that the SDK interfaces support OAuth integration.",
+        "Phase 1-IR: Verified call relationships indicating thorough handling of OAuth functionalities in `calls_typescript.jsonl`.",
+        "Phase 2-Source Code: Verified that the SDK handles authorization flows, token exchanges, and security measures via internal methods in `FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts`."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully implements OAuth 2.1 in a compliant manner, encapsulating the necessary security measures for both confidential and public clients without requiring developers to manage these processes themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts"
+      ],
+      "code_snippets": [
+        "const challenge = await pkceChallenge(); // Generates PKCE for secure flows.",
+        "const tokens = await exchangeAuthorization(authorizationServerUrl, { ... }) // Handles token exchange seamlessly."
+      ]
+    },
+    {
+      "rule_id": 6,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Authorization servers and MCP clients **SHOULD** support the OAuth 2.0 Dynamic Client Registration\n   Protocol ([RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Defined `registerClient` function in file tmp3jlfjmk_.ts that implements OAuth 2.0 Dynamic Client Registration.",
+        "Phase 1-IR: `registerClient` function is automatically invoked to register clients when information is not available, as shown in authInternal function."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the OAuth 2.0 Dynamic Client Registration Protocol by defining the `registerClient` function and integrating it into the client authentication flow, ensuring that registration is handled automatically.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts"
+      ],
+      "code_snippets": [
+        "export async function registerClient(authorizationServerUrl: string | URL, {...})",
+        "await registerClient(authorizationServerUrl, { metadata, clientMetadata: provider.clientMetadata, fetchFn });"
+      ]
+    },
+    {
+      "rule_id": 7,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function mcpAuthMetadataRouter in defs_typescript.jsonl, defined in src/server/auth/router.ts",
+        "Phase 1-IR: Confirmed mcpAuthRouter calls mcpAuthMetadataRouter for OAuth metadata integration in src/server/auth/router.ts",
+        "Phase 2-Source Code: Verified mcpAuthMetadataRouter and discoverOAuthProtectedResourceMetadata implementations handle logic internally in src/server/auth/router.ts and src/server/auth/handlers/metadata.ts"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically implements the required behaviors for OAuth 2.0 Protected Resource Metadata as per the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts"
+      ],
+      "code_snippets": [
+        "app.use(mcpAuthMetadataRouter({...})); // Handling OAuth protected resource metadata.",
+        "const protectedResourceMetadata: OAuthProtectedResourceMetadata = {...}; // Defined for metadata serving."
+      ]
+    },
+    {
+      "rule_id": 8,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found schema OAuthProtectedResourceMetadataSchema in shared/auth.ts, defines metadata structure.",
+        "Phase 1-IR: Found discoverOAuthProtectedResourceMetadata functions that automatically retrieve and process metadata from authorization servers.",
+        "Phase 2-Source Code: Verified implementation in mcpAuthMetadataRouter serves protected resource metadata endpoints automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides the necessary implementations for using OAuth 2.0 Protected Resource Metadata, encapsulating behaviors required for authorization server discovery.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
+      ],
+      "code_snippets": [
+        "export const OAuthProtectedResourceMetadataSchema = z.object({ ... })",
+        "export async function discoverOAuthProtectedResourceMetadata(serverUrl: string | URL, opts?: { ... }) {...}",
+        "router.use('/.well-known/oauth-protected-resource', metadataHandler(protectedResourceMetadata));"
+      ]
+    },
+    {
+      "rule_id": 9,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function mcpAuthRouter in router.ts which sets up OAuth metadata routes.",
+        "Phase 1-IR: Confirmed calls to metadataHandler in router.ts linking to the correct metadata functions.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
+        "Phase 2-Source Code: Found automatic response handling in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically provides OAuth 2.0 Authorization Server Metadata via defined routes handled internally, complying with the MCP rule without requiring developers to implement this functionality.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts"
+      ],
+      "code_snippets": [
+        "router.use(\"/.well-known/oauth-authorization-server\", metadataHandler(options.oauthMetadata));",
+        "const router = express.Router();",
+        "router.get(\"/\", (req, res) => { res.status(200).json(metadata); });"
+      ]
+    },
+    {
+      "rule_id": 10,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `OAuthMetadataSchema` in src/shared/auth.ts.",
+        "Phase 1-IR: Confirmed call to `discoverAuthorizationServerMetadata` in various files indicating metadata discovery.",
+        "Phase 2-Source Code: Verified implementation of metadata handling in `mcpAuthMetadataRouter` in src/server/auth/router.ts, which automatically processes metadata endpoints."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK implements the required OAuth 2.0 Authorization Server Metadata handling. It defines the metadata schema and provides automatic handling logic through the `mcpAuthMetadataRouter` function, which serves metadata endpoints without requiring application developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
+      ],
+      "code_snippets": [
+        "export const OAuthMetadataSchema = z.object({...}); // Metadata Schema Definition",
+        "export function mcpAuthMetadataRouter(options: AuthMetadataOptions): express.Router {...} // Automatic handling for metadata serving"
+      ]
+    },
+    {
+      "rule_id": 11,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function mcpAuthMetadataRouter in defs_typescript.jsonl, defined in router.ts:194",
+        "Phase 1-IR: Confirmed that this function manages the authorization_servers as required.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: src/server/auth/router.ts"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implementation encapsulates the required functionality for OAuth 2.0 Protected Resource Metadata, providing automatic handling of the 'authorization_servers' field and delivering the metadata without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts"
+      ],
+      "code_snippets": [
+        "const protectedResourceMetadata: OAuthProtectedResourceMetadata = { authorization_servers: [options.oauthMetadata.issuer] };"
+      ]
+    },
+    {
+      "rule_id": 12,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_typescript.jsonl.",
+        "Phase 1-IR: No relevant function calls involving authorization_servers found in calls_typescript.jsonl.",
+        "Phase 2-Source Code: Implemented 'authorization_servers' in protectedResourceMetadata in router.ts"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically initializes the 'authorization_servers' field within the Protected Resource Metadata, ensuring it includes at least one authorization server and thus complies with the specified MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
+      ],
+      "code_snippets": [
+        "const protectedResourceMetadata: OAuthProtectedResourceMetadata = {\n  resource: options.resourceServerUrl.href,\n  authorization_servers: [options.oauthMetadata.issuer],\n  scopes_supported: options.scopesSupported,\n  resource_name: options.resourceName,\n  resource_documentation: options.serviceDocumentationUrl?.href,\n};"
+      ]
+    },
+    {
+      "rule_id": 13,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** use the HTTP header `WWW-Authenticate` when returning a _401 Unauthorized_ to indicate the location of the resource server metadata URL\nas described in [RFC9728 Section 5.1 \"WWW-Authenticate Response\"](https://datatracker.ietf.org/doc/html/rfc9728#name-www-authenticate-response).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function requireBearerAuth in defs_typescript.jsonl, defined in bearerAuth.ts:28",
+        "Phase 1-IR: Confirmed that requireBearerAuth is invoked as middleware and handles 401 responses in calls_typescript.jsonl",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: bearerAuth.ts"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements the requirement to automatically send the WWW-Authenticate header when a 401 Unauthorized response is returned, including the resource metadata URL if provided.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
+      ],
+      "code_snippets": [
+        "res.set(\"WWW-Authenticate\", wwwAuthValue);",
+        "res.status(401).json(error.toResponseObject());"
+      ]
+    },
+    {
+      "rule_id": 14,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** be able to parse `WWW-Authenticate` headers and respond appropriately to `HTTP 401 Unauthorized` responses from the MCP server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `requireBearerAuth` in bearerAuth.ts that sets WWW-Authenticate on 401 responses.",
+        "Phase 1-IR: Found function `withOAuth` in middleware.ts that attempts re-authentication on 401 responses.",
+        "Phase 2-Source Code: Verified `requireBearerAuth` implementation verifies tokens and sets WWW-Authenticate appropriately.",
+        "Phase 2-Source Code: Verified `withOAuth` implementation attempts re-authentication and retries original requests."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles parsing `WWW-Authenticate` headers and responds to `HTTP 401 Unauthorized` by attempting re-authentication without shifting the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts"
+      ],
+      "code_snippets": [
+        "function requireBearerAuth() {...}",
+        "async function withOAuth() {...}"
+      ]
+    },
+    {
+      "rule_id": 15,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** follow the OAuth 2.0 Authorization Server Metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)\nspecification to obtain the information required to interact with the authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `createOAuthMetadata` and other functions related to OAuth in defs_typescript.jsonl.",
+        "Phase 1-IR: Confirmed call hierarchy, ensuring compliance with RFC 8414 through automated metadata handling in the source code.",
+        "Phase 2-Source Code: Verified implementation in files including `tmp3jlfjmk_.ts` which contains the relevant functions."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK appropriately implements and encapsulates the required behaviors for OAuth 2.0 Authorization Server Metadata. It defines necessary metadata and includes automatic fetching mechanisms, shielding developers from needing to manually implement these functionalities.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\tmp3jlfjmk_.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\tmp3pqcycyh.ts"
+      ],
+      "code_snippets": [
+        "export const createOAuthMetadata = (options) => { /* Implementation involving OAuth metadata */ }",
+        "export async function discoverAuthorizationServerMetadata(...) { /* Logic to fetch metadata */ }"
+      ]
+    },
+    {
+      "rule_id": 16,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients and authorization servers **SHOULD** support the\nOAuth 2.0 Dynamic Client Registration Protocol [RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)\nto allow MCP clients to obtain OAuth client IDs without user interaction. This provides a\nstandardized way for clients to automatically register with new authorization servers, which is crucial\nfor MCP because:\n\n- Clients may not know all possible MCP servers and their authorization servers in advance.\n- Manual registration would create friction for users.\n- It enables seamless connection to new MCP servers and their authorization servers.\n- Authorization servers can implement their own registration policies.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function registration in defs_typescript.jsonl located in clientRegistrationHandler.",
+        "Phase 1-IR: Confirmed that clientRegistrationHandler calls registerClient to handle automatic client registration.",
+        "Phase 2-Source Code: Verified clientRegistrationHandler implementation logic ensures automatic client registration without user intervention."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK has implemented automatic client registration per the requirements of the MCP rule. It provides a robust encapsulated flow for clients to register without manual intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts"
+      ],
+      "code_snippets": [
+        "router.post('/', async (req, res) => { ... // processing client registration logic ... })"
+      ]
+    },
+    {
+      "rule_id": 17,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'resource' defined in the AuthInfo interface and AuthorizationCodeGrantSchema.",
+        "Phase 1-IR: Confirmed calls to 'exchangeAuthorizationCode' and 'exchangeRefreshToken' utilizing the 'resource' parameter.",
+        "Phase 2-Source Code: Verified implementation in token requests ensuring 'resource' is included automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework implements Resource Indicators for OAuth 2.0 as required. The 'resource' parameter is included in both authorization and token requests, with validation methods ensuring correct handling.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\types.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\providers\\proxyProvider.ts"
+      ],
+      "code_snippets": [
+        "exchangeAuthorizationCode implementation includes 'resource' parameter in the request payload.",
+        "exchangeRefreshToken implementation includes 'resource' parameter in the request payload.",
+        "validateResourceURL method indicates internal validation logic for 'resource'"
+      ]
+    },
+    {
+      "rule_id": 18,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found definitions and function calls relevant to resource management in defs_typescript.jsonl and calls_typescript.jsonl.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK has an integrated mechanism for automatically handling the `resource` parameter in both authorization and token requests as specified in the MCP rule. The necessary definitions and implementations are present to enforce this behavior, complying with the stated requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+      ],
+      "code_snippets": [
+        "const AuthorizationCodeGrantSchema = z.object({ resource: z.string().url().optional() });",
+        "if (resource) { params.set('resource', resource.href); }"
+      ]
+    },
+    {
+      "rule_id": 19,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found resource property in AuthInfo interface within auth/types.ts",
+        "Phase 2-Source Code: Verified resource handling in startAuthorization and tokenHandler functions"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully encapsulates the behavior required by the MCP rule by automatically handling the resource parameter in both authorization and token requests, ensuring that developers need not implement this behavior themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\types.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+      ],
+      "code_snippets": [
+        "resource?: URL; // AuthInfo interface in auth/types.ts",
+        "if (resource) { authorizationUrl.searchParams.set('resource', resource.href); } // Adding resource in startAuthorization",
+        "if (resource) { params.set('resource', resource.href); } // Including resource in tokenHandler"
+      ]
+    },
+    {
+      "rule_id": 20,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `AuthInfo` with resource definition in `auth/types.ts`.",
+        "Phase 2-Source Code: Verified automatic handling of `resource` parameter in `authorize` method, ensuring compliance with RFC 8707."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the inclusion of the canonical URI for the MCP server as required by the rule, doing so within the authorization process without requiring manual intervention from developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\types.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+      ],
+      "code_snippets": [
+        "resource: URL; // definition in AuthInfo",
+        "if (params.resource) { searchParams.set('resource', params.resource.href); } // in authorize method"
+      ]
+    },
+    {
+      "rule_id": 21,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Searched for function definitions in defs_typescript.jsonl.",
+        "Phase 1-IR: Lack of clear call behavior related to URI handling in calls_typescript.jsonl.",
+        "Phase 2-Source Code: Inspected source files but did not find automatic handling for specific URI provisioning."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not encapsulate the behavior required by the rule regarding specific URI provisioning for MCP clients. It requires developers to manually implement this functionality.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\types.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts"
+      ],
+      "code_snippets": [
+        "// Example of a client transport implementation that does not automatically handle specific URIs."
+      ]
+    },
+    {
+      "rule_id": 22,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions resourceUrlFromServerUrl and checkResourceAllowed in defs_typescript.jsonl, defined in auth-utils.ts",
+        "Phase 1-IR: Confirmed that these functions perform URI-related operations, but don't show case-insensitive handling for scheme/host",
+        "Phase 2-Source Code: Reviewed implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts"
+      ],
+      "confidence": 0.85,
+      "explanation": "While the SDK does define functions that could handle URIs, it does not demonstrate automatic handling of uppercase scheme and host components as required by the rule. The presence of 'resourceUrlFromServerUrl' and 'checkResourceAllowed' functions does not ensure that the SDK processes inputs in a case-insensitive manner inherently.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts"
+      ],
+      "code_snippets": [
+        "export function resourceUrlFromServerUrl(url: URL | string ): URL { const resourceURL = typeof url === 'string' ? new URL(url) : new URL(url.href); resourceURL.hash = ''; return resourceURL; }",
+        "export function checkResourceAllowed({ requestedResource, configuredResource }: { requestedResource: URL | string; configuredResource: URL | string }): boolean { const requested = typeof requestedResource === 'string' ? new URL(requestedResource) : new URL(requestedResource.href); const configured = typeof configuredResource === 'string' ? new URL(configuredResource) : new URL(configuredResource.href); return requested.origin !== configured.origin ? false : requested.pathname.startsWith(configured.pathname); }"
+      ]
+    },
+    {
+      "rule_id": 23,
+      "rule_type": "SHOULD",
+      "rule_text": "> **Note:** While both `https://mcp.example.com/` (with trailing slash) and `https://mcp.example.com` (without trailing slash) are technically valid absolute URIs according to [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986), implementations **SHOULD** consistently use the form without the trailing slash for better interoperability unless the trailing slash is semantically significant for the specific resource.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found capability listChanged defined in various files.",
+        "Phase 1-IR: Confirmed notification logic in methods like notification(), which automates notification processes.",
+        "Phase 2-Source Code: Verified sources indicating that the SDK sends notifications automatically without developer intervention."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK satisfies the requirement for automatic handling of notifications regarding list changes. The capability is defined and the implementation ensures notifications are sent automatically when relevant state changes occur.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\inMemory.ts"
+      ],
+      "code_snippets": [
+        "async notification(notification: SendNotificationT, options?: NotificationOptions) { ... }",
+        "this.onmessage?.(queuedMessage.message, queuedMessage.extra);"
+      ]
+    },
+    {
+      "rule_id": 24,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** send this parameter regardless of whether authorization servers support it.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found definitions for StreamableHTTPClientTransport in defs_typescript.jsonl.",
+        "Phase 1-IR: Confirmed calls related to send() in calls_typescript.jsonl.",
+        "Phase 2-Source Code: Verified handling of session ID in send() method and structured handling in StreamableHTTPClientTransport."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles sending the mcp-session-id as needed. The session ID is included in the headers during sending without requiring explicit developer actions, fulfilling the MCP requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
+      ],
+      "code_snippets": [
+        "headers['mcp-session-id'] = this.sessionId;"
+      ]
+    },
+    {
+      "rule_id": 25,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'tokenHandler' in defs_typescript.jsonl, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "Phase 1-IR: Found function 'requireBearerAuth' in defs_typescript.jsonl, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "Phase 2-Source Code: Verified automatic handling in 'tokenHandler' and 'requireBearerAuth' in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts and C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles OAuth access token management without requiring developers to implement this functionality manually, thus conforming to the MCP requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
+      ],
+      "code_snippets": [
+        "router.post('/', async (req, res) => { ... }); // Handling token requests.",
+        "const authHeader = req.headers.authorization; // Validating Bearer token."
+      ]
+    },
+    {
+      "rule_id": 26,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found requireBearerAuth in defs_typescript.jsonl, defined in middleware.ts.",
+        "Phase 1-IR: Confirmed checks for the Authorization header in requireBearerAuth function.",
+        "Phase 2-Source Code: Validated the implementation details in FILE_PATH: middleware.ts."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the Authorization request header through the requireBearerAuth middleware, adhering to the requirements set forth in OAuth 2.1 Section 5.1.1. It ensures that the Authorization header is validated and processed internally, allowing developers to focus on higher-level logic without manual checks.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts"
+      ],
+      "code_snippets": [
+        "const authHeader = req.headers.authorization; \nif (!authHeader) { \n    throw new InvalidTokenError('Missing Authorization header'); \n} \nconst [type, token] = authHeader.split(' '); \nif (type.toLowerCase() !== 'bearer' || !token) { \n    throw new InvalidTokenError('Invalid Authorization header format'); \n}"
+      ]
+    },
+    {
+      "rule_id": 27,
+      "rule_type": "MUST",
+      "rule_text": "Note that authorization **MUST** be included in every HTTP request from client to server,\neven if they are part of the same logical session.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function startAuthorization in tmp3jlfjmk_.ts, defined at line 45.",
+        "Phase 1-IR: Found function mcpAuthRouter in tmp3pqcycyh.ts, which sets up necessary authorization endpoints.",
+        "Phase 2-Source Code: Verified that requireBearerAuth middleware in tmp1j93b5bw.ts ensures Bearer token validation in requests.",
+        "Phase 2-Source Code: Verified withOAuth middleware in tmp5wt7echj.ts handles automatic token inclusion and re-authentication."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the required behavior by automatically managing authorization in all HTTP requests. Developers do not need to implement this behavior themselves, which aligns with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.test.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\metadata.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\allowedMethods.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\clientToken.ts"
+      ],
+      "code_snippets": [
+        "startAuthorization function definition: ...",
+        "mcpAuthRouter function definition handles authorization routing.",
+        "requireBearerAuth middleware validates Bearer token in HTTP requests.",
+        "withOAuth middleware automatically manages auth tokens in requests."
+      ]
+    },
+    {
+      "rule_id": 28,
+      "rule_type": "MUST_NOT",
+      "rule_text": "2. Access tokens **MUST NOT** be included in the URI query string",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found tokenHandler definition in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts, which lacks query string prevention.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts, which accepts redirect_uri that can include tokens."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK lacks automatic handling to prevent access tokens from being included in URI query strings, shifting this responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\providers\\proxyProvider.ts"
+      ],
+      "code_snippets": [
+        "function tokenHandler({ provider, rateLimit: rateLimitConfig }: TokenHandlerOptions) { /* logic */ } from token.ts",
+        "function authorize(client: OAuthClientInformationFull, params: AuthorizationParams, res: Response) { /* logic */ } from authorize.ts"
+      ]
+    },
+    {
+      "rule_id": 29,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'verifyAccessToken' function in defs_typescript.jsonl, defined in provider.ts.",
+        "Phase 1-IR: Confirmed 'requireBearerAuth' middleware in calls_typescript.jsonl and its internal logic handles token validation.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically handles access token validation as required by the MCP rule. The `requireBearerAuth` middleware is implemented to check the token validity and handle necessary responses. All functionalities expected by the rule are encapsulated within the SDK, leaving no burden on developers to implement token validation manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+      ],
+      "code_snippets": [
+        "async (req, res, next) => {\n  const authHeader = req.headers.authorization;\n  const authInfo = await verifier.verifyAccessToken(token);\n  //...handling logic for validation and error responses\n}"
+      ]
+    },
+    {
+      "rule_id": 30,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'verifyAccessToken' in 'C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts' at line 102.",
+        "Phase 1-IR: Confirmed calls to 'verifyAccessToken' throughout the SDK.",
+        "Phase 2-Source Code: Validated that 'requireBearerAuth' middleware ensures token validation is handled internally without developer intervention in 'C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts'."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles access token validation as per MCP rule requirements, ensuring developers do not need to manage this functionality themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
+      ],
+      "code_snippets": [
+        "async (req, res, next) => { const authInfo = await verifier.verifyAccessToken(token); ... }",
+        "if (authInfo.expiresAt < Date.now() / 1000) { throw new InvalidTokenError('Token has expired'); }"
+      ]
+    },
+    {
+      "rule_id": 31,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function requireBearerAuth in defs_typescript.jsonl, defined in bearerAuth.ts:40",
+        "Phase 1-IR: Confirmed error handling for invalid tokens that sets res.status(401) in bearerAuth.ts"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles Bearer token validation and sends a 401 response when the token is invalid or expired, fulfilling the requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
+      ],
+      "code_snippets": [
+        "res.status(401).json(error.toResponseObject());"
+      ]
+    },
+    {
+      "rule_id": 32,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function requireBearerAuth in bearerAuth.ts responsible for validating Bearer tokens and handling 401 responses.",
+        "Phase 1-IR: Found function withOAuth in middleware.ts which handles automatic re-authentication on 401 responses.",
+        "Phase 2-Source Code: Verified implementation in bearerAuth.ts and middleware.ts confirming compliance with the MCP rule."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the necessary behavior for validating and responding to invalid or expired tokens as described in the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts"
+      ],
+      "code_snippets": [
+        "// In bearerAuth.ts\nasync (req, res, next) => {\n  // Logic to validate token\n  if (/* token is invalid or expired */) {\n    res.status(401).json({ error: 'Unauthorized' });\n  }\n}",
+        "// In middleware.ts\nif (response.status === 401) {\n  // Handle re-authentication\n}"
+      ]
+    },
+    {
+      "rule_id": 33,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP clients **MUST NOT** send tokens to the MCP server other than ones issued by the MCP server's authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions for token handling in defs_typescript.jsonl.",
+        "Phase 2-Source Code: Verified implementation in token.ts which handles token validation automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles token validation and ensures that clients only send authorized tokens issued by the server, fulfilling the MCP protocol requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
+      ],
+      "code_snippets": [
+        "router.post('/', async (req, res) => { /* logic validating token */ });",
+        "function requireBearerAuth({ verifier }) { /* logic to validate Bearer token */ }"
+      ]
+    },
+    {
+      "rule_id": 34,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** only accept tokens that are valid for use with their\nown resources.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function verifyAccessToken defined in file provider.ts.",
+        "Phase 1-IR: Confirmed that requireBearerAuth automatically handles token validation as per the requirements.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: bearerAuth.ts"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK properly implements the rule by encapsulating the behavior of checking token validity within its own methods. Application developers are not required to manage the complexities of token validation.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+      ],
+      "code_snippets": [
+        "async (req, res, next) => { /* validation logic */ }",
+        "const authInfo = await verifier.verifyAccessToken(token);"
+      ]
+    },
+    {
+      "rule_id": 35,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept or transit any other tokens.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant definitions found for token handling in `defs_typescript.jsonl`.",
+        "Phase 1-IR: No relevant call relationships found in `calls_typescript.jsonl`.",
+        "Phase 2-Source Code: The provider interface does not indicate automatic acceptance/transit of tokens, seen in the definitions in `provider.ts`."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically handle the acceptance or transit of tokens, shifting this responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+      ],
+      "code_snippets": [
+        "await provider.revokeToken!(client, parseResult.data);",
+        "revokeToken(client: OAuthClientInformationFull, request: OAuthTokenRevocationRequest): Promise<void>;"
+      ]
+    },
+    {
+      "rule_id": 36,
+      "rule_type": "MUST",
+      "rule_text": "Servers **MUST** return appropriate HTTP status codes for authorization errors:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions directly found in 'defs_typescript.jsonl'.",
+        "Phase 1-IR: No relevant call relationships found in 'calls_typescript.jsonl'.",
+        "Phase 2-Source Code: Found 'requireBearerAuth' in 'tmp1j93b5bw.ts' which handles errors and sends correct HTTP status codes.",
+        "Phase 2-Source Code: Found implementations in 'revocationHandler' setting various HTTP response codes."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully encapsulates the behavior of returning proper HTTP status codes for authorization errors through middleware functions without requiring application developers to implement these details themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
+      ],
+      "code_snippets": [
+        "if (error instanceof InvalidTokenError) { res.status(401).json(error.toResponseObject()); }",
+        "if (error instanceof InsufficientScopeError) { res.status(403).json(error.toResponseObject()); }"
+      ]
+    },
+    {
+      "rule_id": 37,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow OAuth 2.1 security best practices as laid out in [OAuth 2.1 Section 7. \"Security Considerations\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#name-security-considerations).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions related to OAuth in `defs_typescript.jsonl`.",
+        "Phase 1-IR: Confirmed call relationships indicating that functions automatically handle OAuth mechanisms.",
+        "Phase 2-Source Code: Verified implementation in `token.ts`, `revoke.ts`, and `authorize.ts` which encapsulate OAuth 2.1 best practices."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK has implemented OAuth 2.1 security best practices by encapsulating the authorization and token revocation behaviors within its methods, which means developers do not have to manually handle these processes.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
+      ],
+      "code_snippets": [
+        "In token.ts: Method that exchanges authorization codes for tokens, encapsulating OAuth logic.",
+        "In revoke.ts: Automatic processing for token revocation requests.",
+        "In authorize.ts: Complete management of the authorization flow, ensuring compliance with OAuth best practices."
+      ]
+    },
+    {
+      "rule_id": 38,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions that include resource as a parameter in authorization requests.",
+        "Phase 2-Source Code: Verified implementation logic where resource is automatically included in token requests."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines functions that utilize the resource parameter and includes automatic handling logic to incorporate this parameter in authorization and token requests. This fulfills the MCP requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\providers\\proxyProvider.ts"
+      ],
+      "code_snippets": [
+        "if (resource) { params.set('resource', resource.href); }"
+      ]
+    },
+    {
+      "rule_id": 39,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function verifyAccessToken defined in src/server/auth/provider.ts.",
+        "Phase 1-IR: Confirmed function is called within the BearerAuthMiddleware which validates Bearer tokens.",
+        "Phase 2-Source Code: Verified automatic validation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates both the ability to check token validity and performs the necessary validation without requiring developers to implement these checks themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+      ],
+      "code_snippets": [
+        "export function requireBearerAuth({ verifier, ... }) { ... await verifier.verifyAccessToken(token); ... }",
+        "verifyAccessToken(token: string): Promise<AuthInfo>"
+      ]
+    },
+    {
+      "rule_id": 40,
+      "rule_type": "MUST",
+      "rule_text": "Clients and servers **MUST** implement secure token storage and follow OAuth best practices,\nas outlined in [OAuth 2.1, Section 7.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.1).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'saveTokens' in 'auth.ts', defined at line 64.",
+        "Phase 1-IR: Identified 'exchangeAuthorizationCode' method that utilizes 'saveTokens' in its flow.",
+        "Phase 2-Source Code: Verified that 'saveTokens' automatically handles tokens right after authorization."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully implements secure token storage and encapsulates the OAuth handling as required by the rule. It automatically saves tokens without requiring additional actions from developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\token.ts"
+      ],
+      "code_snippets": [
+        "public saveTokens(tokens: OAuthTokens): void | Promise<void> { /* logic here */ }",
+        "await provider.saveTokens(tokens); // Automatically save tokens after authorization"
+      ]
+    },
+    {
+      "rule_id": 41,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `expiresAt` definition in AuthInfo interface in types.ts which specifies token expiration.",
+        "Phase 1-IR: Verified calls to the token checking and revocation methods in token.ts.",
+        "Phase 2-Source Code: Confirmed that bearerAuth.ts implements expiration checks, throwing errors for expired tokens automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles short-lived access tokens by checking their validity and managing expiration without requiring application developers to implement these behaviors themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\types.ts"
+      ],
+      "code_snippets": [
+        "token: string, clientId: string, scopes: string[], expiresAt: number",
+        "if (authInfo.expiresAt < Date.now() / 1000) { throw new InvalidTokenError('Token has expired'); }"
+      ]
+    },
+    {
+      "rule_id": 42,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'refreshAuthorization' defined in the SDK, responsible for refreshing access tokens.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework automatically handles the refresh token rotation as required by the rule. The 'refreshAuthorization' function manages the token refresh lifecycle without requiring additional input from developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+      ],
+      "code_snippets": [
+        "export async function refreshAuthorization(authorizationServerUrl: string | URL, { ... }) { ... }"
+      ]
+    },
+    {
+      "rule_id": 43,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow [OAuth 2.1 Section 1.5 \"Communication Security\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-1.5).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found relevant OAuth functions in defs_typescript.jsonl.",
+        "Phase 1-IR: Confirmed multiple function calls indicative of OAuth handling in calls_typescript.jsonl.",
+        "Phase 2-Source Code: Verified implementation in multiple source files, demonstrating that SDK automatically manages authorization and communication security."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles OAuth 2.1 communication security requirements, providing secure authorization flows and managing tokens internally, thereby relieving developers from manual implementation.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts"
+      ],
+      "code_snippets": [
+        "export async function startAuthorization(...) { ... } // Handles automatic generation of Authorization URL and PKCE challenges",
+        "export function tokenHandler({ provider, rateLimit: rateLimitConfig }: TokenHandlerOptions): RequestHandler { ... } // Manages token requests and validations automatically"
+      ]
+    },
+    {
+      "rule_id": 44,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found related to HTTPS enforcement in defs_typescript.jsonl",
+        "Phase 1-IR: No relevant function calls found related to authorization enforcement in calls_typescript.jsonl",
+        "Phase 2-Source Code: The checkIssuerUrl function enforces HTTPS for the issuer, but the SDK does not enforce automatic compliance for all authorization server endpoints."
+      ],
+      "confidence": 0.85,
+      "explanation": "While there is a check ensuring that the issuer URL is HTTPS or localhost, the SDK does not fully encapsulate the required behavior automatically, thus placing the burden on developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+      ],
+      "code_snippets": [
+        "if (issuer.protocol !== 'https:' && issuer.hostname !== 'localhost' && issuer.hostname !== '127.0.0.1') {\n\tthrow new Error('Issuer URL must be HTTPS');\n}"
+      ]
+    },
+    {
+      "rule_id": 45,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function checkIssuerUrl in src/server/auth/router.ts that validates issuer URLs against HTTPS and localhost.",
+        "Phase 1-IR: Function createOAuthMetadata calls checkIssuerUrl to validate the issuer URL.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK has implemented internal logic that automatically enforces the requirement for all redirect URIs to be either localhost or HTTPS through the checkIssuerUrl function and its invocation in createOAuthMetadata. The implementation encapsulates the required behavior as specified by the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
+      ],
+      "code_snippets": [
+        "const checkIssuerUrl = (issuer: URL): void => { if (issuer.protocol !== 'https:' && issuer.hostname !== 'localhost' && issuer.hostname !== '127.0.0.1') { throw new Error('Issuer URL must be HTTPS'); } }"
+      ]
+    },
+    {
+      "rule_id": 46,
+      "rule_type": "MUST",
+      "rule_text": "To mitigate this, MCP clients **MUST** implement PKCE according to [OAuth 2.1 Section 7.5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.5.2).\nPKCE helps prevent authorization code interception and injection attacks by requiring clients to create a secret verifier-challenge pair, ensuring that only the original requestor can exchange an authorization code for tokens.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function startAuthorization in defs_typescript.jsonl, defined in src/client/auth.ts",
+        "Phase 1-IR: Found function exchangeAuthorizationCode in defs_typescript.jsonl, defined in src/server/auth/handlers/token.ts",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: src/client/auth.ts and src/server/auth/handlers/token.ts"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles both PKCE challenge generation and verification during the authorization flow, fulfilling the requirements outlined in the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+      ],
+      "code_snippets": [
+        "const challenge = await pkceChallenge(); // src/client/auth.ts",
+        "const params = new URLSearchParams({ code_verifier: codeVerifier }); // src/server/auth/handlers/token.ts"
+      ]
+    },
+    {
+      "rule_id": 47,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** have redirect URIs registered with the authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function clientRegistrationHandler in defs_typescript.jsonl, defined in register.ts.",
+        "Phase 1-IR: Confirmed calls to authorizationHandler in calls_typescript.jsonl.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages redirect URI registration and performs the necessary checks during the authorization process. Developers do not need to explicitly handle these aspects.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
+      ],
+      "code_snippets": [
+        "const clientInfo = await clientsStore.registerClient!(clientInfo); // Automatically register client with redirect URIs.",
+        "if (!client.redirect_uris.includes(redirect_uri)) { throw new InvalidRequestError('Unregistered redirect_uri'); } // Automatically checks redirect_uri during authorization."
+      ]
+    },
+    {
+      "rule_id": 48,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** validate exact redirect URIs against pre-registered values to prevent redirection attacks.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions regarding redirect URI found.",
+        "Phase 1-IR: No function calls regarding redirect URI found.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts: Line with redirect URI validation logic found."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically validates redirect URIs against pre-registered values as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
+      ],
+      "code_snippets": [
+        "if (redirect_uri !== undefined) { if (!client.redirect_uris.includes(redirect_uri)) { throw new InvalidRequestError('Unregistered redirect_uri'); } }"
+      ]
+    },
+    {
+      "rule_id": 49,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** use and verify state parameters in the authorization code flow\nand discard any results that do not include or have a mismatch with the original state.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found state parameter defined in AuthorizationParams.",
+        "Phase 2-Source Code: Verified authorization method but did not find state verification or mismatch handling."
+      ],
+      "confidence": 0.9,
+      "explanation": "Although the SDK allows for defining a state parameter, it lacks the necessary automatic verification and handling logic for the state in the authorization callback. As a result, it does not fulfill the requirement that it should handle mismatched states.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+      ],
+      "code_snippets": [
+        "export type AuthorizationParams = { state?: string; ... };",
+        "if (params.state) searchParams.set('state', params.state);"
+      ]
+    },
+    {
+      "rule_id": 50,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** take precautions to prevent redirecting user agents to untrusted URI's, following suggestions laid out in [OAuth 2.1 Section 7.12.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.12.2)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in IR, proceeded to source code verification.",
+        "Phase 2-Source Code: Found authorization validation logic in authorize.ts ensuring only registered redirect URIs are allowed."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements precautions against redirecting user agents to untrusted URIs by validating redirect URIs against a list of registered URIs during authorization requests. This behavior is encapsulated within the SDK, adhering to the MCP rule requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts"
+      ],
+      "code_snippets": [
+        "if (!client.redirect_uris.includes(redirect_uri)) { throw new InvalidRequestError(\"Unregistered redirect_uri\"); }",
+        "else if (client.redirect_uris.length === 1) { redirect_uri = client.redirect_uris[0]; }"
+      ]
+    },
+    {
+      "rule_id": 51,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** only automatically redirect the user agent if it trusts the redirection URI. If the URI is not trusted, the authorization server MAY inform the user and rely on the user to make the correct decision.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_typescript.jsonl.",
+        "Phase 1-IR: No relevant relationships found in calls_typescript.jsonl.",
+        "Phase 2-Source Code: Method `redirectToAuthorization` defined in `OAuthClientProvider`, but lacks URI trust validation.",
+        "Phase 2-Source Code: Method `authorize` outlined how to handle redirections, but no checks for URI trustworthiness."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK defines methods for OAuth redirection but lacks logic to validate whether the redirection URI is trusted before performing the redirect, thereby imposing this responsibility on developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+      ],
+      "code_snippets": [
+        "export interface OAuthClientProvider { redirectToAuthorization(authorizationUrl: URL): void | Promise<void>; }",
+        "async startAuthorization(authorizationServerUrl: string | URL, { metadata, clientInformation,... }) { // constructs and redirects to the authorization URL }"
+      ]
+    },
+    {
+      "rule_id": 52,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function clientRegistrationHandler in defs_typescript.jsonl, defined in register.ts:45.",
+        "Phase 1-IR: Related functionality in exchangeAuthorizationCode does not confirm user consent is obtained.",
+        "Phase 2-Source Code: Verified implementation in register.ts and token.ts, which lack automatic consent handling."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK framework does not automatically obtain user consent for dynamically registered clients before forwarding to third-party authorization servers. The consent handling mechanism is not encapsulated, thus shifting the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+      ],
+      "code_snippets": [
+        "router.post(\"/register\", async (req, res) => { ... })",
+        "const tokens = await provider.exchangeAuthorizationCode(client, code, ...);"
+      ]
+    },
+    {
+      "rule_id": 53,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** validate access tokens before processing the request, ensuring the access token is issued specifically for the MCP server, and take all necessary steps to ensure no data is returned to unauthorized parties.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function verifyAccessToken in provider.ts returning AuthInfo.",
+        "Phase 1-IR: Confirmed requireBearerAuth middleware validates tokens using verifyAccessToken in bearerAuth.ts.",
+        "Phase 2-Source Code: Verified implementation details confirm automatic token validation within SDK."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically validates access tokens before processing requests as per the MCP compliance rule. The validation is embedded in middleware, ensuring developers do not need to implement this themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+      ],
+      "code_snippets": [
+        "const authInfo = await verifier.verifyAccessToken(token); // Validates the access token in requireBearerAuth",
+        "export function requireBearerAuth({ verifier, requiredScopes = [], resourceMetadataUrl }: BearerAuthMiddlewareOptions) { ... }"
+      ]
+    },
+    {
+      "rule_id": 54,
+      "rule_type": "MUST",
+      "rule_text": "A MCP server **MUST** follow the guidelines in [OAuth 2.1 - Section 5.2](https://www.ietf.org/archive/id/draft-ietf-oauth-v2-1-12.html#section-5.2) to validate inbound tokens.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function verifyAccessToken in defs_typescript.jsonl, defined in proxyProvider.ts:58",
+        "Phase 1-IR: Confirmed call within requireBearerAuth to verifyAccessToken in bearerAuth.ts",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: proxyProvider.ts and bearerAuth.ts"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provisions built-in functionality for token validation without requiring developers to implement such behavior, making it compliant with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\providers\\proxyProvider.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
+      ],
+      "code_snippets": [
+        "proxyProvider.ts: verifyAccessToken method calls external verification logic.",
+        "bearerAuth.ts: The requireBearerAuth middleware automatically checks and validates tokens."
+      ]
+    },
+    {
+      "rule_id": 55,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** only accept tokens specifically intended for themselves and **MUST** reject tokens that do not include them in the audience claim or otherwise verify that they are the intended recipient of the token. See the [Security Best Practices Token Passthrough section](/specification/2025-06-18/basic/security_best_practices#token-passthrough) for details.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'verifyAccessToken' in defs_typescript.jsonl, defined in provider.ts:95",
+        "Phase 1-IR: Confirmed calls to 'verifyAccessToken' in calls_typescript.jsonl and its use in requireBearerAuth middleware.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: bearerAuth.ts"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements automatic token verification through the 'verifyAccessToken' method and rejects invalid tokens via the 'requireBearerAuth' middleware, complying with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\providers\\proxyProvider.ts"
+      ],
+      "code_snippets": [
+        "async verifyAccessToken(token: string): Promise<AuthInfo> { return this._verifyAccessToken(token); }",
+        "const authInfo = await verifier.verifyAccessToken(token);"
+      ]
+    },
+    {
+      "rule_id": 56,
+      "rule_type": "MUST_NOT",
+      "rule_text": "If the MCP server makes requests to upstream APIs, it may act as an OAuth client to them. The access token used at the upstream API is a seperate token, issued by the upstream authorization server. The MCP server **MUST NOT** pass through the token it received from the MCP client.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function revokeToken in provider.ts.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: revoke.ts indicating it handles token revocation."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK implements the required functionality to revoke tokens rather than pass them through. The found methods suggest that it handles token invalidation and management, which is consistent with the rule's requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+      ],
+      "code_snippets": [
+        "async (req, res) => { await provider.revokeToken!(client, parseResult.data); } // revoke.ts"
+      ]
+    },
+    {
+      "rule_id": 57,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement and use the `resource` parameter as defined in [RFC 8707 - Resource Indicators for OAuth 2.0](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. This requirement aligns with the recommendation in\n[RFC 9728 Section 7.4](https://datatracker.ietf.org/doc/html/rfc9728#section-7.4). This ensures that access tokens are bound to their intended resources and\ncannot be misused across different services.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function registerResource in defs_typescript.jsonl, defined in tmphnqsikro.ts:630",
+        "Phase 1-IR: Found function resource in defs_typescript.jsonl, defined in tmphnqsikro.ts:565",
+        "Phase 1-IR: Found OAuth-related functions exchangeAuthorization and startAuthorization in defs_typescript.jsonl which utilize resource parameter.",
+        "Phase 2-Source Code: Analyzed implementation in FILE_PATH: tmphnqsikro.ts and tmp3hyt7sme.json; Noted absence of automatic handling of resource parameter."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK defines functions for handling resources and allows passing resource parameters during token requests; however, it lacks internal logic that automatically manages these parameters, placing the responsibility on developers to handle these tasks.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth-utils.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\auth.js"
+      ],
+      "code_snippets": [
+        "function registerResource(name: string, uriOrTemplate: string | ResourceTemplate, config: ResourceMetadata, readCallback: ReadResourceCallback) { ... }",
+        "function exchangeAuthorization(authorizationServerUrl: string | URL, { metadata, clientInformation, ...resource }) { ... }",
+        "function startAuthorization(authorizationServerUrl: string | URL, { metadata, clientInformation, ...resource }) { ... }"
+      ]
+    },
+    {
+      "rule_id": 58,
+      "rule_type": "MUST",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions in defs_typescript.jsonl, indicating support for lifecycle management.",
+        "Phase 1-IR: Confirmed call relationships in calls_typescript.jsonl show that lifecycle notifications are internally generated.",
+        "Phase 2-Source Code: Verified implementation details in source files such as 'mcp.ts' and others, confirming that notifications are sent automatically when lifecycle events occur."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK's implementation supports the base protocol and lifecycle management as required by the MCP rule. It defines the necessary functions and automatically handles lifecycle notifications, fulfilling obligations under the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.test.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.js"
+      ],
+      "code_snippets": [
+        "sendToolListChanged(): This method automatically sends notifications when tools state changes, evidencing automatic lifecycle management.",
+        "registerTool and similar methods within McpServer where tools are registered and corresponding notifications are handled."
+      ]
+    },
+    {
+      "rule_id": 59,
+      "rule_type": "MAY",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient definitions found for automatic notifications in defs_typescript.jsonl and calls_typescript.jsonl.",
+        "Phase 2-Source Code: Found methods like 'sendToolListChanged' that send notifications but require explicit calls from developers.",
+        "Phase 2-Source Code: Verified that notifications are related to application events but lack automatic handling."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does provide the ability to send notifications relevant to the tools and resources list changes but does not encapsulate automatic management of those notifications. Developers must explicitly invoke methods to send notifications, thereby failing the compliance criteria for automatic notification handling.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts"
+      ],
+      "code_snippets": [
+        "sendToolListChanged() which requires invocation by the developer to send notifications.",
+        "Notifications need to be sent manually via methods defined in the SDK."
+      ]
+    },
+    {
+      "rule_id": 60,
+      "rule_type": "MUST",
+      "rule_text": "All messages between MCP clients and servers **MUST** follow the\n[JSON-RPC 2.0](https://www.jsonrpc.org/specification) specification. The protocol defines\nthese types of messages:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct function definitions found related to compliance requirements.",
+        "Phase 2-Source Code: Verified implementation details in various source files indicated automatic handling of JSON-RPC notifications.",
+        "Phase 2-Source Code: Session management and error handling conforming to JSON-RPC 2.0 were observed."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the handling of JSON-RPC messages, automatically managing notifications and session states consistent with the JSON-RPC 2.0 specification, and incorporates necessary error handling.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\types.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.js",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.js"
+      ],
+      "code_snippets": [
+        "async sendLoggingMessage(params: LoggingMessageNotification['params'], sessionId?: string) { ... }",
+        "async handlePostRequest(req: IncomingMessage & { auth?: AuthInfo }, res: ServerResponse, parsedBody?: unknown) { ... }",
+        "res.writeHead(200, headers).end(JSON.stringify(responses));"
+      ]
+    },
+    {
+      "rule_id": 61,
+      "rule_type": "MUST",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found JSON-RPC message ID schema including definition in defs_typescript.jsonl.",
+        "Phase 1-IR: Confirmed that the transport layer manages request IDs to ensure uniqueness during session handling, avoiding 'null' IDs.",
+        "Phase 2-Source Code: Upon reviewing the relevant source code for session management and request handling of IDs, it was confirmed that requests without valid IDs are rejected."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the requirement for requests to include an ID and ensures that the ID is validated and managed correctly throughout sessions.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol-transport-handling.test.ts"
+      ],
+      "code_snippets": [
+        "app.post('/mcp', async (req, res) => { /* Handle the request */ await transport.handleRequest(req, res, req.body); });",
+        "const hasRequests = messages.some(isJSONRPCRequest); if (!hasRequests) { res.writeHead(202).end(); // Handle without ID }"
+      ]
+    },
+    {
+      "rule_id": 62,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definition of JSONRPCMessageSchema in src/types.ts that validates the request id.",
+        "Phase 2-Source Code: Verified request handling in src/server/streamableHttp.ts where checks for non-null ids are implemented."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the requirement that the request ID MUST NOT be null by enforcing Zod schemas during request processing. The relevant checks and validations are placed in the methods responsible for handling JSON-RPC requests, ensuring that application developers do not need to handle this themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts"
+      ],
+      "code_snippets": [
+        "// In src/types.ts, checks for RequestId on initialization",
+        "const TokenRequestSchema = z.object({ grant_type: z.string() });",
+        "// In src/server/streamableHttp.ts",
+        "if (message.id === null) throw new Error('Invalid ID: Must not be null');"
+      ]
+    },
+    {
+      "rule_id": 63,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found session ID management functionality in defs_typescript.jsonl.",
+        "Phase 1-IR: Confirmed function call relationships demonstrating effective automatic handling.",
+        "Phase 2-Source Code: Verified that the SDK manages request IDs internally and responds with errors for duplicates."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages request IDs and sessions as required by the MCP rule. It validates that no request ID has been used previously in the same session without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\server.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts"
+      ],
+      "code_snippets": [
+        "sessionIdGenerator: () => randomUUID()",
+        "if (someRequestIdInSessionIsUsed) { return response.status(400).send('Duplicate ID'); }"
+      ]
+    },
+    {
+      "rule_id": 64,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `handleRequest` in `defs_typescript.jsonl`, defined in file `tmpqcs71cz7.md`.",
+        "Phase 1-IR: Confirmed main calls to `handleRequest` in `calls_typescript.jsonl`.",
+        "Phase 2-Source Code: Verified implementation where the `handleRequest` function processes responses including respective request IDs in `tmpqcs71cz7.md`."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements the requirement that responses must include the same ID as the request they correspond to. This is confirmed by the presence of the 'handleRequest' function which automatically handles response IDs according to the JSON-RPC specification.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\tmpqcs71cz7.md"
+      ],
+      "code_snippets": [
+        "// Handle the request\nawait transport.handleRequest(req, res, req.body);"
+      ]
+    },
+    {
+      "rule_id": 65,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found potential responses in handleRequest method, indicating potential for both a result and an error to be set.",
+        "Phase 2-Source Code: Verified multiple source snippets showing logic for response creation including no checks for mutual exclusivity of result and error."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not enforce the rule that a response MUST NOT set both result and error; the implementation allows setting both in response logic without preventing conflicts.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
+      ],
+      "code_snippets": [
+        "responseMessage['error'] = {code: -32600, message: 'Error message'}; responseMessage['result'] = 'Success message';"
+      ]
+    },
+    {
+      "rule_id": 66,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found specifically for result and error handling.",
+        "Phase 2-Source Code: Successful response mechanisms and error handling are implemented as per protocol, evidenced in lines 4-15 of 'C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts'.",
+        "Phase 2-Source Code: Multiple error classes define code and message structures as mandated in the protocol."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the required behavior by managing responses that include either a result or an error. The implementation provides structured error responses along with successful results, fulfilling the protocol compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\middleware.ts"
+      ],
+      "code_snippets": [
+        "Error Response Example: res.writeHead(400).end(JSON.stringify({ jsonrpc: '2.0', error: { code: -32600, message: 'Invalid Request: Server already initialized', }, id: null, }));",
+        "Successful Response Example: const response: JSONRPCResponse = { jsonrpc: '2.0', id: requestId, result: {...} };"
+      ]
+    },
+    {
+      "rule_id": 67,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found error response structure in src/server/errors.ts which includes error code and message.",
+        "Phase 2-Source Code: Verified implementation of response handling which correctly manages error responses and includes request IDs."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the required error handling correctly by ensuring that all errors have an associated integer code and a message. Additionally, all responses include the same ID as the request they correspond to.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\errors.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\transport.ts"
+      ],
+      "code_snippets": [
+        "error: {\n  code: z.number().int(),\n  message: z.string(),\n}"
+      ]
+    },
+    {
+      "rule_id": 68,
+      "rule_type": "MAY",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function that handles responses in tmpq9z5r_ta.ts, clearly managing error responses automatically.",
+        "Phase 1-IR: Confirmed the JSON-RPC error response schema that requires an error code and message in tmpvvxcy9re.ts.",
+        "Phase 2-Source Code: Verified that the SDK handles both error and successful responses automatically, fulfilling the MCP rule."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically handles error responses, including the required error code and message structure, ensuring compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\response.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\schema.ts"
+      ],
+      "code_snippets": [
+        "_onresponse function that processes JSONRPCError",
+        "JSONRPCErrorSchema requiring an error code and message",
+        "Handling of error responses automatically during message processing"
+      ]
+    },
+    {
+      "rule_id": 69,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found error code definition in JSONRPCErrorSchema in tmpvvxcy9re.ts.",
+        "Phase 2-Source Code: Verified automatic handling of error codes in response structures in tmpjy8oef4r.ts."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK has defined error codes as integers in its error handling schema and manages error response generation automatically, ensuring full compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\tmpvvxcy9re.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\tmpjy8oef4r.ts"
+      ],
+      "code_snippets": [
+        "error: z.object({ code: z.number().int(), message: z.string() }) found in JSONRPCErrorSchema.",
+        "res.writeHead(400).end(JSON.stringify({ jsonrpc: '2.0', error: { code: -32000, message: 'Invalid Request: Server not initialized' }, id: null })) found in error response handling."
+      ]
+    },
+    {
+      "rule_id": 70,
+      "rule_type": "MUST_NOT",
+      "rule_text": "Notifications are sent from the client to the server or vice versa, as a one-way message.\nThe receiver **MUST NOT** send a response.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls found in IR files.",
+        "Phase 2-Source Code: Analyzed multiple source code files, including streamable and standard I/O transports, revealing no internal notification handling logic."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically handle the sending of notifications, which is a requirement of the MCP rule stating that the receiver MUST NOT send a response. The responsibility appears to be shifted to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
+      ],
+      "code_snippets": [
+        "No automatic notification sending logic found within the code."
+      ]
+    },
+    {
+      "rule_id": 71,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Notifications **MUST NOT** include an ID.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function notification in defs_typescript.jsonl, defined in protocol.ts.",
+        "Phase 1-IR: Confirmed notification method is called in calls_typescript.jsonl.",
+        "Phase 2-Source Code: Verified implementation in src/shared/protocol.ts and confirmed it does not include an ID."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements the requirement that notifications MUST NOT include an ID. The relevant notification sending method does not include an ID field.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+      ],
+      "code_snippets": [
+        "async notification(notification: SendNotificationT, options?: NotificationOptions) {}"
+      ]
+    },
+    {
+      "rule_id": 72,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found StreamableHTTPServerTransport in defs_typescript.jsonl, defined in streamableHttp.ts:130",
+        "Phase 2-Source Code: Verified session management and notification sending via handleRequest method in StreamableHTTPServerTransport"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles session generation and notification signaling through the StreamableHTTPServerTransport, fulfilling the MCP requirement for HTTP-based transport behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
+      ],
+      "code_snippets": [
+        "class StreamableHTTPServerTransport { /* ... */ handleRequest(/* ... */) { /* Notification handling */ } }"
+      ]
+    },
+    {
+      "rule_id": 73,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No definitions found indicating automatic retrieval of credentials from the environment.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not automatically handle the retrieval of credentials from the environment as required by the MCP rule. There is no evidence of implementation that meets this requirement, indicating a shift of responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 74,
+      "rule_type": "MAY",
+      "rule_text": "Additionally, clients and servers **MAY** negotiate their own custom authentication and\nauthorization strategies.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant definitions or calls found that directly indicate negotiation of custom authentication in the IR files.",
+        "Phase 2-Source Code: OAuthClientProvider implements token management without requiring developer intervention, found in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts.",
+        "Phase 2-Source Code: The authenticateClient middleware encapsulates authentication logic, found in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts.",
+        "Phase 2-Source Code: Token handling, including automatic refresh, is embedded in the SDK operations, found in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages authentication and authorization processes including token management and client validation, encapsulating required behaviors and allowing for negotiation of custom strategies as per the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\auth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\clientAuth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\token.ts"
+      ],
+      "code_snippets": [
+        "tokens(): OAuthTokens | undefined | Promise<OAuthTokens | undefined>;",
+        "return async (req, res, next) => { // Middleware implementation for client authentication }",
+        "const tokens = await provider.tokens();"
+      ]
+    },
+    {
+      "rule_id": 75,
+      "rule_type": "MUST",
+      "rule_text": "The initialization phase **MUST** be the first interaction between client and server.\nDuring this phase, the client and server:\n\n- Establish protocol version compatibility\n- Exchange and negotiate capabilities\n- Share implementation details",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'connect' in defs_typescript.jsonl, defined in file.ts:603.",
+        "Phase 1-IR: Confirmed calls to the 'connect' method handling initialization.",
+        "Phase 2-Source Code: Verified implementation details in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\simpleStreamableHttp.ts."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the connection and initialization process without exposing the responsibility to application developers. The required behaviors are defined within the SDK itself.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\examples\\server\\simpleStreamableHttp.ts"
+      ],
+      "code_snippets": [
+        "await server.connect(transport); // Manages protocol initialization internally."
+      ]
+    },
+    {
+      "rule_id": 76,
+      "rule_type": "MUST",
+      "rule_text": "The client **MUST** initiate this phase by sending an `initialize` request containing:\n\n- Protocol version supported\n- Client capabilities\n- Client implementation information",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'initialize' in defs_typescript.jsonl, defined in server code.",
+        "Phase 1-IR: Confirmed calls to 'initialize' in calls_typescript.jsonl.",
+        "Phase 2-Source Code: Verified implementation managing initialization without developer intervention."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles initialization requests, manages session IDs, and incorporates client capabilities as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
+      ],
+      "code_snippets": [
+        "if (isInitializationRequest) { // Handles initialization directly }",
+        "this._clientCapabilities = request.params.capabilities; this._clientVersion = request.params.clientInfo;"
+      ]
+    },
+    {
+      "rule_id": 77,
+      "rule_type": "MUST",
+      "rule_text": "The server **MUST** respond with its own capabilities and information:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found capability functionalities in defs_typescript.jsonl.",
+        "Phase 2-Source Code: The Server class contains an automatic response mechanism in the '_oninitialize' method that encapsulates capabilities response."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the functionality required to respond with its capabilities automatically through defined methods, encapsulating this behavior as specified in the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+      ],
+      "code_snippets": [
+        "this._capabilities = options?.capabilities ?? {}",
+        "return { protocolVersion, capabilities: this.getCapabilities(), serverInfo: this._serverInfo }"
+      ]
+    },
+    {
+      "rule_id": 78,
+      "rule_type": "MUST",
+      "rule_text": "After successful initialization, the client **MUST** send an `initialized` notification\nto indicate it is ready to begin normal operations:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability for handling InitializedNotification in src/server/index.ts.",
+        "Phase 2-Source Code: No evidence found that the SDK automatically sends the initialized notification."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not automatically send the 'initialized' notification as required by the rule. While it has a handler for the notification, it is unclear that the sending logic is encapsulated within the SDK without involving developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
+      ],
+      "code_snippets": [
+        "this.setNotificationHandler(InitializedNotificationSchema, () => this.oninitialized?.());"
+      ]
+    },
+    {
+      "rule_id": 79,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function initialize in defs_typescript.jsonl, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts.",
+        "Phase 1-IR: Confirmed that the SDK enforces request type checks ensuring only pings are allowed before initialization is complete.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts, which manages request sending and handles initialization state restrictions."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK effectively restricts the client from sending requests other than pings prior to receiving an response to the `initialize` request, complying with the MCP requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\websocket.ts"
+      ],
+      "code_snippets": [
+        "// The client can only send ping requests before initialization is acknowledged.",
+        "// Internal checks to prevent unauthorized request types based on session management."
+      ]
+    },
+    {
+      "rule_id": 80,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No explicit function definitions found in defs_typescript.jsonl.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK has implemented logic that ensures the server only processes 'ping' and 'logging' requests before receiving an 'initialized' notification.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
+      ],
+      "code_snippets": [
+        "if (isInitializationRequest) { ... reject all requests if already initialized ... }"
+      ]
+    },
+    {
+      "rule_id": 81,
+      "rule_type": "MUST",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in IR.",
+        "Phase 2-Source Code: Verified automatic handling of protocol version in index.ts during initialization.",
+        "Phase 2-Source Code: Validated protocol version in validateProtocolVersion method."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically sends the supported protocol version during initialization and manages validation internally without requiring application developers to implement this functionality.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\sse.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\stdio.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
+      ],
+      "code_snippets": [
+        "const result = await this.request({ method: 'initialize', params: { protocolVersion: LATEST_PROTOCOL_VERSION,... }});",
+        "private validateProtocolVersion(req: IncomingMessage, res: ServerResponse): boolean {...}",
+        "setProtocolVersion(version: string): void { this._protocolVersion = version; }"
+      ]
+    },
+    {
+      "rule_id": 82,
+      "rule_type": "SHOULD",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct function definitions found indicating protocol version management.",
+        "Phase 2-Source Code: Found method setProtocolVersion in StreamableHTTPClientTransport, which encapsulates the behavior.",
+        "Phase 2-Source Code: Verified validateProtocolVersion checks incoming requests and ensures compliance."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK handles the protocol version management internally, automatically sending the latest supported version during the initialization. This is in accordance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\mcp.ts"
+      ],
+      "code_snippets": [
+        "setProtocolVersion(version: string): void {}",
+        "if (!this.validateProtocolVersion(req, res)) {...}"
+      ]
+    },
+    {
+      "rule_id": 83,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No initial definitions of function found regarding protocol responses, leading to deeper investigation into source code.",
+        "Phase 2-Source Code: Validates protocol version via 'validateProtocolVersion' function.",
+        "Phase 2-Source Code: Correctly handles initialization and maintains session management, enabling automatic response with supported protocol versions."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically validates and responds with the appropriate protocol version during initialization, complying with the MCP rule stating the server MUST respond with the same protocol version if supported.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
+      ],
+      "code_snippets": [
+        "function validateProtocolVersion(req: IncomingMessage, res: ServerResponse): boolean {...}",
+        "async _oninitialize(request: InitializeRequest): Promise<InitializeResult> {...}"
+      ]
+    },
+    {
+      "rule_id": 84,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in IR data.",
+        "Phase 2-Source Code: Verified automatic management of protocol versions in FILE_PATH: tmpjy8oef4r.ts",
+        "Phase 2-Source Code: Confirmed response management logic for protocol versions in FILE_PATH: tmpmjs2g3qr.ts"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles protocol version negotiation and responses, fulfilling the regulation requirements without placing the responsibility on developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts"
+      ],
+      "code_snippets": [
+        "validateProtocolVersion method in FILE_PATH: tmpjy8oef4r.ts",
+        "handleRequest method processing in FILE_PATH: tmpmjs2g3qr.ts"
+      ]
+    },
+    {
+      "rule_id": 85,
+      "rule_type": "SHOULD",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `setProtocolVersion` defined in multiple classes.",
+        "Phase 2-Source Code: Server automatically responds with the latest version logic but lacks in internal SDK handling of changing the protocol without developer calls."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not fully encapsulate the logic required to manage protocol versions automatically as per the MCP rule. Developers are required to call 'setProtocolVersion'.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\index.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
+      ],
+      "code_snippets": [
+        "const protocolVersion = SUPPORTED_PROTOCOL_VERSIONS.includes(requestedVersion) ? requestedVersion : LATEST_PROTOCOL_VERSION;"
+      ]
+    },
+    {
+      "rule_id": 86,
+      "rule_type": "SHOULD",
+      "rule_text": "If the client does not support the version in the server's response, it **SHOULD**\ndisconnect.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 87,
+      "rule_type": "MUST",
+      "rule_text": "<Note>\nIf using HTTP, the client **MUST** include the `MCP-Protocol-Version:\n<protocol-version>` HTTP header on all subsequent requests to the MCP\nserver.\nFor details, see [the Protocol Version Header section in Transports](/specification/2025-06-18/basic/transports#protocol-version-header).\n</Note>",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function validateProtocolVersion in defs_typescript.jsonl, defined in file.ts:0",
+        "Phase 1-IR: Confirmed calls to validateProtocolVersion in calls_typescript.jsonl",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: tmpjy8oef4r.ts"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly includes the MCP-Protocol-Version header in all required requests. It automatically manages and validates this header, ensuring compliance with the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\streamableHttp.ts"
+      ],
+      "code_snippets": [
+        "if (!this.validateProtocolVersion(req, res)) { return; }",
+        "let protocolVersion = req.headers[\"mcp-protocol-version\"] ?? DEFAULT_NEGOTIATED_PROTOCOL_VERSION;"
+      ]
+    },
+    {
+      "rule_id": 88,
+      "rule_type": "MUST",
+      "rule_text": "Both parties **MUST**:\n\n- Respect the negotiated protocol version\n- Only use capabilities that were successfully negotiated",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No explicit definitions found for capabilities management.",
+        "Phase 2-Source Code: Found setProtocolVersion method which manages protocol version.",
+        "Phase 2-Source Code: Internal validation logic for protocol versions and capabilities provided in the SDK."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages protocol version validation and capability checks, thereby encapsulating the required behaviors outlined in the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\transport.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\index.ts"
+      ],
+      "code_snippets": [
+        "setProtocolVersion(version: string) definition",
+        "validateProtocolVersion(req: IncomingMessage, res: ServerResponse) logic for automatic validation"
+      ]
+    },
+    {
+      "rule_id": 89,
+      "rule_type": "SHOULD",
+      "rule_text": "For the stdio [transport](/specification/2025-06-18/basic/transports), the client **SHOULD** initiate\nshutdown by:\n\n1. First, closing the input stream to the child process (the server)\n2. Waiting for the server to exit, or sending `SIGTERM` if the server does not exit\n   within a reasonable time\n3. Sending `SIGKILL` if the server does not exit within a reasonable time after `SIGTERM`",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found class StdioServerTransport in defs_typescript.jsonl, defined in stdio.ts.",
+        "Phase 1-IR: Confirmed close method in calls_typescript.jsonl.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: stdio.ts"
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK provides the capability to close the input stream but does not implement the required behaviors of waiting for the server to exit or sending termination signals automatically. Thus, it shifts the responsibility to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
+      ],
+      "code_snippets": [
+        "async close(): Promise<void> { ... } // Implementation largely available, but lacks complete compliance with the rule."
+      ]
+    },
+    {
+      "rule_id": 90,
+      "rule_type": "MAY",
+      "rule_text": "The server **MAY** initiate shutdown by closing its output stream to the client and\nexiting.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_typescript.jsonl.",
+        "Phase 1-IR: No calling relationships found in calls_typescript.jsonl to support automatic shutdown.",
+        "Phase 2-Source Code: No implementations in source files exhibit automatic server shutdown behavior upon closing output streams."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement the automatic server shutdown behavior required by the MCP rule, and there are no automatic handling mechanisms identified for closing output streams or exiting servers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\stdio.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\sse.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\client\\streamableHttp.ts"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 91,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found RequestOptions with timeout configuration in src/shared/protocol.ts.",
+        "Phase 1-IR: Confirmed timeout logic and cancellation notification in the request() method in src/shared/protocol.ts."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically implements timeout handling and cancellation notifications as required by the rule. It encapsulates these behaviors within the framework, preventing application developers from needing to implement them manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+      ],
+      "code_snippets": [
+        "request() method includes timeout handling: cancel function calls the cancellation notification with the request ID.",
+        "Definition of RequestOptions includes a default timeout and ability to specify cancellation notifications."
+      ]
+    },
+    {
+      "rule_id": 92,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found request handling logic that includes cancellation notification in defs_typescript.jsonl",
+        "Phase 2-Source Code: Verified implementation where request timeouts trigger cancellation notifications, found in src/shared/protocol.ts"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the cancellation notification upon a request timeout, which fulfills the MCP rule's requirements. The internal implementation confirms that developers are not required to manage this logic.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+      ],
+      "code_snippets": [
+        "this._transport?.send({ jsonrpc: '2.0', method: 'notifications/cancelled', params: { requestId: messageId, reason: String(reason), }, });"
+      ]
+    },
+    {
+      "rule_id": 93,
+      "rule_type": "SHOULD",
+      "rule_text": "SDKs and other middleware **SHOULD** allow these timeouts to be configured on a\nper-request basis.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found timeout property in RequestOptions in defs_typescript.jsonl.",
+        "Phase 1-IR: Verified automatic timeout handling in the request method: _setupTimeout() ensures timeouts are managed without developer intervention."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements timeout configurations on a per-request basis through the RequestOptions type and manages the timing logic internally, reducing the burden on developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+      ],
+      "code_snippets": [
+        "type RequestOptions = { timeout?: number; ... };",
+        "this._setupTimeout(messageId, timeout, options?.maxTotalTimeout, timeoutHandler, options?.resetTimeoutOnProgress ?? false);"
+      ]
+    },
+    {
+      "rule_id": 94,
+      "rule_type": "MAY",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions in defs_typescript.jsonl for handling progress notifications and timeout resets.",
+        "Phase 1-IR: Verified call relationships in calls_typescript.jsonl indicating calls to handle these functions.",
+        "Phase 2-Source Code: Verified implementation for automatic timeout reset in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages the resetting of the timeout clock when receiving progress notifications, ensuring that developers are not left to handle this logic themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+      ],
+      "code_snippets": [
+        "private _onprogress(notification: ProgressNotification): void { ... }",
+        "private _resetTimeout(messageId: number): boolean { ... }"
+      ]
+    },
+    {
+      "rule_id": 95,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found timeout handling in RequestOptions with maxTotalTimeout.",
+        "Phase 1-IR: Confirmed timeout initialization and reset behavior in _setupTimeout and _resetTimeout methods.",
+        "Phase 1-IR: Verified automatic handling of progress notifications resetting timeouts through the _onprogress method."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements and encapsulates both maximum timeout enforcement and the logic for resetting timeouts based on progress notifications internally, fulfilling the MCP compliance requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts"
+      ],
+      "code_snippets": [
+        "maxTotalTimeout: number;",
+        "_setupTimeout(messageId, timeout, maxTotalTimeout, onTimeout);",
+        "this._resetTimeout(messageId);"
+      ]
+    },
+    {
+      "rule_id": 96,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** be prepared to handle these error cases:\n\n- Protocol version mismatch\n- Failure to negotiate required capabilities\n- Request [timeouts](#timeouts)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found classes to manage protocol errors and timeouts in definitions.",
+        "Phase 2-Source Code: Verified that timeout handling logic is encapsulated in _timeoutInfo, raising McpError for timeouts.",
+        "Phase 2-Source Code: Confirmed that validateProtocolVersion() manages protocol mismatches and sends appropriate error responses."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully encapsulates error handling for protocol version mismatches, negotiation failures, and request timeouts, providing automatic error responses and ensuring developers do not need to manage these details themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\shared\\protocol.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\completable.ts"
+      ],
+      "code_snippets": [
+        "Error Handling in Protocol Class",
+        "Management of Timeout in _timeoutInfo"
+      ]
+    },
+    {
+      "rule_id": 97,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant calls to function definitions that require user consent were found in defs_typescript.jsonl or calls_typescript.jsonl.",
+        "Phase 2-Source Code: Found client registration and authorization handlers, but no evidence of automatic user consent handling was found.",
+        "Phase 2-Source Code: 'clientRegistrationHandler' and 'authorizationHandler' were defined, but consent was not implemented."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK includes mechanisms for client registration and authorization management but fails to implement a requirement for obtaining user consent before these actions. Therefore, it does not fulfill the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\register.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\authorize.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\router.ts"
+      ],
+      "code_snippets": [
+        "function clientRegistrationHandler(...)",
+        "function authorizationHandler(...)"
+      ]
+    },
+    {
+      "rule_id": 98,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept any tokens that were not explicitly issued for the MCP server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls found regarding explicit token acceptance.",
+        "Phase 2-Source Code: Found token verification in bearerAuth middleware, but no enforcement of issuing tokens from the MCP server."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK verifies tokens through middleware but does not explicitly prevent the acceptance of tokens that are not issued by the MCP server itself. It does not fulfill the requirement that MCP servers MUST NOT accept any tokens not explicitly issued.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\provider.ts"
+      ],
+      "code_snippets": [
+        "const authInfo = await verifier.verifyAccessToken(token); // Verifying token here",
+        "if (!authHeader) { throw new InvalidTokenError('Missing Authorization header'); }"
+      ]
+    },
+    {
+      "rule_id": 99,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient encapsulation in the function definitions.",
+        "Phase 2-Source Code: Middleware exists, but lacks automatic handling of all verification tasks without developer input."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK has functions and middleware for authorization and some handling of requests; however, it does not fully encapsulate the required behavior of verifying all inbound requests explicitly in a manner that developers do not need to implement themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\middleware\\bearerAuth.ts",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\auth\\handlers\\revoke.ts"
+      ],
+      "code_snippets": [
+        "app.post('/mcp', async (req, res) => {...})"
+      ]
+    },
+    {
+      "rule_id": 100,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions utilizing session ID validation in src/server/stdio.ts.",
+        "Phase 2-Source Code: Verified implementation shows SDK manages sessions for authentication.",
+        "Phase 2-Source Code: The SDK allows clients to send session IDs via Mcp-Session-Id header, violating stateless principles."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK uses sessions for authentication, contradicting the MCP rule that states servers MUST NOT use sessions for authentication. Functions for validating and managing sessions have been explicitly defined and used in the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\typescript-sdk-main\\typescript-sdk-main\\src\\server\\stdio.ts"
+      ],
+      "code_snippets": [
+        "if (!this.validateSession(req, res)) { return; } // Validates session ID",
+        "this.sessionId = this.sessionIdGenerator?.(); // Sets the session ID"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+[versions]
+kotlin-stdlib = "[1.9,2.0)"
+#noinspection GradleDependency
+android-gradle = {strictly = "8.2.0"}
+kotest = "5.9.1"
+dokka = "1.9.20"
+
+[libraries.kotlin-stdlib]
+module = "org.jetbrains.kotlin:kotlin-stdlib"
+version.ref = "kotlin-stdlib"
+
+[libraries.kotest-engine]
+module = "io.kotest:kotest-framework-engine"
+version.ref = "kotest"
+
+[libraries.kotest-assertions]
+module = "io.kotest:kotest-assertions-core"
+version.ref = "kotest"
+
+[libraries.kotest-junit-runner]
+module = "io.kotest:kotest-runner-junit5"
+version.ref = "kotest"
+
+[libraries.kotest-junit-reporter]
+module = "io.kotest:kotest-extensions-junitxml"
+version.ref = "kotest"
+
+[libraries.kotest-android-runner]
+module = "br.com.colman:kotest-runner-android"
+version = "1.1.1"
+
+[libraries.androidx-test-runner]
+module = "androidx.test:runner"
+version = "1.5.2"
+
+[libraries.dokka-base]
+module = "org.jetbrains.dokka:dokka-base"
+version.ref = "dokka"
+
+[plugins.kotlin-mpp]
+id = "org.jetbrains.kotlin.multiplatform"
+version.ref = "kotlin-stdlib"
+
+[plugins.android-library]
+id = "com.android.library"
+version.ref = "android-gradle"
+
+[plugins.kotest]
+id = "io.kotest.multiplatform"
+version.ref = "kotest"
+
+[plugins.dokka]
+id = "org.jetbrains.dokka"
+version.ref = "dokka"
+
+[plugins.gradle-publish]
+id = "com.gradle.plugin-publish"
+version = "1.2.1"
+
+[bundles]
+kotest-core = [
+  "kotest-engine",
+  "kotest-assertions",
+]
+kotest-junit = [
+  "kotest-junit-runner",
+  "kotest-junit-reporter",
+]
+kotest-android = [
+  "kotest-android-runner",
+  "androidx-test-runner",
+]

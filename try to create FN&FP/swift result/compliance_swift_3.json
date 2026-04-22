@@ -1,0 +1,1535 @@
+﻿{
+  "summary": {
+    "total": 75,
+    "compliant": 14,
+    "non_compliant": 50,
+    "unclear": 10,
+    "avg_files_per_rule": 2.493333333333333
+  },
+  "results": [
+    {
+      "rule_id": 201,
+      "rule_type": "MUST_NOT",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct evidence in defs_python.jsonl or calls_python.jsonl representing protections against elicitation requests.",
+        "Phase 2-Source Code: Key files (Error.swift, Lifecycle.swift, StdioTransport.swift) lacked explicit checks or logic preventing sensitive information requests through elicitation."
+      ],
+      "confidence": 0.6,
+      "explanation": "The review of SDK's IR and source code did not show direct implementation or safeguards against servers requesting sensitive information through elicitation. Hence, the SDK likely relies on developers not to incorporate such behaviors, which contrasts the SDK's role to encapsulate and restrict without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 202,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Unable to locate specific user approval controls definition or calls in available IR files.",
+        "Phase 2-Source Code: Searched various client and transport preparations without finding automatic encapsulated approval logic."
+      ],
+      "confidence": 0.7,
+      "explanation": "The IR files and source code did not explicitly show implementations for user approval controls within the SDK, suggesting that this client-side responsibility may have been left to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+      ],
+      "code_snippets": [
+        "client.withSamplingHandler { parameters in ... }",
+        "var request = URLRequest(url: endpoint) ...",
+        "let result = try await server.requestSampling(...)."
+      ]
+    },
+    {
+      "rule_id": 203,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Searches did not reveal explicit schema validation functions in defs or calls.",
+        "Phase 2-Source Code: Reviewed related files without finding automatic handling for schema validation."
+      ],
+      "confidence": 0.7,
+      "explanation": "No specific automatic schema validation mechanism for elicitation content was identified in the SDK, which should encapsulate this behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+      ],
+      "code_snippets": [
+        "Prompts allow servers to provide structured messages and instructions for interacting with language models.",
+        "To request sampling from a client, servers send a \"sampling/createMessage\" request."
+      ]
+    },
+    {
+      "rule_id": 204,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No specific IR entries found for server indication functionality.",
+        "Phase 2-Source Code: Client and transport management reviewed for any explicit server indication without finding clear compliance."
+      ],
+      "confidence": 0.5,
+      "explanation": "The current SDK appears to handle connections between clients and servers and offers several transport protocols. However, none explicitly document providing a clear indication of the server's identity beyond typical connection establishment protocols.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+      ],
+      "code_snippets": [
+        "public actor Client {...}",
+        "private var connection: (any Transport)?",
+        "public actor HTTPClientTransport: Transport {...}",
+        "public actor NetworkTransport: Transport {...}"
+      ]
+    },
+    {
+      "rule_id": 205,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No specific function related to rejection of elicitation requests found in defs_python.jsonl",
+        "Phase 2-Source Code: Reviewed interaction capabilities in Client.swift and related handling, but no direct evidence of user-driven request rejection seen."
+      ],
+      "confidence": 0.5,
+      "explanation": "The review of IR files and source code did not provide a clear indication that the SDK automatically handles allowing users to reject elicitation requests.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "public actor Client {...}",
+        "await client.withSamplingHandler {...}"
+      ]
+    },
+    {
+      "rule_id": 206,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definition or calls for rate limiting in defs_python.jsonl or calls_python.jsonl files.",
+        "Phase 2-Source Code: Direct search in the source files also returned no evidence of rate limiting implementation."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not visibly implement rate limiting as a built-in feature according to the rule. No automatic behavior related to rate limiting was detected in the source code, indicating the implementation may be left to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 207,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST NOT** request sensitive information through elicitation\n2. Clients **SHOULD** implement user approval controls\n3. Both parties **SHOULD** validate elicitation content against the provided schema\n4. Clients **SHOULD** provide clear indication of which server is requesting information\n5. Clients **SHOULD** allow users to reject elicitation requests at any time\n6. Clients **SHOULD** implement rate limiting\n7. Clients **SHOULD** present elicitation requests in a way that makes it clear what information is being requested and why",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Checked defs and calls for elicitation-related logic",
+        "Phase 2-Source Code: Reviewed HTTPClientTransport.swift, Client.swift but found no auto-handling logic for request clarity."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK provides mechanisms for sending and processing requests but lacks explicit features ensuring that elicitation requests inherently clarify requested information and reasons, as required by the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "// Documentation snippets from the given files that illustrate handling but not the specific automatic clarification logic.",
+        "// Further implementation logic would be required to ensure client requests inherently explain their nature and purpose."
+      ]
+    },
+    {
+      "rule_id": 208,
+      "rule_type": "MUST",
+      "rule_text": "Clients that support roots **MUST** declare the `roots` capability during\n[initialization](/specification/2025-06-18/basic/lifecycle#initialization):",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found Client and Initialize definitions in Client.swift and Lifecycle.swift",
+        "Phase 2-Source Code: Inspected Client.Capabilities in Client.swift, initialization does not automatically handle roots capability"
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK defines client capabilities, including roots, but the initialization process does not explicitly demonstrate automated handling of the roots capability. Developers may need to handle the inclusion, which does not meet the rule's compliance requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "public struct Capabilities: Hashable, Codable, Sendable { public var roots: Capabilities.Roots? }"
+      ]
+    },
+    {
+      "rule_id": 209,
+      "rule_type": "MUST",
+      "rule_text": "When roots change, clients that support `listChanged` **MUST** send a notification:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found capability definition for listChanged in both server and client.",
+        "Phase 1-IR: No automatic notification logic identified in IR.",
+        "Phase 2-Source Code: Notification structures exist, but no automatic sending implementation found."
+      ],
+      "confidence": 0.8,
+      "explanation": "While capability definitions for 'listChanged' exist in the server and client, there is no automated logic that sends notifications when roots change, which is required for compliance. The SDK seems to lack the implementation that automatically handles the notification process.",
+      "files_analyzed": [
+        "C:\\Users\\...\\Server\\Server.swift",
+        "C:\\Users\\...\\Client\\Client.swift",
+        "C:\\Users\\...\\Base\\Notifications.swift"
+      ],
+      "code_snippets": [
+        "public struct Capabilities { public struct Resources { public var listChanged: Bool? } }",
+        "public struct ToolListChangedNotification { public static let name = 'notifications/tools/list_changed' }"
+      ]
+    },
+    {
+      "rule_id": 210,
+      "rule_type": "MUST",
+      "rule_text": "A root definition includes:\n\n- `uri`: Unique identifier for the root. This **MUST** be a `file://` URI in the current\n  specification.\n- `name`: Optional human-readable name for display purposes.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No URI specific definition or call pattern ensuring `file://`",
+        "Phase 2-Source Code: Analyzed Resource struct without `file://` URI enforcement logic in Resources.swift"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically enforce the `file://` URI scheme in its Resource struct or verify it during initialization, which shifts responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+      ],
+      "code_snippets": [
+        "public struct Resource: Hashable, Codable, Sendable {\n    public var uri: String\n    // No explicit validation for `file://` scheme\n}"
+      ]
+    },
+    {
+      "rule_id": 211,
+      "rule_type": "SHOULD",
+      "rule_text": "Clients **SHOULD** return standard JSON-RPC errors for common failure cases:\n\n- Client does not support roots: `-32601` (Method not found)\n- Internal errors: `-32603`",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function MCPError in definitive files, defined in multiple context usages",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\...\\Error.swift",
+        "Phase 2-Source Code: Verified send and receive auto inclusion in stdio transport"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK defines, encapsulates, and automatically sent relevant JSON-RPC standard errors (-32601, -32603) internally. The logic within the SDK automatically handles error response generation and processing, abstracting the error management away from developers.",
+      "files_analyzed": [
+        "C:\\Users\\...\\Error.swift",
+        "C:\\Users\\...\\Transports\\StdioTransport.swift"
+      ],
+      "code_snippets": [
+        "case .methodNotFound(let detail): return -32601",
+        "case .internalError(let detail): return -32603",
+        "public func send(_ message: Data) async throws { ... throw MCPError.internalError(...) }"
+      ]
+    },
+    {
+      "rule_id": 212,
+      "rule_type": "MUST",
+      "rule_text": "1. Clients **MUST**:\n\n   - Only expose roots with appropriate permissions\n   - Validate all root URIs to prevent path traversal\n   - Implement proper access controls\n   - Monitor root accessibility",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No related function definitions were found.",
+        "Phase 2-Source Code: Reviewed files such as Client.swift, Server.swift, and related transport implementations without finding required implementations."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK lacks implementation for controlling root exposure permissions, validating root URIs, implementing access controls, and monitoring root accessibility.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\InMemoryTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+      ],
+      "code_snippets": [
+        "// Example code structures found did not relate to required compliance checks"
+      ]
+    },
+    {
+      "rule_id": 213,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Servers **SHOULD**:\n   - Handle cases where roots become unavailable\n   - Respect root boundaries during operations\n   - Validate all paths against provided roots",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Lack of specific function definitions and call traces regarding root management and validation.",
+        "Phase 2-Source Code: Reviewed files for explicit handling routines, none found directly encapsulating these behaviors as required by the rule."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK lacks specific mechanisms to handle cases where roots become unavailable, respect root boundaries during operations, and validate all paths against provided roots. While some error management structures exist, there are no automated procedures or validations that meet these requirements within the SDK itself, which is essential for compliance without relying on application developers to implement these features.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
+      ],
+      "code_snippets": [
+        "Error handling routines in Error.swift for generic errors, no specific root management",
+        "Configuration setups that mention roots but lack enforcement routines"
+      ]
+    },
+    {
+      "rule_id": 214,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Clients **SHOULD**:\n\n   - Prompt users for consent before exposing roots to servers\n   - Provide clear user interfaces for root management\n   - Validate root accessibility before exposing\n   - Monitor for root changes",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Searched function definitions in defs_python.jsonl and calls in calls_python.jsonl, no relevant functions were identified",
+        "Phase 2-Source Code: Reviewed Client.swift; noticed capabilities but no automatic implementation for consent prompts, UI management, validation, or monitoring"
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK does not appear to fully implement behaviors required for compliance with MCP rule 214, specifically lacking automatic mechanisms for prompting consent, managing UI, validating, or monitoring root changes.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "public struct Capabilities { public var roots: Capabilities.Roots? }"
+      ]
+    },
+    {
+      "rule_id": 215,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Servers **SHOULD**:\n   - Check for roots capability before usage\n   - Handle root list changes gracefully\n   - Respect root boundaries in operations\n   - Cache root information appropriately",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Found root capability related structures in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift【4:4†source】"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK lacks autonomous functionality for checking root capabilities, handling root changes, respecting root boundaries, and caching root information as mandated by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Versioning.swift"
+      ],
+      "code_snippets": [
+        "public struct Capabilities.Roots { public var listChanged: Bool? }"
+      ]
+    },
+    {
+      "rule_id": 216,
+      "rule_type": "SHOULD",
+      "rule_text": "For trust & safety and security, there **SHOULD** always\nbe a human in the loop with the ability to deny sampling requests.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Identified 'withSamplingHandler' function definition in Sampling.swift at line 637",
+        "Phase 2-Source Code: Source confirms the presence of a user-review process but lacks automatic SDK denial mechanisms."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK provides the infrastructure for a human-in-the-loop process through 'withSamplingHandler' but relies on user-supplied handlers rather than implementing automatic denial capabilities. It does not encapsulate the human denial process but outsources it to application developers, not fulfilling the 'should encapsulate behavior' criterion.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "public func withSamplingHandler(_ handler: @escaping @Sendable (CreateSamplingMessage.Parameters) async throws -> CreateSamplingMessage.Result) -> Self",
+        "// Human-in-the-loop approval during sampling process"
+      ]
+    },
+    {
+      "rule_id": 217,
+      "rule_type": "SHOULD",
+      "rule_text": "Applications **SHOULD**:\n\n- Provide UI that makes it easy and intuitive to review sampling requests\n- Allow users to view and edit prompts before sending\n- Present generated responses for review before delivery",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct UI-related function definitions or calls were identified in relevant files.",
+        "Phase 2-Source Code: Confirmed that Prompts.swift defines prompt-related structures but lacks UI-handling logic.",
+        "Phase 2-Source Code: Examined Client.swift and Server.swift; found no direct UI logic for rule compliance."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not automatically implement UI functionalities for reviewing requests, editing prompts, or reviewing responses. These tasks seem to be left for application developers, which contradicts the SDK's responsibility to encapsulate these features.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Prompts.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "// Prompt structures in Prompts.swift",
+        "// Client capabilities in Client.swift",
+        "// Server capabilities including prompts in Server.swift"
+      ]
+    },
+    {
+      "rule_id": 218,
+      "rule_type": "MUST",
+      "rule_text": "Clients that support sampling **MUST** declare the `sampling` capability during\n[initialization](/specification/2025-06-18/basic/lifecycle#initialization):",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions and capability declarations in `Client` and `Server`",
+        "Phase 1-IR: Confirmed server initialization checks sampling capabilities",
+        "Phase 2-Source Code: Verified implementation of initialization hook in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK framework defines and ensures the declaration of the `sampling` capability during initialization, which complies with the MCP rule. Although the full bidirectional handling is anticipated and partly implemented, it shows a majority of compliant characteristics required by the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "Capabilities: struct Sampling",
+        "try await server.start(transport: transport) { clientInfo, clientCapabilities in if clientCapabilities.sampling == nil { print('Client does not support sampling') } }"
+      ]
+    },
+    {
+      "rule_id": 219,
+      "rule_type": "MAY",
+      "rule_text": "While priorities help select models based on characteristics, `hints` allow servers to\nsuggest specific models or model families:\n\n- Hints are treated as substrings that can match model names flexibly\n- Multiple hints are evaluated in order of preference\n- Clients **MAY** map hints to equivalent models from different providers\n- Hints are advisory&mdash;clients make final model selection",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No direct function definitions or calls identified that map hints to equivalent models across different providers.",
+        "Phase 2-Source Code: Inspected code snippets did not show explicit implementation for automatic behavior handling."
+      ],
+      "confidence": 0.5,
+      "explanation": "The search across the source files did not reveal explicit handling of mapping hints to equivalent models from different providers. The relevant functions might be embedded within more extensive processes, or handled implicitly, which was not directly exposed in our search results.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\README.md"
+      ],
+      "code_snippets": [
+        "Hints appear to be defined within 'ModelPreferences' in Sampling struct without specific mapping logic exposed.",
+        "Tools capabilities are present but do not indicate automatic hint mapping across providers."
+      ]
+    },
+    {
+      "rule_id": 220,
+      "rule_type": "SHOULD",
+      "rule_text": "Clients **SHOULD** return errors for common failure cases:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found extensive MCPError usage in various protocol functions.",
+        "Phase 1-IR: Confirmed error handling is integral in batch and individual request processing."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK framework automatically handles error processing and encapsulates failure scenarios adequately, conforming to the MCP rule's requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Batch.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Request.swift"
+      ],
+      "code_snippets": [
+        "public enum MCPError: Swift.Error {...}",
+        "private func handleBatch(_ batch: Batch) async throws {...}",
+        "private func handleRequest(_ request: Request<AnyMethod>, sendResponse: Bool = true) async throws -> Response<AnyMethod>? {...}"
+      ]
+    },
+    {
+      "rule_id": 221,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Clients **SHOULD** implement user approval controls\n2. Both parties **SHOULD** validate message content\n3. Clients **SHOULD** respect model preference hints\n4. Clients **SHOULD** implement rate limiting\n5. Both parties **MUST** handle sensitive data appropriately",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct function definitions or calls for user approval found in defs_python.jsonl",
+        "Phase 2-Source Code: Observations in Sampling.swift and related client files show no automatic enforcement of user approval."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not appear to implement or encapsulate user approval controls automatically as required. Manual intervention seems necessary from the developer side, which does not align with the SDK's responsibilities to embed protocol compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift"
+      ],
+      "code_snippets": [
+        "// SDK provides user interaction methods, but relies on developer to invoke them manually"
+      ]
+    },
+    {
+      "rule_id": 222,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Clients **SHOULD** implement user approval controls\n2. Both parties **SHOULD** validate message content\n3. Clients **SHOULD** respect model preference hints\n4. Clients **SHOULD** implement rate limiting\n5. Both parties **MUST** handle sensitive data appropriately",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No conclusive function definitions or calls found for message validation.",
+        "Phase 2-Source Code: Reviewed source files contain complex message handling but lack explicit message content validation."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not provide encapsulated or automatic message content validation as required by the MCP rule. Developers are likely expected to implement this themselves, which goes against the rule's intent for SDK responsibility.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Prompts.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+      ],
+      "code_snippets": [
+        "// Extract session ID if present",
+        "let (responseData, response) = try await session.data(for: request)"
+      ]
+    },
+    {
+      "rule_id": 223,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Clients **SHOULD** implement user approval controls\n2. Both parties **SHOULD** validate message content\n3. Clients **SHOULD** respect model preference hints\n4. Clients **SHOULD** implement rate limiting\n5. Both parties **MUST** handle sensitive data appropriately",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Found `ModelPreferences` definition with hints attribute in `FILE_PATH: Sampling.swift`.",
+        "Phase 2-Source Code: Inspected `requestSampling` in `FILE_PATH: Client.swift`, no automated usage of model hints identified."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK defines the `ModelPreferences` structure containing model hints. However, I found no evidence that these hints are automatically used by the SDK to control model selection or behavior without developer intervention. The SDK requires developers to inspect and potentially use these hints manually, which shifts the responsibility away from the SDK, contrary to the expectation for a 'SHOULD' requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "Defined `ModelPreferences` structure",
+        "`requestSampling` method involving model preferences but with no automated handling logic."
+      ]
+    },
+    {
+      "rule_id": 224,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Clients **SHOULD** implement user approval controls\n2. Both parties **SHOULD** validate message content\n3. Clients **SHOULD** respect model preference hints\n4. Clients **SHOULD** implement rate limiting\n5. Both parties **MUST** handle sensitive data appropriately",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions or calls related to rate limiting found in index.",
+        "Phase 2-Source Code: Manually reviewed potential transport and client files without finding any rate limiting logic."
+      ],
+      "confidence": 0.9,
+      "explanation": "There is no implementation of rate limiting found in any SDK client or transport related files, which would mean application developers have to handle rate limiting themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 225,
+      "rule_type": "MUST",
+      "rule_text": "1. Clients **SHOULD** implement user approval controls\n2. Both parties **SHOULD** validate message content\n3. Clients **SHOULD** respect model preference hints\n4. Clients **SHOULD** implement rate limiting\n5. Both parties **MUST** handle sensitive data appropriately",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Initial searches for sensitive data handling were inconclusive.",
+        "Phase 2-Source Code: Examination across data handling code reveals strong communication handling but lacks explicit sensitive data protection implementations."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK framework does not explicitly encapsulate sensitive data handling measures such as encryption or automated security policies, instead relying on protocol communication methodologies.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Extensions\\Data+Extensions.swift"
+      ],
+      "code_snippets": [
+        "// Connection and message handling representative of SDK infrastructure",
+        "// Error handling and message logging are robust, but specific security of sensitive data is not explicitly handled"
+      ]
+    },
+    {
+      "rule_id": 226,
+      "rule_type": "SHOULD",
+      "rule_text": "While MCP itself cannot enforce these security principles at the protocol level,\nimplementors **SHOULD**:\n\n1. Build robust consent and authorization flows into their applications\n2. Provide clear documentation of security implications\n3. Implement appropriate access controls and data protections\n4. Follow security best practices in their integrations\n5. Consider privacy implications in their feature designs",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct function definitions were found addressing implicit security mechanisms",
+        "Phase 2-Source Code: Review of HTTP transport and error handling failed to reveal comprehensive security mechanisms."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK does not encapsulate robust consent and authorization flows or explicitly follow several security best practices as required by MCP Rule 226. The evidence from analyzed files reveals a lack of internal handling for these requirements directly.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": [
+        "// Check response status\n guard httpResponse.statusCode == 200 else { throw MCPError.internalError(\"HTTP error: \\(httpResponse.statusCode)\") }"
+      ]
+    },
+    {
+      "rule_id": 227,
+      "rule_type": "MUST",
+      "rule_text": "Servers that support prompts **MUST** declare the `prompts` capability during\n[initialization](/specification/2025-06-18/basic/lifecycle#initialization):",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function _initialize in defs, defined in Client.swift: line 45",
+        "Phase 1-IR: Confirmed validateServerCapability call in Client.swift",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK framework incorporates automatic negotiation of the `prompts` capability during the initialization process, ensuring compliance with the MCP mandatory rule. While the public `initialize` function is deprecated, the internal `_initialize` function handles the necessary capability exchanges effectively.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "capabilities: Server.Capabilities",
+        "internal func _initialize()",
+        "validateServerCapability"
+      ]
+    },
+    {
+      "rule_id": 228,
+      "rule_type": "SHOULD",
+      "rule_text": "When the list of available prompts changes, servers that declared the `listChanged`\ncapability **SHOULD** send a notification:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Located 'listChanged' capability declaration in Server.swift.",
+        "Phase 2-Source Code: No automatic handling of notification upon 'listChanged' found."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK lacks automatic notification handling logic for 'listChanged' changes, though capability is defined.",
+      "files_analyzed": [
+        "swift-sdk-main/Sources/MCP/Server/Server.swift",
+        "swift-sdk-main/Sources/MCP/Base/Transport.swift",
+        "swift-sdk-main/Sources/MCP/Base/Lifecycle.swift"
+      ],
+      "code_snippets": [
+        "swift-sdk-main/Sources/MCP/Server/Server.swift: public struct Prompts { var listChanged: Bool? }"
+      ]
+    },
+    {
+      "rule_id": 229,
+      "rule_type": "MUST",
+      "rule_text": "The image data **MUST** be base64-encoded and include a valid MIME type. This enables\nmulti-modal interactions where visual context is important.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Data+Extensions.swift defines functions for encoding data URL (base64) and parsing MIME type.",
+        "Phase 2-Source Code: Verified dataURL encoding and MIME type parsing in FILE_PATH: Data+Extensions.swift",
+        "Phase 2-Source Code: Message.Content decodes image data using MIME type"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically encodes image data in base64 and assigns MIME types within its functions, eliminating the responsibility from developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Extensions\\Data+Extensions.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Message.swift"
+      ],
+      "code_snippets": [
+        "public func dataURLEncoded(mimeType: String? = nil) -> String {...}",
+        "case .image(let data, let mimeType): try container.encode(data, forKey: .data)"
+      ]
+    },
+    {
+      "rule_id": 230,
+      "rule_type": "MUST",
+      "rule_text": "Resources can contain either text or binary (blob) data and **MUST** include:\n\n- A valid resource URI\n- The appropriate MIME type\n- Either text content or base64-encoded blob data",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found Resource struct with relevant fields in Resources.swift",
+        "Phase 2-Source Code: Verified that Resource can only be instantiated with URI, MIME type, and content fields in Resource.swift"
+      ],
+      "confidence": 0.9,
+      "explanation": "The Resource struct requires a URI and MIME type during instantiation, and allows for either text content or base64-encoded binary data, thus enforcing compliance with the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+      ],
+      "code_snippets": [
+        "public struct Resource: Hashable, Codable, Sendable { ... var uri: String ... var mimeType: String? ... struct Content ... static func text ... static func binary"
+      ]
+    },
+    {
+      "rule_id": 231,
+      "rule_type": "SHOULD",
+      "rule_text": "Servers **SHOULD** return standard JSON-RPC errors for common failure cases:\n\n- Invalid prompt name: `-32602` (Invalid params)\n- Missing required arguments: `-32602` (Invalid params)\n- Internal errors: `-32603` (Internal error)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found MCPError definitions including -32602 and -32603 in tmp15defbgv.txt",
+        "Phase 2-Source Code: Verified automatic error handling in transport classes in tmpjxapt6uj.txt"
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically handles and encapsulates the standard JSON-RPC errors detailed in the rule, without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift"
+      ],
+      "code_snippets": [
+        "public enum MCPError: Swift.Error",
+        "case invalidParams(String?)",
+        "case internalError(String?)"
+      ]
+    },
+    {
+      "rule_id": 232,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD** validate prompt arguments before processing\n2. Clients **SHOULD** handle pagination for large prompt lists\n3. Both parties **SHOULD** respect capability negotiation",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Prompt and Argument structures found, but no validation function identified in defs",
+        "Phase 2-Source Code: Reviewed Prompts.swift, did not find automatic validation logic."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines structures for prompts and arguments, but lacks evidence of internal automatic validation logic for prompt arguments. It requires developers to use these structures but does not encapsulate validation itself, which shifts the responsibility away from the SDK as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Prompts.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "struct Argument: Represents the prompt arguments with metadata (name, description, required)",
+        "enum MCPError: Used for error handling like invalid parameters"
+      ]
+    },
+    {
+      "rule_id": 233,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD** validate prompt arguments before processing\n2. Clients **SHOULD** handle pagination for large prompt lists\n3. Both parties **SHOULD** respect capability negotiation",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No explicit 'pagination' functions or calls found in IR files",
+        "Phase 2-Source Code: Found methods such as listPrompts with cursors in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "confidence": 0.5,
+      "explanation": "While the listPrompts method suggests a potential for cursor-based pagination, the absence of clear, automated, fully encapsulated pagination logic within the SDK for large prompt lists renders the compliance to be unclear.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "public func listPrompts(cursor: String? = nil) async throws -> (prompts: [Prompt], nextCursor: String?)"
+      ]
+    },
+    {
+      "rule_id": 234,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD** validate prompt arguments before processing\n2. Clients **SHOULD** handle pagination for large prompt lists\n3. Both parties **SHOULD** respect capability negotiation",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Strict vs. Non-Strict Configuration discussed for capability checking 【4:0†source】",
+        "Phase 2-Source Code: validateServerCapability function ensures negotiation of capabilities  "
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK includes both capability definitions and the logic required to ensure that capability negotiation is respected according to the MCP rule. Strict mode enforces capability checking before a request in a manner that matches the rule's requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
+      ],
+      "code_snippets": [
+        "private func validateServerCapability<T>(_ keyPath: KeyPath<Server.Capabilities, T?>, _ name: String) throws { if configuration.strict { ... } }"
+      ]
+    },
+    {
+      "rule_id": 235,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** carefully validate all prompt inputs and outputs to prevent\ninjection attacks or unauthorized access to resources.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 2-Source Code: Looked into 'processHTTPResponse' function in the Errors.swift file",
+        "Phase 2-Source Code: Examined 'Method' Protocol in the Messages.swift file",
+        "Phase 2-Source Code: Reviewed 'MCPError' class definitions in the Errors.swift"
+      ],
+      "confidence": 0.6,
+      "explanation": "The SDK has defined some error handling functionality, particularly with respect to JSON-RPC protocol capabilities and server error reporting. However, there is no explicit and comprehensive evidence of input/output validation mechanisms specifically designed to prevent injection attacks as required by rule 235.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Messages.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift"
+      ],
+      "code_snippets": [
+        "func processHTTPResponse(_ response: HTTPURLResponse, contentType: String) { // Included error checks }",
+        "protocol Method: Sendable { associatedtype Parameters: Codable, Hashable, Sendable }"
+      ]
+    },
+    {
+      "rule_id": 236,
+      "rule_type": "MUST",
+      "rule_text": "Servers that support resources **MUST** declare the `resources` capability:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found the `Resources` capability structure in defs with fields for subscription and list change in file 'Server.swift'.",
+        "Phase 1-IR: Located the `listResources` and `subscribeToResource` functions that handle resource capabilities.",
+        "Phase 2-Source Code: Verified automatic handling and registration of resource capabilities through server setup in 'Server.swift'."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically includes and initializes the `resources` capability during server setup. It provides encapsulated methods such as `listResources` and `subscribeToResource`, indicating it adheres to the MCP rule regarding capability declaration.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "public struct Resources: Hashable, Codable, Sendable { ... }",
+        "public func listResources(cursor: String? = nil) async throws -> (resources: [Resource], nextCursor: String?) { ... }",
+        "public func subscribeToResource(uri: String) async throws { ... }"
+      ]
+    },
+    {
+      "rule_id": 237,
+      "rule_type": "SHOULD",
+      "rule_text": "When the list of available resources changes, servers that declared the `listChanged`\ncapability **SHOULD** send a notification:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Notification structure present【50:0†tmp4gpv971z.txt】",
+        "Phase 2-Source Code: Manual dispatch mechanism via notify function【50:6†tmp_xcb68n2.txt】",
+        "Phase 2-Source Code: Lack of automatic triggers implemented【50:13†tmp8k__dzbo.md】"
+      ],
+      "confidence": 0.95,
+      "explanation": "Despite having the defined framework for dispatching changes through notifications, requiring explicit invocation attributes this as a non-compliant setup regarding automatic handling.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 238,
+      "rule_type": "SHOULD",
+      "rule_text": "Servers **SHOULD** use this scheme only when the client is able to fetch and load the\nresource directly from the web on its own—that is, it doesn’t need to read the resource\nvia the MCP server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Searched defs/calls, unable to find specific client web-fetch capabilities.",
+        "Phase 2-Source Code: Verified files like Server/Resources.swift but no autonomous handling was observed."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK does not explicitly implement logic that ensures clients can automatically fetch and load resources directly from the web, which would align with the rule. The framework still requires developers to integrate this functionality, aligning more with application-level handling rather than SDK encapsulation.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+      ],
+      "code_snippets": [
+        "// The URI in the Resource struct indicates web-fetchable addresses but lacks autonomous client handling",
+        "// Connection methods show manual handling for external resource management"
+      ]
+    },
+    {
+      "rule_id": 239,
+      "rule_type": "SHOULD",
+      "rule_text": "For other use cases, servers **SHOULD** prefer to use another URI scheme, or define a\ncustom one, even if the server will itself be downloading resource contents over the\ninternet.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Resources.swift and Prompts.swift define URI usage without special schemes【4:0†source】【4:10†source】.",
+        "Phase 2-Source Code: NetworkTransport.swift and StdioTransport.swift show standard transport layers without custom URI schemes【4:5†source】【4:18†source】.",
+        "Phase 2-Source Code: Server.swift and Client.swift do not implement or prefer any URI scheme handling【4:14†source】."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not appear to implement and encapsulate the behavior of preferring another or a custom URI scheme. As per the inspection standards, the responsibility falls on application developers rather than being automatically handled by the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Prompts.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "Public struct Resource { var uri: String }",
+        "Public struct Template { var uriTemplate: String }",
+        "actor NetworkTransport: Transport {}",
+        "actor StdioTransport: Transport {}"
+      ]
+    },
+    {
+      "rule_id": 240,
+      "rule_type": "MAY",
+      "rule_text": "MCP servers **MAY** identify file:// resources with an\n[XDG MIME type](https://specifications.freedesktop.org/shared-mime-info-spec/0.14/ar01s02.html#id-1.3.14),\nlike `inode/directory`, to represent non-regular files (such as directories) that don’t\notherwise have a standard MIME type.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found Resource structure with mimeType definition in Resources.swift",
+        "Phase 2-Source Code: Resource structure supports mimeType setting but lacks automatic assignment logic for file:// resources. Verified in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK provides the ability to assign custom MIME types to resources, including 'inode/directory', but lacks automatic handling or recognition of file:// resources to assign specific XDG MIME types. This shifts the responsibility to developers to manually specify these types.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+      ],
+      "code_snippets": [
+        "public struct Resource: Hashable, Codable, Sendable { ... public var mimeType: String? ... }"
+      ]
+    },
+    {
+      "rule_id": 241,
+      "rule_type": "MUST",
+      "rule_text": "Custom URI schemes **MUST** be in accordance with [RFC3986](https://datatracker.ietf.org/doc/html/rfc3986),\ntaking the above guidance in to account.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or call relationships found in defs_python.jsonl or calls_python.jsonl.",
+        "Phase 2-Source Code: Checked Resources.swift - found struct Resource with URI attribute but no RFC3986 compliance logic."
+      ],
+      "confidence": 0.9,
+      "explanation": "The MCP rule requiring custom URI schemes to adhere to RFC3986 is not met by the SDK. There is no evidence of internal handling or enforcement within the SDK for this requirement, leaving it to application developers to ensure compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+      ],
+      "code_snippets": [
+        "public struct Resource { public var uri: String } // No RFC3986 validation logic"
+      ]
+    },
+    {
+      "rule_id": 242,
+      "rule_type": "SHOULD",
+      "rule_text": "Servers **SHOULD** return standard JSON-RPC errors for common failure cases:\n\n- Resource not found: `-32002`\n- Internal errors: `-32603`",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found JSON-RPC error code definitions including -32603 and serverError in defs",
+        "Phase 2-Source Code: Verified automatic usage of JSON-RPC error types across main transport and communication operations",
+        "File: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides built-in definitions for standard JSON-RPC error codes such as '-32002' and '-32603', and incorporates these into its communication logic without necessitating manual handling by developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
+      ],
+      "code_snippets": [
+        "// Standard JSON-RPC 2.0 errors (-32700 to -32603)\ncase parseError(String?) // -32700\n...",
+        "public func send(_ data: Data) async throws {... throw MCPError.internalError(\"Transport not connected\")}"
+      ]
+    },
+    {
+      "rule_id": 243,
+      "rule_type": "MUST",
+      "rule_text": "1. Servers **MUST** validate all resource URIs\n2. Access controls **SHOULD** be implemented for sensitive resources\n3. Binary data **MUST** be properly encoded\n4. Resource permissions **SHOULD** be checked before operations",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions or calls related to URI validation were found.",
+        "Phase 2-Source Code: Checked potential source files (e.g., Resources.swift, HTTPClientTransport.swift) with no URI validation found."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK fails to provide evidence of internal URI validation mechanisms for server resources. It lacks explicit URI validation logic as required by MCP rule 243.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Extensions\\Data+Extensions.swift"
+      ],
+      "code_snippets": [
+        "Resources.swift: Describes resource with URI but lacks validation logic.",
+        "HTTPClientTransport.swift: Contains general transport logic without URI validation.",
+        "Data+Extensions.swift: Provides data URL validation, unrelated to general URI."
+      ]
+    },
+    {
+      "rule_id": 244,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST** validate all resource URIs\n2. Access controls **SHOULD** be implemented for sensitive resources\n3. Binary data **MUST** be properly encoded\n4. Resource permissions **SHOULD** be checked before operations",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Searched for access control definitions and implementations.",
+        "Phase 2-Source Code: Examined Server.swift and Resources.swift, found capability definitions but no automatic access control."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not implement automatic access control mechanisms for sensitive resources. Definitions for resources exist but lack enforced access control internally, placing the responsibility on developers instead.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "// Resources struct defining URI but lacking access control",
+        "// Resource capabilities definition in Server.Capabilities"
+      ]
+    },
+    {
+      "rule_id": 245,
+      "rule_type": "MUST",
+      "rule_text": "1. Servers **MUST** validate all resource URIs\n2. Access controls **SHOULD** be implemented for sensitive resources\n3. Binary data **MUST** be properly encoded\n4. Resource permissions **SHOULD** be checked before operations",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'binary' in defs, defined in Resources.swift to automatically handle Base64 encoding",
+        "Phase 1-IR: Used 'binary' method call in tmprp4jvam_.json indicating functionality usage",
+        "Phase 2-Source Code: Verified implementation in Resources.swift where Base64 encoding is automatically applied"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK framework automatically encodes binary data using Base64, as required by the rule. This behavior is encapsulated within the SDK's implementation, ensuring developers are relieved from handling binary encoding manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "tmprp4jvam_.json"
+      ],
+      "code_snippets": [
+        "public static func binary(_ data: Data, uri: String, mimeType: String? = nil) -> Self { .init(uri: uri, mimeType: mimeType, blob: data.base64EncodedString()) }"
+      ]
+    },
+    {
+      "rule_id": 246,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **MUST** validate all resource URIs\n2. Access controls **SHOULD** be implemented for sensitive resources\n3. Binary data **MUST** be properly encoded\n4. Resource permissions **SHOULD** be checked before operations",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No func_def for resource permission check identified",
+        "Phase 2-Source Code: Resources.swift and Server.swift lack permission logic"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement automatic resource permission checks, thus shifting the responsibility to developers, violating the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "// Resource structure and operations lack permission checks"
+      ]
+    },
+    {
+      "rule_id": 247,
+      "rule_type": "SHOULD",
+      "rule_text": "For trust & safety and security, there **SHOULD** always\nbe a human in the loop with the ability to deny tool invocations.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Checked IR files, no direct HITL or deny methods defined",
+        "Phase 2-Source Code: Verified handling of sampling requests includes human review",
+        "Phase 2-Source Code: Client.swift HITL pattern aligns with rule, but lacks explicit tool denial"
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK provides a framework for human-in-the-loop processing of requests, allowing user reviews and modifications before processing. However, it does not encapsulate specific internal methods to deny tool invocations beyond this framework, leaving some responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 248,
+      "rule_type": "SHOULD",
+      "rule_text": "Applications **SHOULD**:\n\n- Provide UI that makes clear which tools are being exposed to the AI model\n- Insert clear visual indicators when tools are invoked\n- Present confirmation prompts to the user for operations, to ensure a human is in the\n  loop",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific indications or confirmation logic found.",
+        "Phase 2-Source Code: Reviewed Tool class and found Annotations structure for display hints but no automatic UI handling logic.",
+        "Phase 2-Source Code: Human-in-the-loop considerations mentioned but not enforced by SDK."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines structures for tool display and configurations but lacks automatic UI indication management or HITL confirmations. These are provided as hints and annotations for application use but not handled directly by SDK logic.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\README.md"
+      ],
+      "code_snippets": [
+        "// Annotations in Tools structure",
+        "// HITL mentioned in README"
+      ]
+    },
+    {
+      "rule_id": 249,
+      "rule_type": "MUST",
+      "rule_text": "Servers that support tools **MUST** declare the `tools` capability:",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No unique tools func_def or call evidence directly specifying notification.",
+        "Phase 2-Source Code: Server setup indicates tools listChanged capability is initialized.",
+        "Phase 2-Source Code: Reviewing handlers suggests automatic functions are inferred but not explicitly verified."
+      ],
+      "confidence": 0.7,
+      "explanation": "The server setup includes tools capability with listChanged, implying notifications. However, automatic SDK handling of notifications wasn't definitively proven by callable or definitive snippets explicitly showing encapsulated behavior such as direct calls.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\README.md"
+      ],
+      "code_snippets": [
+        "let server = Server(name: 'MyModelServer', version: '1.0.0', capabilities: .init(tools: .init(listChanged: true)))"
+      ]
+    },
+    {
+      "rule_id": 250,
+      "rule_type": "SHOULD",
+      "rule_text": "When the list of available tools changes, servers that declared the `listChanged`\ncapability **SHOULD** send a notification:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: 'listChanged' capability defined for tools in Server.Capabilities【4:6†source】",
+        "Phase 1-IR: Handlers for ListTools and CallTool indicate managing tools【4:0†source】【4:11†source】",
+        "Phase 2-Source Code: Verified ToolListChangedNotification is defined【4:0†source】",
+        "Phase 2-Source Code: Insufficient automatic handling evidence when tools list changes"
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK has the 'listChanged' capability defined and a notification for tool list changes. However, there is insufficient evidence from the source code review that the SDK automatically sends notifications when the tool list changes, fulfilling the rule's requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "public struct ToolListChangedNotification: Notification { ... }",
+        "public struct Capabilities: ... Tools: ... listChanged: Bool? ...",
+        "// Register handlers for tool operations..."
+      ]
+    },
+    {
+      "rule_id": 251,
+      "rule_type": "MUST",
+      "rule_text": "For trust & safety and security, clients **MUST** consider\ntool annotations to be untrusted unless they come from trusted servers.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Function definitions and calls related to tool annotations didn't indicate trusted server verification.",
+        "Phase 2-Source Code: `Tools.swift` suggests caution, but `Client.swift` lacks enforcement of trusted server checks in terms of annotations."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK framework contains documentation suggesting caution against untrusted tool annotations but does not encapsulate or enforce these checks programmatically.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "File Tools.swift: Client caution note on untrusted servers",
+        "File Client.swift: Lacks explicit logic to enforce trusted annotation verification"
+      ]
+    },
+    {
+      "rule_id": 252,
+      "rule_type": "MAY",
+      "rule_text": "A tool **MAY** return links to [Resources](/specification/2025-06-18/server/resources), to provide additional context\nor data. In this case, the tool will return a URI that can be subscribed to or fetched by the client:",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 253,
+      "rule_type": "MAY",
+      "rule_text": "[Resources](/specification/2025-06-18/server/resources) **MAY** be embedded to provide additional context\nor data using a suitable [URI scheme](./resources#common-uri-schemes). Servers that use embedded resources **SHOULD** implement the `resources` capability:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found resources capability in Server.swift",
+        "Phase 2-Source Code: Resources defined without automatic SDK management in Resources.swift"
+      ],
+      "confidence": 0.8,
+      "explanation": "While the SDK defines resource capabilities, there is no identifiable evidence of automatic embedding of resource context. Manual developer intervention may be required to manage these resources, which violates the rule that SDK should handle it internally.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "public struct Resource: Hashable, Codable, Sendable { ... }",
+        "public struct Capabilities: ... { public struct Resources: Hashable, Codable, Sendable { public var subscribe: Bool?; public var listChanged: Bool?; ... } }"
+      ]
+    },
+    {
+      "rule_id": 254,
+      "rule_type": "SHOULD",
+      "rule_text": "[Resources](/specification/2025-06-18/server/resources) **MAY** be embedded to provide additional context\nor data using a suitable [URI scheme](./resources#common-uri-schemes). Servers that use embedded resources **SHOULD** implement the `resources` capability:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Attempted keyword search for resources capability in func_def and func_call, returned no specific structured functions",
+        "Phase 2-Source Code: Found resource struct definition in Resources.swift and capability struct in Server.swift indicating potential for resources without direct implementation for automatic management"
+      ],
+      "confidence": 0.8,
+      "explanation": "While there are capability definitions for resources within the server SDK, the automatic embedding and handling of resources are not implemented. Developers still need to register and manage resources manually, contrary to the expectation that the SDK would encapsulate this behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "public struct Resource: Hashable, Codable, Sendable {...}",
+        "public struct Capabilities: Hashable, Codable, Sendable { public var resources: Resources? ...}"
+      ]
+    },
+    {
+      "rule_id": 255,
+      "rule_type": "MUST",
+      "rule_text": "Tools may also provide an output schema for validation of structured results.\nIf an output schema is provided:\n\n- Servers **MUST** provide structured results that conform to this schema.\n- Clients **SHOULD** validate structured results against this schema.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Could not find schema validation logic in IR for function calls related to structuring results",
+        "Phase 2-Source Code: Examined FILE_PATH: swift-sdk-main/Sources/MCP/Server/Server.swift and swift-sdk-main/Sources/MCP/Server/Tools.swift, which lack explicit schema validation implementation."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not contain automatic implementations for ensuring structured results conform to schemas. Such mechanisms are necessary for compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift"
+      ],
+      "code_snippets": [
+        "struct Configuration: Server strictly relying on initialization details but lacking schema conformance handling logic",
+        "No explicit find of method or utility being used for schema validation in provided Server.swift or other base logic files for server interactions"
+      ]
+    },
+    {
+      "rule_id": 256,
+      "rule_type": "SHOULD",
+      "rule_text": "Tools may also provide an output schema for validation of structured results.\nIf an output schema is provided:\n\n- Servers **MUST** provide structured results that conform to this schema.\n- Clients **SHOULD** validate structured results against this schema.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Investigated Client.swift and Server.swift for schema validation methods but found only capability checks.",
+        "Phase 2-Source Code: Did not locate an automatic schema validation implementation."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK appears to lack a direct and explicit method to automatically validate structured results against schemas as per the rule. The current structure places responsibility on developers to ensure compliance, though internal capability validation is present.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+      ],
+      "code_snippets": [
+        "private func validateServerCapability<T>(_ keyPath: KeyPath<Server.Capabilities, T?>, _ name: String) { ... }",
+        "private func _initialize() async throws -> Initialize.Result { ... }"
+      ]
+    },
+    {
+      "rule_id": 257,
+      "rule_type": "MUST",
+      "rule_text": "1. Servers **MUST**:\n\n   - Validate all tool inputs\n   - Implement proper access controls\n   - Rate limit tool invocations\n   - Sanitize tool outputs",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Several classes and functions for error handling were found but lacked strong compliance with rule 257",
+        "Phase 2-Source Code: Methods inspected in the transport and client handling processes; automatic validations weren't verified."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK lacks clear automatic implementations for enforcing input validation, rate limiting, and output sanitation as per the rule requirements. The necessary automated handling within SDK responsible systems or transport services wasn't prominent.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "// private func processHTTPResponse(_ response: HTTPURLResponse, contentType: String) throws",
+        "// public func send(_ message: Data) async throws"
+      ]
+    },
+    {
+      "rule_id": 258,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Clients **SHOULD**:\n   - Prompt for user confirmation on sensitive operations\n   - Show tool inputs to the user before calling the server, to avoid malicious or\n     accidental data exfiltration\n   - Validate tool results before passing to LLM\n   - Implement timeouts for tool calls\n   - Log tool usage for audit purposes",
+      "compliance_status": "PARTIALLY_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: User confirmation and input interface found with human-in-the-loop checkpoints in withSamplingHandler",
+        "Phase 1-IR: Limited logging found, but not specifically per tool usage"
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK implements user confirmation and input display for sensitive operations. However, evidence for timeouts and detailed tool usage logging is insufficient.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+      ],
+      "code_snippets": [
+        "client.withSamplingHandler to allow user-approved interactions",
+        "Logger presence indicating potential for logging"
+      ]
+    },
+    {
+      "rule_id": 259,
+      "rule_type": "MUST",
+      "rule_text": "Servers that support completions **MUST** declare the `completions` capability:",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No concrete completion capability found in defs or calls.",
+        "Phase 2-Source Code: Capabilities architecture imply possibility, not explicit implementation."
+      ],
+      "confidence": 0.5,
+      "explanation": "The SDK seems to have the capability framework to support feature like 'completions' through a generalizable 'capabilities'. However, concrete evidence of automatic handling logic to ensure it is declared and processed by default was not found.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\"
+      ],
+      "code_snippets": [
+        "// Enable sampling capability in server capabilities: .init(sampling: .init(), ... ),"
+      ]
+    },
+    {
+      "rule_id": 260,
+      "rule_type": "SHOULD",
+      "rule_text": "Servers **SHOULD** return standard JSON-RPC errors for common failure cases:\n\n- Method not found: `-32601` (Capability not supported)\n- Invalid prompt name: `-32602` (Invalid params)\n- Missing required arguments: `-32602` (Invalid params)\n- Internal errors: `-32603` (Internal error)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found MCPError in defs, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK framework encapsulates the necessary logic for handling JSON-RPC errors according to the JSON-RPC specification. It defines error codes and uses them within methods that process requests automatically, ensuring that developers using the SDK do not need to implement this behavior themselves, aligning with SDK best practices.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
+      ],
+      "code_snippets": [
+        "public enum MCPError: Swift.Error {\n      case methodNotFound(String?)  // -32601\n      case invalidParams(String?)  // -32602\n      case internalError(String?)  // -32603\n  }"
+      ]
+    },
+    {
+      "rule_id": 261,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD**:\n\n   - Return suggestions sorted by relevance\n   - Implement fuzzy matching where appropriate\n   - Rate limit completion requests\n   - Validate all inputs",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific function definitions for the necessary features were found in IR files.",
+        "Phase 2-Source Code: Reviewed source code but did not find automatic implementations for the rule requirements."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK does not encapsulate functionalities such as rate limiting, fuzzy matching, input validation, and sorting results by relevance internally. Developers might still need to manually implement these features, shifting the responsibility from the SDK to the developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 262,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Clients **SHOULD**:\n   - Debounce rapid completion requests\n   - Cache completion results where appropriate\n   - Handle missing or partial results gracefully",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient definitions and calls found in defs and calls files matching debounce or cache",
+        "Phase 2-Source Code: No automatic debounce, cache implementation found in main files."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK framework lacks explicit implementations for the debounce, cache, and handling of missing/partial results as required by MCP Rule 262. These behaviors were not found as encapsulated in the SDK, possibly needing manual implementation by developers, which breaches the MCP contract.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 263,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST**:\n\n- Validate all completion inputs\n- Implement appropriate rate limiting\n- Control access to sensitive suggestions\n- Prevent completion-based information disclosure",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific function definitions found for validate completion inputs, rate limiting, access control, and information disclosure prevention.",
+        "Phase 2-Source Code: Checked capabilities validation method with no direct input validation control【7:15†source】.",
+        "Phase 2-Source Code: Observed network handling but not rate limiting【7:19†source】.",
+        "Phase 2-Source Code: Capabilities include resources but lack sensitive suggestions access control【7:11†source】.",
+        "Phase 2-Source Code: Logging and error messages exist but don't prevent information disclosure in completions【7:1†source】【7:3†source】."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK lacks explicit implementations encapsulating input validation, rate limiting, access control to sensitive suggestions, and completion-based information disclosure prevention as standalone features. While there are general patterns for error handling and some capability checks, these do not directly satisfy the specific requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Utilities\\Ping.swift"
+      ],
+      "code_snippets": [
+        "Validate server capabilities【7:15†source】",
+        "General error handling and reconnection without rate limiting【7:19†source】",
+        "Server capabilities structure without sensitive control【7:11†source】",
+        "Logging implementation【7:3†source】"
+      ]
+    },
+    {
+      "rule_id": 264,
+      "rule_type": "MUST",
+      "rule_text": "Servers that emit log message notifications **MUST** declare the `logging` capability:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `Logging` capability defined but no evidence of automatic log notification calls.",
+        "Phase 2-Source Code: Logging ability is initialized, but no automatic notification implementation found."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines a logging capability, but lacks clear implementation of internal logic to automatically emit log message notifications, potentially requiring developers to manage these manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "public struct Logging: Hashable, Codable, Sendable { public init() {} }",
+        "import Logging // Configure Logger LoggingSystem.bootstrap..."
+      ]
+    },
+    {
+      "rule_id": 265,
+      "rule_type": "MAY",
+      "rule_text": "To configure the minimum log level, clients **MAY** send a `logging/setLevel` request:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Logging usage found in files, but no setLevel method.",
+        "Phase 2-Source Code: Client and server components show logger integration.",
+        "FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK includes logging functionality, but no dedicated `logging/setLevel` method was found to dynamically configure log levels at runtime. The SDK encapsulates logging but does not explicitly provide a means for clients to adjust log levels beyond initialization.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "Public actor Client {...; private var logger: Logger? {...; await connection?.logger}",
+        "Public actor StdioTransport: Transport {...; public nonisolated let logger: Logger}"
+      ]
+    },
+    {
+      "rule_id": 266,
+      "rule_type": "SHOULD",
+      "rule_text": "Servers **SHOULD** return standard JSON-RPC errors for common failure cases:\n\n- Invalid log level: `-32602` (Invalid params)\n- Configuration errors: `-32603` (Internal error)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions and error codes -32602 and -32603 encapsulated as MCPError.",
+        "Phase 2-Source Code: Verified automatic error response generation using MCPError in batch handling logic."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK framework has embedded JSON-RPC error definitions and handlers within its architecture, ensuring automatic handling. This aligns with the rule's requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "file-C6UfFiysGeSktEPc21Ngrg",
+        "file-PeSBNXAC8DutDxAvyQ1zSW",
+        "file-RSyKAkaoemzifGYFXCzmF7"
+      ],
+      "code_snippets": [
+        "public enum MCPError: Swift.Error, Sendable { case invalidParams ... case internalError ... }",
+        "private func handleBatch(_ batch: Batch) async throws { ... let mcpError = error as? MCPError ?? MCPError.internalError ... }"
+      ]
+    },
+    {
+      "rule_id": 267,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD**:\n\n   - Rate limit log messages\n   - Include relevant context in data field\n   - Use consistent logger names\n   - Remove sensitive information",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct logging functions identified.",
+        "Phase 2-Source Code: Logger initialization reviewed in `Server.swift` and `HTTPClientTransport.swift`.",
+        "Phase 2-Source Code: Evidence of full compliance for rate limiting, context inclusion, sensitive data filtering was absent."
+      ],
+      "confidence": 0.6,
+      "explanation": "Direct IR data for the functionalities wasn't available. Upon reviewing source files, there were no specific implementations for these logging requirements encapsulated by the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "// Logger instance initialized for transport-related events",
+        "// Capability configurations in server but no log management directly visible."
+      ]
+    },
+    {
+      "rule_id": 268,
+      "rule_type": "MAY",
+      "rule_text": "2. Clients **MAY**:\n   - Present log messages in the UI\n   - Implement log filtering/search\n   - Display severity visually\n   - Persist log messages",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Reviewed method definitions in defs.jsonl, no specific UI log implementation found.",
+        "Phase 1-IR: Reviewed method calls in calls.jsonl, no function handling log UI options identified.",
+        "Phase 2-Source Code: Code inspection did not reveal implementations for log filtering, UI presentation within SDK."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK, while capable of logging via swift-log, does not appear to explicitly support UI display, filtering/search, or severity visualization for log messages, as required to fulfill the rule fully.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "Logger instance for transport-related events",
+        "Swift-log integration for various logging functions"
+      ]
+    },
+    {
+      "rule_id": 269,
+      "rule_type": "MUST_NOT",
+      "rule_text": "1. Log messages **MUST NOT** contain:\n\n   - Credentials or secrets\n   - Personal identifying information\n   - Internal system details that could aid attacks",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No explicit protections found in IR for logging sensitive information",
+        "Phase 2-Source Code: Reviewed logging-related files with generic log actions, no sensitive logging check found in relevant source files."
+      ],
+      "confidence": 0.7,
+      "explanation": "Based on the current IR and source code review, there is insufficient evidence that the SDK safeguards against logging credentials, personal info, or sensitive internal system details. The existing logging frameworks within the SDK (e.g., StdioTransport, NetworkTransport) do not explicitly handle sanitization or restrictions as outlined by the given rule, indicating a non-compliance risk.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+      ],
+      "code_snippets": [
+        "logger.info([...]), logger.debug([...]), Error and message processing in MCPError"
+      ]
+    },
+    {
+      "rule_id": 270,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Implementations **SHOULD**:\n   - Rate limit messages\n   - Validate all data fields\n   - Control log access\n   - Monitor for sensitive content",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No evidence of related functions or call relationships in the IR data.",
+        "Phase 2-Source Code: No implementations for rate limiting, data validation, log access control, or sensitive content monitoring were found in the SDK source code."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not appear to implement automatic behaviors for rate limiting, data validation, log access control, or sensitive content monitoring as required by MCP Rule 270. These functionalities are not encapsulated by the SDK, and thus, developers might need to implement these themselves.",
+      "files_analyzed": [
+        "Server.swift",
+        "Sampling.swift",
+        "Error.swift",
+        "Transports/StdioTransport.swift",
+        "Tools.swift"
+      ],
+      "code_snippets": [
+        "No specific code snippets for task compliance."
+      ]
+    },
+    {
+      "rule_id": 271,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- The **cursor** is an opaque string token, representing a position in the result set\n- **Page size** is determined by the server, and clients **MUST NOT** assume a fixed page\n  size",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Unable to find explicit function calls or definitions clearly demonstrating server-determined page size logic.",
+        "Phase 2-Source Code: Insufficient code evidence correlating to server-managed page size transitions or constraints."
+      ],
+      "confidence": 0.5,
+      "explanation": "The source code segments reviewed did not provide sufficient evidence to establish compliance or non-compliance with MCP rule 271 regarding page size being server-determined and clients not assuming a fixed page size. The SDK code reviewed primarily entailed transport and connectivity logic but did not delve into aspects directly affecting page sizing strategies.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "// Process response with byte stream ...",
+        "// While isConnected && !Task.isCancelled {...}"
+      ]
+    },
+    {
+      "rule_id": 272,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Servers **SHOULD**:\n\n   - Provide stable cursors\n   - Handle invalid cursors gracefully",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No definitions or calls directly related to cursor management found in IR.",
+        "Phase 2-Source Code: No explicit SDK logic defining or managing cursors in `Server.swift`, 'Resources.swift' or other inspected parts."
+      ],
+      "confidence": 0.7,
+      "explanation": "Based on available IR and partial source code analysis, the SDK does not explicitly define or internally handle cursor stability or invalid cursor scenarios, crucial for protocol compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+      ],
+      "code_snippets": [
+        "public struct Capabilities {... public struct Resources {... public struct Tools {..."
+      ]
+    },
+    {
+      "rule_id": 273,
+      "rule_type": "SHOULD",
+      "rule_text": "2. Clients **SHOULD**:\n\n   - Treat a missing `nextCursor` as the end of results\n   - Support both paginated and non-paginated flows",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls located pertaining to `nextCursor` or pagination handling.",
+        "Phase 2-Source Code: Searched Client.swift for pagination logic but found insufficient encapsulation or automation facilitating the rule compliance."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK framework does not encapsulate the behaviors required by the rule, such as automatically handling missing `nextCursor` as an end-of-results marker or supporting both paginated and non-paginated flows without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift"
+      ],
+      "code_snippets": [
+        "public func listPrompts(cursor: String? = nil) async throws -> (prompts: [Prompt], nextCursor: String?)"
+      ]
+    },
+    {
+      "rule_id": 274,
+      "rule_type": "MUST",
+      "rule_text": "3. Clients **MUST** treat cursors as opaque tokens:\n   - Don't make assumptions about cursor format\n   - Don't attempt to parse or modify cursors\n   - Don't persist cursors across sessions",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No direct evidence in IR data related to cursor handling functions was found.",
+        "Phase 2-Source Code: Reviewed functions like 'listPrompts' but detailed internal handling wasn't clearly evident in the available data."
+      ],
+      "confidence": 0.5,
+      "explanation": "The current IR and source code checks did not uncover explicit handling or misuse of cursors. More detailed implementation details of cursor handling functions or a focused code review is required to confirm full compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "public func listPrompts(cursor: String? = nil) async throws -> (prompts: [Prompt], nextCursor: String?) { }"
+      ]
+    },
+    {
+      "rule_id": 275,
+      "rule_type": "SHOULD",
+      "rule_text": "Invalid cursors **SHOULD** result in an error with code -32602 (Invalid params).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `invalidParams` in defs, defined in Error.swift",
+        "Phase 2-Source Code: Requests are processed to automatically handle and throw MCPError.invalidParams when needed."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically handles invalid parameters by encapsulating the logic for raising MCPError with code -32602 in its internal request handling methods.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Messages.swift"
+      ],
+      "code_snippets": [
+        "public enum MCPError: ... case invalidParams(String?) // -32602",
+        "switch item { ... case .request(let request): ... if let response = try await handleRequest(request, sendResponse: false) ..."
+      ]
+    }
+  ]
+}

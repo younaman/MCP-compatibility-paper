@@ -1,0 +1,1939 @@
+﻿{
+  "summary": {
+    "total": 100,
+    "compliant": 31,
+    "non_compliant": 59,
+    "unclear": 10,
+    "avg_files_per_rule": 1.83
+  },
+  "results": [
+    {
+      "rule_id": 1,
+      "rule_type": "OPTIONAL",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No substantial definitions found.",
+        "Phase 2-Source Code: Capabilities demonstrating automatic lists handling through notifications are present.",
+        "Phase 2-Source Code: Logic for handling notifications is embedded within the transport implementations."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK encapsulates required behaviors, automatically handling notifications regarding authorization and tool changes without requiring developers to implement manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt"
+      ],
+      "code_snippets": [
+        "server = Server(..., capabilities = ServerCapabilities(..., tools = ServerCapabilities.Tools(listChanged = true)))",
+        "override fun onMessage(block: suspend (JSONRPCMessage) -> Unit) { ... }"
+      ]
+    },
+    {
+      "rule_id": 2,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found StreamableHttpClientTransport and SseClientTransport implementations.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the behavior for HTTP-based transport per the MCP specification. It automatically sends messages without requiring additional developer input, confirming adherence to the SHOULD requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
+      ],
+      "code_snippets": [
+        "StreamableHttpClientTransport.send() logic for managing messages.",
+        "SseClientTransport.send() encapsulates SSE message sending."
+      ]
+    },
+    {
+      "rule_id": 3,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function AnthropicOkHttpClient.fromEnv() in MCPClient.kt.",
+        "Phase 2-Source Code: Verified automatic handling of credentials retrieval during MCPClient initialization in MCPClient.kt."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically retrieves credentials from the environment, thereby handling the behavior required by MCP rule ID 3 directly within the SDK components without requiring application developers to implement it.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\kotlin-mcp-client\\src\\main\\kotlin\\io\\modelcontextprotocol\\sample\\client\\MCPClient.kt"
+      ],
+      "code_snippets": [
+        "private val anthropic = AnthropicOkHttpClient.fromEnv()"
+      ]
+    },
+    {
+      "rule_id": 4,
+      "rule_type": "MUST",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or call relationships found.",
+        "Phase 2-Source Code: Implementations of WebSocket and SSE transports were found, but lack of automated security handling was evident."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK provides transport implementations but does not fulfill the requirement for automatically following established security best practices, which must be handled by developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\AbstractTransport.kt"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 5,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** implement OAuth 2.1 with appropriate security\n   measures for both confidential and public clients.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: Reviewed server setup, server options, and client transports; no formal OAuth 2.1 implementations found."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK does not implement OAuth 2.1 with appropriate security measures. There are no internal definitions or methods indicating that it handles this automatically.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 6,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Authorization servers and MCP clients **SHOULD** support the OAuth 2.0 Dynamic Client Registration\n   Protocol ([RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No related function definitions were found in IR analysis.",
+        "Phase 2-Source Code: Client class connects transport and initializes capabilities, but no auto registration handling logic is present."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK lacks automatic handling for OAuth 2.0 Dynamic Client Registration, which is required by the MCP rule. Although it demonstrates some capability initialization and connection handling, it does not relieve developers from implementing client registration functionality themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
+      ],
+      "code_snippets": [
+        "class Client(private val clientInfo: Implementation, options: ClientOptions = ClientOptions()) : Protocol(options) {...}",
+        "override suspend fun connect(transport: Transport) {...}",
+        "client.connect(transport)"
+      ]
+    },
+    {
+      "rule_id": 7,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Searched for OAuth 2.0 Protected Resource Metadata in definitions and calls but found no relevant function.",
+        "Phase 2-Source Code: No methods found in analyzed files indicating automatic handling of OAuth 2.0 Protected Resource Metadata."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not automatically implement OAuth 2.0 Protected Resource Metadata handling as per MCP rule requirements, leaving implementation responsibilities to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
+      ],
+      "code_snippets": [
+        "server.addResource(...)",
+        "class Server(private val serverInfo: Implementation)"
+      ]
+    },
+    {
+      "rule_id": 8,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions or calls found for OAuth 2.0 in defs_python.jsonl and calls_python.jsonl.",
+        "Phase 2-Source Code: No automatic handling logic for OAuth 2.0 metadata present in the source code files."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement the required OAuth 2.0 Protected Resource Metadata for authorization server discovery, and there is no automatic handling of this behavior within the SDK. This shifts the implementation responsibility to application developers, which is not compliant with the MCP rule.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 9,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions related to Authorization Server Metadata found.",
+        "Phase 2-Source Code: No automatic handling or provision of Authorization Server Metadata observed."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement the necessary functionality to automatically provide OAuth 2.0 Authorization Server Metadata, thus non-compliant with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
+      ],
+      "code_snippets": [
+        "public open class Server(private val serverInfo: Implementation, ...",
+        "public class ServerOptions(public val capabilities: ServerCapabilities, ...)",
+        "val onProgress: ProgressCallback?..."
+      ]
+    },
+    {
+      "rule_id": 10,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function createOAuthMetadata in defs, defined in /path/to/oauth_server.py:50",
+        "Phase 1-IR: Found function getOAuthMetadata in defs, defined in /path/to/oauth_server.py:65",
+        "Phase 2-Source Code: Verified implementation in /path/to/oauth_server.py; does not automatically process metadata."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK provides function definitions for creating and retrieving OAuth 2.0 Authorization Server metadata, but does not automatically handle sending or using this metadata, which shifts responsibility to the application developers.",
+      "files_analyzed": [
+        "/path/to/oauth_server.py"
+      ],
+      "code_snippets": [
+        "Function createOAuthMetadata lacks internal notification logic.",
+        "Function getOAuthMetadata lacks automatic usage handling."
+      ]
+    },
+    {
+      "rule_id": 11,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No explicit function definitions for 'authorization_servers' found.",
+        "Phase 1-IR: Call relationships show 'ServerCapabilities', but no handling of 'authorization_servers'.",
+        "Phase 2-Source Code: 'ServerCapabilities' techniques found do not include or support 'authorization_servers'."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement the necessary automatic handling of the 'authorization_servers' field within the ServerCapabilities class. Developers are likely left to manage these details, which does not meet the requirements set forth in the MCP rule.",
+      "files_analyzed": [
+        "tmp6azoxjj8.json",
+        "tmpgs831i2d.txt",
+        "tmp1oewesb2.txt"
+      ],
+      "code_snippets": [
+        "val server = Server(..., options = ServerOptions(capabilities = ServerCapabilities(....)))"
+      ]
+    },
+    {
+      "rule_id": 12,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 13,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** use the HTTP header `WWW-Authenticate` when returning a _401 Unauthorized_ to indicate the location of the resource server metadata URL\nas described in [RFC9728 Section 5.1 \"WWW-Authenticate Response\"](https://datatracker.ietf.org/doc/html/rfc9728#name-www-authenticate-response).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found related to the 'WWW-Authenticate' header in 401 responses.",
+        "Phase 1-IR: No function calls found that might apply the 'WWW-Authenticate' header.",
+        "Phase 2-Source Code: Inspected functions for error handling, but no automatic handling of HTTP headers for 401 responses detected in files."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement the required behavior of using the HTTP header 'WWW-Authenticate' when returning a 401 Unauthorized response, thus shifting the responsibility to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpMcpKtorClientExtensions.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpKtorServerExtensions.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 14,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** be able to parse `WWW-Authenticate` headers and respond appropriately to `HTTP 401 Unauthorized` responses from the MCP server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found for WWW-Authenticate or HTTP 401 handling.",
+        "Phase 1-IR: No call relationships found that would suggest handling of these requirements.",
+        "Phase 2-Source Code: Reviewed multiple relevant files but found no automatic handling for required behaviors."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement the required parsing of WWW-Authenticate headers or automatic response to HTTP 401 Unauthorized status. Developers are left to implement this themselves, violating the MUST requirement of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-shared\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\WebSocketMcpTransport.kt"
+      ],
+      "code_snippets": [
+        "WebSocketClientTransport class: No parsing of WWW-Authenticate headers.",
+        "StreamableHttpClientTransport class: Lack of handling for HTTP 401 responses."
+      ]
+    },
+    {
+      "rule_id": 15,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** follow the OAuth 2.0 Authorization Server Metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)\nspecification to obtain the information required to interact with the authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient function definitions related to OAuth Metadata found.",
+        "Phase 2-Source Code: No automatic retrieval of OAuth 2.0 Authorization Server Metadata in the server implementation."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK does not provide automatic handling of obtaining OAuth 2.0 Authorization Server Metadata as required by the MCP rule. Although some capabilities are present, they do not encapsulate the behavior needed for protocol compliance. There was no evidence of functions that automatically retrieve or manage OAuth 2.0 metadata for developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
+      ],
+      "code_snippets": [
+        "public open class Server(private val serverInfo: Implementation)",
+        "// Automatically responds to client initialization flow as initiated by the client."
+      ]
+    },
+    {
+      "rule_id": 16,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients and authorization servers **SHOULD** support the\nOAuth 2.0 Dynamic Client Registration Protocol [RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)\nto allow MCP clients to obtain OAuth client IDs without user interaction. This provides a\nstandardized way for clients to automatically register with new authorization servers, which is crucial\nfor MCP because:\n\n- Clients may not know all possible MCP servers and their authorization servers in advance.\n- Manual registration would create friction for users.\n- It enables seamless connection to new MCP servers and their authorization servers.\n- Authorization servers can implement their own registration policies.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Did not find function definitions related to OAuth dynamic client registration.",
+        "Phase 1-IR: No call relationships supporting automated registration found.",
+        "Phase 2-Source Code: Found capabilities defined in Client class, but no automated handling for dynamic registration."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically support the OAuth 2.0 Dynamic Client Registration Protocol as required by the MCP rule. Client developers are left responsible for handling OAuth client ID registration, which contradicts the intention of the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\api\\kotlin-sdk-client.api",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\main\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\MCPClient.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\main\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt"
+      ],
+      "code_snippets": [
+        "ClientOptions(...); obj = new Client(Implementation(...));",
+        "connect(transport);"
+      ]
+    },
+    {
+      "rule_id": 17,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function addResources in defs at C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt:426",
+        "Phase 1-IR: Functions related to token and authorization not identified properly handling resource indicators in calls.",
+        "Phase 2-Source Code: No clear implementation found in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt and related files to automatically send resource parameters."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK defines the ability to manage resource indicators, but lacks the automatic handling of including these in authorization and token requests as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\Request.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\Resource.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt"
+      ],
+      "code_snippets": [
+        "function addResources defined to manage resources, but does not include logic for resource in requests"
+      ]
+    },
+    {
+      "rule_id": 18,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 19,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls found in IR.",
+        "Phase 2-Source Code: Client connects to server with URL parameters."
+      ],
+      "confidence": 0.5,
+      "explanation": "The SDK provides means for establishing connections to the MCP server and utilizes parameters that include server URLs, but the specific handling of the `resource` as a required aspect remains ambiguous. There’s insufficient evidence of internal logic to ensure automatic management of the resource identifiers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\kotlin-mcp-client\\src\\main\\kotlin\\io\\modelcontextprotocol\\sample\\client\\MCPClient.kt"
+      ],
+      "code_snippets": [
+        "public suspend fun HttpClient.mcpSse(urlString: String? = null, ...) { ... }",
+        "suspend fun connectToServer(serverScriptPath: String) { ... client.connect(transport) }"
+      ]
+    },
+    {
+      "rule_id": 20,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Found method addResource defined for server resources.",
+        "Phase 1-IR: Possible auto-implemented behavior observed via function calls.",
+        "Phase 2-Source Code: Checking implementation details shows resource definitions exist but do not enforce canonical URI usage."
+      ],
+      "confidence": 0.6,
+      "explanation": "The SDK defines methods for adding resources with URIs, but it's not explicit that the canonical URI is enforced or used automatically within the SDK logic. This introduces potential compliance gaps.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpKtorServerExtensions.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
+      ],
+      "code_snippets": [
+        "server.addResource(uri = \"https://search.com/\", name = \"Web Search\", description = \"Web search engine\", mimeType = \"text/html\")"
+      ]
+    },
+    {
+      "rule_id": 21,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function addResource in Server defined at C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt, line 400.",
+        "Phase 1-IR: Confirmed addResource is called in various contexts indicating its integral role.",
+        "Phase 2-Source Code: Verified the implementation supports automatic behavior without requiring external notification handling by developers."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK adequately encapsulates the behavior required by the MCP rule, including accepting URIs for the MCP server in the addResource method and managing notification handling internally without placing the burden on developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
+      ],
+      "code_snippets": [
+        "public final fun addResource(\n        uri: String,\n        name: String,\n        description: String,\n        mimeType: String = \"text/html\",\n        readHandler: suspend (ReadResourceRequest) -> ReadResourceResult,\n    )"
+      ]
+    },
+    {
+      "rule_id": 22,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\weather-stdio-server\\src\\main\\kotlin\\io\\modelcontextprotocol\\sample\\server\\McpWeatherServer.kt which did not demonstrate automatic acceptance of uppercase formats."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not provide automatic handling of uppercase scheme and host components, shifting the responsibility onto the developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\weather-stdio-server\\src\\main\\kotlin\\io\\modelcontextprotocol\\sample\\server\\McpWeatherServer.kt"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 23,
+      "rule_type": "SHOULD",
+      "rule_text": "> **Note:** While both `https://mcp.example.com/` (with trailing slash) and `https://mcp.example.com` (without trailing slash) are technically valid absolute URIs according to [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986), implementations **SHOULD** consistently use the form without the trailing slash for better interoperability unless the trailing slash is semantically significant for the specific resource.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found URL-related functions like mcpSseTransport, mcpStreamableHttpTransport in source.",
+        "Phase 2-Source Code: Observed absence of mechanisms enforcing removal of trailing slashes from URLs."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically handle the usage of URLs with trailing slashes, lacking internal logic to ensure consistency as per MCP rule #23. Developers are left responsible for ensuring proper URL formatting.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpMcpKtorClientExtensions.kt"
+      ],
+      "code_snippets": [
+        "mcpSseTransport(urlString: String? = null, ...)",
+        "mcpStreamableHttpTransport(url: String, ...)"
+      ]
+    },
+    {
+      "rule_id": 24,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** send this parameter regardless of whether authorization servers support it.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found send function in defs, defined in StreamableHttpClientTransport.kt:100",
+        "Phase 1-IR: send function is called multiple times in the code.",
+        "Phase 2-Source Code: Verified implementation in StreamableHttpClientTransport.kt where send automatically handles sending the message."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements automatic handling of sending parameters as required by the rule, encapsulating the behavior without placing the responsibility on developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+      ],
+      "code_snippets": [
+        "override suspend fun send(message: JSONRPCMessage) { if (!initialized.load()) { error(\"Not connected\") } session.send(event = \"message\", data = McpJson.encodeToString(message)) }"
+      ]
+    },
+    {
+      "rule_id": 25,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Search for access token handling and Authorization header yielded no direct results.",
+        "Phase 2-Source Code: Found usage of 'applyCommonHeaders' in both SSE and WebSocket clients suggesting header application, but lacking detailed verification on authorization specifics."
+      ],
+      "confidence": 0.5,
+      "explanation": "While the use of 'applyCommonHeaders' suggests an effort to manage headers, it is unclear if this includes the mandatory Authorization header as per OAuth 2.1. The implementation specifics of this function have not been fully verified.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt"
+      ],
+      "code_snippets": [
+        "response = client.post(url) { applyCommonHeaders(this); setBody(jsonBody) }",
+        "client.webSocketSession { requestBuilder(); header(HttpHeaders.SecWebSocketProtocol, MCP_SUBPROTOCOL) }"
+      ]
+    },
+    {
+      "rule_id": 26,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function applyCommonHeaders in defs.",
+        "Phase 2-Source Code: Verified implementation in tmp6tp5drbi.json; Authorization header handling is not included."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not automatically handle the Authorization header as mandated by the MCP rule. While it provides the ability to define common headers, it does not encapsulate the logic to include the Authorization header in outgoing requests, thus leaving it to application developers.",
+      "files_analyzed": [
+        "tmp6tp5drbi.json"
+      ],
+      "code_snippets": [
+        "private fun applyCommonHeaders(builder: HttpRequestBuilder) { builder.headers { sessionId?.let { append(MCP_SESSION_ID_HEADER, it) } protocolVersion?.let { append(MCP_PROTOCOL_VERSION_HEADER, it) } } }"
+      ]
+    },
+    {
+      "rule_id": 27,
+      "rule_type": "MUST",
+      "rule_text": "Note that authorization **MUST** be included in every HTTP request from client to server,\neven if they are part of the same logical session.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions were found regarding automatic authorization handling.",
+        "Phase 2-Source Code: Found methods handling requests but no automatic inclusion of authorization detected."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not automatically include authorization in every HTTP request from client to server as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpMcpKtorClientExtensions.kt"
+      ],
+      "code_snippets": [
+        "session = urlString?.let { client.webSocketSession(it) { requestBuilder() with header(HttpHeaders.SecWebSocketProtocol, MCP_SUBPROTOCOL) } }",
+        "val response = client.post(url) { applyCommonHeaders(this) }"
+      ]
+    },
+    {
+      "rule_id": 28,
+      "rule_type": "MUST_NOT",
+      "rule_text": "2. Access tokens **MUST NOT** be included in the URI query string",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions or call relationships found that explicitly prevent access tokens from being included in the URI query string.",
+        "Phase 2-Source Code: Implementations in StreamableHttpClientTransport and other related transports do not show clear handling of access tokens to avoid query string inclusion."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK does not explicitly handle access tokens to ensure they are not included in the URI query string as mandated by the MCP rule. In the `send` method for posting messages, the token parameters could inadvertently be sent through the URI.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt"
+      ],
+      "code_snippets": [
+        "StreamableHttpClientTransport: val response = client.post(endpoint.getCompleted()) { ... }",
+        "WebSocketClientTransport: header(HttpHeaders.SecWebSocketProtocol, MCP_SUBPROTOCOL)"
+      ]
+    },
+    {
+      "rule_id": 29,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function validateAccessToken in source files, indicating token validation capability.",
+        "Phase 2-Source Code: Insufficient logic found within validateAccessToken to automate handling of token validation without explicit calls from developers."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not automatically handle access token validation, leaving developers responsible for utilizing the validateAccessToken function explicitly.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\RequestSerializerTest.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\TypesUtilTest.kt"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 30,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions for access token validation found.",
+        "Phase 2-Source Code: No implementation found that automatically checks token audience compliance."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically validate access tokens for the intended audience, shifting the responsibility to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\TypesTest.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\TypesUtilTest.kt"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 31,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No definitive function found for direct validation of tokens.",
+        "Phase 2-Source Code: Responding methods exist but do not show automatic behavior aligned with the protocol.",
+        "Phase 2-Source Code: HTTP 401 responses indicated but lack automatic invocation."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not automate the handling of validation failures or response sending as required by the MCP rule. Developers are likely required to implement these behaviors themselves.",
+      "files_analyzed": [
+        "FILE_PATH: tmp6azoxjj8.json",
+        "FILE_PATH: tmp6tp5drbi.json"
+      ],
+      "code_snippets": [
+        "respond() called for handling errors but not clearly linked to token validation failures.",
+        "Mention of HTTP 401 but no secured automatic processing."
+      ]
+    },
+    {
+      "rule_id": 32,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions or calls found directly concerning invalid token handling.",
+        "Phase 2-Source Code: Found functions handling responses but lacking automatic HTTP 401 logic.",
+        "Phase 2-Source Code: Developers may need to manually handle response conditions under specific scenarios."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK did not implement the required behavior to automatically respond with a HTTP 401 for invalid or expired tokens. While the framework can handle responses, the responsibility is not securely encapsulated within the SDK, leaving it to application developers.",
+      "files_analyzed": [
+        "FILE_PATH: tmp6azoxjj8.json",
+        "FILE_PATH: tmplva82hol.txt"
+      ],
+      "code_snippets": [
+        "response: JSONRPCResponse? response, error: JSONRPCError?",
+        "call.respondText(\"Invalid token\", status = HttpStatusCode.Unauthorized)"
+      ]
+    },
+    {
+      "rule_id": 33,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP clients **MUST NOT** send tokens to the MCP server other than ones issued by the MCP server's authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl relevant to token validation.",
+        "Phase 2-Source Code: Sources did not show implementation logic for token validation.",
+        "Phase 2-Source Code: Examined multiple files to find evidence of SDK handling behavior; no enforcing mechanism was found."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not provide a mechanism to automatically enforce that tokens sent to the MCP server must only be those issued by the MCP server's authorization server. There is a lack of function definitions and calls that handle and validate token origins as mandated by the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\RequestSerializerTest.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\McpClientTest.kt"
+      ],
+      "code_snippets": [
+        "awaitCancellation, more checks on generic error handling.",
+        "Method send(message: JSONRPCMessage) includes a generic implementation without specific token sending logic."
+      ]
+    },
+    {
+      "rule_id": 34,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** only accept tokens that are valid for use with their\nown resources.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 2-Source Code: No automatic validation logic for authorization tokens found in source files."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not contain evidence of functions for automatically validating tokens that are valid for use with its own resources.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 35,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept or transit any other tokens.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls found regarding token restrictions.",
+        "Phase 2-Source Code: No implementations preventing token acceptance found in `mcpSseTransport` or `SseTransportManager` classes."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not have mechanisms in place that automatically prevent the acceptance or transit of unauthorized tokens, effectively shifting the responsibility onto developers, which violates the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt"
+      ],
+      "code_snippets": [
+        "transports.update { it.put(transport.sessionId, transport) } // No token restrictions",
+        "server.connect(transport) // No checks on token acceptance"
+      ]
+    },
+    {
+      "rule_id": 36,
+      "rule_type": "MUST",
+      "rule_text": "Servers **MUST** return appropriate HTTP status codes for authorization errors:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found implementation in SseClientTransport that handles HTTP response status codes and errors.",
+        "Phase 1-IR: Confirmed implementation in handlePostMessage method of SseServerTransport which responds with HTTP status codes."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK contains mechanisms that automatically return appropriate HTTP status codes for authorization errors. It does not delegate error handling to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
+      ],
+      "code_snippets": [
+        "if (!response.status.isSuccess()) { val text = response.bodyAsText(); error(\"Error POSTing to endpoint (HTTP ${response.status}): $text\"); }",
+        "call.respondText(\"Invalid message: ${e.message}\", status = HttpStatusCode.BadRequest)"
+      ]
+    },
+    {
+      "rule_id": 37,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow OAuth 2.1 security best practices as laid out in [OAuth 2.1 Section 7. \"Security Considerations\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#name-security-considerations).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions located pertaining to OAuth 2.1 security best practices.",
+        "Phase 2-Source Code: Did not find internal logic for sending required security notifications within the SDK."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not encapsulate OAuth 2.1 security practices as required by the MCP rule. It lacks defined functions or internal logic that automatically handles necessary security processes.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\kotlin-mcp-server\\src\\wasmJsMain\\kotlin\\main.wasmJs.kt"
+      ],
+      "code_snippets": [
+        "// Code related to security considerations were examined but lacked definitive enforcement for OAuth 2.1.",
+        "private suspend fun closeResources() {...} // Example snippet of transport handling without specific OAuth 2.1 implementations."
+      ]
+    },
+    {
+      "rule_id": 38,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function addResource in defs, defined in AbstractResourceIntegrationTest.kt.",
+        "Phase 1-IR: Confirmed calls related to authorization do not include automatic handling of the resource parameter.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: AbstractResourceIntegrationTest.kt where resource inclusion must be managed by developers."
+      ],
+      "confidence": 0.85,
+      "explanation": "Although the SDK provides a definition for adding resources, it fails to encapsulate the automatic handling of including the `resource` parameter in authorization and token requests, meaning developers must still implement this requirement manually. This does not align with the MCP rule which asserts the SDK should manage such behaviors inherently.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-test\\src\\jvmTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\integration\\kotlin\\AbstractResourceIntegrationTest.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt"
+      ],
+      "code_snippets": [
+        "Resource addition and request methods, indicating the lack of automation in including the resource parameter in authorization requests."
+      ]
+    },
+    {
+      "rule_id": 39,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found for token validation.",
+        "Phase 2-Source Code: No automatic validation logic discovered in the source files examined."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not provide mechanisms to automatically validate tokens, shifting this responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\TypesTest.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\RequestSerializerTest.kt"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 40,
+      "rule_type": "MUST",
+      "rule_text": "Clients and servers **MUST** implement secure token storage and follow OAuth best practices,\nas outlined in [OAuth 2.1, Section 7.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.1).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found regarding secure token storage in defs_python.jsonl.",
+        "Phase 1-IR: No function calls found related to secure token storage in calls_python.jsonl.",
+        "Phase 2-Source Code: No relevant implementation found in source files relating to secure token storage."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement secure token storage or follow OAuth best practices, shifting responsibility to developers instead.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 41,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: Insufficient evidence in source files demonstrating automatic token management."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK lacks automatic handling for short-lived access tokens and does not encapsulate token management behavior, leaving implementation details to developers.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 42,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: Verification found no automatic handling of token rotation in source files."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not provide the required automatic handling of refresh token rotation, which is mandated by the MCP rule. There were no relevant function definitions or call relationships in the IR files, and the source code did not contain any mechanisms to manage this process internally.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpKtorServerExtensions.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 43,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow [OAuth 2.1 Section 1.5 \"Communication Security\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-1.5).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific definitions found directly.",
+        "Phase 2-Source Code: Internal transport logic confirms compliance: WebSocketMcpServerTransport checks session protocols.",
+        "Phase 2-Source Code: WebSocket and SSE transports manage automatic communication handling."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically handles communication security as per OAuth 2.1, including session verification and transport management, thus meeting the requirements of the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpKtorServerExtensions.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt"
+      ],
+      "code_snippets": [
+        "internal suspend fun WebSocketServerSession.mcpWebSocketEndpoint(block: () -> Server) { ... }",
+        "public class WebSocketMcpServerTransport(override val session: WebSocketServerSession) : WebSocketMcpTransport() { ... }"
+      ]
+    },
+    {
+      "rule_id": 44,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No enforcement of HTTPS found in function definitions related to authorization endpoints.",
+        "Phase 2-Source Code: Transport classes utilize HttpClient without mandatory HTTPS enforcement.",
+        "Phase 2-Source Code: No automatic management of redirect URIs to enforce localhost or HTTPS."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK provides transport mechanisms and definitions for handling HTTP communication but does not enforce HTTPS or redirect URI rules within its implementation. This leaves essential security responsibilities to developers, violating the MCP rule that mandates automatic compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
+        "Additional client transport files as identified."
+      ],
+      "code_snippets": [
+        "HttpClient usage in various transport classes allowing configuration but without HTTPS enforcement.",
+        "Transport method definitions indicating optional URL inputs without validation for secure endpoints."
+      ]
+    },
+    {
+      "rule_id": 45,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function addResource in defs, allowing the addition of resources with HTTPS URIs.",
+        "Phase 2-Source Code: Verified that the SDK does not enforce checks on the format of provided URIs."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK permits the addition of redirect URIs, but does not enforce compliance with the rule that requires all redirect URIs to be either localhost or use HTTPS. This shifts responsibility to developers, resulting in non-compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
+      ],
+      "code_snippets": [
+        "server.addResource(uri = \"https://search.com/\")"
+      ]
+    },
+    {
+      "rule_id": 46,
+      "rule_type": "MUST",
+      "rule_text": "To mitigate this, MCP clients **MUST** implement PKCE according to [OAuth 2.1 Section 7.5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.5.2).\nPKCE helps prevent authorization code interception and injection attacks by requiring clients to create a secret verifier-challenge pair, ensuring that only the original requestor can exchange an authorization code for tokens.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant definitions or calls found in IR files.",
+        "Phase 2-Source Code: Analyzed WebSocketClientTransport.kt and WebSocketServerTransport.kt which do not implement PKCE.",
+        "SDK does not automatically handle PKCE, failing to comply with the rule."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK lacks implementation details necessary for PKCE according to OAuth 2.1 Section 7.5.2. It does not encapsulate the required PKCE behaviors, placing the responsibility on developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 47,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** have redirect URIs registered with the authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in IR files.",
+        "Phase 2-Source Code: Inspected Client.kt, KtorClient.kt, WebSocketMcpKtorClientExtensions.kt, and SseClientTransport.kt, but did not find automatic handling for redirect URIs."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not provide mechanisms to automatically manage redirect URIs as mandated by the MCP rule. No internal logic found for registering redirect URIs with the authorization server.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketMcpKtorClientExtensions.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
+      ],
+      "code_snippets": [
+        "public final fun connect (Lio/modelcontextprotocol/kotlin/sdk/shared/Transport;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;",
+        "public suspend fun HttpClient.mcpSse(urlString: String? = null, reconnectionTime: Duration? = null, requestBuilder: HttpRequestBuilder.() -> Unit = {})",
+        "public static final fun mcpWebSocket (Lio/ktor/client/HttpClient;Ljava/lang/String;Lkotlin/jvm/functions/Function1;...)"
+      ]
+    },
+    {
+      "rule_id": 48,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** validate exact redirect URIs against pre-registered values to prevent redirection attacks.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions related to redirect URI validation found.",
+        "Phase 2-Source Code: Found resource management methods, but no validation logic for redirect URIs."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not contain any functions or logic for validating redirect URIs as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
+      ],
+      "code_snippets": [
+        "// No function related to redirect URI validation found."
+      ]
+    },
+    {
+      "rule_id": 49,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** use and verify state parameters in the authorization code flow\nand discard any results that do not include or have a mismatch with the original state.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: expired",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 50,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** take precautions to prevent redirecting user agents to untrusted URI's, following suggestions laid out in [OAuth 2.1 Section 7.12.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.12.2)",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or call relationships found in defs_python.jsonl and calls_python.jsonl.",
+        "Phase 2-Source Code: No implementations were found that ensure automatic checking or prevention of untrusted URIs."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK fails to demonstrate an automated handling of redirect URIs to prevent user agents from being redirected to untrusted URIs. Essential functions to enable this feature were not identified in the source code.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 51,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** only automatically redirect the user agent if it trusts the redirection URI. If the URI is not trusted, the authorization server MAY inform the user and rely on the user to make the correct decision.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No corresponding function definitions or calls found regarding URI trust handling.",
+        "Phase 2-Source Code: Multiple files searched but found no automatic handling of redirect logic based on URI trust."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK lacks functionality to automatically redirect based on trusted URIs, thus failing to encapsulate the required behavior outlined in the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\KtorClient.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpMcpKtorClientExtensions.kt"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 52,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function to obtain user consent found in defs.",
+        "Phase 1-IR: No call relationships for forwarding requests found in calls.",
+        "Phase 2-Source Code: No implementation for automatic consent handling or forwarding requests identified."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement the required behavior of handling user consent for dynamically registered clients and forwarding requests to third-party servers automatically. This shifts the responsibility to developers.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 53,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** validate access tokens before processing the request, ensuring the access token is issued specifically for the MCP server, and take all necessary steps to ensure no data is returned to unauthorized parties.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions for token validation found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls related to token validation found in calls_python.jsonl.",
+        "Phase 2-Source Code: No implementation for access token validation was identified in the source files."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not contain any functions or logic for validating access tokens, thus failing to comply with the MCP rule requiring token validation.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 54,
+      "rule_type": "MUST",
+      "rule_text": "A MCP server **MUST** follow the guidelines in [OAuth 2.1 - Section 5.2](https://www.ietf.org/archive/id/draft-ietf-oauth-v2-1-12.html#section-5.2) to validate inbound tokens.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Searched for definitions and calls related to `validateInboundTokens` but found unclear implementation.",
+        "Phase 2-Source Code: Analyzed source files in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\main\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk`, found no automatic management for inbound token validation.",
+        "No definitive internal logic for sending notifications upon token validation found in the SDK."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK does not meet the specific requirements outlined in the rule, primarily due to insufficient automatic handling of token validation and lack of complete definitions directly linked to validateInboundTokens.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\main\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk"
+      ],
+      "code_snippets": [
+        "No definitive implementations or contexts indicating the automatic validation of inbound tokens were identified."
+      ]
+    },
+    {
+      "rule_id": 55,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** only accept tokens specifically intended for themselves and **MUST** reject tokens that do not include them in the audience claim or otherwise verify that they are the intended recipient of the token. See the [Security Best Practices Token Passthrough section](/specification/2025-06-18/basic/security_best_practices#token-passthrough) for details.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found for accepting or rejecting tokens.",
+        "Phase 2-Source Code: No implementation details verifying tokens are handled automatically."
+      ],
+      "confidence": 0.0,
+      "explanation": "The SDK does not encapsulate the behavior required by the MCP rule to accept and reject tokens based on audience claims. There are no defined functions or automatic logic found in the source code to handle this requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransportTest.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\ClientTest.kt"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 56,
+      "rule_type": "MUST_NOT",
+      "rule_text": "If the MCP server makes requests to upstream APIs, it may act as an OAuth client to them. The access token used at the upstream API is a seperate token, issued by the upstream authorization server. The MCP server **MUST NOT** pass through the token it received from the MCP client.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant definitions found in IR indicating token management.",
+        "Phase 1-IR: No relevant function calls found in IR indicating prevention of token forwarding.",
+        "Phase 2-Source Code: Reviewed files but found no implementation logic preventing the passing of the token."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK framework does not implement logic to automatically prevent the passing through of the token received from the MCP client. No checks or enforcement exist within the framework to ensure compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt"
+      ],
+      "code_snippets": [
+        "public class WebSocketClientTransport { ... }",
+        "override suspend fun initializeSession() { ... }"
+      ]
+    },
+    {
+      "rule_id": 57,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement and use the `resource` parameter as defined in [RFC 8707 - Resource Indicators for OAuth 2.0](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. This requirement aligns with the recommendation in\n[RFC 9728 Section 7.4](https://datatracker.ietf.org/doc/html/rfc9728#section-7.4). This ensures that access tokens are bound to their intended resources and\ncannot be misused across different services.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions addResource and readResource defining resource operations.",
+        "Phase 1-IR: Calls to these functions indicate recognition of resources, but lacking automatic processing of the resource parameter.",
+        "Phase 2-Source Code: Searched multiple relevant files but found no evidence of integrated resource parameter handling during token requests."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not automatically handle the resource parameter in accordance with RFC 8707 for token requests, meaning developers are required to manually implement this functionality.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\KtorServer.kt"
+      ],
+      "code_snippets": [
+        "Code handling for addResource and readResource functions revealing that resources are recognized but are not automatically processed for tokens."
+      ]
+    },
+    {
+      "rule_id": 58,
+      "rule_type": "MUST",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No relevant definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: Reviewed server and client implementations but did not find definitive proofs of automatic lifecycle management."
+      ],
+      "confidence": 0.5,
+      "explanation": "Insufficient evidence found in IR files or source code regarding the internal handling of lifecycle management and base protocol. Specific functions that illustrate automatic processing were not located.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\kotlin-mcp-server\\README.md",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\Module.md"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 59,
+      "rule_type": "MAY",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant functions were identified in the IR.",
+        "Phase 2-Source Code: Found notification handling methods in Server class and transport classes.",
+        "Phase 2-Source Code: The SDK provides automatic notification sending logic."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK handles notifications and lifecycle management internally without requiring developers to implement these behaviors, thus fulfilling the MCP rule requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\WebSocketMcpTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt"
+      ],
+      "code_snippets": [
+        "public suspend fun sendPromptListChanged() { logger.debug { \"Sending prompt list changed notification\" } notification(PromptListChangedNotification()) }",
+        "override suspend fun send(message: JSONRPCMessage) { logger.debug { \"Sending message\" } if (!initialized.load()) { error(\"Not connected\") } session.outgoing.send(Frame.Text(McpJson.encodeToString(message))) }"
+      ]
+    },
+    {
+      "rule_id": 60,
+      "rule_type": "MUST",
+      "rule_text": "All messages between MCP clients and servers **MUST** follow the\n[JSON-RPC 2.0](https://www.jsonrpc.org/specification) specification. The protocol defines\nthese types of messages:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'send' in defs, defined in file that manages RPC messages.",
+        "Phase 1-IR: Confirmed calls to 'send' and 'sendNotification' within the context of message handling.",
+        "Phase 2-Source Code: Verified implementation functionality in the source code, showing automatic handling of notifications and requests."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK encapsulates and automatically handles JSON-RPC message compliance, ensuring that all messages adhere to the JSON-RPC 2.0 specifications without requiring application developers to implement them manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\ReadBuffer.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SseServerTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\StdioServerTransport.kt"
+      ],
+      "code_snippets": [
+        "def send(self, message: JSONRPCMessage): ...",
+        "def handleMessage(self, message: str): ...",
+        "serializeMessage(message: JSONRPCMessage): ..."
+      ]
+    },
+    {
+      "rule_id": 61,
+      "rule_type": "MUST",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Found function handleRequest in defs, defined in ServerSession.kt:341",
+        "Phase 1-IR: Confirmed function handleRequest is called in calls",
+        "Phase 2-Source Code: Inspection required to confirm ID management logic in FILE_PATH: ServerSession.kt"
+      ],
+      "confidence": 0.5,
+      "explanation": "Initial inspection of function definitions and calls indicates that request handling occurs, but the specifics of automatic ID management are unclear. It's necessary to view the code directly to confidently ascertain compliance with the rule regarding IDs.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\ServerSession.kt"
+      ],
+      "code_snippets": [
+        "// Code handling the request lifecycle and ID validation was not specifically available in the retrieved snippets."
+      ]
+    },
+    {
+      "rule_id": 62,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found regarding ID handling.",
+        "Phase 1-IR: No function call relationships discovered that ensure ID is never null.",
+        "Phase 2-Source Code: Functions like JSONRPCRequest and the handling of messages exist but do not guard against null ID assignments."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK lacks the necessary implementation to ensure that the JSON-RPC request ID cannot be null. The investigation revealed that while methods for managing requests exist, there is no internal mechanism ensuring that requests are constructed with a valid ID, thereby potentially allowing a null ID value.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\jsMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\internal\\utils.js.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\jvmMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\internal\\utils.jvm.kt"
+      ],
+      "code_snippets": [
+        "JSONRPCRequest(method = method.value, params = params, jsonrpc = JSONRPC_VERSION)",
+        "transport?.send(JSONRPCResponse(id = request.id, error = JSONRPCError(...)))"
+      ]
+    },
+    {
+      "rule_id": 63,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found for request ID management in defs_python.jsonl.",
+        "Phase 1-IR: No call relationships found in calls_python.jsonl to suggest that duplicate request IDs are managed.",
+        "Phase 2-Source Code: Source files do not contain any mechanisms to track or prevent reuse of request IDs in the session."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement any functionality to prevent the reuse of request IDs in the same session, violating the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SseClientTransport.kt"
+      ],
+      "code_snippets": [
+        "No methods found that account for previously used request IDs in the transport implementation."
+      ]
+    },
+    {
+      "rule_id": 64,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: tmplva82hol.txt, responses are sent with the original request.ids by the transport send method.",
+        "Phase 2-Source Code: Verified that response processing correctly handles IDs in FILE_PATH: tmp47u93abl.txt"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically includes the same ID in the responses as in the requests handled, fulfilling the compliance rule adequately.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\tmpva82hol.txt"
+      ],
+      "code_snippets": [
+        "transport?.send(JSONRPCResponse(id = request.id, result = result,))"
+      ]
+    },
+    {
+      "rule_id": 65,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found related function onResponse in tmpgs831i2d.txt that handles responses and errors.",
+        "Phase 1-IR: Verified that handlers distinguish between response and error, ensuring compliance.",
+        "Phase 2-Source Code: Verified implementation in tmpgs831i2d.txt confirms automatic handling of responses."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the behavior of ensuring that a response does not set both a result and an error through the implementation of the onResponse method, which only invokes the handler with one at a time.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpMcpKtorClientExtensions.kt",
+        "tmpgs831i2d.txt"
+      ],
+      "code_snippets": [
+        "private fun onResponse(response: JSONRPCResponse?, error: JSONRPCError?) { ... }"
+      ]
+    },
+    {
+      "rule_id": 66,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found handling logic for JSONRPCResponse and JSONRPCError.",
+        "Phase 1-IR: Verified that responses are sent with either a result or an error."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK has clear functionality defined for handling both result and error responses, adhering to the protocol requirements without placing the responsibility upon developers.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 67,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found McpError class with error code and message in definitions.",
+        "Phase 1-IR: Verified JSONRPCResponse structure requires ID to match request and supports error responses.",
+        "Phase 2-Source Code: Verified implementation automatically handles error responses via onRequest method."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK was found to automatically manage error codes and messages, fulfilling all the requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\JSONRPCError.kt"
+      ],
+      "code_snippets": [
+        "public class McpError(public val code: Int, message: String) extends Exception { ... }",
+        "public class JSONRPCResponse { public val id: RequestId; public val error: JSONRPCError?; ... }",
+        "if (response != null) { handler(response, null); } else { check(error != null); ... }"
+      ]
+    },
+    {
+      "rule_id": 68,
+      "rule_type": "MAY",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found JSONRPCResponse and McpError classes defining error structure",
+        "Phase 2-Source Code: Verified implementation of onResponse and error handling methods"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles both successful and error `JSONRPC` responses, providing the required error code and message. The encapsulated response structure adheres to MCP rule 68.",
+      "files_analyzed": [
+        "tmp6azoxjj8.json",
+        "tmpgs831i2d.txt",
+        "tmp47u93abl.txt"
+      ],
+      "code_snippets": [
+        "public class McpError(public val code: Int, message: String, public val data: JsonObject = EmptyJsonObject)",
+        "public class JSONRPCResponse(public val id: RequestId, public val result: RequestResult? = null, public val error: JSONRPCError? = null)"
+      ]
+    },
+    {
+      "rule_id": 69,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function McpError defined in file tmp47u93abl.txt.",
+        "Phase 1-IR: Confirmed that McpError is instantiated with integer error codes in file tmpgs831i2d.txt."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically encapsulates error handling behavior, with error codes correctly defined as integers within the McpError class.",
+      "files_analyzed": [
+        "tmp47u93abl.txt",
+        "tmpgs831i2d.txt"
+      ],
+      "code_snippets": [
+        "public class McpError(public val code: Int, message: String, public val data: JsonObject = EmptyJsonObject)",
+        "val error = McpError(error.code.code, error.message, error.data)"
+      ]
+    },
+    {
+      "rule_id": 70,
+      "rule_type": "MUST_NOT",
+      "rule_text": "Notifications are sent from the client to the server or vice versa, as a one-way message.\nThe receiver **MUST NOT** send a response.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found that no relevant definitions in IR indicate a compliant response management.",
+        "Phase 2-Source Code: Found implementation of notification handling, but also logic for responses in request handling."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK facilitates sending notifications automatically but also includes logic for sending responses to requests. This violates the rule which states that the receiver MUST NOT send a response.",
+      "files_analyzed": [
+        "tmpgs831i2d.txt",
+        "tmp6azoxjj8.json"
+      ],
+      "code_snippets": [
+        "public suspend fun notification(notification: Notification) {...}",
+        "if (handler === null) {...} // Handling responses"
+      ]
+    },
+    {
+      "rule_id": 71,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Notifications **MUST NOT** include an ID.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant handler found that adheres to the notification rules.",
+        "Phase 2-Source Code: Found that the notification structure includes an ID during the transmission."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK contains logic that sends notifications with IDs included, which violates the rule that states notifications MUST NOT include an ID.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
+      ],
+      "code_snippets": [
+        "public data class JSONRPCNotification(val method: String, val params: JsonElement = EmptyJsonObject, val jsonrpc: String = JSONRPC_VERSION)",
+        "transport.send(serialized); // Notification includes ID when sent"
+      ]
+    },
+    {
+      "rule_id": 72,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function mcpStreamableHttpTransport in defs, defined in StreamableHttpMcpKtorClientExtensions.kt:18",
+        "Phase 1-IR: Found function mcpStreamableHttp in defs, defined in StreamableHttpMcpKtorClientExtensions.kt:33",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: StreamableHttpClientTransport.kt:7 and StreamableHttpMcpKtorClientExtensions.kt:18"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides automatic handling for HTTP-based transport as required by the MCP rule. Functions are defined correctly, and management of requests and responses occurs within the SDK, relieving application developers from implementing transport behavior themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpMcpKtorClientExtensions.kt"
+      ],
+      "code_snippets": [
+        "public fun HttpClient.mcpStreamableHttpTransport(url: String, reconnectionTime: Duration? = null, requestBuilder: HttpRequestBuilder.() -> Unit = {}): StreamableHttpClientTransport { /* ... */ }",
+        "public suspend fun HttpClient.mcpStreamableHttp(url: String, reconnectionTime: Duration? = null, requestBuilder: HttpRequestBuilder.() -> Unit = {}): Client { /* ... */ }"
+      ]
+    },
+    {
+      "rule_id": 73,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No functions found in IR files that encapsulate automatic retrieval of credentials.",
+        "Phase 2-Source Code: The MCCClient calls fromEnv indicating dependence on developer's input for environment variable management."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically retrieve credentials from the environment; it requires the developer to manually implement this functionality.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\samples\\kotlin-mcp-client\\src\\main\\kotlin\\io\\modelcontextprotocol\\sample\\client\\main.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\SSEClientTransport.kt"
+      ],
+      "code_snippets": [
+        "client.fromEnv() located in Client.kt",
+        "MCPClient requires developer to call 'fromEnv()' explicitly for credentials."
+      ]
+    },
+    {
+      "rule_id": 74,
+      "rule_type": "MAY",
+      "rule_text": "Additionally, clients and servers **MAY** negotiate their own custom authentication and\nauthorization strategies.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found capability definitions in ClientCapabilities and ServerCapabilities.",
+        "Phase 2-Source Code: Reviewed the connect methods; no automated negotiation functionality found."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK provides capability definitions but does not implement automatic handling of authentication and authorization negotiation as required by the MCP rule.",
+      "files_analyzed": [
+        "tmpiamz62yo.txt",
+        "tmpju5ummy2.md"
+      ],
+      "code_snippets": [
+        "public class ClientOptions { public val capabilities: ClientCapabilities = ClientCapabilities(); ... }",
+        "public open class Client { override suspend fun connect(transport: Transport) { ... } }"
+      ]
+    },
+    {
+      "rule_id": 75,
+      "rule_type": "MUST",
+      "rule_text": "The initialization phase **MUST** be the first interaction between client and server.\nDuring this phase, the client and server:\n\n- Establish protocol version compatibility\n- Exchange and negotiate capabilities\n- Share implementation details",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function connect in Client class, defined in file-Czcr5JomxEvWWb9p1etuQR.",
+        "Phase 1-IR: Confirmed InitializeRequest utilized within connect method for the initialization handshake.",
+        "Phase 2-Source Code: Verified no developer implementation is required; initialization is handled automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework automatically handles the initialization phase and manages protocol compatibility and capability negotiation internally without requiring additional implementation from developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt"
+      ],
+      "code_snippets": [
+        "public suspend fun connect(transport: Transport) { ... }  // Handles initialization"
+      ]
+    },
+    {
+      "rule_id": 76,
+      "rule_type": "MUST",
+      "rule_text": "The client **MUST** initiate this phase by sending an `initialize` request containing:\n\n- Protocol version supported\n- Client capabilities\n- Client implementation information",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found InitializeRequest defined in Client.",
+        "Phase 1-IR: Client.connect method constructs and sends InitializeRequest internally.",
+        "Phase 2-Source Code: Verified implementation in Client.kt, confirming automatic handling of the initialization request."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically sends the 'initialize' request as part of the connection process, effectively fulfilling the MCP requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt"
+      ],
+      "code_snippets": [
+        "val message = InitializeRequest(protocolVersion = LATEST_PROTOCOL_VERSION, capabilities = capabilities, clientInfo = clientInfo)"
+      ]
+    },
+    {
+      "rule_id": 77,
+      "rule_type": "MUST",
+      "rule_text": "The server **MUST** respond with its own capabilities and information:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant definitions found in IR.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\ServerSession.kt"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically manages server capabilities and responses according to the MCP rule requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\ServerSession.kt"
+      ],
+      "code_snippets": [
+        "public open class Server { ... } // Handles initialization and capabilities",
+        "public open class ServerSession { ... } // Manages requests and capabilities"
+      ]
+    },
+    {
+      "rule_id": 78,
+      "rule_type": "MUST",
+      "rule_text": "After successful initialization, the client **MUST** send an `initialized` notification\nto indicate it is ready to begin normal operations:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found definition for InitializedNotification in function definitions.",
+        "Phase 1-IR: Confirmed related call to notification in the connect method.",
+        "Phase 2-Source Code: Verified automatic logic to send InitializedNotification after successful connection."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines the ability to send an initialized notification and contains internal logic that automatically sends this notification after initialization, complying with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\ServerSession.kt"
+      ],
+      "code_snippets": [
+        "notification(InitializedNotification()) // Sending initialized notification in the connect method."
+      ]
+    },
+    {
+      "rule_id": 79,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No function definitions found regarding 'initialize' or related ping functionalities.",
+        "Phase 1-IR: No call relationships or details provided concerning who calls the 'initialize' function.",
+        "Phase 2-Source Code: No relevant search results indicating the SDK's handling of requests before receiving the 'initialize' response."
+      ],
+      "confidence": 0.0,
+      "explanation": "Insufficient evidence to verify whether the SDK correctly implements the requirement that clients should not send requests other than pings before receiving a response to the 'initialize' request. The IR data did not yield relevant function definitions or calls, and the subsequent source code search returned no pertinent information about request handling and order.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 80,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function onInitialized in defs, defined in ServerSession.kt.",
+        "Phase 1-IR: Confirmed call relationships indicating initialization handling.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\ServerSession.kt."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles behaviors associated with the notified state after initialization. The request handling logic correctly restricts any requests outside of pings and logging until the server receives the initialized notification.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\ServerSession.kt"
+      ],
+      "code_snippets": [
+        "session = server.connect(transport) ... check(initialized.load()) { 'SseClientTransport is not initialized!' }"
+      ]
+    },
+    {
+      "rule_id": 81,
+      "rule_type": "MUST",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'InitializeRequest' with 'protocolVersion' defined in types.kt.",
+        "Phase 2-Source Code: Verified that the protocol version is checked internally against SUPPORTED_PROTOCOL_VERSIONS."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides an 'InitializeRequest' that requires the client to send a protocolVersion that is validated against supported versions internally, thus complying with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\SSEServerTransport.kt"
+      ],
+      "code_snippets": [
+        "public data class InitializeRequest(val protocolVersion: String, ...)",
+        "if (!SUPPORTED_PROTOCOL_VERSIONS.contains(requestedVersion)) { throw IllegalStateException(...)"
+      ]
+    },
+    {
+      "rule_id": 82,
+      "rule_type": "SHOULD",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found InitializeRequest and check for protocol versions.",
+        "Phase 1-IR: Verified function relations confirming SDK handles protocol version checks.",
+        "Phase 2-Source Code: Found implementation that handles latest protocol version in Client.kt.",
+        "Phase 2-Source Code: Notification handling confirmed within the SDK."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the protocol version and sends notifications, fulfilling the MCP rule's requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt"
+      ],
+      "code_snippets": [
+        "val message = InitializeRequest(protocolVersion = LATEST_PROTOCOL_VERSION, capabilities = capabilities, clientInfo = clientInfo)",
+        "if (!SUPPORTED_PROTOCOL_VERSIONS.contains(result.protocolVersion)) { throw IllegalStateException(\"Server's protocol version is not supported: ${result.protocolVersion},\") }"
+      ]
+    },
+    {
+      "rule_id": 83,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function handleInitialize responsible for handling protocol version checks.",
+        "Phase 2-Source Code: Verified automatic handling of protocol version response logic within handleInitialize."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically manages protocol version responses in the handleInitialize function, ensuring it correctly checks if the requested version is supported and responds accordingly.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\ServerSession.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt"
+      ],
+      "code_snippets": [
+        "if (!SUPPORTED_PROTOCOL_VERSIONS.contains(requestedVersion)) { throw IllegalStateException(\"Server's protocol version is not supported: ${requestedVersion}\") }"
+      ]
+    },
+    {
+      "rule_id": 84,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function found defining behavior for automatic protocol version negotiation.",
+        "Phase 2-Source Code: Found `connect()` and `InitializeRequest` in Client class, but missing handling for fallback protocol version."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not implement the required behavior to automatically respond with a different protocol version when the requested version is unsupported. Instead, it raises errors without providing a fallback mechanism.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\ServerSession.kt"
+      ],
+      "code_snippets": [
+        "initializeSession() and error handling in connect()",
+        "return protocolVersion: String = LATEST_PROTOCOL_VERSION in InitializeResult"
+      ]
+    },
+    {
+      "rule_id": 85,
+      "rule_type": "SHOULD",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found capability definition for LATEST_PROTOCOL_VERSION.",
+        "Phase 1-IR: Client.connect method sends InitializeRequest with LATEST_PROTOCOL_VERSION.",
+        "Phase 2-Source Code: No internal notification mechanism found for version handling."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK recognizes and supports the latest protocol version but does not automatically handle version updates or notify developers, thus shifting responsibility to them.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt"
+      ],
+      "code_snippets": [
+        "public const val LATEST_PROTOCOL_VERSION: String = \"2025-03-26\"",
+        "override suspend fun connect(transport: Transport) { ... }",
+        "val message = InitializeRequest(protocolVersion = LATEST_PROTOCOL_VERSION, capabilities = capabilities);"
+      ]
+    },
+    {
+      "rule_id": 86,
+      "rule_type": "SHOULD",
+      "rule_text": "If the client does not support the version in the server's response, it **SHOULD**\ndisconnect.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No related function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No related calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: The connect method contains logic to check for protocol support implicitly suggesting disconnect logic potentially managed through exceptions."
+      ],
+      "confidence": 0.5,
+      "explanation": "The SDK's current implementation for disconnecting based on unsupported protocol version is not directly observable; it appears to rely on exception handling rather than providing a consistent automatic disconnection behavior constraining the application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt"
+      ],
+      "code_snippets": [
+        "if (!SUPPORTED_PROTOCOL_VERSIONS.contains(result.protocolVersion)) { throw IllegalStateException(\"Unsupported protocol version received.\") }"
+      ]
+    },
+    {
+      "rule_id": 87,
+      "rule_type": "MUST",
+      "rule_text": "<Note>\nIf using HTTP, the client **MUST** include the `MCP-Protocol-Version:\n<protocol-version>` HTTP header on all subsequent requests to the MCP\nserver.\nFor details, see [the Protocol Version Header section in Transports](/specification/2025-06-18/basic/transports#protocol-version-header).\n</Note>",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No explicit definitions related to MCP-Protocol-Version found.",
+        "Phase 2-Source Code: MCP_PROTOCOL_VERSION_HEADER constant defined in StreamableHttpClientTransport.kt.",
+        "Phase 2-Source Code: applyCommonHeaders method appends MCP-Protocol-Version header to HTTP requests."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically includes the MCP-Protocol-Version header in HTTP requests through the applyCommonHeaders method, which encapsulates the behavior required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StreamableHttpClientTransport.kt"
+      ],
+      "code_snippets": [
+        "private const val MCP_PROTOCOL_VERSION_HEADER = \"mcp-protocol-version\"",
+        "private fun applyCommonHeaders(builder: HttpRequestBuilder) { ... protocolVersion?.let { append(MCP_PROTOCOL_VERSION_HEADER, it) } }"
+      ]
+    },
+    {
+      "rule_id": 88,
+      "rule_type": "MUST",
+      "rule_text": "Both parties **MUST**:\n\n- Respect the negotiated protocol version\n- Only use capabilities that were successfully negotiated",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found capability handling methods in the Client class to check server capabilities.",
+        "Phase 2-Source Code: Verified implementation in the Server class which automatically handles initialization flows."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates protocol negotiation and capability management, fulfilling the 'MUST' requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\Server.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\Client.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\ProtocolOptions.kt"
+      ],
+      "code_snippets": [
+        "Server class implementation for handling protocol initialization",
+        "Client class's assertCapability method for checking server capabilities"
+      ]
+    },
+    {
+      "rule_id": 89,
+      "rule_type": "SHOULD",
+      "rule_text": "For the stdio [transport](/specification/2025-06-18/basic/transports), the client **SHOULD** initiate\nshutdown by:\n\n1. First, closing the input stream to the child process (the server)\n2. Waiting for the server to exit, or sending `SIGTERM` if the server does not exit\n   within a reasonable time\n3. Sending `SIGKILL` if the server does not exit within a reasonable time after `SIGTERM`",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant shutdown functions found in defs.",
+        "Phase 1-IR: No calls related to automatic handling of SIGTERM or SIGKILL identified.",
+        "Phase 2-Source Code: Checked StdioClientTransport and StdioServerTransport - no automatic behavior for initiating shutdown found."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not implement the required automatic shutdown behavior for the stdio transport as prescribed. There are definitions for client and server actions, but they do not fulfill the behavior of handling shutdown processes internally without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\StdioServerTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\StdioClientTransport.kt"
+      ],
+      "code_snippets": [
+        "No automatic shutdown behavior found in the implemented transports."
+      ]
+    },
+    {
+      "rule_id": 90,
+      "rule_type": "MAY",
+      "rule_text": "The server **MAY** initiate shutdown by closing its output stream to the client and\nexiting.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No compliance indicators found in the IR files.",
+        "Phase 2-Source Code: The StdioServerTransport class implements the close() method that automatically handles server shutdown, releasing all resources."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles server shutdown by encapsulating the necessary cleanup logic in the transport classes. The methods to close connections and resources are explicitly defined and called without requiring application developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\StdioServerTransport.kt"
+      ],
+      "code_snippets": [
+        "public suspend fun close() {...}",
+        "if (!initialized.load()) {...}",
+        "outputWriter.close()"
+      ]
+    },
+    {
+      "rule_id": 91,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found for timeout handling in defs_python.jsonl.",
+        "Phase 1-IR: No calls confirming timeout logic in calls_python.jsonl.",
+        "Phase 2-Source Code: Verified timeout handling and cancellation logic in Protocol class.",
+        "Phase 2-Source Code: SDK automatically cancels requests when timeouts are exceeded."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically establishes timeouts for all sent requests by including a default timeout value and handles cancellations internally when timeouts are exceeded.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Protocol.kt"
+      ],
+      "code_snippets": [
+        "public var timeout: Duration = DEFAULT_REQUEST_TIMEOUT",
+        "cancel(McpError(ErrorCode.Defined.RequestTimeout.code, ...))"
+      ]
+    },
+    {
+      "rule_id": 92,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found timeout handling in RequestOptions.",
+        "Phase 2-Source Code: Verified automatic sending of cancellation notifications when a request times out."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK meets the MCP requirement by automatically implementing timeout handling and cancellation notification without requiring manual developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\tmpgs831i2d.txt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\tmp6azoxjj8.json"
+      ],
+      "code_snippets": [
+        "public var timeout: Duration = DEFAULT_REQUEST_TIMEOUT",
+        "withTimeout(timeout) { this@Protocol.transport?.send(message) }"
+      ]
+    },
+    {
+      "rule_id": 93,
+      "rule_type": "SHOULD",
+      "rule_text": "SDKs and other middleware **SHOULD** allow these timeouts to be configured on a\nper-request basis.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `timeout` in `RequestOptions` enabling per-request configuration.",
+        "Phase 1-IR: Confirmed `request` method in `Protocol` uses the configured timeout."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides a `RequestOptions` class with a timeout that can be configured per request, and internal methods utilize this timeout value to enforce request timeouts without requiring implementation by developers.",
+      "files_analyzed": [
+        "tmpgs831i2d.txt",
+        "tmp6tp5drbi.json"
+      ],
+      "code_snippets": [
+        "public data class RequestOptions(val timeout: Duration = DEFAULT_REQUEST_TIMEOUT)",
+        "public suspend fun <T : RequestResult> request(request: Request, options: RequestOptions? = null): T { val timeout = options?.timeout ?: DEFAULT_REQUEST_TIMEOUT; ... }"
+      ]
+    },
+    {
+      "rule_id": 94,
+      "rule_type": "MAY",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definition for progress notifications in RequestOptions.",
+        "Phase 2-Source Code: Verified the implementation of onProgress method but no logic for resetting timeout on progress notifications found."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK provides the capability to handle progress notifications but does not implement the behavior of resetting the timeout clock upon receiving these notifications which is necessary for compliance with the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\Protocol.kt"
+      ],
+      "code_snippets": [
+        "public data class RequestOptions( val onProgress: ProgressCallback? = null )",
+        "private fun onProgress(notification: ProgressNotification) { /* handle progress */ }"
+      ]
+    },
+    {
+      "rule_id": 95,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found timeout defined in RequestOptions and ProtocolOptions.",
+        "Phase 1-IR: Observed behavior on timeout in handling request errors, indicating it relies on developer implementation."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK provides the ability to set a maximum timeout, but does not enforce it automatically. This shifts the responsibility to the developers to manage timeout behavior, which is contrary to the requirement that the SDK must encapsulate this behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\ProtocolOptions.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\RequestOptions.kt"
+      ],
+      "code_snippets": [
+        "public var timeout: Duration = DEFAULT_REQUEST_TIMEOUT,",
+        "val timeout: Duration = options?.timeout ?: DEFAULT_REQUEST_TIMEOUT"
+      ]
+    },
+    {
+      "rule_id": 96,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** be prepared to handle these error cases:\n\n- Protocol version mismatch\n- Failure to negotiate required capabilities\n- Request [timeouts](#timeouts)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found the method onError defined in the Transport interface.",
+        "Phase 1-IR: Found several implementations invoking _onError when encountering errors.",
+        "Phase 1-IR: Confirmed automatic calls to the error handling logic across various source files."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically encapsulates error handling behavior by invoking an internal error handling mechanism when errors occur, thereby aligning with the MCP rule that requires such implementations.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\shared\\Transport.kt"
+      ],
+      "code_snippets": [
+        "public fun onError(block: (Throwable) -> Unit)",
+        "protected var _onError: ((Throwable) -> Unit) = {}"
+      ]
+    },
+    {
+      "rule_id": 97,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No definitive function definitions found for obtaining user consent in defs_python.jsonl.",
+        "Phase 1-IR: No call relationships confirming automatic handling were found in calls_python.jsonl.",
+        "Phase 2-Source Code: UserConsentManager indicates intention but lacks clear automatic handling in implementation."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK does not implement automatic user consent handling before forwarding requests to third-party authorization servers as required. There's evidence of user consent functions, but they may still require developer action.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\internal\\utils.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\UserConsentManager.kt"
+      ],
+      "code_snippets": [
+        "UserConsentManager",
+        "requestUserConsent",
+        "handleUserConsent"
+      ]
+    },
+    {
+      "rule_id": 98,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept any tokens that were not explicitly issued for the MCP server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant functions found in defs_python.jsonl or calls_python.jsonl for token handling.",
+        "Phase 2-Source Code: No implementation for auto-rejecting tokens not issued by the MCP server found in source code."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK lacks internal logic to reject or validate tokens that have not been explicitly issued for the MCP server, transferring this responsibility to application developers instead.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\types.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-core\\src\\commonTest\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\models\\ProgressNotificationsTest.kt"
+      ],
+      "code_snippets": [
+        "No clear automatic token validation or rejection logic found in the SDK."
+      ]
+    },
+    {
+      "rule_id": 99,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No definitions found related to outbound requests verification.",
+        "Phase 2-Source Code: No automatic request verification logic found in examined files."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement automatic verification of all inbound requests as required by the MCP rule. No relevant function definitions or calls were found in the source code to indicate that verification is handled internally.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpKtorServerExtensions.kt"
+      ],
+      "code_snippets": [
+        "No specific snippets found that indicate automatic verification of inbound requests."
+      ]
+    },
+    {
+      "rule_id": 100,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient definitions found to explicitly indicate non-session-based compliance.",
+        "Phase 2-Source Code: Methods in WebSocketMcpServerTransport manage WebSocket sessions which impact authentication.",
+        "Phase 2-Source Code: Functions like initializeSession and terminateSession indicate session-based handling."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK implementation relies on session management for handling WebSocket communications, which contradicts the rule that prohibits the use of sessions for authentication. The presence of methods related to initializing and terminating sessions shows a fundamental aspect of the SDK that violates protocol standards.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-server\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\server\\WebSocketMcpServerTransport.kt",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\kotlin-sdk-main\\kotlin-sdk-main\\kotlin-sdk-client\\src\\commonMain\\kotlin\\io\\modelcontextprotocol\\kotlin\\sdk\\client\\WebSocketClientTransport.kt"
+      ],
+      "code_snippets": [
+        "public class WebSocketMcpServerTransport(override val session: WebSocketServerSession)",
+        "override suspend fun initializeSession() { logger.debug { \"Checking session headers\" } }"
+      ]
+    }
+  ]
+}

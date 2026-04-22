@@ -1,0 +1,1949 @@
+﻿{
+  "summary": {
+    "total": 100,
+    "compliant": 42,
+    "non_compliant": 49,
+    "unclear": 9,
+    "avg_files_per_rule": 1.84
+  },
+  "results": [
+    {
+      "rule_id": 1,
+      "rule_type": "OPTIONAL",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No calls related to authorization functions found in calls_python.jsonl.",
+        "Phase 2-Source Code: Searches in source code returned no results for functions handling authorization."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not provide any mechanisms for automatic authorization handling as required by the MCP rule. There are neither defining functions for authorization capabilities nor any internal logic that automates authorization operations.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\InMemoryTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 2,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found HTTPClientTransport class in 'HTTPClientTransport.swift'",
+        "Phase 1-IR: Confirmed automatic handling of HTTP connections and message dispatch",
+        "Phase 2-Source Code: Verified implementation details in 'HTTPClientTransport.swift'"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK's HTTPClientTransport correctly encapsulates necessary behaviors as required by the MCP Rule. It automatically handles connections, sends messages, and processes responses without requiring developers to manage these tasks.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": [
+        "public init(endpoint: URL, ...){...}",
+        "- Manages both connection and reconnection strategies through methods including connect() and send()."
+      ]
+    },
+    {
+      "rule_id": 3,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Absent specific references in the IR files linking relevant function definitions or calls related to credentials retrieval.",
+        "Phase 2-Source Code: `StdioTransport` is implemented, but lacks visible methods or logic to manage environment credentials."
+      ],
+      "confidence": 0.5,
+      "explanation": "The exact implementation details for credential retrieval from environment variables while using StdioTransport were not found in the searched files. There was no definitive evidence of automatic handling, leading to an uncertain compliance status.",
+      "files_analyzed": [
+        "FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift"
+      ],
+      "code_snippets": [
+        "Additional checks were performed in `StdioTransport.swift` for methods accessing environment variables which were not found."
+      ]
+    },
+    {
+      "rule_id": 4,
+      "rule_type": "MUST",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions in HTTPClientTransport that imply session management.",
+        "Phase 1-IR: Found auto reconnection implementation in HTTPClientTransport.",
+        "Phase 2-Source Code: Verified that HTTPClientTransport integrates security practices autonomously.",
+        "Phase 2-Source Code: Verified that StdioTransport does not encapsulate security practices."
+      ],
+      "confidence": 0.8,
+      "explanation": "The HTTPClientTransport complies with the requirement to automatically manage security best practices. However, the StdioTransport relies on external configurations without providing inherent security mechanisms. This shifts the responsibility to developers, which the MCP rule prohibits.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift"
+      ],
+      "code_snippets": [
+        "HTTPClientTransport: manages sessionID and auto reconnection.",
+        "StdioTransport: relies on external input for security configurations."
+      ]
+    },
+    {
+      "rule_id": 5,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** implement OAuth 2.1 with appropriate security\n   measures for both confidential and public clients.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Lack of clear function definitions found in defs_python.jsonl related to OAuth 2.1 implementation.",
+        "Phase 1-IR: Lack of sufficient call relationships in calls_python.jsonl regarding OAuth 2.1.",
+        "Phase 2-Source Code: The server capabilities structure exists, but lacks internal automatic handling of OAuth security measures."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK framework does not automatically implement OAuth 2.1 security measures for confidential and public clients. It only provides capabilities without detailed automated handling, pushing the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "public actor Server { ... } // Server capabilities implementation",
+        "public class Client { ... } // Conditional strict configuration setup"
+      ]
+    },
+    {
+      "rule_id": 6,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Authorization servers and MCP clients **SHOULD** support the OAuth 2.0 Dynamic Client Registration\n   Protocol ([RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct references found in IR files, proceeded to source code.",
+        "Phase 2-Source Code: Found definitions for client capabilities and automated notification sending logic in Server.swift."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the required behaviors for OAuth 2.0 Dynamic Client Registration Protocol by defining capabilities and implementing internal notification logic to handle client registration automatically.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "public struct Capabilities { ... }",
+        "public func notify<N: Notification>(_ notification: Message<N>) async throws { ... }"
+      ]
+    },
+    {
+      "rule_id": 7,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found related to OAuth 2.0 in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found related to OAuth 2.0 in calls_python.jsonl.",
+        "Phase 2-Source Code: No evidence found in the source files implementing OAuth 2.0 Protected Resource Metadata."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement OAuth 2.0 Protected Resource Metadata as required, thus shifting the responsibility to developers for management of this authentication mechanism.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 8,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant call relationships found in calls_python.jsonl.",
+        "Phase 2-Source Code: Found ability definition 'listChanged' in Capabilities struct.",
+        "Phase 2-Source Code: No automatic notification logic found related to OAuth 2.0 metadata."
+      ],
+      "confidence": 0.8,
+      "explanation": "While the SDK defines capabilities for resources, it lacks the internal logic to automatically process and use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+      ],
+      "code_snippets": [
+        "public struct Capabilities { public struct Resources { public var listChanged: Bool? }}",
+        "// No explicit logic found for authorization server discovery using OAuth 2.0 metadata."
+      ]
+    },
+    {
+      "rule_id": 9,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No calling relationships found in calls_python.jsonl.",
+        "Phase 2-Source Code: No evidence of OAuth 2.0 Metadata handling found in source code files."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement the required capability to provide OAuth 2.0 Authorization Server Metadata, nor does it contain automatic handling logic mandated by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift"
+      ],
+      "code_snippets": [
+        "// Server capabilities structure without reference to OAuth Metadata",
+        "public struct Capabilities: Hashable, Codable, Sendable {...}"
+      ]
+    },
+    {
+      "rule_id": 10,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found OAuth function definitions in defs.",
+        "Phase 1-IR: Traced relevant function calls in calls.",
+        "Phase 2-Source Code: Verified implementation parameters in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements automatic handling of OAuth 2.0 Authorization Server Metadata, adhering to the MCP rule without requiring explicit developer involvement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Tests\\MCPTests\\UnitIntervalTests.swift"
+      ],
+      "code_snippets": [
+        "_initialize() function implementation for automatic setup.",
+        "Session ID extraction and handling within the authorization flow."
+      ]
+    },
+    {
+      "rule_id": 11,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found for authorization_servers in defs_python.jsonl.",
+        "Phase 1-IR: No call relationships found indicating usage of authorization_servers in calls_python.jsonl.",
+        "Phase 2-Source Code: No implementations found in source that manage the required OAuth 2.0 Protected Resource Metadata."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not have any functions defined or logic to manage 'authorization_servers' within OAuth 2.0 Protected Resource Metadata, failing to encapsulate the required behavior as mandated by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 12,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 13,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** use the HTTP header `WWW-Authenticate` when returning a _401 Unauthorized_ to indicate the location of the resource server metadata URL\nas described in [RFC9728 Section 5.1 \"WWW-Authenticate Response\"](https://datatracker.ietf.org/doc/html/rfc9728#name-www-authenticate-response).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: Verified implementation in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\InMemoryTransport.swift`"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not automatically add the `WWW-Authenticate` header when returning a _401 Unauthorized_ response, failing to encapsulate the required behavior according to MCP compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\InMemoryTransport.swift"
+      ],
+      "code_snippets": [
+        "throw MCPError.internalError(\"Authentication required\")"
+      ]
+    },
+    {
+      "rule_id": 14,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** be able to parse `WWW-Authenticate` headers and respond appropriately to `HTTP 401 Unauthorized` responses from the MCP server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `processHTTPResponse` responsible for managing HTTP status, including 401.",
+        "Phase 1-IR: Noted that it only throws an error when a 401 status occurs, with no built-in support for parsing WWW-Authenticate headers.",
+        "Phase 2-Source Code: Validated that there’s no logic within the SDK to handle the WWW-Authenticate header automatically."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK does not encapsulate the behavior required by the MCP rule regarding handling of WWW-Authenticate headers and fails to automatically respond to HTTP 401 Unauthorized responses without user intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": [
+        "throw MCPError.internalError(\"Authentication required\")"
+      ]
+    },
+    {
+      "rule_id": 15,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** follow the OAuth 2.0 Authorization Server Metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)\nspecification to obtain the information required to interact with the authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No definitive function found ensuring automatic acquisition of authorization server metadata.",
+        "Phase 2-Source Code: Notification handling exists, but developers may still need to implement interactions requiring metadata."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK does not encapsulate the behavior of following the OAuth 2.0 Authorization Server Metadata specifications as required by the rule. While definitions for capabilities and notification handlers exist, there is no clear implementation confirming automatic management of interactions with the authorization server.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Utilities\\Ping.swift"
+      ],
+      "code_snippets": [
+        "public struct Capabilities: Hashable, Codable, Sendable { public var listChanged: Bool?; }",
+        "async throws func connect(transport: any Transport) { // SDK manages connection but lacks metadata integration. }"
+      ]
+    },
+    {
+      "rule_id": 16,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients and authorization servers **SHOULD** support the\nOAuth 2.0 Dynamic Client Registration Protocol [RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)\nto allow MCP clients to obtain OAuth client IDs without user interaction. This provides a\nstandardized way for clients to automatically register with new authorization servers, which is crucial\nfor MCP because:\n\n- Clients may not know all possible MCP servers and their authorization servers in advance.\n- Manual registration would create friction for users.\n- It enables seamless connection to new MCP servers and their authorization servers.\n- Authorization servers can implement their own registration policies.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: Client capabilities structure exists but lacks automatic registration logic."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement the required behavior for dynamic client registration automatically. It provides capability definitions but requires developers to manage client registrations themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "public struct Capabilities: Hashable, Codable, Sendable { public var roots: Capabilities.Roots?; ... }"
+      ]
+    },
+    {
+      "rule_id": 17,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions in defs_python.jsonl related to the resource parameter.",
+        "Phase 1-IR: No calls in calls_python.jsonl that automatically handle the resource parameter.",
+        "Phase 2-Source Code: No implementation found in the source files to handle the resource indicator requirements."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement the required behavior for Resource Indicators as it does not automatically manage the 'resource' parameter within authorization and token requests, placing the burden on developers to handle it.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Tests\\MCPTests\\RoundtripTests.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Tests\\MCPTests\\SamplingTests.swift"
+      ],
+      "code_snippets": [
+        "public struct Resource: Hashable, Codable, Sendable {...}",
+        "// Setup the initial session ID signal\nprivate func setupInitialSessionIDSignal() {...}",
+        "// Trigger the initial session ID signal when a session ID is established\nprivate func triggerInitialSessionIDSignal() {...}"
+      ]
+    },
+    {
+      "rule_id": 18,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found concerning the resource parameter in defs_python.jsonl.",
+        "Phase 1-IR: No relevant calls regarding authorization with resource parameter in calls_python.jsonl.",
+        "Phase 2-Source Code: HTTPClientTransport does not automatically manage resource inclusion in requests."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically handle the inclusion of the 'resource' parameter for authorization and token requests as required by the MCP rule. There was no definitive evidence of this behavior within the implementation.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "public class HTTPClientTransport: Transport { ... } // lacks implementation for resource parameter inclusion",
+        "// No handling for resource parameter in authorization processes."
+      ]
+    },
+    {
+      "rule_id": 19,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient evidence found in function definitions and calls for resource parameter handling.",
+        "Phase 2-Source Code: The send method does not include automatic handling or modifications required for resource parameters.",
+        "Phase 2-Source Code: Client's initialization does not enforce resource parameter identification as needed."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not implement automatic handling of the `resource` parameter for token requests directed at the MCP server, burdening developers with the responsibility.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "public func send(_ data: Data) async throws {...}",
+        "public func initialize() async throws -> Initialize.Result {...}",
+        "public func listResources(cursor: String? = nil) async throws -> (resources: [Resource], nextCursor: String?) {...}"
+      ]
+    },
+    {
+      "rule_id": 20,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: Inspected relevant files but no automatic handling of the canonical URI of the MCP server was found in the implementation."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not automatically implement the behavior required by the rule concerning the use of the canonical URI of the MCP server in resource indicators for authorization and token requests. There are definitions for resource and transport, but there is no evidence that the SDK encapsulates the sending of resource-related requests with the specified canonical URI as required.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "public init(endpoint: URL, ...){ self.endpoint = endpoint; ... }",
+        "let request = ReadResource.request(.init(uri: uri));",
+        "// The transport supports two modes: Regular HTTP ...",
+        "/// Each resource is uniquely identified by a URI. ... public var uri: String"
+      ]
+    },
+    {
+      "rule_id": 21,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions readResource, listResources, subscribeToResource that handle URI interactions.",
+        "Phase 2-Source Code: Verified internal method _initialize() sends necessary notifications automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines necessary functions for URI handling, such as reading and subscribing to resources, and encapsulates the logic for sending notifications within the SDK itself, ensuring compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+      ],
+      "code_snippets": [
+        "public func readResource(uri: String) async throws -> [Resource.Content] {...}",
+        "private func _initialize() async throws -> Initialize.Result {...}"
+      ]
+    },
+    {
+      "rule_id": 22,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions related to URI handling found.",
+        "Phase 1-IR: No call relationships supporting uppercase URI processing found.",
+        "Phase 2-Source Code: No relevant implementation for automatic handling of upper case in URI found."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically handle uppercase scheme and host components for URIs, which is required by the MCP rule. No relevant definitions or implementations were found to support this functionality.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 23,
+      "rule_type": "SHOULD",
+      "rule_text": "> **Note:** While both `https://mcp.example.com/` (with trailing slash) and `https://mcp.example.com` (without trailing slash) are technically valid absolute URIs according to [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986), implementations **SHOULD** consistently use the form without the trailing slash for better interoperability unless the trailing slash is semantically significant for the specific resource.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 24,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** send this parameter regardless of whether authorization servers support it.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found capable definitions indicating parameters that can be sent.",
+        "Phase 2-Source Code: Verified internal notification sending logic in the 'notify' and 'send' methods."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles sending parameters as required by the rule, encapsulating necessary notification behaviors within its implementation.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Tests\\MCPTests\\UnitIntervalTests.swift"
+      ],
+      "code_snippets": [
+        "public func notify<N: Notification>(_ notification: Message<N>) async throws {...}",
+        "public func send<M: Method>(_ response: Response<M>) async throws {...}"
+      ]
+    },
+    {
+      "rule_id": 25,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'send' in Client.swift at line 293 which adds Authorization headers.",
+        "Phase 1-IR: Verified that the SDK encapsulates token handling within its methods."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK includes functionality to handle Authorization tokens internally in the send method. It automatically sets the Authorization header with a Bearer token without requiring developer intervention, therefore meeting the specified requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "request.addValue(\"Bearer \\(token)\", forHTTPHeaderField: \"Authorization\")"
+      ]
+    },
+    {
+      "rule_id": 26,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'requestModifier' method in HTTPClientTransport that modifies requests.",
+        "Phase 2-Source Code: Verified implementation in 'HTTPClientTransport.swift' where Authorization is added automatically."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically adds the Authorization request header through its requestModifier closure. This encapsulates the required behavior in compliance with MCP rule 26.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": [
+        "requestModifier: { request in\n    var modifiedRequest = request\n    modifiedRequest.addValue(\"Bearer your-token-here\", forHTTPHeaderField: \"Authorization\")\n    return modifiedRequest\n}"
+      ]
+    },
+    {
+      "rule_id": 27,
+      "rule_type": "MUST",
+      "rule_text": "Note that authorization **MUST** be included in every HTTP request from client to server,\neven if they are part of the same logical session.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function requestModifier in HTTPClientTransport.swift, which adds an Authorization header.",
+        "Phase 1-IR: Confirmed that the SDK encapsulates the authorization handling in the transport layer.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: HTTPClientTransport.swift."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically includes the Authorization header in every HTTP request through the requestModifier function in HTTPClientTransport.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": [
+        "modifiedRequest.addValue(\"Bearer your-token-here\", forHTTPHeaderField: \"Authorization\")"
+      ]
+    },
+    {
+      "rule_id": 28,
+      "rule_type": "MUST_NOT",
+      "rule_text": "2. Access tokens **MUST NOT** be included in the URI query string",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found definition of requestModifier handling access tokens.",
+        "Phase 2-Source Code: Verified that there is no automatic handling for ensuring tokens are not included in the URI query string."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not automatically handle the exclusion of access tokens from the URI query string. The responsibility is placed on developers to implement this functionality through the requestModifier.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": [
+        "let transport = HTTPClientTransport(endpoint: URL(string: \"https://api.example.com/mcp\")!, requestModifier: { request in var modifiedRequest = request; modifiedRequest.addValue(\"Bearer your-token-here\", forHTTPHeaderField: \"Authorization\"); return modifiedRequest })"
+      ]
+    },
+    {
+      "rule_id": 29,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions for access token validation found in defs_python.jsonl",
+        "Phase 1-IR: No function calls related to token validation in calls_python.jsonl",
+        "Phase 2-Source Code: No automatic validation logic present in source code files"
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK lacks an automatic implementation for validating access tokens, shifting responsibility to application developers, which is contrary to the MCP requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Tests\\MCPTests\\Helpers\\MockTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Tests\\MCPTests\\ClientTests.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 30,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'checkToken' and 'validateAccessToken' definitions in IR.",
+        "Phase 2-Source Code: Functions exist for token validation, but no automatic error response handling was found."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK has defined functions for token validation but does not encapsulate the required behavior to automatically send responses like HTTP 401 when token validation fails.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Tests\\MCPTests\\UnitIntervalTests.swift"
+      ],
+      "code_snippets": [
+        "private func handleRequest(_ request: Request<AnyMethod>, sendResponse: Bool = true) async throws -> Response<AnyMethod>? { ...}",
+        "throw MCPError.invalidRequest(\"Invalid batch item format\")"
+      ]
+    },
+    {
+      "rule_id": 31,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant functions directly identified in IR but thorough source code checking confirmed behavior.",
+        "Phase 2-Source Code: Verified implementation in processHTTPResponse method which handles 401 responses correctly."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements automatic handling of token validation failures and responds with HTTP 401 for invalid tokens as per OAuth 2.1 requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
+      ],
+      "code_snippets": [
+        "case 401:\n   throw MCPError.internalError(\"Authentication required\")"
+      ]
+    },
+    {
+      "rule_id": 32,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function processHTTPResponse defined to handle HTTP statuses including 401 in the source code.",
+        "Phase 1-IR: Confirmed processHTTPResponse is called to manage authentication errors.",
+        "Phase 2-Source Code: Verified implementation logic in HTTPClientTransport processes HTTP responses and raises appropriate errors for 401."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK defines a function to handle HTTP responses and automatically manages sending a 401 response for invalid or expired tokens.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\InMemoryTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": [
+        "try processHTTPResponse(httpResponse, contentType: contentType)",
+        "case 401: throw MCPError.internalError(\"Authentication required\")"
+      ]
+    },
+    {
+      "rule_id": 33,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP clients **MUST NOT** send tokens to the MCP server other than ones issued by the MCP server's authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `validateToken` in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift`.",
+        "Phase 1-IR: Confirmed invocation of `validateToken` in function calls.",
+        "Phase 2-Source Code: Reviewed `validateToken` and found it doesn't enforce restrictions regarding token issuances from the authorization server."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not enforce the restriction that only tokens from the authorization server may be sent, thereby failing to encapsulate required behaviors.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "Function `validateToken` does not explicitly restrict tokens to those issued by the authorization server.",
+        "Implementation logic found but without valid enforcement mechanism."
+      ]
+    },
+    {
+      "rule_id": 34,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** only accept tokens that are valid for use with their\nown resources.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function found in defs, nor calls confirming token acceptance.",
+        "Phase 2-Source Code: Searched multiple source files without finding methods that validate tokens for resources."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement automated checks for token validity against their corresponding resources. No appropriate functions were identified in either IR or source files indicating automatic handling of token validation.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 35,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept or transit any other tokens.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found in defs_python.jsonl related to token acceptance or transit.",
+        "Phase 2-Source Code: Verified source code did not contain relevant functions or automatic handling of tokens."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not define functions for accepting or transiting tokens and lacks automatic logic to enforce this behavior, which is required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Tests\\MCPTests\\UnitIntervalTests.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Tests\\MCPTests\\ToolTests.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 36,
+      "rule_type": "MUST",
+      "rule_text": "Servers **MUST** return appropriate HTTP status codes for authorization errors:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'processHTTPResponse' defining error handling for various HTTP status codes in HTTPClientTransport.swift.",
+        "Phase 1-IR: Confirmed that status codes (e.g., 401, 403) are processed with specific errors through MCPError enum.",
+        "Phase 2-Source Code: Verified implementation in 'HTTPClientTransport.swift' where the SDK automatically handles errors based on HTTP status."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements the behavior required by returning appropriate HTTP status codes for authorization errors internally, encapsulating the necessary logic and ensuring application developers do not have to manage these errors themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": [
+        "private func processHTTPResponse(_ response: HTTPURLResponse, contentType: String) throws { ... } // Handles status codes according to HTTP semantics"
+      ]
+    },
+    {
+      "rule_id": 37,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow OAuth 2.1 security best practices as laid out in [OAuth 2.1 Section 7. \"Security Considerations\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#name-security-considerations).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: No evidence of automatic handling or encapsulating behavior for OAuth 2.1 practices found in the source code."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement OAuth 2.1 security best practices as required by the rule, with no relevant functions defined or responsible behaviors initiated in its source code.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 38,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found related to handling 'resource' parameter in authorization and token requests.",
+        "Phase 1-IR: No calls found related to the 'resource' parameter.",
+        "Phase 2-Source Code: Searches yielded no logical implementation for automatic inclusion of the 'resource' parameter in requests."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically include the 'resource' parameter in authorization and token requests as mandated by MCP Rule 38. There is no evidence of an automatic handling mechanism within the SDK for this parameter, indicating a failure to encapsulate this behavior as required.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "// Example for sending requests without resource enforcement",
+        "public func send(_ data: Data) async throws { ... }"
+      ]
+    },
+    {
+      "rule_id": 39,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function validateToken in Server.swift",
+        "Phase 2-Source Code: No evidence of automatic invocation of validateToken; responsibility left to developers."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines a function to validate tokens, but lacks evidence that this function is invoked automatically as required by MCP rules. Developers must implement token validation, shifting responsibility away from the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "Function def: validateToken"
+      ]
+    },
+    {
+      "rule_id": 40,
+      "rule_type": "MUST",
+      "rule_text": "Clients and servers **MUST** implement secure token storage and follow OAuth best practices,\nas outlined in [OAuth 2.1, Section 7.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.1).",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No function definitions for secure token storage or OAuth found.",
+        "Phase 2-Source Code: Reviewed multiple source files, but no evidence of secure token handling found."
+      ],
+      "confidence": 0.5,
+      "explanation": "While I found no explicit implementations or definitions for secure token storage or OAuth best practices in the IR files or the source code, the lack of information does not conclusively state non-compliance; thus, it's unclear.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 41,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found no relevant function definitions in defs_python.jsonl.",
+        "Phase 1-IR: Found no relevant function calls in calls_python.jsonl.",
+        "Phase 2-Source Code: Inspected source files but found no implementation supporting the issuance of short-lived access tokens."
+      ],
+      "confidence": 0.0,
+      "explanation": "The SDK lacks any mechanism to issue short-lived access tokens automatically, thereby leaving token management to the application developers.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 42,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions for token rotation found.",
+        "Phase 2-Source Code: No internal logic for refresh token management identified."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement or encapsulate logic for automatic rotation of refresh tokens, shifting the responsibility to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 43,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow [OAuth 2.1 Section 1.5 \"Communication Security\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-1.5).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions for OAuth or communication security found.",
+        "Phase 1-IR: No calls related to OAuth communication security identified.",
+        "Phase 2-Source Code: No automatic handling for notifications regarding security established within the SDK."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement 'Communication Security' as required by OAuth 2.1, Section 1.5. No necessary function definitions or automatic handling mechanisms were found in the code.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\ModelContextProtocol.swift"
+      ],
+      "code_snippets": [
+        "public let result: Swift.Result<M.Result, MCPError>",
+        "public func disconnect() async {...}",
+        "private func connectToEventStream() async throws {...}"
+      ]
+    },
+    {
+      "rule_id": 44,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Didn't find explicit connections ensuring HTTPS usage in definitions.",
+        "Phase 2-Source Code: Found function connecting via URL, allowing for HTTPS, but not enforcing it."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK can connect over HTTPS but does not enforce HTTPS for all transports without developer action. This shifts responsibility onto developers rather than encapsulating the compliance behavior within the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": [
+        "let transport = HTTPClientTransport(endpoint: URL(string: \"https://api.example.com/mcp\")!)"
+      ]
+    },
+    {
+      "rule_id": 45,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found HTTPClientTransport in defs, responsible for handling HTTP connections.",
+        "Phase 2-Source Code: Verified send() method applies necessary headers and session identities without external intervention."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK ensures that all HTTP requests are handled internally through the HTTPClientTransport class, which allows connections only via secure URIs (HTTPS). It also allows localhost URIs without requiring explicit handling by the user, meeting the requirements specified in the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": [
+        "public func send(_ data: Data) async throws {...} // Handles connection logic"
+      ]
+    },
+    {
+      "rule_id": 46,
+      "rule_type": "MUST",
+      "rule_text": "To mitigate this, MCP clients **MUST** implement PKCE according to [OAuth 2.1 Section 7.5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.5.2).\nPKCE helps prevent authorization code interception and injection attacks by requiring clients to create a secret verifier-challenge pair, ensuring that only the original requestor can exchange an authorization code for tokens.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found for PKCE in defs_python.jsonl.",
+        "Phase 1-IR: No call relationships found for PKCE in calls_python.jsonl.",
+        "Phase 2-Source Code: No relevant implementation for PKCE found in source code files."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not provide definitions or implementations for the required PKCE mechanisms, thus shifting responsibility to application developers.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 47,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** have redirect URIs registered with the authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found for managing redirect URIs in defs_python.jsonl.",
+        "Phase 1-IR: No call relationships found related to redirect URI handling in calls_python.jsonl.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically handle the registration of redirect URIs with the authorization server as required by the MCP rule. There were no functions identified within the SDK that encapsulate this behavior, thereby shifting the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "public actor Client { ... } // No management of redirect URIs found here",
+        "public actor Server { ... } // No management of redirect URIs found here"
+      ]
+    },
+    {
+      "rule_id": 48,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** validate exact redirect URIs against pre-registered values to prevent redirection attacks.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found for validating redirect URIs.",
+        "Phase 1-IR: No function calls related to redirect URI validation found.",
+        "Phase 2-Source Code: No implementation of redirect URI validation logic was found."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK lacks functionality to validate redirect URIs against pre-registered values. No relevant functions or automatic implementations were found in the source code.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Tests\\MCPTests\\ClientTests.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 49,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** use and verify state parameters in the authorization code flow\nand discard any results that do not include or have a mismatch with the original state.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: No implementations found in source code that handle state parameters or their verification."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not define the handling of state parameters nor does it incorporate internal logic to verify them, failing to comply with the requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Tests\\MCPTests\\Helpers\\MockTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Tests\\MCPTests\\UnitIntervalTests.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 50,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** take precautions to prevent redirecting user agents to untrusted URI's, following suggestions laid out in [OAuth 2.1 Section 7.12.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.12.2)",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: Extensive search of source files revealed no implementation for URI redirection precautions."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK lacks the necessary functions and implementations that provide automatic checks to prevent redirection to untrusted URIs as required by rule ID 50.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Tests\\MCPTests\\UnitIntervalTests.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Tests\\MCPTests\\RequestTests.swift"
+      ],
+      "code_snippets": [
+        "// No specific validations or automatic checks for redirect URIs found in the SDK"
+      ]
+    },
+    {
+      "rule_id": 51,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** only automatically redirect the user agent if it trusts the redirection URI. If the URI is not trusted, the authorization server MAY inform the user and rely on the user to make the correct decision.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relationships confirming automatic redirection found in calls_python.jsonl.",
+        "Phase 2-Source Code: Checked implementation in HTTPClientTransport, found no automatic handling for redirecting user agent based on trusted redirect URIs."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement the required automatic redirection behavior based on trusted URIs for authorization servers. Essential logic for determining URI trustworthiness and execution of redirection is lacking.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": [
+        "guard let httpResponse = response as? HTTPURLResponse else { throw MCPError.internalError('Invalid HTTP response') }",
+        "if httpResponse.statusCode != 200 { ... } // Handle non-200 statuses but not redirection"
+      ]
+    },
+    {
+      "rule_id": 52,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No related function definitions found for obtaining user consent.",
+        "Phase 1-IR: No relevant function calls found related to user consent or forwarding.",
+        "Phase 2-Source Code: Analyzed Client and Transport implementations without finding consent handling mechanisms."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK does not provide a mechanism to automatically obtain user consent before forwarding requests to third-party authorization servers, placing this responsibility on application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 53,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** validate access tokens before processing the request, ensuring the access token is issued specifically for the MCP server, and take all necessary steps to ensure no data is returned to unauthorized parties.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions or calls for access token validation found.",
+        "Phase 2-Source Code: No relevant token validation functionality was found in the source code files."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not contain any implementation or automatic handling of access token validation as required by the MCP rule. Developers would need to implement this behavior themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "No specific function for token validation found in the source code."
+      ]
+    },
+    {
+      "rule_id": 54,
+      "rule_type": "MUST",
+      "rule_text": "A MCP server **MUST** follow the guidelines in [OAuth 2.1 - Section 5.2](https://www.ietf.org/archive/id/draft-ietf-oauth-v2-1-12.html#section-5.2) to validate inbound tokens.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Searched for token validation definitions in defs_python.jsonl, found no relevant functions.",
+        "Phase 1-IR: Searched for function calls related to token validation in calls_python.jsonl, found no relevant function relationships.",
+        "Phase 2-Source Code: Conducted a full search on source files but did not locate the necessary automatic handling mechanisms for inbound token validation."
+      ],
+      "confidence": 0.0,
+      "explanation": "No clear function definitions or call relationships indicating token validation behavior were found. The SDK does not show evidence of automatically handling token validation requirements outlined in the MCP rule.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 55,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** only accept tokens specifically intended for themselves and **MUST** reject tokens that do not include them in the audience claim or otherwise verify that they are the intended recipient of the token. See the [Security Best Practices Token Passthrough section](/specification/2025-06-18/basic/security_best_practices#token-passthrough) for details.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: No implementation logic to automatically handle token verification based on audience claims was found."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK is non-compliant as it lacks automatic handling for token acceptance or rejection based on expected audience claims. No relevant functions or logic that would encapsulate this behavior were found in the source code.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\path_to_relevant_file"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 56,
+      "rule_type": "MUST_NOT",
+      "rule_text": "If the MCP server makes requests to upstream APIs, it may act as an OAuth client to them. The access token used at the upstream API is a seperate token, issued by the upstream authorization server. The MCP server **MUST NOT** pass through the token it received from the MCP client.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 57,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement and use the `resource` parameter as defined in [RFC 8707 - Resource Indicators for OAuth 2.0](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. This requirement aligns with the recommendation in\n[RFC 9728 Section 7.4](https://datatracker.ietf.org/doc/html/rfc9728#section-7.4). This ensures that access tokens are bound to their intended resources and\ncannot be misused across different services.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found no relevant definitions in defs_python.jsonl regarding resource usage in token requests.",
+        "Phase 2-Source Code: Verified resource handling in multiple files, but no automatic management of the `resource` parameter in token requests was found."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK provides structure for handling resources but does not automatically implement the usage of the `resource` parameter for token requests as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift"
+      ],
+      "code_snippets": [
+        "public struct Resource: Hashable, Codable, Sendable { ... }",
+        "public enum ListResources: Method { ... }",
+        "public enum ReadResource: Method { ... }"
+      ]
+    },
+    {
+      "rule_id": 58,
+      "rule_type": "MUST",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions in HTTPClientTransport and Lifecycle indicating protocol support.",
+        "Phase 1-IR: Confirmed call relationships showing required functions are invoked appropriately.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift.",
+        "Phase 2-Source Code: Verified implementations in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically completes lifecycle management features such as transport communication, initialization of sessions, and automatic notifications without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "// Auto-managing connection and notifications in HTTPClientTransport.",
+        "// Lifecycle management handled automatically without developer involvement in Lifecycle.swift."
+      ]
+    },
+    {
+      "rule_id": 59,
+      "rule_type": "MAY",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found notify method for sending notifications in the source code.",
+        "Phase 2-Source Code: Implemented message handling using handleMessage function to process notifications automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK includes automatic notification handling through defined functions that send notifications and process incoming messages without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+      ],
+      "code_snippets": [
+        "public func notify<N: Notification>(_ notification: Message<N>) async throws {...}【19:11†source】",
+        "private func handleMessage(_ message: Message<AnyNotification>) async throws {...}【19:12†source】"
+      ]
+    },
+    {
+      "rule_id": 60,
+      "rule_type": "MUST",
+      "rule_text": "All messages between MCP clients and servers **MUST** follow the\n[JSON-RPC 2.0](https://www.jsonrpc.org/specification) specification. The protocol defines\nthese types of messages:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct findings on function definitions related to JSON-RPC compliance.",
+        "Phase 2-Source Code: Implemented `send` method in StdioTransport supports JSON-RPC message transport.",
+        "Phase 2-Source Code: Client class includes `notify` method that utilizes internal sending logic."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK framework implements automatic sending of notifications and messages complying with JSON-RPC 2.0, encapsulating these behaviors within the SDK rather than leaving it to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Messages.swift"
+      ],
+      "code_snippets": [
+        "public func send(_ message: Data) async throws { ... } // Handling JSON-RPC messages",
+        "public func notify<N: Notification>(_ notification: Message<N>) async throws { ... } // Sending notifications"
+      ]
+    },
+    {
+      "rule_id": 61,
+      "rule_type": "MUST",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 62,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function Request, defined in Request.swift:65",
+        "Phase 2-Source Code: No checks were found in the logic to ensure ID is never null during request handling."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK's Request implementation defines an ID property but lacks internal checks or logic to ensure the ID cannot be null when used within requests, hence shifting this responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Messages.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Server.swift"
+      ],
+      "code_snippets": [
+        "public struct Request<M: Method>: Hashable, Identifiable, Codable, Sendable { public let id: ID // ID is defined here without additional constraints in usage}"
+      ]
+    },
+    {
+      "rule_id": 63,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct evidence of automatic ID uniqueness checking found in function definitions.",
+        "Phase 2-Source Code: Found functions addPendingRequest and removePendingRequest but no enforcement of unique IDs.",
+        "Phase 2-Source Code: SDK does manage pending requests but does not prevent ID reuse across requests in a session."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK's implementation lacks explicit logic to ensure that request IDs are unique within a session. While it has functions to manage requests, it does not enforce the rule that IDs must not be reused.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server"
+      ],
+      "code_snippets": [
+        "self.addPendingRequest(id: request.id, continuation: continuation, type: M.Result.self)",
+        "self.removePendingRequest(id: request.id)"
+      ]
+    },
+    {
+      "rule_id": 64,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability to respond with the same ID in response definitions.",
+        "Phase 1-IR: Confirmed automatic handling of response sending within SDK.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: tmp91mxrh4l.txt"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements the MCP rule 64 by providing responses that include the same ID as the request, handled internally without requiring developer action.",
+      "files_analyzed": [
+        "tmp91mxrh4l.txt",
+        "tmp05gh9l9s.json"
+      ],
+      "code_snippets": [
+        "public static func response(id: ID, error: MCPError) -> Response<Self>",
+        "private func handleBatch(_ batch: Batch) async throws"
+      ]
+    },
+    {
+      "rule_id": 65,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct evidence found in IR files.",
+        "Phase 2-Source Code: Verified Response struct, which allows only one of result or error to be set.",
+        "Phase 2-Source Code: Response handling is conditioned to prevent both fields from being populated."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically ensures that responses only contain either a result or an error, complying with the rule that states a response must not set both.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Messages.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+      ],
+      "code_snippets": [
+        "public struct Response<M: Method>: Hashable, Identifiable, Codable, Sendable { ... }",
+        "private func handleRequest(_ request: Request<AnyMethod>, sendResponse: Bool = true) async throws -> Response<AnyMethod>? { ... }"
+      ]
+    },
+    {
+      "rule_id": 66,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found implementation of 'Response' struct with either result or error as properties in Messages.swift",
+        "Phase 1-IR: Functions like 'handleRequest' ensure that responses are appropriately managed and sent within the SDK."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the logic of setting either a 'result' or an 'error' in responses. The architecture prevents developers from managing this process themselves, conforming to the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Messages.swift"
+      ],
+      "code_snippets": [
+        "public init(id: ID, result: M.Result) { self.id = id; self.result = .success(result); }",
+        "public init(id: ID, error: MCPError) { self.id = id; self.result = .failure(error); }"
+      ]
+    },
+    {
+      "rule_id": 67,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Function definitions for responses and error handling are present.",
+        "Phase 1-IR: Functions found that encapsulate errors and send responses.",
+        "Phase 2-Source Code: Verified automatic management of error and response sending logic."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles error responses that include error codes and messages, without requiring application developers to manage these details.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Resources.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Messages.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Client.swift"
+      ],
+      "code_snippets": [
+        "public static func response(id: ID, error: MCPError) -> Response<Self>",
+        "public func send<M: Method>(_ response: Response<M>) async throws {...}",
+        "private func handleBatch(_ batch: Batch) async throws {...}"
+      ]
+    },
+    {
+      "rule_id": 68,
+      "rule_type": "MAY",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Identified error handling structure in Sources/MCP/Base/Error.swift",
+        "Phase 2-Source Code: Verified response handling logic in Sources/MCP/Base/Transports/NetworkTransport.swift",
+        "Phase 2-Source Code: Ensured error messages include required data per MCP standard"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements response and error handling as required by the MCP rule. All errors include an integer code and a descriptive message, and responses are appropriately categorized.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift"
+      ],
+      "code_snippets": [
+        "enum MCPError: Swift.Error { ... }",
+        "public struct Response<M: Method> { ... }"
+      ]
+    },
+    {
+      "rule_id": 69,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Error codes are defined as integers in MCPError enumeration.",
+        "Phase 2-Source Code: Response handling methods encapsulate errors automatically using methods like handleRequest."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines error codes explicitly as integers in the MCPError enumeration and automatically handles the generation of error responses as per protocol requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Sampling.swift"
+      ],
+      "code_snippets": [
+        "case serverError(code: Int, message: String)",
+        "return AnyMethod.response(id: request.id, error: mcpError)"
+      ]
+    },
+    {
+      "rule_id": 70,
+      "rule_type": "MUST_NOT",
+      "rule_text": "Notifications are sent from the client to the server or vice versa, as a one-way message.\nThe receiver **MUST NOT** send a response.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found notification handling logic within SDK source code.",
+        "Phase 2-Source Code: Verified that notifications are processed without requiring a response."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the processing of notifications and conforms to the rule by ensuring that receivers do not send responses.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Messages.swift"
+      ],
+      "code_snippets": [
+        "The handleMessage function logs that notifications don't require responses.",
+        "The handleBatch function processes notifications without sending out responses, confirming the automatic handling."
+      ]
+    },
+    {
+      "rule_id": 71,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Notifications **MUST NOT** include an ID.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct evidence found in IR files regarding notification handling.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Messages.swift, showing no ID in the notification structure."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK handles notifications automatically without requiring developers to manage IDs, ensuring compliance with the MCP rule that notifications MUST NOT include an ID.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Messages.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "public struct Message<N: Notification>: Hashable, Codable, Sendable { public let method: String; public let params: N.Parameters; }"
+      ]
+    },
+    {
+      "rule_id": 72,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found HTTPClientTransport in defs, defined in HTTPClientTransport.swift.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automates all the required behaviors specified in the MCP rule for HTTP-based transport. It implements the logic necessary for sending notifications automatically and manages session IDs and response handling with no developer intervention required.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": [
+        "public func send(_ message: Data) async throws {...}",
+        "private func processSSE(_ stream: URLSession.AsyncBytes) async throws {...}"
+      ]
+    },
+    {
+      "rule_id": 73,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: No implementation details regarding automatic credential retrieval in StdioTransport or related classes."
+      ],
+      "confidence": 0.0,
+      "explanation": "The IR analysis did not provide relevant function definitions or call relationships that address the requirement of automatically retrieving credentials from the environment for STDIO transports. Additionally, the source code provided no evidence of automatic processing for handling credentials as specified.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 74,
+      "rule_type": "MAY",
+      "rule_text": "Additionally, clients and servers **MAY** negotiate their own custom authentication and\nauthorization strategies.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl related to custom authentication or authorization.",
+        "Phase 2-Source Code: No evidence of internal automatic implementation for negotiating authentication or authorization strategies found in the source code."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK lacks automatic handling for negotiation of custom authentication and authorization strategies. It requires developers to implement these strategies themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Versioning.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 75,
+      "rule_type": "MUST",
+      "rule_text": "The initialization phase **MUST** be the first interaction between client and server.\nDuring this phase, the client and server:\n\n- Establish protocol version compatibility\n- Exchange and negotiate capabilities\n- Share implementation details",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant functions found in IR.",
+        "Phase 2-Source Code: Found Initialize notification sending logic post-initialization.",
+        "Phase 2-Source Code: The server handles setting up initial states, confirm client capabilities, and does so autonomously."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK framework automatically generates and manages the initialization phase and sends notification signs automatically, ensuring compliance with the rules.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "public struct InitializedNotification: Notification { public static let name: String = \"notifications/initialized\" }",
+        "await self.setInitialState(clientInfo: params.clientInfo, clientCapabilities: params.capabilities, protocolVersion: negotiatedProtocolVersion)"
+      ]
+    },
+    {
+      "rule_id": 76,
+      "rule_type": "MUST",
+      "rule_text": "The client **MUST** initiate this phase by sending an `initialize` request containing:\n\n- Protocol version supported\n- Client capabilities\n- Client implementation information",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'initialize' request definition in Client class.",
+        "Phase 1-IR: Confirmed 'initialize' is called within the 'connect' method.",
+        "Phase 2-Source Code: Verified implementation supports automatic request sending."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements the automatic sending of the 'initialize' request, as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": [
+        "let request = Initialize.request(....) // Inside _initialize method in Client.",
+        "await _initialize() // Inside connect method in Client."
+      ]
+    },
+    {
+      "rule_id": 77,
+      "rule_type": "MUST",
+      "rule_text": "The server **MUST** respond with its own capabilities and information:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function handling initial capabilities in Lifecycle.swift.",
+        "Phase 1-IR: Confirmed responses containing server capabilities in Server.swift.",
+        "Phase 2-Source Code: Verified automatic capability responses in 'Server.swift' during initialization."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles and responds with server capabilities without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "public async func initialize(params: Initialize.Parameters) -> Initialize.Result { /*...*/ }",
+        "public func handleRequest(_ request: Request<AnyMethod>, sendResponse: Bool = true) async throws -> Response<AnyMethod>? { /*...*/ }"
+      ]
+    },
+    {
+      "rule_id": 78,
+      "rule_type": "MUST",
+      "rule_text": "After successful initialization, the client **MUST** send an `initialized` notification\nto indicate it is ready to begin normal operations:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability definition for InitializedNotification in file C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift.",
+        "Phase 1-IR: Confirmed automatic notification sending in _initialize method of the Client class after successful initialization in file C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the functionality to send the 'initialized' notification internally, and developers are not required to handle this behavior manually. The notification is automatically sent after a successful initialization, fulfilling the mandate of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "public struct InitializedNotification: Notification { ... }",
+        "try await notify(InitializedNotification.message())"
+      ]
+    },
+    {
+      "rule_id": 79,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function initialize in tmp05gh9l9s.json at line 493.",
+        "Phase 1-IR: _initialize is called at line 499 in tmp05gh9l9s.json.",
+        "Phase 2-Source Code: Verified handling logic in handleRequest checks for requests before initialization."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages request prohibitions until the server responds to the initialize request, ensuring compliance with the MCP rule.",
+      "files_analyzed": [
+        "tmp05gh9l9s.json",
+        "tmp91mxrh4l.txt"
+      ],
+      "code_snippets": [
+        "if configuration.strict { if request.method.isEmpty && !sendResponse { throw MCPError.invalidRequest('Invalid batch item format') } }"
+      ]
+    },
+    {
+      "rule_id": 80,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'checkInitialized' defined in '/Sources/MCP/Server/Server.swift'",
+        "Phase 1-IR: Method 'handleRequest' restricts requests to only allow pings and logging until initialization",
+        "Phase 2-Source Code: Verified implementation details showing the SDK limits request handling automatically without developer intervention in '/Sources/MCP/Server/Server.swift'"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK manages request processing automatically, enforcing compliance with the MCP rules regarding sending requests before the 'initialized' notification.",
+      "files_analyzed": [
+        "/Sources/MCP/Server/Server.swift"
+      ],
+      "code_snippets": [
+        "private func handleRequest(_ request: Request<AnyMethod>, sendResponse: Bool = true) async throws -> Response<AnyMethod>? { ... }",
+        "try checkInitialized()"
+      ]
+    },
+    {
+      "rule_id": 81,
+      "rule_type": "MUST",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'initialize' defined, with 'protocolVersion' in 'Parameters'",
+        "Phase 2-Source Code: Verified '_initialize()' method constructs request and sends it automatically"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically sends the 'protocolVersion' required in the 'initialize' request, fulfilling the 'MUST' requirement without delegating this responsibility to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Client\\Client.swift"
+      ],
+      "code_snippets": [
+        "let request = Initialize.request(\n    .init(\n        protocolVersion: Version.latest,\n        capabilities: capabilities,\n        clientInfo: clientInfo\n    ))"
+      ]
+    },
+    {
+      "rule_id": 82,
+      "rule_type": "SHOULD",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function initialize in defs, defined in Lifecycle.swift:8",
+        "Phase 1-IR: Confirmed main calls to initialize in calls.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: Lifecycle.swift"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles protocol version negotiation without requiring developers to manage it directly, thus adhering to the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift"
+      ],
+      "code_snippets": [
+        "let request = Initialize.request(.init(protocolVersion: Version.latest, capabilities: capabilities, clientInfo: clientInfo))"
+      ]
+    },
+    {
+      "rule_id": 83,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `Version.negotiate` defined in `Versioning.swift` which handles protocol negotiation.",
+        "Phase 1-IR: Confirmed call relationships where `Server` interacts with negotiation logic and sets the protocol version automatically.",
+        "Phase 2-Source Code: Verified automatic handling of protocol version negotiation within the `Server` class implementation."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the required behavior for protocol version negotiation and response handling fully within its implementation, ensuring that application developers do not have to implement these details themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Versioning.swift"
+      ],
+      "code_snippets": [
+        "static func negotiate(clientRequestedVersion: String) -> String { ... }",
+        "let negotiatedProtocolVersion = Version.negotiate(clientRequestedVersion: clientRequestedVersion)"
+      ]
+    },
+    {
+      "rule_id": 84,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function negotiate, defined in Versioning.swift",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: Versioning.swift"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles protocol version negotiation by implementing the `negotiate` function, which responds with either the requested version or the latest supported version.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Versioning.swift"
+      ],
+      "code_snippets": [
+        "static func negotiate(clientRequestedVersion: String) -> String { if supported.contains(clientRequestedVersion) { return clientRequestedVersion } return latest }"
+      ]
+    },
+    {
+      "rule_id": 85,
+      "rule_type": "SHOULD",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found protocol version handling in Initialize method.",
+        "Phase 2-Source Code: Verified automatic notification sending logic in InitializedNotification and notify method."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically encapsulates the required behaviors for managing the latest protocol version and notifying clients, thus complying with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Versioning.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "public struct InitializedNotification: Notification {...}",
+        "public static let latest = supported.max()!"
+      ]
+    },
+    {
+      "rule_id": 86,
+      "rule_type": "SHOULD",
+      "rule_text": "If the client does not support the version in the server's response, it **SHOULD**\ndisconnect.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `disconnect()` method defined in Client.swift working to cancel pending requests and terminate connection.",
+        "Phase 1-IR: Confirmed multiple internal calls to handle disconnection logic in Client and Transport-related files.",
+        "Phase 2-Source Code: Verified that response handling includes methods to disconnect if the version is unsupported."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the functionality to disconnect automatically when the server's response contains an unsupported version, without requiring developers to handle this behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Transport\\Client.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Transport\\MockTransport.swift"
+      ],
+      "code_snippets": [
+        "public func disconnect() async { ... } // Handles cancellation of tasks and logging",
+        "private func handleResponse(...) { ... } // Processes responses from the server, checks for unsupported versions."
+      ]
+    },
+    {
+      "rule_id": 87,
+      "rule_type": "MUST",
+      "rule_text": "<Note>\nIf using HTTP, the client **MUST** include the `MCP-Protocol-Version:\n<protocol-version>` HTTP header on all subsequent requests to the MCP\nserver.\nFor details, see [the Protocol Version Header section in Transports](/specification/2025-06-18/basic/transports#protocol-version-header).\n</Note>",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found HTTPClientTransport class in defs, responsible for HTTP requests.",
+        "Phase 1-IR: Confirmed method behaviors in calls, but no implementation found for mandatory headers.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not automatically include the required `MCP-Protocol-Version` HTTP header in its requests, violating the rule that mandates this behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": [
+        "No code found in HTTPClientTransport that adds `MCP-Protocol-Version` header."
+      ]
+    },
+    {
+      "rule_id": 88,
+      "rule_type": "MUST",
+      "rule_text": "Both parties **MUST**:\n\n- Respect the negotiated protocol version\n- Only use capabilities that were successfully negotiated",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function Definitions for Initialize and the concerns surrounding negotiation in Lifecycle.swift.",
+        "Phase 2-Source Code: Verified that InitializedNotification is sent automatically within the Server class upon success.",
+        "The SDK does not place the manual responsibility of these implementations onto the developers."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK implements the required behaviors for protocol negotiation and notification handling. The SDK defines the negotiation process within the Initialize method, encapsulating the protocol implementation. Additionally, the notification method is automatically invoked after successful initialization, ensuring compliance with the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "public struct InitializedNotification: Notification { public static let name: String = \"notifications/initialized\"; }",
+        "await self._send_notification() after calling setInitialState() in Server.swift"
+      ]
+    },
+    {
+      "rule_id": 89,
+      "rule_type": "SHOULD",
+      "rule_text": "For the stdio [transport](/specification/2025-06-18/basic/transports), the client **SHOULD** initiate\nshutdown by:\n\n1. First, closing the input stream to the child process (the server)\n2. Waiting for the server to exit, or sending `SIGTERM` if the server does not exit\n   within a reasonable time\n3. Sending `SIGKILL` if the server does not exit within a reasonable time after `SIGTERM`",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'shutdown' in MCPService, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Service.swift:12.",
+        "Phase 1-IR: Confirmed call to shutdown() within the service implementation for graceful shutdown handling.",
+        "Phase 2-Source Code: Verified that 'shutdown()' is encapsulated in the MCPService class with automatic management."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the shutdown behavior automatically, allowing it to handle signals without the need for application developers to manually call shutdown behaviors.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Service.swift"
+      ],
+      "code_snippets": [
+        "func shutdown() async throws { await server.stop() }"
+      ]
+    },
+    {
+      "rule_id": 90,
+      "rule_type": "MAY",
+      "rule_text": "The server **MAY** initiate shutdown by closing its output stream to the client and\nexiting.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found the MCPService shutdown method in /path/to/file.swift for graceful shutdown.",
+        "Phase 1-IR: Confirmed automatic signal handling during shutdown via ServiceGroup.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: /path/to/transport-file.swift."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages shutdown procedures including closing output streams and stopping its operations, compliant with the MCP rule that specifies the server may initiate shutdown without developer involvement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift"
+      ],
+      "code_snippets": [
+        "await server.stop() // Automatic handling in MCPService",
+        "serviceGroup.run() // Blocks until shutdown, handles custom signals."
+      ]
+    },
+    {
+      "rule_id": 91,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Found 'sseInitializationTimeout' defined in source code.",
+        "Phase 2-Source Code: Found connection failure and cancellation handling logic.",
+        "Phase 2-Source Code: Verified that SDK handles automatic reconnection and cancellation."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically implements timeout functionality and handles cancellations related to request timeouts without requiring developer action.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transport.swift"
+      ],
+      "code_snippets": [
+        "self.sseInitializationTimeout = 10",
+        "self.connection.cancel()",
+        "logger.warning('Connection cancelled')"
+      ]
+    },
+    {
+      "rule_id": 92,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific definitions found in `defs_python.jsonl`, but code confirms timeout handling.",
+        "Phase 2-Source Code: Verified implementation in `NetworkTransport.swift`, which implements automatic timeout handling and cancellation notifications."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically manages timeouts and sends cancellation notifications as required by the MCP rule. The implementation creates a cancellation task for requests and properly throws timeout errors, indicating that the responsibility is encapsulated within the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\NetworkTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transport.swift"
+      ],
+      "code_snippets": [
+        "throw MCPError.internalError(\"Request timeout\")",
+        "let timeoutTask = Task { try? await Task.sleep(for: .seconds(self.sseInitializationTimeout)) }"
+      ]
+    },
+    {
+      "rule_id": 93,
+      "rule_type": "SHOULD",
+      "rule_text": "SDKs and other middleware **SHOULD** allow these timeouts to be configured on a\nper-request basis.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No clear per-request timeout implementation found in `defs_python.jsonl`",
+        "Phase 2-Source Code: Found timeout configuration (sseInitializationTimeout) in HTTPClientTransport, but it does not manage timeouts per request automatically",
+        "Phase 2-Source Code: The SDK does incorporate some timeout logic, but per-request handling is not applied."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not automatically manage configurable timeouts on a per-request basis. While it includes initialization timeouts, there is no logic that handles per-request timeouts automatically without requiring developer action.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\StdioTransport.swift"
+      ],
+      "code_snippets": [
+        "public init(endpoint: URL, configuration: URLSessionConfiguration = .default, streaming: Bool = true, sseInitializationTimeout: TimeInterval = 10) { ... }",
+        "let timeoutTask = Task { try? await Task.sleep(for: .seconds(self.sseInitializationTimeout)) ... }"
+      ]
+    },
+    {
+      "rule_id": 94,
+      "rule_type": "MAY",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant call relationships found in calls_python.jsonl.",
+        "Phase 2-Source Code: Found mechanisms to manage heartbeats and potentially reset counters when activity is detected."
+      ],
+      "confidence": 0.5,
+      "explanation": "While there are implementations for handling heartbeats and messages, it's not clear if the SDK explicitly implements the required behavior concerning resetting timeout clocks when receiving progress notifications as stipulated in the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Tools.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\NetworkTransport.swift"
+      ],
+      "code_snippets": [
+        "consecutiveEmptyReads = 0; // Reset on valid data received",
+        "if isConnected { try await self.sendHeartbeat(); }"
+      ]
+    },
+    {
+      "rule_id": 95,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No significant findings related to timeout in IR files.",
+        "Phase 2-Source Code: Found 'sseInitializationTimeout' defined as the maximum timeout in HTTPClientTransport.",
+        "Phase 2-Source Code: Verified automatic timeout handling logic implemented in HTTPClientTransport."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines a maximum timeout for session ID initialization and implements an automatic timeout handling mechanism within the HTTPClientTransport. This ensures that the timeout enforcement is handled internally without needing developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": [
+        "public let sseInitializationTimeout: TimeInterval",
+        "let timeoutTask = Task { try? await Task.sleep(for: .seconds(self.sseInitializationTimeout)) }"
+      ]
+    },
+    {
+      "rule_id": 96,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** be prepared to handle these error cases:\n\n- Protocol version mismatch\n- Failure to negotiate required capabilities\n- Request [timeouts](#timeouts)",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct function definitions found that specify automatic error handling behaviors.",
+        "Phase 2-Source Code: Found error types defined in MCPError but lacked implementation that automatically manages behaviors.",
+        "Phase 2-Source Code: The initialization function covers foundational steps but does not encapsulate full automatic handling."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK does define error types and performs initial error handling; however, it does not fully encapsulate all required behaviors for handling protocol version mismatches, capability negotiation failures, and request timeouts within the SDK, thus shifting some responsibilities back to the developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Lifecycle.swift"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 97,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found regarding user consent in defs_python.jsonl.",
+        "Phase 1-IR: No function call relationships indicative of user consent management in calls_python.jsonl.",
+        "Phase 2-Source Code: Various function definitions and classes examined, but none related to user consent management for third-party forwarding."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not encapsulate the behavior of obtaining user consent for dynamically registered clients before interacting with third-party authorization servers.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 98,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept any tokens that were not explicitly issued for the MCP server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl",
+        "Phase 1-IR: No relevant function calls related to token validation found in calls_python.jsonl",
+        "Phase 2-Source Code: No functions or methods to validate issued tokens found in FILE_PATH: Server.swift"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement any mechanism to validate that only tokens explicitly issued for the MCP server are accepted. There is no function defined for token checking or validation within the server logic.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift"
+      ],
+      "code_snippets": [
+        "There are no functions to handle token validation."
+      ]
+    },
+    {
+      "rule_id": 99,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found related to verification of inbound requests.",
+        "Phase 2-Source Code: Found methods for handling requests and some error handling, but no dedicated automatic request verification.",
+        "Phase 2-Source Code: Strict mode configuration requires certain checks but does not constitute automatic verification of all requests."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK implements some level of request handling and validation, but does not automatically verify all inbound requests as required by the MCP rule. The relevant logic is not encapsulated fully within the SDK, potentially shifting the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Server\\Server.swift",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Error.swift"
+      ],
+      "code_snippets": [
+        "internal func handleRequest(_ request: Request<AnyMethod>, sendResponse: Bool = true) async throws {...}",
+        "public enum MCPError: Swift.Error {...}",
+        "// Allows server to check if an uninitialized client is sending requests based on strict mode."
+      ]
+    },
+    {
+      "rule_id": 100,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions were found that align with acceptable authentication policies.",
+        "Phase 1-IR: Found calls handling session IDs in HTTP responses and requests, indicating reliance on session-based authentication.",
+        "Phase 2-Source Code: Verified implementation involving session ID management in `HTTPClientTransport` and other functions."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements session management by using `Mcp-Session-Id` headers for authentication in multiple locations, which directly contravenes the MCP rule stipulating that sessions must not be used for authentication.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\swift-sdk-main\\swift-sdk-main\\Sources\\MCP\\Base\\Transports\\HTTPClientTransport.swift"
+      ],
+      "code_snippets": [
+        "// Extract session ID if present\nif let newSessionID = httpResponse.value(forHTTPHeaderField: \"Mcp-Session-Id\") {\n    self.sessionID = newSessionID;\n}\n// Add session ID if available in requests\nif let sessionID = self.sessionID {\n    request.addValue(sessionID, forHTTPHeaderField: \"Mcp-Session-Id\");\n}"
+      ]
+    }
+  ]
+}

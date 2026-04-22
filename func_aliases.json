@@ -1,0 +1,1299 @@
+﻿{
+  "accept": [
+    "accept",
+    "Accept",
+    "AcceptAsync",
+    "accept_message",
+    "acceptRequest",
+    "accepts_server_context?",
+    "accepted_response",
+    "_check_accept_headers"
+  ],
+  "accept_or_transit_tokens": [
+    "accept",
+    "Accept"
+  ],
+  "accept_token": [
+    "accept",
+    "Accept",
+    "AccessToken",
+    "get_token",
+    "cancel_token",
+    "add_token",
+    "AuthToken",
+    "verify_token"
+  ],
+  "assign_session_id": [
+    "session_id",
+    "sessionId",
+    "SessionID",
+    "get_session_id",
+    "_get_session_id",
+    "extract_session_id",
+    "SetSessionId",
+    "StatelessSessionId"
+  ],
+  "assume_fixed_page_size": [],
+  "assume_protocol_version": [
+    "protocolVersion",
+    "ProtocolVersion",
+    "setProtocolVersion",
+    "_validate_protocol_version",
+    "withProtocolVersion",
+    "validateProtocolVersion",
+    "test_protocol_version_order",
+    "testProtocolVersionHeader"
+  ],
+  "attach_id": [
+    "id",
+    "ID",
+    "WithId",
+    "streamId",
+    "lastId",
+    "getId",
+    "client_id",
+    "StringID"
+  ],
+  "authenticate": [
+    "authenticate",
+    "authenticateClient",
+    "AuthenticateClient",
+    "CanAuthenticate",
+    "AuthenticatedUser",
+    "HandleAuthenticateAsync",
+    "ParseWwwAuthenticateParameters",
+    "CannotAuthenticate_WithoutOAuthConfiguration"
+  ],
+  "authorize": [
+    "authorize",
+    "AuthorizeQuery",
+    "AuthorizeError",
+    "oauth_authorize",
+    "handleAuthorize",
+    "AuthorizeAttributeTests",
+    "Authorize_Tool_RequiresAuthentication",
+    "Authorize_Resource_RequiresAuthentication"
+  ],
+  "avoid_excessive_pinging": [],
+  "base64_encode": [
+    "encode",
+    "Encode",
+    "test_encode",
+    "encodeValue",
+    "encodeResponse",
+    "EncodeMessage",
+    "encodeCursor",
+    "EncodeIndent"
+  ],
+  "bind": [
+    "bind",
+    "Bind",
+    "bindConnection",
+    "BindAsync",
+    "UnbindAsync"
+  ],
+  "bind_session_id": [
+    "session_id",
+    "sessionId",
+    "SessionID",
+    "get_session_id",
+    "_get_session_id",
+    "bind",
+    "SetSessionId",
+    "Bind"
+  ],
+  "broadcast": [],
+  "cancel": [
+    "cancel",
+    "Cancel",
+    "CancelAsync",
+    "cancel_token",
+    "cancelled",
+    "cancellation_token",
+    "CancelledNotificationParams",
+    "CancelledNotificationParam"
+  ],
+  "capture_forward_ignore_logging": [],
+  "check_permissions": [
+    "check",
+    "check_lifespan",
+    "checkNotification",
+    "checkJSON",
+    "checkIcon",
+    "checkCursor",
+    "checkRoot",
+    "checkResult"
+  ],
+  "check_roots_capability": [
+    "RootsCapability",
+    "check_client_capability",
+    "check",
+    "testRootsWithoutCapability",
+    "checkListRootsResult",
+    "checkListRootsRequest",
+    "ToolsCapability",
+    "ResourcesCapability"
+  ],
+  "check_unique_id": [
+    "check",
+    "checkRequestId",
+    "checkRequest"
+  ],
+  "choose_progress_token": [
+    "progress_token",
+    "progressToken",
+    "ProgressToken",
+    "TokenProgress",
+    "set_progress_token",
+    "setProgressToken",
+    "next_progress_token",
+    "get_progress_token"
+  ],
+  "close_sse_stream": [
+    "setup_sse_stream",
+    "close",
+    "Close",
+    "execute_sse_stream",
+    "consumeSseStream",
+    "_handleSseStream",
+    "test_get_sse_stream",
+    "sse_stream_response"
+  ],
+  "close_stream": [
+    "close",
+    "Close",
+    "stream",
+    "create_stream",
+    "processStream",
+    "newStream",
+    "get_stream",
+    "fromStream"
+  ],
+  "configure_ping_frequency": [
+    "ConfigurePing",
+    "configure",
+    "Configure",
+    "configure_logging",
+    "configure_client",
+    "configureSigning",
+    "ConfigureInitialize"
+  ],
+  "configure_timeouts": [
+    "configure",
+    "Configure",
+    "configure_client",
+    "ConfigureTools",
+    "ConfigureStateless",
+    "ConfigurePrompts",
+    "ConfigureOptions",
+    "configure_logging"
+  ],
+  "conform": [
+    "loadConformanceTest",
+    "TestServerConformance",
+    "StreamableHttpServerConformanceTests",
+    "StreamableHttpClientConformanceTests"
+  ],
+  "consider_tool_annotations": [
+    "ToolAnnotations",
+    "test_tool_annotations",
+    "checkToolAnnotations",
+    "TestToolAnnotations",
+    "tool_with_annotations",
+    "UpdatableAnnotationsTool",
+    "testToolWithAnnotations",
+    "ToolAnnotationsAttribute"
+  ],
+  "declare": [
+    "`should only allow setRequestHandler for declared capabilities`"
+  ],
+  "declare_logging_capability": [
+    "LoggingCapability",
+    "SamplingCapability",
+    "ResourcesCapability",
+    "ElicitationCapability",
+    "CompletionsCapability"
+  ],
+  "declare_prompts_capability": [
+    "PromptsCapability",
+    "RootsCapability",
+    "assertCapability",
+    "ResourcesCapability",
+    "CompletionsCapability"
+  ],
+  "declare_resources_capability": [
+    "ResourcesCapability"
+  ],
+  "declare_roots_capability": [
+    "RootsCapability",
+    "testRootsWithoutCapability",
+    "assertCapability",
+    "ToolsCapability",
+    "ResourcesCapability",
+    "PromptsCapability",
+    "CompletionsCapability",
+    "RootsCapabilities"
+  ],
+  "declare_sampling": [
+    "sampling",
+    "Sampling",
+    "test_sampling",
+    "Example_sampling",
+    "testSampling",
+    "requestSampling"
+  ],
+  "declare_tools_capability": [
+    "ToolsCapability",
+    "RootsCapability",
+    "CompletionsCapability",
+    "ResourcesCapability",
+    "ElicitationCapability",
+    "assertCapability",
+    "PromptsCapability"
+  ],
+  "deny_sampling_request": [
+    "requestSampling",
+    "test_sampling_request_params",
+    "CreateSamplingMessageRequest",
+    "invalid_request",
+    "PendingRequest",
+    "testServerSamplingRequestAPI",
+    "sampling",
+    "Sampling"
+  ],
+  "deny_tool_invocation": [
+    "test_tool_annotations",
+    "ToolFunction",
+    "ToolAnnotations"
+  ],
+  "disconnect": [
+    "disconnect",
+    "disconnect_from_server",
+    "test_disconnect_from_server",
+    "testReceiveAfterDisconnect",
+    "testConnectAndDisconnect",
+    "SetDisconnected",
+    "test_disconnect_non_existent_server",
+    "testDisconnectStopsMessageStream"
+  ],
+  "disconnection": [
+    "handlePeerDisconnection",
+    "testPeerDisconnectionHandling",
+    "disconnect"
+  ],
+  "document": [
+    "read_document",
+    "ReadJsonDocumentAsync",
+    "ToolInputSchema_RejectsInvalidSchemaDocuments",
+    "ToolInputSchema_AcceptsValidSchemaDocuments"
+  ],
+  "embed": [
+    "Embedded",
+    "embedding_docs",
+    "embedded_text",
+    "embeddedResource",
+    "EmbeddedResourceBlock",
+    "EmbeddedResource",
+    "testEmbeddedResourceWithBlobContentsDeserialization",
+    "testEmbeddedResourceWithBlobContents"
+  ],
+  "encode": [
+    "encode",
+    "Encode",
+    "encodeValue",
+    "encodeResponse",
+    "encodeCursor",
+    "EncodeMessage",
+    "EncodeIndent",
+    "test_encode"
+  ],
+  "enforce_timeout": [
+    "onTimeout",
+    "connectTimeout",
+    "_resetTimeout",
+    "requestTimeout",
+    "_setupTimeout",
+    "_cleanupTimeout",
+    "TestIdleTimeout"
+  ],
+  "ensure_global_uniqueness": [],
+  "establish_timeouts": [
+    "establishSSE",
+    "_establish_session"
+  ],
+  "follow_communication_security": [],
+  "follow_security_best_practices": [],
+  "follow_specification": [
+    "SyncSpecification",
+    "AsyncSpecification",
+    "findResourceSpecification"
+  ],
+  "forward": [
+    "UnsubscribeFromResourceAsync_Forwards_To_McpClient_SendRequestAsync",
+    "SubscribeToResourceAsync_Forwards_To_McpClient_SendRequestAsync",
+    "SendRequestAsync_Generic_Forwards_To_McpSession_SendRequestAsync",
+    "SendNotificationAsync_Parameterless_Forwards_To_McpSession_SendMessageAsync",
+    "SendNotificationAsync_Generic_Forwards_To_McpSession_SendMessageAsync",
+    "SampleAsync_Request_Forwards_To_McpServer_SendRequestAsync",
+    "SampleAsync_Messages_Forwards_To_McpServer_SendRequestAsync",
+    "RequestRootsAsync_Forwards_To_McpServer_SendRequestAsync"
+  ],
+  "generate_session_id": [
+    "session_id",
+    "sessionId",
+    "SessionID",
+    "generate",
+    "get_session_id",
+    "extract_session_id",
+    "_get_session_id",
+    "generateEventId"
+  ],
+  "handle_error_cases": [
+    "handle",
+    "Handle",
+    "handle_progress",
+    "handle_response",
+    "handle_messages",
+    "handleResponse",
+    "handle_sse",
+    "handle_request"
+  ],
+  "handle_pagination": [
+    "handle",
+    "Handle",
+    "with_pagination",
+    "handle_notification",
+    "handle_completion",
+    "handleNotification",
+    "HandleNotification",
+    "handle_initialization"
+  ],
+  "handle_race_conditions": [
+    "handle",
+    "Handle",
+    "handleReconnection",
+    "handle_completion",
+    "handleException",
+    "handle_response",
+    "handle_redirect",
+    "handle_notification"
+  ],
+  "handle_sensitive_data": [
+    "handle",
+    "Handle",
+    "handleMetadata",
+    "handle_redirect",
+    "handle_initialization"
+  ],
+  "handle_unavailable_roots": [
+    "handle",
+    "Handle",
+    "handleListRoots"
+  ],
+  "identify": [],
+  "identify_server": [
+    "start_server",
+    "serve_server",
+    "startServer",
+    "server",
+    "Server",
+    "event_server",
+    "startHttpServer",
+    "mounted_server"
+  ],
+  "ignore": [
+    "should_ignore_notification",
+    "`should ignore first output messages`",
+    "test_stdio_client_stdin_close_ignored",
+    "test_context_inclusion_ignored_integration",
+    "testEqualsIgnoresTitle",
+    "load_gitignore"
+  ],
+  "ignore_cancellation_notification": [
+    "catch_cancellation_notification",
+    "should_ignore_notification",
+    "CancelledNotification",
+    "notification",
+    "Notification",
+    "into_notification",
+    "_received_notification",
+    "_handle_notification"
+  ],
+  "ignore_response": [
+    "response",
+    "Response",
+    "into_response",
+    "handle_response",
+    "error_response",
+    "send_response",
+    "newResponse",
+    "handleResponse"
+  ],
+  "implement": [
+    "Implementation",
+    "test_prompt_handler_trait_implementation",
+    "test_implementation_with_icons",
+    "checkImplementation",
+    "WithTools_TargetInstance_UsesEnumerableImplementation",
+    "WithResources_TargetInstance_UsesEnumerableImplementation",
+    "WithPrompts_TargetInstance_UsesEnumerableImplementation"
+  ],
+  "implementResourceIndicators": [],
+  "implement_OAuth_2.1": [],
+  "implement_PKCE": [],
+  "implement_access_controls": [],
+  "implement_custom_transport_mechanisms": [],
+  "implement_rate_limiting": [],
+  "implement_resources": [
+    "resources",
+    "Resources",
+    "SimpleResources",
+    "list_resources",
+    "display_resources",
+    "Example_resources",
+    "removeResources",
+    "listResources"
+  ],
+  "implement_user_approval_controls": [],
+  "include": [
+    "includeContext",
+    "test_doc_include_description",
+    "should_include_resource_param",
+    "testServerCapabilitiesIncludeSampling",
+    "testClientCapabilitiesIncludeSampling",
+    "testCreateMessageWithIncludeContext",
+    "test_resource_template_includes_mime_type",
+    "test_resource_param_included_with_recent_protocol_version"
+  ],
+  "include_header": [
+    "includeContext",
+    "_add_auth_header",
+    "auth_header",
+    "WriteHeader",
+    "HeaderFramer"
+  ],
+  "include_id": [
+    "includeContext",
+    "id",
+    "ID",
+    "newID",
+    "client_id",
+    "Int64ID"
+  ],
+  "include_in_header": [
+    "includeContext",
+    "_add_auth_header"
+  ],
+  "include_notification": [
+    "notification",
+    "Notification",
+    "includeContext",
+    "into_notification",
+    "handle_notification",
+    "send_notification",
+    "newNotification",
+    "handleNotification"
+  ],
+  "include_resource_parameter": [
+    "should_include_resource_param",
+    "includeContext",
+    "add_resource",
+    "addResource",
+    "AddResource",
+    "addResourceTemplate",
+    "AddResourceTemplate",
+    "test_add_resource_decorator"
+  ],
+  "include_response": [
+    "response",
+    "includeContext",
+    "Response",
+    "encodeResponse",
+    "into_response",
+    "handle_response",
+    "send_response",
+    "newResponse"
+  ],
+  "include_response_id": [
+    "includeContext",
+    "AddResponseTags",
+    "encodeResponse",
+    "response",
+    "Response",
+    "into_response",
+    "handle_response",
+    "send_response"
+  ],
+  "include_token": [
+    "includeContext",
+    "add_token",
+    "validate_token",
+    "revoke_token",
+    "oauth_token",
+    "handleToken",
+    "cancel_token",
+    "verify_token"
+  ],
+  "indicate_cancellation": [
+    "simulateCancellation",
+    "RegisterCancellation",
+    "Example_cancellation",
+    "TestCancellation",
+    "WaitForCancellation",
+    "CancellationTests"
+  ],
+  "initialize": [
+    "initialize",
+    "Initialize",
+    "_initialize",
+    "InitializeAsync",
+    "initializeServer",
+    "initializeResult",
+    "InitializeResult",
+    "InitializeParams"
+  ],
+  "interpret_disconnection": [
+    "handlePeerDisconnection"
+  ],
+  "issue_HTTP_GET": [
+    "GetHttpHeaders"
+  ],
+  "issue_access_token": [
+    "AccessToken",
+    "valid_access_token",
+    "load_access_token",
+    "get_access_token",
+    "expired_access_token",
+    "verifyAccessToken",
+    "McpAccessToken",
+    "no_expiry_access_token"
+  ],
+  "issue_cancellation_notification": [
+    "catch_cancellation_notification",
+    "CancelledNotification",
+    "notification",
+    "Notification",
+    "into_notification",
+    "_handle_notification",
+    "send_notification",
+    "handle_notification"
+  ],
+  "issue_ping": [
+    "ping",
+    "Ping",
+    "send_ping",
+    "testPing"
+  ],
+  "lifecycle_operation": [
+    "LifecycleInitializer"
+  ],
+  "log": [
+    "log",
+    "Log",
+    "log_request",
+    "log_message",
+    "LogInternal",
+    "LogUsingSSE",
+    "LogTransportConnecting",
+    "LogSessionDisposed"
+  ],
+  "make_request": [
+    "make_request",
+    "make",
+    "request",
+    "Request",
+    "TokenRequest",
+    "stub_request",
+    "setRequest",
+    "send_request"
+  ],
+  "make_stream_resumable": [
+    "make",
+    "sse_stream_response"
+  ],
+  "map_hints": [
+    "hints",
+    "MapMcp"
+  ],
+  "negotiate_authentication_authorization": [
+    "negotiate"
+  ],
+  "notify": [
+    "notify",
+    "Notify",
+    "notifySessions",
+    "notifyClients",
+    "NotifyProgress",
+    "notifyResourcesUpdated",
+    "NotifyProgressAsync",
+    "notifyToolsListChanged"
+  ],
+  "obtain_metadata": [
+    "metadata",
+    "get_metadata",
+    "build_metadata",
+    "OAuthMetadata",
+    "IBaseMetadata",
+    "BaseMetadata",
+    "func_metadata",
+    "client_metadata"
+  ],
+  "parse": [
+    "parse",
+    "_parse",
+    "parse_error",
+    "parseWWWAuthenticate",
+    "parseSchema",
+    "parse_tool_results",
+    "parse_request_body",
+    "parse_json_object"
+  ],
+  "pass_through": [],
+  "present_elicitation_request": [
+    "testCreateElicitationRequest",
+    "CreateElicitationRequestParam",
+    "elicitation",
+    "CreateElicitationResult",
+    "test_elicitation",
+    "RevocationRequest",
+    "RegistrationRequest",
+    "testElicitationFailRequestHandling"
+  ],
+  "present_log_messages": [
+    "send_log_message",
+    "log_message",
+    "LogSendingMessage",
+    "log",
+    "Log",
+    "log_request",
+    "process_messages",
+    "create_messages"
+  ],
+  "preserve_json_rpc_format": [
+    "JsonRpcRequest",
+    "JsonRpcError",
+    "JsonRpcMessage",
+    "JsonRpcHandler",
+    "JsonRpcResponse",
+    "getJsonRpcError",
+    "deserializeJsonRpcMessage"
+  ],
+  "prevent_redirect": [
+    "handle_redirect",
+    "createErrorRedirect",
+    "redirectUrl",
+    "redirect_handler",
+    "validate_redirect_uri",
+    "construct_redirect_uri"
+  ],
+  "process_post_request": [
+    "process",
+    "_handle_post_request",
+    "sendPostRequest",
+    "handlePostRequest",
+    "HandlePostRequest",
+    "sendSsePostRequest",
+    "HandlePostRequestAsync",
+    "prepare_request"
+  ],
+  "progress_tokens": [
+    "progress_token",
+    "progress",
+    "Progress",
+    "progressToken",
+    "ProgressToken",
+    "tokens",
+    "get_tokens",
+    "ProgressTracker"
+  ],
+  "provide_clear_indication": [],
+  "provide_http_endpoint": [
+    "endpoint"
+  ],
+  "provide_metadata": [
+    "metadata",
+    "build_metadata",
+    "CreateMetadata",
+    "handleMetadata",
+    "get_metadata",
+    "func_metadata",
+    "discover_metadata",
+    "client_metadata"
+  ],
+  "provide_progress_information": [],
+  "provide_specific_uri": [],
+  "provide_structured_results": [
+    "structured"
+  ],
+  "redirect": [
+    "redirectUrl",
+    "redirect_handler",
+    "redirectToAuthorization",
+    "handle_redirect",
+    "validate_redirect_uri",
+    "createErrorRedirect",
+    "construct_redirect_uri",
+    "_default_redirect_handler"
+  ],
+  "reference_tokens": [
+    "Reference",
+    "reference_type",
+    "tokens",
+    "ReferenceHandler",
+    "set_tokens",
+    "get_tokens",
+    "clear_tokens",
+    "valid_tokens"
+  ],
+  "register_redirect_uri": [
+    "validate_redirect_uri",
+    "construct_redirect_uri",
+    "Register",
+    "TestConstructRedirectUri",
+    "InvalidRedirectUriError",
+    "redirectUrl",
+    "handle_redirect",
+    "test_token_redirect_uri_mismatch"
+  ],
+  "reject_elicitation_request": [
+    "testCreateElicitationRequest",
+    "CreateElicitationRequestParam",
+    "elicitation",
+    "RevocationRequest",
+    "RegistrationRequest",
+    "CalculationRequest",
+    "CreateElicitationResult",
+    "test_elicitation"
+  ],
+  "relate_messages": [
+    "messages",
+    "create_messages",
+    "handle_messages",
+    "process_messages",
+    "collectMessages",
+    "clearMessages",
+    "marshalMessages",
+    "incoming_messages"
+  ],
+  "remain_connected": [
+    "RunConnected",
+    "isConnected",
+    "SetConnected",
+    "setIsConnected",
+    "LogClientConnected"
+  ],
+  "replay": [
+    "replay",
+    "replay_sender",
+    "replayEvents",
+    "replay_events_after",
+    "replayEventsAfter",
+    "_replay_events",
+    "testClientReplay",
+    "TestClientReplay"
+  ],
+  "request_id": [
+    "request_id",
+    "next_request_id",
+    "RequestId",
+    "request",
+    "Request",
+    "test_request_id_match",
+    "next_http_request_id",
+    "checkRequestId"
+  ],
+  "request_sensitive_information": [
+    "request",
+    "Request",
+    "LogSendingRequestSensitive"
+  ],
+  "request_token": [
+    "request",
+    "Request",
+    "TokenRequest",
+    "RefreshTokenRequest",
+    "refresh_token",
+    "_refresh_token",
+    "RequestType",
+    "RefreshToken"
+  ],
+  "reset_connection": [
+    "reset",
+    "testConnection",
+    "retry_connection",
+    "removeConnection",
+    "CreateConnection",
+    "basicConnection",
+    "NewConnection",
+    "bindConnection"
+  ],
+  "reset_timeout_clock": [
+    "_resetTimeout",
+    "reset"
+  ],
+  "respect_capability_negotiation": [],
+  "respect_model_preference_hints": [],
+  "respond": [
+    "respond",
+    "respondSSE",
+    "respondJSON",
+    "RequestResponder",
+    "resp"
+  ],
+  "result_error": [
+    "Result",
+    "error",
+    "Error",
+    "debug_error",
+    "_make_error_result",
+    "ResourceError",
+    "setError",
+    "responseError"
+  ],
+  "resume_stream": [
+    "resume",
+    "stream",
+    "create_stream",
+    "responseStream",
+    "get_stream",
+    "newStream",
+    "fromStream",
+    "eventStream"
+  ],
+  "retrieve_credentials": [
+    "retrieve",
+    "set_credentials",
+    "get_credentials"
+  ],
+  "return": [
+    "ReturnNull",
+    "ReturnJson",
+    "ReturnInteger",
+    "ReturnCancellationToken",
+    "without_carriage_return",
+    "Returns_IsError_Missing_Parameter",
+    "Returns_IsError_Content_And_Logs_Error_When_Tool_Fails",
+    "ReturnsString"
+  ],
+  "return_error": [
+    "error",
+    "Error",
+    "debug_error",
+    "ResourceError",
+    "setError",
+    "responseError",
+    "output_error",
+    "into_error"
+  ],
+  "return_http_error": [
+    "internal_error",
+    "ReturnInteger",
+    "ResumptionError"
+  ],
+  "return_http_status_code": [],
+  "return_links": [
+    "ReturnJson",
+    "ReturnNull",
+    "ReturnInteger"
+  ],
+  "return_response": [
+    "response",
+    "Response",
+    "get_response",
+    "test_response",
+    "send_response",
+    "into_response",
+    "error_response",
+    "onResponse"
+  ],
+  "return_standard_errors": [],
+  "return_standard_json_rpc_errors": [
+    "ReturnJson",
+    "JsonRpcError",
+    "getJsonRpcError"
+  ],
+  "return_status": [
+    "api_status",
+    "ReturnJson",
+    "ReturnInteger",
+    "ReturnNull"
+  ],
+  "rotate_refresh_tokens": [
+    "_refresh_token",
+    "load_refresh_token",
+    "refresh_token",
+    "can_refresh_token",
+    "RefreshToken",
+    "exchange_refresh_token"
+  ],
+  "send": [
+    "send",
+    "send_response",
+    "send_request",
+    "send_ping",
+    "send_notification",
+    "send_message",
+    "send_event",
+    "sendRequest"
+  ],
+  "sendCancellationNotification": [
+    "send_notification",
+    "sendNotification",
+    "catch_cancellation_notification",
+    "send_progress_notification",
+    "testSendNotification",
+    "send",
+    "SendNotificationAsync",
+    "CancelledNotification"
+  ],
+  "send_error_response": [
+    "error_response",
+    "send_response",
+    "_send_response",
+    "testErrorResponse",
+    "parseErrorResponse",
+    "internal_error_response",
+    "createErrorResponse",
+    "_create_error_response"
+  ],
+  "send_initialize_request": [
+    "InitializeRequest",
+    "testInitializeRequest",
+    "isInitializeRequest",
+    "checkInitializeRequest",
+    "jsonRpcInitializeRequest",
+    "send_request",
+    "InitializeRequestParam",
+    "sendRequest"
+  ],
+  "send_message": [
+    "send_message",
+    "sendMessage",
+    "SendMessageAsync_Should_Send_Message",
+    "send_log_message",
+    "send",
+    "SendMessageAsync",
+    "sendLoggingMessage",
+    "message"
+  ],
+  "send_notification": [
+    "send_notification",
+    "sendNotification",
+    "testSendNotification",
+    "SendNotificationAsync",
+    "send",
+    "send_progress_notification",
+    "notification",
+    "Notification"
+  ],
+  "send_progress_notification": [
+    "send_progress_notification",
+    "progress_notification",
+    "progressNotification",
+    "ProgressNotification",
+    "send_notification",
+    "sendNotification",
+    "testProgressNotification",
+    "checkProgressNotification"
+  ],
+  "send_progress_notifications": [
+    "send_progress_notification",
+    "SendsProgressNotifications",
+    "send",
+    "progress_notification",
+    "test_bidirectional_progress_notifications",
+    "progressNotification",
+    "ProgressNotification",
+    "testProgressNotification"
+  ],
+  "send_request": [
+    "send_request",
+    "send_request_with_option",
+    "sendRequest",
+    "SendRequest",
+    "test_send_request_stream_cleanup",
+    "sendPostRequest",
+    "send",
+    "testSendRequest"
+  ],
+  "send_response": [
+    "send_response",
+    "_send_response",
+    "send_response_to_stream",
+    "send",
+    "response",
+    "Response",
+    "test_response",
+    "get_response"
+  ],
+  "send_version": [
+    "send",
+    "version",
+    "Version",
+    "pkg_version",
+    "send_response",
+    "send_message",
+    "send_request",
+    "send_ping"
+  ],
+  "serve": [
+    "serve",
+    "serveGET",
+    "servePOST",
+    "ServeHTTP",
+    "serve_server",
+    "serve_inner",
+    "serve_directly",
+    "serve_client"
+  ],
+  "set": [
+    "set",
+    "Set",
+    "setUp",
+    "set_tokens",
+    "set_level",
+    "set_encoding",
+    "set_data",
+    "set_credentials"
+  ],
+  "set_result_or_error": [
+    "setError",
+    "set",
+    "Set",
+    "setStdErrorHandler",
+    "set_default_name",
+    "setResourceReader",
+    "set_tokens",
+    "setRequest"
+  ],
+  "set_timeouts": [
+    "set",
+    "Set",
+    "set_tokens",
+    "set_clients",
+    "SetMeta",
+    "set_level",
+    "set_data",
+    "setRequest"
+  ],
+  "shutdown": [
+    "shutdown",
+    "Shutdown",
+    "testShutdown",
+    "poll_shutdown",
+    "graceful_shutdown",
+    "testGracefulShutdown",
+    "TestStreamableServerShutdown",
+    "LogTransportShutdownFailed"
+  ],
+  "stop_processing": [
+    "stop",
+    "stopProcess",
+    "stop_tracking",
+    "initProcessing",
+    "stopReason",
+    "stopLoading",
+    "StopReason",
+    "stopServer"
+  ],
+  "store_token": [
+    "TokenStore",
+    "store_event",
+    "revoke_token",
+    "storeEvent",
+    "revokeToken",
+    "refresh_token",
+    "progress_token",
+    "progressToken"
+  ],
+  "support": [
+    "support_experimental",
+    "supports",
+    "supports_elicitation",
+    "SupportsServiceFromDI",
+    "SupportsSchemaCreateOptions",
+    "SupportsOptionalServiceFromDI",
+    "SupportsMcpServer",
+    "SupportsDisposingInstantiatedDisposableTargets"
+  ],
+  "support_base_protocol": [],
+  "support_cases": [],
+  "support_dynamic_client_registration": [
+    "DynamicClientRegistrationRequest",
+    "DynamicClientRegistrationOptions",
+    "DynamicClientRegistrationResponse",
+    "LogPerformingDynamicClientRegistration",
+    "PerformDynamicClientRegistrationAsync",
+    "LogDynamicClientRegistrationSuccessful",
+    "test_client_registration",
+    "CanAuthenticate_WithDynamicClientRegistration"
+  ],
+  "support_latest_version": [
+    "testServerLatestVersion",
+    "negotiatedVersion"
+  ],
+  "support_stdio": [
+    "stdio",
+    "run_stdio",
+    "Sampling_Stdio"
+  ],
+  "terminate_connection": [
+    "terminate",
+    "terminate_session",
+    "CreateConnection",
+    "testConnection",
+    "terminateSession",
+    "removeConnection",
+    "retry_connection",
+    "bindConnection"
+  ],
+  "track_progress_tokens": [
+    "progress_token",
+    "progressToken",
+    "ProgressToken",
+    "set_progress_token",
+    "next_progress_token",
+    "get_progress_token",
+    "checkProgressToken",
+    "addProgressToken"
+  ],
+  "treat_cursor": [
+    "Cursor",
+    "getCursor",
+    "checkCursor",
+    "encodeCursor",
+    "decodeCursor"
+  ],
+  "treat_timeout_as_failure": [],
+  "unknown": [
+    "IsUnknown",
+    "test_render_unknown_prompt",
+    "test_get_unknown_resource",
+    "test_get_unknown_prompt",
+    "test_call_unknown_tool",
+    "testUnknownMethodHandling",
+    "`should handle unknown content type`",
+    "Throws_Exception_On_Unknown_Tool"
+  ],
+  "useAuthorizationHeader": [
+    "AddAuthorizationHeaderAsync",
+    "authorizationHandler",
+    "AuthorizationHandler",
+    "AuthorizationState",
+    "AuthorizationManager",
+    "AuthorizationCode",
+    "AuthorizationRequest",
+    "AuthorizationMetadata"
+  ],
+  "use_OAuth_2.0_Protected_Resource_Metadata": [
+    "OAuthProtectedResourceMetadata",
+    "discoverOAuthProtectedResourceMetadata",
+    "getOAuthProtectedResourceMetadataUrl",
+    "ProtectedResourceMetadata",
+    "TestProtectedResourceMetadata",
+    "ExtractProtectedResourceMetadata",
+    "TestGetProtectedResourceMetadata",
+    "FetchProtectedResourceMetadataAsync"
+  ],
+  "use_canonical_URI": [],
+  "use_floating_point": [],
+  "use_oauth_metadata": [
+    "OAuthMetadata",
+    "TestOAuthMetadata",
+    "discoverOAuthMetadata",
+    "OAuthServerMetadata",
+    "OAuthClientMetadata",
+    "get_metadata",
+    "ResourceMetadata",
+    "CreateMetadata"
+  ],
+  "use_scheme": [
+    "useClient"
+  ],
+  "use_secure_session_ids": [],
+  "use_sessions": [
+    "sessions",
+    "Sessions",
+    "notifySessions",
+    "useClient"
+  ],
+  "use_uri_format": [
+    "FormatUri"
+  ],
+  "use_uri_scheme": [],
+  "use_www_authenticate": [
+    "authenticate",
+    "CanAuthenticate",
+    "ParseWwwAuthenticateParameters"
+  ],
+  "validate": [
+    "validate",
+    "validate_token",
+    "validate_scope",
+    "validateLength",
+    "validate_result",
+    "validate_client",
+    "validateSession",
+    "validate_request"
+  ],
+  "validate_error_code": [
+    "errorCode",
+    "ErrorCode",
+    "validate",
+    "validate_scope",
+    "_validate_resource",
+    "ValidationError",
+    "validate_token",
+    "validate_result"
+  ],
+  "validate_session_id": [
+    "validateSession",
+    "_validate_session",
+    "session_id",
+    "sessionId",
+    "SessionID",
+    "validate",
+    "get_session_id",
+    "extract_session_id"
+  ],
+  "validate_uri_scheme": [
+    "validate",
+    "validate_redirect_uri",
+    "validate_scope",
+    "validateElicitSchema",
+    "validate_result",
+    "validate_request",
+    "validate_client",
+    "_validate_resource"
+  ],
+  "verify": [
+    "verify",
+    "verifyJWT",
+    "verify_token",
+    "verifyResults",
+    "verifyAPIKey",
+    "verifyAccessToken",
+    "VerifyResourceMatch",
+    "VerifyCodeChallenge"
+  ],
+  "verify_state_parameters": [
+    "verify",
+    "verify_token",
+    "verifyResults",
+    "verifyAPIKey",
+    "verifyJWT",
+    "VerifyResourceMatch",
+    "VerifyCodeChallenge",
+    "parameters"
+  ],
+  "write": [
+    "write",
+    "Write",
+    "write_u64",
+    "WriteLine",
+    "writeSSEEvent",
+    "writeEvent",
+    "WriteHeader",
+    "WriteAsync"
+  ]
+}

@@ -1,0 +1,572 @@
+﻿{
+  "summary": {
+    "total": 28,
+    "compliant": 0,
+    "non_compliant": 24,
+    "unclear": 4,
+    "avg_files_per_rule": 2.18
+  },
+  "results": [
+    {
+      "rule_id": 1,//FALSE POSITIVE,这个选项本身就是optional，不需要实现，而且存在authorization的自动处理，所以是compliant
+      "rule_type": "OPTIONAL",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant authorization function definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant calls indicating automatic handling in calls_python.jsonl.",
+        "Phase 2-Source Code: Auth middleware validates tokens but lacks internal logic for automatic authorization in file: bearer_auth.py.",
+        "Phase 2-Source Code: Token handling does not encapsulate automatic authorization logic in file: token.py."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK lacks automatic handling for authorization as expected per the MCP rule. While there are components for authentication, they do not encapsulate the required behaviors, leaving implementation responsibilities to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\token.py"
+      ],
+      "code_snippets": [
+        "class BearerAuthBackend: ... <Token validation handling>",
+        "class TokenHandler: ... <Token management without authorization automatic step>"
+      ]
+    },
+    {
+      "rule_id": 2,//FALSE POSITIVE,工具没判断出来
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 19,//TRUE POSITIVE,这里确实找到了不一致，但是这个只是个不合规的问题感觉.而且我始终觉得，这里file_analyzed找到的代码不太对？
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found resource defined in AuthorizationRequest and TokenRequest.",
+        "Phase 2-Source Code: Logic in AuthorizationHandler does not ensure resource handling.",
+        "Phase 2-Source Code: TokenHandler includes resource conditionally, relying on context."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not consistently and automatically handle the inclusion of the `resource` parameter in authorization requests. Developers might need to intervene to include this parameter, which violates the compliance requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\authorize.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\token.py"
+      ],
+      "code_snippets": [
+        "resource: str | None = Field(None, description=\"RFC 8707 resource indicator - the MCP server this token will be used with\")",
+        "resource: str | None = Field(None, description=\"Resource indicator for the token\")"
+      ]
+    },
+    {
+      "rule_id": 22,//FALSE POSITIVE,这里都找到了auth_utils.py,但是这里面存在把它搞成小写的行，他的code_snippets看上去也没有找错？但是没有识别到这里的lower的语义？
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function resource_url_from_server_url in auth_utils.py at line 5.",
+        "Phase 1-IR: Found function check_resource_allowed that calls resource_url_from_server_url.",
+        "Phase 2-Source Code: Verified the implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\auth_utils.py"
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK does not implement the behavior of accepting uppercase scheme and host components, delegating this responsibility to the application developer.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\auth_utils.py"
+      ],
+      "code_snippets": [
+        "def resource_url_from_server_url(url: str | HttpUrl | AnyUrl) -> str:\n    parsed = urlsplit(url_str)\n    canonical = urlunsplit(parsed._replace(scheme=parsed.scheme.lower(), netloc=parsed.netloc.lower(), fragment=\"\"))"
+      ]
+    },
+    {
+      "rule_id": 23,//TRUE POSITIVE
+      "manual_label": "TRUE_POSITIVE",
+      "rule_type": "SHOULD",
+      "rule_text": "> **Note:** While both `https://mcp.example.com/` (with trailing slash) and `https://mcp.example.com` (without trailing slash) are technically valid absolute URIs according to [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986), implementations **SHOULD** consistently use the form without the trailing slash for better interoperability unless the trailing slash is semantically significant for the specific resource.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No automated handling of notifications found for URI consistency.",
+        "Phase 2-Source Code: `add_tool` method does not invoke `send_notification` automatically unless manually specified.",
+        "Phase 2-Source Code: Various `send_notification` calls exist, indicating the capability, but no automating logic was evidenced."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK is not compliant with the MCP rule because it does not encapsulate automatic notification sending logic for URI handling as requested. While there are definitions for notifications, they are not invoked automatically, placing responsibility on the developer.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py"
+      ],
+      "code_snippets": [
+        "def add_tool(self, fn: Callable[..., Any], name: str | None = None, ...)",
+        "await tool.run(arguments, context=context, convert_result=convert_result"
+      ]
+    },
+    {
+      "rule_id": 29,//TRUE POSITIVE,确实没有实现，maintainer也打了急需处理的标签.
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definition 'verify_token' in SimpleTokenVerifier, but it is not implemented.",
+        "Phase 2-Source Code: 'BearerAuthBackend' uses 'verify_token', but requires application to provide implementation."
+      ],
+      "confidence": 0.85, 
+      "explanation": "The SDK does not implement the necessary token validation as required by the MCP rule. The 'verify_token' function is defined but not implemented, leaving the responsibility to the application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\oauth_server.py"
+      ],
+      "code_snippets": [
+        "class SimpleTokenVerifier:\n    async def verify_token(self, token: str) -> AccessToken | None:\n        pass  # This is where you would implement actual token validation ",
+        "class BearerAuthBackend:\n    async def authenticate(self, conn: HTTPConnection):\n        # Validate the token with the verifier\n        auth_info = await self.token_verifier.verify_token(token)\n        if not auth_info:\n            return None\n        if auth_info.expires_at and auth_info.expires_at < int(time.time()):\n            return None "
+      ]
+    },
+    {
+      "rule_id": 33,//TRUE POSITIVE,这里确实没有实现 token issuer的检查
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP clients **MUST NOT** send tokens to the MCP server other than ones issued by the MCP server's authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No found function definitions explicitly handling token restrictions.",
+        "Phase 1-IR: No call relationships confirming enforcement of token source checks.",
+        "Phase 2-Source Code: The reviewed methods do not provide internal logic to handle token restrictions as required by the rule."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK lacks internal mechanisms to ensure that tokens sent to the MCP server are exclusively those issued by the MCP server's authorization server. No compliance-checking functions are evident.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\register.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py"
+      ],
+      "code_snippets": [
+        "async def verify_token(self, token: str) -> AccessToken | None: pass",
+        "class FastMCP: ... token_verifier: TokenVerifier | None = None"
+      ]
+    },
+    {
+      "rule_id": 34,//TRUE POSITIVE,这里确实没有检查token对于使用他们自己的资源是validate的.
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** only accept tokens that are valid for use with their\nown resources.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'verify_token' in TokenVerifier protocol, but no implementation found in the source code.",
+        "Phase 1-IR: Confirmed 'authenticate' calls the token verifier, which doesn’t perform required automatic validation.",
+        "Phase 2-Source Code: Verified implementation of 'BearerAuthBackend' uses the verifier without actual logic for token validity."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement the behavior required for token validation automatically. The method 'verify_token' is defined but lacks an actual implementation, placing the responsibility on developers to ensure proper token handling.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py"
+      ],
+      "code_snippets": [
+        "async def verify_token(self, token: str) -> AccessToken | None:\n        pass  # This is where you would implement actual token validation",
+        "auth_info = await self.token_verifier.verify_token(token)"
+      ]
+    },
+    {
+      "rule_id": 35,//TRUE POSITIVE,确实没有对MUST NOT的实现
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept or transit any other tokens.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_python.jsonl.",
+        "Phase 2-Source Code: Observed incomplete token verification logic in SimpleTokenVerifier, lacking implementation to prevent unauthorized token acceptance."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not sufficiently encapsulate the behavior to prevent acceptance or transiting of any unauthorized tokens, thus shifting responsibilities to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\__init__.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\server.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py"
+      ],
+      "code_snippets": [
+        "class SimpleTokenVerifier(TokenVerifier):  # Only provides a method signature without implementation.",
+        "async def verify_token(self, token: str) -> AccessToken | None:  # No actual token validation logic."
+      ]
+    },
+    {
+      "rule_id": 39,//TRUE POSITIVE,确实没实现
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function TokenVerifier in provider.py, defines verify_token method.",
+        "Phase 2-Source Code: Found SimpleTokenVerifier, but no implementation for actual token validation.",
+        "Phase 2-Source Code: Found BearerAuthBackend uses verify_token, but this requires developer invocation."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK shows an ability to validate tokens but does not implement automatic validation logic when they are presented. Developers must manually invoke validation, which violates the purpose of encapsulating functionality within the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\token.py"
+      ],
+      "code_snippets": [
+        "class SimpleTokenVerifier(TokenVerifier):\n    async def verify_token(self, token: str) -> AccessToken | None:\n        pass  # Actual token validation",
+        "async def authenticate(self, conn: HTTPConnection):\n    auth_info = await self.token_verifier.verify_token(token)"
+      ]
+    },
+    {
+      "rule_id": 50,//TRUE POSITIVE.这只是个判断严重性的问题，文件什么的找的很齐全.
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** take precautions to prevent redirecting user agents to untrusted URI's, following suggestions laid out in [OAuth 2.1 Section 7.12.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.12.2)",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function validate_redirect_uri in OAuthClientMetadata.",
+        "Phase 2-Source Code: validate_redirect_uri checks if the provided URI matches registered ones but does not prevent redirection to untrusted URIs."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK defines a method for validation of redirect URIs but lacks the automatic prevention and notification mechanisms required to handle untrusted redirections as specified in the guidelines.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\auth.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\authorize.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\routes.py"
+      ],
+      "code_snippets": [
+        "def validate_redirect_uri(self, redirect_uri: AnyUrl | None) -> AnyUrl: ...",
+        "raise InvalidRedirectUriError(f\"Redirect URI '{redirect_uri}' not registered for client\")"
+      ]
+    },
+    {
+      "rule_id": 52,//TRUE POSITIVE
+      "manual_label": "TRUE_POSITIVE",
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found that indicate consent handling.",
+        "Phase 2-Source Code: In the file authorize.py, no internal logic is found that automatically manages user consent."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not encapsulate the required behavior of automatically obtaining user consent for each dynamically registered client; it requires application developers to implement this logic themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\authorize.py"
+      ],
+      "code_snippets": [
+        "No specific code snippets for user consent handling found."
+      ]
+    },
+    {
+      "rule_id": 53,//TRUE POSITIVE
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** validate access tokens before processing the request, ensuring the access token is issued specifically for the MCP server, and take all necessary steps to ensure no data is returned to unauthorized parties.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'verify_token' defined in TokenVerifier with no implementation in SimpleTokenVerifier.",
+        "Phase 1-IR: Confirmed that BearerAuthBackend calls verify_token for authentication.",
+        "Phase 2-Source Code: Verified lack of implementation in verify_token method, indicating responsibility is on developers."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK provides the capability to verify tokens but lacks the internal logic required for proper token validation. This means it does not automatically validate access tokens, transferring this responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\token.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py"
+      ],
+      "code_snippets": [
+        "async def verify_token(self, token: str) -> AccessToken | None: pass  # No implementation",
+        "auth_info = await self.token_verifier.verify_token(token)  # Call in BearerAuthBackend"
+      ]
+    },
+    {
+      "rule_id": 56,//TRUE POSITIVE
+      "rule_type": "MUST_NOT",
+      "rule_text": "If the MCP server makes requests to upstream APIs, it may act as an OAuth client to them. The access token used at the upstream API is a seperate token, issued by the upstream authorization server. The MCP server **MUST NOT** pass through the token it received from the MCP client.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No definitive evidence found in defs_python.jsonl indicating safeguard against passing client tokens.",
+        "Phase 2-Source Code: Found methods to handle token exchanges but no explicit logic to block client token propagation."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically handle the passing through of tokens, leaving the responsibility open to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\register.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\token.py"
+      ],
+      "code_snippets": [
+        "async def _handle_token_response(self, response: httpx.Response) -> None: ...",
+        "def response(self, obj: TokenSuccessResponse | TokenErrorResponse): ..."
+      ]
+    },
+    {
+      "rule_id": 63,//FALSE POSITIVE
+      "manual_label": "FALSE_POSITIVE",
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found request_id in RequestContext defined in context.py:3",
+        "Phase 1-IR: Identified methods related to session validation in multiple source files.",
+        "Phase 2-Source Code: Methods for validating sessions and handling requests exist, but do not prevent request ID reuse."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK defines a request_id in the RequestContext class but does not implement logic to ensure that a request ID is not reused within the same session internally. Developers are likely required to enforce this themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\context.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\validate.py"
+      ],
+      "code_snippets": [
+        "class RequestContext:",
+        "def _validate_session(self, request: Request, send: Send) -> bool:"
+      ]
+    },
+    {
+      "rule_id": 77,//FALSE POSITIVE
+      "manual_label": "FALSE_POSITIVE",
+      "rule_type": "MUST",
+      "rule_text": "The server **MUST** respond with its own capabilities and information:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ServerCapabilities definition in models.py",
+        "Phase 1-IR: Identified get_capabilities method in server.py",
+        "Phase 2-Source Code: No automatic response logic found in examined source files."
+      ],
+      "confidence": 0.75,
+      "explanation": "While the SDK defines capability fields, there is no evidence of automated handling for sending responses related to server capabilities. Developers would need to implement this functionality themselves, which violates the rule's requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-auth\\mcp_simple_auth\\auth_server.py"
+      ],
+      "code_snippets": [
+        "class ServerCapabilities: ...",
+        "async def _received_request(self, responder: RequestResponder): ..."
+      ]
+    },
+    {
+      "rule_id": 81,//TRUE POSITIVE,确实在initialize的时候，在HTTP请求头中没有发现，但是在Session层中发现了这个证据.
+      "rule_type": "MUST",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability definition for protocolVersion in InitializeRequestParams within version.py.",
+        "Phase 2-Source Code: Lack of implementation logic in streamable_http.py that automatically sends the protocol version without developer intervention."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK defines the capability to send a protocol version in the initialize request, but it does not implement the logic to send this version automatically. Developers seem to be responsible for ensuring the protocol version is correctly included in the request.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\version.py"
+      ],
+      "code_snippets": [
+        "class InitializeRequestParams(RequestParams):\n    protocolVersion: str | int"
+      ]
+    },
+    {
+      "rule_id": 82,//FALSE POSITIVE.
+      "rule_type": "SHOULD",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `initialize` in defs, defined in file types.py.",
+        "Phase 1-IR: Checked calls but did not find internal logic that sends the protocol version automatically.",
+        "Phase 2-Source Code: Verified `protocolVersion` parameter in InitializeRequestParams but found no automatic handling logic."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines the ability to specify a protocol version but does not automatically handle the sending and validation as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "class InitializeRequestParams(RequestParams):\n    protocolVersion: str | int",
+        "async def _validate_protocol_version(self, request: Request, send: Send) -> bool:  # Validates the protocol version"
+      ]
+    },
+    {
+      "rule_id": 83,//FALSE POSITIVE.
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Found _validate_protocol_version defined in tmprkk2muel.py.",
+        "Phase 2-Source Code: Logic for handling unsupported versions found in tmprkk2muel.py."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK implements validation of protocol versions and error handling for unsupported versions, but it is unclear if it automatically responds with the same protocol version when supported as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "_validate_protocol_version method checks if the protocol version from the request headers is supported and returns errors if not.",
+        "Automatic error responses through _create_error_response method when unsupported protocol versions are presented."
+      ]
+    },
+    {
+      "rule_id": 85,//FALSE POSITIVE
+      "rule_type": "SHOULD",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Did not find relevant function definitions or calls related to protocol version response handling.",
+        "Phase 2-Source Code: Found _validate_protocol_version function but noted it does not encapsulate behavior required by the rule, leaving the responsibility on the developers to ensure correct version usage."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK did not automatically handle the compliance behavior required by the MCP rule, shifting the responsibility of managing protocol versions to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\lowlevel\\server.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py"
+      ],
+      "code_snippets": [
+        "async def _validate_protocol_version(self, request: Request, send: Send) -> bool: ..."
+      ]
+    },
+    {
+      "rule_id": 86,//TRUE POSITIVE
+      "rule_type": "SHOULD",
+      "rule_text": "If the client does not support the version in the server's response, it **SHOULD**\ndisconnect.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found disconnect function in tmp33zkt_k2.py",
+        "Phase 2-Source Code: Verified disconnect logic in function disconnect_from_server",
+        "Phase 2-Source Code: Identified protocol version validation without automatic disconnection in _validate_protocol_version"
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK framework does not automatically disconnect the client when the version in the server's response is unsupported. While it provides a method for disconnection, it is not linked with protocol validation responses, which means application developers are left to manage the disconnection themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py"
+      ],
+      "code_snippets": [
+        "async def disconnect_from_server(self, session: mcp.ClientSession) -> None: ...",
+        "async def _validate_protocol_version(self, request: Request, send: Send) -> bool: ..."
+      ]
+    },
+    {
+      "rule_id": 88,//FALSE POSITIVE,这个其实是完全合规的
+      "rule_type": "MUST",
+      "rule_text": "Both parties **MUST**:\n\n- Respect the negotiated protocol version\n- Only use capabilities that were successfully negotiated",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Found capability definition listChanged in classes ResourcesCapability and ToolsCapability.",
+        "Phase 1-IR: No clear automatic notification logic found in the functions specifically related to sending notifications when capabilities change."
+      ],
+      "confidence": 0.5,
+      "explanation": "While the ability to declare capabilities like listChanged is present, it is uncertain if there is an internal mechanism that automatically sends notifications to the clients regarding these capabilities.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\server.py"
+      ],
+      "code_snippets": [
+        "listChanged: bool | None = None  # Indicating if the server supports notifications for changes.",
+        "def _validate_protocol_version(self, request: Request, send: Send) -> bool: ..."
+      ]
+    },
+    {
+      "rule_id": 90,//FALSE POSITIVE,本来就是个MAY,所以不需要实现其实
+      "rule_type": "MAY",
+      "rule_text": "The server **MAY** initiate shutdown by closing its output stream to the client and\nexiting.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions related to automatic shutdown found.",
+        "Phase 2-Source Code: Verified in FILE_PATH: stdio.py that closing streams is present, but no encapsulated shutdown behavior."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not automatically handle server shutdown by closing its output stream and exiting. The handling must be implemented by developers, which does not meet the rule requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py"
+      ],
+      "code_snippets": [
+        "async def stdio_server(stdin: anyio.AsyncFile[str] | None = None, stdout: anyio.AsyncFile[str] | None = None)",
+        "await read_stream.aclose()",
+        "await write_stream.aclose()"
+      ]
+    },
+    {
+      "rule_id": 91,//TRYE POSITIVE
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found timeout handling in create_mcp_http_client in src/mcp/shared/_httpx_utils.py but lacks cancellation mechanism.",
+        "Phase 2-Source Code: Verified timeout implementation in send_request in src/mcp/client/streamable_http.py, but no automatic cancellation notifications are sent."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK provides mechanisms for setting timeouts for HTTP requests but lacks an internal handling mechanism to send cancellation notifications automatically. This shifts the responsibility to the developers, which does not conform to the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\_httpx_utils.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "def create_mcp_http_client( ...): if timeout is None: kwargs[\"timeout\"] = httpx.Timeout(30.0)",
+        "async def send_request(...): with anyio.fail_after(timeout): response_or_error = await response_stream_reader.receive()"
+      ]
+    },
+    {
+      "rule_id": 92,//FALSE POSITIVE
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found for cancellation notification handling.",
+        "Phase 2-Source Code: Cancellation logic is referenced, but no automatic notification sending was confirmed."
+      ],
+      "confidence": 0.8,
+      "explanation": "While the SDK includes mechanisms for handling timeouts and request cancellations, it does not automatically send a cancellation notification as required by the MCP rule. This requirement is not encapsulated within SDK methods, thus shifting responsibility to the developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\message.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "async def cancel(self) -> None: # Send an error response to indicate cancellation"
+      ]
+    },
+    {
+      "rule_id": 95,//FALSE POSITIVE
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Verified automatic timeout setup in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\_httpx_utils.py.",
+        "Phase 2-Source Code: Verified timeout handling in client streamable_http.py with customizable options."
+      ],
+      "confidence": 0.8,
+      "explanation": "While the SDK does enforce a default timeout of 30 seconds and allows developers to set timeouts, this doesn't fulfill the protocol requirement that states a maximum timeout should always be enforced without relying on application developers for implementation.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\_httpx_utils.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "Default timeout of 30 seconds set in create_mcp_http_client",
+        "timeout: float | timedelta = 30 in streamable_http.py"
+      ]
+    },
+    {
+      "rule_id": 97,//TRUE POSITIVE
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No suitable function definitions for user consent found.",
+        "Phase 2-Source Code: SDK does not implement automatic user consent management."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not encapsulate user consent handling, which remains the developer's responsibility.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\register.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\authorize.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\client_auth.py"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 100,//FALSE POSITIVE
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    }
+  ]
+}

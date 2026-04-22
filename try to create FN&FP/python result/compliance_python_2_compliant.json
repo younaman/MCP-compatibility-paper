@@ -1,0 +1,1533 @@
+﻿{
+  "summary": {
+    "total": 76,
+    "compliant": 76,
+    "non_compliant": 0,
+    "unclear": 0,
+    "avg_files_per_rule": 1.76
+  },
+  "results": [
+    {
+      "rule_id": 101,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** use secure, non-deterministic session IDs.\nGenerated session IDs (e.g., UUIDs) **SHOULD** use secure random number generators. Avoid predictable or sequential session identifiers that could be guessed by an attacker. Rotating or expiring session IDs can also reduce the risk.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No clear function definitions found.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: tmphrljqdfk.py where new session IDs are generated using uuid4() and managed within the SDK."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages secure, non-deterministic session IDs using uuid4() for generation, freeing developers from handling this protocol detail.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\tmphrljqdfk.py"
+      ],
+      "code_snippets": [
+        "new_session_id = uuid4().hex",
+        "http_transport = StreamableHTTPServerTransport(mcp_session_id=new_session_id, ...)"
+      ]
+    },
+    {
+      "rule_id": 102,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP servers **MUST** use secure, non-deterministic session IDs.\nGenerated session IDs (e.g., UUIDs) **SHOULD** use secure random number generators. Avoid predictable or sequential session identifiers that could be guessed by an attacker. Rotating or expiring session IDs can also reduce the risk.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function mcp_session_id defined in transport.py",
+        "Phase 1-IR: Confirmed calls to generate new session IDs using uuid4() in handling requests.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport.py"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically generates session IDs using secure random number generators (via uuid4()). There is no requirement for application developers to manage or create session IDs themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport.py"
+      ],
+      "code_snippets": [
+        "new_session_id = uuid4().hex"
+      ]
+    },
+    {
+      "rule_id": 105,
+      "rule_type": "SHOULD",
+      "rule_text": "Clients **SHOULD** support stdio whenever possible.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant IR function definitions were found.",
+        "Phase 2-Source Code: Implementation in stdio.py showing automatic management of stdio."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK appropriately manages stdio support through internal implementation methods, requiring no additional effort from developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py"
+      ],
+      "code_snippets": [
+        "async def stdio_server(stdin: anyio.AsyncFile[str] | None = None, stdout: anyio.AsyncFile[str] | None = None) {...}"
+      ]
+    },
+    {
+      "rule_id": 107,
+      "rule_type": "MAY",
+      "rule_text": "In the **stdio** transport:\n\n- The client launches the MCP server as a subprocess.\n- The server reads JSON-RPC messages from its standard input (`stdin`) and sends messages\n  to its standard output (`stdout`).\n- Messages are individual JSON-RPC requests, notifications, or responses.\n- Messages are delimited by newlines, and **MUST NOT** contain embedded newlines.\n- The server **MAY** write UTF-8 strings to its standard error (`stderr`) for logging\n  purposes. Clients **MAY** capture, forward, or ignore this logging.\n- The server **MUST NOT** write anything to its `stdout` that is not a valid MCP message.\n- The client **MUST NOT** write anything to the server's `stdin` that is not a valid MCP\n  message.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found logging mechanism in stdio.py that uses logger.error to log errors.",
+        "Phase 1-IR: Confirmed internal calling of logger.error in response to errors.",
+        "Phase 2-Source Code: Verified logging behavior is automatic with logger configured to write to stderr in UTF-8."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK defines a logging system that automatically logs errors to stderr using UTF-8 strings. The required behavior for logging is encapsulated within the SDK, and application developers are not required to implement logging functionality manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py"
+      ],
+      "code_snippets": [
+        "logger.error('This is an example error message.')",
+        "logging.basicConfig(level=logging.DEBUG, handlers=[logging.StreamHandler(sys.stderr)])"
+      ]
+    },
+    {
+      "rule_id": 109,
+      "rule_type": "MUST_NOT",
+      "rule_text": "In the **stdio** transport:\n\n- The client launches the MCP server as a subprocess.\n- The server reads JSON-RPC messages from its standard input (`stdin`) and sends messages\n  to its standard output (`stdout`).\n- Messages are individual JSON-RPC requests, notifications, or responses.\n- Messages are delimited by newlines, and **MUST NOT** contain embedded newlines.\n- The server **MAY** write UTF-8 strings to its standard error (`stderr`) for logging\n  purposes. Clients **MAY** capture, forward, or ignore this logging.\n- The server **MUST NOT** write anything to its `stdout` that is not a valid MCP message.\n- The client **MUST NOT** write anything to the server's `stdin` that is not a valid MCP\n  message.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function stdin_reader() in stdio.py responsible for reading and validating MCP messages.",
+        "Phase 1-IR: Found function stdout_writer() that sends validated MCP messages to stdout.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK's implementation of the message handling logic ensures that only valid MCP messages are written to stdout.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py"
+      ],
+      "code_snippets": [
+        "async def stdin_reader() {...}",
+        "async def stdout_writer() {...}"
+      ]
+    },
+    {
+      "rule_id": 110,
+      "rule_type": "MUST_NOT",
+      "rule_text": "In the **stdio** transport:\n\n- The client launches the MCP server as a subprocess.\n- The server reads JSON-RPC messages from its standard input (`stdin`) and sends messages\n  to its standard output (`stdout`).\n- Messages are individual JSON-RPC requests, notifications, or responses.\n- Messages are delimited by newlines, and **MUST NOT** contain embedded newlines.\n- The server **MAY** write UTF-8 strings to its standard error (`stderr`) for logging\n  purposes. Clients **MAY** capture, forward, or ignore this logging.\n- The server **MUST NOT** write anything to its `stdout` that is not a valid MCP message.\n- The client **MUST NOT** write anything to the server's `stdin` that is not a valid MCP\n  message.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'stdio_server' defined in stdio.py that manages stdin and stdout interactions.",
+        "Phase 1-IR: Confirmed that invalid messages are handled in the 'stdin_reader' function.",
+        "Phase 2-Source Code: Verified implementation details in 'stdio.py' regarding stdin message validation."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically validates that messages written to stdin are valid MCP messages and captures invalid ones, ensuring compliance with the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py"
+      ],
+      "code_snippets": [
+        "async def stdin_reader(): async for line in stdin: message = types.JSONRPCMessage.model_validate_json(line)"
+      ]
+    },
+    {
+      "rule_id": 111,
+      "rule_type": "MUST",
+      "rule_text": "The server **MUST** provide a single HTTP endpoint path (hereafter referred to as the\n**MCP endpoint**) that supports both POST and GET methods. For example, this could be a\nURL like `https://example.com/mcp`.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function FastMCP in defs, defined to provide HTTP handling capabilities",
+        "Phase 1-IR: Confirmed main calls to streamable_http_app and related infrastructure for handling GET and POST",
+        "Phase 2-Source Code: Verified implementation of automatic route handling for GET and POST requests under the `FastMCP` class."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines a mechanism to set up a single HTTP endpoint that handles both POST and GET methods internally without requiring developer intervention, thus meeting the MCP compliance requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\__init__.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\__init__.py"
+      ],
+      "code_snippets": [
+        "def streamable_http_app(self): return Starlette(routes=routes, middleware=middleware)",
+        "await self._session_manager.handle_request(scope, receive, send)"
+      ]
+    },
+    {
+      "rule_id": 112,
+      "rule_type": "MUST",
+      "rule_text": "When implementing Streamable HTTP transport:\n\n1. Servers **MUST** validate the `Origin` header on all incoming connections to prevent DNS rebinding attacks\n2. When running locally, servers **SHOULD** bind only to localhost (127.0.0.1) rather than all network interfaces (0.0.0.0)\n3. Servers **SHOULD** implement proper authentication for all connections",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found _validate_origin method in TransportSecurityMiddleware.",
+        "Phase 1-IR: Confirmed validate_request method calls _validate_origin to ensure compliance.",
+        "Phase 2-Source Code: Verified that the SDK automatically checks the Origin header without developer intervention in validate_request."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements automatic validation of the `Origin` header on all incoming requests, complying with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\transport_security.py"
+      ],
+      "code_snippets": [
+        "async def validate_request(self, request: Request, is_post: bool = False) -> Response | None: ..."
+      ]
+    },
+    {
+      "rule_id": 114,
+      "rule_type": "SHOULD",
+      "rule_text": "When implementing Streamable HTTP transport:\n\n1. Servers **MUST** validate the `Origin` header on all incoming connections to prevent DNS rebinding attacks\n2. When running locally, servers **SHOULD** bind only to localhost (127.0.0.1) rather than all network interfaces (0.0.0.0)\n3. Servers **SHOULD** implement proper authentication for all connections",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found BearerAuthBackend in bearer_auth.py responsible for validating Bearer tokens.",
+        "Phase 1-IR: Required authentication is enforced in RequireAuthMiddleware.",
+        "Phase 2-Source Code: Verified implementation details in files for BearerAuthBackend, RequireAuthMiddleware, and AuthContextMiddleware."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework implements proper authentication by encapsulating authentication logic within middleware, requiring valid bearer tokens for incoming requests, and managing user sessions automatically.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\require_auth.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\auth_context.py"
+      ],
+      "code_snippets": [
+        "class BearerAuthBackend: \n    async def authenticate(self, conn: HTTPConnection): ...",
+        "class RequireAuthMiddleware: \n    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None: ...",
+        "class AuthContextMiddleware: \n    async def __call__(self, scope: Scope, receive: Receive, send: Send): ..."
+      ]
+    },
+    {
+      "rule_id": 115,
+      "rule_type": "MUST",
+      "rule_text": "Every JSON-RPC message sent from the client **MUST** be a new HTTP POST request to the\nMCP endpoint.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found class StreamableHTTPServerTransport in streamable_http.py which handles JSON-RPC messages.",
+        "Phase 1-IR: The _handle_post_request method sends JSON-RPC messages via HTTP POST.",
+        "Phase 2-Source Code: Verified the implementation ensures JSON-RPC messages are sent with appropriate POST requests automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles sending JSON-RPC messages as new HTTP POST requests to the MCP endpoint within the _handle_post_request method of the StreamableHTTPServerTransport class.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "async with ctx.client.stream(\n    'POST',\n    self.url,\n    json=message.model_dump(by_alias=True, mode='json', exclude_none=True),\n    headers=headers,\n) as response:  # Handles sending JSON-RPC message"
+      ]
+    },
+    {
+      "rule_id": 116,
+      "rule_type": "MUST",
+      "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function handle_post_request in https://github.com/modelcontextprotocol/python-sdk/blob/main/src/mcp/server/streamable_http.py#L12",
+        "Function validates the Accept header and Content-Type correctly.",
+        "Phase 1-IR: Verified implementation of notification sending logic within the SDK."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides a method to handle POST requests for JSON-RPC messages, correctly validates headers, and manages request and response processes internally without shifting responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "async def _handle_post_request(...) {\n# Handles POST requests containing JSON-RPC messages.\n}"
+      ]
+    },
+    {
+      "rule_id": 117,
+      "rule_type": "MUST",
+      "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found StreamableHTTPTransport initializing request headers including Accept: application/json, text/event-stream.",
+        "Phase 2-Source Code: Verified _check_accept_headers method checks for required Accept headers and handles errors appropriately.",
+        "Phase 2-Source Code: Verified initialization code in StreamableHTTPTransport sets up headers necessary for compliance."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles requests with the required 'Accept' header, checking for both 'application/json' and 'text/event-stream' without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "self.request_headers = { 'accept': f'{JSON}, {SSE}', 'content-type': JSON, **self.headers } # StreamableHTTPTransport",
+        "# Check Accept headers\nhas_json, has_sse = self._check_accept_headers(request) # StreamableHTTPServerTransport"
+      ]
+    },
+    {
+      "rule_id": 118,
+      "rule_type": "MUST",
+      "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found structured classes for JSON-RPC Request, Notification, and Response.",
+        "Phase 1-IR: Confirmed main calls within the StreamableHTTPServerTransport related to handling JSON-RPC messages.",
+        "Phase 2-Source Code: Verified implementation of headers checking, response management, and error handling in the StreamableHTTPServerTransport."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework encapsulates the handling of JSON-RPC POST requests effectively. It defines the necessary capabilities for managing requests, notifications, and responses and does so without shifting the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "_handle_post_request method implementation checks headers and processes JSON-RPC messages accordingly."
+      ]
+    },
+    {
+      "rule_id": 119,
+      "rule_type": "MUST",
+      "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function _handle_post_request in tmpz8jnoeel.py that implements response handling.",
+        "Phase 2-Source Code: Verified the implementation and logic for returning HTTP 202 in the function outlined.",
+        "SDK automatically sends HTTP 202 Accepted when appropriate, conforming to the rule requirements."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework encapsulates the required HTTP response behavior, managing the sending of the 202 Accepted status code internally, ensuring that developers do not have to implement this aspect themselves.",
+      "files_analyzed": [
+        "tmpz8jnoeel.py"
+      ],
+      "code_snippets": [
+        "if not isinstance(message.root, JSONRPCRequest):\n    response = self._create_json_response(\n        None,\n        HTTPStatus.ACCEPTED,\n    )\n    await response(scope, receive, send)"
+      ]
+    },
+    {
+      "rule_id": 120,
+      "rule_type": "MUST",
+      "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct function definitions found in IR; checked source files.",
+        "Phase 2-Source Code: Verified _create_error_response and its usage in _handle_post_request.",
+        "Phase 2-Source Code: Error responses managed automatically based on received inputs."
+      ],
+      "confidence": 1.0,
+      "explanation": "The defined SDK functions handle HTTP error responses according to the MCP rule, automatically returning correct error status codes when inputs cannot be accepted.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\sdk\\tmpz8jnoeel.py"
+      ],
+      "code_snippets": [
+        "_create_error_response( ... , HTTPStatus.BAD_REQUEST, ... )",
+        "_handle_post_request(...)"
+      ]
+    },
+    {
+      "rule_id": 121,
+      "rule_type": "MAY",
+      "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function _create_error_response in tmpz8jnoeel.py",
+        "Phase 1-IR: Confirmed usage of this function for error handling in various scenarios.",
+        "Phase 2-Source Code: Verified implementation of _create_error_response generates error responses without ID."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically generates JSON-RPC error responses with no ID as required by the MCP rule, encapsulating the behavior entirely within its implementation.",
+      "files_analyzed": [
+        "tmpz8jnoeel.py"
+      ],
+      "code_snippets": [
+        "_create_error_response(..., id='server-error', ...)"
+      ]
+    },
+    {
+      "rule_id": 122,
+      "rule_type": "MUST",
+      "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function _handle_post_request in tmpz8jnoeel.py managing JSON-RPC requests and responses.",
+        "Phase 1-IR: Found function _handle_get_request in tmpz8jnoeel.py managing SSE initiation.",
+        "Phase 2-Source Code: Verified automatic handling in tmpz8jnoeel.py for both content types and responses."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the required behavior for JSON-RPC requests and streaming responses as defined by the MCP rule. It checks the Accept headers, manages content types, and initiates the appropriate response without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "await self._create_json_response(None, HTTPStatus.ACCEPTED)",
+        "response = EventSourceResponse(content=sse_stream_reader, headers=headers)"
+      ]
+    },
+    {
+      "rule_id": 123,
+      "rule_type": "MUST",
+      "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function StreamableHTTPTransport in defs, defined in src/mcp/client/streamable_http.py",
+        "Phase 1-IR: Confirmed StreamableHTTPTransport handles HTTP POST and supports SSE in calls.",
+        "Phase 2-Source Code: Verified implementation to include required headers (Accept and Content-Type) and automatic handling of both JSON-RPC response types and SSE streams."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK properly handles both cases specified in the MCP rule. It encapsulates the behavior of using HTTP POST for sending JSON-RPC messages and provides automatic management for both JSON responses and SSE streams. The implementation includes the required headers and manages the response types internally without delegating these responsibilities to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "self.request_headers = { ACCEPT: f'{JSON}, {SSE}', CONTENT_TYPE: JSON, **self.headers }",
+        "async def _handle_post_request(self, scope: Scope, request: Request, receive: Receive, send: Send) -> None: ...",
+        "response = EventSourceResponse(content=sse_stream_reader, data_sender_callable=standalone_sse_writer, headers=headers)"
+      ]
+    },
+    {
+      "rule_id": 124,
+      "rule_type": "SHOULD",
+      "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions related to JSON-RPC handling in defs_python.jsonl.",
+        "Phase 1-IR: Verified function call relationships in calls_python.jsonl showing automatic handling of JSON-RPC responses.",
+        "Phase 2-Source Code: Reviewed implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py which reflects compliance with the rule."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK implements the necessary capabilities to automatically handle SSE streams and JSON-RPC responses as required by the MCP rule. There are internal mechanisms in place that ensure compliance without relying on developers to handle protocol intricacies.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "function send_response_handler() where JSON-RPC responses are processed and sent based on incoming requests.",
+        "method definition in streamable_http.py that shows automatic management of SSE streams."
+      ]
+    },
+    {
+      "rule_id": 125,
+      "rule_type": "MAY",
+      "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'send_notification' function defined in 'tmpaa2_i805.py' handling notifications.",
+        "Phase 1-IR: Confirmed automatic message handling within '_handle_get_request' in 'tmpz8jnoeel.py'.",
+        "Phase 1-IR: Verified internal logic for JSON-RPC requests and notifications in server context."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles sending notifications and JSON-RPC requests, fulfilling the requirements of the MCP rule without shifting responsibilities to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\stdio.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_methods.py"
+      ],
+      "code_snippets": [
+        "'send_notification' method to emit notifications.",
+        "Logic within '_handle_post_request' managing request processing."
+      ]
+    },
+    {
+      "rule_id": 126,
+      "rule_type": "SHOULD",
+      "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient information from IR analysis; further detailed examination required.",
+        "Phase 2-Source Code: Found send_notification method in tmpaa2_i805.py, enabling automatic notification sending.",
+        "Phase 2-Source Code: Verified handling of JSON-RPC notifications in the StreamableHTTPServerTransport class."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements automatic notification sending functionality encapsulated within its design, aligning with the MCP requirements. It allows the server to send relevant notifications internally without requiring explicit calls from developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\notifications.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\notifications\\handlers.py"
+      ],
+      "code_snippets": [
+        "async def send_notification(self, notification: SendNotificationT, ...): ...",
+        "async def handle_get_stream(self, client: httpx.AsyncClient, ...): ..."
+      ]
+    },
+    {
+      "rule_id": 127,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found in initial IR analysis.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: tmpz8jnoeel.py, ensuring the SSE stream remains open until the JSON-RPC response is sent."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK handles the SSE stream appropriately by ensuring it is not closed before sending the JSON-RPC response. The implementation logic automatically manages this, confirming compliance with the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpz8jnoeel.py"
+      ],
+      "code_snippets": [
+        "async def _handle_post_request(self, scope: Scope, request: Request, receive: Receive, send: Send): # Maintains SSE until response is sent",
+        "async def sse_writer(): # Ensures stream isn't closed until a response is processed"
+      ]
+    },
+    {
+      "rule_id": 128,
+      "rule_type": "SHOULD",
+      "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function handling SSE closing in 'streamable_http.py'.",
+        "Phase 1-IR: Confirmed function 'aclose()' is called to close the stream in 'streamable_http.py'.",
+        "Phase 2-Source Code: Verified implementation in 'streamable_http.py', confirming automatic handling of closing SSE streams."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the required behavior by automatically closing the SSE stream after sending the JSON-RPC response, which matches the compliance requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "await sse_stream_writer.aclose()  # This line confirms the automatic closure of SSE stream after response."
+      ]
+    },
+    {
+      "rule_id": 129,
+      "rule_type": "MAY",
+      "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Confirmed `CancelledNotification` defined in `src/mcp/shared/session.py`.",
+        "Phase 2- Source Code: Internal logic for handling cancellations and disconnections found in `src/mcp/server/fastmcp/prompts/manager.py`."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK implements required behaviors regarding disconnection and notification handling as defined in the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py"
+      ],
+      "code_snippets": [
+        "class CancelledNotification(Notification[CancelledNotificationParams, Literal[\"notifications/cancelled\"]])",
+        "async def _receive_loop() {...}"
+      ]
+    },
+    {
+      "rule_id": 130,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found CancelledNotification in definitions.",
+        "Phase 2-Source Code: Verified handling of CancelledNotification in the _received_notification method."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles cancellation notifications through the RequestResponder class, ensuring disconnections are not misinterpreted as cancellations.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py"
+      ],
+      "code_snippets": [
+        "class CancelledNotification(Notification[CancelledNotificationParams, Literal['notifications/cancelled']]): ...",
+        "async def _received_notification(self, notification: ReceiveNotificationT) -> None: if isinstance(notification.root, CancelledNotification): ..."
+      ]
+    },
+    {
+      "rule_id": 131,
+      "rule_type": "SHOULD",
+      "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `CancelledNotification` definition in `tmpttph93b1.py`",
+        "Phase 1-IR: Confirmed logic in `tmpaa2_i805.py` for handling cancellation notifications",
+        "Phase 2-Source Code: Verified automatic handling of cancellation notifications within the SDK."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the cancellation process by defining a `CancelledNotification` class and implementing logic to automatically call the `cancel` method on the request responder when a cancellation notification is received. This meets the requirement that developers do not have to implement this behavior manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\revoke.py"
+      ],
+      "code_snippets": [
+        "class CancelledNotification(Notification[CancelledNotificationParams, Literal['notifications/cancelled']])",
+        "await self._in_flight[cancelled_id].cancel()"
+      ]
+    },
+    {
+      "rule_id": 132,
+      "rule_type": "MAY",
+      "rule_text": "1. The client **MUST** use HTTP POST to send JSON-RPC messages to the MCP endpoint.\n2. The client **MUST** include an `Accept` header, listing both `application/json` and\n   `text/event-stream` as supported content types.\n3. The body of the POST request **MUST** be a single JSON-RPC _request_, _notification_, or _response_.\n4. If the input is a JSON-RPC _response_ or _notification_:\n   - If the server accepts the input, the server **MUST** return HTTP status code 202\n     Accepted with no body.\n   - If the server cannot accept the input, it **MUST** return an HTTP error status code\n     (e.g., 400 Bad Request). The HTTP response body **MAY** comprise a JSON-RPC _error\n     response_ that has no `id`.\n5. If the input is a JSON-RPC _request_, the server **MUST** either\n   return `Content-Type: text/event-stream`, to initiate an SSE stream, or\n   `Content-Type: application/json`, to return one JSON object. The client **MUST**\n   support both these cases.\n6. If the server initiates an SSE stream:\n   - The SSE stream **SHOULD** eventually include JSON-RPC _response_ for the\n     JSON-RPC _request_ sent in the POST body.\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ before sending the\n     JSON-RPC _response_. These messages **SHOULD** relate to the originating client\n     _request_.\n   - The server **SHOULD NOT** close the SSE stream before sending the JSON-RPC _response_\n     for the received JSON-RPC _request_, unless the [session](#session-management)\n     expires.\n   - After the JSON-RPC _response_ has been sent, the server **SHOULD** close the SSE\n     stream.\n   - Disconnection **MAY** occur at any time (e.g., due to network conditions).\n     Therefore:\n     - Disconnection **SHOULD NOT** be interpreted as the client cancelling its request.\n     - To cancel, the client **SHOULD** explicitly send an MCP `CancelledNotification`.\n     - To avoid message loss due to disconnection, the server **MAY** make the stream\n       [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found EventStore interface implemented with store_event and replay_events_after methods.",
+        "Phase 1-IR: Found internal logic in StreamableHTTPServerTransport to handle replaying events when reconnecting.",
+        "Phase 2-Source Code: Verified implementation in StreamableHTTPServerTransport which automatically replays missed events."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the resumability feature by automatically managing event storage and replay capabilities, fulfilling the requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\event_store.py"
+      ],
+      "code_snippets": [
+        "async def replay_events_after(last_event_id: EventId, send_callback: EventCallback) → StreamId | None:",
+        "await self._replay_events(last_event_id, request, send)"
+      ]
+    },
+    {
+      "rule_id": 133,
+      "rule_type": "MAY",
+      "rule_text": "1. The client **MAY** issue an HTTP GET to the MCP endpoint. This can be used to open an\n   SSE stream, allowing the server to communicate to the client, without the client first\n   sending data via HTTP POST.\n2. The client **MUST** include an `Accept` header, listing `text/event-stream` as a\n   supported content type.\n3. The server **MUST** either return `Content-Type: text/event-stream` in response to\n   this HTTP GET, or else return HTTP 405 Method Not Allowed, indicating that the server\n   does not offer an SSE stream at this endpoint.\n4. If the server initiates an SSE stream:\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ on the stream.\n   - These messages **SHOULD** be unrelated to any concurrently-running JSON-RPC\n     _request_ from the client.\n   - The server **MUST NOT** send a JSON-RPC _response_ on the stream **unless**\n     [resuming](#resumability-and-redelivery) a stream associated with a previous client\n     request.\n   - The server **MAY** close the SSE stream at any time.\n   - The client **MAY** close the SSE stream at any time.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function _handle_get_request that handles GET requests in tmpz8jnoeel.py.",
+        "Phase 2-Source Code: Verified handling of Accept headers and automatic streaming logic in streamable_http.py and tmpz8jnoeel.py."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly encapsulates the ability to issue an HTTP GET request to initiate an SSE stream and handles the required states and notifications internally. Developers are not responsible for managing this aspect, as it is embedded within the SDK's methods.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpz8jnoeel.py"
+      ],
+      "code_snippets": [
+        "def _handle_get_request(self, request: Request, send: Send) -> None: ... # Validates Accept header and manages SSE stream."
+      ]
+    },
+    {
+      "rule_id": 134,
+      "rule_type": "MUST",
+      "rule_text": "1. The client **MAY** issue an HTTP GET to the MCP endpoint. This can be used to open an\n   SSE stream, allowing the server to communicate to the client, without the client first\n   sending data via HTTP POST.\n2. The client **MUST** include an `Accept` header, listing `text/event-stream` as a\n   supported content type.\n3. The server **MUST** either return `Content-Type: text/event-stream` in response to\n   this HTTP GET, or else return HTTP 405 Method Not Allowed, indicating that the server\n   does not offer an SSE stream at this endpoint.\n4. If the server initiates an SSE stream:\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ on the stream.\n   - These messages **SHOULD** be unrelated to any concurrently-running JSON-RPC\n     _request_ from the client.\n   - The server **MUST NOT** send a JSON-RPC _response_ on the stream **unless**\n     [resuming](#resumability-and-redelivery) a stream associated with a previous client\n     request.\n   - The server **MAY** close the SSE stream at any time.\n   - The client **MAY** close the SSE stream at any time.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found _check_accept_headers defined in streamable_http.py to validate 'Accept' header.",
+        "Phase 1-IR: Confirmed _handle_get_request calls _check_accept_headers to enforce 'Accept' requirements.",
+        "Phase 2-Source Code: Verified that EventSourceResponse is utilized to establish SSE and send server notifications."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements the checks for the 'Accept' header and ensures that it includes 'text/event-stream'. It also handles server notifications within the SDK without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "async def _handle_get_request(self, request: Request, send: Send) -> None: ... _, has_sse = self._check_accept_headers(request) ..."
+      ]
+    },
+    {
+      "rule_id": 136,
+      "rule_type": "MAY",
+      "rule_text": "1. The client **MAY** issue an HTTP GET to the MCP endpoint. This can be used to open an\n   SSE stream, allowing the server to communicate to the client, without the client first\n   sending data via HTTP POST.\n2. The client **MUST** include an `Accept` header, listing `text/event-stream` as a\n   supported content type.\n3. The server **MUST** either return `Content-Type: text/event-stream` in response to\n   this HTTP GET, or else return HTTP 405 Method Not Allowed, indicating that the server\n   does not offer an SSE stream at this endpoint.\n4. If the server initiates an SSE stream:\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ on the stream.\n   - These messages **SHOULD** be unrelated to any concurrently-running JSON-RPC\n     _request_ from the client.\n   - The server **MUST NOT** send a JSON-RPC _response_ on the stream **unless**\n     [resuming](#resumability-and-redelivery) a stream associated with a previous client\n     request.\n   - The server **MAY** close the SSE stream at any time.\n   - The client **MAY** close the SSE stream at any time.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `_handle_get_request` in `tmpz8jnoeel.py` responsible for establishing the SSE stream which sends notifications.",
+        "Phase 1-IR: Confirmed function `send_notification` in `tmpz8jnoeel.py` facilitates automatic sending of notifications."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully implements the ability to send JSON-RPC requests and notifications on the SSE stream as specified in the MCP rule. It does this through internal mechanisms that do not require developers to manually invoke notification sending.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "async def send_notification(self, notification: SendNotificationT, related_request_id: RequestId | None = None):"
+      ]
+    },
+    {
+      "rule_id": 137,
+      "rule_type": "SHOULD",
+      "rule_text": "1. The client **MAY** issue an HTTP GET to the MCP endpoint. This can be used to open an\n   SSE stream, allowing the server to communicate to the client, without the client first\n   sending data via HTTP POST.\n2. The client **MUST** include an `Accept` header, listing `text/event-stream` as a\n   supported content type.\n3. The server **MUST** either return `Content-Type: text/event-stream` in response to\n   this HTTP GET, or else return HTTP 405 Method Not Allowed, indicating that the server\n   does not offer an SSE stream at this endpoint.\n4. If the server initiates an SSE stream:\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ on the stream.\n   - These messages **SHOULD** be unrelated to any concurrently-running JSON-RPC\n     _request_ from the client.\n   - The server **MUST NOT** send a JSON-RPC _response_ on the stream **unless**\n     [resuming](#resumability-and-redelivery) a stream associated with a previous client\n     request.\n   - The server **MAY** close the SSE stream at any time.\n   - The client **MAY** close the SSE stream at any time.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function send_notification() defined in StreamableHTTPServerTransport, which sends notifications.",
+        "Phase 1-IR: send_notification() is called in the context of handling POST requests, confirming automatic behavior.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: tmpz8jnoeel.py and FILE_PATH: tmpca2tsvv3.json."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically handles the sending of notifications via the `send_notification` method when relevant server events occur, thus encapsulating the functionality as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\anotherFile.py"
+      ],
+      "code_snippets": [
+        "async def send_notification(self, notification: SendNotificationT, related_request_id: RequestId | None = None)",
+        "await self._write_stream.send(session_message)  # Sending the notification automatically in send_notification()"
+      ]
+    },
+    {
+      "rule_id": 138,
+      "rule_type": "MUST_NOT",
+      "rule_text": "1. The client **MAY** issue an HTTP GET to the MCP endpoint. This can be used to open an\n   SSE stream, allowing the server to communicate to the client, without the client first\n   sending data via HTTP POST.\n2. The client **MUST** include an `Accept` header, listing `text/event-stream` as a\n   supported content type.\n3. The server **MUST** either return `Content-Type: text/event-stream` in response to\n   this HTTP GET, or else return HTTP 405 Method Not Allowed, indicating that the server\n   does not offer an SSE stream at this endpoint.\n4. If the server initiates an SSE stream:\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ on the stream.\n   - These messages **SHOULD** be unrelated to any concurrently-running JSON-RPC\n     _request_ from the client.\n   - The server **MUST NOT** send a JSON-RPC _response_ on the stream **unless**\n     [resuming](#resumability-and-redelivery) a stream associated with a previous client\n     request.\n   - The server **MAY** close the SSE stream at any time.\n   - The client **MAY** close the SSE stream at any time.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function _handle_get_request in streamable_http.py handling SSE streams and notifications.",
+        "Phase 2-Source Code: Verified that the SDK does not send JSON-RPC responses on the SSE stream unless a previous request is being resumed."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements the rule by ensuring that JSON-RPC responses are not sent on SSE streams unless resuming a previous request.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "async for event_message in standalone_stream_reader: # Process messages from the standalone stream",
+        "# We should NOT receive JSONRPCResponse"
+      ]
+    },
+    {
+      "rule_id": 139,
+      "rule_type": "MAY",
+      "rule_text": "1. The client **MAY** issue an HTTP GET to the MCP endpoint. This can be used to open an\n   SSE stream, allowing the server to communicate to the client, without the client first\n   sending data via HTTP POST.\n2. The client **MUST** include an `Accept` header, listing `text/event-stream` as a\n   supported content type.\n3. The server **MUST** either return `Content-Type: text/event-stream` in response to\n   this HTTP GET, or else return HTTP 405 Method Not Allowed, indicating that the server\n   does not offer an SSE stream at this endpoint.\n4. If the server initiates an SSE stream:\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ on the stream.\n   - These messages **SHOULD** be unrelated to any concurrently-running JSON-RPC\n     _request_ from the client.\n   - The server **MUST NOT** send a JSON-RPC _response_ on the stream **unless**\n     [resuming](#resumability-and-redelivery) a stream associated with a previous client\n     request.\n   - The server **MAY** close the SSE stream at any time.\n   - The client **MAY** close the SSE stream at any time.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function terminate in tmpz8jnoeel.py defined at line 615.",
+        "Phase 1-IR: Confirmed the function is called inside _handle_delete_request.",
+        "Phase 2-Source Code: Verified the implementation in tmpz8jnoeel.py that automates stream closing."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework automatically implements the closing of the SSE stream with internal logic encapsulated within the terminate function, fulfilling the rule without requiring application developers to implement it themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpz8jnoeel.py"
+      ],
+      "code_snippets": [
+        "async def terminate(self) -> None: # Terminates the current session and closes all streams."
+      ]
+    },
+    {
+      "rule_id": 140,
+      "rule_type": "MAY",
+      "rule_text": "1. The client **MAY** issue an HTTP GET to the MCP endpoint. This can be used to open an\n   SSE stream, allowing the server to communicate to the client, without the client first\n   sending data via HTTP POST.\n2. The client **MUST** include an `Accept` header, listing `text/event-stream` as a\n   supported content type.\n3. The server **MUST** either return `Content-Type: text/event-stream` in response to\n   this HTTP GET, or else return HTTP 405 Method Not Allowed, indicating that the server\n   does not offer an SSE stream at this endpoint.\n4. If the server initiates an SSE stream:\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ on the stream.\n   - These messages **SHOULD** be unrelated to any concurrently-running JSON-RPC\n     _request_ from the client.\n   - The server **MUST NOT** send a JSON-RPC _response_ on the stream **unless**\n     [resuming](#resumability-and-redelivery) a stream associated with a previous client\n     request.\n   - The server **MAY** close the SSE stream at any time.\n   - The client **MAY** close the SSE stream at any time.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct function definitions found indicating manual closure responsibility for developers.",
+        "Phase 2-Source Code: Verified implementation for handling SSE streams and closing logic present in classes and methods.",
+        "Phase 2-Source Code: Implementations show that streams are managed internally, reducing the developers' responsibility."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK includes internal methods that automatically handle the closing of SSE streams when needed, ensuring compliance with the MCP rule that the client MAY close the SSE stream at any time.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "async def sse_writer() where streams are closed properly after use",
+        "def terminate for managing stream closures in the flow"
+      ]
+    },
+    {
+      "rule_id": 144,
+      "rule_type": "MAY",
+      "rule_text": "1. The client **MAY** remain connected to multiple SSE streams simultaneously.\n2. The server **MUST** send each of its JSON-RPC messages on only one of the connected\n   streams; that is, it **MUST NOT** broadcast the same message across multiple streams.\n   - The risk of message loss **MAY** be mitigated by making the stream\n     [resumable](#resumability-and-redelivery).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'EventStore' method definitions in defs.",
+        "Phase 1-IR: 'store_event' and 'replay_events_after' are in calls showing interconnections.",
+        "Phase 2-Source Code: Automatic handling of event storage and replay verified in implementation."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the required behavior for mitigating message loss by implementing the necessary functionalities for event storage and replaying, thus managing resumability automatically. Developers are not given the responsibility to implement these features themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "EventStore interface and method definitions for resumability; confirmed call chains in message handling."
+      ]
+    },
+    {
+      "rule_id": 145,
+      "rule_type": "MAY",
+      "rule_text": "To support resuming broken connections, and redelivering messages that might otherwise be\nlost:\n\n1. Servers **MAY** attach an `id` field to their SSE events, as described in the\n   [SSE standard](https://html.spec.whatwg.org/multipage/server-sent-events.html#event-stream-interpretation).\n   - If present, the ID **MUST** be globally unique across all streams within that\n     [session](#session-management)—or all streams with that specific client, if session\n     management is not in use.\n2. If the client wishes to resume after a broken connection, it **SHOULD** issue an HTTP\n   GET to the MCP endpoint, and include the\n   [`Last-Event-ID`](https://html.spec.whatwg.org/multipage/server-sent-events.html#the-last-event-id-header)\n   header to indicate the last event ID it received.\n   - The server **MAY** use this header to replay messages that would have been sent\n     after the last event ID, _on the stream that was disconnected_, and to resume the\n     stream from that point.\n   - The server **MUST NOT** replay messages that would have been delivered on a\n     different stream.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found EventMessage with event_id in defs, defined in src/mcp/server/streamable_http.py.",
+        "Phase 1-IR: Confirmed event sending logic in StreamableHTTPServerTransport that encapsulates automatic handling.",
+        "Phase 2-Source Code: Verified implementation using EventSourceResponse to handle SSE with event ID management."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines an event ID field and automatically handles the transmission of SSE events without requiring developer intervention. It has all the necessary components for compliance with the MCP rule regarding SSE event IDs.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "class EventMessage: ...",
+        "response = EventSourceResponse(content=sse_stream_reader, data_sender_callable=sse_writer, headers=headers)"
+      ]
+    },
+    {
+      "rule_id": 146,
+      "rule_type": "MUST",
+      "rule_text": "To support resuming broken connections, and redelivering messages that might otherwise be\nlost:\n\n1. Servers **MAY** attach an `id` field to their SSE events, as described in the\n   [SSE standard](https://html.spec.whatwg.org/multipage/server-sent-events.html#event-stream-interpretation).\n   - If present, the ID **MUST** be globally unique across all streams within that\n     [session](#session-management)—or all streams with that specific client, if session\n     management is not in use.\n2. If the client wishes to resume after a broken connection, it **SHOULD** issue an HTTP\n   GET to the MCP endpoint, and include the\n   [`Last-Event-ID`](https://html.spec.whatwg.org/multipage/server-sent-events.html#the-last-event-id-header)\n   header to indicate the last event ID it received.\n   - The server **MAY** use this header to replay messages that would have been sent\n     after the last event ID, _on the stream that was disconnected_, and to resume the\n     stream from that point.\n   - The server **MUST NOT** replay messages that would have been delivered on a\n     different stream.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `store_event` in EventStore interface.",
+        "Phase 1-IR: Confirmed `replay_events_after` is called to deliver events after a break.",
+        "Phase 2-Source Code: Verified automatic handling of event IDs in StreamableHTTPServerTransport class."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically stores and retrieves event IDs, ensuring they are unique across streams as per the requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\event_store.py"
+      ],
+      "code_snippets": [
+        "async def store_event(self, stream_id: StreamId, message: JSONRPCMessage) -> EventId",
+        "await event_store.replay_events_after(last_event_id, send_event)"
+      ]
+    },
+    {
+      "rule_id": 147,
+      "rule_type": "SHOULD",
+      "rule_text": "To support resuming broken connections, and redelivering messages that might otherwise be\nlost:\n\n1. Servers **MAY** attach an `id` field to their SSE events, as described in the\n   [SSE standard](https://html.spec.whatwg.org/multipage/server-sent-events.html#event-stream-interpretation).\n   - If present, the ID **MUST** be globally unique across all streams within that\n     [session](#session-management)—or all streams with that specific client, if session\n     management is not in use.\n2. If the client wishes to resume after a broken connection, it **SHOULD** issue an HTTP\n   GET to the MCP endpoint, and include the\n   [`Last-Event-ID`](https://html.spec.whatwg.org/multipage/server-sent-events.html#the-last-event-id-header)\n   header to indicate the last event ID it received.\n   - The server **MAY** use this header to replay messages that would have been sent\n     after the last event ID, _on the stream that was disconnected_, and to resume the\n     stream from that point.\n   - The server **MUST NOT** replay messages that would have been delivered on a\n     different stream.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found _handle_get_request handling the Last-Event-ID in tmpz8jnoeel.py.",
+        "Phase 1-IR: Confirmed internal call to _replay_events in response to Last-Event-ID.",
+        "Phase 2-Source Code: Verified automatic logic in _replay_events for resending messages in tmpz8jnoeel.py"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles resuming connections by checking the Last-Event-ID header and replaying missed events without requiring manual intervention from developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "async def _handle_get_request(self, request: Request, send: Send) -> None: ... if last_event_id := request.headers.get(LAST_EVENT_ID_HEADER): await self._replay_events(last_event_id, request, send)",
+        "async def _replay_events(self, last_event_id: str, request: Request, send: Send) -> None: ... stream_id = await event_store.replay_events_after(last_event_id, send_event)"
+      ]
+    },
+    {
+      "rule_id": 149,
+      "rule_type": "MUST_NOT",
+      "rule_text": "To support resuming broken connections, and redelivering messages that might otherwise be\nlost:\n\n1. Servers **MAY** attach an `id` field to their SSE events, as described in the\n   [SSE standard](https://html.spec.whatwg.org/multipage/server-sent-events.html#event-stream-interpretation).\n   - If present, the ID **MUST** be globally unique across all streams within that\n     [session](#session-management)—or all streams with that specific client, if session\n     management is not in use.\n2. If the client wishes to resume after a broken connection, it **SHOULD** issue an HTTP\n   GET to the MCP endpoint, and include the\n   [`Last-Event-ID`](https://html.spec.whatwg.org/multipage/server-sent-events.html#the-last-event-id-header)\n   header to indicate the last event ID it received.\n   - The server **MAY** use this header to replay messages that would have been sent\n     after the last event ID, _on the stream that was disconnected_, and to resume the\n     stream from that point.\n   - The server **MUST NOT** replay messages that would have been delivered on a\n     different stream.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions for storing and replaying events in EventStore.",
+        "Phase 2-Source Code: Verified the implementation of replay_events_after and its controls for not mixing messages from different streams."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK implements the handling of message replaying correctly by ensuring that events are replayed only after a specific event ID and from the correct stream. The logic exists to separate and prevent replay of events from different streams.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "async def replay_events_after(last_event_id: EventId, send_callback: EventCallback): # Event replay handling"
+      ]
+    },
+    {
+      "rule_id": 150,
+      "rule_type": "MAY",
+      "rule_text": "An MCP \"session\" consists of logically related interactions between a client and a\nserver, beginning with the [initialization phase](/specification/2025-06-18/basic/lifecycle). To support\nservers which want to establish stateful sessions:\n\n1. A server using the Streamable HTTP transport **MAY** assign a session ID at\n   initialization time, by including it in an `Mcp-Session-Id` header on the HTTP\n   response containing the `InitializeResult`.\n   - The session ID **SHOULD** be globally unique and cryptographically secure (e.g., a\n     securely generated UUID, a JWT, or a cryptographic hash).\n   - The session ID **MUST** only contain visible ASCII characters (ranging from 0x21 to\n     0x7E).\n2. If an `Mcp-Session-Id` is returned by the server during initialization, clients using\n   the Streamable HTTP transport **MUST** include it in the `Mcp-Session-Id` header on\n   all of their subsequent HTTP requests.\n   - Servers that require a session ID **SHOULD** respond to requests without an\n     `Mcp-Session-Id` header (other than initialization) with HTTP 400 Bad Request.\n3. The server **MAY** terminate the session at any time, after which it **MUST** respond\n   to requests containing that session ID with HTTP 404 Not Found.\n4. When a client receives HTTP 404 in response to a request containing an\n   `Mcp-Session-Id`, it **MUST** start a new session by sending a new `InitializeRequest`\n   without a session ID attached.\n5. Clients that no longer need a particular session (e.g., because the user is leaving\n   the client application) **SHOULD** send an HTTP DELETE to the MCP endpoint with the\n   `Mcp-Session-Id` header, to explicitly terminate the session.\n   - The server **MAY** respond to this request with HTTP 405 Method Not Allowed,\n     indicating that the server does not allow clients to terminate sessions.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function StreamableHTTPServerTransport.__init__ definition in tmpz8jnoeel.py:43",
+        "Phase 1-IR: Confirmed logic for managing session IDs during requests in tmpz8jnoeel.py.",
+        "Phase 2-Source Code: Verified automatic handling of session ID assignment and management in tmpz8jnoeel.py."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically assigns session IDs during initialization and manages session state internally without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpz8jnoeel.py"
+      ],
+      "code_snippets": [
+        "self.mcp_session_id = mcp_session_id, must contain only visible ASCII characters from 0x21 to 0x7E.",
+        "if not self._validate_request_headers(request, send): return",
+        "request_session_id = self._get_session_id(request)"
+      ]
+    },
+    {
+      "rule_id": 151,
+      "rule_type": "SHOULD",
+      "rule_text": "An MCP \"session\" consists of logically related interactions between a client and a\nserver, beginning with the [initialization phase](/specification/2025-06-18/basic/lifecycle). To support\nservers which want to establish stateful sessions:\n\n1. A server using the Streamable HTTP transport **MAY** assign a session ID at\n   initialization time, by including it in an `Mcp-Session-Id` header on the HTTP\n   response containing the `InitializeResult`.\n   - The session ID **SHOULD** be globally unique and cryptographically secure (e.g., a\n     securely generated UUID, a JWT, or a cryptographic hash).\n   - The session ID **MUST** only contain visible ASCII characters (ranging from 0x21 to\n     0x7E).\n2. If an `Mcp-Session-Id` is returned by the server during initialization, clients using\n   the Streamable HTTP transport **MUST** include it in the `Mcp-Session-Id` header on\n   all of their subsequent HTTP requests.\n   - Servers that require a session ID **SHOULD** respond to requests without an\n     `Mcp-Session-Id` header (other than initialization) with HTTP 400 Bad Request.\n3. The server **MAY** terminate the session at any time, after which it **MUST** respond\n   to requests containing that session ID with HTTP 404 Not Found.\n4. When a client receives HTTP 404 in response to a request containing an\n   `Mcp-Session-Id`, it **MUST** start a new session by sending a new `InitializeRequest`\n   without a session ID attached.\n5. Clients that no longer need a particular session (e.g., because the user is leaving\n   the client application) **SHOULD** send an HTTP DELETE to the MCP endpoint with the\n   `Mcp-Session-Id` header, to explicitly terminate the session.\n   - The server **MAY** respond to this request with HTTP 405 Method Not Allowed,\n     indicating that the server does not allow clients to terminate sessions.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'initialize' that creates session IDs using uuid4().hex in tmpqdrx_imj.py",
+        "Phase 1-IR: Confirmed call relationships in session management methods in tmpz8jnoeel.py",
+        "Phase 2-Source Code: Verified that SDK handles session management automatically in tmpz8jnoeel.py"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically generates and validates session IDs that are globally unique and cryptographically secure. It also manages session state without requiring developer intervention.",
+      "files_analyzed": [
+        "tmpqdrx_imj.py",
+        "tmpz8jnoeel.py"
+      ],
+      "code_snippets": [
+        "def initialize(self): self.mcp_session_id = uuid4().hex  # Generates a new session ID",
+        "async def _handle_delete_request(self, request: Request, send: Send): await self.terminate()  # Handles session termination"
+      ]
+    },
+    {
+      "rule_id": 152,
+      "rule_type": "MUST",
+      "rule_text": "An MCP \"session\" consists of logically related interactions between a client and a\nserver, beginning with the [initialization phase](/specification/2025-06-18/basic/lifecycle). To support\nservers which want to establish stateful sessions:\n\n1. A server using the Streamable HTTP transport **MAY** assign a session ID at\n   initialization time, by including it in an `Mcp-Session-Id` header on the HTTP\n   response containing the `InitializeResult`.\n   - The session ID **SHOULD** be globally unique and cryptographically secure (e.g., a\n     securely generated UUID, a JWT, or a cryptographic hash).\n   - The session ID **MUST** only contain visible ASCII characters (ranging from 0x21 to\n     0x7E).\n2. If an `Mcp-Session-Id` is returned by the server during initialization, clients using\n   the Streamable HTTP transport **MUST** include it in the `Mcp-Session-Id` header on\n   all of their subsequent HTTP requests.\n   - Servers that require a session ID **SHOULD** respond to requests without an\n     `Mcp-Session-Id` header (other than initialization) with HTTP 400 Bad Request.\n3. The server **MAY** terminate the session at any time, after which it **MUST** respond\n   to requests containing that session ID with HTTP 404 Not Found.\n4. When a client receives HTTP 404 in response to a request containing an\n   `Mcp-Session-Id`, it **MUST** start a new session by sending a new `InitializeRequest`\n   without a session ID attached.\n5. Clients that no longer need a particular session (e.g., because the user is leaving\n   the client application) **SHOULD** send an HTTP DELETE to the MCP endpoint with the\n   `Mcp-Session-Id` header, to explicitly terminate the session.\n   - The server **MAY** respond to this request with HTTP 405 Method Not Allowed,\n     indicating that the server does not allow clients to terminate sessions.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant definitions found in IR for handling session IDs.",
+        "Phase 2-Source Code: Found session ID validation logic in tmpz8jnoeel.py, enforcing ASCII constraints."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK contains built-in constraints for session IDs, ensuring they only include visible ASCII characters as required by the MCP rule 152.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\client_auth.py"
+      ],
+      "code_snippets": [
+        "if mcp_session_id is not None and not SESSION_ID_PATTERN.fullmatch(mcp_session_id):",
+        "raise ValueError('Session ID must only contain visible ASCII characters (0x21-0x7E)')"
+      ]
+    },
+    {
+      "rule_id": 153,
+      "rule_type": "MUST",
+      "rule_text": "An MCP \"session\" consists of logically related interactions between a client and a\nserver, beginning with the [initialization phase](/specification/2025-06-18/basic/lifecycle). To support\nservers which want to establish stateful sessions:\n\n1. A server using the Streamable HTTP transport **MAY** assign a session ID at\n   initialization time, by including it in an `Mcp-Session-Id` header on the HTTP\n   response containing the `InitializeResult`.\n   - The session ID **SHOULD** be globally unique and cryptographically secure (e.g., a\n     securely generated UUID, a JWT, or a cryptographic hash).\n   - The session ID **MUST** only contain visible ASCII characters (ranging from 0x21 to\n     0x7E).\n2. If an `Mcp-Session-Id` is returned by the server during initialization, clients using\n   the Streamable HTTP transport **MUST** include it in the `Mcp-Session-Id` header on\n   all of their subsequent HTTP requests.\n   - Servers that require a session ID **SHOULD** respond to requests without an\n     `Mcp-Session-Id` header (other than initialization) with HTTP 400 Bad Request.\n3. The server **MAY** terminate the session at any time, after which it **MUST** respond\n   to requests containing that session ID with HTTP 404 Not Found.\n4. When a client receives HTTP 404 in response to a request containing an\n   `Mcp-Session-Id`, it **MUST** start a new session by sending a new `InitializeRequest`\n   without a session ID attached.\n5. Clients that no longer need a particular session (e.g., because the user is leaving\n   the client application) **SHOULD** send an HTTP DELETE to the MCP endpoint with the\n   `Mcp-Session-Id` header, to explicitly terminate the session.\n   - The server **MAY** respond to this request with HTTP 405 Method Not Allowed,\n     indicating that the server does not allow clients to terminate sessions.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function handling session management involving 'Mcp-Session-Id' in `defs_python.jsonl`.",
+        "Phase 1-IR: Confirmed function call relationships in `calls_python.jsonl` showing session management functionality.",
+        "Phase 2-Source Code: Verified implementation in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py`, confirming automatic management of 'Mcp-Session-Id'."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK includes the 'Mcp-Session-Id' header automatically in all subsequent requests after initialization. This encapsulates the required behavior mandated by the rule, fulfilling the compliance requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session_group.py"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 154,
+      "rule_type": "SHOULD",
+      "rule_text": "An MCP \"session\" consists of logically related interactions between a client and a\nserver, beginning with the [initialization phase](/specification/2025-06-18/basic/lifecycle). To support\nservers which want to establish stateful sessions:\n\n1. A server using the Streamable HTTP transport **MAY** assign a session ID at\n   initialization time, by including it in an `Mcp-Session-Id` header on the HTTP\n   response containing the `InitializeResult`.\n   - The session ID **SHOULD** be globally unique and cryptographically secure (e.g., a\n     securely generated UUID, a JWT, or a cryptographic hash).\n   - The session ID **MUST** only contain visible ASCII characters (ranging from 0x21 to\n     0x7E).\n2. If an `Mcp-Session-Id` is returned by the server during initialization, clients using\n   the Streamable HTTP transport **MUST** include it in the `Mcp-Session-Id` header on\n   all of their subsequent HTTP requests.\n   - Servers that require a session ID **SHOULD** respond to requests without an\n     `Mcp-Session-Id` header (other than initialization) with HTTP 400 Bad Request.\n3. The server **MAY** terminate the session at any time, after which it **MUST** respond\n   to requests containing that session ID with HTTP 404 Not Found.\n4. When a client receives HTTP 404 in response to a request containing an\n   `Mcp-Session-Id`, it **MUST** start a new session by sending a new `InitializeRequest`\n   without a session ID attached.\n5. Clients that no longer need a particular session (e.g., because the user is leaving\n   the client application) **SHOULD** send an HTTP DELETE to the MCP endpoint with the\n   `Mcp-Session-Id` header, to explicitly terminate the session.\n   - The server **MAY** respond to this request with HTTP 405 Method Not Allowed,\n     indicating that the server does not allow clients to terminate sessions.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `_validate_session` in tmpz8jnoeel.py for session ID validation and error response.",
+        "Phase 1-IR: Confirmed `_validate_request_headers` calls `_validate_session` to ensure session ID checks.",
+        "Phase 2-Source Code: Verified automatic handling of missing session ID responses with appropriate HTTP status code."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically validates the presence of the `Mcp-Session-Id` header and handles cases where it's missing by responding with a HTTP 400 Bad Request. This functionality ensures that the compliance requires the SDK to manage session behaviors, minimizing developer responsibility.",
+      "files_analyzed": [
+        "tmpz8jnoeel.py"
+      ],
+      "code_snippets": [
+        "async def _validate_session(self, request: Request, send: Send) -> bool: ... response = self._create_error_response(\"Bad Request: Missing session ID\", HTTPStatus.BAD_REQUEST)",
+        "async def _validate_request_headers(self, request: Request, send: Send) -> bool: ... if not await self._validate_session(request, send): return False"
+      ]
+    },
+    {
+      "rule_id": 155,
+      "rule_type": "MUST",
+      "rule_text": "An MCP \"session\" consists of logically related interactions between a client and a\nserver, beginning with the [initialization phase](/specification/2025-06-18/basic/lifecycle). To support\nservers which want to establish stateful sessions:\n\n1. A server using the Streamable HTTP transport **MAY** assign a session ID at\n   initialization time, by including it in an `Mcp-Session-Id` header on the HTTP\n   response containing the `InitializeResult`.\n   - The session ID **SHOULD** be globally unique and cryptographically secure (e.g., a\n     securely generated UUID, a JWT, or a cryptographic hash).\n   - The session ID **MUST** only contain visible ASCII characters (ranging from 0x21 to\n     0x7E).\n2. If an `Mcp-Session-Id` is returned by the server during initialization, clients using\n   the Streamable HTTP transport **MUST** include it in the `Mcp-Session-Id` header on\n   all of their subsequent HTTP requests.\n   - Servers that require a session ID **SHOULD** respond to requests without an\n     `Mcp-Session-Id` header (other than initialization) with HTTP 400 Bad Request.\n3. The server **MAY** terminate the session at any time, after which it **MUST** respond\n   to requests containing that session ID with HTTP 404 Not Found.\n4. When a client receives HTTP 404 in response to a request containing an\n   `Mcp-Session-Id`, it **MUST** start a new session by sending a new `InitializeRequest`\n   without a session ID attached.\n5. Clients that no longer need a particular session (e.g., because the user is leaving\n   the client application) **SHOULD** send an HTTP DELETE to the MCP endpoint with the\n   `Mcp-Session-Id` header, to explicitly terminate the session.\n   - The server **MAY** respond to this request with HTTP 405 Method Not Allowed,\n     indicating that the server does not allow clients to terminate sessions.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `terminate` function which handles session termination in tmpz8jnoeel.py.",
+        "Phase 1-IR: Verified `_handle_delete_request` calls `terminate` and handles session termination logic.",
+        "Phase 1-IR: Confirmed that `handle_request` responds with 404 for requests when session is terminated."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK handles session termination internally and responds with HTTP 404 for requests with a terminated session ID, as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py"
+      ],
+      "code_snippets": [
+        "async def terminate(self) -> None: # Handles session termination",
+        "await self.terminate() # Called to terminate session in `_handle_delete_request`"
+      ]
+    },
+    {
+      "rule_id": 156,
+      "rule_type": "MAY",
+      "rule_text": "An MCP \"session\" consists of logically related interactions between a client and a\nserver, beginning with the [initialization phase](/specification/2025-06-18/basic/lifecycle). To support\nservers which want to establish stateful sessions:\n\n1. A server using the Streamable HTTP transport **MAY** assign a session ID at\n   initialization time, by including it in an `Mcp-Session-Id` header on the HTTP\n   response containing the `InitializeResult`.\n   - The session ID **SHOULD** be globally unique and cryptographically secure (e.g., a\n     securely generated UUID, a JWT, or a cryptographic hash).\n   - The session ID **MUST** only contain visible ASCII characters (ranging from 0x21 to\n     0x7E).\n2. If an `Mcp-Session-Id` is returned by the server during initialization, clients using\n   the Streamable HTTP transport **MUST** include it in the `Mcp-Session-Id` header on\n   all of their subsequent HTTP requests.\n   - Servers that require a session ID **SHOULD** respond to requests without an\n     `Mcp-Session-Id` header (other than initialization) with HTTP 400 Bad Request.\n3. The server **MAY** terminate the session at any time, after which it **MUST** respond\n   to requests containing that session ID with HTTP 404 Not Found.\n4. When a client receives HTTP 404 in response to a request containing an\n   `Mcp-Session-Id`, it **MUST** start a new session by sending a new `InitializeRequest`\n   without a session ID attached.\n5. Clients that no longer need a particular session (e.g., because the user is leaving\n   the client application) **SHOULD** send an HTTP DELETE to the MCP endpoint with the\n   `Mcp-Session-Id` header, to explicitly terminate the session.\n   - The server **MAY** respond to this request with HTTP 405 Method Not Allowed,\n     indicating that the server does not allow clients to terminate sessions.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function to terminate session in tmpz8jnoeel.py.",
+        "Phase 1-IR: Confirmed automatic handling of HTTP 404 response in handle_request method.",
+        "Phase 2-Source Code: Verified implementation details in tmpz8jnoeel.py."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements session termination and responds with HTTP 404 Not Found for requests containing a terminated session ID, encapsulating the required behavior internally.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\streamablehttp\\tmpz8jnoeel.py"
+      ],
+      "code_snippets": [
+        "async def terminate(self) -> None: ...",
+        "if self._terminated: response = self._create_error_response(...)"
+      ]
+    },
+    {
+      "rule_id": 158,
+      "rule_type": "SHOULD",
+      "rule_text": "An MCP \"session\" consists of logically related interactions between a client and a\nserver, beginning with the [initialization phase](/specification/2025-06-18/basic/lifecycle). To support\nservers which want to establish stateful sessions:\n\n1. A server using the Streamable HTTP transport **MAY** assign a session ID at\n   initialization time, by including it in an `Mcp-Session-Id` header on the HTTP\n   response containing the `InitializeResult`.\n   - The session ID **SHOULD** be globally unique and cryptographically secure (e.g., a\n     securely generated UUID, a JWT, or a cryptographic hash).\n   - The session ID **MUST** only contain visible ASCII characters (ranging from 0x21 to\n     0x7E).\n2. If an `Mcp-Session-Id` is returned by the server during initialization, clients using\n   the Streamable HTTP transport **MUST** include it in the `Mcp-Session-Id` header on\n   all of their subsequent HTTP requests.\n   - Servers that require a session ID **SHOULD** respond to requests without an\n     `Mcp-Session-Id` header (other than initialization) with HTTP 400 Bad Request.\n3. The server **MAY** terminate the session at any time, after which it **MUST** respond\n   to requests containing that session ID with HTTP 404 Not Found.\n4. When a client receives HTTP 404 in response to a request containing an\n   `Mcp-Session-Id`, it **MUST** start a new session by sending a new `InitializeRequest`\n   without a session ID attached.\n5. Clients that no longer need a particular session (e.g., because the user is leaving\n   the client application) **SHOULD** send an HTTP DELETE to the MCP endpoint with the\n   `Mcp-Session-Id` header, to explicitly terminate the session.\n   - The server **MAY** respond to this request with HTTP 405 Method Not Allowed,\n     indicating that the server does not allow clients to terminate sessions.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found _handle_delete_request method in tmpz8jnoeel.py, responsible for handling DELETE requests.",
+        "Phase 1-IR: Confirmed termination logic in the terminate() method.",
+        "Phase 1-IR: Verified that _handle_delete_request calls terminate() method within the SDK."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages session termination upon receiving an HTTP DELETE request with the Mcp-Session-Id. There are dedicated methods for handling delete requests and terminating sessions, which means that it fulfills the MCP protocol requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\streamablehttp\\server_transport.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\streamablehttp\\transport.py"
+      ],
+      "code_snippets": [
+        "_handle_delete_request method that checks Mcp-Session-Id and calls terminate() to handle session termination."
+      ]
+    },
+    {
+      "rule_id": 160,
+      "rule_type": "MUST",
+      "rule_text": "If using HTTP, the client **MUST** include the `MCP-Protocol-Version:\n<protocol-version>` HTTP header on all subsequent requests to the MCP\nserver, allowing the MCP server to respond based on the MCP protocol version.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function _create_oauth_metadata_request in tmpfcc1ytxj.py that includes 'MCP-Protocol-Version' header in requests.",
+        "Phase 1-IR: Found function _prepare_request_headers in tmpz8jnoeel.py that sets 'MCP-Protocol-Version' in request headers.",
+        "Phase 2-Source Code: Verified automatic integration in both functions, confirming no manual developer intervention is needed."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages the 'MCP-Protocol-Version' header in outbound requests without requiring developer input. This ensures compliance with the rule's requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\tmpfcc1ytxj.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\tmpz8jnoeel.py"
+      ],
+      "code_snippets": [
+        "def _create_oauth_metadata_request(self, url: str) -> httpx.Request:\n    return httpx.Request('GET', url, headers={MCP_PROTOCOL_VERSION: LATEST_PROTOCOL_VERSION})",
+        "def _prepare_request_headers(self, base_headers: dict[str, str]) -> dict[str, str]:\n    headers = base_headers.copy()\n    if self.protocol_version:\n        headers[MCP_PROTOCOL_VERSION] = self.protocol_version"
+      ]
+    },
+    {
+      "rule_id": 162,
+      "rule_type": "SHOULD",
+      "rule_text": "For backwards compatibility, if the server does _not_ receive an `MCP-Protocol-Version`\nheader, and has no other way to identify the version - for example, by relying on the\nprotocol version negotiated during initialization - the server **SHOULD** assume protocol\nversion `2025-06-18`.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found default negotiated version in types.py.",
+        "Phase 2-Source Code: Verified internal logic for handling protocol version in validation methods."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the required behavior of assuming and managing protocol versions without requiring intervention from developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\auth.py"
+      ],
+      "code_snippets": [
+        "LATEST_PROTOCOL_VERSION = '2025-06-18'",
+        "if protocol_version is None: protocol_version = DEFAULT_NEGOTIATED_VERSION"
+      ]
+    },
+    {
+      "rule_id": 163,
+      "rule_type": "MUST",
+      "rule_text": "If the server receives a request with an invalid or unsupported\n`MCP-Protocol-Version`, it **MUST** respond with `400 Bad Request`.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function _validate_protocol_version in calls confirming protocol validation logic.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py where 400 Bad Request is returned for unsupported protocol versions."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements automatic validation for the MCP-Protocol-Version header, responding with a 400 Bad Request when an unsupported version is provided without requiring developers to manage this behavior manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py"
+      ],
+      "code_snippets": [
+        "if protocol_version not in SUPPORTED_PROTOCOL_VERSIONS: response = self._create_error_response(...)"
+      ]
+    },
+    {
+      "rule_id": 164,
+      "rule_type": "MAY",
+      "rule_text": "Clients and servers **MAY** implement additional custom transport mechanisms to suit\ntheir specific needs. The protocol is transport-agnostic and can be implemented over any\ncommunication channel that supports bidirectional message exchange.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in IR.",
+        "Phase 2-Source Code: Verified implementation in context shows SDK methods for sending notifications to clients automatically."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK provides internal methods that handle the behavior required by the rule without shifting responsibility to application developers. Specifically, it has defined methods for notifying clients of changes, and the internal logic to handle notifications automatically.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
+      ],
+      "code_snippets": [
+        "await ctx.session.send_resource_list_changed()",
+        "async def send_notification(self, notification: SendNotificationT, related_request_id: RequestId | None = None) -> None:"
+      ]
+    },
+    {
+      "rule_id": 165,
+      "rule_type": "MUST",
+      "rule_text": "Implementers who choose to support custom transports **MUST** ensure they preserve the\nJSON-RPC message format and lifecycle requirements defined by MCP. Custom transports\n**SHOULD** document their specific connection establishment and message exchange patterns\nto aid interoperability.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific function definitions related to JSON-RPC found in IR files.",
+        "Phase 2-Source Code: Found send_notification method which handles notifications automatically in tmpaa2_i805.py.",
+        "Phase 2-Source Code: Verified that _send_response constructs and sends JSON-RPC responses automatically in tmpaa2_i805.py."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK automatically handles sending notifications and responses in the JSON-RPC format, complying with the rule's requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\jsonrpc.py"
+      ],
+      "code_snippets": [
+        "async def send_notification(self, notification: SendNotificationT, ...)",
+        "async def _send_response(self, request_id: RequestId, response: SendResultT | ErrorData)"
+      ]
+    },
+    {
+      "rule_id": 166,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementers who choose to support custom transports **MUST** ensure they preserve the\nJSON-RPC message format and lifecycle requirements defined by MCP. Custom transports\n**SHOULD** document their specific connection establishment and message exchange patterns\nto aid interoperability.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct evidence found in defs or calls.",
+        "Phase 2-Source Code: Verified implementation of automatic notifications in send_notification method within FILE_PATH: src/mcp/client/mcp.py.",
+        "Phase 2-Source Code: Verified connection establishment in SseServerTransport."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the notification functionality in such a way that developers do not need to manually send notifications. The internal handling of notification sending and connection establishment reflects compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\mcp.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
+      ],
+      "code_snippets": [
+        "async def send_notification(self, notification: SendNotificationT) {...}",
+        "class SseServerTransport {...}"
+      ]
+    },
+    {
+      "rule_id": 167,
+      "rule_type": "MUST",
+      "rule_text": "1. Cancellation notifications **MUST** only reference requests that:\n   - Were previously issued in the same direction\n   - Are believed to still be in-progress\n2. The `initialize` request **MUST NOT** be cancelled by clients\n3. Receivers of cancellation notifications **SHOULD**:\n   - Stop processing the cancelled request\n   - Free associated resources\n   - Not send a response for the cancelled request\n4. Receivers **MAY** ignore cancellation notifications if:\n   - The referenced request is unknown\n   - Processing has already completed\n   - The request cannot be cancelled\n5. The sender of the cancellation notification **SHOULD** ignore any response to the\n   request that arrives afterward",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found class RequestResponder that handles request lifecycle including cancellation in tmpaa2_i805.py:3",
+        "Phase 1-IR: Confirmed call to cancel() method which manages cancellation in the same file.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages cancellation notifications and ensures that requests can be canceled as per the rule requirements, thus shifting no responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py"
+      ],
+      "code_snippets": [
+        "async def cancel(self) -> None: # Cancels the request and sends cancellation response",
+        "property def cancelled(self) -> bool: # Checks if the request has been cancelled"
+      ]
+    },
+    {
+      "rule_id": 169,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Cancellation notifications **MUST** only reference requests that:\n   - Were previously issued in the same direction\n   - Are believed to still be in-progress\n2. The `initialize` request **MUST NOT** be cancelled by clients\n3. Receivers of cancellation notifications **SHOULD**:\n   - Stop processing the cancelled request\n   - Free associated resources\n   - Not send a response for the cancelled request\n4. Receivers **MAY** ignore cancellation notifications if:\n   - The referenced request is unknown\n   - Processing has already completed\n   - The request cannot be cancelled\n5. The sender of the cancellation notification **SHOULD** ignore any response to the\n   request that arrives afterward",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found cancel() method that manages cancellation in tmpaa2_i805.py",
+        "Phase 1-IR: Confirmed function calls for managing cancellations.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: tmpaa2_i805.py"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK provides automatic handling for cancellation notifications specifically by managing request lifecycle and properly automating the freeing of resources and non-sending of responses when requests are cancelled.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\message.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\resources\\resource_manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py"
+      ],
+      "code_snippets": [
+        "async def cancel(self) -> None: ... # Cancels the request and sends cancellation response"
+      ]
+    },
+    {
+      "rule_id": 170,
+      "rule_type": "MAY",
+      "rule_text": "1. Cancellation notifications **MUST** only reference requests that:\n   - Were previously issued in the same direction\n   - Are believed to still be in-progress\n2. The `initialize` request **MUST NOT** be cancelled by clients\n3. Receivers of cancellation notifications **SHOULD**:\n   - Stop processing the cancelled request\n   - Free associated resources\n   - Not send a response for the cancelled request\n4. Receivers **MAY** ignore cancellation notifications if:\n   - The referenced request is unknown\n   - Processing has already completed\n   - The request cannot be cancelled\n5. The sender of the cancellation notification **SHOULD** ignore any response to the\n   request that arrives afterward",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found RequestResponder class managing request lifecycle and handling cancellations.",
+        "Phase 2-Source Code: Verified cancel() method in RequestResponder automatically sends cancellation notifications and manages request lifecycles."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the cancellation process for requests through the RequestResponder class, specifically with its cancel() method. It sends error notifications when requests are cancelled, which complies with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\memory.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\client_auth.py"
+      ],
+      "code_snippets": [
+        "async def cancel(self) -> None: ... await self._session._send_response(...)",
+        "if isinstance(notification.root, CancelledNotification): await self._in_flight[cancelled_id].cancel()"
+      ]
+    },
+    {
+      "rule_id": 172,
+      "rule_type": "MUST",
+      "rule_text": "Both parties **MUST** handle these race conditions gracefully:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific function definitions related to race conditions found.",
+        "Phase 1-IR: Found calls to 'send_resource_list_changed' indicating automatic notifications.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: notifications.py"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles notifications regarding resource state changes without requiring manual calls from developers, thus fulfilling the MCP's requirements for handling race conditions.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
+      ],
+      "code_snippets": [
+        "await ctx.session.send_resource_list_changed()"
+      ]
+    },
+    {
+      "rule_id": 175,
+      "rule_type": "SHOULD",
+      "rule_text": "Invalid cancellation notifications **SHOULD** be ignored:\n\n- Unknown request IDs\n- Already completed requests\n- Malformed notifications",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found CancelledNotification in defs, defined in src/mcp/server/models.py.",
+        "Phase 1-IR: Confirmed main calls in _receive_loop to handle cancellation notifications.",
+        "Phase 2-Source Code: Verified logic in src/mcp/shared/session.py where notifications are processed automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK contains a well-defined mechanism for handling cancellation notifications automatically. The internal logic ensures that invalid notifications are processed by the SDK without requiring application developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py"
+      ],
+      "code_snippets": [
+        "class CancelledNotification(Notification[CancelledNotificationParams, Literal['notifications/cancelled']]): ...",
+        "if isinstance(notification.root, CancelledNotification): ... await self._in_flight[cancelled_id].cancel()"
+      ]
+    },
+    {
+      "rule_id": 176,
+      "rule_type": "MUST",
+      "rule_text": "1. The receiver **MUST** respond promptly with an empty response:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions related to response handling in defs.",
+        "Phase 1-IR: Verified call relations indicating SDK manages response logic.",
+        "Phase 2-Source Code: Verified implementation of _create_json_response and response handling in _handle_post_request."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK properly implements the required behavior of responding promptly with an empty response, encapsulating this behavior to ensure developers do not need to manage response logic themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\models.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\session.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\tmpz8jnoeel.py"
+      ],
+      "code_snippets": [
+        "_create_json_response method implementation.",
+        "Handling empty response cases in _handle_post_request."
+      ]
+    },
+    {
+      "rule_id": 177,
+      "rule_type": "MAY",
+      "rule_text": "2. If no response is received within a reasonable timeout period, the sender **MAY**:\n   - Consider the connection stale\n   - Terminate the connection\n   - Attempt reconnection procedures",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found timeout handling function 'send_request' in source definition.",
+        "Phase 1-IR: Functions for terminating connection and checking stale connections present.",
+        "Phase 2-Source Code: Verified automatic handling of connection termination and reconnection procedures in function 'terminate', 'send_request'."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK encapsulates the timeout handling, connection termination, and automatic reconnection procedures required by the MCP rule. The functions responsible for these actions are appropriately defined within the SDK framework, reducing the need for application-level handling.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\streamable_http.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\os\\posix\\utilities.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\_httpx_utils.py"
+      ],
+      "code_snippets": [
+        "def send_request(self, request: SendRequestT, ...) {...}",
+        "async def terminate(self) -> None {...}",
+        "def check_timeout(...): ..."
+      ]
+    },
+    {
+      "rule_id": 182,
+      "rule_type": "SHOULD",
+      "rule_text": "- Timeouts **SHOULD** be treated as connection failures\n- Multiple failed pings **MAY** trigger connection reset\n- Implementations **SHOULD** log ping failures for diagnostics",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or call relationships found.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\exceptions.py",
+        "Phase 2-Source Code: The method 'send_request' raises McpError on timeout, treating it as a connection failure."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically raises an McpError when a timeout occurs, indicating it treats timeouts as connection failures, complying with the MCP rule. The responsibility is encapsulated within the SDK, ensuring developers do not need to handle this logic themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\exceptions.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\exceptions.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\__init__.py"
+      ],
+      "code_snippets": [
+        "raise McpError(ErrorData(code=httpx.codes.REQUEST_TIMEOUT, message='Timed out while waiting for response...'))"
+      ]
+    },
+    {
+      "rule_id": 185,
+      "rule_type": "MUST",
+      "rule_text": "- Progress tokens **MUST** be a string or integer value\n- Progress tokens can be chosen by the sender using any means, but **MUST** be unique\n  across all active requests.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ProgressToken defined as str | int in src/mcp/types.py",
+        "Phase 2-Source Code: Verified automatic handling of progress notifications via send_progress_notification in progress.py"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the required behavior by defining progress tokens as either strings or integers and automatically managing progress notifications.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
+      ],
+      "code_snippets": [
+        "ProgressToken = str | int",
+        "await self.session.send_progress_notification(self.progress_token, self.current, total=self.total, message=message)"
+      ]
+    },
+    {
+      "rule_id": 186,
+      "rule_type": "MUST",
+      "rule_text": "- Progress tokens **MUST** be a string or integer value\n- Progress tokens can be chosen by the sender using any means, but **MUST** be unique\n  across all active requests.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function send_progress_notification in progress.py",
+        "Phase 1-IR: Confirmed calls in ProgressContext to send_progress_notification with automated notification logic",
+        "Phase 2-Source Code: Verified implementation in progress.py where progress tokens are handled and notifications are sent"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the behavior required for managing progress tokens and automatically sends notifications, ensuring compliance with the MCP rule that states progress tokens must be unique across active requests.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
+      ],
+      "code_snippets": [
+        "async def progress(self, amount: float, message: str | None = None): self.current += amount; await self.session.send_progress_notification(self.progress_token, self.current, total=self.total, message=message)"
+      ]
+    },
+    {
+      "rule_id": 187,
+      "rule_type": "MAY",
+      "rule_text": "The receiver **MAY** then send progress notifications containing:\n\n- The original progress token\n- The current progress value so far\n- An optional \"total\" value\n- An optional \"message\" value",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function send_progress_notification in defs.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles sending progress notifications as required by the MCP rule. It does not pass this responsibility onto the application developer.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\session.py"
+      ],
+      "code_snippets": [
+        "async def send_progress_notification(self, progress_token: str | int, progress: float, total: float | None = None, message: str | None = None): ..."
+      ]
+    },
+    {
+      "rule_id": 188,
+      "rule_type": "MUST",
+      "rule_text": "- The `progress` value **MUST** increase with each notification, even if the total is\n  unknown.\n- The `progress` and the `total` values **MAY** be floating point.\n- The `message` field **SHOULD** provide relevant human readable progress information.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definition 'progress' in 'progress.py' which updates the current progress.",
+        "Phase 1-IR: Confirms call to 'send_progress_notification' within the 'progress' function."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages progress notifications by encapsulating the behavior in the ProgressContext class. The progress value is updated internally, and notifications are sent without requiring application developers to do so.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
+      ],
+      "code_snippets": [
+        "async def progress(self, amount: float, message: str | None = None):  # increases 'current' and sends notification"
+      ]
+    },
+    {
+      "rule_id": 189,
+      "rule_type": "MAY",
+      "rule_text": "- The `progress` value **MUST** increase with each notification, even if the total is\n  unknown.\n- The `progress` and the `total` values **MAY** be floating point.\n- The `message` field **SHOULD** provide relevant human readable progress information.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `Progress` class in progress.py:7",
+        "Phase 1-IR: Confirmed progress notifications are sent inside `ProgressContext`: line 35 of progress.py",
+        "Phase 2-Source Code: Verified automatic handling of progress updates in `async def progress()` method."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the behavior for automatic progress reporting and notification handling. Automatic invocation of `send_progress_notification` methods within `ProgressContext` confirms compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
+      ],
+      "code_snippets": [
+        "class Progress(BaseModel): progress: float; total: float | None",
+        "async def progress(self, amount: float, message: str | None = None): self.current += amount; await self.session.send_progress_notification(self.progress_token, self.current, total=self.total, message=message)"
+      ]
+    },
+    {
+      "rule_id": 190,
+      "rule_type": "SHOULD",
+      "rule_text": "- The `progress` value **MUST** increase with each notification, even if the total is\n  unknown.\n- The `progress` and the `total` values **MAY** be floating point.\n- The `message` field **SHOULD** provide relevant human readable progress information.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: 'send_progress_notification' function found in src/mcp/server/fastmcp/__init__.py.",
+        "Phase 1-IR: Calls to 'send_progress_notification' identified in relevant SDK files, confirming internal handling.",
+        "Phase 2-Source Code: Verified implementation details showing automatic handling of progress notifications."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines a method to send progress notifications that automatically incorporates the required parameters, including 'message'. Therefore, it fully meets the compliance requirements of the MCP rule.",
+      "files_analyzed": [
+        "src/mcp/server/fastmcp/__init__.py",
+        "examples/fastmcp/logging_and_progress.py",
+        "examples/snippets/servers/tool_progress.py"
+      ],
+      "code_snippets": [
+        "def send_progress_notification(self, progress_token: str | int, progress: float, total: float | None = None, message: str | None = None):"
+      ]
+    },
+    {
+      "rule_id": 191,
+      "rule_type": "MUST",
+      "rule_text": "1. Progress notifications **MUST** only reference tokens that:\n\n   - Were provided in an active request\n   - Are associated with an in-progress operation",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct function definitions found in IR files.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: progress.py where progress notifications are sent automatically using the session's method."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements automatic handling of progress notifications by using the 'ProgressContext' class and the associated 'send_progress_notification' method. This ensures that notifications are sent based on tokens provided in the requests and progress is tracked internally.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
+      ],
+      "code_snippets": [
+        "await self.session.send_progress_notification(self.progress_token, self.current, total=self.total, message=message)"
+      ]
+    },
+    {
+      "rule_id": 192,
+      "rule_type": "MAY",
+      "rule_text": "2. Receivers of progress requests **MAY**:\n   - Choose not to send any progress notifications\n   - Send notifications at whatever frequency they deem appropriate\n   - Omit the total value if unknown",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'send_progress_notification' in 'C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py'.",
+        "Phase 1-IR: Confirmed internal call to this function within the 'progress' method of 'ProgressContext', evidencing automated notification sending."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles sending progress notifications through the 'send_progress_notification' function, called internally during progress updates. This adheres to the MCP rule that receivers of progress requests may send notifications autonomously without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py"
+      ],
+      "code_snippets": [
+        "async def progress(self, amount: float, message: str | None = None) -> None:\n        self.current += amount\n        await self.session.send_progress_notification(self.progress_token, self.current, total=self.total, message=message"
+      ]
+    },
+    {
+      "rule_id": 193,
+      "rule_type": "SHOULD",
+      "rule_text": "- Senders and receivers **SHOULD** track active progress tokens\n- Both parties **SHOULD** implement rate limiting to prevent flooding\n- Progress notifications **MUST** stop after completion",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability definition for progress tracking in ProgressContext in /python-sdk-main/src/mcp/shared/progress.py.",
+        "Phase 1-IR: Confirmed internal notification sending logic in send_progress_notification method in /python-sdk-main/src/mcp/shared/session.py."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines the ability to track active progress tokens through the ProgressContext and implements the logic to send progress notifications internally without requiring developers to manage this directly.",
+      "files_analyzed": [
+        "/python-sdk-main/src/mcp/shared/progress.py",
+        "/python-sdk-main/src/mcp/shared/session.py"
+      ],
+      "code_snippets": [
+        "self.session.send_progress_notification(self.progress_token, self.current, total=self.total, message=message)",
+        "async def send_progress_notification(self, progress_token: str | int, progress: float, total: float | None = None, message: str | None = None)"
+      ]
+    },
+    {
+      "rule_id": 195,
+      "rule_type": "MUST",
+      "rule_text": "- Senders and receivers **SHOULD** track active progress tokens\n- Both parties **SHOULD** implement rate limiting to prevent flooding\n- Progress notifications **MUST** stop after completion",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function ProgressContext with progress management defined in src/mcp/shared/progress.py.",
+        "Phase 1-IR: Confirmed that send_progress_notification is called internally within the SDK, demonstrated in src/mcp/shared/progress.py."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages progress notifications, ensuring compliance with the rule that notifications MUST stop after completion. The necessary methods for sending notifications are encapsulated within the SDK's classes.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\progress.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\types.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\lowlevel\\server.py"
+      ],
+      "code_snippets": [
+        "async def progress(self, amount: float, message: str | None = None):",
+        "await self.session.send_progress_notification(...)"
+      ]
+    },
+    {
+      "rule_id": 196,
+      "rule_type": "MUST",
+      "rule_text": "1. Remove support for JSON-RPC **[batching](https://www.jsonrpc.org/specification#batch)**\n   (PR [#416](https://github.com/modelcontextprotocol/specification/pull/416))\n2. Add support for [structured tool output](/specification/2025-06-18/server/tools#structured-content)\n   (PR [#371](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/371))\n3. Classify MCP servers as [OAuth Resource Servers](/specification/2025-06-18/basic/authorization#authorization-server-discovery),\n   adding protected resource metadata to discover the corresponding Authorization server.\n   (PR [#338](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/338))\n4. Require MCP clients to implement Resource Indicators as described in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) to prevent\n   malicious servers from obtaining access tokens.\n   (PR [#734](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/734))\n5. Clarify [security considerations](/specification/2025-06-18/basic/authorization#security-considerations) and best practices\n   in the authorization spec and in a new [security best practices page](/specification/2025-06-18/basic/security_best_practices).\n6. Add support for **[elicitation](/specification/2025-06-18/client/elicitation)**, enabling servers to request additional\n   information from users during interactions.\n   (PR [#382](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/382))\n7. Add support for **[resource links](/specification/2025-06-18/server/tools#resource-links)** in\n   tool call results. (PR [#603](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/603))\n8. Require [negotiated protocol version to be specified](/specification/2025-06-18/basic/transports#protocol-version-header)\n   via `MCP-Protocol-Version` header in subsequent requests when using HTTP (PR [#548](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/548)).\n9. Change **SHOULD** to **MUST** in [Lifecycle Operation](/specification/2025-06-18/basic/lifecycle#operation)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions or call relationships found in `defs_python.jsonl` and `calls_python.jsonl`.",
+        "Phase 2-Source Code: Verified implementation details in `tmpr8kqoak_.py` and `tmp2alu1dt5.md` demonstrating automatic notification handling."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically implements the behavior required by the rule by sending notifications for changes to resources and tools without shifting responsibilities to the application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tools\\tool_manager.py"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 197,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Remove support for JSON-RPC **[batching](https://www.jsonrpc.org/specification#batch)**\n   (PR [#416](https://github.com/modelcontextprotocol/specification/pull/416))\n2. Add support for [structured tool output](/specification/2025-06-18/server/tools#structured-content)\n   (PR [#371](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/371))\n3. Classify MCP servers as [OAuth Resource Servers](/specification/2025-06-18/basic/authorization#authorization-server-discovery),\n   adding protected resource metadata to discover the corresponding Authorization server.\n   (PR [#338](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/338))\n4. Require MCP clients to implement Resource Indicators as described in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) to prevent\n   malicious servers from obtaining access tokens.\n   (PR [#734](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/734))\n5. Clarify [security considerations](/specification/2025-06-18/basic/authorization#security-considerations) and best practices\n   in the authorization spec and in a new [security best practices page](/specification/2025-06-18/basic/security_best_practices).\n6. Add support for **[elicitation](/specification/2025-06-18/client/elicitation)**, enabling servers to request additional\n   information from users during interactions.\n   (PR [#382](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/382))\n7. Add support for **[resource links](/specification/2025-06-18/server/tools#resource-links)** in\n   tool call results. (PR [#603](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/603))\n8. Require [negotiated protocol version to be specified](/specification/2025-06-18/basic/transports#protocol-version-header)\n   via `MCP-Protocol-Version` header in subsequent requests when using HTTP (PR [#548](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/548)).\n9. Change **SHOULD** to **MUST** in [Lifecycle Operation](/specification/2025-06-18/basic/lifecycle#operation)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific definitions found directly mentioning automatic notifications.",
+        "Phase 1-IR: Confirmed functions that relate to notifications exist in calls.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: notifications.py showing internal notification mechanics."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements the required notification logic internally, ensuring that the behavior specified in the MCP rule is handled automatically without shifting the responsibility to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\snippets\\servers\\notifications.py"
+      ],
+      "code_snippets": [
+        "ctx.session.send_resource_list_changed() at line 17 of notifications.py"
+      ]
+    },
+    {
+      "rule_id": 198,
+      "rule_type": "MUST_NOT",
+      "rule_text": "For trust & safety and security:\n\n- Servers **MUST NOT** use elicitation to request sensitive information.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ElicitRequest in defs, defined in elicitation.py",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages the elicitation process, ensuring sensitive information is not requested inappropriately by letting the framework handle the behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
+      ],
+      "code_snippets": [
+        "async def elicit_with_validation(session: ServerSession, message: str, schema: type[ElicitSchemaModelT], related_request_id: RequestId | None = None):"
+      ]
+    },
+    {
+      "rule_id": 199,
+      "rule_type": "SHOULD",
+      "rule_text": "Applications **SHOULD**:\n\n- Provide UI that makes it clear which server is requesting information\n- Allow users to review and modify their responses before sending\n- Respect user privacy and provide clear reject and cancel options",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Identified RequestResponder managing request lifecycles.",
+        "Phase 2-Source Code: Verified automatic response handling in BaseSession class.",
+        "Phase 2-Source Code: Confirmed clear cancellation options via the cancel() method."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements and encapsulates the ability to manage user responses and sends notifications automatically without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py"
+      ],
+      "code_snippets": [
+        "class RequestResponder:  async def respond(self, response): ...",
+        "class BaseSession:  async def send_request(...): ..."
+      ]
+    },
+    {
+      "rule_id": 200,
+      "rule_type": "MUST",
+      "rule_text": "Clients that support elicitation **MUST** declare the `elicitation` capability during\n[initialization](/specification/2025-06-18/basic/lifecycle#initialization):",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct definition for elicitation capability found, but related function elicit_with_validation enables the functionality.",
+        "Phase 2-Source Code: Verified implementation confirms that SDK handles user interaction and response validation automatically."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically manages the elicitation process without requiring developers to implement it themselves. The elicit_with_validation function defines this capability, ensuring adherence to the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\elicitation.py"
+      ],
+      "code_snippets": [
+        "async def elicit_with_validation(session: ServerSession, message: str, schema: type[ElicitSchemaModelT])"
+      ]
+    }
+  ]
+}

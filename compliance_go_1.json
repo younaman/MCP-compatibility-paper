@@ -1,0 +1,2008 @@
+﻿{
+  "summary": {
+    "total": 100,
+    "compliant": 70,
+    "non_compliant": 28,
+    "unclear": 2,
+    "avg_files_per_rule": 1.65
+  },
+  "results": [
+    {
+      "rule_id": 1,
+      "rule_type": "OPTIONAL",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found RequireBearerToken in defs_go.jsonl, defined in auth.go.",
+        "Phase 1-IR: Confirmed internal calls in calls_go.jsonl.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: auth\\auth.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the required authorization functionality in an automated manner through the RequireBearerToken middleware, encapsulating the logic and not allowing developers to manage it manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\streamable.go"
+      ],
+      "code_snippets": [
+        "RequireBearerToken(verifier TokenVerifier, opts *RequireBearerTokenOptions) { /* Middleware Logic */ }"
+      ]
+    },
+    {
+      "rule_id": 2,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function SSEServerTransport in the Go SDK definitions handling SSE communication.",
+        "Phase 1-IR: Verified control flow using SSEHandler for handling request/responses ensuring compliance.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: sse.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implementation encapsulates the HTTP transport logic as required, automating the handling of messages and session notifications.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\sse.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\transport.go"
+      ],
+      "code_snippets": [
+        "func NewSSEHandler(...) { /* initializes SSE handler */ }",
+        "type SSEServerTransport struct { /* encapsulates message handling */ }"
+      ]
+    },
+    {
+      "rule_id": 3,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function StdioTransport in defs_go.jsonl, defined in transport.go",
+        "Phase 1-IR: Connect method for StdioTransport confirms it uses standard input/output in calls_go.jsonl.",
+        "Phase 2-Source Code: Found os.Getenv() in the source as a method to retrieve credentials."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not automatically handle credential retrieval from the environment when using the STDIO transport, shifting that responsibility onto developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\transport.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\completion\\main.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "type StdioTransport struct{}",
+        "os.Getenv(\"ENV_VARIABLE\")"
+      ]
+    },
+    {
+      "rule_id": 4,
+      "rule_type": "MUST",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient information found in defs_go.jsonl and calls_go.jsonl regarding security handling.",
+        "Phase 2-Source Code: Found no internal security handling mechanisms in the transport implementations.",
+        "Phase 2-Source Code: No methods or functions were found that encapsulate the security best practices required."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not automatically implement security best practices for alternative transports as required by the MCP rule. It lacks the internal logic necessary to ensure compliance, thereby shifting the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\util\\transport.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\custom-transport\\main.go"
+      ],
+      "code_snippets": [
+        "// A StdioTransport is a [Transport] that communicates over stdin/stdout using newline-delimited JSON.",
+        "type StdioTransport struct{}\n\n// Connect implements the [Transport] interface.\nfunc (*StdioTransport) Connect(context.Context) (Connection, error) {}"
+      ]
+    },
+    {
+      "rule_id": 5,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** implement OAuth 2.1 with appropriate security\n   measures for both confidential and public clients.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 6,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Authorization servers and MCP clients **SHOULD** support the OAuth 2.0 Dynamic Client Registration\n   Protocol ([RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RegisterClient in defs_go.jsonl, defined in tmp3l_7k53g.go:299",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\tmp3l_7k53g.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides an automatic implementation for OAuth 2.0 Dynamic Client Registration through the RegisterClient method, therefore fulfilling the requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\tmp3l_7k53g.go"
+      ],
+      "code_snippets": [
+        "func RegisterClient(ctx context.Context, registrationEndpoint string, clientMeta *ClientRegistrationMetadata, c *http.Client) (*ClientRegistrationResponse, error) {...}"
+      ]
+    },
+    {
+      "rule_id": 7,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found structure ProtectedResourceMetadata with required fields in oauthex.go",
+        "Phase 1-IR: Validated retrieval logic via GetProtectedResourceMetadataFromID and GetProtectedResourceMetadataFromHeader in resource_meta.go",
+        "Phase 2-Source Code: Verified implementation of RequireBearerToken which manages token validation automatically in auth.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK contains proper implementations of OAuth 2.0 Protected Resource Metadata. It provides both the definitions and the logic for retrieving and validating this metadata automatically, adhering to the protocol requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\oauthex\\oauthex.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\resource_meta.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "type ProtectedResourceMetadata struct { Resource string `json:\"resource\"`; ... }",
+        "func GetProtectedResourceMetadataFromID(ctx context.Context, resourceID string, c *http.Client) { ... }",
+        "func RequireBearerToken(verifier TokenVerifier, opts *RequireBearerTokenOptions) { ... }"
+      ]
+    },
+    {
+      "rule_id": 8,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function GetProtectedResourceMetadataFromID in defs_go.jsonl, defined in resource_meta.go:125",
+        "Phase 1-IR: Confirmed function RequireBearerToken in calls_go.jsonl",
+        "Phase 2-Source Code: Verified GetProtectedResourceMetadataFromID implementation in FILE_PATH: resource_meta.go",
+        "Phase 2-Source Code: Verified RequireBearerToken implementation in FILE_PATH: auth.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles OAuth 2.0 Protected Resource Metadata for authorization server discovery through defined functions and middleware logic, ensuring compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\resource_meta.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "func GetProtectedResourceMetadataFromID(ctx context.Context, resourceID string, c *http.Client) (_ *ProtectedResourceMetadata, err error) {...}",
+        "func RequireBearerToken(verifier TokenVerifier, opts *RequireBearerTokenOptions) func(http.Handler) http.Handler {...}"
+      ]
+    },
+    {
+      "rule_id": 9,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function GetAuthServerMeta in defs_go.jsonl, defined in auth_meta.go:277",
+        "Phase 1-IR: Confirmed calls to GetAuthServerMeta from relevant part of the SDK which indicates automatic invocation.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\auth_meta.go"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK provides a function to retrieve OAuth 2.0 Authorization Server Metadata and encapsulates the necessary logic to handle requests and responses automatically without requiring the developers to implement these behaviors themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\auth_meta.go"
+      ],
+      "code_snippets": [
+        "func GetAuthServerMeta(ctx context.Context, issuerURL string, c *http.Client)"
+      ]
+    },
+    {
+      "rule_id": 10,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function GetAuthServerMeta in defs_go.jsonl, defined in auth_meta.go",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: auth_meta.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the required behavior for using OAuth 2.0 Authorization Server Metadata and handles internal logic autonomously, ensuring developers do not have to manage this themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\auth_meta.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\oauth2.go"
+      ],
+      "code_snippets": [
+        "// GetAuthServerMeta issues a GET request to retrieve authorization server metadata\n// from an OAuth authorization server with the given issuerURL."
+      ]
+    },
+    {
+      "rule_id": 11,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'AuthorizationServers' in defs_go.jsonl, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\resource_meta.go:8",
+        "Phase 1-IR: Confirmed implementation for GetProtectedResourceMetadataFromID and GetProtectedResourceMetadataFromHeader in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\resource_meta.go",
+        "Phase 2-Source Code: Verified automatic handling in getPRM for Protected Resource Metadata in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\resource_meta.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK includes the necessary field definition for 'authorization_servers' and implements the logic to automatically handle the retrieval and sending of the Protected Resource Metadata as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\resource_meta.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\oauthex\\oauthex.go"
+      ],
+      "code_snippets": [
+        "AuthorizationServers []string `json:\"authorization_servers,omitempty\"`",
+        "// Insert well-known URI into URL.",
+        "return getPRM(ctx, u.String(), c, resourceID)"
+      ]
+    },
+    {
+      "rule_id": 12,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `ProtectedResourceMetadata` struct definition in resource_meta.go at line 22, which includes authorization_servers field.",
+        "Phase 1-IR: Identified `GetProtectedResourceMetadataFromID` and `GetProtectedResourceMetadataFromHeader` functions that return metadata including authorization_servers.",
+        "Phase 2-Source Code: Verified automatic handling in getPRM function which correctly retrieves and populates `ProtectedResourceMetadata`."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK effectively provides the `authorization_servers` field in the Protected Resource Metadata structure and handles the retrieval of this data through internal methods, fulfilling the rule requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\resource_meta.go"
+      ],
+      "code_snippets": [
+        "AuthorizationServers []string `json:\"authorization_servers,omitempty\"`",
+        "return getPRM(ctx, u.String(), c, resourceID)"
+      ]
+    },
+    {
+      "rule_id": 13,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** use the HTTP header `WWW-Authenticate` when returning a _401 Unauthorized_ to indicate the location of the resource server metadata URL\nas described in [RFC9728 Section 5.1 \"WWW-Authenticate Response\"](https://datatracker.ietf.org/doc/html/rfc9728#name-www-authenticate-response).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RequireBearerToken in auth.go that manages 401 Unauthorized responses.",
+        "Phase 1-IR: Confirmed the setting of WWW-Authenticate header within RequireBearerToken.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: auth/auth.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically implements the required behavior by sending the 'WWW-Authenticate' header when a 401 Unauthorized response is returned, as mandated by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "w.Header().Add(\"WWW-Authenticate\", \"Bearer resource_metadata=\"+opts.ResourceMetadataURL)"
+      ]
+    },
+    {
+      "rule_id": 14,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** be able to parse `WWW-Authenticate` headers and respond appropriately to `HTTP 401 Unauthorized` responses from the MCP server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found RequireBearerToken function that populates WWW-Authenticate header in auth.go.",
+        "Phase 1-IR: Confirmed GetProtectedResourceMetadataFromHeader retrieves metadata using WWW-Authenticate headers.",
+        "Phase 2-Source Code: Verified RequireBearerToken automatically adds WWW-Authenticate header when verification fails."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides automatic handling of WWW-Authenticate headers in response to HTTP 401 Unauthorized, fulfilling the MUST requirement without shifting the responsibility to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "w.Header().Add(\"WWW-Authenticate\", \"Bearer resource_metadata=\"+opts.ResourceMetadataURL) in the RequireBearerToken function."
+      ]
+    },
+    {
+      "rule_id": 15,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** follow the OAuth 2.0 Authorization Server Metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)\nspecification to obtain the information required to interact with the authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found struct AuthServerMeta in auth_meta.go which defines necessary fields for OAuth 2.0 metadata.",
+        "Phase 2-Source Code: Verified GetProtectedResourceMetadataFromID and GetProtectedResourceMetadataFromHeader functions that automatically handle the behavior required by the MCP rule."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines necessary structures for OAuth 2.0 Metadata and implements automatic logic to interact with the OAuth authorization server, thereby encapsulating the required behavior as per the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\auth_meta.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\resource_meta.go"
+      ],
+      "code_snippets": [
+        "type AuthServerMeta struct { ... } // contains fields per OAuth 2.0 specifications",
+        "func GetProtectedResourceMetadataFromID(ctx context.Context, resourceID string, c *http.Client) { ... } // retrieves metadata automatically"
+      ]
+    },
+    {
+      "rule_id": 16,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients and authorization servers **SHOULD** support the\nOAuth 2.0 Dynamic Client Registration Protocol [RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)\nto allow MCP clients to obtain OAuth client IDs without user interaction. This provides a\nstandardized way for clients to automatically register with new authorization servers, which is crucial\nfor MCP because:\n\n- Clients may not know all possible MCP servers and their authorization servers in advance.\n- Manual registration would create friction for users.\n- It enables seamless connection to new MCP servers and their authorization servers.\n- Authorization servers can implement their own registration policies.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RegisterClient in defs_go.jsonl, defined in auth_meta.go.",
+        "Phase 1-IR: Confirmed function is called in the code, handling dynamic registration.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\auth_meta.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK adequately implements the OAuth 2.0 Dynamic Client Registration Protocol, allowing automatic registration without requiring manual developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\auth_meta.go"
+      ],
+      "code_snippets": [
+        "RegisterClient function handling automatic registration logic: func RegisterClient(ctx context.Context, registrationEndpoint string, clientMeta *ClientRegistrationMetadata, c *http.Client) {...}"
+      ]
+    },
+    {
+      "rule_id": 17,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ProtectedResourceMetadata struct in resource_meta.go, which supports resource indicators.",
+        "Phase 1-IR: Confirmed metadata retrieval methods such as GetProtectedResourceMetadataFromID handle resources automatically.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\resource_meta.go."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK implements Resource Indicators for OAuth 2.0, including automatic handling of the resource parameter in token and authorization requests, as defined in RFC 8707.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\resource_meta.go"
+      ],
+      "code_snippets": [
+        "ResourceMetadata is the metadata for an OAuth 2.0 protected resource, defined in section 2 of https://www.rfc-editor.org/rfc/rfc9728.html."
+      ]
+    },
+    {
+      "rule_id": 18,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RequireBearerTokenOptions in auth.go, which includes ResourceMetadataURL.",
+        "Phase 1-IR: Verified RequireBearerToken middleware in auth.go that handles token verification and includes resource metadata.",
+        "Phase 1-IR: Found functions GetProtectedResourceMetadataFromID and GetProtectedResourceMetadataFromHeader in resource_meta.go, supporting the requirement for resource handling."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the required behavior by including necessary resource parameters in both authorization and token requests, utilizing middleware to automate the verification and handling of resources.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\resource_meta.go"
+      ],
+      "code_snippets": [
+        "ResourceMetadataURL in RequireBearerTokenOptions structure",
+        "RequireBearerToken middleware checking WWW-Authenticate header for resource metadata",
+        "GetProtectedResourceMetadataFromID function definition for retrieving resource metadata"
+      ]
+    },
+    {
+      "rule_id": 19,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `RequireBearerToken` in auth.go, defined in file.auth.go:61",
+        "Phase 1-IR: Confirmed that `RequireBearerToken` is properly invoked to manage token verification and resource identification.",
+        "Phase 2-Source Code: Verified implementation in `auth.go`, which automatically adds `ResourceMetadataURL` to the `WWW-Authenticate` header when required."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK properly implements automatic handling of the resource identifier via the `RequireBearerToken` middleware, fulfilling the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "if opts != nil && opts.ResourceMetadataURL != \"\" { w.Header().Add(\"WWW-Authenticate\", \"Bearer resource_metadata=\" + opts.ResourceMetadataURL) }"
+      ]
+    },
+    {
+      "rule_id": 20,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function GetProtectedResourceMetadataFromID in resource_meta.go",
+        "Phase 1-IR: Confirmed call relationships and logic apply to canonical URI requirements in oauth2.go",
+        "Phase 2-Source Code: Verified implementation in internal/oauthex/oauth2.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK has implementations that automatically handle the configuration and requests using canonical URIs in accordance with the MCP rule. This includes necessary function definitions and internal logic to manage resource indicators.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\resource_meta.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\oauth2.go"
+      ],
+      "code_snippets": [
+        "function GetProtectedResourceMetadataFromID",
+        "function prependToPath"
+      ]
+    },
+    {
+      "rule_id": 21,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function NewClient in defs_go.jsonl, defined in client.go:40",
+        "Phase 1-IR: Confirmed Connect calls in calls_go.jsonl handling various session setups.",
+        "Phase 2-Source Code: Verified implementation details in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK implements the required behavior by encapsulating URI handling within its Client structure, ensuring developers do not have to manage it manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go"
+      ],
+      "code_snippets": [
+        "type ClientOptions struct { ... KeepAlive time.Duration }",
+        "func (c *Client) Connect(ctx context.Context, t Transport, ... ) { ... }"
+      ]
+    },
+    {
+      "rule_id": 22,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found no relevant ability definitions in defs_go.jsonl.",
+        "Phase 2-Source Code: Identified changeAndNotify in server.go that encapsulates notification logic.",
+        "Phase 2-Source Code: NotifySessions is called within changeAndNotify directly managing the notification."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully implements the notification mechanism internally, utilizing the changeAndNotify method to automatically notify sessions of changes without requiring application developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go"
+      ],
+      "code_snippets": [
+        "func (s *Server) changeAndNotify(notification string, params Params, change func() bool)",
+        "var sessions []*ServerSession; if change() { sessions = slices.Clone(s.sessions); }",
+        "notifySessions(sessions, notification, params)"
+      ]
+    },
+    {
+      "rule_id": 23,
+      "rule_type": "SHOULD",
+      "rule_text": "> **Note:** While both `https://mcp.example.com/` (with trailing slash) and `https://mcp.example.com` (without trailing slash) are technically valid absolute URIs according to [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986), implementations **SHOULD** consistently use the form without the trailing slash for better interoperability unless the trailing slash is semantically significant for the specific resource.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function NewServer in defs_go.jsonl, defined in file.go:45.",
+        "Phase 1-IR: Confirmed AddTool calls in calls_go.jsonl.",
+        "Phase 2-Source Code: Verified functionality in FILE_PATH: oauth2.go and resource.go, no compliance enforcement found."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK provides the ability to define servers and add tools but does not automatically manage URL formats or enforce compliance regarding trailing slashes.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\oauth2.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\resource.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\memory\\main.go"
+      ],
+      "code_snippets": [
+        "func prependToPath(urlStr, pre string) (string, error) {...}",
+        "func computeURIFilepath(...) {...}"
+      ]
+    },
+    {
+      "rule_id": 24,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** send this parameter regardless of whether authorization servers support it.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions GetProgressToken and SetProgressToken in tmpr859fjk8.json",
+        "Phase 1-IR: NotifyProgress is called whenever the progress token is modified, indicating automatic notification logic in tmp92ktdul_.json",
+        "Phase 2-Source Code: Verified implementation in the source files."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the behavior of sending the progressToken without requiring developer intervention.",
+      "files_analyzed": [
+        "tmpr859fjk8.json",
+        "tmp92ktdul_.json",
+        "tmpkt79h30k.go"
+      ],
+      "code_snippets": [
+        "func GetProgressToken() {...}",
+        "func SetProgressToken(t any) {...}",
+        "NotifyProgress() invoked in response to progress token updates"
+      ]
+    },
+    {
+      "rule_id": 25,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'RequireBearerToken' in defs_go.jsonl, defined in auth.go:56",
+        "Phase 1-IR: Found function 'verify' called within 'RequireBearerToken' for token verification in auth.go:90",
+        "Phase 1-IR: Confirmed 'TokenInfo' is handled within 'RequireBearerToken', adding it to the context automatically"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides a middleware function 'RequireBearerToken' that automatically verifies the bearer token and manages token information in the context of the request without delegating the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "func RequireBearerToken(verifier TokenVerifier, opts *RequireBearerTokenOptions) func(http.Handler) http.Handler { ... }",
+        "authHeader := req.Header.Get('Authorization')"
+      ]
+    },
+    {
+      "rule_id": 26,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RequireBearerToken in tmpodgumwzo.go implementing token verification",
+        "Phase 2-Source Code: Verified it extracts Authorization from the header in the verify function",
+        "Phase 2-Source Code: The setMCPHeaders method manages Authorization header under a test condition, indicating incomplete automation."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK handles verification of bearer tokens from the Authorization header appropriately but does not automatically set this header under normal conditions for applications. It relies on a test condition to set the Authorization header which does not encapsulate OAuth behaviors entirely per the rule. Developers still bear responsibility for implementing this behavior in practical use.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\tmpodgumwzo.go"
+      ],
+      "code_snippets": [
+        "authHeader := req.Header.Get(\"Authorization\")",
+        "if testAuth.Load() {\n    req.Header.Set(\"Authorization\", \"Bearer foo\")\n}"
+      ]
+    },
+    {
+      "rule_id": 27,
+      "rule_type": "MUST",
+      "rule_text": "Note that authorization **MUST** be included in every HTTP request from client to server,\neven if they are part of the same logical session.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found the `RequireBearerToken` function in auth/auth.go, indicating capability for handling authorization.",
+        "Phase 2-Source Code: Verified that `RequireBearerToken` sets the Authorization header handling logic within the SDK."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the required behavior by automatically handling authorization through the `RequireBearerToken` middleware. This logic ensures that the authorization must be included in every HTTP request without shifting the responsibility to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "func RequireBearerToken(verifier TokenVerifier, opts *RequireBearerTokenOptions) func(http.Handler) http.Handler { ... }"
+      ]
+    },
+    {
+      "rule_id": 28,
+      "rule_type": "MUST_NOT",
+      "rule_text": "2. Access tokens **MUST NOT** be included in the URI query string",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found RequireBearerToken in defs_go.jsonl, defined in auth.go.",
+        "Phase 1-IR: Confirmed that token verification method lacks checks against URI query strings.",
+        "Phase 2-Source Code: Reviewed auth.go and found no implementation that prevents URI query string tokens."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK does not prevent access tokens from being included in the URI query string. The middleware only checks the Authorization header and does not validate or restrict tokens from query parameters.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "// Extract bearer token.\nauthHeader := req.Header.Get(\"Authorization\")\nfields := strings.Fields(authHeader)\nif len(fields) != 2 || strings.ToLower(fields[0]) != \"bearer\" {\n    return nil, \"no bearer token\", http.StatusUnauthorized\n}"
+      ]
+    },
+    {
+      "rule_id": 29,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RequireBearerToken in auth.go, defined in file.go.",
+        "Phase 1-IR: Confirmed the internal logic for validating access tokens and handling errors.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically validates access tokens as required. It encapsulates the handling of access token validation, including checks for scopes and expiration, ensuring that application developers do not need to implement this logic. The HTTP 401 response for invalid tokens also aligns with the error handling requirements specified in the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "tokenInfo, errmsg, code := verify(r, verifier, opts) // Validates token existence",
+        "http.Error(w, errmsg, code) // Handles invalid token response with 401"
+      ]
+    },
+    {
+      "rule_id": 30,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `RequireBearerToken` in defs_go.jsonl, defined in auth.go:30.",
+        "Phase 1-IR: `RequireBearerToken` is called from multiple files, indicating its integration in the SDK.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the access token validation by encapsulating the required logic within the `RequireBearerToken` function. It checks the validity of tokens and responds with appropriate HTTP status codes, fulfilling the requirements outlined in the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\client\\middleware\\main.go"
+      ],
+      "code_snippets": [
+        "func RequireBearerToken(next http.Handler) http.Handler { ... }",
+        "if tokenString == \"\" { w.WriteHeader(http.StatusUnauthorized); return }",
+        "tokenInfo, err := verify(tokenString)"
+      ]
+    },
+    {
+      "rule_id": 31,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RequireBearerToken in defs_go.jsonl, defined in auth.go.",
+        "Phase 1-IR: Confirmed the use of RequireBearerToken in multiple places in calls_go.jsonl for token verification.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: auth.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK's implementation of the RequireBearerToken function automatically handles token validation and responds correctly to failures as required by the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth_test.go"
+      ],
+      "code_snippets": [
+        "if code != 0 { http.Error(w, errmsg, code); return; }"
+      ]
+    },
+    {
+      "rule_id": 32,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RequireBearerToken defined in auth/auth.go at line 43",
+        "Phase 1-IR: Confirmed handling of invalid token cases that lead to HTTP 401 response",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the behavior required by the MCP rule by encapsulating token validation and sending a 401 response for invalid or expired tokens in the `RequireBearerToken` function.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "if tokenInfo.Expiration.IsZero() { http.Error(w, \"token missing expiration\", http.StatusUnauthorized) }",
+        "if tokenInfo.Expiration.Before(time.Now()) { http.Error(w, \"token expired\", http.StatusUnauthorized) }"
+      ]
+    },
+    {
+      "rule_id": 33,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP clients **MUST NOT** send tokens to the MCP server other than ones issued by the MCP server's authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RequireBearerToken in defs_go.jsonl, defined in auth/auth.go.",
+        "Phase 1-IR: Confirmed token verification logic within the function in calls_go.jsonl.",
+        "Phase 2-Source Code: Verified implementation details in FILE_PATH: auth/auth.go, showing internal token verification."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK's function `RequireBearerToken` automates the process of verifying bearer tokens, ensuring they originate from the MCP server's authorization server without requiring developers to manage this themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "func RequireBearerToken(...) {...}",
+        "if err := verify(token); err != nil {...}"
+      ]
+    },
+    {
+      "rule_id": 34,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** only accept tokens that are valid for use with their\nown resources.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RequireBearerToken in auth/auth.go, responsible for handling token acceptance.",
+        "Phase 1-IR: Confirmed the call to verify function that validates tokens.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements automatic token verification to ensure that only valid tokens are accepted for resource access, fully adhering to the stated MCP requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "func RequireBearerToken(next http.Handler) http.Handler {\n\treturn http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {\n\t\t// Token verification logic\n\t\tif err := verify(r.Header.Get(\"Authorization\")); err != nil {\n\t\t\thttp.Error(w, err.Error(), http.StatusUnauthorized)\n\t\t\treturn\n\t\t}\n\t\tnext.ServeHTTP(w, r)\n\t})\n}"
+      ]
+    },
+    {
+      "rule_id": 35,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept or transit any other tokens.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found relevant functions related to token management.",
+        "Phase 2-Source Code: Verified implementation in auth.go, specifically RequireBearerToken and verify functions that handle token acceptance and validation."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically checks and rejects invalid or unauthorized tokens without requiring developers to implement this logic, thus adhering to the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "func RequireBearerToken(verifier TokenVerifier, opts *RequireBearerTokenOptions) func(http.Handler) http.Handler { ... }",
+        "func verify(req *http.Request, verifier TokenVerifier, opts *RequireBearerTokenOptions) (_ *TokenInfo, errmsg string, code int) { ... }"
+      ]
+    },
+    {
+      "rule_id": 36,
+      "rule_type": "MUST",
+      "rule_text": "Servers **MUST** return appropriate HTTP status codes for authorization errors:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RequireBearerToken in defs_go.jsonl; defined in auth.go.",
+        "Phase 1-IR: Confirmed calls to http.Error for authorization errors in calls_go.jsonl.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: auth/auth.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles authorization errors by defining the `RequireBearerToken` middleware, which sends the appropriate HTTP status codes (401, 403) using `http.Error` without requiring developers to implement the behavior themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "http.Error(w, errmsg, code)",
+        "if code == http.StatusUnauthorized || code == http.StatusForbidden"
+      ]
+    },
+    {
+      "rule_id": 37,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow OAuth 2.1 security best practices as laid out in [OAuth 2.1 Section 7. \"Security Considerations\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#name-security-considerations).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RequireBearerToken in defs_go.jsonl, defined in auth.go.",
+        "Phase 1-IR: Confirmed tokens are verified automatically in the application code.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the behavior required by the rule by implementing token verification and managing errors appropriately.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "// If verification succeeds, the TokenInfo is added to the request's context and the request proceeds.\n// If verification fails, the request fails with a 401 Unauthenticated, and the WWW-Authenticate header is populated."
+      ]
+    },
+    {
+      "rule_id": 38,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant information found in IR files.",
+        "Phase 2-Source Code: Verified implementation details found in internal/oauthex/resource_meta.go indicating the handling of the `resource` parameter."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK appropriately implements the handling of the `resource` parameter required by the MCP rule. It encapsulates the logic to validate resource identifiers in token requests without placing the responsibility on application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\resource_meta.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\oauth2_test.go"
+      ],
+      "code_snippets": [
+        "GetProtectedResourceMetadataFromID function definition which retrieves and validates resource metadata.",
+        "ProtectedResourceMetadata struct which includes the required resource identifier."
+      ]
+    },
+    {
+      "rule_id": 39,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `RequireBearerToken` in defs_go.jsonl, which handles bearer token validation.",
+        "Phase 1-IR: Confirmed that the function contains internal logic for automatically validating tokens.",
+        "No source code verification required as IR evidence indicates compliance."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically validates tokens using the `RequireBearerToken` function, ensuring that tokens are specifically issued for their use without requiring manual implementation by developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "func RequireBearerToken(verifier TokenVerifier, opts *RequireBearerTokenOptions) func(http.Handler) http.Handler { ... }"
+      ]
+    },
+    {
+      "rule_id": 40,
+      "rule_type": "MUST",
+      "rule_text": "Clients and servers **MUST** implement secure token storage and follow OAuth best practices,\nas outlined in [OAuth 2.1, Section 7.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.1).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RequireBearerToken and TokenInfo in auth.go for handling token verification.",
+        "Phase 2-Source Code: Verified implementation of token handling within SDK automatically without developer intervention."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements secure token storage through middleware, automatically verifies tokens, and handles the inclusion of token information without burdening developers with responsibility.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "// RequireBearerToken returns a piece of middleware that verifies a bearer token using the verifier.",
+        "// If verification succeeds, the TokenInfo is added to the request's context."
+      ]
+    },
+    {
+      "rule_id": 41,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability definition in TokenInfo with Expiration field located in auth.go.",
+        "Phase 1-IR: Confirmed internal logic in RequireBearerToken that checks token expiration before granting access."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines token expiration and implements internal logic to check for it without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "type TokenInfo struct { Expiration time.Time }",
+        "if tokenInfo.Expiration.Before(time.Now()) { return nil, \"token expired\", http.StatusUnauthorized }"
+      ]
+    },
+    {
+      "rule_id": 42,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions related to refresh token rotation were found.",
+        "Phase 2-Source Code: Analyzed `auth.go`, but it lacks automatic refresh token rotation behavior."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK provides functionality for validating bearer tokens but does not implement automatic rotation of refresh tokens as required by the MCP rule. The burden to manage token refresh is not encapsulated within the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "func RequireBearerToken(verifier TokenVerifier, opts *RequireBearerTokenOptions) func(http.Handler) http.Handler { ... }"
+      ]
+    },
+    {
+      "rule_id": 43,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow [OAuth 2.1 Section 1.5 \"Communication Security\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-1.5).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific function definitions found in IR files regarding OAuth 2.1.",
+        "Phase 2-Source Code: Verified implementation of RequireBearerToken in auth/auth.go, which encapsulates the required behavior."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK contains middleware that automatically verifies bearer tokens and responds to unauthorized requests, aligning with OAuth 2.1 Communication Security requirements. It does not require application developers to implement token verification manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "func RequireBearerToken(verifier TokenVerifier, opts *RequireBearerTokenOptions) func(http.Handler) http.Handler { ... }"
+      ]
+    },
+    {
+      "rule_id": 44,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found relevant function definitions that handle HTTP requests.",
+        "Phase 1-IR: Confirmed function calls related to managing HTTP connections.",
+        "Phase 2-Source Code: Analyzed the implementations in 'sse.go' and 'http.go', no enforcement of HTTPS found."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK lacks mechanisms to enforce HTTPS for authorization server endpoints and does not automatically direct developers to use HTTPS, which violates the compliance requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\sse.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\http.go"
+      ],
+      "code_snippets": [
+        "// Inside SSEHandler: Handles incoming requests without enforcing HTTPS.",
+        "func (h *SSEHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) { ... }",
+        "// Connect method in SSEServerTransport sending endpoint messages without HTTPS checks."
+      ]
+    },
+    {
+      "rule_id": 45,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Checked for redirect URIs and authorization endpoints; no relevant functions found in defs_go.jsonl.",
+        "Phase 1-IR: Verified function calls with no restrictions on protocol usage in calls_go.jsonl.",
+        "Phase 2-Source Code: Analyzed server implementation and initialization patterns; found reliance on ListenAndServe without HTTPS checks."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK lacks enforcement mechanisms to ensure all redirect URIs must either be localhost or use HTTPS. There are no explicit checks or internal routing enforcing this rule in the server implementation.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\streamable.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\event.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\sse.go"
+      ],
+      "code_snippets": [
+        "1. http.ListenAndServe if(*httpAddr != \"\")",
+        "2. mcp.NewServer",
+        "3. SSEHandler, which does not enforce HTTPS or localhost restriction"
+      ]
+    },
+    {
+      "rule_id": 46,
+      "rule_type": "MUST",
+      "rule_text": "To mitigate this, MCP clients **MUST** implement PKCE according to [OAuth 2.1 Section 7.5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.5.2).\nPKCE helps prevent authorization code interception and injection attacks by requiring clients to create a secret verifier-challenge pair, ensuring that only the original requestor can exchange an authorization code for tokens.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found related to PKCE in defs_go.jsonl.",
+        "Phase 1-IR: No function calls found related to PKCE in calls_go.jsonl.",
+        "Phase 2-Source Code: Found references to 'CodeChallengeMethodsSupported', but no implementations handling PKCE.",
+        "Phase 2-Source Code: 'RequireBearerToken' verifies tokens but does not involve PKCE."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK lacks implementations that encapsulate the PKCE requirements as mandated. There are no functions that allow automatic handling of PKCE, placing the onus on developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\auth_meta.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "CodeChallengeMethodsSupported is a RECOMMENDED JSON array of strings containing a list of PKCE code challenge methods supported by this authorization server.",
+        "RequireBearerToken function focuses on token verification."
+      ]
+    },
+    {
+      "rule_id": 47,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** have redirect URIs registered with the authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RegisterClient in oauth2.go at line 299, which registers redirect URIs.",
+        "Phase 2-Source Code: Verified that the RegisterClient function automatically manages the registration of redirect URIs through an HTTP request."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles client registration including redirect URIs as required by the MCP rule. The implementation encapsulates necessary details without requiring developers to manage these aspects manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\oauth2.go"
+      ],
+      "code_snippets": [
+        "payload, err := json.Marshal(clientMeta)",
+        "req, err := http.NewRequestWithContext(ctx, \"POST\", registrationEndpoint, bytes.NewBuffer(payload))"
+      ]
+    },
+    {
+      "rule_id": 48,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** validate exact redirect URIs against pre-registered values to prevent redirection attacks.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ClientRegistrationMetadata structure with redirect URIs definition.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: auth.go",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: auth_meta.go"
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK does not implement automatic validation of redirect URIs against pre-registered values, hence the responsibility is shifted to developers, making it non-compliant with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\auth_meta.go"
+      ],
+      "code_snippets": [
+        "The SDK defines ClientRegistrationMetadata with no inherent validation mechanism for redirect URIs."
+      ]
+    },
+    {
+      "rule_id": 49,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** use and verify state parameters in the authorization code flow\nand discard any results that do not include or have a mismatch with the original state.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RequireBearerToken in defs_go.jsonl, defined in auth.go.",
+        "Phase 1-IR: Confirmed token verification logic but no handling for state parameters.",
+        "Phase 2-Source Code: No explicit check for state or mismatch verification found in source files analyzed."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement automatic verification of state parameters in the authorization code flow, which is a requirement of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\oauth2.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\session.go"
+      ],
+      "code_snippets": [
+        "RequireBearerToken implementation requires authorization verification but lacks state parameter checking."
+      ]
+    },
+    {
+      "rule_id": 50,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** take precautions to prevent redirecting user agents to untrusted URI's, following suggestions laid out in [OAuth 2.1 Section 7.12.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.12.2)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found redirect URIs handling in ClientRegistrationMetadata definition.",
+        "Phase 2-Source Code: Validate issuer in GetAuthServerMeta to prevent untrusted redirects."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines necessary redirect URIs and integrates issuer validation to avoid untrusted redirects.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\auth_meta.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\oauth2.go"
+      ],
+      "code_snippets": [
+        "// RedirectURIs in RegisterClient: \nRedirectURIs []string `json:\"redirect_uris\"`",
+        "// Issuer validation logic: \nif asm.Issuer != issuerURL { return nil, fmt.Errorf(..."
+      ]
+    },
+    {
+      "rule_id": 51,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** only automatically redirect the user agent if it trusts the redirection URI. If the URI is not trusted, the authorization server MAY inform the user and rely on the user to make the correct decision.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_go.jsonl.",
+        "Phase 1-IR: No call relationships found in calls_go.jsonl.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not automatically handle redirection based on trusted URIs, which is a requirement of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\oauth2.go"
+      ],
+      "code_snippets": [
+        "func RequireBearerToken(...) {...}",
+        "tokenInfo, errmsg, code := verify(r, verifier, opts)"
+      ]
+    },
+    {
+      "rule_id": 52,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_go.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_go.jsonl.",
+        "Phase 2-Source Code: Attempted verification in auth.go and related files but did not identify automated consent."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK does not contain automatic functionality to obtain user consent for dynamically registered clients before interfacing with third-party authorization servers as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "func RegisterClient(ctx context.Context, registrationEndpoint string, clientMeta *ClientRegistrationMetadata, c *http.Client) (*ClientRegistrationResponse, error)"
+      ]
+    },
+    {
+      "rule_id": 53,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** validate access tokens before processing the request, ensuring the access token is issued specifically for the MCP server, and take all necessary steps to ensure no data is returned to unauthorized parties.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RequireBearerToken in auth.go, responsible for token validation.",
+        "Phase 1-IR: Confirmed function RequireBearerToken is used as middleware in the request processing chain.",
+        "Phase 2-Source Code: Verified the implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles access token validation through the RequireBearerToken function, encapsulating all necessary logic for developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "func RequireBearerToken(verifier TokenVerifier, opts *RequireBearerTokenOptions) func(http.Handler) http.Handler { /* ... */ }"
+      ]
+    },
+    {
+      "rule_id": 54,
+      "rule_type": "MUST",
+      "rule_text": "A MCP server **MUST** follow the guidelines in [OAuth 2.1 - Section 5.2](https://www.ietf.org/archive/id/draft-ietf-oauth-v2-1-12.html#section-5.2) to validate inbound tokens.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RequireBearerToken in auth.go, defined to validate bearer tokens.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework provides the required functionality for validating inbound tokens as specified in the OAuth 2.1 guidelines. The token validation logic is fully implemented within the SDK, ensuring that application developers are not required to handle these details themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "func RequireBearerToken(verifier TokenVerifier, opts *RequireBearerTokenOptions) func(http.Handler) http.Handler { ... }"
+      ]
+    },
+    {
+      "rule_id": 55,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** only accept tokens specifically intended for themselves and **MUST** reject tokens that do not include them in the audience claim or otherwise verify that they are the intended recipient of the token. See the [Security Best Practices Token Passthrough section](/specification/2025-06-18/basic/security_best_practices#token-passthrough) for details.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RequireBearerToken in defs_go.jsonl, defined in auth.go.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The function RequireBearerToken properly encapsulates the logic for verifying tokens and ensuring they are intended for the server, handling errors as specified in the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "tokenInfo, errmsg, code := verify(r, verifier, opts)",
+        "http.Error(w, errmsg, code)"
+      ]
+    },
+    {
+      "rule_id": 56,
+      "rule_type": "MUST_NOT",
+      "rule_text": "If the MCP server makes requests to upstream APIs, it may act as an OAuth client to them. The access token used at the upstream API is a seperate token, issued by the upstream authorization server. The MCP server **MUST NOT** pass through the token it received from the MCP client.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found RequireBearerToken function in defs_go.jsonl, located in auth/auth.go.",
+        "Phase 1-IR: Confirmed calls to RequireBearerToken within calls_go.jsonl.",
+        "Phase 2-Source Code: Verified middleware logic in auth/auth.go ensures the rejection of invalid tokens."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK prevents passing through tokens received from the MCP client by implementing middleware logic that verifies tokens and rejects invalid ones, thereby complying with the MCP protocol requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "if code != 0 { http.Error(w, errmsg, code); return }"
+      ]
+    },
+    {
+      "rule_id": 57,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement and use the `resource` parameter as defined in [RFC 8707 - Resource Indicators for OAuth 2.0](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. This requirement aligns with the recommendation in\n[RFC 9728 Section 7.4](https://datatracker.ietf.org/doc/html/rfc9728#section-7.4). This ensures that access tokens are bound to their intended resources and\ncannot be misused across different services.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'ProtectedResourceMetadata' struct with 'Resource' field in oauthex.",
+        "Phase 1-IR: No function automatically handles the 'resource' parameter usage in requests found in calls_go.jsonl.",
+        "Phase 2-Source Code: No functions in the source files that automatically utilize the 'resource' parameter in token requests."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK defines the 'resource' parameter but does not implement any behavior that automatically uses this parameter for token requests, shifting the responsibility to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\resource_meta.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\oauthex\\oauthex.go"
+      ],
+      "code_snippets": [
+        "type ProtectedResourceMetadata struct { Resource string `json:\"resource\"` }",
+        "func GetProtectedResourceMetadataFromID(ctx context.Context, resourceID string, c *http.Client) (_ *ProtectedResourceMetadata, err error) {...}"
+      ]
+    },
+    {
+      "rule_id": 58,
+      "rule_type": "MUST",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct definitions found in defs_go.jsonl.",
+        "Phase 1-IR: No direct call relationships found in calls_go.jsonl.",
+        "Phase 2-Source Code: Found AddTool implementation in server.go handling protocol specifications.",
+        "Phase 2-Source Code: NotifyProgress implementation found in server_session.go handling lifecycle notifications."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements and encapsulates the required lifecycle management and base protocol behaviors, ensuring that developers are not required to manage these behaviors manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server_session.go"
+      ],
+      "code_snippets": [
+        "func AddTool[In, Out any](s *Server, t *Tool, h ToolHandlerFor[In, Out]) {...}",
+        "func (ss *ServerSession) NotifyProgress(ctx context.Context, params *ProgressNotificationParams) error {...}",
+        "func changeAndNotify[P Params](c *Client, notification string, params P, change func() bool) {...}"
+      ]
+    },
+    {
+      "rule_id": 59,
+      "rule_type": "MAY",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Searched function definitions and found compliant methods in defs_go.jsonl.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go",
+        "Phase 2-Source Code: Confirmed automatic notification sending in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles tool add/remove notifications through internal logic, fulfilling the requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go"
+      ],
+      "code_snippets": [
+        "func (s *Server) RemoveTools(names ...string) { s.changeAndNotify(notificationToolListChanged, &ToolListChangedParams{}, func() bool { return s.tools.remove(names...) }) }",
+        "func changeAndNotify[P Params](c *Client, notification string, params P, change func() bool) { ... }"
+      ]
+    },
+    {
+      "rule_id": 60,
+      "rule_type": "MUST",
+      "rule_text": "All messages between MCP clients and servers **MUST** follow the\n[JSON-RPC 2.0](https://www.jsonrpc.org/specification) specification. The protocol defines\nthese types of messages:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions MakeID, EncodeMessage, DecodeMessage in defs_go.jsonl.",
+        "Phase 2-Source Code: Verified implementation in jsonrpc.go showing automated handling of JSON-RPC messages."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates all behavior required for JSON-RPC message handling, ensuring compliance with the specification without burdening developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\jsonrpc\\jsonrpc.go"
+      ],
+      "code_snippets": [
+        "// EncodeMessage serializes a JSON-RPC message to its wire format.\nfunc EncodeMessage(msg Message) ([]byte, error) {\n    return jsonrpc2.EncodeMessage(msg)\n}",
+        "// DecodeMessage deserializes JSON-RPC wire format data into a Message.\nfunc DecodeMessage(data []byte) (Message, error) {\n    return jsonrpc2.DecodeMessage(data)\n}"
+      ]
+    },
+    {
+      "rule_id": 61,
+      "rule_type": "MUST",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions if MakeID, StringID, and Int64ID in defs_go.jsonl for handling request IDs in file jsonrpc/jsonrpc.go.",
+        "Phase 1-IR: Confirmed multiple calls to MakeID and checks for ID validity in calls_go.jsonl.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\messages.go."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK provides automatic handling of request IDs via functions that generate IDs appropriately. The internal logic prevents developers from needing to manage ID uniqueness, thus maintaining protocol compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\jsonrpc\\jsonrpc.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\messages.go"
+      ],
+      "code_snippets": [
+        "func MakeID(v any) (ID, error)",
+        "request.ID != nil && !isIDused(sessionID)"
+      ]
+    },
+    {
+      "rule_id": 62,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found Handle function in jsonrpc2 at internal\\jsonrpc2\\jsonrpc2.go, which checks for nil IDs.",
+        "Phase 1-IR: Found MakeID function in messages.go that allows nil inputs but does not permit them as valid IDs.",
+        "Phase 2-Source Code: Verified implementation in internal\\jsonrpc2\\jsonrpc2.go and internal\\jsonrpc2\\messages.go."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements the requirement that the ID must not be null by automatically handling requests with nil IDs in the Handle function and through ID creation logic in MakeID, ensuring developers do not bear this responsibility.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\jsonrpc2.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\messages.go"
+      ],
+      "code_snippets": [
+        "func (defaultHandler) Handle(ctx context.Context, req *Request) (any, error) { return nil, ErrNotHandled }",
+        "func MakeID(v any) (ID, error) { switch v := v.(type) { case nil: return ID{}, nil; ... }}"
+      ]
+    },
+    {
+      "rule_id": 63,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found for enforcing unique request IDs in session.",
+        "Phase 2-Source Code: `StreamableHTTPHandler` manages sessions but does not enforce unique request IDs.",
+        "Phase 2-Source Code: Handlers respond to missing session tasks but lack checks for request ID duplication."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement logic to ensure that request IDs have not been reused within the same session, failing the compliance requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\streamable.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\messages.go"
+      ],
+      "code_snippets": [
+        "Session management in `StreamableHTTPHandler` and its methods.",
+        "Implementation of streams in `newStream` without unique ID checks."
+      ]
+    },
+    {
+      "rule_id": 64,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found Response struct in messages.go that includes ID tied to request.",
+        "Phase 1-IR: Confirmed constructor NewResponse ensures the ID is set from the request.",
+        "Phase 2-Source Code: Verified implementation of ID handling within messages.go and appropriate response handling in jsonrpc.go."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically constructs responses that include the same ID as the corresponding requests, adhering to the requirements without shifting this responsibility to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\messages.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\jsonrpc\\jsonrpc.go"
+      ],
+      "code_snippets": [
+        "type Response struct { Result json.RawMessage; Error error; ID ID }",
+        "func NewResponse(id ID, result any, rerr error) (*Response, error) { ... }"
+      ]
+    },
+    {
+      "rule_id": 65,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found Response struct allowing both Result and Error in defs_go.jsonl.",
+        "Phase 2-Source Code: Verified that NewResponse function allows setting both fields without restriction in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\messages.go.",
+        "Phase 2-Source Code: Checked usage instances and found no validation logic preventing both fields from being set."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK allows both Result and Error to be set in the Response structure without enforcing rules against such behavior, which is a violation of the MCP rule that mandates a response MUST NOT set both.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\messages.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\jsonrpc2.go"
+      ],
+      "code_snippets": [
+        "func NewResponse(id ID, result any, rerr error) (*Response, error) { return &Response{ID: id, Result: r, Error: rerr}, merr }"
+      ]
+    },
+    {
+      "rule_id": 66,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions in messages.go related to result and error handling.",
+        "Phase 2-Source Code: Verified the internal logic in wire.go and messages.go, confirming the automatic handling of MCP requirements."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK defines the Response structure that accommodates either a result or an error, along with a clear method for creating such responses, ensuring compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\messages.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go"
+      ],
+      "code_snippets": [
+        "type Response struct { Result json.RawMessage; Error error; ID ID; }",
+        "type wireCombined struct { Result json.RawMessage; Error *WireError; }"
+      ]
+    },
+    {
+      "rule_id": 67,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Verified presence of error structures including codes and messages.",
+        "Phase 1-IR: Confirmed responses manage results efficiently per protocol requirements.",
+        "Phase 2-Source Code: Implementation ensures automatic error management without developer intervention."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates error handling, ensuring all responses follow JSON object structure requirements, including mandatory error codes and messages.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\messages.go"
+      ],
+      "code_snippets": [
+        "type WireError struct { Code int64 `json:\"code\"` Message string `json:\"message\"` }",
+        "type Response struct { Result json.RawMessage Error *WireError ID ID }"
+      ]
+    },
+    {
+      "rule_id": 68,
+      "rule_type": "MAY",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found error definitions in wire.go with required error codes and messages.",
+        "Phase 1-IR: Confirmed response structure in jsonrpc.go to include ID, result, and error.",
+        "Phase 2-Source Code: Verified automatic error handling in defaultReceivingMethodHandler."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles JSON error responses in compliance with the MCP rule that requires error codes and messages to be included. It structures error responses properly and follows protocol requirements fully.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\jsonrpc\\jsonrpc.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\messages.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\jsonrpc2.go"
+      ],
+      "code_snippets": [
+        "ErrInvalidRequest = NewError(-32600, 'invalid request')",
+        "type WireError struct { Code int64 'json:\"code\"' Message string 'json:\"message\"' }",
+        "return info.handleMethod(ctx, method, req)"
+      ]
+    },
+    {
+      "rule_id": 69,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'NewError' definition in wire.go, which includes integer error codes.",
+        "Phase 2-Source Code: Verified implementation in wire.go, showing that the SDK handles error creation automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the error code handling internally by encapsulating error generation logic using the 'NewError' function, which produces errors with integer codes as required.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go"
+      ],
+      "code_snippets": [
+        "type WireError struct { Code int64 `json:\"code\"`; Message string `json:\"message\"`; Data json.RawMessage `json:\"data,omitempty\"`; }",
+        "func NewError(code int64, message string) error { return &WireError{ Code: code, Message: message }}."
+      ]
+    },
+    {
+      "rule_id": 70,
+      "rule_type": "MUST_NOT",
+      "rule_text": "Notifications are sent from the client to the server or vice versa, as a one-way message.\nThe receiver **MUST NOT** send a response.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function NotifyProgress in server.go, defined correctly to send notifications.",
+        "Phase 1-IR: Confirmed that handleNotify manages notification logic without allowing responses."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK properly implements notification handling without allowing responses to be sent by the receiver, which meets the specified MCP rule requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go"
+      ],
+      "code_snippets": [
+        "func (ss *ServerSession) NotifyProgress(ctx context.Context, params *ProgressNotificationParams) error { return handleNotify(ctx, notificationProgress, newServerRequest(ss, orZero[Params](params))) }",
+        "if strings.HasPrefix(method, \"notifications/\") { return nil, req.GetSession().getConn().Notify(ctx, method, req.GetParams()) }"
+      ]
+    },
+    {
+      "rule_id": 71,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Notifications **MUST NOT** include an ID.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function NewNotification in jsonrpc2/messages.go",
+        "Phase 1-IR: Verified structure for Request indicates ID is nil for notifications.",
+        "Phase 2-Source Code: ID can still be created using MakeID, which conflicts with the rule."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK allows for notification IDs to be constructed and does not enforce the MUST NOT condition appropriately. The design supports the creation of IDs for notifications, which could lead to non-compliance, as it does not automatically handle the exclusion of IDs in notification messages.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\messages.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\wire.go"
+      ],
+      "code_snippets": [
+        "func NewNotification(method string, params any) (*Request, error) { /* construction logic */ }",
+        "type Request struct { ID ID; Method string; Params json.RawMessage; } // ID is nil for notifications."
+      ]
+    },
+    {
+      "rule_id": 72,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions related to HTTP transport in defs_go.jsonl.",
+        "Phase 2-Source Code: Verified implementation of server sessions and notification handlers in source code but found no automatic notification implementation."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines abilities around HTTP-based transport and notifications but does not encapsulate the logic for automatic notification sending, which shifts the responsibility to the developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\sse.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\tmplivb053y.go"
+      ],
+      "code_snippets": [
+        "func NewSSEHandler(getServer func(request *http.Request) *Server, opts *SSEOptions) *SSEHandler {...}",
+        "type StreamableServerTransport {...}"
+      ]
+    },
+    {
+      "rule_id": 73,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_go.jsonl related to STDIO transport or credential retrieval.",
+        "Phase 1-IR: Calls found in calls_go.jsonl did not indicate automatic handling of credentials in the SDK.",
+        "Phase 2-Source Code: Found usage of os.Getenv in cmd_test.go but lacking comprehensive automatic handling logic."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not actively manage and automatically retrieve credentials for STDIO transport. Although the SDK can retrieve environment variables when requested, it does not encapsulate this behavior sufficiently, as the developers are not shielded from managing protocol details.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\cmd_test.go"
+      ],
+      "code_snippets": [
+        "if name := os.Getenv(\"MY_ENV_VAR\"); name != \"\" { /* Use 'name' here */ }"
+      ]
+    },
+    {
+      "rule_id": 74,
+      "rule_type": "MAY",
+      "rule_text": "Additionally, clients and servers **MAY** negotiate their own custom authentication and\nauthorization strategies.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'RequireBearerToken' in defs_go.jsonl, defined in auth.go:61",
+        "Phase 1-IR: Confirmed calls to 'RequireBearerToken' in calls_go.jsonl.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles negotiation of custom authentication strategies by implementing the 'RequireBearerToken' middleware that verifies tokens and processes requests without requiring application developers to manage authentication strategy details.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "func RequireBearerToken(verifier TokenVerifier, opts *RequireBearerTokenOptions) func(http.Handler) http.Handler { /* implementation */ }"
+      ]
+    },
+    {
+      "rule_id": 75,
+      "rule_type": "MUST",
+      "rule_text": "The initialization phase **MUST** be the first interaction between client and server.\nDuring this phase, the client and server:\n\n- Establish protocol version compatibility\n- Exchange and negotiate capabilities\n- Share implementation details",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient IR information on initialize.",
+        "Phase 2-Source Code: Found Connect method in tmp50ljolku.go, which handles automatic initialization.",
+        "Phase 2-Source Code: Confirmed automatic management of notification via handleNotify."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the initialization phase automatically, including handling protocol version and capabilities negotiation internally via the Connect method and the initialized notification.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tmp50ljolku.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tmp92ktdul_.json"
+      ],
+      "code_snippets": [
+        "func (c *Client) Connect(ctx context.Context, t Transport, _ *ClientSessionOptions) (cs *ClientSession, err error) {...}",
+        "if err := handleNotify(ctx, notificationInitialized, req2); err != nil {...}"
+      ]
+    },
+    {
+      "rule_id": 76,
+      "rule_type": "MUST",
+      "rule_text": "The client **MUST** initiate this phase by sending an `initialize` request containing:\n\n- Protocol version supported\n- Client capabilities\n- Client implementation information",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Ability definition found in Client.Connect to send initialize requests.",
+        "Phase 1-IR: Confirmed notification handling through handleNotify in Client.Connect.",
+        "Phase 2-Source Code: Verified automatic request handling in FILE_PATH: client.go and session.go."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully encapsulates the required behavior of initiating an 'initialize' request with necessary parameters and automatically handling the notification without requiring developers' intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\session.go"
+      ],
+      "code_snippets": [
+        "params := &InitializeParams{\n  ProtocolVersion: latestProtocolVersion,\n  ClientInfo:      c.impl,\n  Capabilities:    c.capabilities(),\n}",
+        "if err := handleNotify(ctx, notificationInitialized, req2); err != nil {\n  _ = cs.Close();\n  return nil, err;\n}"
+      ]
+    },
+    {
+      "rule_id": 77,
+      "rule_type": "MUST",
+      "rule_text": "The server **MUST** respond with its own capabilities and information:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function capabilities() in client.go, defined to return ClientCapabilities.",
+        "Phase 1-IR: Valid call relationships found related to capabilities.",
+        "Phase 2-Source Code: Verified Server capabilities are managed and notified automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK has defined the capabilities method in the Server implementation and manages notifications internally without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\client.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\mcp.go"
+      ],
+      "code_snippets": [
+        "func (s *Server) capabilities() *ServerCapabilities {...}",
+        "s.changeAndNotify(notificationToolListChanged, &ToolListChangedParams{}, func() {...})"
+      ]
+    },
+    {
+      "rule_id": 78,
+      "rule_type": "MUST",
+      "rule_text": "After successful initialization, the client **MUST** send an `initialized` notification\nto indicate it is ready to begin normal operations:",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'initialized' in defs_go.jsonl, defined in tmpp3f58dyj.go.",
+        "Phase 1-IR: Confirmed call source for 'initialized' in calls_go.jsonl.",
+        "Phase 2-Source Code: Verified that while the 'initialized' notification can be invoked, it requires a developer-set handler to send, indicating automatic behavior is not encapsulated."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK defines the ability to handle the initialization notification but relies on a developer-defined handler to send the actual notification. This shifts the responsibility away from the SDK, contradicting the MUST requirement of the rule.",
+      "files_analyzed": [
+        "tmpp3f58dyj.go",
+        "tmpbquensic.go",
+        "tmp50ljolku.go"
+      ],
+      "code_snippets": [
+        "if h := ss.server.opts.InitializedHandler; h != nil { h(ctx, serverRequestFor(ss, params)); }",
+        "func handleNotify(ctx context.Context, method string, req Request) error { ... }"
+      ]
+    },
+    {
+      "rule_id": 79,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions for initialize in defs_go.jsonl.",
+        "Phase 1-IR: Confirmed calls related to initialize in calls_go.jsonl.",
+        "Phase 2-Source Code: Verified that requests are restricted to pings before initialization in ServerSession.handle."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully restricts client requests according to the MCP rule; only pings may be sent before the server responds to the initialize request.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\client_session.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server_session.go"
+      ],
+      "code_snippets": [
+        "func (ss *ServerSession) handle(ctx context.Context, req *jsonrpc.Request) (any, error) {...}",
+        "if !initialized {...}",
+        "return nil, fmt.Errorf(...);"
+      ]
+    },
+    {
+      "rule_id": 80,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function Ping in defs_go.jsonl, defined in requests.go",
+        "Phase 1-IR: Confirmed checkInitialized calls ensure no requests are sent before initialized",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: server.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the behavior stipulated by the MCP rule that the server should not send requests other than ping and logging before receiving the initialized notification. The presence of the checkInitialized method confirms this compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\server.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\requests.go"
+      ],
+      "code_snippets": [
+        "func (ss *ServerSession) checkInitialized(method string) error { if !ss.hasInitialized() { return fmt.Errorf(\"cannot call %q before %q is received\", method, notificationInitialized) } return nil }"
+      ]
+    },
+    {
+      "rule_id": 81,
+      "rule_type": "MUST",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant entries found in defs_go.jsonl and calls_go.jsonl.",
+        "Phase 2-Source Code: Found implementation of protocol version validation in FILE_PATH: tmplivb053y.go and shared.go."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the inclusion and validation of the MCP-Protocol-Version header, fulfilling the requirement that the client MUST send a supported protocol version in the initialize request.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tmplivb053y.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\shared.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\session.go"
+      ],
+      "code_snippets": [
+        "// [§2.7] of the spec (2025-06-18) states:\n// \"If using HTTP, the client MUST include the MCP-Protocol-Version:\n// <protocol-version> HTTP header on all subsequent requests to the MCP\n// server, allowing the MCP server to respond based on the MCP protocol\n// version.",
+        "protocolVersion := req.Header.Get(protocolVersionHeader)\nif protocolVersion == \"\" {\n    protocolVersion = protocolVersion20250326\n}\nif !slices.Contains(supportedProtocolVersions, protocolVersion) {\n    http.Error(w, fmt.Sprintf(\"Bad Request: Unsupported protocol version (supported versions: %s)\", strings.Join(supportedProtocolVersions, \",\")), http.StatusBadRequest)\n    return\n}"
+      ]
+    },
+    {
+      "rule_id": 82,
+      "rule_type": "SHOULD",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 83,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found protocol handling logic in tmplivb053y.go, which responds according to the provided MCP-Protocol-Version.",
+        "Phase 2-Source Code: Verified automatic handling of protocol responses without requiring developer intervention in tmplivb053y.go."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK correctly implements automatic responses to protocol versions as required by the rule. It defines the necessary responses and does not shift the responsibility onto application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tmplivb053y.go"
+      ],
+      "code_snippets": [
+        "if !slices.Contains(supportedProtocolVersions, protocolVersion) { http.Error(w, \"Bad Request: Unsupported protocol version\", http.StatusBadRequest); return }"
+      ]
+    },
+    {
+      "rule_id": 84,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific function definition was found in IR files.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\streamable.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the required behavior by automatically handling protocol version negotiation and responding with appropriate HTTP responses when conflicting or unsupported versions are used.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\streamable.go"
+      ],
+      "code_snippets": [
+        "protocolVersion := req.Header.Get(protocolVersionHeader)",
+        "http.Error(w, fmt.Sprintf(\"Bad Request: Unsupported protocol version (supported versions: %s)\", strings.Join(supportedProtocolVersions, \",\")), http.StatusBadRequest)"
+      ]
+    },
+    {
+      "rule_id": 85,
+      "rule_type": "SHOULD",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function negotiateVersion in defs_go.jsonl, defined in tmplivb053y.go.",
+        "Phase 1-IR: Confirmed HandleRequest checks and responds with protocol version in calls_go.jsonl.",
+        "Phase 2-Source Code: Verified implementation in tmplivb053y.go and confirmed automatic handling of version negotiation."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements automatic negotiation for protocol versions, hence complying with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\tmplivb053y.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\tmpkt79h30k.go"
+      ],
+      "code_snippets": [
+        "func negotiateVersion(clientVersion string) string { ... }",
+        "if !slices.Contains(supportedProtocolVersions, clientVersion) { return latestProtocolVersion }"
+      ]
+    },
+    {
+      "rule_id": 86,
+      "rule_type": "SHOULD",
+      "rule_text": "If the client does not support the version in the server's response, it **SHOULD**\ndisconnect.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found the rule articulated in comments within the code in tmpbquensic.go where it specifies if the client cannot support the version, it 'must disconnect'.",
+        "Phase 2-Source Code: Verified implementation details in tmplivb053y.go, where unsupported protocol version checks occur that prompt automatic disconnection."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK demonstrates compliance with MCP rule 86 as it defines the protocols to automatically handle disconnection for unsupported versions: 1. Ability Definition: The SDK includes the capability to check against supported protocol versions explicitly. 2. Automatic Internal Logic: The SDK's implementation responds with an HTTP 400 error indicating that the client must disconnect when an unsupported protocol version is detected, which auto-handles the situation without requiring developer action.",
+      "files_analyzed": [
+        "tmplivb053y.go",
+        "tmpbquensic.go"
+      ],
+      "code_snippets": [
+        "if !slices.Contains(supportedProtocolVersions, protocolVersion) {\n    http.Error(w, fmt.Sprintf(\"Bad Request: Unsupported protocol version (supported versions: %s)\", strings.Join(supportedProtocolVersions, \",\")), http.StatusBadRequest);\n    return;\n}"
+      ]
+    },
+    {
+      "rule_id": 87,
+      "rule_type": "MUST",
+      "rule_text": "<Note>\nIf using HTTP, the client **MUST** include the `MCP-Protocol-Version:\n<protocol-version>` HTTP header on all subsequent requests to the MCP\nserver.\nFor details, see [the Protocol Version Header section in Transports](/specification/2025-06-18/basic/transports#protocol-version-header).\n</Note>",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No explicit function definitions found in defs_go.jsonl.",
+        "Phase 1-IR: No explicit calls found in calls_go.jsonl.",
+        "Phase 2-Source Code: Implemented logic in 'tmplivb053y.go' verifies and manages the MCP-Protocol-Version automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automates the inclusion of the `MCP-Protocol-Version` header in HTTP requests, thereby complying with the MCP rule that mandates this header for all subsequent requests to the MCP server.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\tmplivb053y.go"
+      ],
+      "code_snippets": [
+        "// If using HTTP, the client MUST include the MCP-Protocol-Version: <protocol-version> HTTP header...",
+        "if !slices.Contains(supportedProtocolVersions, protocolVersion) { http.Error(w, fmt.Sprintf(...)"
+      ]
+    },
+    {
+      "rule_id": 88,
+      "rule_type": "MUST",
+      "rule_text": "Both parties **MUST**:\n\n- Respect the negotiated protocol version\n- Only use capabilities that were successfully negotiated",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions for protocol version handling in defs_go.jsonl.",
+        "Phase 1-IR: No corresponding calls found that indicate automated notifications in calls_go.jsonl.",
+        "Phase 2-Source Code: Verified lack of automatic notification handling in FILE_PATH: shared.go.",
+        "Phase 2-Source Code: Verified lack of automatic notification handling in FILE_PATH: mcp.go.",
+        "Phase 2-Source Code: Verified lack of automatic notification handling in FILE_PATH: protocol.go."
+      ],
+      "confidence": 0.85,
+      "explanation": "Although the SDK defines the ability to check negotiated protocol versions, it lacks the implementation to automatically handle notifications or capabilities, shifting the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\shared.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\mcp.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\protocol.go"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 89,
+      "rule_type": "SHOULD",
+      "rule_text": "For the stdio [transport](/specification/2025-06-18/basic/transports), the client **SHOULD** initiate\nshutdown by:\n\n1. First, closing the input stream to the child process (the server)\n2. Waiting for the server to exit, or sending `SIGTERM` if the server does not exit\n   within a reasonable time\n3. Sending `SIGKILL` if the server does not exit within a reasonable time after `SIGTERM`",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found Close function in internal/jsonrpc2/serve.go, which handles input stream closure and waits for server termination.",
+        "Phase 1-IR: Confirmed call from Shutdown method to Close function in Server structure.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\serve.go, showcasing automatic management of shutdown behavior."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates shutdown procedures by automatically executing the Close method on shutdown calls, which adheres to the specified MCP rule. All required steps (closing streams, waiting for termination, sending signals) are automatically handled without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\serve.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\cmd.go"
+      ],
+      "code_snippets": [
+        "func (s *pipeRWC) Close() error { ... }",
+        "func (s *Server) Shutdown() { ... }"
+      ]
+    },
+    {
+      "rule_id": 90,
+      "rule_type": "MAY",
+      "rule_text": "The server **MAY** initiate shutdown by closing its output stream to the client and\nexiting.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function Shutdown in internal/jsonrpc2/serve.go, defined at line 91.",
+        "Phase 2-Source Code: Shutdown method calls listener.Close() to stop accepting new connections, but does not encapsulate output stream closure or process exit."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically handle closure of the output stream to the client or process exit as required by the rule. Developers are expected to manage these behaviors themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\serve.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\cmd.go"
+      ],
+      "code_snippets": [
+        "func (s *Server) Shutdown() {\n    s.shutdownOnce.Do(func() {\n        atomic.StoreInt32(&s.closing, 1)\n        s.listener.Close()\n    })\n}"
+      ]
+    },
+    {
+      "rule_id": 91,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found structure 'StreamableClientTransport' which indicates the possibility of handling cancellations, but lacks explicit timeout definitions.",
+        "Phase 2-Source Code: The implementation provides cancellation but not explicit timeouts across all requests.",
+        "Phase 2-Source Code: The method establishSSE() waits indefinitely without enforcing timeouts, demonstrating a lack of automatic timeout handling."
+      ],
+      "confidence": 0.7,
+      "explanation": "While the SDK has mechanisms for managing request cancellations and some context management, it does not explicitly implement required timeout logic for all sent requests. This shifts the responsibility to developers instead of encapsulating the timeout behavior within the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tmplivb053y.go"
+      ],
+      "code_snippets": [
+        "func (t *StreamableClientTransport) Connect(ctx context.Context) (Connection, error) { /* Initiates connection */ }",
+        "func (c *streamableClientConn) establishSSE(lastEventID string) (*http.Response, error) { /* Waits for server events without a timeout */ }"
+      ]
+    },
+    {
+      "rule_id": 92,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_go.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_go.jsonl.",
+        "Phase 2-Source Code: Verified implementation lacks handling in cmd.go and tool.go."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not implement automatic handling of timeouts and cancellation notifications as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\cmd.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\tool.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\xcontext\\xcontext.go"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 93,
+      "rule_type": "SHOULD",
+      "rule_text": "SDKs and other middleware **SHOULD** allow these timeouts to be configured on a\nper-request basis.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Lacked clear evidence of function definitions specifically providing per-request timeout settings.",
+        "Phase 2-Source Code: Checked 'StreamableClientTransport' structure, no per-request timeout exposure found.",
+        "Phase 2-Source Code: 'NewIdleListener' creates idle timeout behavior but does not allow per-request configurations."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not provide a mechanism to configure timeouts on a per-request basis as required by the MCP rule. While it handles connection timeouts internally, the required configuration is not exposed to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\streamable_test.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\sse_example_test.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\jsonrpc2.go"
+      ],
+      "code_snippets": [
+        "IdleListener implementation for managing connection timeouts.",
+        "StreamableClientTransport structure without per-request timeout mechanisms."
+      ]
+    },
+    {
+      "rule_id": 94,
+      "rule_type": "MAY",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function NotifyProgress in defs_go.jsonl, defined in session.go",
+        "Phase 1-IR: Confirmed NotifyProgress is called in appropriate session handling logic",
+        "Phase 2-Source Code: Verified implementation of NotifyProgress in FILE_PATH: session.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully defines the ability to notify clients of progress, utilizing an internal method that encapsulates the logic needed, thus removing any burden from developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\session.go"
+      ],
+      "code_snippets": [
+        "func (ss *ServerSession) NotifyProgress(ctx context.Context, params *ProgressNotificationParams) error { return handleNotify(ctx, notificationProgress, newServerRequest(ss, params)) }"
+      ]
+    },
+    {
+      "rule_id": 95,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'NewIdleListener' in defs_go.jsonl, defined in tmpv1r8wsns.go:131.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: tmpv1r8wsns.go where automatic timeout is enforced."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK effectively implements timeout enforcement through the NewIdleListener, providing automatic management of idle connections, directly compliant with the MCP Rule 95 requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\tmpv1r8wsns.go"
+      ],
+      "code_snippets": [
+        "if <-l.timedOut: { rwc.Close() }"
+      ]
+    },
+    {
+      "rule_id": 96,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** be prepared to handle these error cases:\n\n- Protocol version mismatch\n- Failure to negotiate required capabilities\n- Request [timeouts](#timeouts)",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No exhaustive function definitions found for handling all required error cases.",
+        "Phase 2-Source Code: Found error handling for protocol versions in tmplivb053y.go, but missing comprehensive automatic handling for all required cases."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK has the capability to handle protocol version mismatches and general error responses but does not encapsulate handling for negotiation failures or timeouts automatically without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\jsonrpc2\\jsonrpc2.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\shared.go"
+      ],
+      "code_snippets": [
+        "http.Error(w, fmt.Sprintf('Bad Request: Unsupported protocol version (supported versions: %s)', strings.Join(supportedProtocolVersions, ',')), http.StatusBadRequest)",
+        "if !slices.Contains(supportedProtocolVersions, protocolVersion) { ... }"
+      ]
+    },
+    {
+      "rule_id": 97,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RegisterClient in defs_go.jsonl, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\oauth2.go.",
+        "Phase 1-IR: Confirmed that RegisterClient is called in multiple cases in calls_go.jsonl.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\oauth2.go."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK provides the ability to register clients, but does not include internal logic to obtain user consent before registration, which is required by MCP Rule 97.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\internal\\oauthex\\oauth2.go"
+      ],
+      "code_snippets": [
+        "func RegisterClient(ctx context.Context, registrationEndpoint string, clientMeta *ClientRegistrationMetadata, c *http.Client) (*ClientRegistrationResponse, error) {...}"
+      ]
+    },
+    {
+      "rule_id": 98,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept any tokens that were not explicitly issued for the MCP server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RequireBearerToken in defs_go.jsonl, defined in auth.go.",
+        "Phase 1-IR: Confirmed main calls RequireBearerToken which includes token verification logic in calls_go.jsonl.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically implements the required behavior of verifying tokens and rejecting unauthorized ones. The logic for checking validity and expiration is encapsulated in the respective functions.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "func RequireBearerToken(verifier TokenVerifier, opts *RequireBearerTokenOptions) func(http.Handler) http.Handler {...}",
+        "func verify(req *http.Request, verifier TokenVerifier, opts *RequireBearerTokenOptions) {...}"
+      ]
+    },
+    {
+      "rule_id": 99,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function RequireBearerToken in defs_go.jsonl, defined in auth.go",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: auth.go which includes verification without developer input."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically verifies inbound requests through the RequireBearerToken middleware, meeting the MCP rule requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\auth\\auth.go"
+      ],
+      "code_snippets": [
+        "func RequireBearerToken(verifier TokenVerifier, opts *RequireBearerTokenOptions) func(http.Handler) http.Handler"
+      ]
+    },
+    {
+      "rule_id": 100,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found session management functions such as GetSession and Close.",
+        "Phase 2-Source Code: Verified that functions utilize session logic directly without encapsulation."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK implements session management, indicating a reliance on sessions for handling incoming requests, which violates the MCP rule against using sessions for authentication.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\mcp\\session.go",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\go-sdk-main\\go-sdk-main\\examples\\server\\middleware\\main.go"
+      ],
+      "code_snippets": [
+        "func (req *Request) GetSession() *Session { ... }",
+        "func (ss *ServerSession) Close() error { ... }"
+      ]
+    }
+  ]
+}

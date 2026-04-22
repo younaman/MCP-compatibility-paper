@@ -1,0 +1,363 @@
+﻿{
+  "summary": {
+    "total": 24,
+    "compliant": 0,
+    "non_compliant": 8,
+    "unclear": 16,
+    "avg_files_per_rule": 0.88
+  },
+  "results": [
+    {
+      "rule_id": 103,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP servers **SHOULD** bind session IDs to user-specific information.\nWhen storing or transmitting session-related data (e.g., in a queue), combine the session ID with information unique to the authorized user, such as their internal user ID. Use a key format like `<user_id>:<session_id>`. This ensures that even if an attacker guesses a session ID, they cannot impersonate another user as the user ID is derived from the user token and not provided by the client.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found session management functions in defs but no binding mechanism.",
+        "Phase 2-Source Code: Verified that the SDK does not encapsulate the binding of session ID and user-specific information."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK has functions to manage session IDs but lacks automatic binding to user-specific information. SDK behavior does not encapsulate the required functionality as per the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\auth_context.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\bearer_auth.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\middleware\\client_auth.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\handlers\\__init__.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\auth\\provider.py"
+      ],
+      "code_snippets": [
+        "async def terminate_session(self, client: httpx.AsyncClient)",
+        "def get_session_id(self) -> str | None"
+      ]
+    },
+    {
+      "rule_id": 104,
+      "rule_type": "MUST",
+      "rule_text": "MCP uses JSON-RPC to encode messages. JSON-RPC messages **MUST** be UTF-8 encoded.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 106,
+      "rule_type": "MUST_NOT",
+      "rule_text": "In the **stdio** transport:\n\n- The client launches the MCP server as a subprocess.\n- The server reads JSON-RPC messages from its standard input (`stdin`) and sends messages\n  to its standard output (`stdout`).\n- Messages are individual JSON-RPC requests, notifications, or responses.\n- Messages are delimited by newlines, and **MUST NOT** contain embedded newlines.\n- The server **MAY** write UTF-8 strings to its standard error (`stderr`) for logging\n  purposes. Clients **MAY** capture, forward, or ignore this logging.\n- The server **MUST NOT** write anything to its `stdout` that is not a valid MCP message.\n- The client **MUST NOT** write anything to the server's `stdin` that is not a valid MCP\n  message.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function create_message, defined in file: tmpq5e8erah.py.",
+        "Phase 1-IR: send_request and send_notification functions are defined but lack newline enforcement.",
+        "Phase 2-Source Code: Verified implementations in files tmpq5e8erah.py and others that handle message transport."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not enforce the required behavior of ensuring no embedded newlines in messages. The message handling functions lack explicit logic to check for this compliance and leave the responsibility on application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\prompts\\manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tmphrljqdfk.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\tmpq5e8erah.py"
+      ],
+      "code_snippets": [
+        "async def create_message(self, messages: list[types.SamplingMessage], ...)",
+        "async def send_request(...): ...",
+        "async def send_notification(...): ..."
+      ]
+    },
+    {
+      "rule_id": 108,
+      "rule_type": "MAY",
+      "rule_text": "In the **stdio** transport:\n\n- The client launches the MCP server as a subprocess.\n- The server reads JSON-RPC messages from its standard input (`stdin`) and sends messages\n  to its standard output (`stdout`).\n- Messages are individual JSON-RPC requests, notifications, or responses.\n- Messages are delimited by newlines, and **MUST NOT** contain embedded newlines.\n- The server **MAY** write UTF-8 strings to its standard error (`stderr`) for logging\n  purposes. Clients **MAY** capture, forward, or ignore this logging.\n- The server **MUST NOT** write anything to its `stdout` that is not a valid MCP message.\n- The client **MUST NOT** write anything to the server's `stdin` that is not a valid MCP\n  message.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function send_log_message in definitions.",
+        "Phase 1-IR: Confirmed existence of logging configuration in calls.",
+        "Phase 2-Source Code: Verified implementation of provide logging setup but lacks automatic logging behavior."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically handle the behavior required by the rule (i.e., capturing and forwarding logging). Developers are required to explicitly call logging functions like send_log_message, indicating the SDK is shifting the responsibility to them.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\fastmcp\\utilities\\logging.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-streamablehttp\\mcp_simple_streamablehttp\\server.py"
+      ],
+      "code_snippets": [
+        "async def send_log_message(self, level: types.LoggingLevel, data: Any, logger: str | None = None, related_request_id: types.RequestId | None = None) -> None: # Sends a log message notification.",
+        "# Logging setup: configure_logging(level) does not make logging behavior automatic for developers."
+      ]
+    },
+    {
+      "rule_id": 113,
+      "rule_type": "SHOULD",
+      "rule_text": "When implementing Streamable HTTP transport:\n\n1. Servers **MUST** validate the `Origin` header on all incoming connections to prevent DNS rebinding attacks\n2. When running locally, servers **SHOULD** bind only to localhost (127.0.0.1) rather than all network interfaces (0.0.0.0)\n3. Servers **SHOULD** implement proper authentication for all connections",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 135,
+      "rule_type": "MUST",
+      "rule_text": "1. The client **MAY** issue an HTTP GET to the MCP endpoint. This can be used to open an\n   SSE stream, allowing the server to communicate to the client, without the client first\n   sending data via HTTP POST.\n2. The client **MUST** include an `Accept` header, listing `text/event-stream` as a\n   supported content type.\n3. The server **MUST** either return `Content-Type: text/event-stream` in response to\n   this HTTP GET, or else return HTTP 405 Method Not Allowed, indicating that the server\n   does not offer an SSE stream at this endpoint.\n4. If the server initiates an SSE stream:\n   - The server **MAY** send JSON-RPC _requests_ and _notifications_ on the stream.\n   - These messages **SHOULD** be unrelated to any concurrently-running JSON-RPC\n     _request_ from the client.\n   - The server **MUST NOT** send a JSON-RPC _response_ on the stream **unless**\n     [resuming](#resumability-and-redelivery) a stream associated with a previous client\n     request.\n   - The server **MAY** close the SSE stream at any time.\n   - The client **MAY** close the SSE stream at any time.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 141,
+      "rule_type": "MAY",
+      "rule_text": "1. The client **MAY** remain connected to multiple SSE streams simultaneously.\n2. The server **MUST** send each of its JSON-RPC messages on only one of the connected\n   streams; that is, it **MUST NOT** broadcast the same message across multiple streams.\n   - The risk of message loss **MAY** be mitigated by making the stream\n     [resumable](#resumability-and-redelivery).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No functions found indicating multiple SSE stream connections.",
+        "Phase 2-Source Code: Code confirms preventing multiple SSE connections through checks."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not allow multiple simultaneous SSE connections as required by rule 141.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
+      ],
+      "code_snippets": [
+        "if GET_STREAM_KEY in self._request_streams:"
+      ]
+    },
+    {
+      "rule_id": 142,
+      "rule_type": "MUST",
+      "rule_text": "1. The client **MAY** remain connected to multiple SSE streams simultaneously.\n2. The server **MUST** send each of its JSON-RPC messages on only one of the connected\n   streams; that is, it **MUST NOT** broadcast the same message across multiple streams.\n   - The risk of message loss **MAY** be mitigated by making the stream\n     [resumable](#resumability-and-redelivery).",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 143,
+      "rule_type": "MUST_NOT",
+      "rule_text": "1. The client **MAY** remain connected to multiple SSE streams simultaneously.\n2. The server **MUST** send each of its JSON-RPC messages on only one of the connected\n   streams; that is, it **MUST NOT** broadcast the same message across multiple streams.\n   - The risk of message loss **MAY** be mitigated by making the stream\n     [resumable](#resumability-and-redelivery).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found related to preventing message broadcast across multiple streams.",
+        "Phase 2-Source Code: The SDK does not contain any automatic notification mechanism or broadcasting prevention logic."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not have internal logic to prevent broadcasting the same message across multiple streams. Therefore, it does not meet the requirements set forth by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\session.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 148,
+      "rule_type": "MAY",
+      "rule_text": "To support resuming broken connections, and redelivering messages that might otherwise be\nlost:\n\n1. Servers **MAY** attach an `id` field to their SSE events, as described in the\n   [SSE standard](https://html.spec.whatwg.org/multipage/server-sent-events.html#event-stream-interpretation).\n   - If present, the ID **MUST** be globally unique across all streams within that\n     [session](#session-management)—or all streams with that specific client, if session\n     management is not in use.\n2. If the client wishes to resume after a broken connection, it **SHOULD** issue an HTTP\n   GET to the MCP endpoint, and include the\n   [`Last-Event-ID`](https://html.spec.whatwg.org/multipage/server-sent-events.html#the-last-event-id-header)\n   header to indicate the last event ID it received.\n   - The server **MAY** use this header to replay messages that would have been sent\n     after the last event ID, _on the stream that was disconnected_, and to resume the\n     stream from that point.\n   - The server **MUST NOT** replay messages that would have been delivered on a\n     different stream.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No definitive function definitions found related to Last-Event-ID handling.",
+        "Phase 2-Source Code: Found methods fetching last_event_id. However, unclear automation of message replay."
+      ],
+      "confidence": 0.5,
+      "explanation": "It's unclear if the server automatically handles replay logic based on the Last-Event-ID as it exposes methods but lacks definitive automatic call patterns in response handling.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\sse.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\examples\\servers\\simple-streamablehttp\\mcp_simple_streamablehttp\\server.py"
+      ],
+      "code_snippets": [
+        "if last_event_id := request.headers.get(LAST_EVENT_ID_HEADER):\n    self._replay_events(last_event_id)"
+      ]
+    },
+    {
+      "rule_id": 157,
+      "rule_type": "MUST",
+      "rule_text": "An MCP \"session\" consists of logically related interactions between a client and a\nserver, beginning with the [initialization phase](/specification/2025-06-18/basic/lifecycle). To support\nservers which want to establish stateful sessions:\n\n1. A server using the Streamable HTTP transport **MAY** assign a session ID at\n   initialization time, by including it in an `Mcp-Session-Id` header on the HTTP\n   response containing the `InitializeResult`.\n   - The session ID **SHOULD** be globally unique and cryptographically secure (e.g., a\n     securely generated UUID, a JWT, or a cryptographic hash).\n   - The session ID **MUST** only contain visible ASCII characters (ranging from 0x21 to\n     0x7E).\n2. If an `Mcp-Session-Id` is returned by the server during initialization, clients using\n   the Streamable HTTP transport **MUST** include it in the `Mcp-Session-Id` header on\n   all of their subsequent HTTP requests.\n   - Servers that require a session ID **SHOULD** respond to requests without an\n     `Mcp-Session-Id` header (other than initialization) with HTTP 400 Bad Request.\n3. The server **MAY** terminate the session at any time, after which it **MUST** respond\n   to requests containing that session ID with HTTP 404 Not Found.\n4. When a client receives HTTP 404 in response to a request containing an\n   `Mcp-Session-Id`, it **MUST** start a new session by sending a new `InitializeRequest`\n   without a session ID attached.\n5. Clients that no longer need a particular session (e.g., because the user is leaving\n   the client application) **SHOULD** send an HTTP DELETE to the MCP endpoint with the\n   `Mcp-Session-Id` header, to explicitly terminate the session.\n   - The server **MAY** respond to this request with HTTP 405 Method Not Allowed,\n     indicating that the server does not allow clients to terminate sessions.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 159,
+      "rule_type": "MAY",
+      "rule_text": "An MCP \"session\" consists of logically related interactions between a client and a\nserver, beginning with the [initialization phase](/specification/2025-06-18/basic/lifecycle). To support\nservers which want to establish stateful sessions:\n\n1. A server using the Streamable HTTP transport **MAY** assign a session ID at\n   initialization time, by including it in an `Mcp-Session-Id` header on the HTTP\n   response containing the `InitializeResult`.\n   - The session ID **SHOULD** be globally unique and cryptographically secure (e.g., a\n     securely generated UUID, a JWT, or a cryptographic hash).\n   - The session ID **MUST** only contain visible ASCII characters (ranging from 0x21 to\n     0x7E).\n2. If an `Mcp-Session-Id` is returned by the server during initialization, clients using\n   the Streamable HTTP transport **MUST** include it in the `Mcp-Session-Id` header on\n   all of their subsequent HTTP requests.\n   - Servers that require a session ID **SHOULD** respond to requests without an\n     `Mcp-Session-Id` header (other than initialization) with HTTP 400 Bad Request.\n3. The server **MAY** terminate the session at any time, after which it **MUST** respond\n   to requests containing that session ID with HTTP 404 Not Found.\n4. When a client receives HTTP 404 in response to a request containing an\n   `Mcp-Session-Id`, it **MUST** start a new session by sending a new `InitializeRequest`\n   without a session ID attached.\n5. Clients that no longer need a particular session (e.g., because the user is leaving\n   the client application) **SHOULD** send an HTTP DELETE to the MCP endpoint with the\n   `Mcp-Session-Id` header, to explicitly terminate the session.\n   - The server **MAY** respond to this request with HTTP 405 Method Not Allowed,\n     indicating that the server does not allow clients to terminate sessions.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 161,
+      "rule_type": "SHOULD",
+      "rule_text": "The protocol version sent by the client **SHOULD** be the one [negotiated during\ninitialization](/specification/2025-06-18/basic/lifecycle#version-negotiation).",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 168,
+      "rule_type": "MUST_NOT",
+      "rule_text": "1. Cancellation notifications **MUST** only reference requests that:\n   - Were previously issued in the same direction\n   - Are believed to still be in-progress\n2. The `initialize` request **MUST NOT** be cancelled by clients\n3. Receivers of cancellation notifications **SHOULD**:\n   - Stop processing the cancelled request\n   - Free associated resources\n   - Not send a response for the cancelled request\n4. Receivers **MAY** ignore cancellation notifications if:\n   - The referenced request is unknown\n   - Processing has already completed\n   - The request cannot be cancelled\n5. The sender of the cancellation notification **SHOULD** ignore any response to the\n   request that arrives afterward",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 171,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Cancellation notifications **MUST** only reference requests that:\n   - Were previously issued in the same direction\n   - Are believed to still be in-progress\n2. The `initialize` request **MUST NOT** be cancelled by clients\n3. Receivers of cancellation notifications **SHOULD**:\n   - Stop processing the cancelled request\n   - Free associated resources\n   - Not send a response for the cancelled request\n4. Receivers **MAY** ignore cancellation notifications if:\n   - The referenced request is unknown\n   - Processing has already completed\n   - The request cannot be cancelled\n5. The sender of the cancellation notification **SHOULD** ignore any response to the\n   request that arrives afterward",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 173,
+      "rule_type": "SHOULD",
+      "rule_text": "- Both parties **SHOULD** log cancellation reasons for debugging\n- Application UIs **SHOULD** indicate when cancellation is requested",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 174,
+      "rule_type": "SHOULD",
+      "rule_text": "- Both parties **SHOULD** log cancellation reasons for debugging\n- Application UIs **SHOULD** indicate when cancellation is requested",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Inferred cancellation handling from `calls_python.jsonl`",
+        "Phase 2-Source Code: Verified cancellation handling through 'RequestResponder' in tmpaa2_i805.py"
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does implement automatic behaviors indicating cancellations; however, it does not provide explicit functions or mechanisms for logging cancellation reasons, shifting that responsibility potentially back to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\shared\\memory.py"
+      ],
+      "code_snippets": [
+        "async def cancel(self) -> None: # Handles cancellation logic"
+      ]
+    },
+    {
+      "rule_id": 178,
+      "rule_type": "SHOULD",
+      "rule_text": "- Implementations **SHOULD** periodically issue pings to detect connection health\n- The frequency of pings **SHOULD** be configurable\n- Timeouts **SHOULD** be appropriate for the network environment\n- Excessive pinging **SHOULD** be avoided to reduce network overhead",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No definitions for ping functionality found in defs_python.jsonl.",
+        "Phase 1-IR: No related call relationships found in calls_python.jsonl.",
+        "Phase 2-Source Code: No automatic management or scheduled sending of pings identified in the source code."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not encapsulate the behaviors required by the MCP rule regarding automatic pings for connection health. No automatic handling or periodic sending of pings was found.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streamable_http_manager.py"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 179,
+      "rule_type": "SHOULD",
+      "rule_text": "- Implementations **SHOULD** periodically issue pings to detect connection health\n- The frequency of pings **SHOULD** be configurable\n- Timeouts **SHOULD** be appropriate for the network environment\n- Excessive pinging **SHOULD** be avoided to reduce network overhead",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function send_ping in definitions, defined in src/mcp/server/streaming_asgi_transport.py:173",
+        "Phase 1-IR: Confirmed send_ping function is called within the SDK, ensuring it is used internally.",
+        "Phase 2-Source Code: No found evidence of frequency configuration for pings."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines a function to send ping requests but lacks any mechanism for configuring the frequency of these pings, which is required for compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py"
+      ],
+      "code_snippets": [
+        "async def send_ping(self) -> types.EmptyResult:\n    return await self.send_request(\n        types.ClientRequest(types.PingRequest()),\n        types.EmptyResult,\n    )"
+      ]
+    },
+    {
+      "rule_id": 180,
+      "rule_type": "SHOULD",
+      "rule_text": "- Implementations **SHOULD** periodically issue pings to detect connection health\n- The frequency of pings **SHOULD** be configurable\n- Timeouts **SHOULD** be appropriate for the network environment\n- Excessive pinging **SHOULD** be avoided to reduce network overhead",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 181,
+      "rule_type": "SHOULD",
+      "rule_text": "- Implementations **SHOULD** periodically issue pings to detect connection health\n- The frequency of pings **SHOULD** be configurable\n- Timeouts **SHOULD** be appropriate for the network environment\n- Excessive pinging **SHOULD** be avoided to reduce network overhead",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No ping-related variables or functions conclusively found in function definitions.",
+        "Phase 1-IR: No function calls indicating periodic ping relationships found.",
+        "Phase 2-Source Code: Pinging functionality exists but lacks automated handling.",
+        "Phase 2-Source Code: Functions related to notifications are present but are not called automatically for pinging tasks."
+      ],
+      "confidence": 0.5,
+      "explanation": "The SDK does not provide explicit automated handling of periodic pings or timeout settings that are clearly encapsulated for the developer. It is unclear if the SDK handles ping intervals as mandated by the MCP guideline.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\client\\sse.py",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\python-sdk-main\\python-sdk-main\\src\\mcp\\server\\streaming_asgi_transport.py"
+      ],
+      "code_snippets": [
+        "send_notification method invoked without automatic conditions for ping, found in line: 15 of tmpaa2_i805.py",
+        "RequestResponder does not indicate automatic ping management, found in line: 150 of tmpaa2_i805.py"
+      ]
+    },
+    {
+      "rule_id": 183,
+      "rule_type": "MAY",
+      "rule_text": "- Timeouts **SHOULD** be treated as connection failures\n- Multiple failed pings **MAY** trigger connection reset\n- Implementations **SHOULD** log ping failures for diagnostics",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 184,
+      "rule_type": "SHOULD",
+      "rule_text": "- Timeouts **SHOULD** be treated as connection failures\n- Multiple failed pings **MAY** trigger connection reset\n- Implementations **SHOULD** log ping failures for diagnostics",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 194,
+      "rule_type": "SHOULD",
+      "rule_text": "- Senders and receivers **SHOULD** track active progress tokens\n- Both parties **SHOULD** implement rate limiting to prevent flooding\n- Progress notifications **MUST** stop after completion",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    }
+  ]
+}

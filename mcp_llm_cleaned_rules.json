@@ -1,0 +1,2205 @@
+﻿[
+  {
+    "rule_id": 1,
+    "rule_type": "OPTIONAL",
+    "func": "authorize",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Authorization is OPTIONAL for MCP implementations."
+  },
+  {
+    "rule_id": 2,
+    "rule_type": "SHOULD",
+    "func": "conform",
+    "condition": "state == http_based_transport",
+    "category": "architectural",
+    "cleaned_text": "Implementations using an HTTP-based transport SHOULD conform to this specification."
+  },
+  {
+    "rule_id": 3,
+    "rule_type": "SHOULD_NOT",
+    "func": "follow_specification",
+    "condition": "state == STDIO_transport",
+    "category": "architectural",
+    "cleaned_text": "Implementations using an STDIO transport SHOULD NOT follow this specification, and instead retrieve credentials from the environment."
+  },
+  {
+    "rule_id": 4,
+    "rule_type": "MUST",
+    "func": "follow_security_best_practices",
+    "condition": "state == alternative_transports",
+    "category": "architectural",
+    "cleaned_text": "Implementations using alternative transports MUST follow established security best practices for their protocol."
+  },
+  {
+    "rule_id": 5,
+    "rule_type": "MUST",
+    "func": "implement_OAuth_2.1",
+    "condition": "state == appropriate_security_measures && (arg.client_type == confidential || arg.client_type == public)",
+    "category": "architectural",
+    "cleaned_text": "Authorization servers MUST implement OAuth 2.1 with appropriate security measures for both confidential and public clients."
+  },
+  {
+    "rule_id": 6,
+    "rule_type": "SHOULD",
+    "func": "support",
+    "condition": "state == OAuth_2.0_Dynamic_Client_Registration_Protocol",
+    "category": "architectural",
+    "cleaned_text": "Authorization servers and MCP clients SHOULD support the OAuth 2.0 Dynamic Client Registration Protocol."
+  },
+  {
+    "rule_id": 7,
+    "rule_type": "MUST",
+    "func": "implement",
+    "condition": "state == OAuth_2.0_Protected_Resource_Metadata",
+    "category": "architectural",
+    "cleaned_text": "MCP servers MUST implement OAuth 2.0 Protected Resource Metadata."
+  },
+  {
+    "rule_id": 8,
+    "rule_type": "MUST",
+    "func": "use_OAuth_2.0_Protected_Resource_Metadata",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "MCP clients MUST use OAuth 2.0 Protected Resource Metadata for authorization server discovery."
+  },
+  {
+    "rule_id": 9,
+    "rule_type": "MUST",
+    "func": "provide_metadata",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "Authorization servers MUST provide OAuth 2.0 Authorization Server Metadata."
+  },
+  {
+    "rule_id": 10,
+    "rule_type": "MUST",
+    "func": "use_oauth_metadata",
+    "condition": "state == oauth_metadata_required",
+    "category": "architectural",
+    "cleaned_text": "MCP clients MUST use the OAuth 2.0 Authorization Server Metadata."
+  },
+  {
+    "rule_id": 11,
+    "rule_type": "MUST",
+    "func": "implement",
+    "condition": "has_occurred(OAuth_2.0_Protected_Resource_Metadata)",
+    "category": "architectural",
+    "cleaned_text": "MCP servers MUST implement the OAuth 2.0 Protected Resource Metadata"
+  },
+  {
+    "rule_id": 12,
+    "rule_type": "MUST",
+    "func": "include",
+    "condition": "arg.authorization_servers.length > 0",
+    "category": "message_specific",
+    "cleaned_text": "The Protected Resource Metadata document returned by the MCP server MUST include the authorization_servers field containing at least one authorization server."
+  },
+  {
+    "rule_id": 13,
+    "rule_type": "MUST",
+    "func": "use_www_authenticate",
+    "condition": "state == 401_Unauthorized",
+    "category": "architectural",
+    "cleaned_text": "MCP servers MUST use the HTTP header `WWW-Authenticate` when returning a _401 Unauthorized_"
+  },
+  {
+    "rule_id": 14,
+    "rule_type": "MUST",
+    "func": "parse",
+    "condition": "has_occurred(HTTP_401_Unauthorized) && arg.header == WWW-Authenticate",
+    "category": "message_specific",
+    "cleaned_text": "MCP clients MUST be able to parse WWW-Authenticate headers and respond appropriately to HTTP 401 Unauthorized responses from the MCP server."
+  },
+  {
+    "rule_id": 15,
+    "rule_type": "MUST",
+    "func": "obtain_metadata",
+    "condition": "has_occurred(follow_OAuth_2.0_specification)",
+    "category": "architectural",
+    "cleaned_text": "MCP clients MUST follow the OAuth 2.0 Authorization Server Metadata specification to obtain the information required to interact with the authorization server."
+  },
+  {
+    "rule_id": 16,
+    "rule_type": "SHOULD",
+    "func": "support_dynamic_client_registration",
+    "condition": "state == client_authorization_supported",
+    "category": "architectural",
+    "cleaned_text": "MCP clients and authorization servers SHOULD support the OAuth 2.0 Dynamic Client Registration Protocol to allow MCP clients to obtain OAuth client IDs without user interaction."
+  },
+  {
+    "rule_id": 17,
+    "rule_type": "MUST",
+    "func": "implementResourceIndicators",
+    "condition": "has_occurred(OAuth2.0) && arg.resource == target_resource",
+    "category": "architectural",
+    "cleaned_text": "MCP clients MUST implement Resource Indicators for OAuth 2.0 to explicitly specify the target resource for which the token is being requested."
+  },
+  {
+    "rule_id": 18,
+    "rule_type": "MUST",
+    "func": "include",
+    "condition": "has_occurred(authorization_request) && has_occurred(token_request)",
+    "category": "message_specific",
+    "cleaned_text": "MUST be included in both authorization requests and token requests."
+  },
+  {
+    "rule_id": 19,
+    "rule_type": "MUST",
+    "func": "identify_server",
+    "condition": "arg.token != null",
+    "category": "unknown",
+    "cleaned_text": "Clients MUST identify the MCP server that the client intends to use the token with."
+  },
+  {
+    "rule_id": 20,
+    "rule_type": "MUST",
+    "func": "use_canonical_URI",
+    "condition": "arg.URI == canonical_URI && has_occurred(MCP_server_definition)",
+    "category": "architectural",
+    "cleaned_text": "MUST use the canonical URI of the MCP server as defined in RFC 8707 Section 2."
+  },
+  {
+    "rule_id": 21,
+    "rule_type": "SHOULD",
+    "func": "provide_specific_uri",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "MCP clients SHOULD provide the most specific URI that they can for the MCP server they intend to access, following the guidance in RFC 8707."
+  },
+  {
+    "rule_id": 22,
+    "rule_type": "SHOULD",
+    "func": "accept",
+    "condition": "arg.scheme == uppercase || arg.host == uppercase",
+    "category": "architectural",
+    "cleaned_text": "Implementations SHOULD accept uppercase scheme and host components for robustness and interoperability."
+  },
+  {
+    "rule_id": 23,
+    "rule_type": "SHOULD",
+    "func": "use_uri_format",
+    "condition": "!(arg.uri.endsWith('/') && arg.uri == 'https://mcp.example.com/')",
+    "category": "architectural",
+    "cleaned_text": "Implementations SHOULD consistently use the form without the trailing slash for better interoperability unless the trailing slash is semantically significant for the specific resource."
+  },
+  {
+    "rule_id": 24,
+    "rule_type": "MUST",
+    "func": "send",
+    "condition": "true",
+    "category": "message_specific",
+    "cleaned_text": "Clients MUST send this parameter regardless of whether authorization servers support it."
+  },
+  {
+    "rule_id": 25,
+    "rule_type": "MUST",
+    "func": "make_request",
+    "condition": "has_occurred(access_token_handling) && arg.token == valid_access_token",
+    "category": "architectural",
+    "cleaned_text": "Access token handling when making requests to MCP servers MUST conform to the requirements defined in OAuth 2.1 Section 5 'Resource Requests'."
+  },
+  {
+    "rule_id": 26,
+    "rule_type": "MUST",
+    "func": "useAuthorizationHeader",
+    "condition": "arg.header_field == 'Authorization'",
+    "category": "architectural",
+    "cleaned_text": "MCP client MUST use the Authorization request header field defined in OAuth 2.1 Section 5.1.1"
+  },
+  {
+    "rule_id": 27,
+    "rule_type": "MUST",
+    "func": "send_request",
+    "condition": "arg.authorization != null",
+    "category": "message_specific",
+    "cleaned_text": "Authorization MUST be included in every HTTP request from client to server, even if they are part of the same logical session."
+  },
+  {
+    "rule_id": 28,
+    "rule_type": "MUST_NOT",
+    "func": "include_token",
+    "condition": "arg.token == access_token && arg.uri.query_string != null",
+    "category": "architectural",
+    "cleaned_text": "Access tokens MUST NOT be included in the URI query string"
+  },
+  {
+    "rule_id": 29,
+    "rule_type": "MUST",
+    "func": "validate",
+    "condition": "has_occurred(validate_access_token)",
+    "category": "architectural",
+    "cleaned_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, MUST validate access tokens as described in [OAuth 2.1 Section 5.2]."
+  },
+  {
+    "rule_id": 30,
+    "rule_type": "MUST",
+    "func": "validate",
+    "condition": "arg.token.audience == server_id",
+    "category": "architectural",
+    "cleaned_text": "MCP servers MUST validate that access tokens were issued specifically for them as the intended audience."
+  },
+  {
+    "rule_id": 31,
+    "rule_type": "MUST",
+    "func": "respond",
+    "condition": "state == validation_failed",
+    "category": "message_specific",
+    "cleaned_text": "If validation fails, servers MUST respond according to OAuth 2.1 Section 5.3"
+  },
+  {
+    "rule_id": 32,
+    "rule_type": "MUST",
+    "func": "send_response",
+    "condition": "arg.token == invalid || arg.token == expired",
+    "category": "message_specific",
+    "cleaned_text": "Invalid or expired tokens MUST receive a HTTP 401 response."
+  },
+  {
+    "rule_id": 33,
+    "rule_type": "MUST_NOT",
+    "func": "send",
+    "condition": "arg.token != issued_by_authorization_server",
+    "category": "message_specific",
+    "cleaned_text": "MCP clients MUST NOT send tokens to the MCP server other than ones issued by the MCP server's authorization server."
+  },
+  {
+    "rule_id": 34,
+    "rule_type": "MUST",
+    "func": "accept_token",
+    "condition": "arg.token.valid == true && arg.token.resource == own_resources",
+    "category": "architectural",
+    "cleaned_text": "Authorization servers MUST only accept tokens that are valid for use with their own resources."
+  },
+  {
+    "rule_id": 35,
+    "rule_type": "MUST_NOT",
+    "func": "accept_or_transit_tokens",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "MCP servers MUST NOT accept or transit any other tokens."
+  },
+  {
+    "rule_id": 36,
+    "rule_type": "MUST",
+    "func": "return_http_status_code",
+    "condition": "arg.error_type == authorization_error",
+    "category": "message_specific",
+    "cleaned_text": "Servers MUST return appropriate HTTP status codes for authorization errors"
+  },
+  {
+    "rule_id": 37,
+    "rule_type": "MUST",
+    "func": "follow_security_best_practices",
+    "condition": "has_occurred(OAuth_2.1_Section_7)",
+    "category": "architectural",
+    "cleaned_text": "Implementations MUST follow OAuth 2.1 security best practices as laid out in OAuth 2.1 Section 7."
+  },
+  {
+    "rule_id": 38,
+    "rule_type": "MUST",
+    "func": "include_resource_parameter",
+    "condition": "arg.resource != null",
+    "category": "message_specific",
+    "cleaned_text": "MCP clients MUST include the `resource` parameter in authorization and token requests"
+  },
+  {
+    "rule_id": 39,
+    "rule_type": "MUST",
+    "func": "validate",
+    "condition": "arg.token == issued_for_use",
+    "category": "architectural",
+    "cleaned_text": "MCP servers MUST validate that tokens presented to them were specifically issued for their use"
+  },
+  {
+    "rule_id": 40,
+    "rule_type": "MUST",
+    "func": "store_token",
+    "condition": "state == secure_token_storage && has_occurred(follow_OAuth_best_practices)",
+    "category": "architectural",
+    "cleaned_text": "Clients and servers MUST implement secure token storage and follow OAuth best practices."
+  },
+  {
+    "rule_id": 41,
+    "rule_type": "SHOULD",
+    "func": "issue_access_token",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "Authorization servers SHOULD issue short-lived access tokens to reduce the impact of leaked tokens."
+  },
+  {
+    "rule_id": 42,
+    "rule_type": "MUST",
+    "func": "rotate_refresh_tokens",
+    "condition": "state == public_client",
+    "category": "architectural",
+    "cleaned_text": "For public clients, authorization servers MUST rotate refresh tokens as described in OAuth 2.1 Section 4.3.1."
+  },
+  {
+    "rule_id": 43,
+    "rule_type": "MUST",
+    "func": "follow_communication_security",
+    "condition": "has_occurred(OAuth_2.1_Section_1.5)",
+    "category": "architectural",
+    "cleaned_text": "Implementations MUST follow OAuth 2.1 Section 1.5 'Communication Security'."
+  },
+  {
+    "rule_id": 44,
+    "rule_type": "MUST",
+    "func": "serve",
+    "condition": "arg.endpoint == HTTPS",
+    "category": "architectural",
+    "cleaned_text": "All authorization server endpoints MUST be served over HTTPS."
+  },
+  {
+    "rule_id": 45,
+    "rule_type": "MUST",
+    "func": "redirect",
+    "condition": "arg.redirect_uri == 'localhost' || arg.redirect_uri.startsWith('https://')",
+    "category": "architectural",
+    "cleaned_text": "All redirect URIs MUST be either localhost or use HTTPS."
+  },
+  {
+    "rule_id": 46,
+    "rule_type": "MUST",
+    "func": "implement_PKCE",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "MCP clients MUST implement PKCE according to OAuth 2.1 Section 7.5.2."
+  },
+  {
+    "rule_id": 47,
+    "rule_type": "MUST",
+    "func": "register_redirect_uri",
+    "condition": "has_occurred(authorization_server)",
+    "category": "architectural",
+    "cleaned_text": "MCP clients MUST have redirect URIs registered with the authorization server."
+  },
+  {
+    "rule_id": 48,
+    "rule_type": "MUST",
+    "func": "validate",
+    "condition": "arg.redirect_uri == pre_registered_value",
+    "category": "architectural",
+    "cleaned_text": "Authorization servers MUST validate exact redirect URIs against pre-registered values to prevent redirection attacks."
+  },
+  {
+    "rule_id": 49,
+    "rule_type": "SHOULD",
+    "func": "verify_state_parameters",
+    "condition": "arg.state == original_state || arg.state != original_state",
+    "category": "message_specific",
+    "cleaned_text": "MCP clients SHOULD use and verify state parameters in the authorization code flow and discard any results that do not include or have a mismatch with the original state."
+  },
+  {
+    "rule_id": 50,
+    "rule_type": "MUST",
+    "func": "prevent_redirect",
+    "condition": "arg.uri == untrusted",
+    "category": "architectural",
+    "cleaned_text": "Authorization servers MUST take precautions to prevent redirecting user agents to untrusted URI's."
+  },
+  {
+    "rule_id": 51,
+    "rule_type": "SHOULD",
+    "func": "redirect",
+    "condition": "state == trusted_redirection_URI",
+    "category": "architectural",
+    "cleaned_text": "Authorization servers SHOULD only automatically redirect the user agent if it trusts the redirection URI."
+  },
+  {
+    "rule_id": 52,
+    "rule_type": "MUST",
+    "func": "forward",
+    "condition": "has_occurred(obtain_user_consent)",
+    "category": "architectural",
+    "cleaned_text": "MCP proxy servers using static client IDs MUST obtain user consent for each dynamically registered client before forwarding to third-party authorization servers."
+  },
+  {
+    "rule_id": 53,
+    "rule_type": "MUST",
+    "func": "validate",
+    "condition": "arg.token == access_token && arg.token.issued_for == MCP_server",
+    "category": "architectural",
+    "cleaned_text": "MCP servers MUST validate access tokens before processing the request"
+  },
+  {
+    "rule_id": 54,
+    "rule_type": "MUST",
+    "func": "validate",
+    "condition": "has_occurred(follow_guidelines) && arg.token == inbound_token",
+    "category": "architectural",
+    "cleaned_text": "A MCP server MUST follow the guidelines in [OAuth 2.1 - Section 5.2] to validate inbound tokens."
+  },
+  {
+    "rule_id": 55,
+    "rule_type": "MUST",
+    "func": "accept_token",
+    "condition": "!arg.token.audience.includes(self) || !has_occurred(verify_intended_recipient)",
+    "category": "architectural",
+    "cleaned_text": "MCP servers MUST only accept tokens specifically intended for themselves and MUST reject tokens that do not include them in the audience claim or otherwise verify that they are the intended recipient of the token."
+  },
+  {
+    "rule_id": 56,
+    "rule_type": "MUST_NOT",
+    "func": "pass_through",
+    "condition": "has_occurred(receive_token)",
+    "category": "message_specific",
+    "cleaned_text": "The MCP server MUST NOT pass through the token it received from the MCP client."
+  },
+  {
+    "rule_id": 57,
+    "rule_type": "MUST",
+    "func": "request_token",
+    "condition": "arg.resource != null",
+    "category": "architectural",
+    "cleaned_text": "MCP clients MUST implement and use the resource parameter to explicitly specify the target resource for which the token is being requested."
+  },
+  {
+    "rule_id": 58,
+    "rule_type": "MUST",
+    "func": "support_base_protocol",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "All implementations MUST support the base protocol and lifecycle management"
+  },
+  {
+    "rule_id": 59,
+    "rule_type": "MAY",
+    "func": "implement",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Other components MAY be implemented based on the specific needs of the application."
+  },
+  {
+    "rule_id": 60,
+    "rule_type": "MUST",
+    "func": "send",
+    "condition": "arg.message_format == JSON-RPC 2.0",
+    "category": "message_specific",
+    "cleaned_text": "All messages between MCP clients and servers MUST follow the JSON-RPC 2.0 specification."
+  },
+  {
+    "rule_id": 61,
+    "rule_type": "MUST",
+    "func": "include_id",
+    "condition": "arg.id != null",
+    "category": "message_specific",
+    "cleaned_text": "Requests MUST include a string or integer ID."
+  },
+  {
+    "rule_id": 62,
+    "rule_type": "MUST_NOT",
+    "func": "send",
+    "condition": "arg.id == null",
+    "category": "message_specific",
+    "cleaned_text": "Unlike base JSON-RPC, the ID MUST NOT be null."
+  },
+  {
+    "rule_id": 63,
+    "rule_type": "MUST_NOT",
+    "func": "request_id",
+    "condition": "has_occurred(request_id) && state == same_session",
+    "category": "message_specific",
+    "cleaned_text": "The request ID MUST NOT have been previously used by the requestor within the same session."
+  },
+  {
+    "rule_id": 64,
+    "rule_type": "MUST",
+    "func": "include_response_id",
+    "condition": "arg.response_id == arg.request_id",
+    "category": "message_specific",
+    "cleaned_text": "Responses MUST include the same ID as the request they correspond to."
+  },
+  {
+    "rule_id": 65,
+    "rule_type": "MUST_NOT",
+    "func": "set",
+    "condition": "arg.field1 != true || arg.field2 != true",
+    "category": "unknown",
+    "cleaned_text": "A response MUST NOT set both."
+  },
+  {
+    "rule_id": 66,
+    "rule_type": "MUST",
+    "func": "set_result_or_error",
+    "condition": "arg.result != null || arg.error != null",
+    "category": "message_specific",
+    "cleaned_text": "Either a result or an error MUST be set."
+  },
+  {
+    "rule_id": 67,
+    "rule_type": "MUST",
+    "func": "send_error_response",
+    "condition": "arg.error_code != null && arg.message != null",
+    "category": "message_specific",
+    "cleaned_text": "Errors MUST include an error code and message at minimum."
+  },
+  {
+    "rule_id": 68,
+    "rule_type": "MUST",
+    "func": "send_error_response",
+    "condition": "arg.error_code != null && arg.message != null",
+    "category": "message_specific",
+    "cleaned_text": "Errors MUST include an error code and message at minimum."
+  },
+  {
+    "rule_id": 69,
+    "rule_type": "MUST",
+    "func": "validate_error_code",
+    "condition": "arg.error_code is integer",
+    "category": "message_specific",
+    "cleaned_text": "Error codes MUST be integers."
+  },
+  {
+    "rule_id": 70,
+    "rule_type": "MUST_NOT",
+    "func": "send",
+    "condition": "true",
+    "category": "message_specific",
+    "cleaned_text": "The receiver MUST NOT send a response."
+  },
+  {
+    "rule_id": 71,
+    "rule_type": "MUST_NOT",
+    "func": "include_notification",
+    "condition": "arg.id != null",
+    "category": "message_specific",
+    "cleaned_text": "Notifications MUST NOT include an ID."
+  },
+  {
+    "rule_id": 72,
+    "rule_type": "SHOULD",
+    "func": "conform",
+    "condition": "state == http_based_transport",
+    "category": "architectural",
+    "cleaned_text": "Implementations using an HTTP-based transport SHOULD conform to this specification"
+  },
+  {
+    "rule_id": 73,
+    "rule_type": "SHOULD_NOT",
+    "func": "retrieve_credentials",
+    "condition": "state == STDIO_transport",
+    "category": "architectural",
+    "cleaned_text": "Implementations using STDIO transport SHOULD NOT follow this specification, and instead retrieve credentials from the environment."
+  },
+  {
+    "rule_id": 74,
+    "rule_type": "MAY",
+    "func": "negotiate_authentication_authorization",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Clients and servers MAY negotiate their own custom authentication and authorization strategies."
+  },
+  {
+    "rule_id": 75,
+    "rule_type": "MUST",
+    "func": "initialize",
+    "condition": "has_occurred(initialize) == false",
+    "category": "architectural",
+    "cleaned_text": "The initialization phase MUST be the first interaction between client and server."
+  },
+  {
+    "rule_id": 76,
+    "rule_type": "MUST",
+    "func": "send_initialize_request",
+    "condition": "true",
+    "category": "message_specific",
+    "cleaned_text": "The client MUST initiate this phase by sending an initialize request containing:"
+  },
+  {
+    "rule_id": 77,
+    "rule_type": "MUST",
+    "func": "respond",
+    "condition": "state == server_ready",
+    "category": "message_specific",
+    "cleaned_text": "The server MUST respond with its own capabilities and information"
+  },
+  {
+    "rule_id": 78,
+    "rule_type": "MUST",
+    "func": "send_notification",
+    "condition": "has_occurred(initialize)",
+    "category": "message_specific",
+    "cleaned_text": "After successful initialization, the client MUST send an initialized notification to indicate it is ready to begin normal operations."
+  },
+  {
+    "rule_id": 79,
+    "rule_type": "SHOULD_NOT",
+    "func": "send_request",
+    "condition": "has_occurred(initialize) && !has_occurred(response)",
+    "category": "message_specific",
+    "cleaned_text": "The client SHOULD NOT send requests other than pings before the server has responded to the initialize request."
+  },
+  {
+    "rule_id": 80,
+    "rule_type": "SHOULD_NOT",
+    "func": "send",
+    "condition": "state == initialized",
+    "category": "message_specific",
+    "cleaned_text": "The server SHOULD NOT send requests other than pings and logging before receiving the initialized notification."
+  },
+  {
+    "rule_id": 81,
+    "rule_type": "MUST",
+    "func": "initialize",
+    "condition": "arg.protocol_version != null",
+    "category": "message_specific",
+    "cleaned_text": "In the initialize request, the client MUST send a protocol version it supports."
+  },
+  {
+    "rule_id": 82,
+    "rule_type": "SHOULD",
+    "func": "support_latest_version",
+    "condition": "state == latest_version_supported",
+    "category": "unknown",
+    "cleaned_text": "This SHOULD be the latest version supported by the client."
+  },
+  {
+    "rule_id": 83,
+    "rule_type": "MUST",
+    "func": "respond",
+    "condition": "state == protocol_version_supported",
+    "category": "message_specific",
+    "cleaned_text": "If the server supports the requested protocol version, it MUST respond with the same"
+  },
+  {
+    "rule_id": 84,
+    "rule_type": "MUST",
+    "func": "respond",
+    "condition": "state == protocol_version_changed",
+    "category": "message_specific",
+    "cleaned_text": "Otherwise, the server MUST respond with another protocol version"
+  },
+  {
+    "rule_id": 85,
+    "rule_type": "SHOULD",
+    "func": "support_latest_version",
+    "condition": "state == latest_version_supported",
+    "category": "architectural",
+    "cleaned_text": "This SHOULD be the latest version supported by the server."
+  },
+  {
+    "rule_id": 86,
+    "rule_type": "SHOULD",
+    "func": "disconnect",
+    "condition": "state == client_version_not_supported",
+    "category": "architectural",
+    "cleaned_text": "If the client does not support the version in the server's response, it SHOULD disconnect."
+  },
+  {
+    "rule_id": 87,
+    "rule_type": "MUST",
+    "func": "send_request",
+    "condition": "arg.header['MCP-Protocol-Version'] != null",
+    "category": "message_specific",
+    "cleaned_text": "If using HTTP, the client MUST include the MCP-Protocol-Version: <protocol-version> HTTP header on all subsequent requests to the MCP server."
+  },
+  {
+    "rule_id": 88,
+    "rule_type": "MUST",
+    "func": "unknown",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Both parties MUST:"
+  },
+  {
+    "rule_id": 89,
+    "rule_type": "SHOULD",
+    "func": "shutdown",
+    "condition": "has_occurred(initiate) || state == stdio_transport",
+    "category": "architectural",
+    "cleaned_text": "For the stdio transport, the client SHOULD initiate shutdown."
+  },
+  {
+    "rule_id": 90,
+    "rule_type": "MAY",
+    "func": "shutdown",
+    "condition": "has_occurred(close_output_stream)",
+    "category": "architectural",
+    "cleaned_text": "The server MAY initiate shutdown by closing its output stream to the client and exiting."
+  },
+  {
+    "rule_id": 91,
+    "rule_type": "SHOULD",
+    "func": "establish_timeouts",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "Implementations SHOULD establish timeouts for all sent requests, to prevent hung connections and resource exhaustion."
+  },
+  {
+    "rule_id": 92,
+    "rule_type": "SHOULD",
+    "func": "issue_cancellation_notification",
+    "condition": "state == timeout_period",
+    "category": "message_specific",
+    "cleaned_text": "Response within the timeout period, the sender SHOULD issue a cancellation notification for that request and stop waiting for a response."
+  },
+  {
+    "rule_id": 93,
+    "rule_type": "SHOULD",
+    "func": "configure_timeouts",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "SDKs and other middleware SHOULD allow these timeouts to be configured on a per-request basis."
+  },
+  {
+    "rule_id": 94,
+    "rule_type": "MAY",
+    "func": "reset_timeout_clock",
+    "condition": "has_occurred(progress_notification)",
+    "category": "message_specific",
+    "cleaned_text": "Implementations MAY choose to reset the timeout clock when receiving a progress notification corresponding to the request"
+  },
+  {
+    "rule_id": 95,
+    "rule_type": "SHOULD",
+    "func": "enforce_timeout",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "Implementations SHOULD always enforce a maximum timeout to limit the impact of a misbehaving client or server."
+  },
+  {
+    "rule_id": 96,
+    "rule_type": "SHOULD",
+    "func": "handle_error_cases",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Implementations SHOULD be prepared to handle these error cases"
+  },
+  {
+    "rule_id": 97,
+    "rule_type": "MUST",
+    "func": "forward",
+    "condition": "has_occurred(obtain_user_consent)",
+    "category": "architectural",
+    "cleaned_text": "MCP proxy servers using static client IDs MUST obtain user consent for each dynamically registered client before forwarding to third-party authorization servers."
+  },
+  {
+    "rule_id": 98,
+    "rule_type": "MUST_NOT",
+    "func": "accept",
+    "condition": "arg.token != explicitly_issued_token",
+    "category": "architectural",
+    "cleaned_text": "MCP servers MUST NOT accept any tokens that were not explicitly issued for the MCP server."
+  },
+  {
+    "rule_id": 99,
+    "rule_type": "MUST",
+    "func": "verify",
+    "condition": "has_occurred(inbound_request)",
+    "category": "message_specific",
+    "cleaned_text": "MCP servers that implement authorization MUST verify all inbound requests."
+  },
+  {
+    "rule_id": 100,
+    "rule_type": "MUST_NOT",
+    "func": "use_sessions",
+    "condition": "state == authentication",
+    "category": "architectural",
+    "cleaned_text": "MCP Servers MUST NOT use sessions for authentication."
+  },
+  {
+    "rule_id": 101,
+    "rule_type": "MUST",
+    "func": "use_secure_session_ids",
+    "condition": "state == non_deterministic",
+    "category": "architectural",
+    "cleaned_text": "MCP servers MUST use secure, non-deterministic session IDs."
+  },
+  {
+    "rule_id": 102,
+    "rule_type": "SHOULD",
+    "func": "generate_session_id",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Generated session IDs (e.g., UUIDs) SHOULD use secure random number generators."
+  },
+  {
+    "rule_id": 103,
+    "rule_type": "SHOULD",
+    "func": "bind_session_id",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "MCP servers SHOULD bind session IDs to user-specific information."
+  },
+  {
+    "rule_id": 104,
+    "rule_type": "MUST",
+    "func": "encode",
+    "condition": "arg.message_encoding == 'UTF-8'",
+    "category": "message_specific",
+    "cleaned_text": "JSON-RPC messages MUST be UTF-8 encoded."
+  },
+  {
+    "rule_id": 105,
+    "rule_type": "SHOULD",
+    "func": "support_stdio",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Clients SHOULD support stdio whenever possible."
+  },
+  {
+    "rule_id": 106,
+    "rule_type": "MUST_NOT",
+    "func": "send",
+    "condition": "arg.message contains newline",
+    "category": "message_specific",
+    "cleaned_text": "Messages are delimited by newlines, and MUST NOT contain embedded newlines."
+  },
+  {
+    "rule_id": 107,
+    "rule_type": "MAY",
+    "func": "log",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "The server MAY write UTF-8 strings to its standard error for logging"
+  },
+  {
+    "rule_id": 108,
+    "rule_type": "MAY",
+    "func": "capture_forward_ignore_logging",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Clients MAY capture, forward, or ignore this logging."
+  },
+  {
+    "rule_id": 109,
+    "rule_type": "MUST_NOT",
+    "func": "write",
+    "condition": "!arg.stdout.is_valid_mcp_message",
+    "category": "architectural",
+    "cleaned_text": "The server MUST NOT write anything to its stdout that is not a valid MCP message."
+  },
+  {
+    "rule_id": 110,
+    "rule_type": "MUST_NOT",
+    "func": "write",
+    "condition": "!arg.stdin == valid_mcp_message",
+    "category": "message_specific",
+    "cleaned_text": "The client MUST NOT write anything to the server's stdin that is not a valid MCP message."
+  },
+  {
+    "rule_id": 111,
+    "rule_type": "MUST",
+    "func": "provide_http_endpoint",
+    "condition": "arg.method == POST || arg.method == GET",
+    "category": "architectural",
+    "cleaned_text": "The server MUST provide a single HTTP endpoint path that supports both POST and GET methods."
+  },
+  {
+    "rule_id": 112,
+    "rule_type": "MUST",
+    "func": "validate",
+    "condition": "arg.header == Origin",
+    "category": "architectural",
+    "cleaned_text": "Servers MUST validate the Origin header on all incoming connections to prevent DNS rebinding attacks"
+  },
+  {
+    "rule_id": 113,
+    "rule_type": "SHOULD",
+    "func": "bind",
+    "condition": "arg.address == localhost && arg.address != all_network_interfaces",
+    "category": "architectural",
+    "cleaned_text": "When running locally, servers SHOULD bind only to localhost (127.0.0.1) rather than all network interfaces (0.0.0.0)"
+  },
+  {
+    "rule_id": 114,
+    "rule_type": "SHOULD",
+    "func": "authenticate",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "Servers SHOULD implement proper authentication for all connections"
+  },
+  {
+    "rule_id": 115,
+    "rule_type": "MUST",
+    "func": "send",
+    "condition": "arg.message_type == JSON_RPC && arg.request_method == POST && arg.endpoint == MCP_endpoint",
+    "category": "message_specific",
+    "cleaned_text": "Every JSON-RPC message sent from the client MUST be a new HTTP POST request to the MCP endpoint."
+  },
+  {
+    "rule_id": 116,
+    "rule_type": "MUST",
+    "func": "send",
+    "condition": "arg.method == 'POST' && arg.content_type == 'application/json'",
+    "category": "message_specific",
+    "cleaned_text": "The client MUST use HTTP POST to send JSON-RPC messages to the MCP endpoint."
+  },
+  {
+    "rule_id": 117,
+    "rule_type": "MUST",
+    "func": "include_header",
+    "condition": "arg.header == 'Accept' && (arg.content_types == 'application/json' || arg.content_types == 'text/event-stream')",
+    "category": "message_specific",
+    "cleaned_text": "The client MUST include an Accept header, listing both application/json and text/event-stream as supported content types."
+  },
+  {
+    "rule_id": 118,
+    "rule_type": "MUST",
+    "func": "process_post_request",
+    "condition": "arg.body == json_rpc_request || arg.body == json_rpc_notification || arg.body == json_rpc_response",
+    "category": "message_specific",
+    "cleaned_text": "The body of the POST request MUST be a single JSON-RPC request, notification, or response."
+  },
+  {
+    "rule_id": 119,
+    "rule_type": "MUST",
+    "func": "return_status",
+    "condition": "state == input_accepted",
+    "category": "message_specific",
+    "cleaned_text": "If the server accepts the input, the server MUST return HTTP status code 202 Accepted with no body."
+  },
+  {
+    "rule_id": 120,
+    "rule_type": "MUST",
+    "func": "return_http_error",
+    "condition": "state == cannot_accept_input",
+    "category": "message_specific",
+    "cleaned_text": "If the server cannot accept the input, it MUST return an HTTP error status code"
+  },
+  {
+    "rule_id": 121,
+    "rule_type": "MAY",
+    "func": "send_response",
+    "condition": "arg.body == json_rpc_error_response && arg.id == null",
+    "category": "message_specific",
+    "cleaned_text": "The HTTP response body MAY comprise a JSON-RPC error response that has no id."
+  },
+  {
+    "rule_id": 122,
+    "rule_type": "MUST",
+    "func": "return",
+    "condition": "arg.request_type == JSON_RPC && (arg.content_type == text/event-stream)",
+    "category": "message_specific",
+    "cleaned_text": "If the input is a JSON-RPC request, the server MUST either return Content-Type: text/event-stream"
+  },
+  {
+    "rule_id": 123,
+    "rule_type": "MUST",
+    "func": "support_cases",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "The client MUST support both these cases."
+  },
+  {
+    "rule_id": 124,
+    "rule_type": "SHOULD",
+    "func": "include_response",
+    "condition": "has_occurred(send_request)",
+    "category": "message_specific",
+    "cleaned_text": "The SSE stream SHOULD eventually include JSON-RPC response for the JSON-RPC request sent in the POST body."
+  },
+  {
+    "rule_id": 125,
+    "rule_type": "MAY",
+    "func": "send",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "The server MAY send JSON-RPC requests and notifications before sending the"
+  },
+  {
+    "rule_id": 126,
+    "rule_type": "SHOULD",
+    "func": "relate_messages",
+    "condition": "state == originating_client_request",
+    "category": "message_specific",
+    "cleaned_text": "These messages SHOULD relate to the originating client request."
+  },
+  {
+    "rule_id": 127,
+    "rule_type": "SHOULD_NOT",
+    "func": "close_sse_stream",
+    "condition": "has_occurred(send_json_rpc_response) || state == session_expired",
+    "category": "architectural",
+    "cleaned_text": "The server SHOULD NOT close the SSE stream before sending the JSON-RPC response for the received JSON-RPC request, unless the session expires."
+  },
+  {
+    "rule_id": 128,
+    "rule_type": "SHOULD",
+    "func": "close_sse_stream",
+    "condition": "has_occurred(send_json_rpc_response)",
+    "category": "message_specific",
+    "cleaned_text": "After the JSON-RPC response has been sent, the server SHOULD close the SSE stream."
+  },
+  {
+    "rule_id": 129,
+    "rule_type": "MAY",
+    "func": "disconnection",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Disconnection MAY occur at any time (e.g., due to network conditions)."
+  },
+  {
+    "rule_id": 130,
+    "rule_type": "SHOULD_NOT",
+    "func": "interpret_disconnection",
+    "condition": "state == client_request_cancelled",
+    "category": "message_specific",
+    "cleaned_text": "Disconnection SHOULD NOT be interpreted as the client cancelling its request."
+  },
+  {
+    "rule_id": 131,
+    "rule_type": "SHOULD",
+    "func": "send",
+    "condition": "has_occurred(CancelledNotification)",
+    "category": "message_specific",
+    "cleaned_text": "To cancel, the client SHOULD explicitly send an MCP CancelledNotification."
+  },
+  {
+    "rule_id": 132,
+    "rule_type": "MAY",
+    "func": "make_stream_resumable",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "To avoid message loss due to disconnection, the server MAY make the stream resumable."
+  },
+  {
+    "rule_id": 133,
+    "rule_type": "MAY",
+    "func": "issue_HTTP_GET",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "The client MAY issue an HTTP GET to the MCP endpoint."
+  },
+  {
+    "rule_id": 134,
+    "rule_type": "MUST",
+    "func": "include_header",
+    "condition": "arg.header == 'Accept' && arg.content_type == 'text/event-stream'",
+    "category": "message_specific",
+    "cleaned_text": "The client MUST include an Accept header, listing text/event-stream as a supported content type."
+  },
+  {
+    "rule_id": 135,
+    "rule_type": "MUST",
+    "func": "return_response",
+    "condition": "arg.Content_Type == 'text/event-stream' || state == 'HTTP 405 Method Not Allowed'",
+    "category": "message_specific",
+    "cleaned_text": "The server MUST either return Content-Type: text/event-stream in response to this HTTP GET, or else return HTTP 405 Method Not Allowed."
+  },
+  {
+    "rule_id": 136,
+    "rule_type": "MAY",
+    "func": "send",
+    "condition": "true",
+    "category": "message_specific",
+    "cleaned_text": "The server MAY send JSON-RPC requests and notifications on the stream."
+  },
+  {
+    "rule_id": 137,
+    "rule_type": "SHOULD",
+    "func": "send_message",
+    "condition": "!(has_occurred(json_rpc_request))",
+    "category": "message_specific",
+    "cleaned_text": "These messages SHOULD be unrelated to any concurrently-running JSON-RPC request from the client."
+  },
+  {
+    "rule_id": 138,
+    "rule_type": "MUST_NOT",
+    "func": "send",
+    "condition": "!has_occurred(resuming)",
+    "category": "message_specific",
+    "cleaned_text": "The server MUST NOT send a JSON-RPC response on the stream unless resuming a stream associated with a previous client request."
+  },
+  {
+    "rule_id": 139,
+    "rule_type": "MAY",
+    "func": "close_sse_stream",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "The server MAY close the SSE stream at any time."
+  },
+  {
+    "rule_id": 140,
+    "rule_type": "MAY",
+    "func": "close_stream",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "The client MAY close the SSE stream at any time."
+  },
+  {
+    "rule_id": 141,
+    "rule_type": "MAY",
+    "func": "remain_connected",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "The client MAY remain connected to multiple SSE streams simultaneously."
+  },
+  {
+    "rule_id": 142,
+    "rule_type": "MUST",
+    "func": "send",
+    "condition": "arg.message == JSON_RPC && arg.connected == true",
+    "category": "message_specific",
+    "cleaned_text": "The server MUST send each of its JSON-RPC messages on only one of the connected"
+  },
+  {
+    "rule_id": 143,
+    "rule_type": "MUST_NOT",
+    "func": "broadcast",
+    "condition": "arg.message == same_message_across_multiple_streams",
+    "category": "message_specific",
+    "cleaned_text": "It MUST NOT broadcast the same message across multiple streams."
+  },
+  {
+    "rule_id": 144,
+    "rule_type": "MAY",
+    "func": "make_stream_resumable",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "The risk of message loss MAY be mitigated by making the stream resumable."
+  },
+  {
+    "rule_id": 145,
+    "rule_type": "MAY",
+    "func": "attach_id",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Servers MAY attach an `id` field to their SSE events, as described in the SSE standard."
+  },
+  {
+    "rule_id": 146,
+    "rule_type": "MUST",
+    "func": "check_unique_id",
+    "condition": "arg.id == unique",
+    "category": "architectural",
+    "cleaned_text": "If present, the ID MUST be globally unique across all streams within that session—or all streams with that specific client, if session management is not in use."
+  },
+  {
+    "rule_id": 147,
+    "rule_type": "SHOULD",
+    "func": "issue_HTTP_GET",
+    "condition": "has_occurred(broken_connection) && arg.Last_Event_ID != null",
+    "category": "message_specific",
+    "cleaned_text": "If the client wishes to resume after a broken connection, it SHOULD issue an HTTP GET to the MCP endpoint, and include the Last-Event-ID header to indicate the last event ID it received."
+  },
+  {
+    "rule_id": 148,
+    "rule_type": "MAY",
+    "func": "resume_stream",
+    "condition": "has_occurred(disconnect) && arg.last_event_id != null",
+    "category": "message_specific",
+    "cleaned_text": "The server MAY use this header to replay messages that would have been sent after the last event ID on the stream that was disconnected and to resume the stream from that point."
+  },
+  {
+    "rule_id": 149,
+    "rule_type": "MUST_NOT",
+    "func": "replay",
+    "condition": "arg.stream != delivered_stream",
+    "category": "message_specific",
+    "cleaned_text": "The server MUST NOT replay messages that would have been delivered on a different stream."
+  },
+  {
+    "rule_id": 150,
+    "rule_type": "MAY",
+    "func": "assign_session_id",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "A server using the Streamable HTTP transport MAY assign a session ID at initialization time, by including it in an Mcp-Session-Id header on the HTTP response containing the InitializeResult."
+  },
+  {
+    "rule_id": 151,
+    "rule_type": "SHOULD",
+    "func": "ensure_global_uniqueness",
+    "condition": "arg.session_id == globally_unique && arg.session_id == cryptographically_secure",
+    "category": "architectural",
+    "cleaned_text": "The session ID SHOULD be globally unique and cryptographically secure."
+  },
+  {
+    "rule_id": 152,
+    "rule_type": "MUST",
+    "func": "validate_session_id",
+    "condition": "arg.session_id >= 0x21 && arg.session_id <= 0x7E",
+    "category": "message_specific",
+    "cleaned_text": "The session ID MUST only contain visible ASCII characters (ranging from 0x21 to 0x7E)."
+  },
+  {
+    "rule_id": 153,
+    "rule_type": "MUST",
+    "func": "include_in_header",
+    "condition": "has_occurred(Streamable_HTTP_transport) && arg.header == Mcp-Session-Id",
+    "category": "message_specific",
+    "cleaned_text": "the Streamable HTTP transport MUST include it in the Mcp-Session-Id header on all of their subsequent HTTP requests."
+  },
+  {
+    "rule_id": 154,
+    "rule_type": "SHOULD",
+    "func": "respond",
+    "condition": "arg.Mcp-Session-Id == null",
+    "category": "message_specific",
+    "cleaned_text": "Servers SHOULD respond to requests without an Mcp-Session-Id header (other than initialization) with HTTP 400 Bad Request."
+  },
+  {
+    "rule_id": 155,
+    "rule_type": "MUST",
+    "func": "respond",
+    "condition": "has_occurred(terminate_session) && arg.session_id == session_id",
+    "category": "message_specific",
+    "cleaned_text": "The server MUST respond to requests containing that session ID with HTTP 404 Not Found after terminating the session."
+  },
+  {
+    "rule_id": 156,
+    "rule_type": "MUST",
+    "func": "respond",
+    "condition": "has_occurred(terminate_session) && arg.session_id == session_id",
+    "category": "message_specific",
+    "cleaned_text": "The server MUST respond to requests containing that session ID with HTTP 404 Not Found after terminating the session."
+  },
+  {
+    "rule_id": 157,
+    "rule_type": "MUST",
+    "func": "send",
+    "condition": "state == no_session_id",
+    "category": "message_specific",
+    "cleaned_text": "`Mcp-Session-Id`, it MUST start a new session by sending a new `InitializeRequest` without a session ID attached."
+  },
+  {
+    "rule_id": 158,
+    "rule_type": "SHOULD",
+    "func": "send",
+    "condition": "arg.method == 'DELETE' && arg.headers['Mcp-Session-Id'] != null",
+    "category": "message_specific",
+    "cleaned_text": "The client application SHOULD send an HTTP DELETE to the MCP endpoint with the Mcp-Session-Id header, to explicitly terminate the session."
+  },
+  {
+    "rule_id": 159,
+    "rule_type": "MAY",
+    "func": "respond",
+    "condition": "arg.method == '405'",
+    "category": "unknown",
+    "cleaned_text": "The server MAY respond to this request with HTTP 405 Method Not Allowed, indicating that the server does not allow clients to terminate sessions."
+  },
+  {
+    "rule_id": 160,
+    "rule_type": "MUST",
+    "func": "send_request",
+    "condition": "arg.header['MCP-Protocol-Version'] != null",
+    "category": "message_specific",
+    "cleaned_text": "If using HTTP, the client MUST include the MCP-Protocol-Version: <protocol-version> HTTP header on all subsequent requests to the MCP server."
+  },
+  {
+    "rule_id": 161,
+    "rule_type": "SHOULD",
+    "func": "send_version",
+    "condition": "arg.version == negotiated_version",
+    "category": "message_specific",
+    "cleaned_text": "The protocol version sent by the client SHOULD be the one negotiated during initialization."
+  },
+  {
+    "rule_id": 162,
+    "rule_type": "SHOULD",
+    "func": "assume_protocol_version",
+    "condition": "state == initialized",
+    "category": "architectural",
+    "cleaned_text": "The server SHOULD assume protocol version 2025-06-18."
+  },
+  {
+    "rule_id": 163,
+    "rule_type": "MUST",
+    "func": "respond",
+    "condition": "arg.response_code == 400",
+    "category": "message_specific",
+    "cleaned_text": "`MCP-Protocol-Version`, it MUST respond with `400 Bad Request`."
+  },
+  {
+    "rule_id": 164,
+    "rule_type": "MAY",
+    "func": "implement_custom_transport_mechanisms",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Clients and servers MAY implement additional custom transport mechanisms to suit their specific needs."
+  },
+  {
+    "rule_id": 165,
+    "rule_type": "MUST",
+    "func": "preserve_json_rpc_format",
+    "condition": "state == custom_transports_supported",
+    "category": "architectural",
+    "cleaned_text": "Implementers who choose to support custom transports MUST ensure they preserve the JSON-RPC message format and lifecycle requirements defined by MCP."
+  },
+  {
+    "rule_id": 166,
+    "rule_type": "SHOULD",
+    "func": "document",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "SHOULD document their specific connection establishment and message exchange patterns to aid interoperability."
+  },
+  {
+    "rule_id": 167,
+    "rule_type": "MUST",
+    "func": "sendCancellationNotification",
+    "condition": "has_occurred(issueRequest) && state == in_progress",
+    "category": "message_specific",
+    "cleaned_text": "Cancellation notifications MUST only reference requests that were previously issued in the same direction and are believed to still be in-progress"
+  },
+  {
+    "rule_id": 168,
+    "rule_type": "MUST_NOT",
+    "func": "cancel",
+    "condition": "has_occurred(initialize)",
+    "category": "message_specific",
+    "cleaned_text": "The initialize request MUST NOT be cancelled by clients"
+  },
+  {
+    "rule_id": 169,
+    "rule_type": "SHOULD",
+    "func": "stop_processing",
+    "condition": "has_occurred(cancellation_notification)",
+    "category": "message_specific",
+    "cleaned_text": "Receivers of cancellation notifications SHOULD stop processing the cancelled request"
+  },
+  {
+    "rule_id": 170,
+    "rule_type": "MAY",
+    "func": "ignore_cancellation_notification",
+    "condition": "arg.request == unknown || state == processing_completed || arg.request == cannot_be_cancelled",
+    "category": "message_specific",
+    "cleaned_text": "Receivers MAY ignore cancellation notifications if the referenced request is unknown, processing has already completed, or the request cannot be cancelled."
+  },
+  {
+    "rule_id": 171,
+    "rule_type": "SHOULD",
+    "func": "ignore_response",
+    "condition": "has_occurred(cancellation_notification) && !has_occurred(response)",
+    "category": "message_specific",
+    "cleaned_text": "The sender of the cancellation notification SHOULD ignore any response to the request that arrives afterward"
+  },
+  {
+    "rule_id": 172,
+    "rule_type": "MUST",
+    "func": "handle_race_conditions",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Both parties MUST handle these race conditions gracefully"
+  },
+  {
+    "rule_id": 173,
+    "rule_type": "SHOULD",
+    "func": "log",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Both parties SHOULD log cancellation reasons for debugging"
+  },
+  {
+    "rule_id": 174,
+    "rule_type": "SHOULD",
+    "func": "indicate_cancellation",
+    "condition": "state == cancellation_requested",
+    "category": "message_specific",
+    "cleaned_text": "Application UIs SHOULD indicate when cancellation is requested"
+  },
+  {
+    "rule_id": 175,
+    "rule_type": "SHOULD",
+    "func": "ignore",
+    "condition": "has_occurred(cancellation_notification)",
+    "category": "message_specific",
+    "cleaned_text": "Invalid cancellation notifications SHOULD be ignored"
+  },
+  {
+    "rule_id": 176,
+    "rule_type": "MUST",
+    "func": "respond",
+    "condition": "true",
+    "category": "message_specific",
+    "cleaned_text": "The receiver MUST respond promptly with an empty response"
+  },
+  {
+    "rule_id": 177,
+    "rule_type": "MAY",
+    "func": "terminate_connection",
+    "condition": "state == no_response_received",
+    "category": "unknown",
+    "cleaned_text": "If no response is received within a reasonable timeout period, the sender MAY consider the connection stale, terminate the connection, or attempt reconnection procedures."
+  },
+  {
+    "rule_id": 178,
+    "rule_type": "SHOULD",
+    "func": "issue_ping",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Implementations SHOULD periodically issue pings to detect connection health"
+  },
+  {
+    "rule_id": 179,
+    "rule_type": "SHOULD",
+    "func": "configure_ping_frequency",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "The frequency of pings SHOULD be configurable"
+  },
+  {
+    "rule_id": 180,
+    "rule_type": "SHOULD",
+    "func": "set_timeouts",
+    "condition": "state == appropriate_network_environment",
+    "category": "architectural",
+    "cleaned_text": "Timeouts SHOULD be appropriate for the network environment"
+  },
+  {
+    "rule_id": 181,
+    "rule_type": "SHOULD",
+    "func": "avoid_excessive_pinging",
+    "condition": "state == excessive_pinging",
+    "category": "unknown",
+    "cleaned_text": "Excessive pinging SHOULD be avoided to reduce network overhead"
+  },
+  {
+    "rule_id": 182,
+    "rule_type": "SHOULD",
+    "func": "treat_timeout_as_failure",
+    "condition": "state == timeout",
+    "category": "unknown",
+    "cleaned_text": "Timeouts SHOULD be treated as connection failures"
+  },
+  {
+    "rule_id": 183,
+    "rule_type": "MAY",
+    "func": "reset_connection",
+    "condition": "has_occurred(failed_ping) && arg.failed_ping_count > threshold",
+    "category": "unknown",
+    "cleaned_text": "Multiple failed pings MAY trigger connection reset"
+  },
+  {
+    "rule_id": 184,
+    "rule_type": "SHOULD",
+    "func": "log",
+    "condition": "has_occurred(ping_failure)",
+    "category": "unknown",
+    "cleaned_text": "Implementations SHOULD log ping failures for diagnostics"
+  },
+  {
+    "rule_id": 185,
+    "rule_type": "MUST",
+    "func": "progress_tokens",
+    "condition": "arg.progress_tokens is string || arg.progress_tokens is integer",
+    "category": "unknown",
+    "cleaned_text": "Progress tokens MUST be a string or integer value"
+  },
+  {
+    "rule_id": 186,
+    "rule_type": "MUST",
+    "func": "choose_progress_token",
+    "condition": "arg.token_unique == true",
+    "category": "message_specific",
+    "cleaned_text": "Progress tokens can be chosen by the sender using any means, but MUST be unique across all active requests."
+  },
+  {
+    "rule_id": 187,
+    "rule_type": "MAY",
+    "func": "send_progress_notifications",
+    "condition": "true",
+    "category": "message_specific",
+    "cleaned_text": "The receiver MAY then send progress notifications containing:"
+  },
+  {
+    "rule_id": 188,
+    "rule_type": "MUST",
+    "func": "notify",
+    "condition": "arg.progress > previous_progress",
+    "category": "message_specific",
+    "cleaned_text": "The `progress` value MUST increase with each notification, even if the total is unknown."
+  },
+  {
+    "rule_id": 189,
+    "rule_type": "MAY",
+    "func": "use_floating_point",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "The progress and the total values MAY be floating point."
+  },
+  {
+    "rule_id": 190,
+    "rule_type": "SHOULD",
+    "func": "provide_progress_information",
+    "condition": "arg.message == relevant_human_readable",
+    "category": "message_specific",
+    "cleaned_text": "The message field SHOULD provide relevant human readable progress information."
+  },
+  {
+    "rule_id": 191,
+    "rule_type": "MUST",
+    "func": "reference_tokens",
+    "condition": "arg.token != null",
+    "category": "message_specific",
+    "cleaned_text": "Progress notifications MUST only reference tokens that are valid"
+  },
+  {
+    "rule_id": 192,
+    "rule_type": "MAY",
+    "func": "send_notification",
+    "condition": "true",
+    "category": "message_specific",
+    "cleaned_text": "Receivers of progress requests MAY choose not to send any progress notifications, send notifications at whatever frequency they deem appropriate, or omit the total value if unknown."
+  },
+  {
+    "rule_id": 193,
+    "rule_type": "SHOULD",
+    "func": "track_progress_tokens",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Senders and receivers SHOULD track active progress tokens"
+  },
+  {
+    "rule_id": 194,
+    "rule_type": "SHOULD",
+    "func": "implement_rate_limiting",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "Both parties SHOULD implement rate limiting to prevent flooding"
+  },
+  {
+    "rule_id": 195,
+    "rule_type": "MUST_NOT",
+    "func": "send_progress_notification",
+    "condition": "state == completion",
+    "category": "message_specific",
+    "cleaned_text": "Progress notifications MUST stop after completion"
+  },
+  {
+    "rule_id": 196,
+    "rule_type": "MUST",
+    "func": "lifecycle_operation",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Change SHOULD to MUST in [Lifecycle Operation](/specification/2025-06-18/basic/lifecycle#operation)"
+  },
+  {
+    "rule_id": 197,
+    "rule_type": "MUST",
+    "func": "lifecycle_operation",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Change SHOULD to MUST in [Lifecycle Operation](/specification/2025-06-18/basic/lifecycle#operation)"
+  },
+  {
+    "rule_id": 198,
+    "rule_type": "MUST_NOT",
+    "func": "request_sensitive_information",
+    "condition": "has_occurred(elicitation)",
+    "category": "architectural",
+    "cleaned_text": "Servers MUST NOT use elicitation to request sensitive information."
+  },
+  {
+    "rule_id": 199,
+    "rule_type": "SHOULD",
+    "func": "send_notification",
+    "condition": "state == applications_should",
+    "category": "unknown",
+    "cleaned_text": "Applications SHOULD:"
+  },
+  {
+    "rule_id": 200,
+    "rule_type": "MUST",
+    "func": "declare",
+    "condition": "has_occurred(initialize)",
+    "category": "architectural",
+    "cleaned_text": "Clients MUST declare the elicitation capability during initialization"
+  },
+  {
+    "rule_id": 201,
+    "rule_type": "MUST_NOT",
+    "func": "request_sensitive_information",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Servers MUST NOT request sensitive information through elicitation"
+  },
+  {
+    "rule_id": 202,
+    "rule_type": "SHOULD",
+    "func": "implement_user_approval_controls",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Clients SHOULD implement user approval controls"
+  },
+  {
+    "rule_id": 203,
+    "rule_type": "SHOULD",
+    "func": "validate",
+    "condition": "arg.content == schema",
+    "category": "message_specific",
+    "cleaned_text": "Both parties SHOULD validate elicitation content against the provided schema"
+  },
+  {
+    "rule_id": 204,
+    "rule_type": "SHOULD",
+    "func": "provide_clear_indication",
+    "condition": "true",
+    "category": "message_specific",
+    "cleaned_text": "Clients SHOULD provide clear indication of which server is requesting information"
+  },
+  {
+    "rule_id": 205,
+    "rule_type": "SHOULD",
+    "func": "reject_elicitation_request",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Clients SHOULD allow users to reject elicitation requests at any time"
+  },
+  {
+    "rule_id": 206,
+    "rule_type": "SHOULD",
+    "func": "implement_rate_limiting",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Clients SHOULD implement rate limiting"
+  },
+  {
+    "rule_id": 207,
+    "rule_type": "SHOULD",
+    "func": "present_elicitation_request",
+    "condition": "arg.request_info != null && arg.request_reason != null",
+    "category": "message_specific",
+    "cleaned_text": "Clients SHOULD present elicitation requests in a way that makes it clear what information is being requested and why"
+  },
+  {
+    "rule_id": 208,
+    "rule_type": "MUST",
+    "func": "declare_roots_capability",
+    "condition": "has_occurred(initialize)",
+    "category": "architectural",
+    "cleaned_text": "Clients MUST declare the roots capability during initialization"
+  },
+  {
+    "rule_id": 209,
+    "rule_type": "MUST",
+    "func": "send_notification",
+    "condition": "has_occurred(roots_change)",
+    "category": "message_specific",
+    "cleaned_text": "When roots change, clients that support `listChanged` MUST send a notification"
+  },
+  {
+    "rule_id": 210,
+    "rule_type": "MUST",
+    "func": "validate",
+    "condition": "arg.uri.startsWith('file://')",
+    "category": "architectural",
+    "cleaned_text": "This MUST be a `file://` URI in the current specification."
+  },
+  {
+    "rule_id": 211,
+    "rule_type": "SHOULD",
+    "func": "return_standard_json_rpc_errors",
+    "condition": "true",
+    "category": "message_specific",
+    "cleaned_text": "Clients SHOULD return standard JSON-RPC errors for common failure cases"
+  },
+  {
+    "rule_id": 212,
+    "rule_type": "MUST",
+    "func": "unknown",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Clients MUST:"
+  },
+  {
+    "rule_id": 213,
+    "rule_type": "SHOULD",
+    "func": "handle_unavailable_roots",
+    "condition": "state == roots_unavailable || state == root_boundaries_respected || has_occurred(validate_paths)",
+    "category": "architectural",
+    "cleaned_text": "Servers SHOULD handle cases where roots become unavailable, respect root boundaries during operations, and validate all paths against provided roots"
+  },
+  {
+    "rule_id": 214,
+    "rule_type": "SHOULD",
+    "func": "notify",
+    "condition": "state == clients_should",
+    "category": "unknown",
+    "cleaned_text": "Clients SHOULD:"
+  },
+  {
+    "rule_id": 215,
+    "rule_type": "SHOULD",
+    "func": "check_roots_capability",
+    "condition": "has_occurred(check_roots_capability) && has_occurred(handle_root_list_changes) && has_occurred(respect_root_boundaries) && has_occurred(cache_root_information)",
+    "category": "architectural",
+    "cleaned_text": "Servers SHOULD check for roots capability before usage, handle root list changes gracefully, respect root boundaries in operations, and cache root information appropriately."
+  },
+  {
+    "rule_id": 216,
+    "rule_type": "SHOULD",
+    "func": "deny_sampling_request",
+    "condition": "has_occurred(human_in_loop)",
+    "category": "unknown",
+    "cleaned_text": "For trust & safety and security, there SHOULD always be a human in the loop with the ability to deny sampling requests."
+  },
+  {
+    "rule_id": 217,
+    "rule_type": "SHOULD",
+    "func": "notify",
+    "condition": "state == applications_should",
+    "category": "unknown",
+    "cleaned_text": "Applications SHOULD:"
+  },
+  {
+    "rule_id": 218,
+    "rule_type": "MUST",
+    "func": "declare_sampling",
+    "condition": "has_occurred(initialize)",
+    "category": "architectural",
+    "cleaned_text": "Clients that support sampling MUST declare the sampling capability during initialization"
+  },
+  {
+    "rule_id": 219,
+    "rule_type": "MAY",
+    "func": "map_hints",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Clients MAY map hints to equivalent models from different providers"
+  },
+  {
+    "rule_id": 220,
+    "rule_type": "SHOULD",
+    "func": "return_error",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Clients SHOULD return errors for common failure cases"
+  },
+  {
+    "rule_id": 221,
+    "rule_type": "SHOULD",
+    "func": "implement_user_approval_controls",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Clients SHOULD implement user approval controls"
+  },
+  {
+    "rule_id": 222,
+    "rule_type": "SHOULD",
+    "func": "validate",
+    "condition": "true",
+    "category": "message_specific",
+    "cleaned_text": "Both parties SHOULD validate message content"
+  },
+  {
+    "rule_id": 223,
+    "rule_type": "SHOULD",
+    "func": "respect_model_preference_hints",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Clients SHOULD respect model preference hints"
+  },
+  {
+    "rule_id": 224,
+    "rule_type": "SHOULD",
+    "func": "implement_rate_limiting",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Clients SHOULD implement rate limiting"
+  },
+  {
+    "rule_id": 225,
+    "rule_type": "MUST",
+    "func": "handle_sensitive_data",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Both parties MUST handle sensitive data appropriately"
+  },
+  {
+    "rule_id": 226,
+    "rule_type": "SHOULD",
+    "func": "implement",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "implementors SHOULD:"
+  },
+  {
+    "rule_id": 227,
+    "rule_type": "MUST",
+    "func": "declare_prompts_capability",
+    "condition": "has_occurred(initialize)",
+    "category": "architectural",
+    "cleaned_text": "Servers that support prompts MUST declare the prompts capability during initialization"
+  },
+  {
+    "rule_id": 228,
+    "rule_type": "SHOULD",
+    "func": "send_notification",
+    "condition": "true",
+    "category": "message_specific",
+    "cleaned_text": "capability SHOULD send a notification"
+  },
+  {
+    "rule_id": 229,
+    "rule_type": "MUST",
+    "func": "base64_encode",
+    "condition": "arg.image_data == base64_encoded && arg.mime_type == valid",
+    "category": "message_specific",
+    "cleaned_text": "The image data MUST be base64-encoded and include a valid MIME type."
+  },
+  {
+    "rule_id": 230,
+    "rule_type": "MUST",
+    "func": "include",
+    "condition": "arg.data_type == text || arg.data_type == blob",
+    "category": "unknown",
+    "cleaned_text": "Resources can contain either text or binary (blob) data and MUST include:"
+  },
+  {
+    "rule_id": 231,
+    "rule_type": "SHOULD",
+    "func": "return_standard_json_rpc_errors",
+    "condition": "true",
+    "category": "message_specific",
+    "cleaned_text": "Servers SHOULD return standard JSON-RPC errors for common failure cases"
+  },
+  {
+    "rule_id": 232,
+    "rule_type": "SHOULD",
+    "func": "validate",
+    "condition": "has_occurred(prompt_arguments)",
+    "category": "message_specific",
+    "cleaned_text": "Servers SHOULD validate prompt arguments before processing"
+  },
+  {
+    "rule_id": 233,
+    "rule_type": "SHOULD",
+    "func": "handle_pagination",
+    "condition": "state == large_prompt_list",
+    "category": "message_specific",
+    "cleaned_text": "Clients SHOULD handle pagination for large prompt lists"
+  },
+  {
+    "rule_id": 234,
+    "rule_type": "SHOULD",
+    "func": "respect_capability_negotiation",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Both parties SHOULD respect capability negotiation"
+  },
+  {
+    "rule_id": 235,
+    "rule_type": "MUST",
+    "func": "validate",
+    "condition": "arg.prompt_inputs != null && arg.prompt_outputs != null",
+    "category": "architectural",
+    "cleaned_text": "Implementations MUST carefully validate all prompt inputs and outputs to prevent injection attacks or unauthorized access to resources."
+  },
+  {
+    "rule_id": 236,
+    "rule_type": "MUST",
+    "func": "declare_resources_capability",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "Servers that support resources MUST declare the resources capability"
+  },
+  {
+    "rule_id": 237,
+    "rule_type": "SHOULD",
+    "func": "send_notification",
+    "condition": "true",
+    "category": "message_specific",
+    "cleaned_text": "capability SHOULD send a notification"
+  },
+  {
+    "rule_id": 238,
+    "rule_type": "SHOULD",
+    "func": "use_scheme",
+    "condition": "state == client_can_fetch_resource",
+    "category": "architectural",
+    "cleaned_text": "Servers SHOULD use this scheme only when the client is able to fetch and load the resource directly from the web on its own."
+  },
+  {
+    "rule_id": 239,
+    "rule_type": "SHOULD",
+    "func": "use_uri_scheme",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "For other use cases, servers SHOULD prefer to use another URI scheme, or define a custom one."
+  },
+  {
+    "rule_id": 240,
+    "rule_type": "MAY",
+    "func": "identify",
+    "condition": "arg.resource_type == 'file' && arg.mime_type == 'XDG'",
+    "category": "unknown",
+    "cleaned_text": "MCP servers MAY identify file:// resources with an XDG MIME type to represent non-regular files that don’t otherwise have a standard MIME type."
+  },
+  {
+    "rule_id": 241,
+    "rule_type": "MUST",
+    "func": "validate_uri_scheme",
+    "condition": "arg.uri_scheme == compliant_with(RFC3986)",
+    "category": "architectural",
+    "cleaned_text": "Custom URI schemes MUST be in accordance with RFC3986"
+  },
+  {
+    "rule_id": 242,
+    "rule_type": "SHOULD",
+    "func": "return_standard_errors",
+    "condition": "true",
+    "category": "message_specific",
+    "cleaned_text": "Servers SHOULD return standard JSON-RPC errors for common failure cases"
+  },
+  {
+    "rule_id": 243,
+    "rule_type": "MUST",
+    "func": "validate",
+    "condition": "arg.resource_uri != null",
+    "category": "architectural",
+    "cleaned_text": "Servers MUST validate all resource URIs"
+  },
+  {
+    "rule_id": 244,
+    "rule_type": "SHOULD",
+    "func": "implement_access_controls",
+    "condition": "state == sensitive_resources",
+    "category": "architectural",
+    "cleaned_text": "Access controls SHOULD be implemented for sensitive resources"
+  },
+  {
+    "rule_id": 245,
+    "rule_type": "MUST",
+    "func": "encode",
+    "condition": "arg.data == properly_encoded",
+    "category": "unknown",
+    "cleaned_text": "Binary data MUST be properly encoded"
+  },
+  {
+    "rule_id": 246,
+    "rule_type": "SHOULD",
+    "func": "check_permissions",
+    "condition": "has_occurred(check_permissions)",
+    "category": "architectural",
+    "cleaned_text": "Resource permissions SHOULD be checked before operations"
+  },
+  {
+    "rule_id": 247,
+    "rule_type": "SHOULD",
+    "func": "deny_tool_invocation",
+    "condition": "has_occurred(human_in_loop)",
+    "category": "unknown",
+    "cleaned_text": "For trust & safety and security, there SHOULD always be a human in the loop with the ability to deny tool invocations."
+  },
+  {
+    "rule_id": 248,
+    "rule_type": "SHOULD",
+    "func": "send_notification",
+    "condition": "state == applications_should",
+    "category": "unknown",
+    "cleaned_text": "Applications SHOULD:"
+  },
+  {
+    "rule_id": 249,
+    "rule_type": "MUST",
+    "func": "declare_tools_capability",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "Servers MUST declare the tools capability"
+  },
+  {
+    "rule_id": 250,
+    "rule_type": "SHOULD",
+    "func": "send_notification",
+    "condition": "state == tools_changed",
+    "category": "message_specific",
+    "cleaned_text": "When tools change, send notification"
+  },
+  {
+    "rule_id": 251,
+    "rule_type": "MUST",
+    "func": "consider_tool_annotations",
+    "condition": "arg.source == untrusted && !has_occurred(trusted_server)",
+    "category": "architectural",
+    "cleaned_text": "Clients MUST consider tool annotations to be untrusted unless they come from trusted servers."
+  },
+  {
+    "rule_id": 252,
+    "rule_type": "MAY",
+    "func": "return_links",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "A tool MAY return links to Resources to provide additional context or data."
+  },
+  {
+    "rule_id": 253,
+    "rule_type": "MAY",
+    "func": "embed",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "[Resources](/specification/2025-06-18/server/resources) MAY be embedded to provide additional context"
+  },
+  {
+    "rule_id": 254,
+    "rule_type": "SHOULD",
+    "func": "implement_resources",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "Servers SHOULD implement the resources capability"
+  },
+  {
+    "rule_id": 255,
+    "rule_type": "MUST",
+    "func": "provide_structured_results",
+    "condition": "arg.results_schema == valid_schema",
+    "category": "architectural",
+    "cleaned_text": "Servers MUST provide structured results that conform to this schema."
+  },
+  {
+    "rule_id": 256,
+    "rule_type": "SHOULD",
+    "func": "validate",
+    "condition": "state == structured_results_schema",
+    "category": "message_specific",
+    "cleaned_text": "Clients SHOULD validate structured results against this schema."
+  },
+  {
+    "rule_id": 257,
+    "rule_type": "MUST",
+    "func": "unknown",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Servers MUST:"
+  },
+  {
+    "rule_id": 258,
+    "rule_type": "SHOULD",
+    "func": null,
+    "condition": null,
+    "category": "unknown",
+    "cleaned_text": "Clients **SHOULD**: - Prompt for user confirmation on sensitive operations - Show tool inputs to the user before calling the server, to avoid malicious or accidental data exfiltration - Validate tool results before passing to LLM - Implement timeouts for tool calls - Log tool usage for audit purposes",
+    "original_text": "Clients **SHOULD**: - Prompt for user confirmation on sensitive operations - Show tool inputs to the user before calling the server, to avoid malicious or accidental data exfiltration - Validate tool results before passing to LLM - Implement timeouts for tool calls - Log tool usage for audit purposes"
+  },
+  {
+    "rule_id": 259,
+    "rule_type": "MUST",
+    "func": "declare",
+    "condition": "arg.capability == completions",
+    "category": "architectural",
+    "cleaned_text": "Servers that support completions MUST declare the completions capability"
+  },
+  {
+    "rule_id": 260,
+    "rule_type": "SHOULD",
+    "func": "return_standard_errors",
+    "condition": "true",
+    "category": "message_specific",
+    "cleaned_text": "Servers SHOULD return standard JSON-RPC errors for common failure cases"
+  },
+  {
+    "rule_id": 261,
+    "rule_type": "SHOULD",
+    "func": "unknown",
+    "condition": "unknown",
+    "category": "unknown",
+    "cleaned_text": "Servers SHOULD:"
+  },
+  {
+    "rule_id": 262,
+    "rule_type": "SHOULD",
+    "func": null,
+    "condition": null,
+    "category": "unknown",
+    "cleaned_text": "Clients **SHOULD**: - Debounce rapid completion requests - Cache completion results where appropriate - Handle missing or partial results gracefully",
+    "original_text": "Clients **SHOULD**: - Debounce rapid completion requests - Cache completion results where appropriate - Handle missing or partial results gracefully"
+  },
+  {
+    "rule_id": 263,
+    "rule_type": "MUST",
+    "func": "implement",
+    "condition": "true",
+    "category": "unknown",
+    "cleaned_text": "Implementations MUST:"
+  },
+  {
+    "rule_id": 264,
+    "rule_type": "MUST",
+    "func": "declare_logging_capability",
+    "condition": "true",
+    "category": "architectural",
+    "cleaned_text": "Servers that emit log message notifications MUST declare the logging capability"
+  },
+  {
+    "rule_id": 265,
+    "rule_type": "MAY",
+    "func": "send",
+    "condition": "has_occurred(logging/setLevel)",
+    "category": "message_specific",
+    "cleaned_text": "Clients MAY send a logging/setLevel request to configure the minimum log level"
+  },
+  {
+    "rule_id": 266,
+    "rule_type": "SHOULD",
+    "func": "return_standard_errors",
+    "condition": "true",
+    "category": "message_specific",
+    "cleaned_text": "Servers SHOULD return standard JSON-RPC errors for common failure cases"
+  },
+  {
+    "rule_id": 267,
+    "rule_type": "SHOULD",
+    "func": "unknown",
+    "condition": "unknown",
+    "category": "unknown",
+    "cleaned_text": "Servers SHOULD:"
+  },
+  {
+    "rule_id": 268,
+    "rule_type": "MAY",
+    "func": "present_log_messages",
+    "condition": "true",
+    "category": "message_specific",
+    "cleaned_text": "Clients MAY present log messages in the UI"
+  },
+  {
+    "rule_id": 269,
+    "rule_type": "MUST_NOT",
+    "func": "log",
+    "condition": "arg.message != null",
+    "category": "message_specific",
+    "cleaned_text": "Log messages MUST NOT contain:"
+  },
+  {
+    "rule_id": 270,
+    "rule_type": "SHOULD",
+    "func": null,
+    "condition": null,
+    "category": "unknown",
+    "cleaned_text": "Implementations **SHOULD**: - Rate limit messages - Validate all data fields - Control log access - Monitor for sensitive content",
+    "original_text": "Implementations **SHOULD**: - Rate limit messages - Validate all data fields - Control log access - Monitor for sensitive content"
+  },
+  {
+    "rule_id": 271,
+    "rule_type": "MUST_NOT",
+    "func": "assume_fixed_page_size",
+    "condition": "state == fixed_page_size_assumed",
+    "category": "architectural",
+    "cleaned_text": "Clients MUST NOT assume a fixed page size"
+  },
+  {
+    "rule_id": 272,
+    "rule_type": "SHOULD",
+    "func": "unknown",
+    "condition": "unknown",
+    "category": "unknown",
+    "cleaned_text": "Servers SHOULD:"
+  },
+  {
+    "rule_id": 273,
+    "rule_type": "SHOULD",
+    "func": "notify",
+    "condition": "state == clients_should",
+    "category": "unknown",
+    "cleaned_text": "Clients SHOULD notify"
+  },
+  {
+    "rule_id": 274,
+    "rule_type": "MUST",
+    "func": "treat_cursor",
+    "condition": "!(arg.cursor_format == assumed) && !(has_occurred(parse) || has_occurred(modify)) && !(has_occurred(persist))",
+    "category": "architectural",
+    "cleaned_text": "Clients MUST treat cursors as opaque tokens: Don't make assumptions about cursor format, Don't attempt to parse or modify cursors, Don't persist cursors across sessions"
+  },
+  {
+    "rule_id": 275,
+    "rule_type": "SHOULD",
+    "func": "result_error",
+    "condition": "arg.cursor == invalid",
+    "category": "message_specific",
+    "cleaned_text": "Invalid cursors SHOULD result in an error with code -32602 (Invalid params)."
+  }
+]

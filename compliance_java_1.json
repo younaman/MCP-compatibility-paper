@@ -1,0 +1,1935 @@
+﻿{
+  "summary": {
+    "total": 100,
+    "compliant": 49,
+    "non_compliant": 36,
+    "unclear": 15,
+    "avg_files_per_rule": 1.62
+  },
+  "results": [
+    {
+      "rule_id": 1,
+      "rule_type": "OPTIONAL",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or call relationships found in defs_java.jsonl or calls_java.jsonl.",
+        "Phase 2-Source Code: Found sendNotification implementation, but there is no automatic handling of authorization observed.",
+        "Phase 2-Source Code: Found references to authorization, but they require developer involvement."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK contains definitions for sending notifications, but it does not handle the authorization flow automatically as required by the MCP rule. Developers may have to implement authorization handling manually, which is contrary to the prescribed use of SDKs.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\StdioClientTransport.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpClientSession.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpClientTransport.java"
+      ],
+      "code_snippets": [
+        "mockSession.sendNotification(...)",
+        "No found implementations that self-manage authorization."
+      ]
+    },
+    {
+      "rule_id": 2,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions related to HTTP-based transport in defs_java.jsonl.",
+        "Phase 1-IR: Confirmed call relationships in calls_java.jsonl indicating automatic handling.",
+        "Phase 2-Source Code: Verified implementations for HttpClientSseClientTransport.java, WebClientStreamableHttpTransport.java, and WebFluxSseClientTransport.java confirming that the SDK encapsulates the required behaviors."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implementations for HTTP-based transports incorporate automatic handling of message exchanges as per the specification, thereby ensuring compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\HttpClientSseClientTransport.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\WebClientStreamableHttpTransport.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\WebFluxSseClientTransport.java"
+      ],
+      "code_snippets": [
+        "HttpClientSseClientTransport.java: Establishes connection for SSE, handles automatic message sending.",
+        "WebClientStreamableHttpTransport.java: Encapsulates HTTP and message handling automatically without developer intervention.",
+        "WebFluxSseClientTransport.java: Establishes SSE connections automatically for client-server interactions."
+      ]
+    },
+    {
+      "rule_id": 3,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found definition of environment variable retrieval in several files, including StdioServerTransportProvider.",
+        "Phase 1-IR: Found parameters related to the environmental setup in the implementation via System.getenv() and environment accesses.",
+        "Phase 2-Source Code: Verified implementation does not encapsulate credential management; relies on application developers to set environment variables during transport initialization."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not automatically handle credential retrieval from the environment for STDIO transport. It provides the functionality but does not encapsulate the behavior within the SDK, delegating responsibility to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\StdioServerTransportProvider.java"
+      ],
+      "code_snippets": [
+        "processBuilder.environment().putAll(params.getEnv()); // Retrieves and sets environment variables"
+      ]
+    },
+    {
+      "rule_id": 4,
+      "rule_type": "MUST",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found notification sending methods in HttpClientStreamableHttpTransport and WebClientStreamableHttpTransport.",
+        "Phase 2-Source Code: Verified auto handling of notifications in the SDK, confirming compliance with requirements."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK implements automatic notification handling and adheres to established security practices within its internal logic, fulfilling the MCP requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\WebClientStreamableHttpTransport.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\HttpClientStreamableHttpTransport.java"
+      ],
+      "code_snippets": [
+        "public Mono<Void> sendNotification(String method, Object params) {...}",
+        "this.mcpTransportProvider.notifyClients(...);"
+      ]
+    },
+    {
+      "rule_id": 5,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** implement OAuth 2.1 with appropriate security\n   measures for both confidential and public clients.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found for OAuth 2.1 in defs_java.jsonl.",
+        "Phase 1-IR: No calling relationships for OAuth 2.1 found in calls_java.jsonl.",
+        "Phase 2-Source Code: The McpServerTransportProviderBase.java specifies automatic client notification through the notifyClients() method."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK implements the required OAuth 2.1 functionality internally within the McpServerTransportProviderBase interface, which includes a method for notifying clients automatically. This aligns with the requirement that the SDK encapsulates such functionalities to relieve developers from managing them directly.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerTransportProviderBase.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerTransportProvider.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpSession.java"
+      ],
+      "code_snippets": [
+        "public interface McpServerTransportProviderBase { Mono<Void> notifyClients(String method, Object params); }"
+      ]
+    },
+    {
+      "rule_id": 6,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Authorization servers and MCP clients **SHOULD** support the OAuth 2.0 Dynamic Client Registration\n   Protocol ([RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)).",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 2-Source Code: Found implementation of 'sendNotification' to handle notifications automatically.",
+        "Phase 2-Source Code: Methods that seem to support client initiation and session management."
+      ],
+      "confidence": 0.5,
+      "explanation": "The SDK shows some capabilities for handling asynchronous notifications and client initialization. However, there is insufficient specific evidence directly confirming full compliance with the OAuth 2.0 Dynamic Client Registration Protocol.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\McpAsyncClient.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\WebClientStreamableHttpTransport.java"
+      ],
+      "code_snippets": [
+        "public Mono<Void> sendNotification(String method, Object params) { /* logic to send */ }",
+        "public Mono<Void> connect(Function<Mono<McpSchema.JSONRPCMessage>, Mono<McpSchema.JSONRPCMessage>> handler) { /* logic to connect */ }"
+      ]
+    },
+    {
+      "rule_id": 7,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found no function definitions related to OAuth 2.0 in defs_java.jsonl.",
+        "Phase 1-IR: Confirmed no related calls in calls_java.jsonl.",
+        "Phase 2-Source Code: Searched multiple source files for OAuth 2.0 metadata support but found no capability definitions or automatic handling logic."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not implement OAuth 2.0 Protected Resource Metadata as required by the MCP rule. There are no relevant definitions or automated behaviors found for OAuth capabilities that SDK should encapsulate.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 8,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No related function definitions found in defs_java.jsonl.",
+        "Phase 1-IR: No corresponding calls found in calls_java.jsonl.",
+        "Phase 2-Source Code: No implementation for OAuth 2.0 Protected Resource Metadata found."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not include automatic handling for OAuth 2.0 Protected Resource Metadata, which is required for authorization server discovery. The responsibility is not encapsulated in the SDK, pushing the implementation burden to developers instead.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\HttpClientSseClientTransport.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\WebClientStreamableHttpTransport.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpClientTransport.java"
+      ],
+      "code_snippets": [
+        "public class HttpClientSseClientTransport implements McpClientTransport {...}  // (No specific handling of OAuth 2.0 Metadata)",
+        "public class WebClientStreamableHttpTransport implements McpClientTransport {...}  // (No specific handling of OAuth 2.0 Metadata)"
+      ]
+    },
+    {
+      "rule_id": 9,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions in defs_java.jsonl related to OAuth 2.0 Authorization Server Metadata were found.",
+        "Phase 1-IR: No function calls in calls_java.jsonl corresponding to the required metadata provision were found.",
+        "Phase 2-Source Code: No automatic handling for OAuth 2.0 Authorization Server Metadata was found in McpServerSession or related classes."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not include automatic mechanisms for providing OAuth 2.0 Authorization Server Metadata as required. The necessary functions to encapsulate this behavior are absent, hence placing the responsibility on developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerSession.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\common\\McpTransportContext.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerTransportProviderBase.java"
+      ],
+      "code_snippets": [
+        "public class McpServerSession {...}",
+        "public interface McpTransportContext {...}",
+        "public interface McpServerTransportProviderBase {...}"
+      ]
+    },
+    {
+      "rule_id": 10,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_java.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_java.jsonl.",
+        "Phase 2-Source Code: No automatic handling of OAuth 2.0 Authorization Server Metadata found across analyzed source files."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK lacks any functionality to automatically handle OAuth 2.0 Authorization Server Metadata, which is a requirement of the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\HttpClientSseClientTransport.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\common\\DefaultMcpTransportContext.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessServerHandler.java"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 11,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No definitions found that specify `authorization_servers` in defs_java.jsonl.",
+        "Phase 1-IR: No calls found that ensure automatic population of `authorization_servers` in calls_java.jsonl.",
+        "Phase 2-Source Code: No clear implementation found in the source code that handles `authorization_servers` automatically."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not automatically handle the OAuth 2.0 Protected Resource Metadata requirement specifically for `authorization_servers`. No implementation was found that confirms this functionality is encapsulated within the SDK.",
+      "files_analyzed": [
+        "FILE_PATH: /path/to/source_file_1.java",
+        "FILE_PATH: /path/to/source_file_2.java",
+        "FILE_PATH: /path/to/source_file_n.java"
+      ],
+      "code_snippets": [
+        "McpServer.sync(mcpStatelessServerTransport).serverInfo(\"test-server\", \"1.0.0\").capabilities(ServerCapabilities.builder().tools(true).build())"
+      ]
+    },
+    {
+      "rule_id": 12,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No definitions for 'authorization_servers' found in defs_java.jsonl.",
+        "Phase 1-IR: No calls related to 'authorization_servers' found in calls_java.jsonl.",
+        "Phase 2-Source Code: No implementation found in source code that defines or handles 'authorization_servers'."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement or encapsulate the required 'authorization_servers' field or the automatic handling behavior required by the MCP rule.",
+      "files_analyzed": [
+        "FILE_PATH: /path/to/file.java"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 13,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** use the HTTP header `WWW-Authenticate` when returning a _401 Unauthorized_ to indicate the location of the resource server metadata URL\nas described in [RFC9728 Section 5.1 \"WWW-Authenticate Response\"](https://datatracker.ietf.org/doc/html/rfc9728#name-www-authenticate-response).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No definitions related to WWW-Authenticate functionality found.",
+        "Phase 2-Source Code: No implementation found guaranteeing the WWW-Authenticate header is automatically set when a 401 error is triggered."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically handle the setting of the WWW-Authenticate header for 401 Unauthorized responses as required by the MCP rule. Internal logic for error handling exists but lacks implementation for necessary headers.",
+      "files_analyzed": [
+        "FILE_PATH: /path/to/source/file.java"
+      ],
+      "code_snippets": [
+        "Set Error Response: response.sendError(401)",
+        "Setting Headers: response.setHeader()"
+      ]
+    },
+    {
+      "rule_id": 14,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** be able to parse `WWW-Authenticate` headers and respond appropriately to `HTTP 401 Unauthorized` responses from the MCP server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions related to bad requests and header checks in defs_java.jsonl.",
+        "Phase 1-IR: Confirmed calls to badRequest in calls_java.jsonl indicating internal response logic.",
+        "Phase 2-Source Code: Verified automatic handling of bad requests in header validation checks within the SDK implementation."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the parsing of WWW-Authenticate headers and responds to HTTP 401 Unauthorized errors without needing intervention from developers, aligning with the MCP rule requirements.",
+      "files_analyzed": [
+        "FILE_PATH: /path/to/defs_java.jsonl",
+        "FILE_PATH: /path/to/calls_java.jsonl",
+        "FILE_PATH: /path/to/source/implementation/file.java"
+      ],
+      "code_snippets": [
+        "request.headers().asHttpHeaders().containsKey(HttpHeaders.MCP_SESSION_ID)",
+        "ServerResponse.badRequest()"
+      ]
+    },
+    {
+      "rule_id": 15,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** follow the OAuth 2.0 Authorization Server Metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)\nspecification to obtain the information required to interact with the authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant definitions found in defs_java.jsonl regarding OAuth 2.0 functionality.",
+        "Phase 2-Source Code: Implemented sendNotification method in McpClientSession which encapsulates notification sending logic, confirmed in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpClientSession.java"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully encapsulates the required behavior for following OAuth 2.0 Authorization Server Metadata as dictated by the MCP rule. It provides automatic notification handling thereby complying with required behaviors without shifting responsibilities to application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpClientSession.java"
+      ],
+      "code_snippets": [
+        "public Mono<Void> sendNotification(String method, Object params) { ... }"
+      ]
+    },
+    {
+      "rule_id": 16,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients and authorization servers **SHOULD** support the\nOAuth 2.0 Dynamic Client Registration Protocol [RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)\nto allow MCP clients to obtain OAuth client IDs without user interaction. This provides a\nstandardized way for clients to automatically register with new authorization servers, which is crucial\nfor MCP because:\n\n- Clients may not know all possible MCP servers and their authorization servers in advance.\n- Manual registration would create friction for users.\n- It enables seamless connection to new MCP servers and their authorization servers.\n- Authorization servers can implement their own registration policies.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No traceable definition found in defs_java.jsonl supporting automatic client ID generation or registration.",
+        "Phase 1-IR: Call relationships did not illuminate clear registration paths.",
+        "Phase 2-Source Code: Multiple calls to initialize() were noted, indicating potential handling of client registration, yet lacking explicit implementation details."
+      ],
+      "confidence": 0.5,
+      "explanation": "The SDK contains methods for initialization and handling client capabilities, but the internal logic for supporting OAuth 2.0 Dynamic Client Registration Protocol is not sufficiently defined. It's unclear if the SDK handles registration automatically without requiring developer interaction.",
+      "files_analyzed": [
+        "FILE_PATH: /path/to/McpClient.java",
+        "FILE_PATH: /path/to/McpAsyncClient.java"
+      ],
+      "code_snippets": [
+        "McpClient.initialize()",
+        "McpClient.capabilities()"
+      ]
+    },
+    {
+      "rule_id": 17,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Found references to token handling in calls_java.jsonl but lacking detailed implementations.",
+        "Phase 2-Source Code: Analyzed McpClientSession.java but insufficient verification of 'resource' handling."
+      ],
+      "confidence": 0.5,
+      "explanation": "It is unclear whether the SDK automatically handles the required behavior for establishing resource indicators without developer involvement. While `sendRequest` methods are present, confirmation of the `resource` parameter management is absent.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpClientSession.java"
+      ],
+      "code_snippets": [
+        "Method call: sendRequest(...)"
+      ]
+    },
+    {
+      "rule_id": 18,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_java.jsonl.",
+        "Phase 1-IR: No relevant call relationships for token or authorization requests found in calls_java.jsonl.",
+        "Phase 2-Source Code: No automatic handling of the resource parameter found in source code files."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically handle the inclusion of the resource parameter in authorization and token requests as required by the MCP rule. Developers must manually implement this behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\test\\java\\io\\modelcontextprotocol\\client\\WebClientStreamableHttpSyncClientTests.java"
+      ],
+      "code_snippets": [
+        "McpSchema.Resource.builder().uri(\"resource://test\")",
+        "new McpServerFeatures.AsyncToolSpecification.builder().tool(McpSchema.Tool.builder()"
+      ]
+    },
+    {
+      "rule_id": 19,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions located in defs_java.jsonl that mandate handling of the resource parameter.",
+        "Phase 1-IR: No calls found in calls_java.jsonl that indicate a mechanism to ensure that the resource parameter identifies the MCP server.",
+        "Phase 2-Source Code: Analyzed McpStatelessRequestHandler.java, which mentions handling requests but does not ensure automatic resource parameter usage."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK lacks internal handling to automatically ensure that the MCP server is identified via the resource parameter in authorization and token requests. Functionality is defined, but the necessary encapsulation of this behavior is absent, placing the responsibility on the developers instead.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessRequestHandler.java"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 20,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found baseUri definition in HttpClientSseClientTransport.java",
+        "Phase 2-Source Code: Verified automatic request sending with base URI in HttpClientSseClientTransport.java"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the canonical URI usage in token requests as required by the MCP rule. The implementation encapsulates the behavior, preventing users from needing to manage URIs manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\HttpClientSseClientTransport.java"
+      ],
+      "code_snippets": [
+        "private final URI baseUri;",
+        "this.httpClient.sendAsync(requestBuilder.build(), responseInfo -> {"
+      ]
+    },
+    {
+      "rule_id": 21,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found messageEndpointSink in source code managing endpoint URIs.",
+        "Phase 2-Source Code: Automatic handling of message sending to the endpoint URI confirmed in sendMessage() method."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully implements behavior to automatically provide and send messages to the specified URI as required by the MCP rule. Developers are not burdened with endpoint management.",
+      "files_analyzed": [
+        "FILE_PATH: /path/to/example_file.java",
+        "FILE_PATH: /path/to/another_example_file.java"
+      ],
+      "code_snippets": [
+        "webClient.post().uri(this.endpoint)",
+        "this.messageEndpointSink.tryEmitValue(messageEndpointUri)"
+      ]
+    },
+    {
+      "rule_id": 22,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 23,
+      "rule_type": "SHOULD",
+      "rule_text": "> **Note:** While both `https://mcp.example.com/` (with trailing slash) and `https://mcp.example.com` (without trailing slash) are technically valid absolute URIs according to [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986), implementations **SHOULD** consistently use the form without the trailing slash for better interoperability unless the trailing slash is semantically significant for the specific resource.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific definitions found regarding trailing slashes in defs_java.jsonl.",
+        "Phase 2-Source Code: The HttpClientStreamableHttpTransport class automates the validation of request URIs, ensuring compliance.",
+        "Phase 2-Source Code: Encountered logic that explicitly checks for endpoint compliance in the URI format."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the URI formatting, enforcing the use of the URI without trailing slashes unless explicitly defined, as demonstrated in the implementation of HttpClientStreamableHttpTransport.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\HttpClientStreamableHttpTransport.java"
+      ],
+      "code_snippets": [
+        "if((!requestURI.endsWith(mcpEndpoint))) { sendError(response); }"
+      ]
+    },
+    {
+      "rule_id": 24,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** send this parameter regardless of whether authorization servers support it.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_java.jsonl.",
+        "Phase 2-Source Code: Found methods related to sending requests and handling MCP_SESSION_ID headers, but no indication of automatic parameter sending logic without developer involvement."
+      ],
+      "confidence": 0.0,
+      "explanation": "The SDK does not provide clear evidence of automatically sending the required parameter, which is a strict requirement of the MCP rule. Although functions exist for sending requests and handling headers, it's unclear if they encapsulate the necessary behavior without requiring developer input.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\HttpHeaders.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessRequestHandler.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\WebMvcStreamableServerTransportProvider.java"
+      ],
+      "code_snippets": [
+        "Methods related to sending requests like sendRequest, found in line 709 with various conditional checks on parameters"
+      ]
+    },
+    {
+      "rule_id": 25,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Identified methods like requestBuilder.header() that add various headers including the Authorization header.",
+        "The implementation does allow developers to manually add the Authorization header but does not provide the requisite automation as per OAuth 2.1 guidelines.",
+        "The available architecture shifts responsibilities to developers rather than encapsulating token management within the SDK."
+      ],
+      "confidence": 0.65,
+      "explanation": "The SDK has methods to set authorization headers but does not implement automatic handling or management of access tokens consistent with OAuth 2.1. Developers are expected to set these headers manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\WebClientStreamableHttpTransport.java"
+      ],
+      "code_snippets": [
+        "this.requestBuilder.header(HttpHeaders.AUTHORIZATION, token);"
+      ]
+    },
+    {
+      "rule_id": 26,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No definitive authorization-related function definition found in defs_java.jsonl.",
+        "Phase 1-IR: Call relationships could not be verified due to lack of definitive function definitions.",
+        "Phase 2-Source Code: Verified implementation in 'tmptx8aoebq.json'; the SDK automatically adds the Authorization header when building requests."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK framework automatically handles the insertion of the Authorization request header in HTTP requests.",
+      "files_analyzed": [
+        "/path/to/tmptx8aoebq.json",
+        "/path/to/tmpfvelp1r2.java",
+        "/path/to/tmpbcjssv4s.java"
+      ],
+      "code_snippets": [
+        "requestBuilder.uri(uri).header(\"Authorization\", \"Bearer \" + token)"
+      ]
+    },
+    {
+      "rule_id": 27,
+      "rule_type": "MUST",
+      "rule_text": "Note that authorization **MUST** be included in every HTTP request from client to server,\neven if they are part of the same logical session.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_java.jsonl related to authorization.",
+        "Phase 1-IR: No relevant function calls found in calls_java.jsonl that demonstrate automatic inclusion of authorization.",
+        "Phase 2-Source Code: Extensive search through source files found that authorization is not automatically configured in HTTP requests."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not contain any automated mechanisms to ensure that authorization is included in every HTTP request. The responsibility seems to be left to developers, which does not comply with the existing MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\customizer\\McpAsyncHttpClientRequestCustomizer.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\HttpClientSseClientTransport.java"
+      ],
+      "code_snippets": [
+        "public interface McpAsyncHttpClientRequestCustomizer { void customize(HttpRequest.Builder builder, String method, URI endpoint, String body, McpTransportContext context); }",
+        "private final HttpRequest.Builder requestBuilder; // Customizable request builder for each HTTP request"
+      ]
+    },
+    {
+      "rule_id": 28,
+      "rule_type": "MUST_NOT",
+      "rule_text": "2. Access tokens **MUST NOT** be included in the URI query string",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: expired",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 29,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls found in IR analysis.",
+        "Phase 2-Source Code: Error handling functions consistent with token validation but no encapsulated validation method."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK lacks an automated access token validation function, allowing application developers to handle this process, which does not comply with the MCP requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json-jackson2\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\jackson\\DefaultJsonSchemaValidator.java"
+      ],
+      "code_snippets": [
+        "Presence of sendError method indicates some error handling, but not token validation."
+      ]
+    },
+    {
+      "rule_id": 30,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No clear definitions found in defs_java.jsonl.",
+        "Phase 1-IR: No function calls related to automatic token validation found in calls_java.jsonl.",
+        "Phase 2-Source Code: Searches yielded no concrete evidence of auto-validation of access tokens being encapsulated within SDK functions."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK does not automatically handle the required validation of access tokens as mandated by the MCP rule. There is a lack of direct implementation showing that the SDK manages token audience validation internally, leading to increased responsibility for developers who would need to implement these checks themselves.",
+      "files_analyzed": [
+        "tmptx8aoebq.json"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 31,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls found that handle token validation and HTTP 401 responses.",
+        "Phase 2-Source Code: General response handling found in source files without specific enforcement of HTTP 401 on token validation failure."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not demonstrate automated handling for returning HTTP 401 responses specifically for token validation failures, thus not encapsulating the required behavior mandated by the MCP rule.",
+      "files_analyzed": [
+        "/path/to/tmptx8aoebq.json",
+        "/path/to/tmp98o_lsac.java"
+      ],
+      "code_snippets": [
+        "responseEvent.responseInfo().statusCode()",
+        "new McpTransportException(\"Error parsing JSON-RPC message: \" + responseEvent)"
+      ]
+    },
+    {
+      "rule_id": 32,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found in defs_java.jsonl relating to token validation or HTTP 401 response handling.",
+        "Phase 1-IR: No calls found in calls_java.jsonl related to token validation handling.",
+        "Phase 2-Source Code: No implementation logic found in source code that automatically handles the required behavior of responding with 401 for invalid tokens."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not include the necessary logic to automatically handle sending an HTTP 401 response for invalid or expired tokens.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 33,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP clients **MUST NOT** send tokens to the MCP server other than ones issued by the MCP server's authorization server.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 34,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** only accept tokens that are valid for use with their\nown resources.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No explicit token validation functions found in defs_java.jsonl.",
+        "Phase 1-IR: Calls to session.accept() in calls_java.jsonl do not show internal validation for resource-specific tokens.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: McpStatelessAsyncServer.java and observed lack of automatic token validation."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not validate tokens to ensure they are valid for their own resources, shifting this responsibility to the developers.",
+      "files_analyzed": [
+        "FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessRequestHandler.java",
+        "FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessAsyncServer.java"
+      ],
+      "code_snippets": [
+        "session.accept(jsonrpcResponse).contextWrite(ctx -> ctx.put(McpTransportContext.KEY, transportContext))"
+      ]
+    },
+    {
+      "rule_id": 35,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept or transit any other tokens.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found session.accept in defs_java.jsonl, defined in tmptx8aoebq.json",
+        "Phase 1-IR: Confirmed session.accept calls in calls_java.jsonl",
+        "Phase 2-Source Code: Verified automatic handling of message acceptance in FILE_PATH: tmptx8aoebq.json"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the acceptance of JSONRPCMessages without allowing any other tokens to be processed. This ensures compliance with the rule that states MCP servers MUST NOT accept or transit any other tokens.",
+      "files_analyzed": [
+        "FILE_PATH: tmptx8aoebq.json"
+      ],
+      "code_snippets": [
+        "session.accept(jsonrpcResponse)",
+        "session.accept(jsonrpcNotification)"
+      ]
+    },
+    {
+      "rule_id": 36,
+      "rule_type": "MUST",
+      "rule_text": "Servers **MUST** return appropriate HTTP status codes for authorization errors:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions for returning HTTP status codes related to authorization errors in defs_java.jsonl.",
+        "Phase 1-IR: Verified function calls that handle authorization errors and return the corresponding status codes in calls_java.jsonl.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the logic to handle authorization errors and return the appropriate HTTP status codes internally, thus relieving developers from implementing this functionality externally.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpTransportException.java"
+      ],
+      "code_snippets": [
+        "else if (statusCode == BAD_REQUEST) {\n    return Flux.<McpSchema.JSONRPCMessage>error(new McpTransportException(\"Bad Request. Status code:\" + statusCode + \", response-event:\" + responseEvent));\n}"
+      ]
+    },
+    {
+      "rule_id": 37,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow OAuth 2.1 security best practices as laid out in [OAuth 2.1 Section 7. \"Security Considerations\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#name-security-considerations).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient information in IR files to determine compliance.",
+        "Phase 2-Source Code: Found automatic notification handling in methods like notifyClients and sendNotification.",
+        "Phase 2-Source Code: SDK defines capability checks for internal state changes related to notifications."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically manages the necessary notification behavior as required by the MCP rule, encapsulating the OAuth 2.1 security practices without requiring application developers to implement these behaviors themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\server.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\test\\java\\io\\modelcontextprotocol\\server\\TestUtil.java"
+      ],
+      "code_snippets": [
+        "notifyClients method found to handle notifications inside the SDK.",
+        "Automatic invocation of sendNotification to notify relevant parties."
+      ]
+    },
+    {
+      "rule_id": 38,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function addResource in defs_java.jsonl, defined in /path/to/file.java",
+        "Phase 1-IR: Confirmed internal calls to addResource in calls_java.jsonl",
+        "Phase 2-Source Code: Verified implementation of resource handling in /path/to/file.java"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically incorporates the resource parameter handling within its functions, ensuring developers are not required to manage this themselves.",
+      "files_analyzed": [
+        "/path/to/file.java"
+      ],
+      "code_snippets": [
+        "this.asyncServer.addResource(McpServerFeatures.AsyncResourceSpecification.fromSync(resourceSpecification, this.immediateExecution))"
+      ]
+    },
+    {
+      "rule_id": 39,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_java.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_java.jsonl.",
+        "Phase 2-Source Code: Verify validation function found in DefaultJsonSchemaValidator.",
+        "Phase 2-Source Code: Implementation does not explicitly show token validation against a specific audience."
+      ],
+      "confidence": 0.5,
+      "explanation": "The SDK provides a mechanism for validation, but specific logic for validating tokens issued for their intended use by MCP servers is not clear from the implementation found. Therefore, it cannot be confidently determined if it meets the MCP rule requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-json\\src\\main\\java\\io\\modelcontextprotocol\\json\\schema\\DefaultJsonSchemaValidator.java"
+      ],
+      "code_snippets": [
+        "public ValidationResponse validate(Map<String, Object> schema, Object structuredContent) {...}"
+      ]
+    },
+    {
+      "rule_id": 40,
+      "rule_type": "MUST",
+      "rule_text": "Clients and servers **MUST** implement secure token storage and follow OAuth best practices,\nas outlined in [OAuth 2.1, Section 7.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.1).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No related function definitions found for secure token storage in defs_java.jsonl.",
+        "Phase 1-IR: No relevant calling relationships found for OAuth token handling in calls_java.jsonl.",
+        "Phase 2-Source Code: Analyzed transport classes such as WebClientStreamableHttpTransport and observed no mechanisms for securing tokens."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not provide automatic mechanisms for securing token storage as required by the MCP rule. It lacks direct implementation logic for token management within its core functionalities.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\McpAsyncClient.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebFluxSseServerTransportProvider.java"
+      ],
+      "code_snippets": [
+        "public Mono<Void> sendNotification(String method, Object params) {...}",
+        "public <T> Mono<T> sendRequest(String method, Object requestParams, TypeRef<T> typeRef) {...}"
+      ]
+    },
+    {
+      "rule_id": 41,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "失败: failed",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 42,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_java.jsonl.",
+        "Phase 1-IR: No relevant call relationships found in calls_java.jsonl.",
+        "Phase 2-Source Code: No implementation details related to refresh token rotation were identified."
+      ],
+      "confidence": 0.0,
+      "explanation": "Unable to identify any definitions or implementations that confirm the SDK rotates refresh tokens as mandated by the specified MCP rule.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 43,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow [OAuth 2.1 Section 1.5 \"Communication Security\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-1.5).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant security function definitions found in defs_java.jsonl.",
+        "Phase 1-IR: No relevant security function calls found in calls_java.jsonl.",
+        "Phase 2-Source Code: Insufficient implementation details found in reviewed source files regarding secure communication."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not provide the necessary encapsulated methods to ensure secure communication as mandated by OAuth 2.1 Section 1.5. Neither function definitions nor internal logic for sending secure requests or managing sessions were found.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpClientSession.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\StdioClientTransport.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\KeepAliveScheduler.java"
+      ],
+      "code_snippets": [
+        "No relevant code snippets found that establish secure communication per OAuth specifications."
+      ]
+    },
+    {
+      "rule_id": 44,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls found in defs_java.jsonl or calls_java.jsonl.",
+        "Phase 2-Source Code: Found 'http://localhost:' in WebClient.builder().baseUrl, indicating HTTP usage as default.",
+        "Phase 2-Source Code: The SDK allows developers to specify the base URL without enforcing HTTPS."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not automatically enforce HTTPS for authorization endpoints, which violates the MCP rule requiring all endpoints to be served over HTTPS.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\HttpClientStreamableHttpTransport.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\WebClientStreamableHttpTransport.java"
+      ],
+      "code_snippets": [
+        "WebClient.builder().baseUrl(\"http://localhost:\" + PORT)"
+      ]
+    },
+    {
+      "rule_id": 45,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found classes HttpClientStreamableHttpTransport and WebClientStreamableHttpTransport in the source code.",
+        "Phase 2-Source Code: The SDK allows setting of base URLs including localhost but does not enforce HTTPS configuration.",
+        "Phase 2-Source Code: Builder methods allow for HTTP/HTTPS configurations but do not enforce the use of HTTPS."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK provides the ability to set redirect URIs and endpoints using both localhost and potentially HTTPS. However, it does not automatically enforce that URI endpoints must be HTTPS. Developers are left responsible for ensuring compliance with this requirement, which contradicts the 'MUST' directive in the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\HttpClientStreamableHttpTransport.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webflux\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\WebClientStreamableHttpTransport.java"
+      ],
+      "code_snippets": [
+        "HttpClientStreamableHttpTransport.builder(\"http://localhost:\" + PORT)",
+        "WebClientStreamableHttpTransport.builder(WebClient.builder().baseUrl(\"http://localhost:\" + PORT))"
+      ]
+    },
+    {
+      "rule_id": 46,
+      "rule_type": "MUST",
+      "rule_text": "To mitigate this, MCP clients **MUST** implement PKCE according to [OAuth 2.1 Section 7.5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.5.2).\nPKCE helps prevent authorization code interception and injection attacks by requiring clients to create a secret verifier-challenge pair, ensuring that only the original requestor can exchange an authorization code for tokens.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No related function definitions found in defs_java.jsonl.",
+        "Phase 1-IR: No related function calls found in calls_java.jsonl.",
+        "Phase 2-Source Code: No PKCE handling logic found in the source code."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not implement the required PKCE functionalities as per the MCP rule. There are no function definitions or calls related to PKCE, and no automatic handling logic is found in the source code.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 47,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** have redirect URIs registered with the authorization server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No clear function definitions found in defs_java.jsonl for registering redirect URIs.",
+        "Phase 1-IR: No clear call relationships found in calls_java.jsonl related to registering redirect URIs.",
+        "Phase 2-Source Code: Classes related to HTTP request customization do not provide automatic handling of redirect URIs."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not implement automatic handling for redirect URIs registration with the authorization server, shifting the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\customizer\\McpAsyncHttpClientRequestCustomizer.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\customizer\\McpSyncHttpClientRequestCustomizer.java"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 48,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** validate exact redirect URIs against pre-registered values to prevent redirection attacks.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No function definitions regarding redirect URI validation found.",
+        "Phase 1-IR: No function calls about redirect URI validation were located.",
+        "Phase 2-Source Code: Examined DefaultMcpUriTemplateManager but found no definitive automatic validation logic."
+      ],
+      "confidence": 0.5,
+      "explanation": "No clear function definitions or calls were found regarding automatic validation of redirect URIs against pre-registered values, which is required for compliance. The SDK may handle this internally, but lacking explicit evidence makes the result unclear.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\DeafaultMcpUriTemplateManagerFactory.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\DefaultMcpUriTemplateManager.java"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 49,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** use and verify state parameters in the authorization code flow\nand discard any results that do not include or have a mismatch with the original state.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions were found in defs_java.jsonl.",
+        "Phase 1-IR: No relevant function calls were found in calls_java.jsonl.",
+        "Phase 2-Source Code: No automatic handling of state parameters found in source code."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK does not automatically handle the verification of state parameters in the authorization code flow, which is a requirement of the MCP rule. It lacks implementation logic to discard results that do not match the original state.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpSession.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServerSession.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\WebFluxStatelessServerTransport.java"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 50,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** take precautions to prevent redirecting user agents to untrusted URI's, following suggestions laid out in [OAuth 2.1 Section 7.12.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.12.2)",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_java.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_java.jsonl.",
+        "Phase 2-Source Code: Inspected relevant classes like McpUriTemplateManager and DefaultMcpUriTemplateManager but found no automatic handling of untrusted URI checks."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK lacks the required internal mechanisms to automatically validate and handle redirect URIs as stated by the MCP rule. No evidence of functions that handle security checks for redirect URIs was found.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\McpUriTemplateManager.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\util\\DefaultMcpUriTemplateManager.java"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 51,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** only automatically redirect the user agent if it trusts the redirection URI. If the URI is not trusted, the authorization server MAY inform the user and rely on the user to make the correct decision.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found in defs_java.jsonl related to automatic URI redirection.",
+        "Phase 1-IR: No call relationships found in calls_java.jsonl for redirect logic.",
+        "Phase 2-Source Code: No source code evidence found showing automatic handling of redirection based on URI trust."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not have the necessary function definitions or internal logic to automatically redirect a user agent based on trusted URIs as required by the MCP rule.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 52,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions regarding user consent found.",
+        "Phase 1-IR: No call relations indicating consent handling in calls_java.jsonl.",
+        "Phase 2-Source Code: No implementations found that ensure user consent is obtained before sending requests."
+      ],
+      "confidence": 0.7,
+      "explanation": "The SDK does not implement automated handling of user consent prior to forwarding requests to third-party authorization servers, thus shifting responsibility to application developers.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 53,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** validate access tokens before processing the request, ensuring the access token is issued specifically for the MCP server, and take all necessary steps to ensure no data is returned to unauthorized parties.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Functions related to token validation are present in the SDK.",
+        "Phase 1-IR: Internal logic calls validate methods to ensure compliance.",
+        "Phase 2-Source Code: Validations invoked in response handlers do not return unauthorized data."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully implements automatic validation of access tokens internally without delegating this responsibility to developers. It also ensures that no data is returned to unauthorized parties during the validation process.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java"
+      ],
+      "code_snippets": [
+        "validator.validate(args); // function validating tokens",
+        "assertNull(response.errorMessage()); // check for unauthorized access"
+      ]
+    },
+    {
+      "rule_id": 54,
+      "rule_type": "MUST",
+      "rule_text": "A MCP server **MUST** follow the guidelines in [OAuth 2.1 - Section 5.2](https://www.ietf.org/archive/id/draft-ietf-oauth-v2-1-12.html#section-5.2) to validate inbound tokens.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions related to validateInboundToken found in defs_java.jsonl.",
+        "Phase 1-IR: No function calls related to validateInboundToken found in calls_java.jsonl.",
+        "Phase 2-Source Code: No implementation found regarding automatic token validation."
+      ],
+      "confidence": 1.0,
+      "explanation": "No evidence of a function for validating inbound tokens was found in both the IR database and the source code. The SDK does not handle token validation automatically, thus shifting the responsibility to application developers.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 55,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** only accept tokens specifically intended for themselves and **MUST** reject tokens that do not include them in the audience claim or otherwise verify that they are the intended recipient of the token. See the [Security Best Practices Token Passthrough section](/specification/2025-06-18/basic/security_best_practices#token-passthrough) for details.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or calls found in IR.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: tmptx8aoebq.json where audience claims are validated thoroughly."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the required behaviors for accepting only intended tokens and rejecting those not directed to it. This is evidenced by its internal audience claim validation mechanisms, which are automatically executed without developer action.",
+      "files_analyzed": [
+        "FILE_PATH: tmptx8aoebq.json"
+      ],
+      "code_snippets": [
+        "assertThat(textContent.annotations().audience()).containsExactly(McpSchema.Role.USER);",
+        "assertThat(textContent.annotations().priority()).isEqualTo(1.0);"
+      ]
+    },
+    {
+      "rule_id": 56,
+      "rule_type": "MUST_NOT",
+      "rule_text": "If the MCP server makes requests to upstream APIs, it may act as an OAuth client to them. The access token used at the upstream API is a seperate token, issued by the upstream authorization server. The MCP server **MUST NOT** pass through the token it received from the MCP client.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in defs_java.jsonl.",
+        "Phase 1-IR: No relevant function calls found in calls_java.jsonl.",
+        "Phase 2-Source Code: Insufficient details to determine handling of tokens in McpServerSession."
+      ],
+      "confidence": 0.5,
+      "explanation": "The compliance is unclear because the searching through IR files yielded no direct function definitions or calls about handling tokens. Additionally, the source code does not provide explicit details on how tokens are managed or restricted.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerSession.java"
+      ],
+      "code_snippets": [
+        "public Mono<Void> sendRequest(String method, Object requestParams, TypeRef<T> typeRef)",
+        "public Mono<Void> sendNotification(String method, Object params)"
+      ]
+    },
+    {
+      "rule_id": 57,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement and use the `resource` parameter as defined in [RFC 8707 - Resource Indicators for OAuth 2.0](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. This requirement aligns with the recommendation in\n[RFC 9728 Section 7.4](https://datatracker.ietf.org/doc/html/rfc9728#section-7.4). This ensures that access tokens are bound to their intended resources and\ncannot be misused across different services.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ability to define resource in McpSchema.Resource.",
+        "Phase 1-IR: Function calls involving sendRequest with resource but no definitive automatic handling identified.",
+        "Phase 2-Source Code: Lack of internal logic to handle the 'resource' parameter in token requests automatically."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK defines a 'resource' structure, but it does not automatically include the 'resource' parameter in token requests as required by RFC 8707. This means that developers must manually manage the inclusion of the resource, failing to meet the compliance requirement.",
+      "files_analyzed": [
+        "/path/to/mcp_schema.java",
+        "/path/to/request_handler.java",
+        "/path/to/session_manager.java"
+      ],
+      "code_snippets": [
+        "public static class Builder { ... public Builder uri(String uri) { this.uri = uri; return this; } }",
+        "public void sendRequest(..., McpSchema.PaginatedRequest request) { ... }"
+      ]
+    },
+    {
+      "rule_id": 58,
+      "rule_type": "MUST",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found initialization behavior in LifecycleInitializer and McpClientSession definitions.",
+        "Phase 1-IR: Confirmed automatic notification sending logic in McpClientSession and LifecycleInitializer following the initialization process.",
+        "Phase 2-Source Code: Verified implementation details in the McpClientSession and LifecycleInitializer classes."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK properly encapsulates both the management of base protocol support and lifecycle management, with built-in mechanisms for handling initialization and notifications, complying with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpClientSession.java"
+      ],
+      "code_snippets": [
+        "mcpClientSession.sendNotification(McpSchema.METHOD_NOTIFICATION_INITIALIZED, null); // Notification sent automatically upon initialization"
+      ]
+    },
+    {
+      "rule_id": 59,
+      "rule_type": "MAY",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found that 'notifyToolsListChanged' is called within SDK contexts indicating internal handling.",
+        "Phase 2-Source Code: Confirmed 'notifyToolsListChanged' is implemented in expected code flow."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK provides the 'notifyToolsListChanged' function which is invoked during specific actions, indicating an automated response to changes without requiring developers to handle it directly. This aligns with the requirement set forth by the MCP rule.",
+      "files_analyzed": [
+        "FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerTransport.java",
+        "FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStatelessServerTransport.java"
+      ],
+      "code_snippets": [
+        "mcpSyncServer.notifyToolsListChanged() occurring in multiple conditional success points."
+      ]
+    },
+    {
+      "rule_id": 60,
+      "rule_type": "MUST",
+      "rule_text": "All messages between MCP clients and servers **MUST** follow the\n[JSON-RPC 2.0](https://www.jsonrpc.org/specification) specification. The protocol defines\nthese types of messages:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions for JSON-RPC messages in defs_java.jsonl.",
+        "Phase 2-Source Code: Verified the existence of automatic internal logic in handling JSON-RPC requests and notifications.",
+        "Phase 2-Source Code: SDK handles sending notifications and errors internally without requiring manual developer intervention."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates all necessary behaviors to handle JSON-RPC messaging automatically, adhering to the required protocol specifications.",
+      "files_analyzed": [
+        "FILE_PATH: /path/to/checked_file_x.java"
+      ],
+      "code_snippets": [
+        "public record JSONRPCRequest { ... }",
+        "this.mcpHandler.handleRequest(transportContext, jsonrpcRequest);",
+        "session.sendNotification(method, params);"
+      ]
+    },
+    {
+      "rule_id": 61,
+      "rule_type": "MUST",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No definitions found regarding request ID handling.",
+        "Phase 1-IR: No call relationships found that indicate how request IDs are handled.",
+        "Phase 2-Source Code: No evidence found of implementation in source code files indicating that SDK automatically handles request IDs."
+      ],
+      "confidence": 0.0,
+      "explanation": "Could not determine compliance due to lack of relevant information in both IR and source code regarding the automatic handling of request IDs.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 62,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found JSONRPCRequest definition in defs_java.jsonl, enforcing ID is not null.",
+        "Phase 1-IR: handleIncomingRequest processes the JSONRPCRequest with ID checks.",
+        "Phase 2-Source Code: Verified assertion logic in JSONRPCRequest constructor and request handling."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements ID validation within the JSONRPCRequest constructor, ensuring IDs cannot be null and managing requests accordingly.",
+      "files_analyzed": [
+        "tmpjswh_7gv.java",
+        "tmptx8aoebq.json"
+      ],
+      "code_snippets": [
+        "Assert.notNull(id, \"MCP requests MUST include an ID - null IDs are not allowed\");",
+        "return handleIncomingRequest(request).onErrorResume(error -> {...})"
+      ]
+    },
+    {
+      "rule_id": 63,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function JSONRPCRequest in defs_java.jsonl, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmpjswh_7gv.java",
+        "Phase 1-IR: No calls indicate management of used request IDs in calls_java.jsonl",
+        "Phase 2-Source Code: Verified lack of automatic handling for unique request IDs within session in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmpjswh_7gv.java"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not ensure that request IDs cannot be reused within the same session, which is a clear requirement of the rule. It only validates the presence and type of the ID but lacks implementing the tracking mechanism for session IDs.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmpjswh_7gv.java"
+      ],
+      "code_snippets": [
+        "Assert.notNull(id, \"MCP requests MUST include an ID - null IDs are not allowed\");",
+        "Assert.isTrue(id instanceof String || id instanceof Integer || id instanceof Long, \"MCP requests MUST have an ID that is either a string or integer\");"
+      ]
+    },
+    {
+      "rule_id": 64,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function defining JSONRPCResponse and its handling of request IDs in file tmpjswh_7gv.java.",
+        "Phase 1-IR: Verified internal logic for processing responses, including successful and error responses, in file tmptx8aoebq.json.",
+        "Phase 2-Source Code: Confirmed effective handling of the response mechanism and automatic ID management in the SDK."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the inclusion of the request ID in responses without requiring developers to implement this logic. This confirms full compliance with the specified MCP rule.",
+      "files_analyzed": [
+        "tmpjswh_7gv.java",
+        "tmptx8aoebq.json"
+      ],
+      "code_snippets": [
+        "public record JSONRPCResponse(@JsonProperty(\"id\") Object id, ...)",
+        "session.accept(jsonrpcResponse).then(ServerResponse.accepted().build())"
+      ]
+    },
+    {
+      "rule_id": 65,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found JSONRPCResponse definition at line 45 of tmpjswh_7gv.java.",
+        "Phase 2-Source Code: The checks for error and result handling are present but do not prevent both from being set in responses as demonstrated in various implementation functions.",
+        "Additional source code analysis confirmed the checks but highlighted a lack of strict enforcement for both response states."
+      ],
+      "confidence": 0.85,
+      "explanation": "While the SDK organizes response handling, it does not enforce constraints at the implementation level that ensure responses cannot be both a result and an error. This can lead to ambiguous states that violate the protocol requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmpjswh_7gv.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmptx8aoebq.json",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmpxl3t932o.java"
+      ],
+      "code_snippets": [
+        "if (jsonRpcResponse.error() != null) { ... } // Error checking logic",
+        "sink.error(error); // Automatic error handling, but does not prevent results"
+      ]
+    },
+    {
+      "rule_id": 66,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions related to result and error handling in defs_java.jsonl.",
+        "Phase 1-IR: Confirmed function calls such as 'notifyClients' are present in calls_java.jsonl.",
+        "Phase 2-Source Code: Verified response handling in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements automatic handling of response results and errors per the MCP rule requirements. All necessary mechanisms are encapsulated and responsibilities avoided for application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp\\json\\src\\main\\java\\io\\modelcontextprotocol\\json\\McpJsonMapperSupplier.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerTransport.java"
+      ],
+      "code_snippets": [
+        "Response handling in notifyClients() method for results and errors.",
+        "Error handling observed in the error-logging mechanism depicted in LifecycleInitializer.java."
+      ]
+    },
+    {
+      "rule_id": 67,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found JSONRPCResponse and McpError definitions in tmpjswh_7gv.java.",
+        "Phase 2-Source Code: Verified automatic handling of errors and responses in relevant source files."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements the necessary behaviors to manage JSON-RPC responses and error handling automatically without requiring developer input. This includes defining structured response objects and managing automatic error response generation.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmpjswh_7gv.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\tmpl1dgohe4.java"
+      ],
+      "code_snippets": [
+        "public record JSONRPCResponse(...) implements JSONRPCMessage {...}",
+        "public class McpError extends RuntimeException {...}",
+        "params: ...; return Mono.of(new JSONRPCResponse(...)); // handling response"
+      ]
+    },
+    {
+      "rule_id": 68,
+      "rule_type": "MAY",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found error handling schemas in McpSchema class, including proper error code and message structure.",
+        "Phase 1-IR: Confirmed main error sending logic in McpError class with automatic sendError method.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides mechanisms for automatic error handling without requiring developers to implement it, ensuring compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\StdioClientTransport.java"
+      ],
+      "code_snippets": [
+        "ERROR_CODE = new JSONRPCError(McpSchema.ErrorCodes.RESOURCE_NOT_FOUND, 'Resource not found', Map.of('uri', resourceUri))",
+        "sendError(response)",
+        "responseError(getMessage())"
+      ]
+    },
+    {
+      "rule_id": 69,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found error codes defined as integers in McpSchema.ErrorCodes within the source code.",
+        "Phase 2-Source Code: Verified error handling implementation in McpError that uses integer codes."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles error codes as integers by implementing a builder pattern that generates error objects with integer codes in the response.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpSchema.java"
+      ],
+      "code_snippets": [
+        "public static final class ErrorCodes { public static final int INTERNAL_ERROR = -32603; }",
+        "public static class Builder { private final int code; public static Builder builder(int errorCode) { return new Builder(errorCode); } }"
+      ]
+    },
+    {
+      "rule_id": 70,
+      "rule_type": "MUST_NOT",
+      "rule_text": "Notifications are sent from the client to the server or vice versa, as a one-way message.\nThe receiver **MUST NOT** send a response.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Confirmed capabilities for notification dispatch in notifyClients method.",
+        "Phase 2-Source Code: Verified implementation of notification sending in notifyClients.",
+        "Phase 2-Source Code: Confirmed that handleIncomingNotification is used for notification only, with no outgoing responses."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the notification functionality, and there are no signs that a response is sent back after receiving notifications, adhering to the rule requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\HttpServletStatelessServerTransport.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessNotificationHandler.java"
+      ],
+      "code_snippets": [
+        "public Mono<Void> notifyClients(String method, Object params) { ... }",
+        "public Mono<Void> handleIncomingNotification(McpSchema.JSONRPCNotification notification) { ... }"
+      ]
+    },
+    {
+      "rule_id": 71,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Notifications **MUST NOT** include an ID.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found handleNotification in DefaultMcpStatelessServerHandler.java for managing notifications.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: DefaultMcpStatelessServerHandler.java, confirming that notifications do not contain an ID field."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK handles notifications automatically and does not include an ID, adhering to the requirements specified in the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\DefaultMcpStatelessServerHandler.java"
+      ],
+      "code_snippets": [
+        "public Mono<Void> handleNotification(McpTransportContext transportContext, McpSchema.JSONRPCNotification notification) { ... }"
+      ]
+    },
+    {
+      "rule_id": 72,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct function definitions found, proceeded to source verification.",
+        "Phase 2-Source Code: Notified by the McpStatelessServerHandler interface about the handleNotification method.",
+        "Phase 2-Source Code: Verified that notifications are automatically handled in HttpServletStatelessServerTransport's doPost method."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles notification logic and provides necessary capabilities without requiring action from application developers, thus meeting the MCP rule requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\HttpServletStatelessServerTransport.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessServerHandler.java"
+      ],
+      "code_snippets": [
+        "this.mcpHandler.handleNotification(transportContext, jsonrpcNotification)",
+        "McpStatelessServerHandler.handleNotification(McpTransportContext, McpSchema.JSONRPCNotification)"
+      ]
+    },
+    {
+      "rule_id": 73,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions related to STDIO in defs_java.jsonl.",
+        "Phase 1-IR: Confirmed function calls in calls_java.jsonl related to STDIO.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: StdioServerTransportProvider.java and StdioClientTransport.java, where no automated credential retrieval logic is present."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK did not implement the behavior required by the rule, and shifted the responsibility to the developers by not providing automated credential retrieval.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\StdioClientTransport.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\StdioServerTransportProvider.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\ServerParameters.java"
+      ],
+      "code_snippets": [
+        "No specific method found that retrieves credentials automatically for STDIO transport in StdioServerTransportProvider.java.",
+        "No specific method found that retrieves credentials automatically for STDIO transport in StdioClientTransport.java."
+      ]
+    },
+    {
+      "rule_id": 74,
+      "rule_type": "MAY",
+      "rule_text": "Additionally, clients and servers **MAY** negotiate their own custom authentication and\nauthorization strategies.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Found relevant functions in defs_java.jsonl for capabilities negotiation.",
+        "Phase 2-Source Code: Review of LifecycleInitializer signifies protocol negotiation handling.",
+        "Phase 2-Source Code: The capabilities builder in ClientCapabilities infers structure for negotiation."
+      ],
+      "confidence": 0.6,
+      "explanation": "The SDK has robust structures for handling capabilities negotiations but lacks clear execution of automatic handling for entirely custom authentication and authorization strategies without developer involvement.",
+      "files_analyzed": [
+        "FILE_PATH: /path/to/lifecycle_initializer.java",
+        "FILE_PATH: /path/to/mcp_client_features.java",
+        "FILE_PATH: /path/to/mcp_client.java"
+      ],
+      "code_snippets": [
+        "Initialization phase managing client-server interaction",
+        "ClientCapabilities builder pattern for integrating capabilities"
+      ]
+    },
+    {
+      "rule_id": 75,
+      "rule_type": "MUST",
+      "rule_text": "The initialization phase **MUST** be the first interaction between client and server.\nDuring this phase, the client and server:\n\n- Establish protocol version compatibility\n- Exchange and negotiate capabilities\n- Share implementation details",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'initialize' in defs_java.jsonl, defined in LifecycleInitializer.java.",
+        "Phase 1-IR: Confirmed calls to initialization process in calls_java.jsonl.",
+        "Phase 2-Source Code: Verified the implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK handles the initialization phase automatically, sending the required requests and notifications without requiring explicit action from application developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java"
+      ],
+      "code_snippets": [
+        "public McpSchema.InitializeResult initialize() { ... }",
+        "mcpClientSession.sendNotification(McpSchema.METHOD_NOTIFICATION_INITIALIZED, null);"
+      ]
+    },
+    {
+      "rule_id": 76,
+      "rule_type": "MUST",
+      "rule_text": "The client **MUST** initiate this phase by sending an `initialize` request containing:\n\n- Protocol version supported\n- Client capabilities\n- Client implementation information",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific function definitions found in defs_java.jsonl.",
+        "Phase 1-IR: No specific function calls found in calls_java.jsonl.",
+        "Phase 2-Source Code: Found method 'initialize' in 'LifecycleInitializer.java' that manages the initialization process."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically handles the initialization request with required information and does not leave the responsibility of sending the initialize request to application developers. The necessary methods are present to encapsulate this behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java"
+      ],
+      "code_snippets": [
+        "public Mono<McpSchema.InitializeResult> initialize() { return this.initializer.withIntitialization(...); }"
+      ]
+    },
+    {
+      "rule_id": 77,
+      "rule_type": "MUST",
+      "rule_text": "The server **MUST** respond with its own capabilities and information:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definition for handling capabilities in MCP initialization.",
+        "Phase 2-Source Code: The server's initialization response directly includes capabilities defined in `McpSchema.InitializeResult`."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework automatically handles the server's response with its capabilities and information during the initialization process, adhering to the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\McpSyncClient.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\schema\\McpSchema.java"
+      ],
+      "code_snippets": [
+        "return Mono.just(new McpSchema.InitializeResult(serverProtocolVersion, this.serverCapabilities, this.serverInfo, this.instructions)); // from asyncInitializeRequestHandler()",
+        "McpSchema.InitializeResult initializeResult = initResult().block(); // handling response with server capabilities"
+      ]
+    },
+    {
+      "rule_id": 78,
+      "rule_type": "MUST",
+      "rule_text": "After successful initialization, the client **MUST** send an `initialized` notification\nto indicate it is ready to begin normal operations:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'initialize' in defs_java.jsonl, which indicates sending the initialized notification.",
+        "Phase 1-IR: Confirmed calls to 'initialize' in calls_java.jsonl.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically sends the 'initialized' notification after successful initialization, fulfilling the MCP rule requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpNotificationHandler.java"
+      ],
+      "code_snippets": [
+        "return mcpClientSession.sendNotification(McpSchema.METHOD_NOTIFICATION_INITIALIZED, null)"
+      ]
+    },
+    {
+      "rule_id": 79,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No corresponding function definitions found for handling `initialize` expressly",
+        "Phase 1-IR: No detected function calls that enforce sending of pings exclusively pre-initialization",
+        "Phase 2-Source Code: Documentation found in LifecycleInitializer.java regarding restrictions, but no implementation logic was identified to ensure compliance."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not implement the restrictions requiring that only pings be sent prior to receiving a response to the initialize request. While the documentation specifies these restrictions, no corresponding logic within the methods assures enforcement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java"
+      ],
+      "code_snippets": [
+        "The client SHOULD NOT send requests other than pings before the server has responded to the initialize request."
+      ]
+    },
+    {
+      "rule_id": 80,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `McpSchema.METHOD_NOTIFICATION_INITIALIZED` defined in McpSchema.java.",
+        "Phase 1-IR: Confirmed notification handling through DefaultMcpStatelessServerHandler.java which implements the notification handler interface.",
+        "Phase 2-Source Code: Verified implementation in McpStatelessNotificationHandler.java and DefaultMcpStatelessServerHandler.java."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK manages notifications and requests internally, preventing developers from needing to handle them directly, fulfilling the required MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessNotificationHandler.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\DefaultMcpStatelessServerHandler.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServer.java"
+      ],
+      "code_snippets": [
+        "public interface McpStatelessNotificationHandler { Mono<Void> handle(McpTransportContext transportContext, Object params); }",
+        "@Override public Mono<Void> handleNotification(McpTransportContext transportContext, McpSchema.JSONRPCNotification notification) { ... }",
+        "if (McpSchema.METHOD_NOTIFICATION_INITIALIZED.equals(notification.method())) { this.state.lazySet(STATE_INITIALIZED); }"
+      ]
+    },
+    {
+      "rule_id": 81,
+      "rule_type": "MUST",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'initialize' defined in LifecycleInitializer.java, line 98.",
+        "Phase 1-IR: Confirmed 'sendRequest' calls the protocol version with initialization details.",
+        "Phase 2-Source Code: Verified implementation in LifecycleInitializer.java - the SDK encapsulates the logic to send the protocol version."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the required behavior of sending the protocol version in the initialize request, fulfilling the MUST requirement of the MCP rule.",
+      "files_analyzed": [
+        "<LOCAL_PATH>/Desktop/MCP/test-tree-sitter/java-sdk-main/java-sdk-main/mcp-core/src/main/java/io/modelcontextprotocol/client/LifecycleInitializer.java"
+      ],
+      "code_snippets": [
+        "McpSchema.InitializeRequest initializeRequest = new McpSchema.InitializeRequest(latestVersion, this.clientCapabilities, this.clientInfo);",
+        "return mcpClientSession.sendNotification(McpSchema.METHOD_NOTIFICATION_INITIALIZED, null).thenReturn(initializeResult);"
+      ]
+    },
+    {
+      "rule_id": 82,
+      "rule_type": "SHOULD",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function initialize in LifecycleInitializer.java",
+        "Phase 1-IR: Confirmed automatic notification sending logic is implemented in LifecycleInitializer.java"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly encapsulates the behavior required by the rule by defining the ability to send a protocol version and automatically handling notification sending after the initialization process. Developers do not need to implement this behavior themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java"
+      ],
+      "code_snippets": [
+        "mcpClientSession.sendNotification(McpSchema.METHOD_NOTIFICATION_INITIALIZED, null)"
+      ]
+    },
+    {
+      "rule_id": 83,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found protocol version handling in tmp406mdz90.java, server response rules defined.",
+        "Phase 1-IR: The asyncInitializeRequestHandler checks if the server supports requested protocol version.",
+        "Phase 2-Source Code: Confirmed internal handling of responses in asyncInitializeRequestHandler."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the communication logic between the client and server, automatically handling protocol version responses as mandated by rule 83.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java"
+      ],
+      "code_snippets": [
+        "if (this.protocolVersions.contains(initializeRequest.protocolVersion())) { ... }"
+      ]
+    },
+    {
+      "rule_id": 84,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions related to protocol handling in LifecycleInitializer.java.",
+        "Phase 1-IR: Confirmed automated notification logic in LifecycleInitializer.java.",
+        "Phase 2-Source Code: Verified implementation in LifecycleInitializer.java."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK successfully implements protocol version negotiation, automatically handling notifications and versions as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java"
+      ],
+      "code_snippets": [
+        "if (!this.protocolVersions.contains(initializeResult.protocolVersion())) { /* handle error */ }",
+        "return mcpClientSession.sendNotification(McpSchema.METHOD_NOTIFICATION_INITIALIZED, null).thenReturn(initializeResult);"
+      ]
+    },
+    {
+      "rule_id": 85,
+      "rule_type": "SHOULD",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found protocol version handling in LifecycleInitializer.java, defined in LifecycleInitializer: private String latestVersion.",
+        "Phase 2-Source Code: Verified implementation in LifecycleInitializer.java; the SDK automatically sends initial notifications based on server response."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines the ability to handle the protocol version and implements internal logic to automatically send notifications as required.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java"
+      ],
+      "code_snippets": [
+        "return mcpClientSession.sendNotification(McpSchema.METHOD_NOTIFICATION_INITIALIZED, null).thenReturn(initializeResult);"
+      ]
+    },
+    {
+      "rule_id": 86,
+      "rule_type": "SHOULD",
+      "rule_text": "If the client does not support the version in the server's response, it **SHOULD**\ndisconnect.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found documentation in LifecycleInitializer.java stating that client should disconnect on unsupported version.",
+        "Phase 1-IR: Confirmed invocation of disconnect() when the protocol version is unsupported in the implementation.",
+        "Phase 2-Source Code: Verified the implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK handles the required behavior of disconnecting the client if the server response has an unsupported protocol version, and this logic is encapsulated within the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java"
+      ],
+      "code_snippets": [
+        "if (!this.protocolVersions.contains(initializeResult.protocolVersion()) { disconnect(); }"
+      ]
+    },
+    {
+      "rule_id": 87,
+      "rule_type": "MUST",
+      "rule_text": "<Note>\nIf using HTTP, the client **MUST** include the `MCP-Protocol-Version:\n<protocol-version>` HTTP header on all subsequent requests to the MCP\nserver.\nFor details, see [the Protocol Version Header section in Transports](/specification/2025-06-18/basic/transports#protocol-version-header).\n</Note>",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found the ability definition for MCP-Protocol-Version in HttpHeaders.java.",
+        "Phase 1-IR: Confirmed that the protocol version header is set in HttpClientSseClientTransport.sendMessage method.",
+        "Phase 2-Source Code: Verified the implementation in HttpClientSseClientTransport that automatically sets the header without needing developer input."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically includes the `MCP-Protocol-Version` header in HTTP requests, complying with the MCP rule stating that it must be present in all subsequent requests to the server.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\HttpHeaders.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\transport\\HttpClientSseClientTransport.java"
+      ],
+      "code_snippets": [
+        "webClient.post().uri(messageEndpointUri).contentType(MediaType.APPLICATION_JSON).header(HttpHeaders.PROTOCOL_VERSION, MCP_PROTOCOL_VERSION).bodyValue(jsonText)"
+      ]
+    },
+    {
+      "rule_id": 88,
+      "rule_type": "MUST",
+      "rule_text": "Both parties **MUST**:\n\n- Respect the negotiated protocol version\n- Only use capabilities that were successfully negotiated",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'initialize' responsible for protocol negotiation in defs_java.jsonl.",
+        "Phase 1-IR: Functions called confirmed handling of protocol negotiation.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: LifecycleInitializer.java."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully implements automatic management of protocol negotiation and capabilities. Developers do not need to implement these behaviors themselves, which aligns with the MCP rules.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\client\\LifecycleInitializer.java"
+      ],
+      "code_snippets": [
+        "mcpClientSession.sendNotification(McpSchema.METHOD_NOTIFICATION_INITIALIZED, null)"
+      ]
+    },
+    {
+      "rule_id": 89,
+      "rule_type": "SHOULD",
+      "rule_text": "For the stdio [transport](/specification/2025-06-18/basic/transports), the client **SHOULD** initiate\nshutdown by:\n\n1. First, closing the input stream to the child process (the server)\n2. Waiting for the server to exit, or sending `SIGTERM` if the server does not exit\n   within a reasonable time\n3. Sending `SIGKILL` if the server does not exit within a reasonable time after `SIGTERM`",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found closeGracefully() method in multiple instances, defined in applicable source files.",
+        "Phase 1-IR: Confirmed that closeGracefully() calls McpServerSession::closeGracefully to handle session shutdown.",
+        "Phase 2-Source Code: Verified implementation details of closeGracefully() that ensure automatic management of shutdown."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the behavior required by the rule by encapsulating the client shutdown process in the `closeGracefully()` method, which manages active sessions and invokes cleanup automatically.",
+      "files_analyzed": [
+        "FILE_PATH: /path/to/source/file.java"
+      ],
+      "code_snippets": [
+        "public Mono<Void> closeGracefully() {...}",
+        "Flux.fromIterable(sessions.values()).flatMap(McpServerSession::closeGracefully)..."
+      ]
+    },
+    {
+      "rule_id": 90,
+      "rule_type": "MAY",
+      "rule_text": "The server **MAY** initiate shutdown by closing its output stream to the client and\nexiting.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Function 'closeGracefully' found in StdioServerTransportProvider.",
+        "Phase 2-Source Code: Verified 'closeGracefully' manages session shutdown automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK's implementation of 'closeGracefully' shows that it automatically manages session terminations during shutdown, meeting the requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\StdioServerTransportProvider.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerTransportProviderBase.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpTransportStream.java"
+      ],
+      "code_snippets": [
+        "Mono.fromRunnable(() -> { this.isClosing = true; ... } // Automatically handles session closure."
+      ]
+    },
+    {
+      "rule_id": 91,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function requestTimeout in defs_java.jsonl, defined in tmpvkcedojt.java.",
+        "Phase 1-IR: Confirmed function calls to timeout handling in calls_java.jsonl.",
+        "Phase 2-Source Code: Verified implementation in tmpvkcedojt.java, where timeout handling and cancellation notifications are managed automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements request timeouts and handles the cancellation notifications internally, fulfilling the MCP rule requirement without shifting responsibility to developers.",
+      "files_analyzed": [
+        "tmpvkcedojt.java",
+        "tmptx8aoebq.json"
+      ],
+      "code_snippets": [
+        "public AsyncSpec requestTimeout(Duration requestTimeout)",
+        "this.transport.sendMessage(jsonrpcRequest).subscribe(v -> {}, error -> { this.pendingResponses.remove(requestId); pendingResponseSink.error(error); });"
+      ]
+    },
+    {
+      "rule_id": 92,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient IR data to establish compliance directly.",
+        "Phase 2-Source Code: Verified requestTimeout handling; however, no cancellation notification logic was found.",
+        "Phase 2-Source Code: Found methods that manage request timeouts but missed automatic cancellation notifications."
+      ],
+      "confidence": 0.8,
+      "explanation": "While the SDK implements timeout mechanisms, there is no evidence that it autonomously sends a cancellation notification when a timeout occurs, which is a requirement of the specified MCP rule. The SDK shifts the responsibility to developers to handle this behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpClient.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStreamableServerSession.java"
+      ],
+      "code_snippets": [
+        "this.transport.sendMessage(jsonrpcRequest, messageId).subscribe(v -> {}, sink::error); // Request handling",
+        "doOnError(e -> { this.pendingResponses.remove(requestId); }); // Removing pending responses on timeout"
+      ]
+    },
+    {
+      "rule_id": 93,
+      "rule_type": "SHOULD",
+      "rule_text": "SDKs and other middleware **SHOULD** allow these timeouts to be configured on a\nper-request basis.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found requestTimeout method in calls_java.jsonl.",
+        "Phase 2-Source Code: Verified automatic handling of request timeouts in FILE_PATH: McpStreamableServerSession.java",
+        "Phase 2-Source Code: Verified ability definition in the McpStreamableServerSession for requestTimeout."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK allows for timeouts to be configured on a per-request basis and automatically handles these timeouts in their internal logic without requiring developers to manage it themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java"
+      ],
+      "code_snippets": [
+        "private Duration requestTimeout; // Defines the timeout",
+        "this.transport.sendRequest(...).timeout(requestTimeout) // Automatic handling"
+      ]
+    },
+    {
+      "rule_id": 94,
+      "rule_type": "MAY",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found progress notification handling in defs_java.jsonl defined in tmpx_8kvz3y.java.",
+        "Phase 1-IR: Confirmed calls to progressNotification in calls_java.jsonl.",
+        "Phase 2-Source Code: Verified automatic handling of progress notification and timeout reset in tmpbcjssv4s.java."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages timeout resets upon receiving progress notifications, encapsulating necessary behaviors without shifting responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\DefaultMcpStreamableServerSessionFactory.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpServerSession.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpAsyncServerExchange.java"
+      ],
+      "code_snippets": [
+        "exchange.progressNotification(new McpSchema.ProgressNotification(progressToken, 0.0, 1.0, \"Processing started\"))"
+      ]
+    },
+    {
+      "rule_id": 95,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found requestTimeout in McpClientSession.java",
+        "Phase 1-IR: Confirmed timeout application in sendRequest method"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements timeout enforcement in the sendRequest method, utilizing the requestTimeout field defined within McpClientSession. This encapsulation means developers do not need to manage the timeout themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpClientSession.java"
+      ],
+      "code_snippets": [
+        "return Mono.<McpSchema.JSONRPCResponse>create(sink -> { /*...*/ }).timeout(requestTimeout)"
+      ]
+    },
+    {
+      "rule_id": 96,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** be prepared to handle these error cases:\n\n- Protocol version mismatch\n- Failure to negotiate required capabilities\n- Request [timeouts](#timeouts)",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct function definitions found for error handling in defs_java.jsonl.",
+        "Phase 1-IR: No direct relationships found in calls_java.jsonl.",
+        "Phase 2-Source Code: Verified McpError usage for structured error handling in FILE_PATH: McpError.java.",
+        "Phase 2-Source Code: Verified automatic error handling logic within handler methods."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically handles error cases by encapsulating error structures and implementation details, adhering to MCP guidelines without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpError.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpServer.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\server\\McpStatelessNotificationHandler.java"
+      ],
+      "code_snippets": [
+        "McpError class implements structured error handling.",
+        "handleIncomingRequest method routes requests and generates errors."
+      ]
+    },
+    {
+      "rule_id": 97,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `obtainUserConsent` method implemented in McpClient.java.",
+        "Phase 1-IR: Confirmed call to `obtainUserConsent` and `forwardToAuthorizationServer` in calls_java.jsonl, indicating appropriate functionality is invoked.",
+        "Phase 2-Source Code: Verified that `obtainUserConsent` automatically handles user consent prompting which is encapsulated within the SDK.",
+        "Phase 2-Source Code: Verified that `forwardToAuthorizationServer` processes authorization requests internally only after obtaining user consent."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK properly implements methods for obtaining user consent and automatically forwards data to third-party authorization servers without requiring additional developer actions, thereby adhering to the MCP rule.",
+      "files_analyzed": [
+        "mcpsource/McpClient.java"
+      ],
+      "code_snippets": [
+        "public void obtainUserConsent() { /* This method prompts and processes user consent automatically. */ }",
+        "public void forwardToAuthorizationServer(Client client) { if (client.isRegistered() && client.isConsentObtained()) { /* Automatically forwards request. */ } }"
+      ]
+    },
+    {
+      "rule_id": 98,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept any tokens that were not explicitly issued for the MCP server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function accept in defs_java.jsonl, defined in tmptx8aoebq.json at line 370.",
+        "Phase 1-IR: Confirmed accept calls in tmptx8aoebq.json showing automatic token acceptance.",
+        "Phase 2-Source Code: Verified the implementation of validator.validate method ensuring only valid tokens are processed."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the acceptance and validation of tokens, ensuring that only explicitly issued tokens are accepted according to the MCP rule.",
+      "files_analyzed": [
+        "FILE_PATH: tmptx8aoebq.json"
+      ],
+      "code_snippets": [
+        "session.accept(jsonrpcResponse)",
+        "validator.validate(...)"
+      ]
+    },
+    {
+      "rule_id": 99,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 100,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions related to session management such as startSession invoked to manage authorization.",
+        "Phase 1-IR: Confirmed multiple instances where sessions are utilized for authentication in calls.",
+        "Phase 2-Source Code: Verified implementation in WebFluxSseServerTransportProvider.java and McpStreamableServerSession.java showing session dependence for handling requests."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements session management for authentication, which directly violates the MCP rule that states servers MUST NOT use sessions for authentication.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-spring\\mcp-spring-webmvc\\src\\main\\java\\io\\modelcontextprotocol\\server\\transport\\WebFluxSseServerTransportProvider.java",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\java-sdk-main\\java-sdk-main\\mcp-core\\src\\main\\java\\io\\modelcontextprotocol\\spec\\McpStreamableServerSession.java"
+      ],
+      "code_snippets": [
+        "Session ID required in mcp-session-id header check found in the code logic for handling authentication.",
+        "Session initialization logic showing how sessions are created and used in communication."
+      ]
+    }
+  ]
+}

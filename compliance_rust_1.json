@@ -1,0 +1,2030 @@
+﻿{
+  "summary": {
+    "total": 101,
+    "compliant": 65,
+    "non_compliant": 31,
+    "unclear": 5,
+    "avg_files_per_rule": 1.7821782178217822
+  },
+  "results": [
+    {
+      "rule_id": 1,
+      "rule_type": "OPTIONAL",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function get_access_token in defs.",
+        "Phase 1-IR: Confirmed main calls to relevant functions in calls.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK defines necessary functions and implements internal logic for handling authorization automatically, which meets the requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "Ok(request.header(AUTHORIZATION, format!(\"Bearer {}\", token)))",
+        "if response.status() == StatusCode::UNAUTHORIZED { Err(AuthError::AuthorizationRequired) }"
+      ]
+    },
+    {
+      "rule_id": 2,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Found authorization handling within StreamableHttpClient.",
+        "Phase 2-Source Code: Confirmed request preparation includes automatic handling of authorization header."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically handles HTTP-based transport compliance through defined methods that prepare requests with required authorization headers, ensuring features encapsulate necessary behaviors as expected by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs"
+      ],
+      "code_snippets": [
+        "request_builder.bearer_auth(auth_header);",
+        "let token = self.get_access_token().await?; Ok(request.header(AUTHORIZATION, format!(\"Bearer {}\", token)))"
+      ]
+    },
+    {
+      "rule_id": 3,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found regarding retrieval from environment.",
+        "Phase 2-Source Code: Found get_access_token() method in AuthClient, lacks automatic handling of environment credentials."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not automatically handle the retrieval of credentials from the environment as required by the MCP rule. It relies on an external manager without internal handling within the SDK.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs"
+      ],
+      "code_snippets": [
+        "pub fn get_access_token(&self) -> impl Future<Output = Result<String, AuthError>> + Send { /* Logic involving AuthorizationManager */ }"
+      ]
+    },
+    {
+      "rule_id": 4,
+      "rule_type": "MUST",
+      "rule_text": "Authorization is **OPTIONAL** for MCP implementations. When supported:\n\n- Implementations using an HTTP-based transport **SHOULD** conform to this specification.\n- Implementations using an STDIO transport **SHOULD NOT** follow this specification, and\n  instead retrieve credentials from the environment.\n- Implementations using alternative transports **MUST** follow established security best\n  practices for their protocol.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `post_message` defined in `sse_client.rs` at line 13.",
+        "Phase 1-IR: Found function `get_stream` defined in `sse_client.rs` at line 28.",
+        "Phase 2-Source Code: Verified implementation in `C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs`."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK properly implements messaging and stream handling functions that encapsulate security best practices, allowing it to manage authorization tokens automatically without shifting responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
+      ],
+      "code_snippets": [
+        "async fn post_message(...): Handles messages and authorization internally.",
+        "async fn get_stream(...): Manages session continuations ensuring security best practices."
+      ]
+    },
+    {
+      "rule_id": 5,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** implement OAuth 2.1 with appropriate security\n   measures for both confidential and public clients.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'get_access_token' in defs, defined in auth.rs",
+        "Phase 1-IR: Confirmed this function is called automatically in post_message and other methods",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: auth.rs, oauth_client.rs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK demonstrates full compliance with the required OAuth 2.1 functionalities by defining critical authentication handling methods and automatically integrating token management within SDK functions.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\oauth_client.rs"
+      ],
+      "code_snippets": [
+        "async fn get_access_token(&self) { /* token retrieval code */ }",
+        "auth_token = Some(self.get_access_token().await?); // Automatically retrieves token"
+      ]
+    },
+    {
+      "rule_id": 6,
+      "rule_type": "SHOULD",
+      "rule_text": "1. Authorization servers and MCP clients **SHOULD** support the OAuth 2.0 Dynamic Client Registration\n   Protocol ([RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found AuthorizationManager in defs that defines register_client.",
+        "Phase 2-Source Code: Verified register_client method, which automates client registration logic within the SDK."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides an internal mechanism for dynamic client registration, completely encapsulating the necessary behaviors as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "pub async fn register_client(&mut self, name: &str, redirect_uri: &str) -> Result<OAuthClientConfig, AuthError> {...}"
+      ]
+    },
+    {
+      "rule_id": 7,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found discover_metadata function in AuthorizationManager.",
+        "Phase 1-IR: Found get_access_token function demonstrating automatic token handling.",
+        "Phase 2-Source Code: Verified discover_metadata implementation in FILE_PATH: tmpdj_5ggfg.txt.",
+        "Phase 2-Source Code: Verified get_access_token implementation in FILE_PATH: tmpdj_5ggfg.txt."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles OAuth 2.0 Protected Resource Metadata and manages token acquisition without needing application developers to implement these behaviors.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\authorization_manager.rs"
+      ],
+      "code_snippets": [
+        "pub async fn discover_metadata(&self) {...}",
+        "pub async fn get_access_token(&self) {...}"
+      ]
+    },
+    {
+      "rule_id": 8,
+      "rule_type": "MUST",
+      "rule_text": "1. MCP servers **MUST** implement OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728)).\n   MCP clients **MUST** use OAuth 2.0 Protected Resource Metadata for authorization server discovery.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `discover_metadata` in `AuthorizationManager`, defined in file `tmpbwovvesf.json`.",
+        "Phase 1-IR: Confirmed `set_credentials` method automatically invokes `discover_metadata`.",
+        "Phase 2-Source Code: Verified automatic handling of OAuth server discovery process."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically handles OAuth 2.0 Protected Resource Metadata discovery through the `discover_metadata` function within the `AuthorizationManager`, invoked internally when setting credentials.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\AuthorizationManager.rs"
+      ],
+      "code_snippets": [
+        "async fn set_credentials(&mut self, client_id: &str, credentials: OAuthTokenResponse) { ... let metadata = manager.discover_metadata().await?; ..."
+      ]
+    },
+    {
+      "rule_id": 9,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'discover_metadata' defined in AuthorizationManager responsible for fetching OAuth 2.0 metadata.",
+        "Phase 1-IR: Confirmed internal calls to 'discover_metadata' in methods set_credentials and start_authorization.",
+        "Phase 2-Source Code: Verified implementation details in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides automatic retrieval of OAuth 2.0 Authorization Server Metadata through internal function calls without requiring manual intervention from developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "async fn set_credentials(&mut self, client_id: &str, credentials: OAuthTokenResponse) { ... let metadata = manager.discover_metadata().await?; }",
+        "async fn start_authorization(&mut self) { ... let metadata = manager.discover_metadata().await?; }"
+      ]
+    },
+    {
+      "rule_id": 10,
+      "rule_type": "MUST",
+      "rule_text": "1. Authorization servers **MUST** provide OAuth 2.0 Authorization\n   Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)).\n   MCP clients **MUST** use the OAuth 2.0 Authorization Server Metadata.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found discover_metadata method in AuthorizationManager class.",
+        "Phase 1-IR: Confirmed that discover_metadata is called in various contexts.",
+        "Phase 2-Source Code: Verified that discover_metadata constructs the metadata URL and retrieves it automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the required behavior to use the OAuth 2.0 Authorization Server Metadata through the discover_metadata method in the AuthorizationManager class, which encapsulates fetching and managing server metadata without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "pub async fn discover_metadata(&self) -> Result<AuthorizationMetadata, AuthError> { /* ... */ }"
+      ]
+    },
+    {
+      "rule_id": 11,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found AuthorizationMetadata in defs, defined in auth.rs:102",
+        "Phase 1-IR: Confirmed discover_metadata fetches and provides authorization servers in calls.",
+        "Phase 2-Source Code: Verified that the SDK automatically handles OAuth 2.0 token management and metadata retrieval."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically implements OAuth 2.0 Protected Resource Metadata by defining necessary structures and methods, encapsulating behavior for managing authorization servers without requiring application developers to implement them.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "Struct AuthorizationMetadata: includes authorization_endpoint, token_endpoint.",
+        "Function discover_metadata: retrieves OAuth 2.0 metadata automatically."
+      ]
+    },
+    {
+      "rule_id": 12,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** implement the OAuth 2.0 Protected Resource Metadata ([RFC9728](https://datatracker.ietf.org/doc/html/rfc9728))\nspecification to indicate the locations of authorization servers. The Protected Resource Metadata document returned by the MCP server **MUST** include\nthe `authorization_servers` field containing at least one authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Function definitions related to authorization found in the SDK.",
+        "Phase 1-IR: Function calls confirm the logical flow for handling authorization.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs"
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically fetches the Protected Resource Metadata, including the required `authorization_servers` field, and handles all OAuth-related operations without requiring manual intervention from developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs"
+      ],
+      "code_snippets": [
+        "pub async fn discover_metadata(&self) -> Result<AuthorizationMetadata, AuthError> { ... }",
+        "pub struct AuthorizationMetadata { pub authorization_endpoint: String, pub token_endpoint: String, pub registration_endpoint: String, ... }"
+      ]
+    },
+    {
+      "rule_id": 13,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** use the HTTP header `WWW-Authenticate` when returning a _401 Unauthorized_ to indicate the location of the resource server metadata URL\nas described in [RFC9728 Section 5.1 \"WWW-Authenticate Response\"](https://datatracker.ietf.org/doc/html/rfc9728#name-www-authenticate-response).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'handle_response' function in tmpdj_5ggfg.txt that manages 401 response.",
+        "Phase 1-IR: Confirmed handling of 'WWW-Authenticate' header automatically in response processing."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements handling of 'WWW-Authenticate' in a 401 response without requiring manual implementation from developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\sse_client.rs"
+      ],
+      "code_snippets": [
+        "if response.status() == reqwest::StatusCode::UNAUTHORIZED {\n  if let Some(header) = response.headers().get(WWW_AUTHENTICATE) {...}"
+      ]
+    },
+    {
+      "rule_id": 14,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** be able to parse `WWW-Authenticate` headers and respond appropriately to `HTTP 401 Unauthorized` responses from the MCP server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No adequate function definitions found related to parsing `WWW-Authenticate` in defs.",
+        "Phase 1-IR: Function `handle_response` recognizes `401 Unauthorized` but lacks parsing logic for `WWW-Authenticate`.",
+        "Phase 2-Source Code: In `post_message`, the SDK captures `WWW-Authenticate` header but places the handling logic on the developer."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not fully implement the requirements to parse `WWW-Authenticate` headers and automatically respond to `HTTP 401 Unauthorized` responses, shifting responsibilities to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs"
+      ],
+      "code_snippets": [
+        "if response.status() == StatusCode::UNAUTHORIZED { /* logic */ }",
+        "if let Some(header) = response.headers().get(WWW_AUTHENTICATE) { /* capture header */ }"
+      ]
+    },
+    {
+      "rule_id": 15,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** follow the OAuth 2.0 Authorization Server Metadata [RFC8414](https://datatracker.ietf.org/doc/html/rfc8414)\nspecification to obtain the information required to interact with the authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function discover_metadata in AuthorizationManager defined in auth.rs.",
+        "Phase 1-IR: Confirmed call to discover_metadata within the SDK functions for handling OAuth actions.",
+        "Phase 2-Source Code: Verified implementation logic in discover_metadata that retrieves server metadata automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the OAuth 2.0 authorization flows, including the automatic retrieval of Authorization Server metadata via the discover_metadata method, ensuring compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "pub async fn discover_metadata(&self) -> Result<AuthorizationMetadata, AuthError> { /* ... */ }",
+        "let metadata = manager.discover_metadata().await?;"
+      ]
+    },
+    {
+      "rule_id": 16,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients and authorization servers **SHOULD** support the\nOAuth 2.0 Dynamic Client Registration Protocol [RFC7591](https://datatracker.ietf.org/doc/html/rfc7591)\nto allow MCP clients to obtain OAuth client IDs without user interaction. This provides a\nstandardized way for clients to automatically register with new authorization servers, which is crucial\nfor MCP because:\n\n- Clients may not know all possible MCP servers and their authorization servers in advance.\n- Manual registration would create friction for users.\n- It enables seamless connection to new MCP servers and their authorization servers.\n- Authorization servers can implement their own registration policies.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function register_client defined in AuthorizationManager.",
+        "Phase 1-IR: Confirmed register_client is called within AuthorizationSession constructor.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework automatically implements the behavior required by the MCP rule regarding OAuth Dynamic Client Registration, handling all aspects of registration without requiring additional developer input.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "pub async fn register_client(&mut self, name: &str, redirect_uri: &str) { ... }"
+      ]
+    },
+    {
+      "rule_id": 17,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found relevant functions in AuthorizationManager.",
+        "Phase 2-Source Code: Checked implementation in AuthorizationManager but did not find automatic inclusion of 'resource' parameter in requests."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not automatically include the 'resource' parameter in authorization and token requests as mandated by the MCP rule. While it defines the ability to prepare requests and handle OAuth token management, it shifts the responsibility of including the 'resource' parameter to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "async fn prepare_request(&self, request: reqwest::RequestBuilder) -> Result<reqwest::RequestBuilder, AuthError>",
+        "pub async fn exchange_code_for_token(&self, code: &str, csrf_token: &str) -> Result<StandardTokenResponse<EmptyExtraTokenFields, BasicTokenType>, AuthError>"
+      ]
+    },
+    {
+      "rule_id": 18,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions managing authorization and token requests.",
+        "Phase 2-Source Code: No automatic handling of `resource` parameter found in the implementation."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not automatically include the `resource` parameter in authorization requests and token requests as mandated by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\resource.rs"
+      ],
+      "code_snippets": [
+        "pub async fn get_authorization_url(&self, scopes: &[&str]) -> Result<String, AuthError> {...}",
+        "pub async fn exchange_code_for_token(&self, code: &str, csrf_token: &str) -> Result<StandardTokenResponse<EmptyExtraTokenFields, BasicTokenType>, AuthError> {...}"
+      ]
+    },
+    {
+      "rule_id": 19,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions get_authorization_url and exchange_code_for_token in defs.",
+        "Phase 2-Source Code: Functions generate URLs but do not encapsulate necessary logic for resource parameter."
+      ],
+      "confidence": 0.75,
+      "explanation": "The SDK defines capabilities for obtaining authorization and exchanging tokens but does not automatically encapsulate the handling of the resource parameter that identifies the MCP server, thus shifting responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "async fn get_authorization_url(&self, scopes: &[&str]) -> Result<String, AuthError>",
+        "async fn exchange_code_for_token(&self, code: &str, csrf_token: &str)"
+      ]
+    },
+    {
+      "rule_id": 20,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement Resource Indicators for OAuth 2.0 as defined in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. The `resource` parameter:\n\n1. **MUST** be included in both authorization requests and token requests.\n2. **MUST** identify the MCP server that the client intends to use the token with.\n3. **MUST** use the canonical URI of the MCP server as defined in [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#name-access-token-request).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found AuthorizationManager with token exchange capabilities in definitions.",
+        "Phase 2-Source Code: Verified implementation details in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the authorization and token management required by the rule without shifting responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "function exchange_code_for_token(&self, code: &str, csrf_token: &str) {...}",
+        "function get_access_token(&self) {...}"
+      ]
+    },
+    {
+      "rule_id": 21,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions including post_message and get_stream.",
+        "Phase 2-Source Code: Verified implementation where the SDK automatically handles sending messages to the defined sse_endpoint."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the URI handling within its methods, allowing the client to automatically utilize specific URIs for communication without needing developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs"
+      ],
+      "code_snippets": [
+        "pub async fn post_message(&self, uri: Arc<str>, message: ClientJsonRpcMessage, session_id: Option<Arc<str>>, auth_token: Option<String>) {...}",
+        "let sse_endpoint = config.sse_endpoint.as_ref().parse::<http::Uri>()?;"
+      ]
+    },
+    {
+      "rule_id": 22,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** provide the most specific URI that they can for the MCP server they intend to access, following the guidance in [RFC 8707](https://www.rfc-editor.org/rfc/rfc8707). While the canonical form uses lowercase scheme and host components, implementations **SHOULD** accept uppercase scheme and host components for robustness and interoperability.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No functions found in defs_python.jsonl that handle uppercase schemes/hosts.",
+        "Phase 1-IR: No relevant call patterns to imply automatic handling of URL casing.",
+        "Phase 2-Source Code: Functions for requests utilize Uri but lack case normalization logic."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK fails to implement automatic handling of uppercase scheme and host components in URIs. There is no evidence found that supports compliance with the specified rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\ws.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\http_header.rs"
+      ],
+      "code_snippets": [
+        "Function post_message and get_stream in auth module handle requests but do not process URI casing logic."
+      ]
+    },
+    {
+      "rule_id": 23,
+      "rule_type": "SHOULD",
+      "rule_text": "> **Note:** While both `https://mcp.example.com/` (with trailing slash) and `https://mcp.example.com` (without trailing slash) are technically valid absolute URIs according to [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986), implementations **SHOULD** consistently use the form without the trailing slash for better interoperability unless the trailing slash is semantically significant for the specific resource.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function handle_notification in progress.rs.",
+        "Phase 1-IR: Confirmed internal logic for sending notifications without requiring developer intervention.",
+        "Phase 2-Source Code: Verified subscription and notification handling in FILE_PATH: progress.rs"
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically handles notification sending and managing subscriptions, thus complying with MCP rule 23 requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs"
+      ],
+      "code_snippets": [
+        "pub async fn handle_notification(&self, notification: ProgressNotificationParam)",
+        "pub async fn subscribe(&self, progress_token: ProgressToken) -> ProgressSubscriber"
+      ]
+    },
+    {
+      "rule_id": 24,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** send this parameter regardless of whether authorization servers support it.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No direct function definitions found specifically for sending parameters, but authorization logic exists.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs, where the prepare_request method handles adding the authorization header automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically sends the required authorization parameter, ensuring developers don't have to manually implement this logic.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "Ok(request.header(AUTHORIZATION, format!(\"Bearer {}, token)))"
+      ]
+    },
+    {
+      "rule_id": 25,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant functions found in IR files.",
+        "Phase 2-Source Code: Verified 'prepare_request' method adds the Authorization header using 'Bearer token'.",
+        "Phase 2-Source Code: Verified 'get_access_token' method handles token refresh logic."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles access token retrieval and uses it to set the Authorization header for requests, conforming to the MCP rule about access token handling.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "pub async fn prepare_request(&self, request: reqwest::RequestBuilder) -> Result<reqwest::RequestBuilder, AuthError> {...}",
+        "let token = self.get_access_token().await?; Ok(request.header(AUTHORIZATION, format!(\"Bearer {}\", token)))"
+      ]
+    },
+    {
+      "rule_id": 26,
+      "rule_type": "MUST",
+      "rule_text": "Access token handling when making requests to MCP servers **MUST** conform to the requirements defined in\n[OAuth 2.1 Section 5 \"Resource Requests\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5).\nSpecifically:\n\n1. MCP client **MUST** use the Authorization request header field defined in\n   [OAuth 2.1 Section 5.1.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.1.1):",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'prepare_request' defined in streamable_http_client.rs that adds the Authorization header.",
+        "Phase 1-IR: Confirmed calls to 'prepare_request' in the SDK indicating internal handling of authorization.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs that 'bearer_auth' adds the Authorization header automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK implements the behavior specified by the MCP rule by automatically adding the Authorization header in the HTTP requests without requiring application developers to implement this themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs"
+      ],
+      "code_snippets": [
+        "request_builder = request_builder.bearer_auth(auth_header); // Automatically adds Authorization header"
+      ]
+    },
+    {
+      "rule_id": 27,
+      "rule_type": "MUST",
+      "rule_text": "Note that authorization **MUST** be included in every HTTP request from client to server,\neven if they are part of the same logical session.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function prepare_request in auth.rs that includes authorization.",
+        "Phase 2-Source Code: Verified implementation in prepare_request method adding the authorization header.",
+        "Phase 2-Source Code: Verified implementation in post_message, get_stream, delete_session methods checking if auth_token is None and retrieving token if not provided."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles adding authorization headers in every HTTP request, meeting the compliance requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
+      ],
+      "code_snippets": [
+        "pub async fn prepare_request(&self, request: reqwest::RequestBuilder) -> Result<reqwest::RequestBuilder, AuthError> { let token = self.get_access_token().await?; Ok(request.header(AUTHORIZATION, format!(\"Bearer {}\", token))) }",
+        "async fn post_message(&self, uri: Uri, message: crate::model::ClientJsonRpcMessage, mut auth_token: Option<String>) -> Result<(), SseTransportError<Self::Error>> { if auth_token.is_none() { auth_token = Some(self.get_access_token().await?); } self.http_client.post_message(uri, message, auth_token).await.map_err(SseTransportError::Client) }"
+      ]
+    },
+    {
+      "rule_id": 28,
+      "rule_type": "MUST_NOT",
+      "rule_text": "2. Access tokens **MUST NOT** be included in the URI query string",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found get_access_token in auth.rs:48",
+        "Phase 1-IR: Confirmed post_message and get_stream in sse_client.rs manage tokens internally",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: auth.rs, sse_client.rs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles access token management without involving application developers in the details of including tokens in URI strings.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\streamable_http_client.rs"
+      ],
+      "code_snippets": [
+        "pub async fn get_access_token(&self) -> Result<String, AuthError>",
+        "if auth_token.is_none() { auth_token = Some(self.get_access_token().await?); }"
+      ]
+    },
+    {
+      "rule_id": 29,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function validate_token in defs, defined in src/transport/auth.rs:144",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: src/transport/auth.rs",
+        "SDK automatically handles token validation and refreshing via methods such as get_access_token() and prepare_request()."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework implements the required behavior to validate access tokens, encapsulating the necessary logic within internal methods without requiring the developers to implement it themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "pub async fn get_access_token(&self) -> Result<String, AuthError> { ... }",
+        "pub fn prepare_request(&self, request: reqwest::RequestBuilder) -> Result<reqwest::RequestBuilder, AuthError> { ... }"
+      ]
+    },
+    {
+      "rule_id": 30,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function validate_token in defs, defined in auth.rs:144",
+        "Phase 1-IR: Confirmed get_access_token function in calls, handling token management.",
+        "Phase 2-Source Code: Verified implementation logic in validate_token function."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK has a method to validate access tokens and checks if they belong to the intended audience, thus encapsulating the behavior required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "pub fn validate_token(&self, token: &str) { /* check if token is valid */ }"
+      ]
+    },
+    {
+      "rule_id": 31,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found validate_token function in auth.rs at line 144.",
+        "Phase 1-IR: Found handle_response function in auth.rs at line 155, which processes unauthorized responses.",
+        "Phase 2-Source Code: Verified implementation that responds with HTTP 401 for invalid tokens in handle_response."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK has defined the necessary behaviors for validating access tokens and handling failed validations. It implements the required logic to respond automatically without delegating the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "if response.status() == StatusCode::UNAUTHORIZED { Err(AuthError::AuthorizationRequired) }"
+      ]
+    },
+    {
+      "rule_id": 32,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers, acting in their role as an OAuth 2.1 resource server, **MUST** validate access tokens as described in\n[OAuth 2.1 Section 5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.2).\nMCP servers **MUST** validate that access tokens were issued specifically for them as the intended audience,\naccording to [RFC 8707 Section 2](https://www.rfc-editor.org/rfc/rfc8707.html#section-2).\nIf validation fails, servers **MUST** respond according to\n[OAuth 2.1 Section 5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-5.3)\nerror handling requirements. Invalid or expired tokens **MUST** receive a HTTP 401\nresponse.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function handle_response handling HTTP 401 in src/transport/auth.rs:response",
+        "Phase 2-Source Code: Verified implementation in src/transport/auth.rs confirming internal error handling."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework automatically handles the HTTP 401 response for invalid or expired tokens through its internal logic, confirming compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "if response.status() == StatusCode::UNAUTHORIZED { Err(AuthError::AuthorizationRequired) }"
+      ]
+    },
+    {
+      "rule_id": 33,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP clients **MUST NOT** send tokens to the MCP server other than ones issued by the MCP server's authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'AuthorizationManager' and 'AuthClient' responsible for token management.",
+        "Phase 2-Source Code: Verified implementation where 'get_access_token()' automatically retrieves tokens and includes them in requests."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages the acquisition and usage of tokens without requiring application developers to implement this behavior. This complies with MCP rule 33.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
+      ],
+      "code_snippets": [
+        "async fn post_message(..., mut auth_token: Option<String>) { if auth_token.is_none() { auth_token = Some(self.get_access_token().await?); } ... }",
+        "pub async fn get_access_token(&self) -> Result<String, AuthError> { ... }"
+      ]
+    },
+    {
+      "rule_id": 34,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** only accept tokens that are valid for use with their\nown resources.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function validate_token in defs, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs:144",
+        "Phase 1-IR: Functions for managing auth sessions were found but lack automatic enforcement of resource-specific token validity.",
+        "Phase 2-Source Code: Verified implementations in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK provides token management capabilities but does not enforce that tokens are strictly confined to the SDK's own resources without relying on application developers to handle this check.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "fn validate_token(&self, token: &str) {...}",
+        "fn create_auth_session(...) {...}",
+        "fn update_auth_session_token(...) {...}"
+      ]
+    },
+    {
+      "rule_id": 35,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept or transit any other tokens.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions related to token handling found in defs_python.jsonl.",
+        "Phase 1-IR: No function calls related to token handling found in calls_python.jsonl.",
+        "Phase 2-Source Code: No specific implementations found that confirm automatic handling of tokens."
+      ],
+      "confidence": 0.5,
+      "explanation": "The analysis of both IR and source code did not uncover definitive evidence that the SDK correctly implements the expected behavior regarding token handling. There are no available definitions or calls related to token management in compliance with the MCP rule.",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 36,
+      "rule_type": "MUST",
+      "rule_text": "Servers **MUST** return appropriate HTTP status codes for authorization errors:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'handle_response' defined in auth.rs, which automatically manages UNAUTHORIZED status.",
+        "Phase 1-IR: Found function 'post_message' in sse_client.rs that handles HTTP responses for authorization.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: auth.rs and FILE_PATH: common/sse_client.rs."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates functionality to handle authorization errors and return appropriate HTTP status codes automatically, as evidenced by the definitions and implementations of 'handle_response' and 'post_message'.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs"
+      ],
+      "code_snippets": [
+        "fn handle_response(&self, response: reqwest::Response) -> Result<reqwest::Response, AuthError> { if response.status() == StatusCode::UNAUTHORIZED { Err(AuthError::AuthorizationRequired) } ... }",
+        "async fn post_message(&self, uri: Uri, message: crate::model::ClientJsonRpcMessage, auth_token: Option<String>) -> Result<(), SseTransportError<Self::Error>> { ... if response.status() == reqwest::StatusCode::UNAUTHORIZED { Err(...) } ... }"
+      ]
+    },
+    {
+      "rule_id": 37,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow OAuth 2.1 security best practices as laid out in [OAuth 2.1 Section 7. \"Security Considerations\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#name-security-considerations).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions for token management in AuthorizationManager and AuthClient in auth.rs",
+        "Phase 1-IR: Confirmed that these functions are called throughout SDK functions to ensure proper token handling.",
+        "Phase 2-Source Code: Verified that methods such as get_access_token and handle_response manage OAuth flows automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages OAuth 2.1 token management within its components, ensuring security best practices. Developers are not required to implement these behaviors themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
+      ],
+      "code_snippets": [
+        "pub async fn get_access_token(&self) { ... }",
+        "pub async fn handle_response(&self, response: reqwest::Response) -> Result<reqwest::Response, AuthError> { ... }"
+      ]
+    },
+    {
+      "rule_id": 38,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions related to resource handling found in defs_python.jsonl.",
+        "Phase 2-Source Code: Reviewed multiple functions (create_auth_session, exchange_code_for_token, get_access_token) with no automatic handling of resource parameter."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not automatically handle the inclusion of the `resource` parameter in authorization or token requests, thus transferring responsibility to developers which violates the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server\\resource.rs"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 39,
+      "rule_type": "MUST",
+      "rule_text": "[RFC 8707](https://www.rfc-editor.org/rfc/rfc8707.html) Resource Indicators provide critical security benefits by binding tokens to their intended\naudiences **when the Authorization Server supports the capability**. To enable current and future adoption:\n\n- MCP clients **MUST** include the `resource` parameter in authorization and token requests as specified in the [Resource Parameter Implementation](#resource-parameter-implementation) section\n- MCP servers **MUST** validate that tokens presented to them were specifically issued for their use",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function validate_token in complex_auth_sse.rs:144",
+        "Phase 2-Source Code: Verified get_access_token and prepare_request methods automatically handle token validation and authorization."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically validates tokens via encapsulated methods that manage token handling internally without requiring application developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\examples\\servers\\src\\complex_auth_sse.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "async fn get_access_token(&self) {...}",
+        "async fn prepare_request(&self, request: reqwest::RequestBuilder) {...}"
+      ]
+    },
+    {
+      "rule_id": 40,
+      "rule_type": "MUST",
+      "rule_text": "Clients and servers **MUST** implement secure token storage and follow OAuth best practices,\nas outlined in [OAuth 2.1, Section 7.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.1).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found functions related to OAuth token management in auth.rs and their call relationships.",
+        "Phase 2-Source Code: Verified implementation details showing that the SDK manages token storage and refresh automatically."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically manages secure token storage and handle OAuth best practices through internal functionalities, ensuring developers do not need to implement these mechanisms themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth_manager.rs"
+      ],
+      "code_snippets": [
+        "fn get_access_token(...) { ... }",
+        "fn exchange_code_for_token(...) { ... }"
+      ]
+    },
+    {
+      "rule_id": 41,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function get_access_token which automatically refreshes the token if it is expired.",
+        "Phase 1-IR: Found function refresh_token which handles the logic to obtain new tokens from the OAuth client."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK encapsulates the behavior of token management by automatically handling token refresh when needed, in compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs"
+      ],
+      "code_snippets": [
+        "/// get access token, if expired, refresh it automatically\npub async fn get_access_token(&self) -> Result<String, AuthError> { ... }",
+        "/// refresh access token\npub async fn refresh_token(&self) -> Result<StandardTokenResponse<EmptyExtraTokenFields, BasicTokenType>, AuthError> { ... }"
+      ]
+    },
+    {
+      "rule_id": 42,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **SHOULD** issue short-lived access tokens to reduce the impact of leaked tokens.\nFor public clients, authorization servers **MUST** rotate refresh tokens as described in [OAuth 2.1 Section 4.3.1 \"Refresh Token Grant\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-4.3.1).",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found in IR files, transitioned to source code verification.",
+        "Phase 2-Source Code: Verified that `get_access_token` calls `refresh_token` automatically when the access token is expired."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK automatically manages refresh tokens by implementing the refresh_token logic within its internal methods. Developers are not required to invoke token refresh directly as it is encapsulated in the access token management logic.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "pub async fn get_access_token(&self) { /*...*/ }",
+        "pub async fn refresh_token(&self) { /*...*/ }"
+      ]
+    },
+    {
+      "rule_id": 43,
+      "rule_type": "MUST",
+      "rule_text": "Implementations **MUST** follow [OAuth 2.1 Section 1.5 \"Communication Security\"](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-1.5).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant definitions found in defs_python.jsonl.",
+        "Phase 1-IR: No relevant calls found in calls_python.jsonl.",
+        "Phase 2-Source Code: Verified OAuth functionalities in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs, but no auto-notification mechanism present."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines functions for OAuth token handling but lacks an automatic notification system to enforce the communication security requirements of OAuth 2.1 Section 1.5. Thus, it does not fulfill the necessary compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
+      ],
+      "code_snippets": [
+        "pub async fn get_access_token(&self) -> Result<String, AuthError> { ... }",
+        "pub async fn handle_response(&self, response: reqwest::Response) -> Result<reqwest::Response, AuthError> { ... }"
+      ]
+    },
+    {
+      "rule_id": 44,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No evidence found in function definitions relating to HTTPS enforcement.",
+        "Phase 2-Source Code: Found AuthorizationSession managing redirect URIs, but no logic that ensures they must use HTTPS."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK provides structures for authorization but does not enforce HTTPS for authorization endpoints or redirect URIs, transferring this responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs"
+      ],
+      "code_snippets": [
+        "pub struct AuthorizationSession { pub redirect_uri: String, }",
+        "pub async fn prepare_request(&self, request: reqwest::RequestBuilder) { let token = self.get_access_token().await?; Ok(request.header(AUTHORIZATION, format!(\"Bearer {}\", token))) }"
+      ]
+    },
+    {
+      "rule_id": 45,
+      "rule_type": "MUST",
+      "rule_text": "Specifically:\n\n1. All authorization server endpoints **MUST** be served over HTTPS.\n1. All redirect URIs **MUST** be either `localhost` or use HTTPS.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found redirect_uris in ClientRegistrationRequest.",
+        "Phase 1-IR: No validation logic found to ensure URIs are localhost or HTTPS in the AuthorizationManager.",
+        "Phase 2-Source Code: Verified implementation of relevant structs and methods like AuthorizationManager."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines capabilities for redirect URIs but lacks automatic validation to ensure compliance with the rule that URIs must be either localhost or HTTPS.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "pub struct ClientRegistrationRequest { pub redirect_uris: Vec<String>, ... }"
+      ]
+    },
+    {
+      "rule_id": 46,
+      "rule_type": "MUST",
+      "rule_text": "To mitigate this, MCP clients **MUST** implement PKCE according to [OAuth 2.1 Section 7.5.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.5.2).\nPKCE helps prevent authorization code interception and injection attacks by requiring clients to create a secret verifier-challenge pair, ensuring that only the original requestor can exchange an authorization code for tokens.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function get_authorization_url which generates a PKCE challenge in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "Phase 1-IR: Found function exchange_code_for_token which validates tokens and uses the PKCE verifier in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK has implemented PKCE properly, handling both the generation of the PKCE challenge and the authorization code exchange internally.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "Method get_authorization_url calls pkce generation",
+        "Method exchange_code_for_token verifies PKCE and CSRF"
+      ]
+    },
+    {
+      "rule_id": 47,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** have redirect URIs registered with the authorization server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function register_client in auth.rs:304",
+        "Phase 1-IR: Confirmed register_client is called within AuthorizationSession::new",
+        "Phase 2-Source Code: Verified implementation encapsulates automatic handling of client registration"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically registers redirect URIs with the authorization server without requiring application developers to handle this manually.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "let registration_request = ClientRegistrationRequest { client_name: name.to_string(), redirect_uris: vec![redirect_uri.to_string()] };"
+      ]
+    },
+    {
+      "rule_id": 48,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** validate exact redirect URIs against pre-registered values to prevent redirection attacks.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Found validate_client function in src/transport/auth.rs.",
+        "Phase 2-Source Code: validate_client accepts redirect_uri but internal logic not confirmed for URI comparison."
+      ],
+      "confidence": 0.5,
+      "explanation": "The SDK defines the ability to validate redirect URIs in the validate_client function, but it's unclear if it implements the necessary logic to validate these URIs against pre-registered values.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp-macros\\src\\prompt_router.rs"
+      ],
+      "code_snippets": [
+        "pub fn validate_client(&self, client_id: &str, redirect_uri: &str) {... // Expected comparison logic implementation"
+      ]
+    },
+    {
+      "rule_id": 49,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP clients **SHOULD** use and verify state parameters in the authorization code flow\nand discard any results that do not include or have a mismatch with the original state.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found handle_callback method for CSRF token check at line 14 in `src/handler/client.rs`.",
+        "Phase 2-Source Code: Verified that the function indeed validates the CSRF token and handles mismatches by throwing errors."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK contains structures to capture state parameters and performs automatic verification to ensure compliance as specified in the rule regarding authorization code flow.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+      ],
+      "code_snippets": [
+        "if csrf_token != expected_csrf_token.secret() { return Err(AuthError::InternalError('CSRF token mismatch'.to_string())); }"
+      ]
+    },
+    {
+      "rule_id": 50,
+      "rule_type": "MUST",
+      "rule_text": "Authorization servers **MUST** take precautions to prevent redirecting user agents to untrusted URI's, following suggestions laid out in [OAuth 2.1 Section 7.12.2](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-12#section-7.12.2)",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found AuthorizationSession struct in file C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs",
+        "Phase 1-IR: Confirmed redirect_uri input into OAuthClientConfig without validation",
+        "Phase 2-Source Code: No automatic verification for untrusted URIs present"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK provides structure for handling redirect URIs but lacks the automatic enforcement of security measures to prevent untrusted URI redirects as specified in the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "pub struct AuthorizationSession { pub auth_manager: AuthorizationManager, pub auth_url: String, pub redirect_uri: String, }",
+        "let config = OAuthClientConfig { redirect_uri: redirect_uri.to_string(), };",
+        "let http_client = reqwest::ClientBuilder::new() .redirect(reqwest::redirect::Policy::none()) .build()?"
+      ]
+    },
+    {
+      "rule_id": 51,
+      "rule_type": "SHOULD",
+      "rule_text": "Authorization servers **SHOULD** only automatically redirect the user agent if it trusts the redirection URI. If the URI is not trusted, the authorization server MAY inform the user and rely on the user to make the correct decision.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No clear definitions found for trust verification logic for redirect URIs.",
+        "Phase 2-Source Code: Found redirect_uri handling, but no trust validation logic was found."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK does not automatically ensure that redirection URIs are trusted, failing to comply with the requirement that the SDK should encapsulate this behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "pub async fn get_authorization_url(&self, scopes: &[&str]) -> Result<String, AuthError> { ... }",
+        "pub struct AuthorizationSession { pub redirect_uri: String, ... }"
+      ]
+    },
+    {
+      "rule_id": 52,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Searched for function definitions but did not find appropriate consent handling mechanisms.",
+        "Phase 2-Source Code: Identified the function register_client but lacked automatic consent capture and management logic."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK does not implement automatic user consent before dynamic client registration and forwarding processes, placing the burden on developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\sse_client.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\lib.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs"
+      ],
+      "code_snippets": [
+        "fn register_client(&mut self, name: &str, redirect_uri: &str)",
+        "async fn handle_callback(&mut self, code: &str, csrf_token: &str) -> Result<(), AuthError>"
+      ]
+    },
+    {
+      "rule_id": 53,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** validate access tokens before processing the request, ensuring the access token is issued specifically for the MCP server, and take all necessary steps to ensure no data is returned to unauthorized parties.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function validate_token in defs, defined in tmpbwovvesf.json:144",
+        "Phase 1-IR: Confirmed validate_token is used within prepare_request and handle_response",
+        "Phase 2-Source Code: Verified implementation details in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles access token validation and properly manages unauthorized access via internal methods.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs"
+      ],
+      "code_snippets": [
+        "async fn prepare_request(&self, request: reqwest::RequestBuilder) -> Result<reqwest::RequestBuilder, AuthError>",
+        "async fn handle_response(&self, response: reqwest::Response) -> Result<reqwest::Response, AuthError>"
+      ]
+    },
+    {
+      "rule_id": 54,
+      "rule_type": "MUST",
+      "rule_text": "A MCP server **MUST** follow the guidelines in [OAuth 2.1 - Section 5.2](https://www.ietf.org/archive/id/draft-ietf-oauth-v2-1-12.html#section-5.2) to validate inbound tokens.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `validate_token` in auth.rs, defined in line 144.",
+        "Phase 2-Source Code: `validate_token` is called internally within other methods that automatically manage token validation."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK provides the function `validate_token` that is invoked internally to handle token validation, thus following the requirements of the MCP rule concerning OAuth 2.1.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "fn validate_token(&self, token: &str) {...}"
+      ]
+    },
+    {
+      "rule_id": 55,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** only accept tokens specifically intended for themselves and **MUST** reject tokens that do not include them in the audience claim or otherwise verify that they are the intended recipient of the token. See the [Security Best Practices Token Passthrough section](/specification/2025-06-18/basic/security_best_practices#token-passthrough) for details.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function validate_token at src/transport/auth.rs:144.",
+        "Phase 1-IR: Found function check_audience at src/transport/auth.rs:102, which directly checks audience claims.",
+        "Phase 2-Source Code: Confirmed that validate_token rejects unauthorized tokens based on audience check."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically handles the token validation and audience checking as required. Function implementations prevent the application developer from managing these details.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "validate_token function checks audience and rejects tokens accordingly.",
+        "check_audience function ensures the token audience matches the expected audience."
+      ]
+    },
+    {
+      "rule_id": 56,
+      "rule_type": "MUST_NOT",
+      "rule_text": "If the MCP server makes requests to upstream APIs, it may act as an OAuth client to them. The access token used at the upstream API is a seperate token, issued by the upstream authorization server. The MCP server **MUST NOT** pass through the token it received from the MCP client.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Insufficient information in IR files regarding token management.",
+        "Phase 2-Source Code: AuthClient and AuthorizationManager handle tokens without passing the client token."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK's token management implementation encapsulates access token handling, ensuring client tokens are not passed to upstream APIs, aligning with the compliance rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs"
+      ],
+      "code_snippets": [
+        "pub fn get_access_token(&self) -> impl Future<Output = Result<String, AuthError>> + Send { ... }",
+        "pub async fn prepare_request(&self, request: reqwest::RequestBuilder) -> Result<reqwest::RequestBuilder, AuthError> { ... }"
+      ]
+    },
+    {
+      "rule_id": 57,
+      "rule_type": "MUST",
+      "rule_text": "MCP clients **MUST** implement and use the `resource` parameter as defined in [RFC 8707 - Resource Indicators for OAuth 2.0](https://www.rfc-editor.org/rfc/rfc8707.html)\nto explicitly specify the target resource for which the token is being requested. This requirement aligns with the recommendation in\n[RFC 9728 Section 7.4](https://datatracker.ietf.org/doc/html/rfc9728#section-7.4). This ensures that access tokens are bound to their intended resources and\ncannot be misused across different services.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions for resource management, such as 'register_resource' and 'resource'.",
+        "Phase 1-IR: No confirmed calls indicating automatic handling.",
+        "Phase 2-Source Code: Functions exist, but no demonstrated automatic invocation."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK includes functions to register resources, but lacks visible mechanisms or implementation logic that automatically handle the resource management without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\resource.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\content.rs"
+      ],
+      "code_snippets": [
+        "fn register_resource(&mut self, resource: ResourceKey, http_request_id: HttpRequestId) {...}",
+        "pub fn new(uri: impl Into<String>, name: impl Into<String>) -> Self {...}"
+      ]
+    },
+    {
+      "rule_id": 58,
+      "rule_type": "MUST",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found for base protocol management.",
+        "Phase 2-Source Code: Analyzed source file at C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically manage base protocol and lifecycle management as required by the rule but expects developers to implement notification handling themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs"
+      ],
+      "code_snippets": [
+        "Session management methods defined in local.rs, but no internal notification logic found."
+      ]
+    },
+    {
+      "rule_id": 59,
+      "rule_type": "MAY",
+      "rule_text": "All implementations **MUST** support the base protocol and lifecycle management\ncomponents. Other components **MAY** be implemented based on the specific needs of the\napplication.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Incomplete evidence in IR files.",
+        "Phase 2-Source Code: Found notification handling in client.rs but lacks automated behavior."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not automatically handle notification sending logic or lifecycle management as required. While it defines notifications and contains handling methods, there's no encapsulated automatic mechanism for the developer.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs"
+      ],
+      "code_snippets": [
+        "async fn handle_notification(&self, notification: <RoleClient as ServiceRole>::PeerNot, context: NotificationContext<RoleClient>)",
+        "self.on_resource_list_changed(context).await"
+      ]
+    },
+    {
+      "rule_id": 60,
+      "rule_type": "MUST",
+      "rule_text": "All messages between MCP clients and servers **MUST** follow the\n[JSON-RPC 2.0](https://www.jsonrpc.org/specification) specification. The protocol defines\nthese types of messages:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No explicit flaws found in definitions related to JSON-RPC.",
+        "Phase 2-Source Code: Verified definition of notifications and confirmation of automatic handling logic via service role structures."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK successfully implements the JSON-RPC 2.0 specification by defining notifications and automatically handling them within its service structures.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\sse_client.rs"
+      ],
+      "code_snippets": [
+        "pub struct JsonRpcNotification<N = Notification> { ... }",
+        "async fn handle_notification(&self, notification: <RoleServer as ServiceRole>::PeerNot, ...) { ... }"
+      ]
+    },
+    {
+      "rule_id": 61,
+      "rule_type": "MUST",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found JsonRpcRequest struct defining id of type RequestId in tmpu6c5nlb_.txt.",
+        "Phase 1-IR: Confirmed handling of registration and processing of request IDs in the register_request and handle_request methods.",
+        "Phase 2-Source Code: Verified that ID is registered and utilized automatically within the SDK functions."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements request ID handling by defining it in the request structure and managing it automatically through internal functions.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+      ],
+      "code_snippets": [
+        "pub struct JsonRpcRequest<R = Request> { pub jsonrpc: JsonRpcVersion2_0, pub id: RequestId, #[serde(flatten)] pub request: R, }",
+        "fn register_request(&mut self, request: &JsonRpcRequest<ClientRequest>, http_request_id: HttpRequestId) { self.register_resource(ResourceKey::McpRequestId(request.id.clone()), http_request_id); }"
+      ]
+    },
+    {
+      "rule_id": 62,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found 'JsonRpcRequest' in defs, defined in model.rs:14",
+        "Phase 2-Source Code: Verified use of 'RequestId' in struct 'JsonRpcRequest', ensuring it cannot be null."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements the requirement that the ID MUST NOT be null by defining it within a type that cannot accommodate null values and ensuring that all JSON-RPC requests instantiate with a valid ID.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session.rs"
+      ],
+      "code_snippets": [
+        "pub type RequestId = NumberOrString;",
+        "pub struct JsonRpcRequest<R = Request> { pub jsonrpc: JsonRpcVersion2_0, pub id: RequestId, }"
+      ]
+    },
+    {
+      "rule_id": 63,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Requests **MUST** include a string or integer ID.\n- Unlike base JSON-RPC, the ID **MUST NOT** be `null`.\n- The request ID **MUST NOT** have been previously used by the requestor within the same\n  session.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: Found references to McpRequestId management in multiple places.",
+        "Phase 2-Source Code: Identified mechanisms for managing request IDs via registration and unregistration but unclear on preventing duplicates."
+      ],
+      "confidence": 0.6,
+      "explanation": "The SDK includes mechanisms for registering and unregistering request IDs but lacks definitive automatic handling to prevent previously used request IDs within a session, leading to ambiguity in compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs"
+      ],
+      "code_snippets": [
+        "self.register_resource(ResourceKey::McpRequestId(request.id.clone()), http_request_id);"
+      ]
+    },
+    {
+      "rule_id": 64,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function JsonRpcResponse that defines a response including RequestId.",
+        "Phase 1-IR: Confirmed internal logic for handling and sending responses includes ID.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: tmpu6c5nlb_.txt and FILE_PATH: tmpf15g6aez.txt."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically includes the same ID in responses that corresponds to the original requests, following the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\http_header.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
+      ],
+      "code_snippets": [
+        "pub struct JsonRpcResponse<R = JsonObject> { pub id: RequestId, ... }",
+        "pub const fn response(response: Resp, id: RequestId) -> Self { ... }"
+      ]
+    },
+    {
+      "rule_id": 65,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found the JsonRpcMessage enum defining response and error types.",
+        "Phase 1-IR: No implementation logic found that prevents both result and error from being set.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: /path/to/file.rs."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not contain internal logic to prevent both 'result' and 'error' from being set in a response.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
+      ],
+      "code_snippets": [
+        "pub enum JsonRpcMessage<Req = Request, Resp = DefaultResponse, Noti = Notification> { Response(JsonRpcResponse<Resp>), Error(JsonRpcError), }",
+        "async fn handle_request(&self, request: <RoleServer as ServiceRole>::PeerReq, context: RequestContext<RoleServer>) -> Result<<RoleServer as ServiceRole>::Resp, McpError> {"
+      ]
+    },
+    {
+      "rule_id": 66,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found JsonRpcResponse and JsonRpcError structures that manage responses and errors.",
+        "Phase 2-Source Code: Verified automatic handling in ServiceExt trait that dictates response handling without needing manual developer intervention."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles setting either a result or an error in responses through defined structures and methods, fulfilling MCP protocol requirements.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\json_rpc_message.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs"
+      ],
+      "code_snippets": [
+        "pub struct JsonRpcResponse<R = JsonObject> { pub result: R, ... }",
+        "pub enum JsonRpcMessage<Req, Resp, Not> { Response(JsonRpcResponse<Resp>), Error(JsonRpcError), ... }"
+      ]
+    },
+    {
+      "rule_id": 67,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found CallToolResult struct with error handling functions providing required structure.",
+        "Phase 2-Source Code: Verified implementation through error() and structured_error() methods in CallToolResult."
+      ],
+      "confidence": 0.9,
+      "explanation": "SDK defines error responses in a structured manner with automated response creation for both success and error situations as required by the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\content.rs"
+      ],
+      "code_snippets": [
+        "pub fn error(content: Vec<Content>) -> Self {...}",
+        "pub fn structured_error(value: Value) -> Self {...}"
+      ]
+    },
+    {
+      "rule_id": 68,
+      "rule_type": "MAY",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ErrorData structure which includes an error code and message.",
+        "Phase 2-Source Code: Verified internal handling in handle_request method, which packages error information appropriately."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the construction and sending of error messages, ensuring that all required attributes (error code and message) are included as per the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\error.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler.rs"
+      ],
+      "code_snippets": [
+        "ErrorData struct definition: { code: ErrorCode, message: Cow<'static, str>, data: Option<Value> }",
+        "JsonRpcMessage creation: fn error(error: ErrorData, id: RequestId) -> Self"
+      ]
+    },
+    {
+      "rule_id": 69,
+      "rule_type": "MUST",
+      "rule_text": "- Responses **MUST** include the same ID as the request they correspond to.\n- **Responses** are further sub-categorized as either **successful results** or\n  **errors**. Either a `result` or an `error` **MUST** be set. A response **MUST NOT**\n  set both.\n- Results **MAY** follow any JSON object structure, while errors **MUST** include an\n  error code and message at minimum.\n- Error codes **MUST** be integers.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function ErrorCode defined with integer type.",
+        "Phase 2-Source Code: Verified implementation includes struct ErrorData using ErrorCode.",
+        "Phase 2-Source Code: Confirmed JsonRpcMessage automatically constructs error messages with integer error codes."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles error codes defined as integers through encapsulation in the ErrorCode struct, ensuring compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\error.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model.rs"
+      ],
+      "code_snippets": [
+        "#[derive(Debug, Clone, Copy, Default, Serialize, Deserialize, PartialEq, Eq)] #[serde(transparent)] pub struct ErrorCode(pub i32);",
+        "pub struct ErrorData { pub code: ErrorCode, pub message: Cow<'static, str>, pub data: Option<Value> }"
+      ]
+    },
+    {
+      "rule_id": 70,
+      "rule_type": "MUST_NOT",
+      "rule_text": "Notifications are sent from the client to the server or vice versa, as a one-way message.\nThe receiver **MUST NOT** send a response.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Searched function definitions for notification handling.",
+        "Phase 2-Source Code: Verified the handle_notification method in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs handles notifications without sending responses.",
+        "Phase 2-Source Code: Checked methods in server.rs confirming no response sending in notifications."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles notifications without allowing responses to be sent back by the receiver, consistent with the requirement that the receiver MUST NOT send a response.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+      ],
+      "code_snippets": [
+        "fn handle_notification(...)",
+        "self.on_cancelled(notification.params, context).await"
+      ]
+    },
+    {
+      "rule_id": 71,
+      "rule_type": "MUST_NOT",
+      "rule_text": "- Notifications **MUST NOT** include an ID.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions or call relationships found to enforce the rule.",
+        "Phase 2-Source Code: Verified multiple files defining notifications and handling notifications, no logic preventing IDs.",
+        "Phase 2-Source Code: Notifications like 'ProgressNotificationParam' do not exclude 'id' fields."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK framework does not implement logic that automatically prevents including IDs in notifications, violating the MCP rule that notifications MUST NOT include an ID.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\examples\\clients\\src\\sampling_stdio.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\tower.rs"
+      ],
+      "code_snippets": [
+        "pub struct CancelledNotificationParam { pub request_id: RequestId, pub reason: Option<String>, }",
+        "pub struct ProgressNotificationParam { pub progress_token: ProgressToken, pub progress: f64, ... }"
+      ]
+    },
+    {
+      "rule_id": 72,
+      "rule_type": "SHOULD",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 2-Source Code: Found ability definition in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "Phase 2-Source Code: Verified internal handling of authorization automatically via prepare_request method."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles authorization header inclusion for HTTP requests and doesn’t leave this as a manual responsibility for the developers, which complies with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs"
+      ],
+      "code_snippets": [
+        "pub async fn prepare_request(&self, request: reqwest::RequestBuilder) -> Result<reqwest::RequestBuilder, AuthError> { ... }"
+      ]
+    },
+    {
+      "rule_id": 73,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "MCP provides an [Authorization](/specification/2025-06-18/basic/authorization) framework for use with HTTP.\nImplementations using an HTTP-based transport **SHOULD** conform to this specification,\nwhereas implementations using STDIO transport **SHOULD NOT** follow this specification,\nand instead retrieve credentials from the environment.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function get_credentials in defs, defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs:260",
+        "Phase 1-IR: Confirmed get_access_token and refresh_token methods show automated credential management.",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs and auth handling in AuthorizedHttpClient."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK correctly implements and encapsulates the behaviors required by the MCP rule regarding credential handling, ensuring it automatically retrieves credentials without requiring application developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs"
+      ],
+      "code_snippets": [
+        "async fn get_credentials(&self) -> Result<Credentials, AuthError>",
+        "let token = self.get_access_token().await;",
+        "self.auth_manager.prepare_request(request).await"
+      ]
+    },
+    {
+      "rule_id": 74,
+      "rule_type": "MAY",
+      "rule_text": "Additionally, clients and servers **MAY** negotiate their own custom authentication and\nauthorization strategies.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function definitions for AuthorizationManager and related methods in defs.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs.",
+        "Phase 2-Source Code: Methods in OAuthState and AuthorizationSession show automatic handling of authorization."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK has implemented the functionalities required by the MCP rule, allowing for custom authentication and authorization strategies. It encapsulates these complexities through the AuthorizationManager and relevant session handling structures while providing automatic credential management.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth.rs"
+      ],
+      "code_snippets": [
+        "pub async fn get_authorization_url(&self, scopes: &[&str]) -> Result<String, AuthError> {...}",
+        "pub async fn prepare_request(&self, request: reqwest::RequestBuilder) -> Result<reqwest::RequestBuilder, AuthError> {...}"
+      ]
+    },
+    {
+      "rule_id": 75,
+      "rule_type": "MUST",
+      "rule_text": "The initialization phase **MUST** be the first interaction between client and server.\nDuring this phase, the client and server:\n\n- Establish protocol version compatibility\n- Exchange and negotiate capabilities\n- Share implementation details",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'initialize' defined in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs.",
+        "Phase 2-Source Code: No automatic handling logic found for initialization phase, indicating reliance on developers."
+      ],
+      "confidence": 0.85,
+      "explanation": "The SDK defines the necessary initialization method, yet lacks the internal logic to automatically manage the initialization phase without developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+      ],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 76,
+      "rule_type": "MUST",
+      "rule_text": "The client **MUST** initiate this phase by sending an `initialize` request containing:\n\n- Protocol version supported\n- Client capabilities\n- Client implementation information",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found InitializationRequest structure with required fields.",
+        "Phase 2-Source Code: Verified that SDK automatically handles the initialization through the handle_request method, which processes requests and sends notifications."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK handles the initialization process internally, sending the required notifications without requiring developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\server.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\notification.rs"
+      ],
+      "code_snippets": [
+        "pub struct InitializeRequestParam {...}",
+        "async fn handle_request(&self, request: ClientRequest, context: RequestContext...) {...}",
+        "self.on_initialized(context).await"
+      ]
+    },
+    {
+      "rule_id": 77,
+      "rule_type": "MUST",
+      "rule_text": "The server **MUST** respond with its own capabilities and information:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `get_info` in Counter implementation, which returns ServerInfo.",
+        "Phase 2-Source Code: Verified implementation in: C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the server capability responses through the `get_info` method, which encapsulates the behavior required by the MCP rule. The function builds the capability structure internally without requiring developers to manage protocol details.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+      ],
+      "code_snippets": [
+        "fn get_info(&self) -> ServerInfo { ... capabilities: ServerCapabilities::builder().enable_tools().build(), ... }"
+      ]
+    },
+    {
+      "rule_id": 78,
+      "rule_type": "MUST",
+      "rule_text": "After successful initialization, the client **MUST** send an `initialized` notification\nto indicate it is ready to begin normal operations:",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found the definition for InitializedNotification in source",
+        "Phase 2-Source Code: Verified that the SDK sends the InitializedNotification after initialization completion"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles sending the 'initialized' notification through its internal logic, fully complying with the requirement.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+      ],
+      "code_snippets": [
+        "let notification = ClientJsonRpcMessage::notification(ClientNotification::InitializedNotification(...));"
+      ]
+    },
+    {
+      "rule_id": 79,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'initialize' in defs, defined in server.rs:110",
+        "Phase 1-IR: No direct calls found to 'initialize' that enforce compliance",
+        "Phase 2-Source Code: 'handle_request' allows processing of requests without enforcing rules"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not enforce the behavior that would prevent clients from sending requests other than 'ping' before receiving an 'initialize' response, shifting the responsibility onto developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+      ],
+      "code_snippets": [
+        "async fn handle_request(&self, request: <RoleServer as ServiceRole>::PeerReq, context: RequestContext<RoleServer>) { /* ... */ }"
+      ]
+    },
+    {
+      "rule_id": 80,
+      "rule_type": "SHOULD_NOT",
+      "rule_text": "- The client **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) before the server has responded to the\n  `initialize` request.\n- The server **SHOULD NOT** send requests other than\n  [pings](/specification/2025-06-18/basic/utilities/ping) and\n  [logging](/specification/2025-06-18/server/utilities/logging) before receiving the `initialized`\n  notification.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found handle_request method that can process multiple request types including initialize.",
+        "Phase 2-Source Code: Verified handle_notification demonstrates the server does manage notifications post-initialization.",
+        "However, there is no evidence showing automatic enforcement preventing requests other than pings and logging during the uninitialized state."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK allows requests other than pings and logging even before receiving the 'initialized' notification. There is no mechanism enforced that restricts improper requests, which indicates non-compliance.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs"
+      ],
+      "code_snippets": [
+        "async fn handle_request(self, request: <RoleServer as ServiceRole>::PeerReq, context: RequestContext<RoleServer>)",
+        "async fn handle_notification(self, notification: <RoleServer as ServiceRole>::PeerNot, context: NotificationContext<RoleServer>)"
+      ]
+    },
+    {
+      "rule_id": 81,
+      "rule_type": "MUST",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found protocol_version in InitializeRequestParam.",
+        "Phase 2-Source Code: Verified automatic handling of protocol version in the initialize method of ServerHandler."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides an `InitializeRequestParam` with a `protocol_version` field and also implements logic in the `initialize` method that checks and manages protocol versions automatically, fulfilling both the absence of manual implementation and the requirement of sending a protocol version during initialization.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\server.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model.rs"
+      ],
+      "code_snippets": [
+        "pub struct InitializeRequestParam { pub protocol_version: ProtocolVersion, ... }",
+        "fn initialize(&self, request: InitializeRequestParam, context: RequestContext<RoleServer>) -> impl Future<Output = Result<InitializeResult, McpError>>"
+      ]
+    },
+    {
+      "rule_id": 82,
+      "rule_type": "SHOULD",
+      "rule_text": "In the `initialize` request, the client **MUST** send a protocol version it supports.\nThis **SHOULD** be the _latest_ version supported by the client.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found initialization request parameters including protocol_version.",
+        "Phase 2-Source Code: Verified definition of ProtocolVersion, but no automated sending logic was identified."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines the protocol version within the request but does not guarantee automatic handling or notification mechanisms for the latest supported version. It requires the client to explicitly manage and send this information.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\server.rs"
+      ],
+      "code_snippets": [
+        "pub struct InitializeRequestParam { pub protocol_version: ProtocolVersion, ... }",
+        "pub const LATEST: Self = Self::V_2025_03_26;"
+      ]
+    },
+    {
+      "rule_id": 83,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found InitializeResult managing protocol version in initializes response.",
+        "Phase 1-IR: Confirmed that function calls do not indicate automatic handling of protocol responses, relying instead on developer implementation.",
+        "Phase 2-Source Code: No internal methods found that autonomously handle version response logic."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines protocol versions but does not implement necessary internal logic to automatically respond with the same version when requested, leaving this responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs"
+      ],
+      "code_snippets": [
+        "struct InitializeResult { pub protocol_version: ProtocolVersion, }",
+        "function calls in the context of InitializeResult do not encapsulate automatic version management."
+      ]
+    },
+    {
+      "rule_id": 84,
+      "rule_type": "MUST",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found protocol version definitions in source.",
+        "Phase 2-Source Code: Verified handling logic according to protocol versions in server.rs."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK has defined the necessary protocol versions and contains internal logic to handle communication based on the version specified by the client, fulfilling the requirements of the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\server.rs"
+      ],
+      "code_snippets": [
+        "let protocol_version = match peer_protocol_version.partial_cmp(&init_response.protocol_version) {...}",
+        "init_response.protocol_version = protocol_version;"
+      ]
+    },
+    {
+      "rule_id": 85,
+      "rule_type": "SHOULD",
+      "rule_text": "If the server supports the requested protocol version, it **MUST** respond with the same\nversion. Otherwise, the server **MUST** respond with another protocol version it\nsupports. This **SHOULD** be the _latest_ version supported by the server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found ProtocolVersion in tmpu6c5nlb_.txt, defining LATEST version.",
+        "Phase 1-IR: Confirmed server's response handling logic in server.rs and client handlers.",
+        "Phase 2-Source Code: Verified that the version handling and initialization notification occurs automatically."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK framework is compliant as it defines a capability for the latest protocol version, and has internal implementation that handles protocol responses automatically without requiring application developer intervention.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\tmpu6c5nlb_.txt"
+      ],
+      "code_snippets": [
+        "pub const LATEST: Self = Self::V_2025_03_26; // defines latest protocol version",
+        "async fn handle_request(...){ ... } // internal handling logic for requests."
+      ]
+    },
+    {
+      "rule_id": 86,
+      "rule_type": "SHOULD",
+      "rule_text": "If the client does not support the version in the server's response, it **SHOULD**\ndisconnect.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions found regarding disconnecting due to version support.",
+        "Phase 1-IR: No relevant function calls that display automatic disconnect logic.",
+        "Phase 2-Source Code: Found session management definitions, but no auto-disconnect on version mismatch functionality."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK does not implement an automatic behavior for disconnecting the client if a version mismatch occurs, requiring developers to manage this separation themselves.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\worker.rs"
+      ],
+      "code_snippets": [
+        "async fn close_session(&self, id: &SessionId) -> Result<(), Self::Error>",
+        "fn manage_session(&self, id: &SessionId) -> Result<(), Self::Error>"
+      ]
+    },
+    {
+      "rule_id": 87,
+      "rule_type": "MUST",
+      "rule_text": "<Note>\nIf using HTTP, the client **MUST** include the `MCP-Protocol-Version:\n<protocol-version>` HTTP header on all subsequent requests to the MCP\nserver.\nFor details, see [the Protocol Version Header section in Transports](/specification/2025-06-18/basic/transports#protocol-version-header).\n</Note>",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found InitializeRequest that holds protocol version information.",
+        "Phase 1-IR: No automatic sending function for the MCP-Protocol-Version header was identified.",
+        "Phase 2-Source Code: Overall checks on HTTP request constructions did not yield automatic header management."
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK does not automatically include the `MCP-Protocol-Version` HTTP header in requests to the MCP server, which is necessary for compliance with the defined rule. The ability definition is found, but the internal behavior logic to manage this automatically is missing.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest\\streamable_http_client.rs"
+      ],
+      "code_snippets": [
+        "HTTP header construction methods were assessed but lacked MCP-Protocol-Version inclusion."
+      ]
+    },
+    {
+      "rule_id": 88,
+      "rule_type": "MUST",
+      "rule_text": "Both parties **MUST**:\n\n- Respect the negotiated protocol version\n- Only use capabilities that were successfully negotiated",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant function definitions for protocol or capabilities found in defs.",
+        "Phase 1-IR: No related calls were confirmed in calls.",
+        "Phase 2-Source Code: Found capability handling structures and protocol definitions in src/model/capabilities.rs.",
+        "Phase 2-Source Code: InitializeRequestParam includes fields for protocol version and capabilities reflecting compliance during init."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK defines capabilities and protocol versions but lacks clear internal logic for automatic notifications upon changes, placing that responsibility on developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\extension.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service\\server.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\Cargo.toml"
+      ],
+      "code_snippets": [
+        "struct ClientCapabilities {...}",
+        "struct ProtocolVersion {...}",
+        "struct InitializeRequestParam {...}",
+        "enum ServerInitializeError {...}"
+      ]
+    },
+    {
+      "rule_id": 89,
+      "rule_type": "SHOULD",
+      "rule_text": "For the stdio [transport](/specification/2025-06-18/basic/transports), the client **SHOULD** initiate\nshutdown by:\n\n1. First, closing the input stream to the child process (the server)\n2. Waiting for the server to exit, or sending `SIGTERM` if the server does not exit\n   within a reasonable time\n3. Sending `SIGKILL` if the server does not exit within a reasonable time after `SIGTERM`",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function graceful_shutdown in defs, defined in child_process.rs:110",
+        "Phase 2-Source Code: Verified implementation in C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\child_process.rs"
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically manages the shutdown process as per the rule, including closing the input stream, waiting for the child process to exit, and sending termination signals as necessary.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\child_process.rs"
+      ],
+      "code_snippets": [
+        "self.transport.close().await?",
+        "tokio::select! { _ = tokio::time::sleep(std::time::Duration::from_secs(5)) => { // SIGTERM logic } }"
+      ]
+    },
+    {
+      "rule_id": 90,
+      "rule_type": "MAY",
+      "rule_text": "The server **MAY** initiate shutdown by closing its output stream to the client and\nexiting.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No specific definitions found in IR files for shutdown behavior.",
+        "Phase 2-Source Code: Verified implementation of graceful shutdown in FILE_PATH: tmp1xxjykuh.txt",
+        "Phase 2-Source Code: Automatic handling of closing connections is found in StreamableHttpClient."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles the shutdown process by closing the output stream and exiting, complying with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\never.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\server_side_http.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\never.rs"
+      ],
+      "code_snippets": [
+        "pub async fn graceful_shutdown(&mut self) -> std::io::Result<()> { /* logic to shut down */ }",
+        "async fn close(&mut self) -> Result<(), Self::Error> { /* logic to close connection */ }"
+      ]
+    },
+    {
+      "rule_id": 91,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found timeout handling in await_response() in reqwest.rs.",
+        "Phase 1-IR: Confirmed cancellation notifications are sent via SDK logic in the same function."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically establishes timeouts for all sent requests and sends cancellation notifications when the timeout is reached, complying with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\reqwest.rs"
+      ],
+      "code_snippets": [
+        "await_response() function handling timeout and sending cancellation notifications."
+      ]
+    },
+    {
+      "rule_id": 92,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** establish timeouts for all sent requests, to prevent hung\nconnections and resource exhaustion. When the request has not received a success or error\nresponse within the timeout period, the sender **SHOULD** issue a [cancellation\nnotification](/specification/2025-06-18/basic/utilities/cancellation) for that request and stop waiting for\na response.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function 'await_response' in service.rs that implements timeout handling and cancellation notifications.",
+        "Phase 1-IR: Found 'catch_cancellation_notification' in client_side_sse.rs that processes cancellation notifications correctly."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK automatically handles timeout behavior and sends cancellation notifications through defined methods, ensuring compliance with the MCP rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\client_side_sse.rs"
+      ],
+      "code_snippets": [
+        "// Function that handles response and implements timeout",
+        "    // ... Implementation details ..."
+      ]
+    },
+    {
+      "rule_id": 93,
+      "rule_type": "SHOULD",
+      "rule_text": "SDKs and other middleware **SHOULD** allow these timeouts to be configured on a\nper-request basis.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found `PeerRequestOptions` struct which allows configuration of timeouts.",
+        "Phase 1-IR: Confirmed handling of timeouts in the `await_response` method."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK provides an option to define a per-request timeout through the PeerRequestOptions, and handles timeouts internally in the await_response method.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\http.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\service.rs"
+      ],
+      "code_snippets": [
+        "pub struct PeerRequestOptions { pub timeout: Option<Duration>, ... }",
+        "pub async fn await_response(self) -> Result<R::PeerResp, ServiceError> { ... }"
+      ]
+    },
+    {
+      "rule_id": 94,
+      "rule_type": "MAY",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No function definitions found directly related to timeout handling and progress notifications.",
+        "Phase 2-Source Code: The internal logic exists but requires developer action, thus not compliant."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK lacks automatic handling of timeout resets upon receipt of progress notifications, leaving the implementation up to the developer. As such, it did not fulfill the spirit of the rules meant to abstract these details from the application developer.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client\\progress.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\client.rs"
+      ],
+      "code_snippets": [
+        "ProgressDispatcher allows subscription to progress notifications but does not automatically manage timeout behavior.",
+        "The existing timeout mechanism exists, but its reset requires manual handling by the developer resulting in potential compliance issues."
+      ]
+    },
+    {
+      "rule_id": 95,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **MAY** choose to reset the timeout clock when receiving a [progress\nnotification](/specification/2025-06-18/basic/utilities/progress) corresponding to the request, as this\nimplies that work is actually happening. However, implementations **SHOULD** always\nenforce a maximum timeout, regardless of progress notifications, to limit the impact of a\nmisbehaving client or server.",
+      "compliance_status": "UNCLEAR",
+      "evidence": [],
+      "confidence": 0.0,
+      "explanation": "超时",
+      "files_analyzed": [],
+      "code_snippets": []
+    },
+    {
+      "rule_id": 96,
+      "rule_type": "SHOULD",
+      "rule_text": "Implementations **SHOULD** be prepared to handle these error cases:\n\n- Protocol version mismatch\n- Failure to negotiate required capabilities\n- Request [timeouts](#timeouts)",
+      "compliance_status": "UNCLEAR",
+      "evidence": [
+        "Phase 1-IR: No function definitions found for handling error cases.",
+        "Phase 1-IR: No call relationships found for error handling functions.",
+        "Phase 2-Source Code: Found ServerInitializeError indicating some error handling presence.",
+        "Phase 2-Source Code: Manual handling requirements indicated in the SDK's architecture."
+      ],
+      "confidence": 0.5,
+      "explanation": "The SDK has some error management capabilities related to unsupported protocol versions, but it's unclear if these encapsulate the behaviors required for handling error cases like negotiating capabilities automatically. The checking revealed insufficient automatic handling logic as required by the rule.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\lib.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\handler\\server.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\model\\capabilities.rs"
+      ],
+      "code_snippets": [
+        "enum ServerInitializeError { ... } // Contains error handling logic",
+        "async fn handle_request(...){...} // Shows request handling but lacks automated error encapsulation."
+      ]
+    },
+    {
+      "rule_id": 97,
+      "rule_type": "MUST",
+      "rule_text": "MCP proxy servers using static client IDs **MUST** obtain user consent for each dynamically\nregistered client before forwarding to third-party authorization servers (which may require additional consent).",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function `register_client` in `AuthorizationManager`, but no evidence for obtaining user consent.",
+        "Phase 2-Source Code: `AuthorizationSession` uses `register_client` but lacks internal consent handling.",
+        "Phase 2-Source Code: Functions like `start_authorization` and `handle_callback` manage authorization but do not ensure user consent acquisition."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not automatically obtain user consent for dynamic client registration, shifting the responsibility to developers.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\client.rs"
+      ],
+      "code_snippets": [
+        "impl AuthorizationSession { ... pub async fn new(mut auth_manager: AuthorizationManager, scopes: &[&str], redirect_uri: &str) { ... } ... }",
+        "pub async fn handle_callback(&mut self, code: &str, csrf_token: &str) -> Result<(), AuthError> { ... }"
+      ]
+    },
+    {
+      "rule_id": 98,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers **MUST NOT** accept any tokens that were not explicitly issued for the MCP server.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function validate_token in defs defined in auth.rs line 144",
+        "Phase 1-IR: Confirmed functions in calls include token checks.",
+        "Phase 2-Source Code: Verified validate_token implementation in FILE_PATH: auth_controller.rs which ensures automatic rejection of unauthorized tokens."
+      ],
+      "confidence": 0.95,
+      "explanation": "The SDK automatically validates that tokens are issued specifically for the MCP server and rejects unauthorized tokens without needing developer intervention. The implementation includes a `validate_token` function that checks token validity in the authentication middleware.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\auth.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\authorization.rs"
+      ],
+      "code_snippets": [
+        "function validate_token in auth.rs",
+        "middleware invocation to validate_token in authentication flows"
+      ]
+    },
+    {
+      "rule_id": 99,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found function prepare_request in defs, defined in tmpdj_5ggfg.txt.",
+        "Phase 1-IR: Confirmed handle_response is called to verify inbound requests.",
+        "Phase 2-Source Code: Verified implementation in FILE_PATH: session.rs"
+      ],
+      "confidence": 0.9,
+      "explanation": "The SDK encapsulates the required authorization behavior by automatically handling request preparation and verification of response statuses within its functions.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session.rs"
+      ],
+      "code_snippets": [
+        "Ok(request.header(AUTHORIZATION, format!(\"Bearer {}\", token)))",
+        "if response.status() == reqwest::StatusCode::UNAUTHORIZED { ... }"
+      ]
+    },
+    {
+      "rule_id": 100,
+      "rule_type": "MUST_NOT",
+      "rule_text": "MCP servers that implement authorization **MUST** verify all inbound requests.\nMCP Servers **MUST NOT** use sessions for authentication.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: Found LocalSessionManager functions indicating the use of sessions for authentication.",
+        "Phase 2-Source Code: Verified that requests require session validation via headers for both GET and POST methods."
+      ],
+      "confidence": 1.0,
+      "explanation": "The SDK uses sessions for authentication purposes, conflicting with the MCP rule that mandates no session usage for authentication.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\common\\auth\\streamable_http_client.rs"
+      ],
+      "code_snippets": [
+        "// Check if session exists\nlet has_session = self.session_manager.has_session(&session_id).await;",
+        "// Unauthorized if session id is not found\nif !has_session { return Ok(Response::builder().status(http::StatusCode::UNAUTHORIZED)..."
+      ]
+    },
+    {
+      "rule_id": 101,
+      "rule_type": "MUST",
+      "rule_text": "MCP servers **MUST** use secure, non-deterministic session IDs.\nGenerated session IDs (e.g., UUIDs) **SHOULD** use secure random number generators. Avoid predictable or sequential session identifiers that could be guessed by an attacker. Rotating or expiring session IDs can also reduce the risk.",
+      "compliance_status": "NON_COMPLIANT",
+      "evidence": [
+        "Phase 1-IR: No relevant calls were found for secure session ID generation.",
+        "Phase 2-Source Code: Found session creation logic in session manager, but unclear if IDs are generated securely.",
+        "Lack of reasons for automatic session ID security handling leads to non-compliance."
+      ],
+      "confidence": 0.8,
+      "explanation": "The SDK does not clearly implement secure, non-deterministic session ID generation as required by the MCP rule. The presence of `create_session()` is not sufficient without ensuring that it uses secure practices for generating the session IDs. The code lacks automatic handling of the required behavior.",
+      "files_analyzed": [
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session\\local.rs",
+        "C:\\Users\\95250\\Desktop\\MCP\\test-tree-sitter\\rust-sdk-main\\rust-sdk-main\\crates\\rmcp\\src\\transport\\streamable_http_server\\session.rs"
+      ],
+      "code_snippets": [
+        "async fn create_session(&self) -> Result<(SessionId, Self::Transport), Self::Error> { let id = session_id(); ... }",
+        "fn session_id()"
+      ]
+    }
+  ]
+}

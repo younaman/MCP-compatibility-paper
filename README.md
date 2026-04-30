@@ -34,7 +34,7 @@ python scripts/build_lang.py       # build shared library under build/
 ```
 
 Languages are loaded via `tree_sitter_language_pack` or `tree_sitter_languages` when available.
-
+For convenience, pre-generated IR files are under `out/`.
 ---
 
 ## 2. Compliance analysis
@@ -67,6 +67,8 @@ python scripts/auto_llm_compliance_checker.py \
  **The rule file (`requirements_analysis.json`) contains the MCP clause specifications used in our analysis. It is preprocessed and normalized from the MCP specification, and is provided in the artifact for direct use.**
 Use `--output-format jsonl` with `--start-rule` / `--end-rule` for chunked runs and resume via the same JSONL path. See `--help` for all flags.
 
+For convenience, pre-generated compliance analysis result files are under main directory, named `compliance_<language>_number.json`.
+
 **Privacy note for public or anonymous artifacts:** IR and uploaded sources embed absolute paths. Scrub or use relative paths before publishing if you must avoid machine-specific strings.
 
 ---
@@ -98,19 +100,18 @@ python pipeline.py --spec path/to/spec_fragment.txt --implemented
 echo "..." | python pipeline.py --spec - --noimplemented
 ```
 
-- `--implemented` — penetration-style scenario (implemented stack).  
-- `--noimplemented` — architect-style “missing control” scenario (default if neither flag is set).
+- `--implemented` — penetration-style scenario (implemented clauses).  
+- `--noimplemented` — architect-style “non implemented clause” scenario (default if neither flag is set).
 
 JSON result is printed to stdout (`semantic_analysis`, `control_analysis`, `threat_analysis`).
 
 ---
+## Scope of this artifact
 
-## Related scripts (short pointers)
+The core scripts needed to inspect the paper’s analysis pipeline are:
 
-| Path | Purpose |
-|------|---------|
-| `scripts/llm_rule_extractor.py` | LLM-based extraction from spec artifacts (rules JSON). |
-| `scripts/rule_parser.py` / `scripts/rule_loader.py` | Rule parsing and loading helpers for other tooling. |
-| `scripts/demo_llm_compliance.py` | Offline demo that reads `out/*.jsonl` without calling the API. |
+- `scripts/index_repo.py` — logic-guided IR generation
+- `scripts/auto_llm_compliance_checker.py` — clause–implementation compliance checking
+- `scripts/exploitable_analyzer/` — exploitability analysis
 
-For questions about a specific SDK subtree, refer to that SDK’s own README under `*-sdk-main/`.
+The repository may also contain auxiliary, experimental, or legacy scripts used during development. These files are not required to reproduce the workflow described in the paper and are included only for transparency.
